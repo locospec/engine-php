@@ -1,10 +1,9 @@
 <?php
 
+use Locospec\EnginePhp\BFTGraph;
 use Locospec\EnginePhp\Edge;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 use Locospec\EnginePhp\Graph;
-use Locospec\EnginePhp\BFTGraph;
-use Locospec\EnginePhp\TreeNode;
 use Locospec\EnginePhp\Vertex;
 
 beforeEach(function () {
@@ -47,7 +46,7 @@ beforeEach(function () {
 
 test('throws exception for vertex not in graph', function () {
     $invalidVertex = new Vertex('X');
-    expect(fn() => $this->bftGraph->generateTree($invalidVertex))
+    expect(fn () => $this->bftGraph->generateTree($invalidVertex))
         ->toThrow(InvalidArgumentException::class, 'Vertex is not present in the graph');
 });
 
@@ -57,17 +56,17 @@ test('generates tree in correct BFT order', function () {
     // Collect vertices by level while tracking visited vertices
     $levels = [];
     $visited = [];
-    $queue = new SplQueue();
+    $queue = new SplQueue;
     $queue->enqueue([$tree, 0]); // [node, level]
     $visited[$tree->vertex->getId()] = true;
 
-    while (!$queue->isEmpty()) {
+    while (! $queue->isEmpty()) {
         [$node, $level] = $queue->dequeue();
         $levels[$level][] = $node->vertex->getId();
 
         foreach ($node->children as $child) {
             $childId = $child->vertex->getId();
-            if (!isset($visited[$childId])) {
+            if (! isset($visited[$childId])) {
                 $visited[$childId] = true;
                 $queue->enqueue([$child, $level + 1]);
             }
@@ -98,10 +97,10 @@ test('handles cycles correctly', function () {
 
     // Track visited vertex IDs instead of vertex objects
     $visitedIds = [];
-    $queue = new SplQueue();
+    $queue = new SplQueue;
     $queue->enqueue($tree);
 
-    while (!$queue->isEmpty()) {
+    while (! $queue->isEmpty()) {
         $node = $queue->dequeue();
         $vertexId = $node->vertex->getId();
 
@@ -164,7 +163,7 @@ test('tree node converts correctly to array', function () {
         ->and($array['children'])->toBeArray();
 
     // Verify first level children
-    $childrenIds = array_map(fn($child) => $child['id'], $array['children']);
+    $childrenIds = array_map(fn ($child) => $child['id'], $array['children']);
     sort($childrenIds);
     expect($childrenIds)->toBe(['B', 'C']);
 });

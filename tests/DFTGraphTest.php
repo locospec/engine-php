@@ -1,10 +1,9 @@
 <?php
 
+use Locospec\EnginePhp\DFTGraph;
 use Locospec\EnginePhp\Edge;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 use Locospec\EnginePhp\Graph;
-use Locospec\EnginePhp\DFTGraph;
-use Locospec\EnginePhp\TreeNode;
 use Locospec\EnginePhp\Vertex;
 
 beforeEach(function () {
@@ -44,7 +43,7 @@ beforeEach(function () {
 
 test('throws exception for vertex not in graph', function () {
     $invalidVertex = new Vertex('X');
-    expect(fn() => $this->dftGraph->generateTree($invalidVertex))
+    expect(fn () => $this->dftGraph->generateTree($invalidVertex))
         ->toThrow(InvalidArgumentException::class);
 });
 
@@ -58,6 +57,7 @@ test('generates tree containing all possible paths', function () {
 
         if ($node->vertex->getId() === 'E') {
             $pathsToE[] = $currentPath;
+
             return;
         }
 

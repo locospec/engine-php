@@ -8,15 +8,13 @@ class RelationshipGraph
 {
     /**
      * The underlying graph structure
-     *
-     * @var Graph
      */
     private readonly Graph $graph;
 
     /**
      * Creates a new RelationshipGraph instance
      *
-     * @param Graph $graph The underlying graph structure
+     * @param  Graph  $graph  The underlying graph structure
      */
     public function __construct(Graph $graph)
     {
@@ -26,13 +24,14 @@ class RelationshipGraph
     /**
      * Generates a tree structure using Breadth-First Traversal from a start vertex
      *
-     * @param Vertex $startVertex The starting vertex
+     * @param  Vertex  $startVertex  The starting vertex
      * @return TreeNode The root node of the generated tree
+     *
      * @throws InvalidArgumentException If vertex is not in the graph
      */
     public function generateBFTTree(Vertex $startVertex): TreeNode
     {
-        if (!$this->graph->hasVertex($startVertex->getId())) {
+        if (! $this->graph->hasVertex($startVertex->getId())) {
             throw new InvalidArgumentException('Start vertex is not in the graph');
         }
 
@@ -41,10 +40,10 @@ class RelationshipGraph
         $visited = [$startVertex->getId() => true];
 
         // Queue to track vertices to visit along with their parent nodes
-        $queue = new \SplQueue();
+        $queue = new \SplQueue;
         $queue->enqueue(['vertex' => $startVertex, 'node' => $root]);
 
-        while (!$queue->isEmpty()) {
+        while (! $queue->isEmpty()) {
             $current = $queue->dequeue();
             $currentVertex = $current['vertex'];
             $currentNode = $current['node'];
@@ -59,13 +58,13 @@ class RelationshipGraph
                 $neighborVertex = $edge->getTarget();
                 $neighborId = $neighborVertex->getId();
 
-                if (!isset($visited[$neighborId])) {
+                if (! isset($visited[$neighborId])) {
                     $visited[$neighborId] = true;
                     $childNode = new TreeNode($neighborVertex);
                     $currentNode->children[] = $childNode;
                     $queue->enqueue([
                         'vertex' => $neighborVertex,
-                        'node' => $childNode
+                        'node' => $childNode,
                     ]);
                 }
             }
@@ -77,13 +76,14 @@ class RelationshipGraph
     /**
      * Generates a tree structure using Depth-First Traversal from a start vertex
      *
-     * @param Vertex $startVertex The starting vertex
+     * @param  Vertex  $startVertex  The starting vertex
      * @return TreeNode The root node of the generated tree
+     *
      * @throws InvalidArgumentException If vertex is not in the graph
      */
     public function generateDFTTree(Vertex $startVertex): TreeNode
     {
-        if (!$this->graph->hasVertex($startVertex->getId())) {
+        if (! $this->graph->hasVertex($startVertex->getId())) {
             throw new InvalidArgumentException('Start vertex is not in the graph');
         }
 
@@ -93,8 +93,8 @@ class RelationshipGraph
     /**
      * Helper function for DFT tree generation
      *
-     * @param Vertex $vertex Current vertex
-     * @param array $visited Set of visited vertex IDs
+     * @param  Vertex  $vertex  Current vertex
+     * @param  array  $visited  Set of visited vertex IDs
      * @return TreeNode The generated tree node
      */
     private function dftHelper(Vertex $vertex, array $visited): TreeNode
@@ -110,7 +110,7 @@ class RelationshipGraph
 
         foreach ($neighbors as $edge) {
             $neighborVertex = $edge->getTarget();
-            if (!isset($visited[$neighborVertex->getId()])) {
+            if (! isset($visited[$neighborVertex->getId()])) {
                 $childNode = $this->dftHelper($neighborVertex, $visited);
                 $node->children[] = $childNode;
             }
@@ -122,7 +122,7 @@ class RelationshipGraph
     /**
      * Converts a traversal tree to Mermaid diagram syntax
      *
-     * @param TreeNode $root The root node of the tree
+     * @param  TreeNode  $root  The root node of the tree
      * @return string The Mermaid diagram syntax
      */
     public function treeToMermaidSyntax(TreeNode $root): string
@@ -144,13 +144,14 @@ class RelationshipGraph
 
         // Sort edges for consistent output
         sort($edges);
+
         return implode("\n", array_merge($lines, array_unique($edges)));
     }
 
     /**
      * Converts a vertex ID to a Mermaid-safe identifier
      *
-     * @param mixed $id The vertex ID
+     * @param  mixed  $id  The vertex ID
      * @return string Mermaid-safe identifier
      */
     private function getMermaidSafeId(mixed $id): string

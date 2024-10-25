@@ -16,8 +16,9 @@ abstract class TraversalGraph
     /**
      * Generate a tree structure from the graph starting at given vertex
      *
-     * @param Vertex $startVertex The vertex to start traversal from
+     * @param  Vertex  $startVertex  The vertex to start traversal from
      * @return TreeNode Root node of the generated tree
+     *
      * @throws InvalidArgumentException If vertex is not in the graph
      */
     abstract public function generateTree(Vertex $startVertex): TreeNode;
@@ -29,6 +30,7 @@ abstract class TraversalGraph
     {
         $lines = ['graph TD'];
         $this->buildMermaidSyntax($root, $lines);
+
         return implode("\n", $lines);
     }
 
@@ -65,7 +67,7 @@ abstract class TraversalGraph
      */
     protected function validateVertex(Vertex $vertex): void
     {
-        if (!$this->graph->hasVertex($vertex->getId())) {
+        if (! $this->graph->hasVertex($vertex->getId())) {
             throw new InvalidArgumentException('Vertex is not present in the graph');
         }
     }

@@ -5,6 +5,7 @@ namespace Locospec\EnginePhp;
 class TreeNode
 {
     public readonly Vertex $vertex;
+
     public array $children = [];
 
     public function __construct(Vertex $vertex)
@@ -25,9 +26,9 @@ class TreeNode
         return [
             'id' => $this->vertex->getId(),
             'children' => array_map(
-                fn(TreeNode $child) => $child->toArray(),
+                fn (TreeNode $child) => $child->toArray(),
                 $this->children
-            )
+            ),
         ];
     }
 
@@ -67,7 +68,7 @@ class TreeNode
     /**
      * Find shortest path to target vertex ID
      *
-     * @param mixed $targetId The target vertex ID to find path to
+     * @param  mixed  $targetId  The target vertex ID to find path to
      * @return array<mixed>|null Array of vertex IDs representing path, or null if no path exists
      */
     public function findPath(mixed $targetId): ?array
@@ -78,15 +79,15 @@ class TreeNode
         }
 
         // BFS implementation
-        $queue = new \SplQueue();
+        $queue = new \SplQueue;
         $queue->enqueue([
             'node' => $this,
-            'path' => [$this->vertex->getId()]
+            'path' => [$this->vertex->getId()],
         ]);
 
         $visited = [$this->vertex->getId() => true];
 
-        while (!$queue->isEmpty()) {
+        while (! $queue->isEmpty()) {
             $current = $queue->dequeue();
             /** @var TreeNode */
             $currentNode = $current['node'];
@@ -100,11 +101,11 @@ class TreeNode
                     return array_merge($currentPath, [$childId]);
                 }
 
-                if (!isset($visited[$childId])) {
+                if (! isset($visited[$childId])) {
                     $visited[$childId] = true;
                     $queue->enqueue([
                         'node' => $child,
-                        'path' => array_merge($currentPath, [$childId])
+                        'path' => array_merge($currentPath, [$childId]),
                     ]);
                 }
             }
@@ -142,9 +143,9 @@ class TreeNode
     /**
      * Reconstruct path from parents map
      *
-     * @param array<mixed, mixed> $parents Map of child ID to parent ID
-     * @param mixed $startId Starting vertex ID
-     * @param mixed $endId Ending vertex ID
+     * @param  array<mixed, mixed>  $parents  Map of child ID to parent ID
+     * @param  mixed  $startId  Starting vertex ID
+     * @param  mixed  $endId  Ending vertex ID
      * @return array<mixed> Array of vertex IDs representing the path
      */
     private function reconstructPath(array $parents, mixed $startId, mixed $endId): array

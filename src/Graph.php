@@ -191,13 +191,13 @@ class Graph
                 $safeSource = preg_replace(
                     '/[^a-zA-Z0-9_]/',
                     '',
-                    str_replace(' ', '_', (string)$sourceId)
+                    str_replace(' ', '_', (string) $sourceId)
                 );
 
                 $safeTarget = preg_replace(
                     '/[^a-zA-Z0-9_]/',
                     '',
-                    str_replace(' ', '_', (string)$edge->getTarget()->getId())
+                    str_replace(' ', '_', (string) $edge->getTarget()->getId())
                 );
 
                 $lines[] = sprintf(
@@ -216,17 +216,18 @@ class Graph
     /**
      * Find shortest path between two vertices using BFS
      *
-     * @param mixed $sourceId Starting vertex ID
-     * @param mixed $targetId Target vertex ID
+     * @param  mixed  $sourceId  Starting vertex ID
+     * @param  mixed  $targetId  Target vertex ID
      * @return Edge[]|null Array of edges representing shortest path, or null if no path exists
+     *
      * @throws VertexNotFoundException If either vertex doesn't exist
      */
     public function findShortestPath(mixed $sourceId, mixed $targetId): ?array
     {
-        if (!$this->hasVertex($sourceId)) {
+        if (! $this->hasVertex($sourceId)) {
             throw new VertexNotFoundException("Source vertex with ID {$sourceId} not found");
         }
-        if (!$this->hasVertex($targetId)) {
+        if (! $this->hasVertex($targetId)) {
             throw new VertexNotFoundException("Target vertex with ID {$targetId} not found");
         }
 
@@ -240,17 +241,17 @@ class Graph
         $parentEdges = [];
 
         // Use queue for BFS
-        $queue = new \SplQueue();
+        $queue = new \SplQueue;
         $queue->enqueue($sourceId);
 
-        while (!$queue->isEmpty()) {
+        while (! $queue->isEmpty()) {
             $currentId = $queue->dequeue();
             $neighbors = $this->getNeighbors($currentId);
 
             foreach ($neighbors as $edge) {
                 $neighborId = $edge->getTarget()->getId();
 
-                if (!isset($visited[$neighborId])) {
+                if (! isset($visited[$neighborId])) {
                     $visited[$neighborId] = true;
                     $parentEdges[$neighborId] = $edge;
                     $queue->enqueue($neighborId);
@@ -268,9 +269,9 @@ class Graph
     /**
      * Reconstruct path from parent edges map
      *
-     * @param array<mixed, Edge> $parentEdges Map of vertex IDs to their parent edges
-     * @param mixed $sourceId Starting vertex ID
-     * @param mixed $targetId Target vertex ID
+     * @param  array<mixed, Edge>  $parentEdges  Map of vertex IDs to their parent edges
+     * @param  mixed  $sourceId  Starting vertex ID
+     * @param  mixed  $targetId  Target vertex ID
      * @return Edge[] Array of edges representing the path
      */
     private function reconstructEdgePath(array $parentEdges, mixed $sourceId, mixed $targetId): array
@@ -287,11 +288,10 @@ class Graph
         return $path;
     }
 
-
     /**
      * Find all reachable entities and their relationship paths
      *
-     * @param mixed $sourceId Starting entity
+     * @param  mixed  $sourceId  Starting entity
      * @return array<string, array{path: Edge[], type: string}> Map of target entities to their paths
      */
     public function findAllRelationships(mixed $sourceId): array
@@ -307,7 +307,7 @@ class Graph
                     $relationType = $this->determineRelationType($path);
                     $relationships[$targetId] = [
                         'path' => $path,
-                        'type' => $relationType
+                        'type' => $relationType,
                     ];
                 }
             }
@@ -325,26 +325,27 @@ class Graph
                 $hasMany = true;
             }
         }
+
         return $hasMany ? 'has_many' : 'belongs_to';
     }
-
 
     /**
      * Generate a subgraph showing all reachable vertices and their relationships
      *
-     * @param mixed $startId Starting vertex ID
+     * @param  mixed  $startId  Starting vertex ID
      * @return Graph A new graph containing only reachable vertices and all their interconnections
      */
     /**
      * Generate a subgraph showing all reachable vertices and their relationships
      *
-     * @param Vertex $startVertex Starting vertex
+     * @param  Vertex  $startVertex  Starting vertex
      * @return Graph A new graph containing only reachable vertices and all their interconnections
+     *
      * @throws VertexNotFoundException If vertex doesn't exist in graph
      */
     public function generateReachableGraph(Vertex $startVertex): Graph
     {
-        if (!$this->hasVertex($startVertex->getId())) {
+        if (! $this->hasVertex($startVertex->getId())) {
             throw new VertexNotFoundException("Vertex with ID {$startVertex->getId()} not found");
         }
 
@@ -386,16 +387,15 @@ class Graph
 
         foreach ($this->getNeighbors($vertexId) as $edge) {
             $targetId = $edge->getTarget()->getId();
-            if (!isset($reachable[$targetId])) {
+            if (! isset($reachable[$targetId])) {
                 $this->findReachableVertices($targetId, $reachable);
             }
         }
     }
 
-
     public function createExpansionGraph(Vertex $startVertex): Graph
     {
-        if (!$this->hasVertex($startVertex->getId())) {
+        if (! $this->hasVertex($startVertex->getId())) {
             throw new VertexNotFoundException("Vertex with ID {$startVertex->getId()} not found");
         }
 
@@ -426,7 +426,7 @@ class Graph
             }
 
             // Add vertex if not in subgraph
-            if (!$subgraph->hasVertex($targetId)) {
+            if (! $subgraph->hasVertex($targetId)) {
                 $subgraph->addVertex($targetVertex);
             }
 

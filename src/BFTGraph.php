@@ -2,8 +2,6 @@
 
 namespace Locospec\EnginePhp;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-
 class BFTGraph extends TraversalGraph
 {
     public function generateTree(Vertex $startVertex): TreeNode
@@ -17,13 +15,13 @@ class BFTGraph extends TraversalGraph
         $visited = [$startVertex->getId() => true];
 
         // Queue to track vertex and its corresponding tree node
-        $queue = new \SplQueue();
+        $queue = new \SplQueue;
         $queue->enqueue([
             'vertex' => $startVertex,
-            'node' => $root
+            'node' => $root,
         ]);
 
-        while (!$queue->isEmpty()) {
+        while (! $queue->isEmpty()) {
             $current = $queue->dequeue();
             $currentVertex = $current['vertex'];
             $currentNode = $current['node'];
@@ -39,14 +37,14 @@ class BFTGraph extends TraversalGraph
                 $neighborVertex = $edge->getTarget();
                 $neighborId = $neighborVertex->getId();
 
-                if (!isset($visited[$neighborId])) {
+                if (! isset($visited[$neighborId])) {
                     $visited[$neighborId] = true;
                     $childNode = new TreeNode($neighborVertex);
                     $currentNode->children[] = $childNode;
 
                     $queue->enqueue([
                         'vertex' => $neighborVertex,
-                        'node' => $childNode
+                        'node' => $childNode,
                     ]);
                 }
             }

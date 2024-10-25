@@ -6,13 +6,11 @@ class MermaidRenderer
 {
     /**
      * The CDN URL for Mermaid
-     * @var string
      */
     private string $mermaidCdn = 'https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js';
 
     /**
      * Configure Mermaid settings
-     * @var array
      */
     private array $config = [
         'theme' => 'default',
@@ -23,7 +21,7 @@ class MermaidRenderer
     /**
      * Creates a new MermaidRenderer instance with optional configuration
      *
-     * @param array $config Optional Mermaid configuration settings
+     * @param  array  $config  Optional Mermaid configuration settings
      */
     public function __construct(array $config = [])
     {
@@ -33,15 +31,15 @@ class MermaidRenderer
     /**
      * Converts Mermaid syntax to complete HTML page with proper CDN setup
      *
-     * @param string $mermaidSyntax The Mermaid diagram syntax
-     * @param string $title Page title
-     * @param string|null $elementId Optional custom ID for the diagram element
+     * @param  string  $mermaidSyntax  The Mermaid diagram syntax
+     * @param  string  $title  Page title
+     * @param  string|null  $elementId  Optional custom ID for the diagram element
      * @return string The complete HTML page
      */
     public function render(string $mermaidSyntax, string $title = 'Mermaid Diagram', ?string $elementId = null): string
     {
         // Generate a random ID if none provided
-        $elementId = $elementId ?? 'mermaid_' . uniqid();
+        $elementId = $elementId ?? 'mermaid_'.uniqid();
 
         // Encode config as JSON
         $configJson = json_encode($this->config);
@@ -100,24 +98,24 @@ HTML;
     /**
      * Sets the Mermaid CDN URL
      *
-     * @param string $cdnUrl The CDN URL to use
-     * @return self
+     * @param  string  $cdnUrl  The CDN URL to use
      */
     public function setCdnUrl(string $cdnUrl): self
     {
         $this->mermaidCdn = $cdnUrl;
+
         return $this;
     }
 
     /**
      * Updates Mermaid configuration
      *
-     * @param array $config Configuration options to update
-     * @return self
+     * @param  array  $config  Configuration options to update
      */
     public function setConfig(array $config): self
     {
         $this->config = array_merge($this->config, $config);
+
         return $this;
     }
 }

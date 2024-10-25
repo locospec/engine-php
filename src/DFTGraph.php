@@ -2,14 +2,13 @@
 
 namespace Locospec\EnginePhp;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-
 class DFTGraph extends TraversalGraph
 {
     public function generateTree(Vertex $startVertex): TreeNode
     {
         $this->validateVertex($startVertex);
-        return $this->dftHelper($startVertex, new \SplObjectStorage());
+
+        return $this->dftHelper($startVertex, new \SplObjectStorage);
     }
 
     private function dftHelper(Vertex $vertex, \SplObjectStorage $currentPath): TreeNode
@@ -21,7 +20,7 @@ class DFTGraph extends TraversalGraph
         foreach ($neighbors as $edge) {
             $neighborVertex = $edge->getTarget();
 
-            if (!$currentPath->contains($neighborVertex)) {
+            if (! $currentPath->contains($neighborVertex)) {
                 // Create new path for each neighbor by cloning current path
                 $newPath = clone $currentPath;
                 $childNode = $this->dftHelper($neighborVertex, $newPath);
@@ -30,6 +29,7 @@ class DFTGraph extends TraversalGraph
         }
 
         $currentPath->detach($vertex); // Backtrack
+
         return $node;
     }
 }
