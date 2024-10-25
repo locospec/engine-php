@@ -2,6 +2,4 @@
 
 namespace Locospec\EnginePhp;
 
-class EnginePhpClass
-{
-}
+class EnginePhpClass {}
