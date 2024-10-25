@@ -1,10 +1,10 @@
 <?php
 
-use Locospec\EnginePhp\Graph;
-use Locospec\EnginePhp\Vertex;
 use Locospec\EnginePhp\Edge;
 use Locospec\EnginePhp\Exceptions\DuplicateVertexException;
 use Locospec\EnginePhp\Exceptions\VertexNotFoundException;
+use Locospec\EnginePhp\Graph;
+use Locospec\EnginePhp\Vertex;
 
 beforeEach(function () {
     $this->graph = new Graph(false); // Undirected graph
@@ -16,7 +16,7 @@ beforeEach(function () {
         'London' => new Vertex('London'),
         'New York' => new Vertex('New York'),
         'Singapore' => new Vertex('Singapore'),
-        'Tokyo' => new Vertex('Tokyo')
+        'Tokyo' => new Vertex('Tokyo'),
     ];
 
     // Add vertices to graph
@@ -31,7 +31,7 @@ beforeEach(function () {
         'London' => ['Dubai', 'New York', 'Singapore'],
         'New York' => ['London'],
         'Singapore' => ['Mumbai', 'Dubai', 'London', 'Tokyo'],
-        'Tokyo' => ['Singapore']
+        'Tokyo' => ['Singapore'],
     ];
 
     // Add edges to graph
@@ -55,7 +55,7 @@ test('vertices are correctly added to graph', function () {
 
 test('cannot add duplicate vertex', function () {
     $duplicateVertex = new Vertex('Mumbai');
-    expect(fn() => $this->graph->addVertex($duplicateVertex))
+    expect(fn () => $this->graph->addVertex($duplicateVertex))
         ->toThrow(DuplicateVertexException::class);
 });
 
@@ -78,14 +78,14 @@ test('all vertices are accessible', function () {
             'London',
             'New York',
             'Singapore',
-            'Tokyo'
+            'Tokyo',
         ]);
 });
 
 test('neighbors are correctly added for each vertex', function () {
     // Test Mumbai's connections
     $mumbaiNeighbors = array_map(
-        fn($edge) => $edge->getTarget()->getId(),
+        fn ($edge) => $edge->getTarget()->getId(),
         $this->graph->getNeighbors('Mumbai')
     );
     sort($mumbaiNeighbors);
@@ -93,7 +93,7 @@ test('neighbors are correctly added for each vertex', function () {
 
     // Test Singapore's connections
     $singaporeNeighbors = array_map(
-        fn($edge) => $edge->getTarget()->getId(),
+        fn ($edge) => $edge->getTarget()->getId(),
         $this->graph->getNeighbors('Singapore')
     );
     sort($singaporeNeighbors); // Sort before comparing
@@ -101,14 +101,14 @@ test('neighbors are correctly added for each vertex', function () {
 
     // Test Tokyo's connections
     $tokyoNeighbors = array_map(
-        fn($edge) => $edge->getTarget()->getId(),
+        fn ($edge) => $edge->getTarget()->getId(),
         $this->graph->getNeighbors('Tokyo')
     );
     expect($tokyoNeighbors)->toBe(['Singapore']);
 });
 
 test('throws exception when getting neighbors of non-existent vertex', function () {
-    expect(fn() => $this->graph->getNeighbors('Paris'))
+    expect(fn () => $this->graph->getNeighbors('Paris'))
         ->toThrow(VertexNotFoundException::class);
 });
 
@@ -117,7 +117,7 @@ test('adjacency list matches expected structure', function () {
 
     foreach ($this->connections as $source => $expectedTargets) {
         $actualTargets = array_map(
-            fn($edge) => $edge->getTarget()->getId(),
+            fn ($edge) => $edge->getTarget()->getId(),
             $adjacencyList[$source]
         );
         sort($actualTargets);
@@ -131,13 +131,13 @@ test('graph is undirected', function () {
 
     // Verify bidirectional connections
     $mumbaiNeighbors = array_map(
-        fn($edge) => $edge->getTarget()->getId(),
+        fn ($edge) => $edge->getTarget()->getId(),
         $this->graph->getNeighbors('Mumbai')
     );
 
     // Check if Dubai has Mumbai as neighbor (bidirectional)
     $dubaiNeighbors = array_map(
-        fn($edge) => $edge->getTarget()->getId(),
+        fn ($edge) => $edge->getTarget()->getId(),
         $this->graph->getNeighbors('Dubai')
     );
 

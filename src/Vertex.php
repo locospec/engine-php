@@ -19,8 +19,9 @@ class Vertex
     /**
      * Creates a new Vertex instance
      *
-     * @param mixed $id The unique identifier for the vertex
-     * @param mixed|null $data Optional payload data
+     * @param  mixed  $id  The unique identifier for the vertex
+     * @param  mixed|null  $data  Optional payload data
+     *
      * @throws InvalidArgumentException If id is null
      */
     public function __construct(mixed $id, mixed $data = null)
