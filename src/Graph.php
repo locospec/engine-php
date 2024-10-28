@@ -441,7 +441,7 @@ class Graph
     public function toMermaidHTML($title = 'Connection Graph')
     {
 
-        $renderer = new MermaidRenderer();
+        $renderer = new MermaidRenderer;
 
         $html = $renderer->render(
             $this->toMermaidSyntax(),
