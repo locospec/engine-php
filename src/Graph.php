@@ -176,44 +176,6 @@ class Graph
     }
 
     /**
-     * Converts the graph to Mermaid diagram syntax
-     *
-     * @return string Mermaid graph syntax
-     */
-    public function toMermaidSyntax(): string
-    {
-        $lines = ['graph TD'];
-
-        foreach ($this->getAdjacencyList() as $sourceId => $edges) {
-            foreach ($edges as $edge) {
-                // dd($edge);
-                // Replace spaces with underscores and escape special characters
-                $safeSource = preg_replace(
-                    '/[^a-zA-Z0-9_]/',
-                    '',
-                    str_replace(' ', '_', (string) $sourceId)
-                );
-
-                $safeTarget = preg_replace(
-                    '/[^a-zA-Z0-9_]/',
-                    '',
-                    str_replace(' ', '_', (string) $edge->getTarget()->getId())
-                );
-
-                $lines[] = sprintf(
-                    '    %s%s%s%s',
-                    $safeSource,
-                    $this->isDirected() ? ' -->' : ' ---',
-                    $edge->getType() !== null ? sprintf('|%s|', preg_replace('/[^\w\s-]/', '', $edge->getType())) : '',
-                    $safeTarget
-                );
-            }
-        }
-
-        return implode("\n", $lines);
-    }
-
-    /**
      * Find shortest path between two vertices using BFS
      *
      * @param  mixed  $sourceId  Starting vertex ID
@@ -436,5 +398,56 @@ class Graph
             // Recursively explore from target
             $this->expandDFS($targetId, $currentPath, $subgraph);
         }
+    }
+
+    /**
+     * Converts the graph to Mermaid diagram syntax
+     *
+     * @return string Mermaid graph syntax
+     */
+    public function toMermaidSyntax(): string
+    {
+        $lines = ['graph TD'];
+
+        foreach ($this->getAdjacencyList() as $sourceId => $edges) {
+            foreach ($edges as $edge) {
+                // dd($edge);
+                // Replace spaces with underscores and escape special characters
+                $safeSource = preg_replace(
+                    '/[^a-zA-Z0-9_]/',
+                    '',
+                    str_replace(' ', '_', (string) $sourceId)
+                );
+
+                $safeTarget = preg_replace(
+                    '/[^a-zA-Z0-9_]/',
+                    '',
+                    str_replace(' ', '_', (string) $edge->getTarget()->getId())
+                );
+
+                $lines[] = sprintf(
+                    '    %s%s%s%s',
+                    $safeSource,
+                    $this->isDirected() ? ' -->' : ' ---',
+                    $edge->getType() !== null ? sprintf('|%s|', preg_replace('/[^\w\s-]/', '', $edge->getType())) : '',
+                    $safeTarget
+                );
+            }
+        }
+
+        return implode("\n", $lines);
+    }
+
+    public function toMermaidHTML($title = 'Connection Graph')
+    {
+
+        $renderer = new MermaidRenderer();
+
+        $html = $renderer->render(
+            $this->toMermaidSyntax(),
+            $title
+        );
+
+        return $html;
     }
 }
