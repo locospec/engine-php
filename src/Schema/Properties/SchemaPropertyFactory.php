@@ -21,21 +21,22 @@ class SchemaPropertyFactory
 
     public static function create(string $type): SchemaPropertyInterface
     {
-        if (!isset(self::$typeMap[$type])) {
+        if (! isset(self::$typeMap[$type])) {
             throw new InvalidArgumentException("Invalid property type: {$type}");
         }
 
         $className = self::$typeMap[$type];
-        return new $className();
+
+        return new $className;
     }
 
     public static function registerType(string $type, string $className): void
     {
-        if (!class_exists($className)) {
+        if (! class_exists($className)) {
             throw new InvalidArgumentException("Class {$className} does not exist");
         }
 
-        if (!is_subclass_of($className, SchemaPropertyInterface::class)) {
+        if (! is_subclass_of($className, SchemaPropertyInterface::class)) {
             throw new InvalidArgumentException("Class {$className} must implement SchemaPropertyInterface");
         }
 

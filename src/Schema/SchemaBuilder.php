@@ -11,13 +11,14 @@ class SchemaBuilder
 
     public function __construct()
     {
-        $this->schema = new Schema();
+        $this->schema = new Schema;
     }
 
     public function string(string $name): SchemaPropertyInterface
     {
         $property = SchemaPropertyFactory::create('string');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -25,6 +26,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('number');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -32,6 +34,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('integer');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -39,6 +42,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('boolean');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -46,6 +50,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('array');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -53,6 +58,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('object');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -60,6 +66,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('date');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -67,6 +74,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('timestamp');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 
@@ -74,6 +82,7 @@ class SchemaBuilder
     {
         $property = SchemaPropertyFactory::create('ulid');
         $this->schema->addProperty($name, $property);
+
         return $property;
     }
 

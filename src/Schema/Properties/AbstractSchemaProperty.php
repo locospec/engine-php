@@ -24,7 +24,7 @@ abstract class AbstractSchemaProperty implements SchemaPropertyInterface
 
     public function setSchema(Schema $schema): self
     {
-        throw new InvalidArgumentException("Schema can only be set for object or array types");
+        throw new InvalidArgumentException('Schema can only be set for object or array types');
     }
 
     public function getSchema(): ?Schema

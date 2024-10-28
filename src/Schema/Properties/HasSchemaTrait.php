@@ -11,6 +11,7 @@ trait HasSchemaTrait
     public function setSchema(Schema $schema): self
     {
         $this->schema = $schema;
+
         return $this;
     }
 

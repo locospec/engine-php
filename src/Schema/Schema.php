@@ -2,13 +2,15 @@
 
 namespace Locospec\EnginePhp\Schema;
 
-use Locospec\EnginePhp\Schema\Properties\SchemaPropertyInterface;
 use Locospec\EnginePhp\Schema\Properties\SchemaPropertyFactory;
+use Locospec\EnginePhp\Schema\Properties\SchemaPropertyInterface;
 
 class Schema
 {
     private array $properties = [];
+
     private ?string $title = null;
+
     private ?string $description = null;
 
     public function __construct(?string $title = null, ?string $description = null)
@@ -20,6 +22,7 @@ class Schema
     public function addProperty(string $name, SchemaPropertyInterface $property): self
     {
         $this->properties[$name] = $property;
+
         return $this;
     }
 
@@ -54,7 +57,7 @@ class Schema
 
     public static function fromArray(array $data): self
     {
-        $schema = new self();
+        $schema = new self;
 
         foreach ($data as $propertyName => $propertyData) {
             if (is_string($propertyData)) {
@@ -83,6 +86,7 @@ class Schema
     public function toShortArray(): array
     {
         $fullArray = $this->toArray();
+
         return $this->convertToShortFormat($fullArray);
     }
 
@@ -95,6 +99,7 @@ class Schema
                 // Handle simple type definition
                 if (isset($value['type']) && count($value) === 1) {
                     $result[$key] = $value['type'];
+
                     continue;
                 }
 
@@ -102,8 +107,9 @@ class Schema
                 if (isset($value['type']) && isset($value['schema'])) {
                     $result[$key] = [
                         'type' => $value['type'],
-                        'schema' => $this->convertToShortFormat($value['schema'])
+                        'schema' => $this->convertToShortFormat($value['schema']),
                     ];
+
                     continue;
                 }
 

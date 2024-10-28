@@ -1,9 +1,9 @@
 <?php
 
-use Locospec\EnginePhp\Schema\Schema;
-use Locospec\EnginePhp\Schema\SchemaBuilder;
 use Locospec\EnginePhp\Schema\Properties\SchemaPropertyFactory;
 use Locospec\EnginePhp\Schema\Properties\SchemaPropertyInterface;
+use Locospec\EnginePhp\Schema\Schema;
+use Locospec\EnginePhp\Schema\SchemaBuilder;
 
 beforeEach(function () {
     $this->sampleSchema = [
@@ -34,10 +34,10 @@ beforeEach(function () {
                                         'investor_name' => 'string',
                                         'mobile_number' => 'string',
                                         'investor_is_minor' => 'boolean',
-                                        'investor_date_of_birth' => 'date'
-                                    ]
-                                ]
-                            ]
+                                        'investor_date_of_birth' => 'date',
+                                    ],
+                                ],
+                            ],
                         ],
                         'bank' => [
                             'type' => 'object',
@@ -50,10 +50,10 @@ beforeEach(function () {
                                         'bank_type' => 'string',
                                         'bank_ifsc_code' => 'string',
                                         'bank_account_number' => 'string',
-                                        'bank_primary_account_holder_name' => 'string'
-                                    ]
-                                ]
-                            ]
+                                        'bank_primary_account_holder_name' => 'string',
+                                    ],
+                                ],
+                            ],
                         ],
                         'nominees' => [
                             'type' => 'object',
@@ -66,28 +66,28 @@ beforeEach(function () {
                                             'type' => 'array',
                                             'schema' => [
                                                 'name' => 'string',
-                                                'pan' => 'string'
-                                            ]
-                                        ]
-                                    ]
+                                                'pan' => 'string',
+                                            ],
+                                        ],
+                                    ],
                                 ],
                                 'status' => 'string',
-                                'identifier' => 'string'
-                            ]
-                        ]
-                    ]
-                ]
-            ]
+                                'identifier' => 'string',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ],
         'created_at' => 'timestamp',
         'updated_at' => 'timestamp',
         'email' => 'string',
-        'mobile' => 'string'
+        'mobile' => 'string',
     ];
 });
 
 test('creates schema using builder individually', function () {
-    $builder = new SchemaBuilder();
+    $builder = new SchemaBuilder;
 
     // Add properties individually since builder methods return SchemaPropertyInterface
     $builder->ulid('id');
@@ -113,7 +113,7 @@ test('creates schema using builder individually', function () {
 });
 
 test('builds complex nested schema using builder', function () {
-    $builder = new SchemaBuilder();
+    $builder = new SchemaBuilder;
 
     // Create main properties
     $builder->ulid('id');
@@ -123,7 +123,7 @@ test('builds complex nested schema using builder', function () {
     $onboardedProp = $builder->object('onboarded');
 
     // Create a new SchemaBuilder for onboarded schema
-    $onboardedBuilder = new SchemaBuilder();
+    $onboardedBuilder = new SchemaBuilder;
     $onboardedBuilder->string('type');
     $onboardedBuilder->string('status');
 
@@ -131,12 +131,12 @@ test('builds complex nested schema using builder', function () {
     $stepsProp = $onboardedBuilder->object('steps');
 
     // Create basic step schema
-    $basicBuilder = new SchemaBuilder();
+    $basicBuilder = new SchemaBuilder;
     $basicBuilder->string('identifier');
     $basicBuilder->string('status');
 
     // Create fields for basic step
-    $fieldsBuilder = new SchemaBuilder();
+    $fieldsBuilder = new SchemaBuilder;
     $fieldsBuilder->string('email');
     $fieldsBuilder->string('mobile_isd');
     $fieldsBuilder->boolean('investor_is_minor');
@@ -152,14 +152,14 @@ test('builds complex nested schema using builder', function () {
 });
 
 test('creates complex nested schema directly using Schema class', function () {
-    $schema = new Schema();
+    $schema = new Schema;
 
     // Add basic properties
     $schema->addProperty('id', SchemaPropertyFactory::create('ulid'));
     $schema->addProperty('pan', SchemaPropertyFactory::create('string'));
 
     // Create onboarded object with its own schema
-    $onboardedSchema = new Schema();
+    $onboardedSchema = new Schema;
     $onboardedSchema->addProperty('type', SchemaPropertyFactory::create('string'));
     $onboardedSchema->addProperty('status', SchemaPropertyFactory::create('string'));
 
@@ -183,14 +183,14 @@ test('creates complex nested schema directly using Schema class', function () {
 
 test('creates nominees schema structure', function () {
     // Create nominees schema structure
-    $nomineesSchema = new Schema();
+    $nomineesSchema = new Schema;
 
     // Create fields schema
-    $fieldsSchema = new Schema();
+    $fieldsSchema = new Schema;
     $fieldsSchema->addProperty('skip_nominee', SchemaPropertyFactory::create('boolean'));
 
     // Create nominees array property with its schema
-    $nomineesArraySchema = new Schema();
+    $nomineesArraySchema = new Schema;
     $nomineesArraySchema->addProperty('name', SchemaPropertyFactory::create('string'));
     $nomineesArraySchema->addProperty('pan', SchemaPropertyFactory::create('string'));
 
@@ -231,29 +231,29 @@ test('creates schema from array and converts back', function () {
                     'type' => 'object',
                     'schema' => [
                         'skip_nominee' => [
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'nominees' => [
                             'type' => 'array',
                             'schema' => [
                                 'name' => [
-                                    'type' => 'string'
+                                    'type' => 'string',
                                 ],
                                 'pan' => [
-                                    'type' => 'string'
-                                ]
-                            ]
-                        ]
-                    ]
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'identifier' => [
-                    'type' => 'string'
-                ]
-            ]
-        ]
+                    'type' => 'string',
+                ],
+            ],
+        ],
     ];
 
     // Test fromArray
@@ -269,15 +269,15 @@ test('creates schema from array and converts back', function () {
                             'type' => 'array',
                             'schema' => [
                                 'name' => 'string',
-                                'pan' => 'string'
-                            ]
-                        ]
-                    ]
+                                'pan' => 'string',
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => 'string',
-                'identifier' => 'string'
-            ]
-        ]
+                'identifier' => 'string',
+            ],
+        ],
     ]);
 
     // Test toArray
@@ -294,29 +294,29 @@ test('converts schema to JSON', function () {
                     'type' => 'object',
                     'schema' => [
                         'skip_nominee' => [
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'nominees' => [
                             'type' => 'array',
                             'schema' => [
                                 'name' => [
-                                    'type' => 'string'
+                                    'type' => 'string',
                                 ],
                                 'pan' => [
-                                    'type' => 'string'
-                                ]
-                            ]
-                        ]
-                    ]
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'identifier' => [
-                    'type' => 'string'
-                ]
-            ]
-        ]
+                    'type' => 'string',
+                ],
+            ],
+        ],
     ];
 
     // Create schema from shorthand format
@@ -332,15 +332,15 @@ test('converts schema to JSON', function () {
                             'type' => 'array',
                             'schema' => [
                                 'name' => 'string',
-                                'pan' => 'string'
-                            ]
-                        ]
-                    ]
+                                'pan' => 'string',
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => 'string',
-                'identifier' => 'string'
-            ]
-        ]
+                'identifier' => 'string',
+            ],
+        ],
     ]);
 
     // Test toJson
@@ -350,7 +350,7 @@ test('converts schema to JSON', function () {
 });
 
 test('handles empty schema serialization', function () {
-    $schema = new Schema();
+    $schema = new Schema;
 
     expect($schema->toArray())->toBe([])
         ->and($schema->toJson())->toBe('[]');
@@ -364,9 +364,9 @@ test('maintains schema title and description in serialization', function () {
             'type' => 'array',
             'schema' => [
                 'name' => 'string',
-                'pan' => 'string'
-            ]
-        ]
+                'pan' => 'string',
+            ],
+        ],
     ];
 
     foreach ($inputArray as $key => $value) {
@@ -394,29 +394,29 @@ test('creates schema from long array and converts back', function () {
                     'type' => 'object',
                     'schema' => [
                         'skip_nominee' => [
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'nominees' => [
                             'type' => 'array',
                             'schema' => [
                                 'name' => [
-                                    'type' => 'string'
+                                    'type' => 'string',
                                 ],
                                 'pan' => [
-                                    'type' => 'string'
-                                ]
-                            ]
-                        ]
-                    ]
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'identifier' => [
-                    'type' => 'string'
-                ]
-            ]
-        ]
+                    'type' => 'string',
+                ],
+            ],
+        ],
     ];
 
     // Test fromArray
@@ -432,7 +432,6 @@ test('creates schema from long array and converts back', function () {
     expect($outputArray)->toBe($inputArray);
 });
 
-
 test('converts schema to short array format', function () {
     $inputArray = [
         'nominees' => [
@@ -446,15 +445,15 @@ test('converts schema to short array format', function () {
                             'type' => 'array',
                             'schema' => [
                                 'name' => 'string',
-                                'pan' => 'string'
-                            ]
-                        ]
-                    ]
+                                'pan' => 'string',
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => 'string',
-                'identifier' => 'string'
-            ]
-        ]
+                'identifier' => 'string',
+            ],
+        ],
     ];
 
     $schema = Schema::fromArray($inputArray);
@@ -476,7 +475,7 @@ test('handles mixed format input and converts to both full and short formats', f
     $inputArray = [
         'id' => 'ulid', // short format
         'name' => [ // full format
-            'type' => 'string'
+            'type' => 'string',
         ],
         'nominees' => [
             'type' => 'object',
@@ -486,25 +485,25 @@ test('handles mixed format input and converts to both full and short formats', f
                     'schema' => [
                         'skip_nominee' => 'boolean', // short format
                         'is_verified' => [ // full format
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'nominees' => [
                             'type' => 'array',
                             'schema' => [
                                 'name' => 'string', // short format
                                 'pan' => [ // full format
-                                    'type' => 'string'
-                                ]
-                            ]
-                        ]
-                    ]
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => 'string', // short format
                 'identifier' => [ // full format
-                    'type' => 'string'
-                ]
-            ]
-        ]
+                    'type' => 'string',
+                ],
+            ],
+        ],
     ];
 
     $schema = Schema::fromArray($inputArray);
@@ -512,10 +511,10 @@ test('handles mixed format input and converts to both full and short formats', f
     // Expected full format output
     $expectedFullArray = [
         'id' => [
-            'type' => 'ulid'
+            'type' => 'ulid',
         ],
         'name' => [
-            'type' => 'string'
+            'type' => 'string',
         ],
         'nominees' => [
             'type' => 'object',
@@ -524,32 +523,32 @@ test('handles mixed format input and converts to both full and short formats', f
                     'type' => 'object',
                     'schema' => [
                         'skip_nominee' => [
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'is_verified' => [
-                            'type' => 'boolean'
+                            'type' => 'boolean',
                         ],
                         'nominees' => [
                             'type' => 'array',
                             'schema' => [
                                 'name' => [
-                                    'type' => 'string'
+                                    'type' => 'string',
                                 ],
                                 'pan' => [
-                                    'type' => 'string'
-                                ]
-                            ]
-                        ]
-                    ]
+                                    'type' => 'string',
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => [
-                    'type' => 'string'
+                    'type' => 'string',
                 ],
                 'identifier' => [
-                    'type' => 'string'
-                ]
-            ]
-        ]
+                    'type' => 'string',
+                ],
+            ],
+        ],
     ];
 
     // Expected short format output
@@ -568,15 +567,15 @@ test('handles mixed format input and converts to both full and short formats', f
                             'type' => 'array',
                             'schema' => [
                                 'name' => 'string',
-                                'pan' => 'string'
-                            ]
-                        ]
-                    ]
+                                'pan' => 'string',
+                            ],
+                        ],
+                    ],
                 ],
                 'status' => 'string',
-                'identifier' => 'string'
-            ]
-        ]
+                'identifier' => 'string',
+            ],
+        ],
     ];
 
     // Test both formats
