@@ -76,9 +76,8 @@ class ModelDefinition
 
     public static function fromArray(array $data): self
     {
-        if (!isset($data['name'])) {
-            throw new InvalidArgumentException('Model name is required');
-        }
+        // Validate the entire model structure and data
+        ModelValidator::validate($data);
 
         $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema();
         $config = ModelConfiguration::fromArray($data['config'] ?? []);

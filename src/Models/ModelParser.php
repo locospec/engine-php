@@ -19,27 +19,6 @@ class ModelParser
 
     public function parseArray(array $data): ModelDefinition
     {
-        $this->validateModelData($data);
-
         return ModelDefinition::fromArray($data);
-    }
-
-    private function validateModelData(array $data): void
-    {
-        if (!isset($data['name'])) {
-            throw new InvalidArgumentException('Model name is required');
-        }
-
-        if (!isset($data['type']) || $data['type'] !== 'model') {
-            throw new InvalidArgumentException('Invalid model type');
-        }
-
-        if (isset($data['config']) && !is_array($data['config'])) {
-            throw new InvalidArgumentException('Model config must be an array');
-        }
-
-        if (isset($data['relationships']) && !is_array($data['relationships'])) {
-            throw new InvalidArgumentException('Model relationships must be an array');
-        }
     }
 }

@@ -17,6 +17,7 @@ class SchemaPropertyFactory
         'date' => DateProperty::class,
         'timestamp' => TimestampProperty::class,
         'ulid' => UlidProperty::class,
+        'uuid' => UuidProperty::class,
     ];
 
     public static function create(string $type): SchemaPropertyInterface
