@@ -1,19 +1,19 @@
 <?php
 
-use Locospec\EnginePhp\Models\ModelDefinition;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\EnginePhp\Models\ModelDefinition;
 
 test('model names are properly validated', function ($name, $shouldPass) {
     $data = [
         'type' => 'model',
-        'name' => $name
+        'name' => $name,
     ];
 
-    if (!$shouldPass) {
-        expect(fn() => ModelDefinition::fromArray($data))
+    if (! $shouldPass) {
+        expect(fn () => ModelDefinition::fromArray($data))
             ->toThrow(InvalidArgumentException::class);
     } else {
-        expect(fn() => ModelDefinition::fromArray($data))
+        expect(fn () => ModelDefinition::fromArray($data))
             ->not->toThrow(InvalidArgumentException::class);
     }
 })->with([
@@ -40,21 +40,21 @@ test('relationships are properly validated', function () {
             'belongs_to' => [
                 'user' => [
                     'model' => 'user',
-                    'foreignKey' => 'user_id'
+                    'foreignKey' => 'user_id',
                 ],
                 'category' => [
-                    'model' => 'category'
-                ]
-            ]
-        ]
+                    'model' => 'category',
+                ],
+            ],
+        ],
     ];
 
-    expect(fn() => ModelDefinition::fromArray($data))
+    expect(fn () => ModelDefinition::fromArray($data))
         ->not->toThrow(InvalidArgumentException::class);
 
     // Invalid relationship model name
     $data['relationships']['belongs_to']['user']['model'] = 'Invalid Model';
-    expect(fn() => ModelDefinition::fromArray($data))
+    expect(fn () => ModelDefinition::fromArray($data))
         ->toThrow(InvalidArgumentException::class);
 });
 
@@ -65,20 +65,20 @@ test('configuration is properly validated', function () {
         'name' => 'user',
         'config' => [
             'primaryKey' => 'id',
-            'table' => 'users'
-        ]
+            'table' => 'users',
+        ],
     ];
 
-    expect(fn() => ModelDefinition::fromArray($validData))
+    expect(fn () => ModelDefinition::fromArray($validData))
         ->not->toThrow(InvalidArgumentException::class);
 
     // Invalid config (not an array)
     $invalidData = [
         'type' => 'model',
         'name' => 'user',
-        'config' => 'invalid'
+        'config' => 'invalid',
     ];
 
-    expect(fn() => ModelDefinition::fromArray($invalidData))
+    expect(fn () => ModelDefinition::fromArray($invalidData))
         ->toThrow(InvalidArgumentException::class);
 });

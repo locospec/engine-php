@@ -1,11 +1,11 @@
 <?php
 
 use Locospec\EnginePhp\EnginePhpClass;
-use Locospec\EnginePhp\Models\ModelRegistry;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\EnginePhp\Models\ModelRegistry;
 
 beforeEach(function () {
-    $this->engine = new EnginePhpClass();
+    $this->engine = new EnginePhpClass;
     ModelRegistry::getInstance()->clear();
 
     // Sample valid model specification
@@ -13,7 +13,7 @@ beforeEach(function () {
         'name' => 'property',
         'type' => 'model',
         'config' => [
-            'primaryKey' => 'uuid'
+            'primaryKey' => 'uuid',
         ],
         'schema' => [
             'uuid' => 'uuid',
@@ -22,17 +22,17 @@ beforeEach(function () {
             'reserve_price' => 'string',
             'sub_asset_type_uuid' => 'uuid',
             'city_uuid' => 'uuid',
-            'branch_uuid' => 'uuid'
+            'branch_uuid' => 'uuid',
         ],
         'relationships' => [
             'belongs_to' => [
                 'sub_asset' => [
                     'model' => 'sub_asset_type',
                     'foreignKey' => 'sub_asset_type_uuid',
-                    'ownerKey' => 'uuid'
-                ]
-            ]
-        ]
+                    'ownerKey' => 'uuid',
+                ],
+            ],
+        ],
     ];
 });
 
@@ -41,13 +41,13 @@ test('it can process a single model specification', function () {
         'type' => 'model',
         'name' => 'bank',
         'config' => [
-            'primaryKey' => 'uuid'
+            'primaryKey' => 'uuid',
         ],
         'schema' => [
             'uuid' => 'uuid',
             'name' => 'string',
-            'slug' => 'string'
-        ]
+            'slug' => 'string',
+        ],
     ]);
 
     $this->engine->processSpecificationJson($json);
@@ -89,21 +89,21 @@ test('it handles complex relationships correctly', function () {
         'type' => 'model',
         'config' => [
             'primaryKey' => 'uuid',
-            'sortBy' => [['attribute' => 'uuid', 'direction' => 'ASC']]
+            'sortBy' => [['attribute' => 'uuid', 'direction' => 'ASC']],
         ],
         'schema' => [
             'uuid' => 'uuid',
-            'name' => 'string'
+            'name' => 'string',
         ],
         'relationships' => [
             'belongs_to' => [
                 'bank' => ['model' => 'bank'],
-                'city' => ['model' => 'city']
+                'city' => ['model' => 'city'],
             ],
             'has_many' => [
-                'properties' => []
-            ]
-        ]
+                'properties' => [],
+            ],
+        ],
     ];
 
     $this->engine->processSpecificationJson(json_encode($spec));
@@ -126,30 +126,30 @@ test('it processes the complete JSON structure correctly', function () {
             'schema' => [
                 'uuid' => 'uuid',
                 'name' => 'string',
-                'slug' => 'string'
+                'slug' => 'string',
             ],
             'relationships' => [
                 'has_many' => [
                     'sub_asset_types' => [
-                        'model' => 'sub_asset_type'
-                    ]
-                ]
-            ]
+                        'model' => 'sub_asset_type',
+                    ],
+                ],
+            ],
         ],
         [
             'name' => 'sub_asset_type',
             'type' => 'model',
             'config' => [
                 'primaryKey' => 'uuid',
-                'sortBy' => [['attribute' => 'uuid', 'direction' => 'ASC']]
+                'sortBy' => [['attribute' => 'uuid', 'direction' => 'ASC']],
             ],
             'schema' => [
                 'uuid' => 'uuid',
                 'name' => 'string',
                 'slug' => 'string',
-                'asset_type_uuid' => 'uuid'
-            ]
-        ]
+                'asset_type_uuid' => 'uuid',
+            ],
+        ],
     ];
 
     $this->engine->processSpecificationJson(json_encode($completeSpec));
@@ -171,7 +171,7 @@ test('it throws exception for invalid JSON', function () {
 
 test('it throws exception for missing type', function () {
     $invalidSpec = [
-        'name' => 'test'
+        'name' => 'test',
     ];
     $this->engine->processSpecificationJson(json_encode([$invalidSpec]));
 })->throws(InvalidArgumentException::class);
@@ -188,16 +188,16 @@ test('it maintains relationship integrity across models', function () {
             'config' => ['primaryKey' => 'uuid'],
             'schema' => [
                 'uuid' => 'uuid',
-                'district_uuid' => 'uuid'
+                'district_uuid' => 'uuid',
             ],
             'relationships' => [
                 'belongs_to' => [
-                    'district' => ['model' => 'district']
+                    'district' => ['model' => 'district'],
                 ],
                 'has_many' => [
-                    'properties' => []
-                ]
-            ]
+                    'properties' => [],
+                ],
+            ],
         ],
         [
             'name' => 'district',
@@ -205,17 +205,17 @@ test('it maintains relationship integrity across models', function () {
             'config' => ['primaryKey' => 'uuid'],
             'schema' => [
                 'uuid' => 'uuid',
-                'state_uuid' => 'uuid'
+                'state_uuid' => 'uuid',
             ],
             'relationships' => [
                 'belongs_to' => [
-                    'state' => ['model' => 'state']
+                    'state' => ['model' => 'state'],
                 ],
                 'has_many' => [
-                    'cities' => []
-                ]
-            ]
-        ]
+                    'cities' => [],
+                ],
+            ],
+        ],
     ];
 
     $this->engine->processSpecificationJson(json_encode($specs));
@@ -245,11 +245,11 @@ test('it throws exception for missing type in array of objects', function () {
     $invalidSpecs = [
         [
             'name' => 'test',
-            'type' => 'model'
+            'type' => 'model',
         ],
         [
             'name' => 'anothertest',
-        ]
+        ],
     ];
 
     $this->engine->processSpecificationJson(json_encode($invalidSpecs));
@@ -258,7 +258,7 @@ test('it throws exception for missing type in array of objects', function () {
 test('it throws exception for unsupported type', function () {
     $invalidSpec = [
         '$id' => 'test',
-        'type' => 'unsupported_type'
+        'type' => 'unsupported_type',
     ];
 
     $this->engine->processSpecificationJson(json_encode($invalidSpec));

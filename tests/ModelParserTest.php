@@ -163,7 +163,7 @@ test('validates required model properties', function () {
         'schema' => [],
     ];
 
-    expect(fn() => $this->parser->parseArray($invalidData))
+    expect(fn () => $this->parser->parseArray($invalidData))
         ->toThrow(InvalidArgumentException::class, 'Model name is required');
 });
 

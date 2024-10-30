@@ -16,7 +16,7 @@ class ModelValidator
 
     public static function validate(array $data): void
     {
-        $validator = new self();
+        $validator = new self;
         $validator->validateStructure($data);
         $validator->validateName($data['name']);
         $validator->validateConfig($data);
@@ -25,11 +25,11 @@ class ModelValidator
 
     private function validateStructure(array $data): void
     {
-        if (!isset($data['name'])) {
+        if (! isset($data['name'])) {
             throw new InvalidArgumentException('Model name is required');
         }
 
-        if (!isset($data['type']) || $data['type'] !== 'model') {
+        if (! isset($data['type']) || $data['type'] !== 'model') {
             throw new InvalidArgumentException('Invalid model type');
         }
     }
@@ -52,7 +52,7 @@ class ModelValidator
         }
 
         // Check for valid separators and characters
-        if (!preg_match('/^[a-z]+(?:[-_][a-z]+)*$/', $name)) {
+        if (! preg_match('/^[a-z]+(?:[-_][a-z]+)*$/', $name)) {
             throw new InvalidArgumentException("Model name: {$name} -  can only contain lowercase letters, hyphens, and underscores");
         }
 
@@ -64,23 +64,23 @@ class ModelValidator
 
     private function validateConfig(array $data): void
     {
-        if (isset($data['config']) && !is_array($data['config'])) {
+        if (isset($data['config']) && ! is_array($data['config'])) {
             throw new InvalidArgumentException('Model config must be an array');
         }
     }
 
     private function validateRelationships(array $data): void
     {
-        if (!isset($data['relationships'])) {
+        if (! isset($data['relationships'])) {
             return;
         }
 
-        if (!is_array($data['relationships'])) {
+        if (! is_array($data['relationships'])) {
             throw new InvalidArgumentException('Model relationships must be an array');
         }
 
         foreach ($data['relationships'] as $type => $relations) {
-            if (!is_array($relations)) {
+            if (! is_array($relations)) {
                 throw new InvalidArgumentException("Relationship type '$type' must be an array");
             }
 
@@ -92,7 +92,7 @@ class ModelValidator
 
     private function validateRelationshipConfig(string $type, string $name, mixed $config): void
     {
-        if (!is_array($config)) {
+        if (! is_array($config)) {
             return; // Empty config {} is allowed
         }
 
@@ -102,7 +102,7 @@ class ModelValidator
 
         // Validate foreign/owner keys if present
         foreach (['foreignKey', 'localKey', 'ownerKey'] as $key) {
-            if (isset($config[$key]) && !is_string($config[$key])) {
+            if (isset($config[$key]) && ! is_string($config[$key])) {
                 throw new InvalidArgumentException("Relationship '$name' $key must be a string");
             }
         }

@@ -2,7 +2,6 @@
 
 namespace Locospec\EnginePhp\Models;
 
-use InvalidArgumentException;
 use Locospec\EnginePhp\Models\Relationships\BelongsTo;
 use Locospec\EnginePhp\Models\Relationships\HasMany;
 use Locospec\EnginePhp\Models\Relationships\HasOne;
@@ -73,7 +72,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn(Relationship $rel) => $rel->getType() === $type
+            fn (Relationship $rel) => $rel->getType() === $type
         );
     }
 
