@@ -12,7 +12,7 @@ beforeEach(function () {
 
     // Sample complex model definition with nested schemas
     $this->sampleModelData = [
-        'name' => 'profiles',
+        'name' => 'profile',
         'type' => 'model',
         'config' => [
             'primaryKey' => 'id',
@@ -84,7 +84,7 @@ test('can parse model with nested schemas', function () {
 
     // Test basic model properties
     expect($model)->toBeInstanceOf(ModelDefinition::class)
-        ->and($model->getName())->toBe('profiles')
+        ->and($model->getName())->toBe('profile')
         ->and($model->getConfig()->getPrimaryKey())->toBe('id')
         ->and($model->getConfig()->getTable())->toBe('profiles');
 
@@ -142,7 +142,7 @@ test('can convert nested model back to array', function () {
     $array = $model->toArray();
 
     // Test structure matches original
-    expect($array)->toHaveKey('name', 'profiles')
+    expect($array)->toHaveKey('name', 'profile')
         ->and($array)->toHaveKey('type', 'model')
         ->and($array)->toHaveKey('config')
         ->and($array)->toHaveKey('schema');
@@ -163,7 +163,7 @@ test('validates required model properties', function () {
         'schema' => [],
     ];
 
-    expect(fn () => $this->parser->parseArray($invalidData))
+    expect(fn() => $this->parser->parseArray($invalidData))
         ->toThrow(InvalidArgumentException::class, 'Model name is required');
 });
 

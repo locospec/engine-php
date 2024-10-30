@@ -53,12 +53,12 @@ class ModelValidator
 
         // Check for valid separators and characters
         if (!preg_match('/^[a-z]+(?:[-_][a-z]+)*$/', $name)) {
-            throw new InvalidArgumentException('Model name can only contain lowercase letters, hyphens, and underscores');
+            throw new InvalidArgumentException("Model name: {$name} -  can only contain lowercase letters, hyphens, and underscores");
         }
 
         // Check if name is singular
         if ($this->inflector->singular($name) !== $name) {
-            throw new InvalidArgumentException('Model name must be in singular form');
+            throw new InvalidArgumentException("Model name: {$name} - must be in singular form");
         }
     }
 

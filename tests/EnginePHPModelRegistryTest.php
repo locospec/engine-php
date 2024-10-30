@@ -10,7 +10,7 @@ beforeEach(function () {
 
     // Sample valid model specification
     $this->validModelSpec = [
-        'name' => 'properties',
+        'name' => 'property',
         'type' => 'model',
         'config' => [
             'primaryKey' => 'uuid'
@@ -27,7 +27,7 @@ beforeEach(function () {
         'relationships' => [
             'belongs_to' => [
                 'sub_asset' => [
-                    'model' => 'sub_asset_types',
+                    'model' => 'sub_asset_type',
                     'foreignKey' => 'sub_asset_type_uuid',
                     'ownerKey' => 'uuid'
                 ]
@@ -39,7 +39,7 @@ beforeEach(function () {
 test('it can process a single model specification', function () {
     $json = json_encode([
         'type' => 'model',
-        'name' => 'banks',
+        'name' => 'bank',
         'config' => [
             'primaryKey' => 'uuid'
         ],
@@ -52,17 +52,17 @@ test('it can process a single model specification', function () {
 
     $this->engine->processSpecificationJson($json);
 
-    expect($this->engine->hasModel('banks'))->toBeTrue()
-        ->and($this->engine->getModel('banks')->getConfig()->getPrimaryKey())->toBe('uuid');
+    expect($this->engine->hasModel('bank'))->toBeTrue()
+        ->and($this->engine->getModel('bank')->getConfig()->getPrimaryKey())->toBe('uuid');
 });
 
 test('it can process multiple models from array', function () {
     $json = json_encode([$this->validModelSpec]);
     $this->engine->processSpecificationJson($json);
 
-    $model = $this->engine->getModel('properties');
+    $model = $this->engine->getModel('property');
 
-    expect($this->engine->hasModel('properties'))->toBeTrue()
+    expect($this->engine->hasModel('property'))->toBeTrue()
         ->and($model->getConfig()->getPrimaryKey())->toBe('uuid')
         ->and($model->getSchema()->getProperty('uuid')->getType())->toBe('uuid')
         ->and($model->getSchema()->getProperty('listing_id')->getType())->toBe('string');
@@ -78,14 +78,14 @@ test('it can process specification from file', function () {
 
     $this->engine->processSpecificationFile($tempFile);
 
-    expect($this->engine->hasModel('properties'))->toBeTrue();
+    expect($this->engine->hasModel('property'))->toBeTrue();
 
     unlink($tempFile);
 });
 
 test('it handles complex relationships correctly', function () {
     $spec = [
-        'name' => 'bank_branches',
+        'name' => 'bank_branch',
         'type' => 'model',
         'config' => [
             'primaryKey' => 'uuid',
@@ -97,8 +97,8 @@ test('it handles complex relationships correctly', function () {
         ],
         'relationships' => [
             'belongs_to' => [
-                'bank' => ['model' => 'banks'],
-                'city' => ['model' => 'cities']
+                'bank' => ['model' => 'bank'],
+                'city' => ['model' => 'city']
             ],
             'has_many' => [
                 'properties' => []
@@ -107,20 +107,20 @@ test('it handles complex relationships correctly', function () {
     ];
 
     $this->engine->processSpecificationJson(json_encode($spec));
-    $model = $this->engine->getModel('bank_branches');
+    $model = $this->engine->getModel('bank_branch');
 
     $belongsTo = $model->getRelationshipsByType('belongs_to');
     $hasMany = $model->getRelationshipsByType('has_many');
 
     expect($belongsTo)->toHaveCount(2)
         ->and($hasMany)->toHaveCount(1)
-        ->and($belongsTo['bank']->getRelatedModel())->toBe('banks');
+        ->and($belongsTo['bank']->getRelatedModel())->toBe('bank');
 });
 
 test('it processes the complete JSON structure correctly', function () {
     $completeSpec = [
         [
-            'name' => 'asset_types',
+            'name' => 'asset_type',
             'type' => 'model',
             'config' => ['primaryKey' => 'uuid'],
             'schema' => [
@@ -131,13 +131,13 @@ test('it processes the complete JSON structure correctly', function () {
             'relationships' => [
                 'has_many' => [
                     'sub_asset_types' => [
-                        'model' => 'sub_asset_types'
+                        'model' => 'sub_asset_type'
                     ]
                 ]
             ]
         ],
         [
-            'name' => 'sub_asset_types',
+            'name' => 'sub_asset_type',
             'type' => 'model',
             'config' => [
                 'primaryKey' => 'uuid',
@@ -155,11 +155,11 @@ test('it processes the complete JSON structure correctly', function () {
     $this->engine->processSpecificationJson(json_encode($completeSpec));
 
     expect($this->engine->getAllModels())->toHaveCount(2)
-        ->and($this->engine->hasModel('asset_types'))->toBeTrue()
-        ->and($this->engine->hasModel('sub_asset_types'))->toBeTrue();
+        ->and($this->engine->hasModel('asset_type'))->toBeTrue()
+        ->and($this->engine->hasModel('sub_asset_type'))->toBeTrue();
 
-    $assetType = $this->engine->getModel('asset_types');
-    $subAssetType = $this->engine->getModel('sub_asset_types');
+    $assetType = $this->engine->getModel('asset_type');
+    $subAssetType = $this->engine->getModel('sub_asset_type');
 
     expect($assetType->getRelationships())->toHaveKey('sub_asset_types')
         ->and($subAssetType->getConfig()->getPrimaryKey())->toBe('uuid');
@@ -183,7 +183,7 @@ test('it throws exception for invalid file path', function () {
 test('it maintains relationship integrity across models', function () {
     $specs = [
         [
-            'name' => 'cities',
+            'name' => 'city',
             'type' => 'model',
             'config' => ['primaryKey' => 'uuid'],
             'schema' => [
@@ -192,7 +192,7 @@ test('it maintains relationship integrity across models', function () {
             ],
             'relationships' => [
                 'belongs_to' => [
-                    'district' => ['model' => 'districts']
+                    'district' => ['model' => 'district']
                 ],
                 'has_many' => [
                     'properties' => []
@@ -200,7 +200,7 @@ test('it maintains relationship integrity across models', function () {
             ]
         ],
         [
-            'name' => 'districts',
+            'name' => 'district',
             'type' => 'model',
             'config' => ['primaryKey' => 'uuid'],
             'schema' => [
@@ -209,7 +209,7 @@ test('it maintains relationship integrity across models', function () {
             ],
             'relationships' => [
                 'belongs_to' => [
-                    'state' => ['model' => 'states']
+                    'state' => ['model' => 'state']
                 ],
                 'has_many' => [
                     'cities' => []
@@ -220,12 +220,12 @@ test('it maintains relationship integrity across models', function () {
 
     $this->engine->processSpecificationJson(json_encode($specs));
 
-    $city = $this->engine->getModel('cities');
-    $district = $this->engine->getModel('districts');
+    $city = $this->engine->getModel('city');
+    $district = $this->engine->getModel('district');
 
     expect($city->getRelationships())->toHaveKey('district')
         ->and($district->getRelationships())->toHaveKey('cities')
-        ->and($city->getRelationship('district')->getRelatedModel())->toBe('districts')
+        ->and($city->getRelationship('district')->getRelatedModel())->toBe('district')
         ->and($district->getRelationship('cities')->getRelatedModel())->toBe('cities');
 });
 
@@ -244,12 +244,11 @@ test('it throws exception for missing type in single object', function () {
 test('it throws exception for missing type in array of objects', function () {
     $invalidSpecs = [
         [
-            'name' => 'test1',
+            'name' => 'test',
             'type' => 'model'
         ],
         [
-            'name' => 'test2',
-            'name' => 'Test Model 2' // missing type
+            'name' => 'anothertest',
         ]
     ];
 
