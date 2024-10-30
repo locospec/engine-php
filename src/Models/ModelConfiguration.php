@@ -5,9 +5,13 @@ namespace Locospec\EnginePhp\Models;
 class ModelConfiguration
 {
     private string $primaryKey;
+
     private ?string $table;
+
     private ?string $dbOperator;
+
     private ?string $singular;
+
     private ?string $plural;
 
     public function __construct(
@@ -68,6 +72,6 @@ class ModelConfiguration
             'dbOperator' => $this->dbOperator,
             'singular' => $this->singular,
             'plural' => $this->plural,
-        ], fn($value) => $value !== null);
+        ], fn ($value) => $value !== null);
     }
 }

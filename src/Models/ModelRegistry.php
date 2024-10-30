@@ -7,6 +7,7 @@ use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 class ModelRegistry
 {
     private static ?ModelRegistry $instance = null;
+
     private array $models = [];
 
     private function __construct() {}
@@ -14,8 +15,9 @@ class ModelRegistry
     public static function getInstance(): self
     {
         if (self::$instance === null) {
-            self::$instance = new self();
+            self::$instance = new self;
         }
+
         return self::$instance;
     }
 

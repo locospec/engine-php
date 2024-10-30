@@ -7,6 +7,7 @@ use Locospec\EnginePhp\Support\StringInflector;
 class BelongsTo extends Relationship
 {
     private string $foreignKey;
+
     private string $ownerKey;
 
     public function __construct(
@@ -44,12 +45,13 @@ class BelongsTo extends Relationship
     {
         if ($foreignKey) {
             $this->foreignKey = $foreignKey;
+
             return;
         }
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->getRelatedModel());
-        $this->foreignKey = $inflector->snake($modelName) . '_id';
+        $this->foreignKey = $inflector->snake($modelName).'_id';
     }
 
     public function getQueryPattern(): string

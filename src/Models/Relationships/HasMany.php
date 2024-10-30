@@ -7,6 +7,7 @@ use Locospec\EnginePhp\Support\StringInflector;
 class HasMany extends Relationship
 {
     private string $foreignKey;
+
     private string $localKey;
 
     public function __construct(
@@ -44,12 +45,13 @@ class HasMany extends Relationship
     {
         if ($foreignKey) {
             $this->foreignKey = $foreignKey;
+
             return;
         }
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->parentModel);
-        $this->foreignKey = $inflector->snake($modelName) . '_id';
+        $this->foreignKey = $inflector->snake($modelName).'_id';
     }
 
     public function getQueryPattern(): string
