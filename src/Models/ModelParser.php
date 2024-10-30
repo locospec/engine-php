@@ -3,7 +3,6 @@
 namespace Locospec\EnginePhp\Models;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Schema\Schema;
 
 class ModelParser
 {

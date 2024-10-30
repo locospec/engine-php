@@ -3,12 +3,12 @@
 namespace Tests\Locospec\EnginePhp\Models;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Models\ModelParser;
 use Locospec\EnginePhp\Models\ModelDefinition;
+use Locospec\EnginePhp\Models\ModelParser;
 use Locospec\EnginePhp\Schema\Schema;
 
 beforeEach(function () {
-    $this->parser = new ModelParser();
+    $this->parser = new ModelParser;
 
     // Sample complex model definition with nested schemas
     $this->sampleModelData = [
@@ -46,10 +46,10 @@ beforeEach(function () {
                                             'investor_name' => 'string',
                                             'mobile_number' => 'string',
                                             'investor_is_minor' => 'boolean',
-                                            'investor_date_of_birth' => 'date'
-                                        ]
-                                    ]
-                                ]
+                                            'investor_date_of_birth' => 'date',
+                                        ],
+                                    ],
+                                ],
                             ],
                             'bank' => [
                                 'type' => 'object',
@@ -62,20 +62,20 @@ beforeEach(function () {
                                             'bank_type' => 'string',
                                             'bank_ifsc_code' => 'string',
                                             'bank_account_number' => 'string',
-                                            'bank_primary_account_holder_name' => 'string'
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
+                                            'bank_primary_account_holder_name' => 'string',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
             ],
             'created_at' => 'timestamp',
             'updated_at' => 'timestamp',
             'email' => 'string',
-            'mobile' => 'string'
-        ]
+            'mobile' => 'string',
+        ],
     ];
 });
 
@@ -160,10 +160,10 @@ test('can convert nested model back to array', function () {
 test('validates required model properties', function () {
     $invalidData = [
         'type' => 'model',
-        'schema' => []
+        'schema' => [],
     ];
 
-    expect(fn() => $this->parser->parseArray($invalidData))
+    expect(fn () => $this->parser->parseArray($invalidData))
         ->toThrow(InvalidArgumentException::class, 'Model name is required');
 });
 

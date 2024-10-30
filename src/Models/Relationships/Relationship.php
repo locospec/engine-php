@@ -7,7 +7,9 @@ use Locospec\EnginePhp\Support\StringInflector;
 abstract class Relationship
 {
     protected string $name;
+
     protected string $relatedModel;
+
     protected string $parentModel;
 
     public function __construct(string $name, string $relatedModel, string $parentModel = '')

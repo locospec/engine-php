@@ -6,15 +6,18 @@ use InvalidArgumentException;
 use Locospec\EnginePhp\Models\Relationships\BelongsTo;
 use Locospec\EnginePhp\Models\Relationships\HasMany;
 use Locospec\EnginePhp\Models\Relationships\HasOne;
-use Locospec\EnginePhp\Schema\Schema;
 use Locospec\EnginePhp\Models\Relationships\Relationship;
+use Locospec\EnginePhp\Schema\Schema;
 use Locospec\EnginePhp\Support\StringInflector;
 
 class ModelDefinition
 {
     private string $name;
+
     private Schema $schema;
+
     private ModelConfiguration $config;
+
     private array $relationships = [];
 
     public function __construct(string $name, Schema $schema, ModelConfiguration $config)
@@ -79,7 +82,7 @@ class ModelDefinition
         // Validate the entire model structure and data
         ModelValidator::validate($data);
 
-        $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema();
+        $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
         $config = ModelConfiguration::fromArray($data['config'] ?? []);
 
         $model = new self($data['name'], $schema, $config);
@@ -107,11 +110,12 @@ class ModelDefinition
         $result = [];
         foreach ($this->relationships as $relationship) {
             $type = $relationship->getType();
-            if (!isset($result[$type])) {
+            if (! isset($result[$type])) {
                 $result[$type] = [];
             }
             $result[$type][$relationship->getName()] = $relationship->toArray();
         }
+
         return $result;
     }
 
@@ -120,7 +124,7 @@ class ModelDefinition
         foreach ($relationships as $type => $relations) {
             foreach ($relations as $name => $config) {
                 $relationClass = $this->getRelationshipClass($type);
-                if (!$relationClass) {
+                if (! $relationClass) {
                     continue;
                 }
 
