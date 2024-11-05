@@ -30,11 +30,11 @@ class ModelParser implements ParserInterface
             throw new InvalidArgumentException('Model name is required');
         }
 
-        if (!isset($data['config'])) {
+        if (! isset($data['config'])) {
             throw new InvalidArgumentException('Model config is required');
         }
 
-        if (!isset($data['type']) || $data['type'] !== 'model') {
+        if (! isset($data['type']) || $data['type'] !== 'model') {
             throw new InvalidArgumentException('Invalid model type');
         }
 
