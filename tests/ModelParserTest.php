@@ -4,7 +4,7 @@ namespace Tests\Locospec\EnginePhp\Models;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 use Locospec\EnginePhp\Models\ModelDefinition;
-use Locospec\EnginePhp\Models\ModelParser;
+use Locospec\EnginePhp\Parsers\ModelParser;
 use Locospec\EnginePhp\Schema\Schema;
 
 beforeEach(function () {
@@ -163,7 +163,7 @@ test('validates required model properties', function () {
         'schema' => [],
     ];
 
-    expect(fn () => $this->parser->parseArray($invalidData))
+    expect(fn() => $this->parser->parseArray($invalidData))
         ->toThrow(InvalidArgumentException::class, 'Model name is required');
 });
 
