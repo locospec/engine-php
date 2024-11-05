@@ -4,7 +4,7 @@ use Locospec\EnginePhp\EnginePhpClass;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 
 beforeEach(function () {
-    $this->engine = new EnginePhpClass();
+    $this->engine = new EnginePhpClass;
 
     // Clear all registries via registry manager
     $this->engine->getRegistryManager()->getRegistry('model')->clear();

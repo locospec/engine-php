@@ -8,11 +8,12 @@ use Locospec\EnginePhp\Specifications\SpecificationProcessor;
 class EnginePhpClass
 {
     private RegistryManager $registryManager;
+
     private SpecificationProcessor $specProcessor;
 
     public function __construct()
     {
-        $this->registryManager = new RegistryManager();
+        $this->registryManager = new RegistryManager;
         $this->specProcessor = new SpecificationProcessor($this->registryManager);
     }
 
