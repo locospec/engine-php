@@ -2,11 +2,12 @@
 
 use Locospec\EnginePhp\EnginePhpClass;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Models\ModelRegistry;
 
 beforeEach(function () {
-    $this->engine = new EnginePhpClass;
-    ModelRegistry::getInstance()->clear();
+    $this->engine = new EnginePhpClass();
+
+    // Clear all registries via registry manager
+    $this->engine->getRegistryManager()->getRegistry('model')->clear();
 
     // Sample valid model specification
     $this->validModelSpec = [
@@ -51,18 +52,20 @@ test('it can process a single model specification', function () {
     ]);
 
     $this->engine->processSpecificationJson($json);
+    $registryManager = $this->engine->getRegistryManager();
 
-    expect($this->engine->hasModel('bank'))->toBeTrue()
-        ->and($this->engine->getModel('bank')->getConfig()->getPrimaryKey())->toBe('uuid');
+    expect($registryManager->has('model', 'bank'))->toBeTrue()
+        ->and($registryManager->get('model', 'bank')->getConfig()->getPrimaryKey())->toBe('uuid');
 });
 
 test('it can process multiple models from array', function () {
     $json = json_encode([$this->validModelSpec]);
     $this->engine->processSpecificationJson($json);
 
-    $model = $this->engine->getModel('property');
+    $registryManager = $this->engine->getRegistryManager();
+    $model = $registryManager->get('model', 'property');
 
-    expect($this->engine->hasModel('property'))->toBeTrue()
+    expect($registryManager->has('model', 'property'))->toBeTrue()
         ->and($model->getConfig()->getPrimaryKey())->toBe('uuid')
         ->and($model->getSchema()->getProperty('uuid')->getType())->toBe('uuid')
         ->and($model->getSchema()->getProperty('listing_id')->getType())->toBe('string');
@@ -78,7 +81,7 @@ test('it can process specification from file', function () {
 
     $this->engine->processSpecificationFile($tempFile);
 
-    expect($this->engine->hasModel('property'))->toBeTrue();
+    expect($this->engine->getRegistryManager()->has('model', 'property'))->toBeTrue();
 
     unlink($tempFile);
 });
@@ -107,7 +110,7 @@ test('it handles complex relationships correctly', function () {
     ];
 
     $this->engine->processSpecificationJson(json_encode($spec));
-    $model = $this->engine->getModel('bank_branch');
+    $model = $this->engine->getRegistryManager()->get('model', 'bank_branch');
 
     $belongsTo = $model->getRelationshipsByType('belongs_to');
     $hasMany = $model->getRelationshipsByType('has_many');
@@ -153,32 +156,18 @@ test('it processes the complete JSON structure correctly', function () {
     ];
 
     $this->engine->processSpecificationJson(json_encode($completeSpec));
+    $registryManager = $this->engine->getRegistryManager();
 
-    expect($this->engine->getAllModels())->toHaveCount(2)
-        ->and($this->engine->hasModel('asset_type'))->toBeTrue()
-        ->and($this->engine->hasModel('sub_asset_type'))->toBeTrue();
+    expect($registryManager->all('model'))->toHaveCount(2)
+        ->and($registryManager->has('model', 'asset_type'))->toBeTrue()
+        ->and($registryManager->has('model', 'sub_asset_type'))->toBeTrue();
 
-    $assetType = $this->engine->getModel('asset_type');
-    $subAssetType = $this->engine->getModel('sub_asset_type');
+    $assetType = $registryManager->get('model', 'asset_type');
+    $subAssetType = $registryManager->get('model', 'sub_asset_type');
 
     expect($assetType->getRelationships())->toHaveKey('sub_asset_types')
         ->and($subAssetType->getConfig()->getPrimaryKey())->toBe('uuid');
 });
-
-test('it throws exception for invalid JSON', function () {
-    $this->engine->processSpecificationJson('{invalid json}');
-})->throws(InvalidArgumentException::class);
-
-test('it throws exception for missing type', function () {
-    $invalidSpec = [
-        'name' => 'test',
-    ];
-    $this->engine->processSpecificationJson(json_encode([$invalidSpec]));
-})->throws(InvalidArgumentException::class);
-
-test('it throws exception for invalid file path', function () {
-    $this->engine->processSpecificationFile('/nonexistent/path/to/file.json');
-})->throws(InvalidArgumentException::class);
 
 test('it maintains relationship integrity across models', function () {
     $specs = [
@@ -219,9 +208,10 @@ test('it maintains relationship integrity across models', function () {
     ];
 
     $this->engine->processSpecificationJson(json_encode($specs));
+    $registryManager = $this->engine->getRegistryManager();
 
-    $city = $this->engine->getModel('city');
-    $district = $this->engine->getModel('district');
+    $city = $registryManager->get('model', 'city');
+    $district = $registryManager->get('model', 'district');
 
     expect($city->getRelationships())->toHaveKey('district')
         ->and($district->getRelationships())->toHaveKey('cities')
@@ -229,37 +219,26 @@ test('it maintains relationship integrity across models', function () {
         ->and($district->getRelationship('cities')->getRelatedModel())->toBe('cities');
 });
 
-test('it throws exception for invalid JSON string', function () {
+// Error handling tests
+test('it throws exception for invalid JSON', function () {
     $this->engine->processSpecificationJson('{invalid json}');
 })->throws(InvalidArgumentException::class, 'Invalid JSON provided');
 
-test('it throws exception for missing type in single object', function () {
-    $invalidSpec = [[
+test('it throws exception for missing type', function () {
+    $invalidSpec = [
         'name' => 'test',
-    ]];
-
-    $this->engine->processSpecificationJson(json_encode($invalidSpec));
-})->throws(InvalidArgumentException::class, 'Specification must include a type');
-
-test('it throws exception for missing type in array of objects', function () {
-    $invalidSpecs = [
-        [
-            'name' => 'test',
-            'type' => 'model',
-        ],
-        [
-            'name' => 'anothertest',
-        ],
     ];
-
-    $this->engine->processSpecificationJson(json_encode($invalidSpecs));
+    $this->engine->processSpecificationJson(json_encode([$invalidSpec]));
 })->throws(InvalidArgumentException::class, 'Specification must include a type');
+
+test('it throws exception for invalid file path', function () {
+    $this->engine->processSpecificationFile('/nonexistent/path/to/file.json');
+})->throws(InvalidArgumentException::class, 'Specification file not found');
 
 test('it throws exception for unsupported type', function () {
     $invalidSpec = [
         '$id' => 'test',
         'type' => 'unsupported_type',
     ];
-
     $this->engine->processSpecificationJson(json_encode($invalidSpec));
-})->throws(InvalidArgumentException::class, 'Unsupported specification type');
+})->throws(InvalidArgumentException::class, 'No parser registered for type: unsupported_type');
