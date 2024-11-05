@@ -15,7 +15,7 @@ class ParserFactory
 
     private function registerDefaults(): void
     {
-        $this->registerParser('model', new ModelParser());
+        $this->registerParser('model', new ModelParser);
     }
 
     public function registerParser(string $type, ParserInterface $parser): void
@@ -25,9 +25,10 @@ class ParserFactory
 
     public function createParser(string $type): ParserInterface
     {
-        if (!isset($this->parsers[$type])) {
+        if (! isset($this->parsers[$type])) {
             throw new InvalidArgumentException("No parser registered for type: {$type}");
         }
+
         return $this->parsers[$type];
     }
 }

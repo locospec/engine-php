@@ -2,8 +2,6 @@
 
 namespace Locospec\EnginePhp\Registry;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-
 class ModelRegistry extends AbstractRegistry
 {
     public function getType(): string

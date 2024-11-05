@@ -15,7 +15,7 @@ class RegistryManager
 
     private function registerDefaults(): void
     {
-        $this->addRegistry(new ModelRegistry());
+        $this->addRegistry(new ModelRegistry);
     }
 
     public function addRegistry(RegistryInterface $registry): void
@@ -32,7 +32,7 @@ class RegistryManager
     public function register(string $type, mixed $item): void
     {
         $registry = $this->getRegistry($type);
-        if (!$registry) {
+        if (! $registry) {
             throw new InvalidArgumentException("No registry found for type: {$type}");
         }
         $registry->register($item);
@@ -41,18 +41,21 @@ class RegistryManager
     public function get(string $type, string $name): mixed
     {
         $registry = $this->getRegistry($type);
+
         return $registry?->get($name);
     }
 
     public function has(string $type, string $name): bool
     {
         $registry = $this->getRegistry($type);
+
         return $registry?->has($name) ?? false;
     }
 
     public function all(string $type): array
     {
         $registry = $this->getRegistry($type);
+
         return $registry?->all() ?? [];
     }
 }
