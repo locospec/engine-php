@@ -55,7 +55,7 @@ class HasOne extends Relationship
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->parentModel);
-        $this->foreignKey = $inflector->snake($modelName).'_id';
+        $this->foreignKey = $inflector->snake($modelName) . '_id';
     }
 
     public function setSortBy(?array $sortBy): void
@@ -77,18 +77,22 @@ class HasOne extends Relationship
             foreach ($this->sortBy as $column => $direction) {
                 $orderClauses[] = "{$column} {$direction}";
             }
-            $query .= ' ORDER BY '.implode(', ', $orderClauses);
+            $query .= ' ORDER BY ' . implode(', ', $orderClauses);
         }
 
-        return $query.' LIMIT 1';
+        return $query . ' LIMIT 1';
+    }
+
+    public function getKeys(): array
+    {
+        return [
+            'foreignKey' => $this->foreignKey,
+            'localKey' => $this->localKey,
+        ];
     }
 
     public function toArray(): array
     {
-        return array_merge(parent::toArray(), [
-            'foreignKey' => $this->foreignKey,
-            'localKey' => $this->localKey,
-            'sortBy' => $this->sortBy,
-        ]);
+        return array_merge(parent::toArray(), $this->getKeys());
     }
 }

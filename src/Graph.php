@@ -426,7 +426,7 @@ class Graph
                 );
 
                 $lines[] = sprintf(
-                    '    %s%s%s%s',
+                    '%s%s%s%s',
                     $safeSource,
                     $this->isDirected() ? ' -->' : ' ---',
                     $edge->getType() !== null ? sprintf('|%s|', preg_replace('/[^\w\s-]/', '', $edge->getType())) : '',

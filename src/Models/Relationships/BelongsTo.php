@@ -28,12 +28,18 @@ class BelongsTo extends Relationship
 
     public function getOwnerKey(): string
     {
+        if (is_null($this->ownerKey)) {
+            return null;
+        }
+
         return $this->ownerKey;
     }
 
     public function setOwnerKey(?string $ownerKey = null): void
     {
-        $this->ownerKey = $ownerKey ?? 'id';
+        if (!is_null($ownerKey)) {
+            $this->ownerKey = $ownerKey;
+        }
     }
 
     public function getForeignKey(): string
@@ -51,7 +57,7 @@ class BelongsTo extends Relationship
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->getRelatedModel());
-        $this->foreignKey = $inflector->snake($modelName).'_id';
+        $this->foreignKey = $inflector->snake($modelName) . '_id';
     }
 
     public function getQueryPattern(): string
@@ -59,11 +65,16 @@ class BelongsTo extends Relationship
         return "SELECT * FROM {model} WHERE {$this->ownerKey} = :{$this->foreignKey} LIMIT 1";
     }
 
+    public function getKeys(): array
+    {
+        return [
+            'foreignKey' => $this->getForeignKey(),
+            'ownerKey' => $this->getOwnerKey(),
+        ];
+    }
+
     public function toArray(): array
     {
-        return array_merge(parent::toArray(), [
-            'foreignKey' => $this->foreignKey,
-            'ownerKey' => $this->ownerKey,
-        ]);
+        return array_merge(parent::toArray(), $this->getKeys());
     }
 }

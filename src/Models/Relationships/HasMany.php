@@ -51,7 +51,7 @@ class HasMany extends Relationship
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->parentModel);
-        $this->foreignKey = $inflector->snake($modelName).'_id';
+        $this->foreignKey = $inflector->snake($modelName) . '_id';
     }
 
     public function getQueryPattern(): string
@@ -59,11 +59,16 @@ class HasMany extends Relationship
         return "SELECT * FROM {model} WHERE {$this->foreignKey} = :{$this->localKey}";
     }
 
-    public function toArray(): array
+    public function getKeys(): array
     {
-        return array_merge(parent::toArray(), [
+        return [
             'foreignKey' => $this->foreignKey,
             'localKey' => $this->localKey,
-        ]);
+        ];
+    }
+
+    public function toArray(): array
+    {
+        return array_merge(parent::toArray(), $this->getKeys());
     }
 }

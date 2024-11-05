@@ -72,7 +72,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
+            fn(Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -129,10 +129,13 @@ class ModelDefinition
 
                 $relationship = new $relationClass(
                     $name,
-                    $config['model'] ?? '',
+                    $config['model'] ?? $name,
                     $config['foreignKey'] ?? null,
                     $config['localKey'] ?? $config['ownerKey'] ?? null
                 );
+
+                $relationship->setParentModel($this->name);
+                $relationship->setDescription("{$this->name} $type {$name}");
 
                 if (isset($config['sortBy']) && method_exists($relationship, 'setSortBy')) {
                     $relationship->setSortBy($config['sortBy']);

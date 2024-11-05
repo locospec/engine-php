@@ -7,6 +7,7 @@ use Locospec\EnginePhp\Support\StringInflector;
 abstract class Relationship
 {
     protected string $name;
+    protected string $description;
 
     protected string $relatedModel;
 
@@ -28,9 +29,24 @@ abstract class Relationship
         return $this->name;
     }
 
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
     public function getRelatedModel(): string
     {
         return $this->relatedModel;
+    }
+
+    public function setParentModel($parentModel): void
+    {
+        $this->parentModel = $parentModel;
     }
 
     public function getParentModel(): string
@@ -52,6 +68,7 @@ abstract class Relationship
     public function toArray(): array
     {
         return [
+            'description' => $this->getDescription(),
             'type' => $this->getType(),
             'name' => $this->name,
             'relatedModel' => $this->relatedModel,
