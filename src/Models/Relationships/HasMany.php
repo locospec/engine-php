@@ -51,7 +51,7 @@ class HasMany extends Relationship
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->parentModel);
-        $this->foreignKey = $inflector->snake($modelName) . '_id';
+        $this->foreignKey = $inflector->snake($modelName).'_id';
     }
 
     public function getQueryPattern(): string

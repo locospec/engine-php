@@ -37,7 +37,7 @@ class BelongsTo extends Relationship
 
     public function setOwnerKey(?string $ownerKey = null): void
     {
-        if (!is_null($ownerKey)) {
+        if (! is_null($ownerKey)) {
             $this->ownerKey = $ownerKey;
         }
     }
@@ -57,7 +57,7 @@ class BelongsTo extends Relationship
 
         $inflector = StringInflector::getInstance();
         $modelName = $inflector->singular($this->getRelatedModel());
-        $this->foreignKey = $inflector->snake($modelName) . '_id';
+        $this->foreignKey = $inflector->snake($modelName).'_id';
     }
 
     public function getQueryPattern(): string

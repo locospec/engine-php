@@ -2,9 +2,9 @@
 
 namespace Locospec\EnginePhp\Registry;
 
+use Locospec\EnginePhp\Edge;
 use Locospec\EnginePhp\Graph;
 use Locospec\EnginePhp\Vertex;
-use Locospec\EnginePhp\Edge;
 
 class ModelRegistry extends AbstractRegistry
 {
@@ -81,7 +81,7 @@ class ModelRegistry extends AbstractRegistry
     public function getExpansionGraph(string $modelName): ?Graph
     {
         $vertex = $this->getGraph()->getVertex($modelName);
-        if (!$vertex) {
+        if (! $vertex) {
             return null;
         }
 

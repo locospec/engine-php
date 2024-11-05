@@ -72,7 +72,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn(Relationship $rel) => $rel->getType() === $type
+            fn (Relationship $rel) => $rel->getType() === $type
         );
     }
 
