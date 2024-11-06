@@ -2,9 +2,6 @@
 
 namespace Locospec\EnginePhp\Models;
 
-use Locospec\EnginePhp\Models\Relationships\BelongsTo;
-use Locospec\EnginePhp\Models\Relationships\HasMany;
-use Locospec\EnginePhp\Models\Relationships\HasOne;
 use Locospec\EnginePhp\Models\Relationships\Relationship;
 use Locospec\EnginePhp\Schema\Schema;
 use Locospec\EnginePhp\Support\StringInflector;
@@ -12,11 +9,8 @@ use Locospec\EnginePhp\Support\StringInflector;
 class ModelDefinition
 {
     private string $name;
-
     private Schema $schema;
-
     private ModelConfiguration $config;
-
     private array $relationships = [];
 
     public function __construct(string $name, Schema $schema, ModelConfiguration $config)
@@ -55,12 +49,12 @@ class ModelDefinition
 
     public function addRelationship(Relationship $relationship): void
     {
-        $this->relationships[$relationship->getName()] = $relationship;
+        $this->relationships[$relationship->getRelationshipName()] = $relationship;
     }
 
-    public function getRelationship(string $name): ?Relationship
+    public function getRelationship(string $relationshipName): ?Relationship
     {
-        return $this->relationships[$name] ?? null;
+        return $this->relationships[$relationshipName] ?? null;
     }
 
     public function getRelationships(): array
@@ -78,19 +72,14 @@ class ModelDefinition
 
     public static function fromArray(array $data): self
     {
-        // Validate the entire model structure and data
+        // Validate the basic model structure
         ModelValidator::validate($data);
 
+        // Create model without relationships
         $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
         $config = ModelConfiguration::fromArray($data['config'] ?? []);
 
-        $model = new self($data['name'], $schema, $config);
-
-        if (isset($data['relationships'])) {
-            $model->parseRelationships($data['relationships']);
-        }
-
-        return $model;
+        return new self($data['name'], $schema, $config);
     }
 
     public function toArray(): array
@@ -109,51 +98,12 @@ class ModelDefinition
         $result = [];
         foreach ($this->relationships as $relationship) {
             $type = $relationship->getType();
-            if (! isset($result[$type])) {
+            if (!isset($result[$type])) {
                 $result[$type] = [];
             }
-            $result[$type][$relationship->getName()] = $relationship->toArray();
+            $result[$type][$relationship->getRelationshipName()] = $relationship->toArray();
         }
 
         return $result;
-    }
-
-    private function parseRelationships(array $relationships): void
-    {
-        foreach ($relationships as $type => $relations) {
-            foreach ($relations as $name => $config) {
-                $relationClass = $this->getRelationshipClass($type);
-                if (! $relationClass) {
-                    continue;
-                }
-
-                $relationship = new $relationClass(
-                    $name,
-                    $config['model'] ?? $name,
-                    $config['foreignKey'] ?? null,
-                    $config['localKey'] ?? $config['ownerKey'] ?? null
-                );
-
-                $relationship->setParentModel($this->name);
-                $relationship->setDescription("{$this->name} $type {$name}");
-
-                if (isset($config['sortBy']) && method_exists($relationship, 'setSortBy')) {
-                    $relationship->setSortBy($config['sortBy']);
-                }
-
-                $this->addRelationship($relationship);
-            }
-        }
-    }
-
-    private function getRelationshipClass(string $type): ?string
-    {
-        $map = [
-            'belongs_to' => BelongsTo::class,
-            'has_many' => HasMany::class,
-            'has_one' => HasOne::class,
-        ];
-
-        return $map[$type] ?? null;
     }
 }

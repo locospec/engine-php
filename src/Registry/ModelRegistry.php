@@ -5,10 +5,13 @@ namespace Locospec\EnginePhp\Registry;
 use Locospec\EnginePhp\Graph;
 use Locospec\EnginePhp\Vertex;
 use Locospec\EnginePhp\Edge;
+use Locospec\EnginePhp\Models\ModelDefinition;
+use Locospec\EnginePhp\Models\Relationships\Relationship;
+use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 
 class ModelRegistry extends AbstractRegistry
 {
-    private ?Graph $graph = null;
+    private ?Graph $relationshipGraph = null;
 
     public function getType(): string
     {
@@ -21,70 +24,125 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Get or create the relationship graph
+     * Get the relationship graph for all models
      */
-    private function getGraph(): Graph
+    public function getRelationshipGraph(): Graph
     {
-        if ($this->graph === null) {
-            $this->graph = new Graph(true);
-            $this->buildGraphFromModels();
+        if ($this->relationshipGraph === null) {
+            $this->buildRelationshipGraph();
         }
 
-        return $this->graph;
+        return $this->relationshipGraph;
     }
 
     /**
-     * Build the graph from registered models
+     * Build the relationship graph from registered models
      */
-    private function buildGraphFromModels(): void
+    private function buildRelationshipGraph(): void
     {
-        // First pass: Create vertices for all models
+        $this->relationshipGraph = new Graph(true); // Directed graph
+        $this->addModelsAsVertices();
+        $this->addRelationshipsAsEdges();
+    }
+
+    /**
+     * First pass: Add all models as vertices
+     */
+    private function addModelsAsVertices(): void
+    {
+        /** @var ModelDefinition $model */
         foreach ($this->items as $modelName => $model) {
-            $this->graph->addVertex(new Vertex($modelName, $model));
+            $vertex = new Vertex($modelName, $model);
+            $this->relationshipGraph->addVertex($vertex);
         }
+    }
 
-        // Second pass: Create edges for relationships
-        foreach ($this->items as $modelName => $model) {
-            $relationships = $model->getRelationships() ?? [];
-            $sourceVertex = $this->graph->getVertex($modelName);
+    /**
+     * Second pass: Add all relationships as edges
+     */
+    private function addRelationshipsAsEdges(): void
+    {
+        /** @var ModelDefinition $model */
+        foreach ($this->items as $sourceModelName => $model) {
+            $sourceVertex = $this->relationshipGraph->getVertex($sourceModelName);
+            if (!$sourceVertex) {
+                continue;
+            }
 
-            foreach ($relationships as $relationshipName => $relationship) {
-
-                $targetModel = $relationship->getRelatedModel() ?? null;
-                $type = $relationship->getType() ?? null;
-
-                if ($targetModel && $type) {
-                    $targetVertex = $this->graph->getVertex($targetModel);
-                    if ($targetVertex) {
-                        $edge = new Edge($sourceVertex, $targetVertex, $type, $relationship->getKeys());
-                        $this->graph->addEdge($edge);
-                    }
-                }
-
-                // new Edge($vertices['properties'], $vertices['sub_asset_types'], 'belongs_to'),
+            foreach ($model->getRelationships() as $relationship) {
+                $this->addRelationshipEdge($sourceVertex, $relationship);
             }
         }
     }
 
     /**
-     * Override clear to reset graph
+     * Add a single relationship as an edge in the graph
+     */
+    private function addRelationshipEdge(Vertex $sourceVertex, Relationship $relationship): void
+    {
+        $targetModelName = $relationship->getRelatedModelName();
+        $targetVertex = $this->relationshipGraph->getVertex($targetModelName);
+
+        if (!$targetVertex) {
+            throw new InvalidArgumentException(
+                "Cannot create relationship edge: Target model '$targetModelName' not found"
+            );
+        }
+
+        $edge = new Edge(
+            $sourceVertex,
+            $targetVertex,
+            $relationship->getType(),
+            [
+                'relationshipName' => $relationship->getRelationshipName(),
+                'keys' => $this->getRelationshipKeys($relationship)
+            ]
+        );
+
+        $this->relationshipGraph->addEdge($edge);
+    }
+
+    /**
+     * Get relationship keys in a consistent format
+     */
+    private function getRelationshipKeys(Relationship $relationship): array
+    {
+        $keys = [];
+
+        if (method_exists($relationship, 'getForeignKey')) {
+            $keys['foreignKey'] = $relationship->getForeignKey();
+        }
+
+        if (method_exists($relationship, 'getLocalKey')) {
+            $keys['localKey'] = $relationship->getLocalKey();
+        }
+
+        if (method_exists($relationship, 'getOwnerKey')) {
+            $keys['ownerKey'] = $relationship->getOwnerKey();
+        }
+
+        return $keys;
+    }
+
+    /**
+     * Get an expansion graph starting from a specific model
+     */
+    public function getExpansionGraph(string $modelName): ?Graph
+    {
+        $startVertex = $this->getRelationshipGraph()->getVertex($modelName);
+        if (!$startVertex) {
+            throw new InvalidArgumentException("Model '$modelName' not found in registry");
+        }
+
+        return $this->getRelationshipGraph()->createExpansionGraph($startVertex);
+    }
+
+    /**
+     * Clear the registry and reset the graph
      */
     public function clear(): void
     {
         parent::clear();
-        $this->graph = null;
-    }
-
-    /**
-     * Get expansion graph from a starting model
-     */
-    public function getExpansionGraph(string $modelName): ?Graph
-    {
-        $vertex = $this->getGraph()->getVertex($modelName);
-        if (!$vertex) {
-            return null;
-        }
-
-        return $this->getGraph()->createExpansionGraph($vertex);
+        $this->relationshipGraph = null;
     }
 }
