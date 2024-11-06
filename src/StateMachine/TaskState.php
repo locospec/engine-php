@@ -5,9 +5,13 @@ namespace Locospec\EnginePhp\StateMachine;
 class TaskState implements StateInterface
 {
     private string $name;
+
     private string $resource;
+
     private ?string $next;
+
     private bool $end;
+
     private StateMachine $stateMachine;
 
     public function __construct(string $name, array $definition, StateMachine $stateMachine)
@@ -24,13 +28,13 @@ class TaskState implements StateInterface
         $packet->addDebugLog("Executing TaskState: {$this->name}");
         $resource = $this->stateMachine->getResource($this->resource);
 
-        if (!$resource instanceof \Locospec\EnginePhp\Tasks\TaskInterface) {
+        if (! $resource instanceof \Locospec\EnginePhp\Tasks\TaskInterface) {
             throw new \RuntimeException("Invalid resource type for {$this->resource}");
         }
 
         $resource->setContext($packet->context);
         $packet->currentOutput = $resource->execute($packet->currentInput);
-        $packet->addDebugLog("Resource execution completed");
+        $packet->addDebugLog('Resource execution completed');
     }
 
     public function isEnd(): bool

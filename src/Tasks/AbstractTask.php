@@ -7,26 +7,19 @@ use Locospec\EnginePhp\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {
-    /**
-     * @var ContextInterface
-     */
     protected ContextInterface $context;
 
-    /**
-     * @var array
-     */
     protected array $jsonSchema;
 
-    /**
-     * @var string
-     */
     protected string $action;
 
     /**
      * Task metadata
      */
     protected string $name = '';
+
     protected string $description = '';
+
     protected array $requiredContextKeys = ['schema', 'action'];
 
     /**
@@ -53,7 +46,7 @@ abstract class AbstractTask implements TaskInterface
     protected function validateContext(ContextInterface $context): void
     {
         foreach ($this->requiredContextKeys as $key) {
-            if (!$context->has($key)) {
+            if (! $context->has($key)) {
                 throw new InvalidArgumentException(
                     sprintf('Required context key "%s" not found for task "%s"', $key, $this->name)
                 );

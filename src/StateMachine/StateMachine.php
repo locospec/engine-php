@@ -7,8 +7,11 @@ use Locospec\EnginePhp\Tasks\TaskInterface;
 class StateMachine
 {
     private array $states;
+
     private string $startAt;
+
     private array $resourceRegistry = [];
+
     private StateFlowPacket $packet;
 
     public function __construct(array $definition)  // Remove context parameter
@@ -18,7 +21,7 @@ class StateMachine
             $this->states[$name] = StateFactory::createState($name, $stateDefinition, $this);
         }
         $this->startAt = $definition['StartAt'];
-        $this->packet = new StateFlowPacket();  // Create packet without context
+        $this->packet = new StateFlowPacket;  // Create packet without context
     }
 
     public function setContext(string $key, mixed $value): void
@@ -54,7 +57,7 @@ class StateMachine
                 throw new \RuntimeException("Next state is null for state: $currentStateName");
             }
 
-            if (!isset($this->states[$nextStateName])) {
+            if (! isset($this->states[$nextStateName])) {
                 $packet->addDebugLog("Error: Invalid next state: $nextStateName");
                 throw new \RuntimeException("Invalid next state: $nextStateName");
             }
@@ -73,10 +76,11 @@ class StateMachine
 
     public function getResource(string $name): TaskInterface
     {
-        if (!isset($this->resourceRegistry[$name])) {
+        if (! isset($this->resourceRegistry[$name])) {
             throw new \RuntimeException("Resource not found: $name");
         }
         $className = $this->resourceRegistry[$name];
-        return new $className();
+
+        return new $className;
     }
 }

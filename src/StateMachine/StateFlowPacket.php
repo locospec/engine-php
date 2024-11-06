@@ -5,14 +5,18 @@ namespace Locospec\EnginePhp\StateMachine;
 class StateFlowPacket
 {
     public array $currentInput = [];
+
     public array $currentOutput = [];
+
     public array $stateHistory = [];
+
     private string $currentStateName = '';
+
     public ContextInterface $context;
 
     public function __construct()
     {
-        $this->context = new Context();  // Create context internally
+        $this->context = new Context;  // Create context internally
     }
 
     public function startState(string $stateName): void
@@ -25,9 +29,9 @@ class StateFlowPacket
             'analytics' => [
                 'startTime' => microtime(true),
                 'endTime' => null,
-                'duration' => null
+                'duration' => null,
             ],
-            'debug' => []
+            'debug' => [],
         ];
     }
 
@@ -43,10 +47,10 @@ class StateFlowPacket
 
     public function addDebugLog(string $message): void
     {
-        if (!empty($this->currentStateName) && isset($this->stateHistory[$this->currentStateName])) {
+        if (! empty($this->currentStateName) && isset($this->stateHistory[$this->currentStateName])) {
             $this->stateHistory[$this->currentStateName]['debug'][] = [
                 'timestamp' => microtime(true),
-                'message' => $message
+                'message' => $message,
             ];
         }
     }
