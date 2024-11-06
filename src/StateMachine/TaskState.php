@@ -26,7 +26,7 @@ class TaskState implements StateInterface
     public function execute(StateFlowPacket $packet): void
     {
         $packet->addDebugLog("Executing TaskState: {$this->name}");
-        $resource = $this->stateMachine->getResource($this->resource);
+        $resource = $this->stateMachine->getTask($this->resource);
 
         if (! $resource instanceof \Locospec\EnginePhp\Tasks\TaskInterface) {
             throw new \RuntimeException("Invalid resource type for {$this->resource}");

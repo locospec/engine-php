@@ -2,6 +2,7 @@
 
 namespace Locospec\EnginePhp\StateMachine;
 
+use Locospec\EnginePhp\Registry\TaskRegistry;
 use Locospec\EnginePhp\Tasks\TaskInterface;
 
 class StateMachine
@@ -9,12 +10,10 @@ class StateMachine
     private array $states;
 
     private string $startAt;
-
-    private array $resourceRegistry = [];
-
     private StateFlowPacket $packet;
+    private TaskRegistry $taskRegistry;
 
-    public function __construct(array $definition)  // Remove context parameter
+    public function __construct(array $definition, TaskRegistry $taskRegistry)  // Remove context parameter
     {
         $this->states = [];
         foreach ($definition['States'] as $name => $stateDefinition) {
@@ -22,6 +21,7 @@ class StateMachine
         }
         $this->startAt = $definition['StartAt'];
         $this->packet = new StateFlowPacket;  // Create packet without context
+        $this->taskRegistry = $taskRegistry;  // Create packet without context
     }
 
     public function setContext(string $key, mixed $value): void
@@ -69,17 +69,12 @@ class StateMachine
         return $packet;
     }
 
-    public function registerResource(string $name, string $className): void
+    public function getTask(string $name): TaskInterface
     {
-        $this->resourceRegistry[$name] = $className;
-    }
-
-    public function getResource(string $name): TaskInterface
-    {
-        if (! isset($this->resourceRegistry[$name])) {
-            throw new \RuntimeException("Resource not found: $name");
+        if (is_null($this->taskRegistry->get($name))) {
+            throw new \RuntimeException("Task not found: $name");
         }
-        $className = $this->resourceRegistry[$name];
+        $className = $this->taskRegistry->get($name);
 
         return new $className;
     }
