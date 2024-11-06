@@ -6,7 +6,6 @@ use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
 use Locospec\EnginePhp\Tasks\AuthorizeTask;
 use Locospec\EnginePhp\Tasks\InsertDBTask;
 use Locospec\EnginePhp\Tasks\ValidateTask;
-use PharIo\Manifest\Author;
 
 class RegistryManager
 {
