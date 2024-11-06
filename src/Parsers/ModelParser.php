@@ -19,6 +19,7 @@ class ModelParser implements ParserInterface
 
     public function parseArray(array $data): mixed
     {
+        // TODO: Can we use ModelValidator here? Or we completely remove this?
         $this->validateModelData($data);
 
         return ModelDefinition::fromArray($data);
