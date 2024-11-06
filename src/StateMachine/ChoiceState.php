@@ -5,8 +5,11 @@ namespace Locospec\EnginePhp\StateMachine;
 class ChoiceState implements StateInterface
 {
     private string $name;
+
     private array $choices;
+
     private ?string $default;
+
     private ?string $next = null;
 
     public function __construct(string $name, array $definition)
@@ -56,7 +59,7 @@ class ChoiceState implements StateInterface
         return match (true) {
             isset($choice['And']) => $this->evaluateAnd($choice['And'], $input),
             isset($choice['Or']) => $this->evaluateOr($choice['Or'], $input),
-            isset($choice['Not']) => !$this->evaluateChoice($choice['Not'], $input),
+            isset($choice['Not']) => ! $this->evaluateChoice($choice['Not'], $input),
             default => $this->evaluateDataTestExpression($choice, $input)
         };
     }
@@ -64,10 +67,11 @@ class ChoiceState implements StateInterface
     private function evaluateAnd(array $conditions, array $input): bool
     {
         foreach ($conditions as $condition) {
-            if (!$this->evaluateChoice($condition, $input)) {
+            if (! $this->evaluateChoice($condition, $input)) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -78,6 +82,7 @@ class ChoiceState implements StateInterface
                 return true;
             }
         }
+
         return false;
     }
 
@@ -102,7 +107,7 @@ class ChoiceState implements StateInterface
         $current = $input;
 
         foreach ($parts as $part) {
-            if (!isset($current[$part])) {
+            if (! isset($current[$part])) {
                 throw new \RuntimeException("Invalid path: $path in state: {$this->name}");
             }
             $current = $current[$part];
