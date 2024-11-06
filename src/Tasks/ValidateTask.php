@@ -11,6 +11,6 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        return $input;
+        return [...$input, 'validated' => true];
     }
 }
