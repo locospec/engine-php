@@ -3,6 +3,10 @@
 namespace Locospec\EnginePhp\Registry;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\EnginePhp\Tasks\AuthorizeTask;
+use Locospec\EnginePhp\Tasks\InsertDBTask;
+use Locospec\EnginePhp\Tasks\ValidateTask;
+use PharIo\Manifest\Author;
 
 class RegistryManager
 {
@@ -16,6 +20,11 @@ class RegistryManager
     private function registerDefaults(): void
     {
         $this->addRegistry(new ModelRegistry);
+        $this->addRegistry(new TaskRegistry);
+
+        $this->register('task', ValidateTask::class);
+        $this->register('task', AuthorizeTask::class);
+        $this->register('task', InsertDBTask::class);
     }
 
     public function addRegistry(RegistryInterface $registry): void

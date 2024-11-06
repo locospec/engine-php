@@ -6,6 +6,8 @@ use Locospec\EnginePhp\StateMachine\ContextInterface;
 
 interface TaskInterface
 {
+    public function getName(): string;
+
     /**
      * Set the execution context
      */
