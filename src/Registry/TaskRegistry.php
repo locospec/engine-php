@@ -3,7 +3,6 @@
 namespace Locospec\EnginePhp\Registry;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Tasks\TaskInterface;
 
 class TaskRegistry extends AbstractRegistry
 {
@@ -28,10 +27,10 @@ class TaskRegistry extends AbstractRegistry
 
     public function register(mixed $className): void
     {
-        $task = new $className();
+        $task = new $className;
         $name = $task->getName();
 
-        if ($name === trim("")) {
+        if ($name === trim('')) {
             throw new InvalidArgumentException("Please set Task name using getName on {$className}");
         }
 

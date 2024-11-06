@@ -10,7 +10,9 @@ class StateMachine
     private array $states;
 
     private string $startAt;
+
     private StateFlowPacket $packet;
+
     private TaskRegistry $taskRegistry;
 
     public function __construct(array $definition, TaskRegistry $taskRegistry)  // Remove context parameter
