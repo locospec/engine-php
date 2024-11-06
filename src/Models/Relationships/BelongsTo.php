@@ -5,6 +5,7 @@ namespace Locospec\EnginePhp\Models\Relationships;
 class BelongsTo extends Relationship
 {
     private string $foreignKey;
+
     private string $ownerKey;
 
     public function __construct(

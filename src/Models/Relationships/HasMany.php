@@ -5,6 +5,7 @@ namespace Locospec\EnginePhp\Models\Relationships;
 class HasMany extends Relationship
 {
     private string $foreignKey;
+
     private string $localKey;
 
     public function __construct(

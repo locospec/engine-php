@@ -3,16 +3,17 @@
 namespace Locospec\EnginePhp\Specifications;
 
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Registry\RegistryManager;
 use Locospec\EnginePhp\Models\ModelDefinition;
 use Locospec\EnginePhp\Models\Relationships\BelongsTo;
 use Locospec\EnginePhp\Models\Relationships\HasMany;
 use Locospec\EnginePhp\Models\Relationships\HasOne;
+use Locospec\EnginePhp\Registry\RegistryManager;
 use Locospec\EnginePhp\Support\StringInflector;
 
 class RelationshipProcessor
 {
     private RegistryManager $registryManager;
+
     private StringInflector $inflector;
 
     public function __construct(RegistryManager $registryManager)
@@ -24,7 +25,7 @@ class RelationshipProcessor
     public function processModelRelationships(ModelDefinition $currentModel, array $relationships): void
     {
         foreach ($relationships as $type => $relations) {
-            if (!is_array($relations)) {
+            if (! is_array($relations)) {
                 throw new InvalidArgumentException("Relationship type '$type' must be an array");
             }
 
@@ -45,7 +46,7 @@ class RelationshipProcessor
 
         // Validate related model exists
         $relatedModel = $this->registryManager->get('model', $relatedModelName);
-        if (!$relatedModel) {
+        if (! $relatedModel) {
             throw new InvalidArgumentException(
                 "Related model '$relatedModelName' not found for relationship '$relationshipName' in model '{$currentModel->getName()}'"
             );

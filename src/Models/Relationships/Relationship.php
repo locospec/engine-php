@@ -7,8 +7,11 @@ use Locospec\EnginePhp\Support\StringInflector;
 abstract class Relationship
 {
     protected string $relationshipName;
+
     protected string $description;
+
     protected string $relatedModelName;
+
     protected string $currentModelName;
 
     public function __construct(

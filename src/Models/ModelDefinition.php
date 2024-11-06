@@ -9,8 +9,11 @@ use Locospec\EnginePhp\Support\StringInflector;
 class ModelDefinition
 {
     private string $name;
+
     private Schema $schema;
+
     private ModelConfiguration $config;
+
     private array $relationships = [];
 
     public function __construct(string $name, Schema $schema, ModelConfiguration $config)
@@ -98,7 +101,7 @@ class ModelDefinition
         $result = [];
         foreach ($this->relationships as $relationship) {
             $type = $relationship->getType();
-            if (!isset($result[$type])) {
+            if (! isset($result[$type])) {
                 $result[$type] = [];
             }
             $result[$type][$relationship->getRelationshipName()] = $relationship->toArray();

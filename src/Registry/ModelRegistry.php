@@ -2,15 +2,15 @@
 
 namespace Locospec\EnginePhp\Registry;
 
-use Locospec\EnginePhp\Graph;
-use Locospec\EnginePhp\Vertex;
 use Locospec\EnginePhp\Edge;
-use Locospec\EnginePhp\Models\ModelDefinition;
-use Locospec\EnginePhp\Models\Relationships\Relationship;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\EnginePhp\Graph;
+use Locospec\EnginePhp\Models\ModelDefinition;
+use Locospec\EnginePhp\Models\Relationships\BelongsTo;
 use Locospec\EnginePhp\Models\Relationships\HasMany;
 use Locospec\EnginePhp\Models\Relationships\HasOne;
-use Locospec\EnginePhp\Models\Relationships\BelongsTo;
+use Locospec\EnginePhp\Models\Relationships\Relationship;
+use Locospec\EnginePhp\Vertex;
 
 /**
  * ModelRegistry manages the registration and relationship graphs of models.
@@ -18,8 +18,6 @@ use Locospec\EnginePhp\Models\Relationships\BelongsTo;
  * This class extends AbstractRegistry to provide specific functionality for managing
  * model definitions and their relationships. It maintains a graph representation
  * of model relationships that can be used for analysis and traversal.
- *
- * @package Locospec\EnginePhp\Registry
  */
 class ModelRegistry extends AbstractRegistry
 {
@@ -39,7 +37,7 @@ class ModelRegistry extends AbstractRegistry
     /**
      * Get the name identifier for a registry item.
      *
-     * @param mixed $item The item to get the name from
+     * @param  mixed  $item  The item to get the name from
      * @return string The name of the item
      */
     protected function getItemName(mixed $item): string
@@ -68,8 +66,6 @@ class ModelRegistry extends AbstractRegistry
      *
      * Creates a directed graph where vertices represent models and
      * edges represent relationships between them.
-     *
-     * @return void
      */
     private function buildRelationshipGraph(): void
     {
@@ -82,8 +78,6 @@ class ModelRegistry extends AbstractRegistry
      * Add all registered models as vertices in the graph.
      *
      * First pass of graph building: creates vertices for all models.
-     *
-     * @return void
      */
     private function addModelsAsVertices(): void
     {
@@ -98,15 +92,13 @@ class ModelRegistry extends AbstractRegistry
      * Add all model relationships as edges in the graph.
      *
      * Second pass of graph building: creates edges for all relationships.
-     *
-     * @return void
      */
     private function addRelationshipsAsEdges(): void
     {
         /** @var ModelDefinition $model */
         foreach ($this->items as $sourceModelName => $model) {
             $sourceVertex = $this->relationshipGraph->getVertex($sourceModelName);
-            if (!$sourceVertex) {
+            if (! $sourceVertex) {
                 continue;
             }
 
@@ -119,17 +111,17 @@ class ModelRegistry extends AbstractRegistry
     /**
      * Add a single relationship as an edge in the graph.
      *
-     * @param Vertex $sourceVertex The source vertex representing the model
-     * @param Relationship $relationship The relationship to add as an edge
+     * @param  Vertex  $sourceVertex  The source vertex representing the model
+     * @param  Relationship  $relationship  The relationship to add as an edge
+     *
      * @throws InvalidArgumentException If the target model doesn't exist
-     * @return void
      */
     private function addRelationshipEdge(Vertex $sourceVertex, Relationship $relationship): void
     {
         $targetModelName = $relationship->getRelatedModelName();
         $targetVertex = $this->relationshipGraph->getVertex($targetModelName);
 
-        if (!$targetVertex) {
+        if (! $targetVertex) {
             throw new InvalidArgumentException(
                 "Cannot create relationship edge: Target model '$targetModelName' not found"
             );
@@ -141,7 +133,7 @@ class ModelRegistry extends AbstractRegistry
             $relationship->getType(),
             [
                 'relationshipName' => $relationship->getRelationshipName(),
-                'keys' => $this->getRelationshipKeys($relationship)
+                'keys' => $this->getRelationshipKeys($relationship),
             ]
         );
 
@@ -151,7 +143,7 @@ class ModelRegistry extends AbstractRegistry
     /**
      * Get relationship keys in a consistent format.
      *
-     * @param Relationship $relationship The relationship to get keys from
+     * @param  Relationship  $relationship  The relationship to get keys from
      * @return array<string, string> Array of relationship keys
      */
     private function getRelationshipKeys(Relationship $relationship): array
@@ -172,14 +164,15 @@ class ModelRegistry extends AbstractRegistry
     /**
      * Get an expansion graph starting from a specific model.
      *
-     * @param string $modelName The name of the model to start from
-     * @throws InvalidArgumentException If the model doesn't exist
+     * @param  string  $modelName  The name of the model to start from
      * @return Graph|null The expansion graph, or null if it couldn't be created
+     *
+     * @throws InvalidArgumentException If the model doesn't exist
      */
     public function getExpansionGraph(string $modelName): ?Graph
     {
         $startVertex = $this->getRelationshipGraph()->getVertex($modelName);
-        if (!$startVertex) {
+        if (! $startVertex) {
             throw new InvalidArgumentException("Model '$modelName' not found in registry");
         }
 
@@ -188,8 +181,6 @@ class ModelRegistry extends AbstractRegistry
 
     /**
      * Clear the registry and reset the graph.
-     *
-     * @return void
      */
     public function clear(): void
     {

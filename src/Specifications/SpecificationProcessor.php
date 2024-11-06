@@ -9,7 +9,9 @@ use Locospec\EnginePhp\Registry\RegistryManager;
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
+
     private ParserFactory $parserFactory;
+
     private array $pendingRelationships = [];
 
     public function __construct(RegistryManager $registryManager)
@@ -23,7 +25,7 @@ class SpecificationProcessor
      */
     public function processFile(string $filePath): void
     {
-        if (!file_exists($filePath)) {
+        if (! file_exists($filePath)) {
             throw new InvalidArgumentException("Specification file not found: {$filePath}");
         }
 
@@ -52,7 +54,7 @@ class SpecificationProcessor
     {
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
         }
 
         return $data;
@@ -60,7 +62,7 @@ class SpecificationProcessor
 
     private function normalizeSpecifications(array $data): array
     {
-        return is_array($data) && !isset($data['type']) ? $data : [$data];
+        return is_array($data) && ! isset($data['type']) ? $data : [$data];
     }
 
     /**
@@ -68,7 +70,7 @@ class SpecificationProcessor
      */
     private function processModelDefinition(array $spec): void
     {
-        if (!isset($spec['type'])) {
+        if (! isset($spec['type'])) {
             throw new InvalidArgumentException('Specification must include a type');
         }
 
@@ -80,7 +82,7 @@ class SpecificationProcessor
         if (isset($spec['relationships'])) {
             $this->pendingRelationships[] = [
                 'modelName' => $spec['name'],
-                'relationships' => $spec['relationships']
+                'relationships' => $spec['relationships'],
             ];
 
             // Remove relationships before parsing model
@@ -101,7 +103,7 @@ class SpecificationProcessor
         foreach ($this->pendingRelationships as $pending) {
             $model = $this->registryManager->get('model', $pending['modelName']);
 
-            if (!$model) {
+            if (! $model) {
                 throw new InvalidArgumentException(
                     "Cannot process relationships: Model {$pending['modelName']} not found"
                 );
