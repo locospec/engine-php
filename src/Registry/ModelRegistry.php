@@ -8,23 +8,51 @@ use Locospec\EnginePhp\Edge;
 use Locospec\EnginePhp\Models\ModelDefinition;
 use Locospec\EnginePhp\Models\Relationships\Relationship;
 use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\EnginePhp\Models\Relationships\HasMany;
+use Locospec\EnginePhp\Models\Relationships\HasOne;
+use Locospec\EnginePhp\Models\Relationships\BelongsTo;
 
+/**
+ * ModelRegistry manages the registration and relationship graphs of models.
+ *
+ * This class extends AbstractRegistry to provide specific functionality for managing
+ * model definitions and their relationships. It maintains a graph representation
+ * of model relationships that can be used for analysis and traversal.
+ *
+ * @package Locospec\EnginePhp\Registry
+ */
 class ModelRegistry extends AbstractRegistry
 {
+    /** @var Graph|null The graph representing relationships between models */
     private ?Graph $relationshipGraph = null;
 
+    /**
+     * Get the registry type identifier.
+     *
+     * @return string Returns 'model' as the registry type
+     */
     public function getType(): string
     {
         return 'model';
     }
 
+    /**
+     * Get the name identifier for a registry item.
+     *
+     * @param mixed $item The item to get the name from
+     * @return string The name of the item
+     */
     protected function getItemName(mixed $item): string
     {
         return $item->getName();
     }
 
     /**
-     * Get the relationship graph for all models
+     * Get the relationship graph for all registered models.
+     *
+     * Lazily initializes the graph if it hasn't been built yet.
+     *
+     * @return Graph The graph representing all model relationships
      */
     public function getRelationshipGraph(): Graph
     {
@@ -36,7 +64,12 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Build the relationship graph from registered models
+     * Build the relationship graph from registered models.
+     *
+     * Creates a directed graph where vertices represent models and
+     * edges represent relationships between them.
+     *
+     * @return void
      */
     private function buildRelationshipGraph(): void
     {
@@ -46,7 +79,11 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * First pass: Add all models as vertices
+     * Add all registered models as vertices in the graph.
+     *
+     * First pass of graph building: creates vertices for all models.
+     *
+     * @return void
      */
     private function addModelsAsVertices(): void
     {
@@ -58,7 +95,11 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Second pass: Add all relationships as edges
+     * Add all model relationships as edges in the graph.
+     *
+     * Second pass of graph building: creates edges for all relationships.
+     *
+     * @return void
      */
     private function addRelationshipsAsEdges(): void
     {
@@ -76,7 +117,12 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Add a single relationship as an edge in the graph
+     * Add a single relationship as an edge in the graph.
+     *
+     * @param Vertex $sourceVertex The source vertex representing the model
+     * @param Relationship $relationship The relationship to add as an edge
+     * @throws InvalidArgumentException If the target model doesn't exist
+     * @return void
      */
     private function addRelationshipEdge(Vertex $sourceVertex, Relationship $relationship): void
     {
@@ -103,21 +149,20 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Get relationship keys in a consistent format
+     * Get relationship keys in a consistent format.
+     *
+     * @param Relationship $relationship The relationship to get keys from
+     * @return array<string, string> Array of relationship keys
      */
     private function getRelationshipKeys(Relationship $relationship): array
     {
         $keys = [];
 
-        if (method_exists($relationship, 'getForeignKey')) {
+        if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             $keys['foreignKey'] = $relationship->getForeignKey();
-        }
-
-        if (method_exists($relationship, 'getLocalKey')) {
             $keys['localKey'] = $relationship->getLocalKey();
-        }
-
-        if (method_exists($relationship, 'getOwnerKey')) {
+        } elseif ($relationship instanceof BelongsTo) {
+            $keys['foreignKey'] = $relationship->getForeignKey();
             $keys['ownerKey'] = $relationship->getOwnerKey();
         }
 
@@ -125,7 +170,11 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Get an expansion graph starting from a specific model
+     * Get an expansion graph starting from a specific model.
+     *
+     * @param string $modelName The name of the model to start from
+     * @throws InvalidArgumentException If the model doesn't exist
+     * @return Graph|null The expansion graph, or null if it couldn't be created
      */
     public function getExpansionGraph(string $modelName): ?Graph
     {
@@ -138,7 +187,9 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Clear the registry and reset the graph
+     * Clear the registry and reset the graph.
+     *
+     * @return void
      */
     public function clear(): void
     {
