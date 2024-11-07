@@ -69,7 +69,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
+            fn(Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -80,9 +80,15 @@ class ModelDefinition
 
         // Create model without relationships
         $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
-        $config = ModelConfiguration::fromArray($data['config'] ?? []);
 
-        return new self($data['name'], $schema, $config);
+        $config = $data['config'] ?? [];
+        if (!isset($config['table'])) {
+            $config['table'] = StringInflector::getInstance()->plural($data['name']);
+        }
+
+        $modelConfig = ModelConfiguration::fromArray($config);
+
+        return new self($data['name'], $schema, $modelConfig);
     }
 
     public function toArray(): array

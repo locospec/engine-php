@@ -6,7 +6,7 @@ class ModelConfiguration
 {
     private string $primaryKey;
 
-    private ?string $table;
+    private string $table;
 
     private ?string $dbOperator;
 
@@ -16,7 +16,7 @@ class ModelConfiguration
 
     public function __construct(
         string $primaryKey = 'id',
-        ?string $table = null,
+        string $table = null,
         ?string $dbOperator = null,
         ?string $singular = null,
         ?string $plural = null
@@ -72,6 +72,6 @@ class ModelConfiguration
             'dbOperator' => $this->dbOperator,
             'singular' => $this->singular,
             'plural' => $this->plural,
-        ], fn ($value) => $value !== null);
+        ], fn($value) => $value !== null);
     }
 }
