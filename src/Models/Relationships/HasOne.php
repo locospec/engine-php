@@ -57,10 +57,10 @@ class HasOne extends Relationship
             foreach ($this->sortBy as $column => $direction) {
                 $orderClauses[] = "{$column} {$direction}";
             }
-            $query .= ' ORDER BY ' . implode(', ', $orderClauses);
+            $query .= ' ORDER BY '.implode(', ', $orderClauses);
         }
 
-        return $query . ' LIMIT 1';
+        return $query.' LIMIT 1';
     }
 
     public function toArray(): array

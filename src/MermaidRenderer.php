@@ -39,7 +39,7 @@ class MermaidRenderer
     public function render(string $mermaidSyntax, string $title = 'Mermaid Diagram', ?string $elementId = null): string
     {
         // Generate a random ID if none provided
-        $elementId = $elementId ?? 'mermaid_' . uniqid();
+        $elementId = $elementId ?? 'mermaid_'.uniqid();
 
         // Encode config as JSON
         $configJson = json_encode($this->config);
