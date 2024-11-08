@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\EnginePhp;
+namespace Locospec\LCS;
 
-use Locospec\EnginePhp\Exceptions\DuplicateVertexException;
-use Locospec\EnginePhp\Exceptions\VertexNotFoundException;
+use Locospec\LCS\Exceptions\DuplicateVertexException;
+use Locospec\LCS\Exceptions\VertexNotFoundException;
 
 class Graph
 {
@@ -426,7 +426,7 @@ class Graph
                 );
 
                 $lines[] = sprintf(
-                    '    %s%s%s%s',
+                    '%s%s%s%s',
                     $safeSource,
                     $this->isDirected() ? ' -->' : ' ---',
                     $edge->getType() !== null ? sprintf('|%s|', preg_replace('/[^\w\s-]/', '', $edge->getType())) : '',

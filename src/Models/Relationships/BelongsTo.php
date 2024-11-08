@@ -1,8 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Models\Relationships;
-
-use Locospec\EnginePhp\Support\StringInflector;
+namespace Locospec\LCS\Models\Relationships;
 
 class BelongsTo extends Relationship
 {
@@ -11,14 +9,14 @@ class BelongsTo extends Relationship
     private string $ownerKey;
 
     public function __construct(
-        string $name,
-        string $relatedModel,
-        ?string $foreignKey = null,
-        ?string $ownerKey = null
+        string $relationshipName,
+        string $relatedModelName,
+        string $foreignKey,
+        string $ownerKey
     ) {
-        parent::__construct($name, $relatedModel);
-        $this->setOwnerKey($ownerKey);
-        $this->setForeignKey($foreignKey);
+        parent::__construct($relationshipName, $relatedModelName);
+        $this->foreignKey = $foreignKey;
+        $this->ownerKey = $ownerKey;
     }
 
     public function getType(): string
@@ -31,27 +29,9 @@ class BelongsTo extends Relationship
         return $this->ownerKey;
     }
 
-    public function setOwnerKey(?string $ownerKey = null): void
-    {
-        $this->ownerKey = $ownerKey ?? 'id';
-    }
-
     public function getForeignKey(): string
     {
         return $this->foreignKey;
-    }
-
-    public function setForeignKey(?string $foreignKey = null): void
-    {
-        if ($foreignKey) {
-            $this->foreignKey = $foreignKey;
-
-            return;
-        }
-
-        $inflector = StringInflector::getInstance();
-        $modelName = $inflector->singular($this->getRelatedModel());
-        $this->foreignKey = $inflector->snake($modelName).'_id';
     }
 
     public function getQueryPattern(): string

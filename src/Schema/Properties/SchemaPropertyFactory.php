@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Schema\Properties;
+namespace Locospec\LCS\Schema\Properties;
 
 use InvalidArgumentException;
 
@@ -17,6 +17,7 @@ class SchemaPropertyFactory
         'date' => DateProperty::class,
         'timestamp' => TimestampProperty::class,
         'ulid' => UlidProperty::class,
+        'uuid' => UuidProperty::class,
     ];
 
     public static function create(string $type): SchemaPropertyInterface

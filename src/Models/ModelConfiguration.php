@@ -1,12 +1,12 @@
 <?php
 
-namespace Locospec\EnginePhp\Models;
+namespace Locospec\LCS\Models;
 
 class ModelConfiguration
 {
     private string $primaryKey;
 
-    private ?string $table;
+    private string $table;
 
     private ?string $dbOperator;
 

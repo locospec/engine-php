@@ -25,7 +25,7 @@ composer require locospec/engine-php
 ## Usage
 
 ```php
-$skeleton = new Locospec\EnginePhp();
+$skeleton = new Locospec\LCS();
 echo $skeleton->echoPhrase('Hello, Locospec!');
 ```
 
@@ -49,8 +49,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Rajiv Seelam](https://github.com/rjvim)
-- [All Contributors](../../contributors)
+-   [Rajiv Seelam](https://github.com/rjvim)
+-   [All Contributors](../../contributors)
 
 ## License
 

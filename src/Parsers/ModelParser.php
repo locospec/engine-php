@@ -1,12 +1,13 @@
 <?php
 
-namespace Locospec\EnginePhp\Models;
+namespace Locospec\LCS\Parsers;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Models\ModelDefinition;
 
-class ModelParser
+class ModelParser implements ParserInterface
 {
-    public function parseJson(string $json): ModelDefinition
+    public function parseJson(string $json): mixed
     {
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
@@ -16,8 +17,9 @@ class ModelParser
         return $this->parseArray($data);
     }
 
-    public function parseArray(array $data): ModelDefinition
+    public function parseArray(array $data): mixed
     {
+        // TODO: Can we use ModelValidator here? Or we completely remove this?
         $this->validateModelData($data);
 
         return ModelDefinition::fromArray($data);
@@ -27,6 +29,10 @@ class ModelParser
     {
         if (! isset($data['name'])) {
             throw new InvalidArgumentException('Model name is required');
+        }
+
+        if (! isset($data['config'])) {
+            throw new InvalidArgumentException('Model config is required');
         }
 
         if (! isset($data['type']) || $data['type'] !== 'model') {

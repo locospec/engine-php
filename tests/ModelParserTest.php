@@ -1,18 +1,18 @@
 <?php
 
-namespace Tests\Locospec\EnginePhp\Models;
+namespace Tests\Locospec\LCS\Models;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Models\ModelDefinition;
-use Locospec\EnginePhp\Models\ModelParser;
-use Locospec\EnginePhp\Schema\Schema;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\Parsers\ModelParser;
+use Locospec\LCS\Schema\Schema;
 
 beforeEach(function () {
     $this->parser = new ModelParser;
 
     // Sample complex model definition with nested schemas
     $this->sampleModelData = [
-        'name' => 'profiles',
+        'name' => 'profile',
         'type' => 'model',
         'config' => [
             'primaryKey' => 'id',
@@ -84,7 +84,7 @@ test('can parse model with nested schemas', function () {
 
     // Test basic model properties
     expect($model)->toBeInstanceOf(ModelDefinition::class)
-        ->and($model->getName())->toBe('profiles')
+        ->and($model->getName())->toBe('profile')
         ->and($model->getConfig()->getPrimaryKey())->toBe('id')
         ->and($model->getConfig()->getTable())->toBe('profiles');
 
@@ -142,7 +142,7 @@ test('can convert nested model back to array', function () {
     $array = $model->toArray();
 
     // Test structure matches original
-    expect($array)->toHaveKey('name', 'profiles')
+    expect($array)->toHaveKey('name', 'profile')
         ->and($array)->toHaveKey('type', 'model')
         ->and($array)->toHaveKey('config')
         ->and($array)->toHaveKey('schema');

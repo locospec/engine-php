@@ -1,61 +1,80 @@
 <?php
 
-namespace Locospec\EnginePhp\Models\Relationships;
+namespace Locospec\LCS\Models\Relationships;
 
-use Locospec\EnginePhp\Support\StringInflector;
+use Locospec\LCS\Support\StringInflector;
 
 abstract class Relationship
 {
-    protected string $name;
+    protected string $relationshipName;
 
-    protected string $relatedModel;
+    protected string $description;
 
-    protected string $parentModel;
+    protected string $relatedModelName;
 
-    public function __construct(string $name, string $relatedModel, string $parentModel = '')
-    {
-        $this->name = $name;
-        $this->setRelatedModel($relatedModel);
-        $this->parentModel = $parentModel;
+    protected string $currentModelName;
+
+    public function __construct(
+        string $relationshipName,
+        string $relatedModelName,
+        string $currentModelName = ''
+    ) {
+        $this->relationshipName = $relationshipName;
+        $this->setRelatedModelName($relatedModelName);
+        $this->currentModelName = $currentModelName;
     }
 
     abstract public function getType(): string;
 
     abstract public function getQueryPattern(): string;
 
-    public function getName(): string
+    public function getRelationshipName(): string
     {
-        return $this->name;
+        return $this->relationshipName;
     }
 
-    public function getRelatedModel(): string
+    public function getDescription(): string
     {
-        return $this->relatedModel;
+        return $this->description;
     }
 
-    public function getParentModel(): string
+    public function setDescription(string $description): void
     {
-        return $this->parentModel;
+        $this->description = $description;
     }
 
-    protected function setRelatedModel(string $model): void
+    public function getRelatedModelName(): string
     {
-        $inflector = StringInflector::getInstance();
+        return $this->relatedModelName;
+    }
 
-        // If model isn't provided, pluralize the relationship name
-        if (empty($model)) {
-            $model = $inflector->plural($this->name);
+    public function setCurrentModelName(string $modelName): void
+    {
+        $this->currentModelName = $modelName;
+    }
+
+    public function getCurrentModelName(): string
+    {
+        return $this->currentModelName;
+    }
+
+    protected function setRelatedModelName(string $modelName): void
+    {
+        if (empty($modelName)) {
+            $inflector = StringInflector::getInstance();
+            $modelName = $inflector->singular($this->relationshipName);
         }
-        $this->relatedModel = $model;
+        $this->relatedModelName = $modelName;
     }
 
     public function toArray(): array
     {
         return [
+            'description' => $this->getDescription(),
             'type' => $this->getType(),
-            'name' => $this->name,
-            'relatedModel' => $this->relatedModel,
-            'parentModel' => $this->parentModel,
+            'relationshipName' => $this->relationshipName,
+            'relatedModelName' => $this->relatedModelName,
+            'currentModelName' => $this->currentModelName,
         ];
     }
 }

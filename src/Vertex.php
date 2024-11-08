@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\EnginePhp;
+namespace Locospec\LCS;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 class Vertex
 {

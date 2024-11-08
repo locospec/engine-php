@@ -25,17 +25,17 @@
     },
     "autoload": {
         "psr-4": {
-            "Locospec\\EnginePhp\\": "src"
+            "Locospec\\LCS\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Locospec\\EnginePhp\\Tests\\": "tests"
+            "Locospec\\LCS\\Tests\\": "tests"
         }
     },
     "scripts": {
         "test": "vendor/bin/pest",
-            "test-coverage": "vendor/bin/pest --coverage",
+        "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"
     },
     "config": {
