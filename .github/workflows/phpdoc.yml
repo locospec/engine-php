@@ -1,4 +1,4 @@
-name: Generate PHP Docs
+name: "Generate PHP Docs"
 
 on:
   push:
