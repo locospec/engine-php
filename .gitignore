@@ -34,3 +34,4 @@ testbench.yaml
 .phpdoc/
 output.txt
 lcs.txt
+php-docs
