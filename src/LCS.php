@@ -8,6 +8,7 @@ use Locospec\LCS\Specifications\SpecificationProcessor;
 class LCS
 {
     private static ?RegistryManager $globalRegistryManager = null;
+
     private static bool $isInitialized = false;
 
     private SpecificationProcessor $specProcessor;
@@ -22,7 +23,7 @@ class LCS
             return;
         }
 
-        self::$globalRegistryManager = new RegistryManager();
+        self::$globalRegistryManager = new RegistryManager;
         self::$isInitialized = true;
 
         if (isset($config['paths'])) {
@@ -35,7 +36,7 @@ class LCS
      */
     public static function loadSpecifications(array $paths): void
     {
-        if (!self::$isInitialized) {
+        if (! self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
         }
 
@@ -43,7 +44,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path . '/*.json') as $file) {
+                foreach (glob($path.'/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
@@ -57,7 +58,7 @@ class LCS
      */
     public function __construct()
     {
-        if (!self::$isInitialized) {
+        if (! self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 
