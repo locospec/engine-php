@@ -26,7 +26,10 @@ class RelationshipProcessor
     {
         foreach ($relationships as $type => $relations) {
             if (! is_array($relations)) {
-                throw new InvalidArgumentException("Relationship type '$type' must be an array");
+                throw new InvalidArgumentException(sprintf(
+                    'Relationship type %s must be an array',
+                    htmlspecialchars($type, ENT_QUOTES, 'UTF-8')
+                ));
             }
 
             foreach ($relations as $relationshipName => $config) {
