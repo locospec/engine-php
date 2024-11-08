@@ -233,7 +233,7 @@ test('it handles complex relationships correctly', function () {
         $propertySpec,
         $bankSpec,
         $citySpec,
-        $branchSpec
+        $branchSpec,
     ]));
 
     $registryManager = $this->engine->getRegistryManager();
