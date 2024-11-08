@@ -38,7 +38,10 @@ class SchemaPropertyFactory
         }
 
         if (! is_subclass_of($className, SchemaPropertyInterface::class)) {
-            throw new InvalidArgumentException("Class {$className} must implement SchemaPropertyInterface");
+            throw new InvalidArgumentException(sprintf(
+                'Class %s must implement SchemaPropertyInterface',
+                htmlspecialchars($className, ENT_QUOTES, 'UTF-8')
+            ));
         }
 
         self::$typeMap[$type] = $className;
