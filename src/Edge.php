@@ -41,8 +41,6 @@ class Edge
         $this->target = $target;
         $this->type = $type;
         $this->data = $data;
-
-        // dump(["New Edge", $this->source->getId(), $this->target->getId(), $this->type]);
     }
 
     /**
