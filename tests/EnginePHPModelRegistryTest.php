@@ -1,7 +1,7 @@
 <?php
 
-use Locospec\LCS\LCS;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\LCS;
 
 beforeEach(function () {
     $this->engine = new LCS;
