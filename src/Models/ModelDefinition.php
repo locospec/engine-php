@@ -69,7 +69,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn(Relationship $rel) => $rel->getType() === $type
+            fn (Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -82,7 +82,7 @@ class ModelDefinition
         $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
 
         $config = $data['config'] ?? [];
-        if (!isset($config['table'])) {
+        if (! isset($config['table'])) {
             $config['table'] = StringInflector::getInstance()->plural($data['name']);
         }
 
