@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Parsers;
+namespace Locospec\LCS\Parsers;
 
 interface ParserInterface
 {

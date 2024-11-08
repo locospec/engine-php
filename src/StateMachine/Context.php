@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\StateMachine;
+namespace Locospec\LCS\StateMachine;
 
 class Context implements ContextInterface
 {

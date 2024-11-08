@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\EnginePhp\Tasks;
+namespace Locospec\LCS\Tasks;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\StateMachine\ContextInterface;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {

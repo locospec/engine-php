@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Models;
+namespace Locospec\LCS\Models;
 
 class ModelConfiguration
 {

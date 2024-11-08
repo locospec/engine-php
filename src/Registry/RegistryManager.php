@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\EnginePhp\Registry;
+namespace Locospec\LCS\Registry;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Tasks\AuthorizeTask;
-use Locospec\EnginePhp\Tasks\InsertDBTask;
-use Locospec\EnginePhp\Tasks\ValidateTask;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Tasks\AuthorizeTask;
+use Locospec\LCS\Tasks\InsertDBTask;
+use Locospec\LCS\Tasks\ValidateTask;
 
 class RegistryManager
 {

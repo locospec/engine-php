@@ -1,10 +1,10 @@
 <?php
 
-use Locospec\EnginePhp\EnginePhpClass;
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\LCS;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 beforeEach(function () {
-    $this->engine = new EnginePhpClass;
+    $this->engine = new LCS;
 
     // Clear all registries via registry manager
     $this->engine->getRegistryManager()->getRegistry('model')->clear();

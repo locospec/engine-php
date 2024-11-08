@@ -1,16 +1,16 @@
 <?php
 
-namespace Locospec\EnginePhp\Registry;
+namespace Locospec\LCS\Registry;
 
-use Locospec\EnginePhp\Edge;
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Graph;
-use Locospec\EnginePhp\Models\ModelDefinition;
-use Locospec\EnginePhp\Models\Relationships\BelongsTo;
-use Locospec\EnginePhp\Models\Relationships\HasMany;
-use Locospec\EnginePhp\Models\Relationships\HasOne;
-use Locospec\EnginePhp\Models\Relationships\Relationship;
-use Locospec\EnginePhp\Vertex;
+use Locospec\LCS\Edge;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Graph;
+use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\Models\Relationships\BelongsTo;
+use Locospec\LCS\Models\Relationships\HasMany;
+use Locospec\LCS\Models\Relationships\HasOne;
+use Locospec\LCS\Models\Relationships\Relationship;
+use Locospec\LCS\Vertex;
 
 /**
  * ModelRegistry manages the registration and relationship graphs of models.

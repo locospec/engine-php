@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Support;
+namespace Locospec\LCS\Support;
 
 use Doctrine\Inflector\Inflector;
 use Doctrine\Inflector\InflectorFactory;

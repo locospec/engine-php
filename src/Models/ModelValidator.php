@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\EnginePhp\Models;
+namespace Locospec\LCS\Models;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Support\StringInflector;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Support\StringInflector;
 
 class ModelValidator
 {

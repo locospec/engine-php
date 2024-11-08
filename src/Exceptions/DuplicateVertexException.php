@@ -1,5 +1,5 @@
 <?php
 
-namespace Locospec\EnginePhp\Exceptions;
+namespace Locospec\LCS\Exceptions;
 
 class DuplicateVertexException extends \Exception {}

@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\EnginePhp\Parsers;
+namespace Locospec\LCS\Parsers;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 class ParserFactory
 {

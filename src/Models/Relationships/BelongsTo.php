@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Models\Relationships;
+namespace Locospec\LCS\Models\Relationships;
 
 class BelongsTo extends Relationship
 {

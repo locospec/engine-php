@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\EnginePhp\Specifications;
+namespace Locospec\LCS\Specifications;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
-use Locospec\EnginePhp\Parsers\ParserFactory;
-use Locospec\EnginePhp\Registry\RegistryManager;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Parsers\ParserFactory;
+use Locospec\LCS\Registry\RegistryManager;
 
 class SpecificationProcessor
 {
@@ -54,7 +54,7 @@ class SpecificationProcessor
     {
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
         }
 
         return $data;

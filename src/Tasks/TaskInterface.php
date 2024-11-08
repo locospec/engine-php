@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\EnginePhp\Tasks;
+namespace Locospec\LCS\Tasks;
 
-use Locospec\EnginePhp\StateMachine\ContextInterface;
+use Locospec\LCS\StateMachine\ContextInterface;
 
 interface TaskInterface
 {

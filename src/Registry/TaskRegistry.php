@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\EnginePhp\Registry;
+namespace Locospec\LCS\Registry;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 class TaskRegistry extends AbstractRegistry
 {

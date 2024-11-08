@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\EnginePhp\Models;
+namespace Locospec\LCS\Models;
 
-use Locospec\EnginePhp\Models\Relationships\Relationship;
-use Locospec\EnginePhp\Schema\Schema;
-use Locospec\EnginePhp\Support\StringInflector;
+use Locospec\LCS\Models\Relationships\Relationship;
+use Locospec\LCS\Schema\Schema;
+use Locospec\LCS\Support\StringInflector;
 
 class ModelDefinition
 {

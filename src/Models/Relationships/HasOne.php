@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Models\Relationships;
+namespace Locospec\LCS\Models\Relationships;
 
 class HasOne extends Relationship
 {
@@ -57,10 +57,10 @@ class HasOne extends Relationship
             foreach ($this->sortBy as $column => $direction) {
                 $orderClauses[] = "{$column} {$direction}";
             }
-            $query .= ' ORDER BY '.implode(', ', $orderClauses);
+            $query .= ' ORDER BY ' . implode(', ', $orderClauses);
         }
 
-        return $query.' LIMIT 1';
+        return $query . ' LIMIT 1';
     }
 
     public function toArray(): array

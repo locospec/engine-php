@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Registry;
+namespace Locospec\LCS\Registry;
 
 interface RegistryInterface
 {

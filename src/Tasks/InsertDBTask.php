@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\EnginePhp\Tasks;
+namespace Locospec\LCS\Tasks;
 
 class InsertDBTask extends AbstractTask
 {

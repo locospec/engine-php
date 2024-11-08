@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\EnginePhp\StateMachine;
+namespace Locospec\LCS\StateMachine;
 
-use Locospec\EnginePhp\Registry\TaskRegistry;
-use Locospec\EnginePhp\Tasks\TaskInterface;
+use Locospec\LCS\Registry\TaskRegistry;
+use Locospec\LCS\Tasks\TaskInterface;
 
 class StateMachine
 {

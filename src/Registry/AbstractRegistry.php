@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\EnginePhp\Registry;
+namespace Locospec\LCS\Registry;
 
-use Locospec\EnginePhp\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 abstract class AbstractRegistry implements RegistryInterface
 {
@@ -12,7 +12,7 @@ abstract class AbstractRegistry implements RegistryInterface
     {
         $name = $this->getItemName($item);
         if (isset($this->items[$name])) {
-            throw new InvalidArgumentException("Item '{$name}' is already registered in ".$this->getType());
+            throw new InvalidArgumentException("Item '{$name}' is already registered in " . $this->getType());
         }
         $this->items[$name] = $item;
     }

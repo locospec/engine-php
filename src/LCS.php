@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\EnginePhp;
+namespace Locospec\LCS;
 
-use Locospec\EnginePhp\Registry\RegistryManager;
-use Locospec\EnginePhp\Specifications\SpecificationProcessor;
+use Locospec\LCS\Registry\RegistryManager;
+use Locospec\LCS\Specifications\SpecificationProcessor;
 
-class EnginePhpClass
+class LCS
 {
     private RegistryManager $registryManager;
 
