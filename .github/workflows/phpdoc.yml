@@ -36,20 +36,8 @@ jobs:
             ${{ runner.os }}-phpdocumentor-
       - name: Build with phpDocumentor
         run: docker run --rm --volume "$(pwd):/data" phpdoc/phpdoc:3 -vv --target docs --cache-folder .phpdoc/cache --template default
-      # - name: Upload artifact to GitHub Pages
-      #   uses: actions/upload-pages-artifact@v1
-      #   with:
-      #     path: docs
-
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-      - uses: JamesIves/github-pages-deploy-action@v4
+      - name: Upload artifact to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: ./docs/
           branch: gh-pages
