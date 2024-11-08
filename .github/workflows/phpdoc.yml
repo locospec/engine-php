@@ -1,4 +1,4 @@
-name: documentation
+name: Generate PHP Docs
 
 on:
   push:
@@ -41,13 +41,16 @@ jobs:
       #   with:
       #     path: docs
 
-  # deploy:
-  #   needs: build
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #       id: deployment
-  #       uses: actions/deploy-pages@v1
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./docs/
+          branch: gh-pages
+          force: false
