@@ -4,6 +4,13 @@ namespace Locospec\LCS\Registry;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\Tasks\AuthorizeTask;
+use Locospec\LCS\Tasks\DatabaseCountTask;
+use Locospec\LCS\Tasks\DatabaseDeleteTask;
+use Locospec\LCS\Tasks\DatabaseInsertTask;
+use Locospec\LCS\Tasks\DatabaseOperationTask;
+use Locospec\LCS\Tasks\DatabasePaginateTask;
+use Locospec\LCS\Tasks\DatabaseSelectTask;
+use Locospec\LCS\Tasks\DatabaseUpdateTask;
 use Locospec\LCS\Tasks\InsertDBTask;
 use Locospec\LCS\Tasks\ValidateTask;
 
@@ -34,16 +41,13 @@ class RegistryManager
     private function registerDatabaseTasks(): void
     {
         $databaseTasks = [
-            // Main wrapper task for database operations
-            // DatabaseOperationTask::class,
-
-            // Individual operation tasks
-            // InsertTask::class,
-            // UpdateTask::class,
-            // DeleteTask::class,
-            // SelectTask::class,
-            // CountTask::class,
-            // PaginateTask::class
+            DatabaseOperationTask::class,
+            DatabaseInsertTask::class,
+            DatabaseUpdateTask::class,
+            DatabaseDeleteTask::class,
+            DatabaseSelectTask::class,
+            DatabaseCountTask::class,
+            DatabasePaginateTask::class
         ];
 
         foreach ($databaseTasks as $taskClass) {
