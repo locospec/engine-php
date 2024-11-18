@@ -1586,6 +1586,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDefaults"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\RegistryManager\u003A\u003AregisterDatabaseTasks\u0028\u0029",
+            "name": "registerDatabaseTasks",
+            "summary": "Register\u0020all\u0020database\u0020operation\u0020related\u0020tasks",
+            "url": "classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDatabaseTasks"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\RegistryManager\u003A\u003AaddRegistry\u0028\u0029",
             "name": "addRegistry",
             "summary": "",
@@ -2311,6 +2316,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#method___construct"
         },                {
+            "fqsen": "\\Locospec\\LCS\\StateMachine\\StateMachine\u003A\u003AregisterDatabaseOperator\u0028\u0029",
+            "name": "registerDatabaseOperator",
+            "summary": "Register\u0020database\u0020operator\u0020for\u0020database\u0020tasks",
+            "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#method_registerDatabaseOperator"
+        },                {
             "fqsen": "\\Locospec\\LCS\\StateMachine\\StateMachine\u003A\u003AsetContext\u0028\u0029",
             "name": "setContext",
             "summary": "",
@@ -2325,6 +2335,11 @@ Search.appendIndex(
             "name": "getTask",
             "summary": "",
             "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#method_getTask"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\StateMachine\\StateMachine\u003A\u003AgetTaskFactory\u0028\u0029",
+            "name": "getTaskFactory",
+            "summary": "Get\u0020the\u0020task\u0020factory\u0020instance",
+            "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#method_getTaskFactory"
         },                {
             "fqsen": "\\Locospec\\LCS\\StateMachine\\StateMachine\u003A\u003A\u0024states",
             "name": "states",
@@ -2345,6 +2360,11 @@ Search.appendIndex(
             "name": "taskRegistry",
             "summary": "",
             "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#property_taskRegistry"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\StateMachine\\StateMachine\u003A\u003A\u0024taskFactory",
+            "name": "taskFactory",
+            "summary": "",
+            "url": "classes/Locospec-LCS-StateMachine-StateMachine.html#property_taskFactory"
         },                {
             "fqsen": "\\Locospec\\LCS\\StateMachine\\TaskState",
             "name": "TaskState",
@@ -2461,6 +2481,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Support-StringInflector.html#property_cache"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask",
+            "name": "AbstractDatabaseTask",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003AsetDatabaseOperator\u0028\u0029",
+            "name": "setDatabaseOperator",
+            "summary": "Set\u0020the\u0020database\u0020operator\u0020for\u0020this\u0020task",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#method_setDatabaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003AgetTableName\u0028\u0029",
+            "name": "getTableName",
+            "summary": "Get\u0020table\u0020name\u0020from\u0020model\u0020configuration",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#method_getTableName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003AvalidateOperator\u0028\u0029",
+            "name": "validateOperator",
+            "summary": "Validate\u0020that\u0020the\u0020database\u0020operator\u0020is\u0020set",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#method_validateOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003AformatOutput\u0028\u0029",
+            "name": "formatOutput",
+            "summary": "Format\u0020database\u0020operation\u0020output\u0020with\u0020standard\u0020structure",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#method_formatOutput"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003AvalidateContext\u0028\u0029",
+            "name": "validateContext",
+            "summary": "Validate\u0020context\u0020has\u0020required\u0020database\u0020operation\u0020properties",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#method_validateContext"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003A\u0024operator",
+            "name": "operator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#property_operator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractDatabaseTask\u003A\u003A\u0024requiredContextKeys",
+            "name": "requiredContextKeys",
+            "summary": "Required\u0020context\u0020keys\u0020for\u0020database\u0020tasks",
+            "url": "classes/Locospec-LCS-Tasks-AbstractDatabaseTask.html#property_requiredContextKeys"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Tasks\\AbstractTask",
             "name": "AbstractTask",
             "summary": "",
@@ -2565,6 +2625,41 @@ Search.appendIndex(
             "name": "execute",
             "summary": "Execute\u0020the\u0020task",
             "url": "classes/Locospec-LCS-Tasks-SampleTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory",
+            "name": "TaskFactory",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Initialize\u0020the\u0020task\u0020factory\u0020with\u0020task\u0020registry",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003AregisterDatabaseOperator\u0028\u0029",
+            "name": "registerDatabaseOperator",
+            "summary": "Register\u0020database\u0020operator\u0020for\u0020database\u0020tasks",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#method_registerDatabaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003AcreateTask\u0028\u0029",
+            "name": "createTask",
+            "summary": "Create\u0020a\u0020task\u0020instance\u0020by\u0020name",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#method_createTask"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003AhasDatabaseOperator\u0028\u0029",
+            "name": "hasDatabaseOperator",
+            "summary": "Check\u0020if\u0020a\u0020database\u0020operator\u0020is\u0020registered",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#method_hasDatabaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003A\u0024taskRegistry",
+            "name": "taskRegistry",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#property_taskRegistry"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\TaskFactory\u003A\u003A\u0024databaseOperator",
+            "name": "databaseOperator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-TaskFactory.html#property_databaseOperator"
         },                {
             "fqsen": "\\Locospec\\LCS\\Tasks\\TaskInterface",
             "name": "TaskInterface",
