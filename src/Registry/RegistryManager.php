@@ -12,6 +12,7 @@ use Locospec\LCS\Tasks\DatabasePaginateTask;
 use Locospec\LCS\Tasks\DatabaseSelectTask;
 use Locospec\LCS\Tasks\DatabaseUpdateTask;
 use Locospec\LCS\Tasks\InsertDBTask;
+use Locospec\LCS\Tasks\JSONTransformationTask;
 use Locospec\LCS\Tasks\ValidateTask;
 
 class RegistryManager
@@ -31,6 +32,7 @@ class RegistryManager
         $this->register('task', ValidateTask::class);
         $this->register('task', AuthorizeTask::class);
         $this->register('task', InsertDBTask::class);
+        $this->register('task', JSONTransformationTask::class);
 
         $this->registerDatabaseTasks();
     }
