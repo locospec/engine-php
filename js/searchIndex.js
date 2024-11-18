@@ -2761,6 +2761,21 @@ Search.appendIndex(
             "summary": "Execute\u0020the\u0020task",
             "url": "classes/Locospec-LCS-Tasks-InsertDBTask.html#method_execute"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\JSONTransformationTask",
+            "name": "JSONTransformationTask",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Tasks-JSONTransformationTask.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\JSONTransformationTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-LCS-Tasks-JSONTransformationTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Tasks\\JSONTransformationTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-LCS-Tasks-JSONTransformationTask.html#method_execute"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Tasks\\SampleTask",
             "name": "SampleTask",
             "summary": "",
