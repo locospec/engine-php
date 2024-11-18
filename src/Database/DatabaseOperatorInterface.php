@@ -11,6 +11,7 @@ interface DatabaseOperatorInterface
 {
     /**
      * Insert a record into the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -25,6 +26,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Update records in the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -39,6 +41,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Delete records from the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -53,6 +56,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Soft delete records by setting deleted_at timestamp
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -67,6 +71,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Select records from the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -81,6 +86,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Count records in the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -95,6 +101,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Get paginated records from the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -109,6 +116,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Get cursor paginated records from the database
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -123,6 +131,7 @@ interface DatabaseOperatorInterface
 
     /**
      * Execute a raw SQL query
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -138,6 +147,7 @@ interface DatabaseOperatorInterface
     /**
      * Get list of attributes used in where conditions
      * Useful for selecting required columns
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
@@ -153,6 +163,7 @@ interface DatabaseOperatorInterface
     /**
      * Execute a query built from Query object
      * This provides a high-level interface for complex queries
+     *
      * @return array{
      *   result: mixed,
      *   sql: string,
