@@ -4,10 +4,14 @@ namespace Locospec\LCS;
 
 use Locospec\LCS\Registry\RegistryManager;
 use Locospec\LCS\Specifications\SpecificationProcessor;
+use Locospec\LCS\Database\DatabaseOperatorInterface;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 class LCS
 {
     private static ?RegistryManager $globalRegistryManager = null;
+
+    private static ?DatabaseOperatorInterface $databaseOperator = null;
 
     private static bool $isInitialized = false;
 
@@ -36,7 +40,7 @@ class LCS
      */
     public static function loadSpecifications(array $paths): void
     {
-        if (! self::$isInitialized) {
+        if (!self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
         }
 
@@ -44,7 +48,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path.'/*.json') as $file) {
+                foreach (glob($path . '/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
@@ -54,11 +58,39 @@ class LCS
     }
 
     /**
+     * Register a database operator implementation
+     */
+    public static function registerDatabaseOperator(DatabaseOperatorInterface $operator): void
+    {
+        self::$databaseOperator = $operator;
+    }
+
+    /**
+     * Get the registered database operator
+     */
+    public static function getDatabaseOperator(): DatabaseOperatorInterface
+    {
+        if (!self::$databaseOperator) {
+            throw new InvalidArgumentException('No database operator registered. Call registerDatabaseOperator first.');
+        }
+
+        return self::$databaseOperator;
+    }
+
+    /**
+     * Check if a database operator is registered
+     */
+    public static function hasDatabaseOperator(): bool
+    {
+        return self::$databaseOperator !== null;
+    }
+
+    /**
      * Constructor now just provides access to the global registry
      */
     public function __construct()
     {
-        if (! self::$isInitialized) {
+        if (!self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 
@@ -74,17 +106,9 @@ class LCS
     }
 
     /**
-     * Add a new specification dynamically
+     * Process a specification from file
      */
     public function processSpecificationFile(string $path): void
-    {
-        $this->specProcessor->processFile($path);
-    }
-
-    /**
-     * Add a new specification dynamically
-     */
-    public function processSpecification(string $path): void
     {
         $this->specProcessor->processFile($path);
     }
@@ -111,6 +135,7 @@ class LCS
     public static function reset(): void
     {
         self::$globalRegistryManager = null;
+        self::$databaseOperator = null;
         self::$isInitialized = false;
     }
 }
