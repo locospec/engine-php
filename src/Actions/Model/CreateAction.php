@@ -20,29 +20,29 @@ class CreateAction extends ModelAction
                 'CleanInput' => [
                     'Type' => 'Task',
                     'Resource' => 'clean_input',
-                    'Next' => 'ValidateInput'
+                    'Next' => 'ValidateInput',
                 ],
                 'ValidateInput' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'GenerateAttributes'
+                    'Next' => 'GenerateAttributes',
                 ],
                 'GenerateAttributes' => [
                     'Type' => 'Task',
                     'Resource' => 'generate_attributes',
-                    'Next' => 'DatabaseInsert'
+                    'Next' => 'DatabaseInsert',
                 ],
                 'DatabaseInsert' => [
                     'Type' => 'Task',
                     'Resource' => 'database.insert',
-                    'Next' => 'DatabaseRead'
+                    'Next' => 'DatabaseRead',
                 ],
                 'DatabaseRead' => [
                     'Type' => 'Task',
                     'Resource' => 'database.select',
-                    'End' => true
-                ]
-            ]
+                    'End' => true,
+                ],
+            ],
         ];
     }
 }

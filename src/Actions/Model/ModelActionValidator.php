@@ -17,7 +17,7 @@ class ModelActionValidator
     public function validateCreate(array $input, ModelDefinition $model): void
     {
         if (empty($input)) {
-            throw new InvalidArgumentException("Create action requires input data");
+            throw new InvalidArgumentException('Create action requires input data');
         }
 
         // Additional model-specific validation can be added here
@@ -28,12 +28,12 @@ class ModelActionValidator
      */
     public function validateUpdate(array $input, ModelDefinition $model): void
     {
-        if (!isset($input['conditions'])) {
-            throw new InvalidArgumentException("Update action requires conditions");
+        if (! isset($input['conditions'])) {
+            throw new InvalidArgumentException('Update action requires conditions');
         }
 
-        if (!isset($input['data']) || !is_array($input['data'])) {
-            throw new InvalidArgumentException("Update action requires data array");
+        if (! isset($input['data']) || ! is_array($input['data'])) {
+            throw new InvalidArgumentException('Update action requires data array');
         }
     }
 
@@ -42,8 +42,8 @@ class ModelActionValidator
      */
     public function validateDelete(array $input, ModelDefinition $model): void
     {
-        if (!isset($input['conditions'])) {
-            throw new InvalidArgumentException("Delete action requires conditions");
+        if (! isset($input['conditions'])) {
+            throw new InvalidArgumentException('Delete action requires conditions');
         }
     }
 
@@ -52,8 +52,8 @@ class ModelActionValidator
      */
     public function validateReadOne(array $input, ModelDefinition $model): void
     {
-        if (!isset($input['conditions'])) {
-            throw new InvalidArgumentException("ReadOne action requires conditions");
+        if (! isset($input['conditions'])) {
+            throw new InvalidArgumentException('ReadOne action requires conditions');
         }
     }
 
@@ -65,20 +65,20 @@ class ModelActionValidator
         // Pagination validation
         if (isset($input['pagination'])) {
             if (isset($input['pagination']['page']) && $input['pagination']['page'] < 1) {
-                throw new InvalidArgumentException("Page number must be greater than 0");
+                throw new InvalidArgumentException('Page number must be greater than 0');
             }
             if (isset($input['pagination']['per_page']) && $input['pagination']['per_page'] < 1) {
-                throw new InvalidArgumentException("Items per page must be greater than 0");
+                throw new InvalidArgumentException('Items per page must be greater than 0');
             }
         }
 
         // Sort validation
         if (isset($input['sorts'])) {
             foreach ($input['sorts'] as $sort) {
-                if (!isset($sort['attribute'])) {
-                    throw new InvalidArgumentException("Sort must specify an attribute");
+                if (! isset($sort['attribute'])) {
+                    throw new InvalidArgumentException('Sort must specify an attribute');
                 }
-                if (isset($sort['direction']) && !in_array(strtolower($sort['direction']), ['asc', 'desc'])) {
+                if (isset($sort['direction']) && ! in_array(strtolower($sort['direction']), ['asc', 'desc'])) {
                     throw new InvalidArgumentException("Invalid sort direction. Use 'asc' or 'desc'");
                 }
             }
@@ -90,13 +90,14 @@ class ModelActionValidator
      */
     public function normalizeConditions(array $input): array
     {
-        if (isset($input['conditions']) && !($input['conditions'] instanceof FilterGroup)) {
+        if (isset($input['conditions']) && ! ($input['conditions'] instanceof FilterGroup)) {
             $input['conditions'] = FilterGroup::fromArray([
                 'operator' => 'and',
                 'conditions' => is_array($input['conditions']) ?
-                    $input['conditions'] : [$input['conditions']]
+                    $input['conditions'] : [$input['conditions']],
             ]);
         }
+
         return $input;
     }
 }
