@@ -1,6 +1,181 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\CreateAction",
+            "name": "CreateAction",
+            "summary": "Standard\u0020Create\u0020action\u0020for\u0020models",
+            "url": "classes/Locospec-LCS-Actions-Model-CreateAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\CreateAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-CreateAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\CreateAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-CreateAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\DeleteAction",
+            "name": "DeleteAction",
+            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "url": "classes/Locospec-LCS-Actions-Model-DeleteAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\DeleteAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-DeleteAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\DeleteAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-DeleteAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction",
+            "name": "ModelAction",
+            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020action\u0020with\u0020given\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003AgetModel\u0028\u0029",
+            "name": "getModel",
+            "summary": "Get\u0020the\u0020model\u0020definition\u0020this\u0020action\u0020operates\u0020on",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method_getModel"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003AgetConfig\u0028\u0029",
+            "name": "getConfig",
+            "summary": "Get\u0020the\u0020action\u0020configuration",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#method_getConfig"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_model"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024config",
+            "name": "config",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_config"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_name"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024databaseOperator",
+            "name": "databaseOperator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_databaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024taskRegistry",
+            "name": "taskRegistry",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_taskRegistry"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024validator",
+            "name": "validator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_validator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator",
+            "name": "ModelActionValidator",
+            "summary": "Validates\u0020inputs\u0020for\u0020model\u0020actions",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AvalidateCreate\u0028\u0029",
+            "name": "validateCreate",
+            "summary": "Validate\u0020create\u0020action\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_validateCreate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AvalidateUpdate\u0028\u0029",
+            "name": "validateUpdate",
+            "summary": "Validate\u0020update\u0020action\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_validateUpdate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AvalidateDelete\u0028\u0029",
+            "name": "validateDelete",
+            "summary": "Validate\u0020delete\u0020action\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_validateDelete"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AvalidateReadOne\u0028\u0029",
+            "name": "validateReadOne",
+            "summary": "Validate\u0020read\u0020one\u0020action\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_validateReadOne"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AvalidateReadList\u0028\u0029",
+            "name": "validateReadList",
+            "summary": "Validate\u0020read\u0020list\u0020action\u0020input",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_validateReadList"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelActionValidator\u003A\u003AnormalizeConditions\u0028\u0029",
+            "name": "normalizeConditions",
+            "summary": "Convert\u0020conditions\u0020to\u0020FilterGroup\u0020if\u0020needed",
+            "url": "classes/Locospec-LCS-Actions-Model-ModelActionValidator.html#method_normalizeConditions"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadListAction",
+            "name": "ReadListAction",
+            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadListAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadListAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadListAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadListAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadListAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadOneAction",
+            "name": "ReadOneAction",
+            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadOneAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadOneAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadOneAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadOneAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-ReadOneAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\UpdateAction",
+            "name": "UpdateAction",
+            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "url": "classes/Locospec-LCS-Actions-Model-UpdateAction.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\UpdateAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-UpdateAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\UpdateAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-LCS-Actions-Model-UpdateAction.html#method_getStateMachineDefinition"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface",
             "name": "DatabaseOperatorInterface",
             "summary": "",
@@ -315,6 +490,16 @@ Search.appendIndex(
             "name": "reset",
             "summary": "Reset\u0020LCS\u0020\u0028mainly\u0020for\u0020testing\u0020purposes\u0029",
             "url": "classes/Locospec-LCS-LCS.html#method_reset"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AexecuteModelAction\u0028\u0029",
+            "name": "executeModelAction",
+            "summary": "Execute\u0020a\u0020model\u0020action",
+            "url": "classes/Locospec-LCS-LCS.html#method_executeModelAction"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AcreateModelAction\u0028\u0029",
+            "name": "createModelAction",
+            "summary": "Create\u0020a\u0020model\u0020action\u0020instance",
+            "url": "classes/Locospec-LCS-LCS.html#method_createModelAction"
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024globalRegistryManager",
             "name": "globalRegistryManager",
@@ -1140,6 +1325,11 @@ Search.appendIndex(
             "name": "fromArray",
             "summary": "",
             "url": "classes/Locospec-LCS-Query-FilterGroup.html#method_fromArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Query\\FilterGroup\u003A\u003AfromShorthand\u0028\u0029",
+            "name": "fromShorthand",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Query-FilterGroup.html#method_fromShorthand"
         },                {
             "fqsen": "\\Locospec\\LCS\\Query\\FilterGroup\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
@@ -2890,6 +3080,16 @@ Search.appendIndex(
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model",
+            "name": "Model",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-actions-model.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions",
+            "name": "Actions",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-actions.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database",
             "name": "Database",
