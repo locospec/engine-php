@@ -16,7 +16,7 @@ class DatabaseCountTask extends AbstractDatabaseTask
     {
         try {
             $table = $this->getTableName();
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
 
             $result = $this->operator->count($table, $conditions);
 

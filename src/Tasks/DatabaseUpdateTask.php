@@ -18,7 +18,7 @@ class DatabaseUpdateTask extends AbstractDatabaseTask
 
         try {
             $table = $this->getTableName();
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
 
             $result = $this->operator->update(
                 $table,
@@ -35,7 +35,7 @@ class DatabaseUpdateTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['data']) || !is_array($input['data'])) {
+        if (! isset($input['data']) || ! is_array($input['data'])) {
             throw new DatabaseOperationException('Update task requires data array');
         }
     }

@@ -47,7 +47,7 @@ class RegistryManager
             DatabaseDeleteTask::class,
             DatabaseSelectTask::class,
             DatabaseCountTask::class,
-            DatabasePaginateTask::class
+            DatabasePaginateTask::class,
         ];
 
         foreach ($databaseTasks as $taskClass) {

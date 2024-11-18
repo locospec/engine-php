@@ -19,7 +19,7 @@ class DatabasePaginateTask extends AbstractDatabaseTask
         try {
             $table = $this->getTableName();
             $columns = $input['columns'] ?? ['*'];
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
             $pagination = $input['pagination'];
 
             if (isset($pagination['cursor'])) {
@@ -47,11 +47,11 @@ class DatabasePaginateTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['pagination'])) {
+        if (! isset($input['pagination'])) {
             throw new DatabaseOperationException('Pagination task requires pagination configuration');
         }
 
-        if (isset($input['columns']) && !is_array($input['columns'])) {
+        if (isset($input['columns']) && ! is_array($input['columns'])) {
             throw new DatabaseOperationException('Columns must be an array');
         }
     }

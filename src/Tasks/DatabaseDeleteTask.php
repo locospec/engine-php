@@ -18,7 +18,7 @@ class DatabaseDeleteTask extends AbstractDatabaseTask
 
         try {
             $table = $this->getTableName();
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
             $softDelete = $input['soft_delete'] ?? false;
 
             if ($softDelete) {
@@ -36,7 +36,7 @@ class DatabaseDeleteTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['conditions'])) {
+        if (! isset($input['conditions'])) {
             throw new DatabaseOperationException('Delete task requires conditions');
         }
     }

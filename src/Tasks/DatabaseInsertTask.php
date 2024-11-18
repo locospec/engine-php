@@ -28,7 +28,7 @@ class DatabaseInsertTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['data']) || !is_array($input['data'])) {
+        if (! isset($input['data']) || ! is_array($input['data'])) {
             throw new DatabaseOperationException('Insert task requires data array');
         }
     }
