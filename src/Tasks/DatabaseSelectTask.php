@@ -19,13 +19,13 @@ class DatabaseSelectTask extends AbstractDatabaseTask
         try {
             $table = $this->getTableName();
             $columns = $input['columns'] ?? ['*'];
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
 
             $result = $this->operator->select($table, $columns, $conditions);
 
             return $this->formatOutput([
                 'result' => $result,
-                'sql' => "SELECT " . implode(', ', $columns) . " FROM {$table}"
+                'sql' => 'SELECT '.implode(', ', $columns)." FROM {$table}",
             ]);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Select operation failed: {$e->getMessage()}");
@@ -34,7 +34,7 @@ class DatabaseSelectTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (isset($input['columns']) && !is_array($input['columns'])) {
+        if (isset($input['columns']) && ! is_array($input['columns'])) {
             throw new DatabaseOperationException('Columns must be an array');
         }
     }

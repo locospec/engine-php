@@ -16,13 +16,13 @@ class DatabaseCountTask extends AbstractDatabaseTask
     {
         try {
             $table = $this->getTableName();
-            $conditions = $input['conditions'] ?? new FilterGroup();
+            $conditions = $input['conditions'] ?? new FilterGroup;
 
             $result = $this->operator->count($table, $conditions);
 
             return $this->formatOutput([
                 'result' => $result,
-                'sql' => "SELECT COUNT(*) FROM {$table}"
+                'sql' => "SELECT COUNT(*) FROM {$table}",
             ]);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Count operation failed: {$e->getMessage()}");

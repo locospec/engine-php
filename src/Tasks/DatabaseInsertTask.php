@@ -21,7 +21,7 @@ class DatabaseInsertTask extends AbstractDatabaseTask
 
             return $this->formatOutput([
                 'result' => $result,
-                'sql' => "INSERT INTO {$table}"
+                'sql' => "INSERT INTO {$table}",
             ]);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Insert operation failed: {$e->getMessage()}");
@@ -30,7 +30,7 @@ class DatabaseInsertTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['data']) || !is_array($input['data'])) {
+        if (! isset($input['data']) || ! is_array($input['data'])) {
             throw new DatabaseOperationException('Insert task requires data array');
         }
     }

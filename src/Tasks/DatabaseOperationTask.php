@@ -32,12 +32,12 @@ class DatabaseOperationTask extends AbstractDatabaseTask
 
     private function validateInput(array $input): void
     {
-        if (!isset($input['operation'])) {
+        if (! isset($input['operation'])) {
             throw new DatabaseOperationException('Operation type is required');
         }
 
         $validOperations = ['insert', 'update', 'delete', 'select', 'count', 'paginate'];
-        if (!in_array($input['operation'], $validOperations)) {
+        if (! in_array($input['operation'], $validOperations)) {
             throw new DatabaseOperationException('Invalid operation type');
         }
     }
@@ -45,12 +45,12 @@ class DatabaseOperationTask extends AbstractDatabaseTask
     private function createOperationTask(string $operation): AbstractDatabaseTask
     {
         return match ($operation) {
-            'insert' => new DatabaseInsertTask(),
-            'update' => new DatabaseUpdateTask(),
-            'delete' => new DatabaseDeleteTask(),
-            'select' => new DatabaseSelectTask(),
-            'count' => new DatabaseCountTask(),
-            'paginate' => new DatabasePaginateTask(),
+            'insert' => new DatabaseInsertTask,
+            'update' => new DatabaseUpdateTask,
+            'delete' => new DatabaseDeleteTask,
+            'select' => new DatabaseSelectTask,
+            'count' => new DatabaseCountTask,
+            'paginate' => new DatabasePaginateTask,
             default => throw new DatabaseOperationException("Unsupported operation: {$operation}")
         };
     }
