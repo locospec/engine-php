@@ -51,7 +51,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
      */
     protected function formatOutput(array $result): array
     {
-        if (!isset($result['result']) || !isset($result['sql']) || !isset($result['timing'])) {
+        if (! isset($result['result']) || ! isset($result['sql']) || ! isset($result['timing'])) {
             throw new DatabaseOperationException('Invalid operator result format');
         }
 
@@ -62,13 +62,13 @@ abstract class AbstractDatabaseTask extends AbstractTask
                 [
                     'table' => $this->getTableName(),
                     'model' => $this->getContextValue('model')->getName(),
-                    'action' => $this->getContextValue('action')
+                    'action' => $this->getContextValue('action'),
                 ],
                 [
                     'sql' => $result['sql'],
-                    'timing' => $result['timing']
+                    'timing' => $result['timing'],
                 ]
-            )
+            ),
         ];
     }
 
