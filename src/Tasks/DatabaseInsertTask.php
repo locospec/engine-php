@@ -19,10 +19,8 @@ class DatabaseInsertTask extends AbstractDatabaseTask
             $table = $this->getTableName();
             $result = $this->operator->insert($table, $input['data']);
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => "INSERT INTO {$table}"
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Insert operation failed: {$e->getMessage()}");
         }

@@ -26,10 +26,8 @@ class DatabaseUpdateTask extends AbstractDatabaseTask
                 $conditions
             );
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => "UPDATE {$table}"
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Update operation failed: {$e->getMessage()}");
         }

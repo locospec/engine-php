@@ -20,10 +20,8 @@ class DatabaseCountTask extends AbstractDatabaseTask
 
             $result = $this->operator->count($table, $conditions);
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => "SELECT COUNT(*) FROM {$table}"
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Count operation failed: {$e->getMessage()}");
         }

@@ -23,10 +23,8 @@ class DatabaseSelectTask extends AbstractDatabaseTask
 
             $result = $this->operator->select($table, $columns, $conditions);
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => "SELECT " . implode(', ', $columns) . " FROM {$table}"
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Select operation failed: {$e->getMessage()}");
         }

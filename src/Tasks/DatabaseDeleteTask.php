@@ -27,10 +27,8 @@ class DatabaseDeleteTask extends AbstractDatabaseTask
                 $result = $this->operator->delete($table, $conditions);
             }
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => ($softDelete ? "UPDATE {$table} SET deleted_at" : "DELETE FROM {$table}")
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Delete operation failed: {$e->getMessage()}");
         }

@@ -3,6 +3,7 @@
 namespace Locospec\LCS\Tasks;
 
 use Locospec\LCS\Database\DatabaseOperatorInterface;
+use Locospec\LCS\Exceptions\DatabaseOperationException;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\StateMachine\ContextInterface;
 
@@ -50,16 +51,24 @@ abstract class AbstractDatabaseTask extends AbstractTask
      */
     protected function formatOutput(array $result): array
     {
+        if (!isset($result['result']) || !isset($result['sql']) || !isset($result['timing'])) {
+            throw new DatabaseOperationException('Invalid operator result format');
+        }
+
         return [
             'success' => true,
-            'data' => $result['result'] ?? null,
-            'metadata' => [
-                'sql' => $result['sql'] ?? null,
-                'timestamp' => $result['timestamp'] ?? microtime(true),
-                'table' => $this->getTableName(),
-                'model' => $this->getContextValue('model')->getName(),
-                'action' => $this->getContextValue('action'),
-            ],
+            'data' => $result['result'],
+            'metadata' => array_merge(
+                [
+                    'table' => $this->getTableName(),
+                    'model' => $this->getContextValue('model')->getName(),
+                    'action' => $this->getContextValue('action')
+                ],
+                [
+                    'sql' => $result['sql'],
+                    'timing' => $result['timing']
+                ]
+            )
         ];
     }
 

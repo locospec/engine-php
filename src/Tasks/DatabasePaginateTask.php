@@ -38,10 +38,8 @@ class DatabasePaginateTask extends AbstractDatabaseTask
                 );
             }
 
-            return $this->formatOutput([
-                'result' => $result,
-                'sql' => "SELECT " . implode(', ', $columns) . " FROM {$table} WITH PAGINATION"
-            ]);
+            // $result from operator now contains ['result', 'sql', 'timing']
+            return $this->formatOutput($result);
         } catch (\Exception $e) {
             throw new DatabaseOperationException("Pagination operation failed: {$e->getMessage()}");
         }
