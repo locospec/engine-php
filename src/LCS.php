@@ -2,10 +2,10 @@
 
 namespace Locospec\LCS;
 
-use Locospec\LCS\Registry\RegistryManager;
-use Locospec\LCS\Specifications\SpecificationProcessor;
 use Locospec\LCS\Database\DatabaseOperatorInterface;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Registry\RegistryManager;
+use Locospec\LCS\Specifications\SpecificationProcessor;
 
 class LCS
 {
@@ -40,7 +40,7 @@ class LCS
      */
     public static function loadSpecifications(array $paths): void
     {
-        if (!self::$isInitialized) {
+        if (! self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
         }
 
@@ -48,7 +48,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path . '/*.json') as $file) {
+                foreach (glob($path.'/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
@@ -70,7 +70,7 @@ class LCS
      */
     public static function getDatabaseOperator(): DatabaseOperatorInterface
     {
-        if (!self::$databaseOperator) {
+        if (! self::$databaseOperator) {
             throw new InvalidArgumentException('No database operator registered. Call registerDatabaseOperator first.');
         }
 
@@ -90,7 +90,7 @@ class LCS
      */
     public function __construct()
     {
-        if (!self::$isInitialized) {
+        if (! self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 

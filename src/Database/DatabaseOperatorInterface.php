@@ -2,9 +2,9 @@
 
 namespace Locospec\LCS\Database;
 
-use Locospec\LCS\Query\Pagination;
 use Locospec\LCS\Query\CursorPagination;
 use Locospec\LCS\Query\FilterGroup;
+use Locospec\LCS\Query\Pagination;
 use Locospec\LCS\Query\Query;
 
 interface DatabaseOperatorInterface
