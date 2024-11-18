@@ -2,8 +2,8 @@
 
 namespace Locospec\LCS\Tasks;
 
-use Symfony\Component\Process\Process;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Symfony\Component\Process\Process;
 
 class JSONTransformationTask extends AbstractTask
 {
@@ -16,11 +16,11 @@ class JSONTransformationTask extends AbstractTask
     {
         try {
             // Validate input has required fields
-            if (!isset($input['json_data'])) {
+            if (! isset($input['json_data'])) {
                 throw new InvalidArgumentException('Input JSON data is required');
             }
 
-            if (!isset($input['jq_filter'])) {
+            if (! isset($input['jq_filter'])) {
                 throw new InvalidArgumentException('JQ filter is required');
             }
 
@@ -37,12 +37,12 @@ class JSONTransformationTask extends AbstractTask
             $process->run();
 
             // Check for errors
-            if (!$process->isSuccessful()) {
+            if (! $process->isSuccessful()) {
                 return [
                     'success' => false,
                     'error' => $process->getErrorOutput(),
                     'input' => $input['json_data'],
-                    'filter' => $input['jq_filter']
+                    'filter' => $input['jq_filter'],
                 ];
             }
 
@@ -53,8 +53,8 @@ class JSONTransformationTask extends AbstractTask
             if (json_last_error() !== JSON_ERROR_NONE) {
                 return [
                     'success' => false,
-                    'error' => 'JSON decode error: ' . json_last_error_msg(),
-                    'raw_output' => $result
+                    'error' => 'JSON decode error: '.json_last_error_msg(),
+                    'raw_output' => $result,
                 ];
             }
 
@@ -63,14 +63,14 @@ class JSONTransformationTask extends AbstractTask
                 'data' => $transformedData,
                 'metadata' => [
                     'timestamp' => microtime(true),
-                    'filter' => $input['jq_filter']
-                ]
+                    'filter' => $input['jq_filter'],
+                ],
             ];
         } catch (\Throwable $e) {
             return [
                 'success' => false,
                 'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
+                'trace' => $e->getTraceAsString(),
             ];
         }
     }
