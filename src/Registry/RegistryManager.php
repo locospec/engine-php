@@ -24,6 +24,31 @@ class RegistryManager
         $this->register('task', ValidateTask::class);
         $this->register('task', AuthorizeTask::class);
         $this->register('task', InsertDBTask::class);
+
+        $this->registerDatabaseTasks();
+    }
+
+    /**
+     * Register all database operation related tasks
+     */
+    private function registerDatabaseTasks(): void
+    {
+        $databaseTasks = [
+            // Main wrapper task for database operations
+            // DatabaseOperationTask::class,
+
+            // Individual operation tasks
+            // InsertTask::class,
+            // UpdateTask::class,
+            // DeleteTask::class,
+            // SelectTask::class,
+            // CountTask::class,
+            // PaginateTask::class
+        ];
+
+        foreach ($databaseTasks as $taskClass) {
+            $this->register('task', $taskClass);
+        }
     }
 
     public function addRegistry(RegistryInterface $registry): void

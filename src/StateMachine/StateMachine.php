@@ -2,7 +2,9 @@
 
 namespace Locospec\LCS\StateMachine;
 
+use Locospec\LCS\Database\DatabaseOperatorInterface;
 use Locospec\LCS\Registry\TaskRegistry;
+use Locospec\LCS\Tasks\TaskFactory;
 use Locospec\LCS\Tasks\TaskInterface;
 
 class StateMachine
@@ -15,8 +17,12 @@ class StateMachine
 
     private TaskRegistry $taskRegistry;
 
-    public function __construct(array $definition, TaskRegistry $taskRegistry)  // Remove context parameter
+    private TaskFactory $taskFactory;
+
+    public function __construct(array $definition, TaskRegistry $taskRegistry)
     {
+        $this->taskFactory = new TaskFactory($taskRegistry);
+
         $this->states = [];
         foreach ($definition['States'] as $name => $stateDefinition) {
             $this->states[$name] = StateFactory::createState($name, $stateDefinition, $this);
@@ -24,6 +30,14 @@ class StateMachine
         $this->startAt = $definition['StartAt'];
         $this->packet = new StateFlowPacket;  // Create packet without context
         $this->taskRegistry = $taskRegistry;  // Create packet without context
+    }
+
+    /**
+     * Register database operator for database tasks
+     */
+    public function registerDatabaseOperator(DatabaseOperatorInterface $operator): void
+    {
+        $this->taskFactory->registerDatabaseOperator($operator);
     }
 
     public function setContext(string $key, mixed $value): void
@@ -71,13 +85,26 @@ class StateMachine
         return $packet;
     }
 
+    // public function getTask(string $name): TaskInterface
+    // {
+    //     if (is_null($this->taskRegistry->get($name))) {
+    //         throw new \RuntimeException("Task not found: $name");
+    //     }
+    //     $className = $this->taskRegistry->get($name);
+
+    //     return new $className;
+    // }
+
     public function getTask(string $name): TaskInterface
     {
-        if (is_null($this->taskRegistry->get($name))) {
-            throw new \RuntimeException("Task not found: $name");
-        }
-        $className = $this->taskRegistry->get($name);
+        return $this->taskFactory->createTask($name);
+    }
 
-        return new $className;
+    /**
+     * Get the task factory instance
+     */
+    public function getTaskFactory(): TaskFactory
+    {
+        return $this->taskFactory;
     }
 }
