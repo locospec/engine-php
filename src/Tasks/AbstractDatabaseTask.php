@@ -29,6 +29,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
     protected function getTableName(): string
     {
         $model = $this->getContextValue('model');
+
         return $model->getConfig()->getTable() ?? $model->getPluralName();
     }
 
@@ -39,7 +40,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
      */
     protected function validateOperator(): void
     {
-        if (!$this->operator) {
+        if (! $this->operator) {
             throw new InvalidArgumentException('Database operator not set for database task');
         }
     }
@@ -57,8 +58,8 @@ abstract class AbstractDatabaseTask extends AbstractTask
                 'timestamp' => $result['timestamp'] ?? microtime(true),
                 'table' => $this->getTableName(),
                 'model' => $this->getContextValue('model')->getName(),
-                'action' => $this->getContextValue('action')
-            ]
+                'action' => $this->getContextValue('action'),
+            ],
         ];
     }
 
@@ -75,7 +76,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
         $this->validateOperator();
 
         // Validate model exists in context
-        if (!$context->has('model')) {
+        if (! $context->has('model')) {
             throw new InvalidArgumentException('Model not found in context');
         }
     }
