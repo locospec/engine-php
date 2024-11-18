@@ -36,7 +36,11 @@
     "scripts": {
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "format": "vendor/bin/pint",
+        "c2p": [
+            "code2prompt src --output=c2p/llcs_src.txt",
+            "code2prompt tests --output=c2p/llcs_tests.txt"
+        ]
     },
     "config": {
         "sort-packages": true,
