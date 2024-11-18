@@ -38,18 +38,18 @@ class TaskFactory
         // Get task class from registry
         $className = $this->taskRegistry->get($name);
 
-        if (!$className) {
+        if (! $className) {
             throw new InvalidArgumentException("Task not found: {$name}");
         }
 
-        if (!class_exists($className)) {
+        if (! class_exists($className)) {
             throw new InvalidArgumentException("Task class does not exist: {$className}");
         }
 
         // Create task instance
-        $task = new $className();
+        $task = new $className;
 
-        if (!$task instanceof TaskInterface) {
+        if (! $task instanceof TaskInterface) {
             throw new InvalidArgumentException("Class {$className} must implement TaskInterface");
         }
 
@@ -57,8 +57,8 @@ class TaskFactory
         if ($task instanceof AbstractDatabaseTask) {
             if ($this->databaseOperator === null) {
                 throw new InvalidArgumentException(
-                    "Cannot create database task '{$name}': No database operator registered. " .
-                        "Call TaskFactory::registerDatabaseOperator first."
+                    "Cannot create database task '{$name}': No database operator registered. ".
+                        'Call TaskFactory::registerDatabaseOperator first.'
                 );
             }
             $task->setDatabaseOperator($this->databaseOperator);
