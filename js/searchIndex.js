@@ -1,6 +1,66 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface",
+            "name": "DatabaseOperatorInterface",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Ainsert\u0028\u0029",
+            "name": "insert",
+            "summary": "Insert\u0020a\u0020record\u0020into\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_insert"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Aupdate\u0028\u0029",
+            "name": "update",
+            "summary": "Update\u0020records\u0020in\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_update"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Adelete\u0028\u0029",
+            "name": "delete",
+            "summary": "Delete\u0020records\u0020from\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_delete"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AsoftDelete\u0028\u0029",
+            "name": "softDelete",
+            "summary": "Soft\u0020delete\u0020records\u0020by\u0020setting\u0020deleted_at\u0020timestamp",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_softDelete"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Aselect\u0028\u0029",
+            "name": "select",
+            "summary": "Select\u0020records\u0020from\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_select"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Acount\u0028\u0029",
+            "name": "count",
+            "summary": "Count\u0020records\u0020in\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_count"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Apaginate\u0028\u0029",
+            "name": "paginate",
+            "summary": "Get\u0020paginated\u0020records\u0020from\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_paginate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AcursorPaginate\u0028\u0029",
+            "name": "cursorPaginate",
+            "summary": "Get\u0020cursor\u0020paginated\u0020records\u0020from\u0020the\u0020database",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_cursorPaginate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Araw\u0028\u0029",
+            "name": "raw",
+            "summary": "Execute\u0020a\u0020raw\u0020SQL\u0020query",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_raw"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AgetWhereAttributes\u0028\u0029",
+            "name": "getWhereAttributes",
+            "summary": "Get\u0020list\u0020of\u0020attributes\u0020used\u0020in\u0020where\u0020conditions\nUseful\u0020for\u0020selecting\u0020required\u0020columns",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_getWhereAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AexecuteQuery\u0028\u0029",
+            "name": "executeQuery",
+            "summary": "Execute\u0020a\u0020query\u0020built\u0020from\u0020Query\u0020object\nThis\u0020provides\u0020a\u0020high\u002Dlevel\u0020interface\u0020for\u0020complex\u0020queries",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_executeQuery"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Edge",
             "name": "Edge",
             "summary": "",
@@ -206,6 +266,21 @@ Search.appendIndex(
             "summary": "Load\u0020specifications\u0020from\u0020given\u0020paths",
             "url": "classes/Locospec-LCS-LCS.html#method_loadSpecifications"
         },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AregisterDatabaseOperator\u0028\u0029",
+            "name": "registerDatabaseOperator",
+            "summary": "Register\u0020a\u0020database\u0020operator\u0020implementation",
+            "url": "classes/Locospec-LCS-LCS.html#method_registerDatabaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AgetDatabaseOperator\u0028\u0029",
+            "name": "getDatabaseOperator",
+            "summary": "Get\u0020the\u0020registered\u0020database\u0020operator",
+            "url": "classes/Locospec-LCS-LCS.html#method_getDatabaseOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AhasDatabaseOperator\u0028\u0029",
+            "name": "hasDatabaseOperator",
+            "summary": "Check\u0020if\u0020a\u0020database\u0020operator\u0020is\u0020registered",
+            "url": "classes/Locospec-LCS-LCS.html#method_hasDatabaseOperator"
+        },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020now\u0020just\u0020provides\u0020access\u0020to\u0020the\u0020global\u0020registry",
@@ -218,13 +293,8 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AprocessSpecificationFile\u0028\u0029",
             "name": "processSpecificationFile",
-            "summary": "Add\u0020a\u0020new\u0020specification\u0020dynamically",
+            "summary": "Process\u0020a\u0020specification\u0020from\u0020file",
             "url": "classes/Locospec-LCS-LCS.html#method_processSpecificationFile"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AprocessSpecification\u0028\u0029",
-            "name": "processSpecification",
-            "summary": "Add\u0020a\u0020new\u0020specification\u0020dynamically",
-            "url": "classes/Locospec-LCS-LCS.html#method_processSpecification"
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AprocessSpecificationJson\u0028\u0029",
             "name": "processSpecificationJson",
@@ -245,6 +315,11 @@ Search.appendIndex(
             "name": "globalRegistryManager",
             "summary": "",
             "url": "classes/Locospec-LCS-LCS.html#property_globalRegistryManager"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024databaseOperator",
+            "name": "databaseOperator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-LCS.html#property_databaseOperator"
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024specProcessor",
             "name": "specProcessor",
@@ -2560,6 +2635,11 @@ Search.appendIndex(
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database",
+            "name": "Database",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-database.html"
         },                {
             "fqsen": "\\Locospec\\LCS",
             "name": "LCS",
