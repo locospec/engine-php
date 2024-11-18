@@ -20,9 +20,9 @@ class FilterGroup
     private function validateOperator(string $operator): void
     {
         $validOperators = ['and', 'or'];
-        if (!in_array(strtolower($operator), $validOperators)) {
+        if (! in_array(strtolower($operator), $validOperators)) {
             throw new InvalidArgumentException(
-                "Invalid filter group operator. Valid operators are: " . implode(', ', $validOperators)
+                'Invalid filter group operator. Valid operators are: '.implode(', ', $validOperators)
             );
         }
     }
@@ -31,6 +31,7 @@ class FilterGroup
     {
         $clone = clone $this;
         $clone->conditions[] = $condition;
+
         return $clone;
     }
 
@@ -47,7 +48,7 @@ class FilterGroup
     public function validate(): void
     {
         if (empty($this->conditions)) {
-            throw new InvalidArgumentException("Filter group must have at least one condition");
+            throw new InvalidArgumentException('Filter group must have at least one condition');
         }
 
         foreach ($this->conditions as $condition) {
@@ -57,12 +58,12 @@ class FilterGroup
 
     public static function fromArray(array $data): self
     {
-        if (!isset($data['operator'])) {
-            throw new InvalidArgumentException("Filter group must specify an operator");
+        if (! isset($data['operator'])) {
+            throw new InvalidArgumentException('Filter group must specify an operator');
         }
 
-        if (!isset($data['conditions']) || !is_array($data['conditions'])) {
-            throw new InvalidArgumentException("Filter group must specify conditions array");
+        if (! isset($data['conditions']) || ! is_array($data['conditions'])) {
+            throw new InvalidArgumentException('Filter group must specify conditions array');
         }
 
         $group = new self($data['operator']);
@@ -73,6 +74,7 @@ class FilterGroup
         }
 
         $group->validate();
+
         return $group;
     }
 
@@ -81,7 +83,7 @@ class FilterGroup
         return [
             'operator' => $this->operator,
             'conditions' => array_map(
-                fn(FilterCondition $condition) => $condition->toArray(),
+                fn (FilterCondition $condition) => $condition->toArray(),
                 $this->conditions
             ),
         ];

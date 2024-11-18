@@ -7,7 +7,9 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 class OffsetPagination implements Pagination
 {
     private int $page;
+
     private int $perPage;
+
     private int $maxPerPage = 100;
 
     public function __construct(int $page = 1, int $perPage = 15)
@@ -51,11 +53,11 @@ class OffsetPagination implements Pagination
     public function validate(): void
     {
         if ($this->page < 1) {
-            throw new InvalidArgumentException("Page number must be greater than 0");
+            throw new InvalidArgumentException('Page number must be greater than 0');
         }
 
         if ($this->perPage < 1) {
-            throw new InvalidArgumentException("Items per page must be greater than 0");
+            throw new InvalidArgumentException('Items per page must be greater than 0');
         }
 
         if ($this->perPage > $this->maxPerPage) {
@@ -77,7 +79,7 @@ class OffsetPagination implements Pagination
     {
         return [
             'page' => $this->page,
-            'per_page' => $this->perPage
+            'per_page' => $this->perPage,
         ];
     }
 }

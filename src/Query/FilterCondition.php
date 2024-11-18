@@ -7,9 +7,13 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 class FilterCondition
 {
     private ?string $attribute;
+
     private ?string $operator;
+
     private mixed $value;
+
     private ?FilterGroup $nestedConditions;
+
     private ?AttributePath $attributePath = null;
 
     private const VALID_OPERATORS = [
@@ -26,7 +30,7 @@ class FilterCondition
         'BETWEEN',
         'NOT BETWEEN',
         'IS NULL',
-        'IS NOT NULL'
+        'IS NOT NULL',
     ];
 
     private function __construct()
@@ -36,7 +40,7 @@ class FilterCondition
 
     public static function simple(string $attribute, string $operator, mixed $value): self
     {
-        $condition = new self();
+        $condition = new self;
         $condition->attribute = $attribute;
         $condition->operator = strtoupper($operator);
         $condition->value = $value;
@@ -44,18 +48,20 @@ class FilterCondition
         $condition->attributePath = AttributePath::parse($attribute);
 
         $condition->validate();
+
         return $condition;
     }
 
     public static function nested(FilterGroup $conditions): self
     {
-        $condition = new self();
+        $condition = new self;
         $condition->attribute = null;
         $condition->operator = null;
         $condition->value = null;
         $condition->nestedConditions = $conditions;
 
         $condition->validate();
+
         return $condition;
     }
 
@@ -93,20 +99,21 @@ class FilterCondition
     {
         if ($this->isCompound()) {
             $this->nestedConditions->validate();
+
             return;
         }
 
         if (empty($this->attribute)) {
-            throw new InvalidArgumentException("Filter condition must specify an attribute");
+            throw new InvalidArgumentException('Filter condition must specify an attribute');
         }
 
         if (empty($this->operator)) {
-            throw new InvalidArgumentException("Filter condition must specify an operator");
+            throw new InvalidArgumentException('Filter condition must specify an operator');
         }
 
-        if (!in_array($this->operator, self::VALID_OPERATORS)) {
+        if (! in_array($this->operator, self::VALID_OPERATORS)) {
             throw new InvalidArgumentException(
-                "Invalid operator '{$this->operator}'. Valid operators are: " .
+                "Invalid operator '{$this->operator}'. Valid operators are: ".
                     implode(', ', self::VALID_OPERATORS)
             );
         }
@@ -135,7 +142,7 @@ class FilterCondition
         }
 
         // Simple condition
-        if (!isset($data['attribute']) || !isset($data['operator'])) {
+        if (! isset($data['attribute']) || ! isset($data['operator'])) {
             throw new InvalidArgumentException(
                 "Simple filter condition must specify 'attribute' and 'operator'"
             );
@@ -158,6 +165,6 @@ class FilterCondition
             'attribute' => $this->attribute,
             'operator' => $this->operator,
             'value' => $this->value,
-        ], fn($value) => $value !== null);
+        ], fn ($value) => $value !== null);
     }
 }

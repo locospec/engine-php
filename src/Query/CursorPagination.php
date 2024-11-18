@@ -7,8 +7,11 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 class CursorPagination implements Pagination
 {
     private ?string $cursor;
+
     private int $limit;
+
     private string $cursorColumn;
+
     private int $maxLimit = 100;
 
     public function __construct(
@@ -56,7 +59,7 @@ class CursorPagination implements Pagination
     public function validate(): void
     {
         if ($this->limit < 1) {
-            throw new InvalidArgumentException("Limit must be greater than 0");
+            throw new InvalidArgumentException('Limit must be greater than 0');
         }
 
         if ($this->limit > $this->maxLimit) {
@@ -66,21 +69,22 @@ class CursorPagination implements Pagination
         }
 
         if (empty($this->cursorColumn)) {
-            throw new InvalidArgumentException("Cursor column cannot be empty");
+            throw new InvalidArgumentException('Cursor column cannot be empty');
         }
 
-        if ($this->cursor !== null && !$this->isValidCursor($this->cursor)) {
-            throw new InvalidArgumentException("Invalid cursor format");
+        if ($this->cursor !== null && ! $this->isValidCursor($this->cursor)) {
+            throw new InvalidArgumentException('Invalid cursor format');
         }
     }
 
     private function isValidCursor(string $cursor): bool
     {
-        if (!preg_match('/^[a-zA-Z0-9+\/]+={0,2}$/', $cursor)) {
+        if (! preg_match('/^[a-zA-Z0-9+\/]+={0,2}$/', $cursor)) {
             return false;
         }
 
         $decoded = base64_decode($cursor, true);
+
         return $decoded !== false;
     }
 
@@ -98,7 +102,7 @@ class CursorPagination implements Pagination
         return array_filter([
             'cursor' => $this->cursor,
             'limit' => $this->limit,
-            'cursor_column' => $this->cursorColumn
+            'cursor_column' => $this->cursorColumn,
         ]);
     }
 
