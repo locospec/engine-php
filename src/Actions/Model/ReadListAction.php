@@ -17,7 +17,7 @@ class ReadListAction extends ModelAction
                 'ValidateInput' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'CheckPagination'
+                    'Next' => 'CheckPagination',
                 ],
                 'CheckPagination' => [
                     'Type' => 'Choice',
@@ -25,27 +25,27 @@ class ReadListAction extends ModelAction
                         [
                             'Variable' => '$.pagination',
                             'IsNull' => false,
-                            'Next' => 'DatabasePaginate'
-                        ]
+                            'Next' => 'DatabasePaginate',
+                        ],
                     ],
-                    'Default' => 'DatabaseSelect'
+                    'Default' => 'DatabaseSelect',
                 ],
                 'DatabasePaginate' => [
                     'Type' => 'Task',
                     'Resource' => 'database.paginate',
-                    'Next' => 'TransformResults'
+                    'Next' => 'TransformResults',
                 ],
                 'DatabaseSelect' => [
                     'Type' => 'Task',
                     'Resource' => 'database.select',
-                    'Next' => 'TransformResults'
+                    'Next' => 'TransformResults',
                 ],
                 'TransformResults' => [
                     'Type' => 'Task',
                     'Resource' => 'transform_results',
-                    'End' => true
-                ]
-            ]
+                    'End' => true,
+                ],
+            ],
         ];
     }
 }

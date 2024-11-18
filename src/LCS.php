@@ -50,7 +50,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path . '/*.json') as $file) {
+                foreach (glob($path.'/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
@@ -144,11 +144,12 @@ class LCS
     /**
      * Execute a model action
      *
-     * @param string $modelName The name of the model
-     * @param string $actionName The name of the action to execute
-     * @param array $input Input data for the action
-     * @param array $config Optional configuration for the action
+     * @param  string  $modelName  The name of the model
+     * @param  string  $actionName  The name of the action to execute
+     * @param  array  $input  Input data for the action
+     * @param  array  $config  Optional configuration for the action
      * @return array The action result
+     *
      * @throws InvalidArgumentException
      */
     public function executeModelAction(
@@ -159,7 +160,7 @@ class LCS
     ): array {
         // Get model definition
         $model = $this->getRegistryManager()->get('model', $modelName);
-        if (!$model) {
+        if (! $model) {
             throw new InvalidArgumentException("Model not found: {$modelName}");
         }
 

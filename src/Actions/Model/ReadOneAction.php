@@ -17,12 +17,12 @@ class ReadOneAction extends ModelAction
                 'ValidateInput' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'DatabaseRead'
+                    'Next' => 'DatabaseRead',
                 ],
                 'DatabaseRead' => [
                     'Type' => 'Task',
                     'Resource' => 'database.select',
-                    'Next' => 'CheckResult'
+                    'Next' => 'CheckResult',
                 ],
                 'CheckResult' => [
                     'Type' => 'Choice',
@@ -30,22 +30,22 @@ class ReadOneAction extends ModelAction
                         [
                             'Variable' => '$.result',
                             'IsNull' => true,
-                            'Next' => 'NotFound'
-                        ]
+                            'Next' => 'NotFound',
+                        ],
                     ],
-                    'Default' => 'Success'
+                    'Default' => 'Success',
                 ],
                 'NotFound' => [
                     'Type' => 'Task',
                     'Resource' => 'handle_not_found',
-                    'End' => true
+                    'End' => true,
                 ],
                 'Success' => [
                     'Type' => 'Task',
                     'Resource' => 'transform_result',
-                    'End' => true
-                ]
-            ]
+                    'End' => true,
+                ],
+            ],
         ];
     }
 }

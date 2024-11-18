@@ -17,7 +17,7 @@ class DeleteAction extends ModelAction
                 'ValidateInput' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'CheckSoftDelete'
+                    'Next' => 'CheckSoftDelete',
                 ],
                 'CheckSoftDelete' => [
                     'Type' => 'Choice',
@@ -25,22 +25,22 @@ class DeleteAction extends ModelAction
                         [
                             'Variable' => '$.config.softDelete',
                             'BooleanEquals' => true,
-                            'Next' => 'SoftDelete'
-                        ]
+                            'Next' => 'SoftDelete',
+                        ],
                     ],
-                    'Default' => 'HardDelete'
+                    'Default' => 'HardDelete',
                 ],
                 'SoftDelete' => [
                     'Type' => 'Task',
                     'Resource' => 'database.soft_delete',
-                    'End' => true
+                    'End' => true,
                 ],
                 'HardDelete' => [
                     'Type' => 'Task',
                     'Resource' => 'database.delete',
-                    'End' => true
-                ]
-            ]
+                    'End' => true,
+                ],
+            ],
         ];
     }
 }

@@ -2,10 +2,10 @@
 
 namespace Locospec\LCS\Actions\Model;
 
-use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\StateMachine\StateMachine;
-use Locospec\LCS\Registry\TaskRegistry;
 use Locospec\LCS\Database\DatabaseOperatorInterface;
+use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\Registry\TaskRegistry;
+use Locospec\LCS\StateMachine\StateMachine;
 
 /**
  * Base ModelAction class that handles model-specific actions
@@ -14,10 +14,15 @@ use Locospec\LCS\Database\DatabaseOperatorInterface;
 abstract class ModelAction
 {
     protected ModelDefinition $model;
+
     protected array $config;
+
     protected string $name;
+
     protected ?DatabaseOperatorInterface $databaseOperator;
+
     protected TaskRegistry $taskRegistry;
+
     protected ModelActionValidator $validator;
 
     public function __construct(
@@ -31,7 +36,7 @@ abstract class ModelAction
         $this->databaseOperator = $databaseOperator;
         $this->config = $config;
         $this->name = static::getName();
-        $this->validator = new ModelActionValidator();
+        $this->validator = new ModelActionValidator;
     }
 
     /**
@@ -50,7 +55,7 @@ abstract class ModelAction
     public function execute(array $input = []): array
     {
         // Validate input
-        $methodName = 'validate' . ucfirst($this->name);
+        $methodName = 'validate'.ucfirst($this->name);
         $this->validator->$methodName($input, $this->model);
 
         // Normalize conditions if present

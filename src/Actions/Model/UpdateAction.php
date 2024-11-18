@@ -17,19 +17,19 @@ class UpdateAction extends ModelAction
                 'ValidateInput' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'DatabaseUpdate'
+                    'Next' => 'DatabaseUpdate',
                 ],
                 'DatabaseUpdate' => [
                     'Type' => 'Task',
                     'Resource' => 'database.update',
-                    'Next' => 'DatabaseRead'
+                    'Next' => 'DatabaseRead',
                 ],
                 'DatabaseRead' => [
                     'Type' => 'Task',
                     'Resource' => 'database.select',
-                    'End' => true
-                ]
-            ]
+                    'End' => true,
+                ],
+            ],
         ];
     }
 }
