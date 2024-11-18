@@ -38,8 +38,8 @@
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint",
         "c2p": [
-            "code2prompt src --output=c2p/llcs_src.txt",
-            "code2prompt tests --output=c2p/llcs_tests.txt"
+            "code2prompt src --output=../c2p-php/lcs_src.txt",
+            "code2prompt tests --output=../c2p-php/lcs_tests.txt"
         ]
     },
     "config": {
