@@ -11,6 +11,7 @@ class SortCollection
     {
         $clone = clone $this;
         $clone->sorts[] = $sort;
+
         return $clone;
     }
 
@@ -28,18 +29,19 @@ class SortCollection
 
     public static function fromArray(array $data): self
     {
-        $collection = new self();
+        $collection = new self;
 
         foreach ($data as $sortData) {
             $collection = $collection->addSort(Sort::fromArray($sortData));
         }
 
         $collection->validate();
+
         return $collection;
     }
 
     public function toArray(): array
     {
-        return array_map(fn(Sort $sort) => $sort->toArray(), $this->sorts);
+        return array_map(fn (Sort $sort) => $sort->toArray(), $this->sorts);
     }
 }

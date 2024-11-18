@@ -16,6 +16,7 @@ class AttributePath
     {
         // Split by both -> and . to handle both JSON paths and relationship paths
         $segments = preg_split('/(?:->|\.)/', $path);
+
         return new self(array_filter($segments));
     }
 
@@ -26,7 +27,7 @@ class AttributePath
 
     public function getRelationshipPath(): ?string
     {
-        if (!$this->isRelationshipPath()) {
+        if (! $this->isRelationshipPath()) {
             return null;
         }
 

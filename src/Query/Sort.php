@@ -7,7 +7,9 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 class Sort
 {
     private string $attribute;
+
     private string $direction;
+
     private AttributePath $path;
 
     private const VALID_DIRECTIONS = ['asc', 'desc'];
@@ -39,20 +41,20 @@ class Sort
     public function validate(): void
     {
         if (empty($this->attribute)) {
-            throw new InvalidArgumentException("Sort must specify an attribute");
+            throw new InvalidArgumentException('Sort must specify an attribute');
         }
 
-        if (!in_array($this->direction, self::VALID_DIRECTIONS)) {
+        if (! in_array($this->direction, self::VALID_DIRECTIONS)) {
             throw new InvalidArgumentException(
-                "Invalid sort direction. Valid directions are: " . implode(', ', self::VALID_DIRECTIONS)
+                'Invalid sort direction. Valid directions are: '.implode(', ', self::VALID_DIRECTIONS)
             );
         }
     }
 
     public static function fromArray(array $data): self
     {
-        if (!isset($data['attribute'])) {
-            throw new InvalidArgumentException("Sort must specify an attribute");
+        if (! isset($data['attribute'])) {
+            throw new InvalidArgumentException('Sort must specify an attribute');
         }
 
         return new self(

@@ -1,12 +1,11 @@
 <?php
 
-use Locospec\LCS\Query\Query;
+use Locospec\LCS\Query\CursorPagination;
 use Locospec\LCS\Query\FilterGroup;
-use Locospec\LCS\Query\FilterCondition;
+use Locospec\LCS\Query\OffsetPagination;
+use Locospec\LCS\Query\Query;
 use Locospec\LCS\Query\Sort;
 use Locospec\LCS\Query\SortCollection;
-use Locospec\LCS\Query\OffsetPagination;
-use Locospec\LCS\Query\CursorPagination;
 
 beforeEach(function () {
     $this->sampleQueryData = [
@@ -16,7 +15,7 @@ beforeEach(function () {
                 [
                     'attribute' => 'name',
                     'operator' => '=',
-                    'value' => 'Test'
+                    'value' => 'Test',
                 ],
                 [
                     'operator' => 'or',
@@ -24,36 +23,36 @@ beforeEach(function () {
                         [
                             'attribute' => 'age',
                             'operator' => '>',
-                            'value' => 18
+                            'value' => 18,
                         ],
                         [
                             'attribute' => 'age',
                             'operator' => '<',
-                            'value' => 65
-                        ]
-                    ]
+                            'value' => 65,
+                        ],
+                    ],
                 ],
                 [
                     'attribute' => 'city.name',
                     'operator' => 'LIKE',
-                    'value' => '%London%'
-                ]
-            ]
+                    'value' => '%London%',
+                ],
+            ],
         ],
         'sorts' => [
             [
                 'attribute' => 'created_at',
-                'direction' => 'desc'
+                'direction' => 'desc',
             ],
             [
                 'attribute' => 'city.name',
-                'direction' => 'asc'
-            ]
+                'direction' => 'asc',
+            ],
         ],
         'pagination' => [
             'page' => 2,
-            'per_page' => 15
-        ]
+            'per_page' => 15,
+        ],
     ];
 });
 
@@ -121,8 +120,8 @@ test('cursor pagination is properly constructed', function () {
         'pagination' => [
             'cursor' => base64_encode('last_id_123'),
             'limit' => 20,
-            'cursor_column' => 'id'
-        ]
+            'cursor_column' => 'id',
+        ],
     ]);
 
     $query = Query::fromArray($cursorData, 'users');
@@ -151,7 +150,7 @@ test('query can be converted back to array', function () {
     // Test pagination - compare specific keys
     expect($array['pagination'])->toMatchArray([
         'page' => $this->sampleQueryData['pagination']['page'],
-        'per_page' => $this->sampleQueryData['pagination']['per_page']
+        'per_page' => $this->sampleQueryData['pagination']['per_page'],
     ]);
 });
 
@@ -159,7 +158,7 @@ test('empty query components are handled properly', function () {
     $emptyData = [
         'sorts' => [],
         'filters' => [],
-        'pagination' => []
+        'pagination' => [],
     ];
 
     $query = Query::fromArray($emptyData, 'users');
@@ -183,10 +182,10 @@ test('relationship paths are properly parsed', function () {
                 [
                     'attribute' => 'department.company.name',
                     'operator' => '=',
-                    'value' => 'Acme Corp'
-                ]
-            ]
-        ]
+                    'value' => 'Acme Corp',
+                ],
+            ],
+        ],
     ];
 
     $query = Query::fromArray($data, 'users');

@@ -21,6 +21,7 @@ class Query
     {
         $clone = clone $this;
         $clone->filters = $filters;
+
         return $clone;
     }
 
@@ -28,6 +29,7 @@ class Query
     {
         $clone = clone $this;
         $clone->sorts = $sorts;
+
         return $clone;
     }
 
@@ -35,6 +37,7 @@ class Query
     {
         $clone = clone $this;
         $clone->pagination = $pagination;
+
         return $clone;
     }
 
@@ -62,15 +65,15 @@ class Query
     {
         $query = new self($modelName);
 
-        if (isset($data['filters']) && !empty($data['filters'])) {
+        if (isset($data['filters']) && ! empty($data['filters'])) {
             $query = $query->setFilters(FilterGroup::fromArray($data['filters']));
         }
 
-        if (isset($data['sorts']) && !empty($data['sorts'])) {
+        if (isset($data['sorts']) && ! empty($data['sorts'])) {
             $query = $query->setSorts(SortCollection::fromArray($data['sorts']));
         }
 
-        if (isset($data['pagination']) && !empty($data['pagination'])) {
+        if (isset($data['pagination']) && ! empty($data['pagination'])) {
             $query = $query->setPagination(
                 isset($data['pagination']['cursor'])
                     ? CursorPagination::fromArray($data['pagination'])
