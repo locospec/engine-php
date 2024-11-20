@@ -1,6 +1,36 @@
 Search.appendIndex(
     [
                 {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator",
+            "name": "ActionOrchestrator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator\u003A\u003AcreateAction\u0028\u0029",
+            "name": "createAction",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_createAction"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator\u003A\u003A\u0024lcs",
+            "name": "lcs",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_lcs"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\ActionOrchestrator\u003A\u003A\u0024stateMachineFactory",
+            "name": "stateMachineFactory",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_stateMachineFactory"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\CreateAction",
             "name": "CreateAction",
             "summary": "Standard\u0020Create\u0020action\u0020for\u0020models",
@@ -18,7 +48,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\DeleteAction",
             "name": "DeleteAction",
-            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-DeleteAction.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\DeleteAction\u003A\u003AgetName\u0028\u0029",
@@ -33,7 +63,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction",
             "name": "ModelAction",
-            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A__construct\u0028\u0029",
@@ -81,15 +111,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_name"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024databaseOperator",
-            "name": "databaseOperator",
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024stateMachineFactory",
+            "name": "stateMachineFactory",
             "summary": "",
-            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_databaseOperator"
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_stateMachineFactory"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024taskRegistry",
-            "name": "taskRegistry",
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024lcs",
+            "name": "lcs",
             "summary": "",
-            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_taskRegistry"
+            "url": "classes/Locospec-LCS-Actions-Model-ModelAction.html#property_lcs"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ModelAction\u003A\u003A\u0024validator",
             "name": "validator",
@@ -133,7 +163,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadListAction",
             "name": "ReadListAction",
-            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-ReadListAction.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadListAction\u003A\u003AgetName\u0028\u0029",
@@ -148,7 +178,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadOneAction",
             "name": "ReadOneAction",
-            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-ReadOneAction.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\ReadOneAction\u003A\u003AgetName\u0028\u0029",
@@ -163,7 +193,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\UpdateAction",
             "name": "UpdateAction",
-            "summary": "Base\u0020ModelAction\u0020class\u0020that\u0020handles\u0020model\u002Dspecific\u0020actions\nThis\u0020is\u0020part\u0020of\u0020the\u0020core\u0020LCS\u0020package\u0020and\u0020is\u0020framework\u002Dagnostic",
+            "summary": "",
             "url": "classes/Locospec-LCS-Actions-Model-UpdateAction.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Actions\\Model\\UpdateAction\u003A\u003AgetName\u0028\u0029",
@@ -175,6 +205,36 @@ Search.appendIndex(
             "name": "getStateMachineDefinition",
             "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
             "url": "classes/Locospec-LCS-Actions-Model-UpdateAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory",
+            "name": "StateMachineFactory",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#method_create"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory\u003A\u003AgetTaskRegistry\u0028\u0029",
+            "name": "getTaskRegistry",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#method_getTaskRegistry"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory\u003A\u003A\u0024taskRegistry",
+            "name": "taskRegistry",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#property_taskRegistry"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\StateMachineFactory\u003A\u003A\u0024lcs",
+            "name": "lcs",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#property_lcs"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface",
             "name": "DatabaseOperatorInterface",
@@ -490,16 +550,6 @@ Search.appendIndex(
             "name": "reset",
             "summary": "Reset\u0020LCS\u0020\u0028mainly\u0020for\u0020testing\u0020purposes\u0029",
             "url": "classes/Locospec-LCS-LCS.html#method_reset"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AexecuteModelAction\u0028\u0029",
-            "name": "executeModelAction",
-            "summary": "Execute\u0020a\u0020model\u0020action",
-            "url": "classes/Locospec-LCS-LCS.html#method_executeModelAction"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AcreateModelAction\u0028\u0029",
-            "name": "createModelAction",
-            "summary": "Create\u0020a\u0020model\u0020action\u0020instance",
-            "url": "classes/Locospec-LCS-LCS.html#method_createModelAction"
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024globalRegistryManager",
             "name": "globalRegistryManager",
@@ -3081,15 +3131,15 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/default.html"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Actions\\Model",
-            "name": "Model",
-            "summary": "",
-            "url": "namespaces/locospec-lcs-actions-model.html"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Actions",
             "name": "Actions",
             "summary": "",
             "url": "namespaces/locospec-lcs-actions.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Actions\\Model",
+            "name": "Model",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-actions-model.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database",
             "name": "Database",
