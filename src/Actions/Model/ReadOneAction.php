@@ -22,7 +22,8 @@ class ReadOneAction extends ModelAction
                 'DatabaseRead' => [
                     'Type' => 'Task',
                     'Resource' => 'database.select',
-                    'Next' => 'CheckResult',
+                    // 'Next' => 'CheckResult',
+                    'End' => true,
                 ],
                 'CheckResult' => [
                     'Type' => 'Choice',

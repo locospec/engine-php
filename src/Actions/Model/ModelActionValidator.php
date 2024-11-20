@@ -52,8 +52,8 @@ class ModelActionValidator
      */
     public function validateReadOne(array $input, ModelDefinition $model): void
     {
-        if (! isset($input['conditions'])) {
-            throw new InvalidArgumentException('ReadOne action requires conditions');
+        if (! isset($input['filters'])) {
+            throw new InvalidArgumentException('ReadOne action requires filters');
         }
     }
 

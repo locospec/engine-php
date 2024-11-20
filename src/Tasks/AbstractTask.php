@@ -3,13 +3,14 @@
 namespace Locospec\LCS\Tasks;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Schema\Schema;
 use Locospec\LCS\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {
     protected ContextInterface $context;
 
-    protected array $jsonSchema;
+    protected Schema $jsonSchema;
 
     protected string $action;
 

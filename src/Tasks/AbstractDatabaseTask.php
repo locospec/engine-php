@@ -56,6 +56,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
         }
 
         return [
+            'type' => 'db_task',
             'success' => true,
             'data' => $result['result'],
             'metadata' => array_merge(

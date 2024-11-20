@@ -16,10 +16,12 @@ class DatabaseSelectTask extends AbstractDatabaseTask
     {
         $this->validateInput($input);
 
+        // dd($input);
+
         try {
             $table = $this->getTableName();
             $columns = $input['columns'] ?? ['*'];
-            $conditions = $input['conditions'] ?? new FilterGroup;
+            $conditions = FilterGroup::fromArray($input['filters']) ?? new FilterGroup;
 
             $result = $this->operator->select($table, $columns, $conditions);
 
