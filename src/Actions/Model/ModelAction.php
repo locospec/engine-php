@@ -2,15 +2,13 @@
 
 namespace Locospec\LCS\Actions\Model;
 
-use Locospec\LCS\Database\DatabaseOperatorInterface;
+use Locospec\LCS\Actions\StateMachineFactory;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\LCS;
 use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\Registry\TaskRegistry;
-use Locospec\LCS\StateMachine\StateMachine;
+use Locospec\LCS\StateMachine\Context;
+use Locospec\LCS\StateMachine\StateFlowPacket;
 
-/**
- * Base ModelAction class that handles model-specific actions
- * This is part of the core LCS package and is framework-agnostic
- */
 abstract class ModelAction
 {
     protected ModelDefinition $model;
@@ -19,21 +17,21 @@ abstract class ModelAction
 
     protected string $name;
 
-    protected ?DatabaseOperatorInterface $databaseOperator;
+    protected StateMachineFactory $stateMachineFactory;
 
-    protected TaskRegistry $taskRegistry;
+    protected LCS $lcs;
 
     protected ModelActionValidator $validator;
 
     public function __construct(
         ModelDefinition $model,
-        TaskRegistry $taskRegistry,
-        ?DatabaseOperatorInterface $databaseOperator = null,
+        StateMachineFactory $stateMachineFactory,
+        LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
-        $this->taskRegistry = $taskRegistry;
-        $this->databaseOperator = $databaseOperator;
+        $this->stateMachineFactory = $stateMachineFactory;
+        $this->lcs = $lcs;
         $this->config = $config;
         $this->name = static::getName();
         $this->validator = new ModelActionValidator;
@@ -52,33 +50,33 @@ abstract class ModelAction
     /**
      * Execute the action with given input
      */
-    public function execute(array $input = []): array
+    public function execute(array $input = []): StateFlowPacket
     {
         // Validate input
-        $methodName = 'validate'.ucfirst($this->name);
+        $methodName = 'validate' . ucfirst($this->name);
         $this->validator->$methodName($input, $this->model);
 
         // Normalize conditions if present
         $input = $this->validator->normalizeConditions($input);
 
-        // Create state machine instance
-        $stateMachine = new StateMachine($this->getStateMachineDefinition(), $this->taskRegistry);
+        // Create context with required values
+        $context = new Context([
+            'model' => $this->model,
+            'schema' => $this->model->getSchema(),
+            'action' => $this->name,
+            'config' => $this->config
+        ]);
 
-        // Register database operator if available
-        if ($this->databaseOperator) {
-            $stateMachine->registerDatabaseOperator($this->databaseOperator);
-        }
-
-        // Set required context
-        $stateMachine->setContext('model', $this->model);
-        $stateMachine->setContext('schema', $this->model->getSchema());
-        $stateMachine->setContext('action', $this->name);
-        $stateMachine->setContext('config', $this->config);
+        // Create state machine via factory
+        $stateMachine = $this->stateMachineFactory->create(
+            $this->getStateMachineDefinition(),
+            $context
+        );
 
         // Execute state machine
         $packet = $stateMachine->execute($input);
 
-        return $packet->currentOutput;
+        return $packet;
     }
 
     /**
