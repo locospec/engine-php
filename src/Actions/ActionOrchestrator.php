@@ -29,12 +29,13 @@ class ActionOrchestrator
     {
         // Get model definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
-        if (!$model) {
+        if (! $model) {
             throw new InvalidArgumentException("Model not found: {$modelName}");
         }
 
         // Create and execute appropriate action
         $action = $this->createAction($model, $actionName);
+
         return $action->execute($input);
     }
 

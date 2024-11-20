@@ -3,7 +3,6 @@
 namespace Locospec\LCS\Actions\Model;
 
 use Locospec\LCS\Actions\StateMachineFactory;
-use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\LCS;
 use Locospec\LCS\Models\ModelDefinition;
 use Locospec\LCS\StateMachine\Context;
@@ -53,7 +52,7 @@ abstract class ModelAction
     public function execute(array $input = []): StateFlowPacket
     {
         // Validate input
-        $methodName = 'validate' . ucfirst($this->name);
+        $methodName = 'validate'.ucfirst($this->name);
         $this->validator->$methodName($input, $this->model);
 
         // Normalize conditions if present
@@ -64,7 +63,7 @@ abstract class ModelAction
             'model' => $this->model,
             'schema' => $this->model->getSchema(),
             'action' => $this->name,
-            'config' => $this->config
+            'config' => $this->config,
         ]);
 
         // Create state machine via factory
