@@ -11,6 +11,7 @@ use Locospec\LCS\Actions\Model\UpdateAction;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\LCS;
 use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\StateMachine\StateFlowPacket;
 
 class ActionOrchestrator
 {
@@ -24,7 +25,7 @@ class ActionOrchestrator
         $this->stateMachineFactory = $stateMachineFactory;
     }
 
-    public function execute(string $modelName, string $actionName, array $input = []): array
+    public function execute(string $modelName, string $actionName, array $input = []): StateFlowPacket
     {
         // Get model definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
