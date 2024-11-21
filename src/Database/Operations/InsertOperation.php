@@ -57,8 +57,8 @@ class InsertOperation extends AbstractDatabaseOperation
     /**
      * Create a bulk insert operation
      *
-     * @param string $table Table name
-     * @param array[] $rows Array of rows, each row being an associative array
+     * @param  string  $table  Table name
+     * @param  array[]  $rows  Array of rows, each row being an associative array
      */
     public static function bulk(string $table, array $rows): self
     {
@@ -86,7 +86,7 @@ class InsertOperation extends AbstractDatabaseOperation
      */
     private function validateBulkInsert(): void
     {
-        if (!is_array($this->data[0])) {
+        if (! is_array($this->data[0])) {
             throw new InvalidArgumentException(
                 'Bulk insert requires an array of rows'
             );
@@ -97,7 +97,7 @@ class InsertOperation extends AbstractDatabaseOperation
 
         // Validate all rows have the same columns
         foreach ($this->data as $index => $row) {
-            if (!is_array($row)) {
+            if (! is_array($row)) {
                 throw new InvalidArgumentException(
                     "Invalid row at index {$index}: must be an array"
                 );
@@ -112,7 +112,7 @@ class InsertOperation extends AbstractDatabaseOperation
 
             // Validate column names
             foreach ($rowColumns as $column) {
-                if (!is_string($column)) {
+                if (! is_string($column)) {
                     throw new InvalidArgumentException(
                         "Invalid column name in row {$index}: column names must be strings"
                     );
@@ -126,12 +126,12 @@ class InsertOperation extends AbstractDatabaseOperation
      */
     private function validateSingleInsert(): void
     {
-        if (!is_array($this->data)) {
+        if (! is_array($this->data)) {
             throw new InvalidArgumentException('Insert data must be an array');
         }
 
         foreach ($this->data as $column => $value) {
-            if (!is_string($column)) {
+            if (! is_string($column)) {
                 throw new InvalidArgumentException(
                     'Invalid column name: column names must be strings'
                 );
@@ -147,6 +147,7 @@ class InsertOperation extends AbstractDatabaseOperation
         if ($this->isBulkInsert()) {
             return array_keys($this->data[0]);
         }
+
         return array_keys($this->data);
     }
 
@@ -158,7 +159,7 @@ class InsertOperation extends AbstractDatabaseOperation
         return array_merge(parent::toArray(), [
             'data' => $this->data,
             'is_bulk' => $this->isBulkInsert(),
-            'columns' => $this->getColumns()
+            'columns' => $this->getColumns(),
         ]);
     }
 }
