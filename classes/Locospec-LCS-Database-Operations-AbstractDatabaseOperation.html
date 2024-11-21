@@ -93,12 +93,13 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec.html">Locospec</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs.html">LCS</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-actions.html">Actions</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-database.html">Database</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-database-operations.html">Operations</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ActionOrchestrator
+    AbstractDatabaseOperation
 
     
             <div class="phpdocumentor-element__package">
@@ -108,18 +109,23 @@
                             </ul>
         </div>
     
+            <span class="phpdocumentor-element__implements">
+            implements
+                            <a href="classes/Locospec-LCS-Database-Operations-DatabaseOperationInterface.html"><abbr title="\Locospec\LCS\Database\Operations\DatabaseOperationInterface">DatabaseOperationInterface</abbr></a>                    </span>
     
     </h2>
 
 <div class="phpdocumentor-label-line">
 
 
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
+
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
@@ -134,12 +140,19 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
+    <h4 id="toc-interfaces">
+        Interfaces
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <dl class="phpdocumentor-table-of-contents">
+                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Locospec-LCS-Database-Operations-DatabaseOperationInterface.html"><abbr title="\Locospec\LCS\Database\Operations\DatabaseOperationInterface">DatabaseOperationInterface</abbr></a></dt>    </dl>
 
 
 
@@ -148,47 +161,57 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_lcs">$lcs</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#property_table">$table</a>
     <span>
-                        &nbsp;: <a href="classes/Locospec-LCS-LCS.html"><abbr title="\Locospec\LCS\LCS">LCS</abbr></a>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_stateMachineFactory">$stateMachineFactory</a>
-    <span>
-                        &nbsp;: <a href="classes/Locospec-LCS-Actions-StateMachineFactory.html"><abbr title="\Locospec\LCS\Actions\StateMachineFactory">StateMachineFactory</abbr></a>            </span>
+                        &nbsp;: string            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method___construct">__construct()</a>
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_execute">execute()</a>
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_getTable">getTable()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-LCS-StateMachine-StateFlowPacket.html"><abbr title="\Locospec\LCS\StateMachine\StateFlowPacket">StateFlowPacket</abbr></a>    </span>
+                                &nbsp;: string    </span>
 </dt>
+<dd>Get the target table name</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_toArray">toArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Convert operation to array format</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validate">validate()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Validate base operation parameters</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_createAction">createAction()</a>
+    <a class="" href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validateOperation">validateOperation()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-LCS-Actions-Model-ModelAction.html"><abbr title="\Locospec\LCS\Actions\Model\ModelAction">ModelAction</abbr></a>    </span>
+                                &nbsp;: void    </span>
 </dt>
+<dd>Operation-specific validation</dd>
 
     </dl>
 
@@ -200,72 +223,36 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="
             phpdocumentor-element
             -property
-            -private
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_lcs">
-        $lcs
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_lcs" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_table">
+        $table
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#property_table" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-LCS-LCS.html"><abbr title="\Locospec\LCS\LCS">LCS</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$lcs</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_stateMachineFactory">
-        $stateMachineFactory
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_stateMachineFactory" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-LCS-Actions-StateMachineFactory.html"><abbr title="\Locospec\LCS\Actions\StateMachineFactory">StateMachineFactory</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$stateMachineFactory</span>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$table</span>
     </code>
 
     
@@ -280,7 +267,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -291,20 +278,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-LCS.html"><abbr title="\Locospec\LCS\LCS">LCS</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lcs</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Actions-StateMachineFactory.html"><abbr title="\Locospec\LCS\Actions\StateMachineFactory">StateMachineFactory</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$stateMachineFactory</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -313,15 +300,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$lcs</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-LCS.html"><abbr title="\Locospec\LCS\LCS">LCS</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$stateMachineFactory</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Actions-StateMachineFactory.html"><abbr title="\Locospec\LCS\Actions\StateMachineFactory">StateMachineFactory</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$table</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -340,116 +320,162 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_execute">
-        execute()
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_execute" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getTable">
+        getTable()
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_getTable" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the target table name</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">execute</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actionName</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-StateMachine-StateFlowPacket.html"><abbr title="\Locospec\LCS\StateMachine\StateFlowPacket">StateFlowPacket</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getTable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$modelName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$actionName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$input</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-StateMachine-StateFlowPacket.html"><abbr title="\Locospec\LCS\StateMachine\StateFlowPacket">StateFlowPacket</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -protected
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_createAction">
-        createAction()
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_createAction" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/ActionOrchestrator.php"><a href="files/src-actions-actionorchestrator.html"><abbr title="src/Actions/ActionOrchestrator.php">ActionOrchestrator.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Convert operation to array format</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">createAction</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Models-ModelDefinition.html"><abbr title="\Locospec\LCS\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$actionName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Actions-Model-ModelAction.html"><abbr title="\Locospec\LCS\Actions\Model\ModelAction">ModelAction</abbr></a></span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$model</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Models-ModelDefinition.html"><abbr title="\Locospec\LCS\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$actionName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Actions-Model-ModelAction.html"><abbr title="\Locospec\LCS\Actions\Model\ModelAction">ModelAction</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validate">
+        validate()
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Validate base operation parameters</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validate</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                        -abstract                                "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateOperation">
+        validateOperation()
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validateOperation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Operations/AbstractDatabaseOperation.php"><a href="files/src-database-operations-abstractdatabaseoperation.html"><abbr title="src/Database/Operations/AbstractDatabaseOperation.php">AbstractDatabaseOperation.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">52</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Operation-specific validation</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">validateOperation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validateOperation#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><a href="classes/Locospec-LCS-Exceptions-InvalidArgumentException.html"><abbr title="\Locospec\LCS\Exceptions\InvalidArgumentException">InvalidArgumentException</abbr></a></span>
+                                                            
+                                             
+                                    </dd>
+                                            </dl>
+
+    
+
+    
 </article>
             </section>
 
@@ -457,7 +483,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Actions/ActionOrchestrator.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/Operations/AbstractDatabaseOperation.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -556,25 +582,26 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_lcs">$lcs</a></li>
-                                                    <li class=""><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#property_stateMachineFactory">$stateMachineFactory</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#property_table">$table</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_execute">execute()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#method_createAction">createAction()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_getTable">getTable()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validate">validate()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#method_validateOperation">validateOperation()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -594,7 +621,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-LCS-Actions-ActionOrchestrator.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-LCS-Database-Operations-AbstractDatabaseOperation.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
