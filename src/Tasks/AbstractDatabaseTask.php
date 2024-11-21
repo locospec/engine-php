@@ -55,7 +55,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
             throw new DatabaseOperationException('Invalid operator result format');
         }
 
-        return [
+        $response = [
             'type' => 'db_task',
             'success' => true,
             'data' => $result['result'],
@@ -71,6 +71,8 @@ abstract class AbstractDatabaseTask extends AbstractTask
                 ]
             ),
         ];
+
+        return $response;
     }
 
     /**
