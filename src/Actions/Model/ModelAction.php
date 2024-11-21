@@ -52,7 +52,7 @@ abstract class ModelAction
     public function execute(array $input = []): StateFlowPacket
     {
         // Validate input
-        $methodName = 'validate' . ucfirst($this->name);
+        $methodName = 'validate'.ucfirst($this->name);
         $this->validator->$methodName($input, $this->model);
 
         // Normalize conditions if present
