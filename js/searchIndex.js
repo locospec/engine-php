@@ -271,11 +271,6 @@ Search.appendIndex(
             "summary": "Convert\u0020shorthand\u0020filters\u0020to\u0020full\u002Dform\u0020structure",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_convertShorthandFilters"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AconvertShorthandFilterConditions\u0028\u0029",
-            "name": "convertShorthandFilterConditions",
-            "summary": "Convert\u0020shorthand\u0020filter\u0020conditions\u0020to\u0020full\u002Dform\u0020structure",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_convertShorthandFilterConditions"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operations",
             "name": "operations",
             "summary": "",
