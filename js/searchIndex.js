@@ -466,6 +466,46 @@ Search.appendIndex(
             "summary": "FilterGroup\u0020defining\u0020which\u0020rows\u0020to\u0020update",
             "url": "classes/Locospec-LCS-Database-Operations-UpdateOperation.html#property_conditions"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator",
+            "name": "DatabaseOperationsValidator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Create\u0020a\u0020new\u0020database\u0020operations\u0020validator",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AloadSchemas\u0028\u0029",
+            "name": "loadSchemas",
+            "summary": "Load\u0020all\u0020required\u0020JSON\u0020schemas",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_loadSchemas"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AvalidateOperation\u0028\u0029",
+            "name": "validateOperation",
+            "summary": "Validate\u0020a\u0020single\u0020database\u0020operation",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_validateOperation"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AvalidateComponent\u0028\u0029",
+            "name": "validateComponent",
+            "summary": "Validate\u0020common\u0020components\u0020\u0028filters,\u0020sorts,\u0020pagination\u0029",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_validateComponent"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003ASCHEMA_BASE_PATH",
+            "name": "SCHEMA_BASE_PATH",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#constant_SCHEMA_BASE_PATH"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AOPERATION_TYPES",
+            "name": "OPERATION_TYPES",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#constant_OPERATION_TYPES"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003A\u0024validator",
+            "name": "validator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#property_validator"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Edge",
             "name": "Edge",
             "summary": "",
@@ -3320,6 +3360,11 @@ Search.appendIndex(
             "name": "Operations",
             "summary": "",
             "url": "namespaces/locospec-lcs-database-operations.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Validators",
+            "name": "Validators",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-database-validators.html"
         },                {
             "fqsen": "\\Locospec\\LCS",
             "name": "LCS",
