@@ -286,16 +286,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_validator"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface",
-            "name": "DatabaseOperatorInterface",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Arun\u0028\u0029",
-            "name": "run",
-            "summary": "Run\u0020a\u0020collection\u0020of\u0020database\u0020operations",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_run"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator",
             "name": "DatabaseOperationsValidator",
             "summary": "",
@@ -546,21 +536,6 @@ Search.appendIndex(
             "summary": "Load\u0020specifications\u0020from\u0020given\u0020paths",
             "url": "classes/Locospec-LCS-LCS.html#method_loadSpecifications"
         },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AregisterDatabaseOperator\u0028\u0029",
-            "name": "registerDatabaseOperator",
-            "summary": "Register\u0020a\u0020database\u0020operator\u0020implementation",
-            "url": "classes/Locospec-LCS-LCS.html#method_registerDatabaseOperator"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AgetDatabaseOperator\u0028\u0029",
-            "name": "getDatabaseOperator",
-            "summary": "Get\u0020the\u0020registered\u0020database\u0020operator",
-            "url": "classes/Locospec-LCS-LCS.html#method_getDatabaseOperator"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AhasDatabaseOperator\u0028\u0029",
-            "name": "hasDatabaseOperator",
-            "summary": "Check\u0020if\u0020a\u0020database\u0020operator\u0020is\u0020registered",
-            "url": "classes/Locospec-LCS-LCS.html#method_hasDatabaseOperator"
-        },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Constructor\u0020now\u0020just\u0020provides\u0020access\u0020to\u0020the\u0020global\u0020registry",
@@ -595,11 +570,6 @@ Search.appendIndex(
             "name": "globalRegistryManager",
             "summary": "",
             "url": "classes/Locospec-LCS-LCS.html#property_globalRegistryManager"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024databaseOperator",
-            "name": "databaseOperator",
-            "summary": "",
-            "url": "classes/Locospec-LCS-LCS.html#property_databaseOperator"
         },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003A\u0024specProcessor",
             "name": "specProcessor",
