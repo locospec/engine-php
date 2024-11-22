@@ -3,7 +3,6 @@
 namespace Locospec\LCS\Registry;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Symfony\Component\VarDumper\Cloner\Data;
 
 class DatabaseDriverRegistry extends AbstractRegistry
 {
