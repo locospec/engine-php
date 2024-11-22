@@ -236,65 +236,55 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#property_lcs"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection",
+            "name": "DatabaseOperationsCollection",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003Aadd\u0028\u0029",
+            "name": "add",
+            "summary": "Add\u0020a\u0020new\u0020operation\u0020to\u0020the\u0020collection",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_add"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AaddMany\u0028\u0029",
+            "name": "addMany",
+            "summary": "Add\u0020multiple\u0020operations\u0020to\u0020the\u0020collection",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_addMany"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020all\u0020operations\u0020in\u0020collection\u0020using\u0020provided\u0020database\u0020operator",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003Areset\u0028\u0029",
+            "name": "reset",
+            "summary": "Reset\u0020the\u0020collection",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_reset"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operations",
+            "name": "operations",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_operations"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024validator",
+            "name": "validator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_validator"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface",
             "name": "DatabaseOperatorInterface",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Ainsert\u0028\u0029",
-            "name": "insert",
-            "summary": "Insert\u0020a\u0020record\u0020into\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_insert"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Aupdate\u0028\u0029",
-            "name": "update",
-            "summary": "Update\u0020records\u0020in\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_update"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Adelete\u0028\u0029",
-            "name": "delete",
-            "summary": "Delete\u0020records\u0020from\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_delete"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AsoftDelete\u0028\u0029",
-            "name": "softDelete",
-            "summary": "Soft\u0020delete\u0020records\u0020by\u0020setting\u0020deleted_at\u0020timestamp",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_softDelete"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Aselect\u0028\u0029",
-            "name": "select",
-            "summary": "Select\u0020records\u0020from\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_select"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Acount\u0028\u0029",
-            "name": "count",
-            "summary": "Count\u0020records\u0020in\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_count"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Apaginate\u0028\u0029",
-            "name": "paginate",
-            "summary": "Get\u0020paginated\u0020records\u0020from\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_paginate"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AcursorPaginate\u0028\u0029",
-            "name": "cursorPaginate",
-            "summary": "Get\u0020cursor\u0020paginated\u0020records\u0020from\u0020the\u0020database",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_cursorPaginate"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Araw\u0028\u0029",
-            "name": "raw",
-            "summary": "Execute\u0020a\u0020raw\u0020SQL\u0020query",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_raw"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AgetWhereAttributes\u0028\u0029",
-            "name": "getWhereAttributes",
-            "summary": "Get\u0020list\u0020of\u0020attributes\u0020used\u0020in\u0020where\u0020conditions\nUseful\u0020for\u0020selecting\u0020required\u0020columns",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_getWhereAttributes"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003AexecuteQuery\u0028\u0029",
-            "name": "executeQuery",
-            "summary": "Execute\u0020a\u0020query\u0020built\u0020from\u0020Query\u0020object\nThis\u0020provides\u0020a\u0020high\u002Dlevel\u0020interface\u0020for\u0020complex\u0020queries",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_executeQuery"
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperatorInterface\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Run\u0020a\u0020collection\u0020of\u0020database\u0020operations",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperatorInterface.html#method_run"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\AbstractDatabaseOperation",
             "name": "AbstractDatabaseOperation",
@@ -338,7 +328,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\DatabaseOperationInterface\u003A\u003AgetType\u0028\u0029",
             "name": "getType",
-            "summary": "Get\u0020the\u0020type\u0020of\u0020database\u0020operation",
+            "summary": "Get\u0020the\u0020type\u0020of\u0020database\u0020operation\u0020\u0028insert,\u0020update,\u0020delete,\u0020select\u0029",
             "url": "classes/Locospec-LCS-Database-Operations-DatabaseOperationInterface.html#method_getType"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\DatabaseOperationInterface\u003A\u003AgetTable\u0028\u0029",
@@ -348,13 +338,8 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\DatabaseOperationInterface\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
-            "summary": "Convert\u0020operation\u0020to\u0020array\u0020format",
+            "summary": "Convert\u0020operation\u0020to\u0020array\u0020format\u0020for\u0020validation\u0020and\u0020execution",
             "url": "classes/Locospec-LCS-Database-Operations-DatabaseOperationInterface.html#method_toArray"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Operations\\DatabaseOperationInterface\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "Validate\u0020the\u0020operation\u0020parameters",
-            "url": "classes/Locospec-LCS-Database-Operations-DatabaseOperationInterface.html#method_validate"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\InsertOperation",
             "name": "InsertOperation",
@@ -433,7 +418,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\UpdateOperation\u003A\u003AgetType\u0028\u0029",
             "name": "getType",
-            "summary": "Get\u0020the\u0020type\u0020of\u0020database\u0020operation",
+            "summary": "Get\u0020the\u0020type\u0020of\u0020database\u0020operation\u0020\u0028insert,\u0020update,\u0020delete,\u0020select\u0029",
             "url": "classes/Locospec-LCS-Database-Operations-UpdateOperation.html#method_getType"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Operations\\UpdateOperation\u003A\u003AgetData\u0028\u0029",
