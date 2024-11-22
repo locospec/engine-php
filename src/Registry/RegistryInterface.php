@@ -2,6 +2,8 @@
 
 namespace Locospec\LCS\Registry;
 
+use Symfony\Component\VarDumper\Cloner\Data;
+
 interface RegistryInterface
 {
     public function register(mixed $item): void;
@@ -15,4 +17,8 @@ interface RegistryInterface
     public function clear(): void;
 
     public function getType(): string;
+
+    public function getDefaultDriver(): DatabaseDriverInterface;
+
+    public function setDefaultDriver(string $driverName): void;
 }

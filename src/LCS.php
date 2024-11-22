@@ -79,6 +79,11 @@ class LCS
         return self::$globalRegistryManager;
     }
 
+    public function getDefaultDriverOfType($type)
+    {
+        return self::$globalRegistryManager->getRegistry($type)->getDefaultDriver();
+    }
+
     /**
      * Process a specification from file
      */
