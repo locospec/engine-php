@@ -57,7 +57,7 @@ class TaskFactory
         if ($task instanceof AbstractDatabaseTask) {
             if ($this->databaseOperator === null) {
                 throw new InvalidArgumentException(
-                    "Cannot create database task '{$name}': No database operator registered. " .
+                    "Cannot create database task '{$name}': No database operator registered. ".
                         'Call TaskFactory::registerDatabaseOperator first.'
                 );
             }
