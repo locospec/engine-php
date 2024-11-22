@@ -4,7 +4,7 @@ use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 
 beforeAll(function () {
     global $validator;
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 });
 
 it('uses shared data', function () {

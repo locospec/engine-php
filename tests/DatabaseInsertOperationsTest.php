@@ -4,13 +4,13 @@ use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 
 beforeAll(function () {
     global $validator;
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 });
 
 it('uses shared data', function () {
     global $validator;
     expect($validator)->toBeInstanceOf(DatabaseOperationsValidator::class);
-})->group("stable");
+})->group('stable');
 
 test('valid insert operation with single row', function () {
     // $validator = new DatabaseOperationsValidator();
@@ -28,7 +28,7 @@ test('valid insert operation with single row', function () {
 
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('valid insert operation with multiple rows', function () {
     global $validator;
@@ -47,7 +47,7 @@ test('valid insert operation with multiple rows', function () {
 
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation without type', function () {
     global $validator;
@@ -63,7 +63,7 @@ test('invalid insert operation without type', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation without table name', function () {
     global $validator;
@@ -79,7 +79,7 @@ test('invalid insert operation without table name', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation with empty data array', function () {
     global $validator;
@@ -94,7 +94,7 @@ test('invalid insert operation with empty data array', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation with wrong data type', function () {
     global $validator;
@@ -109,7 +109,7 @@ test('invalid insert operation with wrong data type', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation with non-object data items', function () {
     global $validator;
@@ -128,7 +128,7 @@ test('invalid insert operation with non-object data items', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation with extra properties', function () {
     global $validator;
@@ -146,7 +146,7 @@ test('invalid insert operation with extra properties', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
 
 test('invalid insert operation with wrong type value', function () {
     global $validator;
@@ -163,4 +163,4 @@ test('invalid insert operation with wrong type value', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-})->group("stable");
+})->group('stable');
