@@ -7,6 +7,7 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 abstract class AbstractRegistry implements RegistryInterface
 {
     protected array $items = [];
+
     protected ?string $defaultDriver = null;
 
     public function register(mixed $item): void
