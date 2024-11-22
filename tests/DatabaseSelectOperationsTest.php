@@ -186,8 +186,8 @@ test('select with complete configuration', function () {
             ],
         ],
         'sorts' => [
-            ['attribute' => 'created_at', 'order' => 'DESC'],
-            ['attribute' => 'name', 'order' => 'ASC'],
+            ['attribute' => 'created_at', 'direction' => 'DESC'],
+            ['attribute' => 'name', 'direction' => 'ASC'],
         ],
         'attributes' => ['id', 'name', 'email', 'status'],
         'pagination' => [
@@ -299,7 +299,7 @@ test('select with cursor pagination', function () {
         'type' => 'select',
         'tableName' => 'users',
         'sorts' => [
-            ['attribute' => 'created_at', 'order' => 'DESC'],
+            ['attribute' => 'created_at', 'direction' => 'DESC'],
         ],
         'pagination' => [
             'type' => 'cursor',

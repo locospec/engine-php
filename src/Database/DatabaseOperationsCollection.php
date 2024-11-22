@@ -27,8 +27,10 @@ class DatabaseOperationsCollection
      */
     public function add(array $operation): self
     {
-        // Convert shorthand filters to full-form structure
-        $operation = $this->convertShorthandFilters($operation);
+        // Convert shorthand filters to full-form structure if present
+        if (isset($operation['filters']) && is_array($operation['filters'])) {
+            $operation = $this->convertShorthandFilters($operation);
+        }
 
         $validation = $this->validator->validateOperation($operation);
 
@@ -88,31 +90,29 @@ class DatabaseOperationsCollection
      */
     private function convertShorthandFilters(array $operation): array
     {
+        // Only process if filters exist and don't already have the proper structure
         if (isset($operation['filters']) && is_array($operation['filters'])) {
-            $operation['filters'] = $this->convertShorthandFilterConditions($operation['filters']);
+            // Check if filters are already in full form (have 'op' and 'conditions')
+            if (!isset($operation['filters']['op']) && !isset($operation['filters']['conditions'])) {
+                $conditions = [];
+
+                // Convert each shorthand filter to a full condition
+                foreach ($operation['filters'] as $attribute => $value) {
+                    $conditions[] = [
+                        'op' => 'eq',
+                        'attribute' => $attribute,
+                        'value' => $value,
+                    ];
+                }
+
+                // Wrap conditions in an 'and' group
+                $operation['filters'] = [
+                    'op' => 'and',
+                    'conditions' => $conditions,
+                ];
+            }
         }
 
         return $operation;
-    }
-
-    /**
-     * Convert shorthand filter conditions to full-form structure
-     *
-     * @param  array  $shorthandFilters  The shorthand filters to convert
-     * @return array The full-form filter conditions
-     */
-    private function convertShorthandFilterConditions(array $shorthandFilters): array
-    {
-        $fullFormFilters = [];
-
-        foreach ($shorthandFilters as $attribute => $value) {
-            $fullFormFilters[] = [
-                'attribute' => $attribute,
-                'operator' => '=',
-                'value' => $value,
-            ];
-        }
-
-        return $fullFormFilters;
     }
 }
