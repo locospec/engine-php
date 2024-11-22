@@ -32,14 +32,14 @@ class DatabaseOperationsValidator
     {
         // Register common components schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/common.json',
+            self::SCHEMA_BASE_PATH.'/common.json',
             'src/Specs/database-operations/common.json'
         );
 
         // Register individual operation schemas
         foreach (self::OPERATION_TYPES as $type) {
             $this->validator->resolver()->registerFile(
-                self::SCHEMA_BASE_PATH . "/{$type}.json",
+                self::SCHEMA_BASE_PATH."/{$type}.json",
                 "src/Specs/database-operations/{$type}.json"
             );
         }
@@ -75,7 +75,7 @@ class DatabaseOperationsValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $data,
-            self::SCHEMA_BASE_PATH . "/{$type}.json"
+            self::SCHEMA_BASE_PATH."/{$type}.json"
         );
 
         if ($result->isValid()) {
@@ -122,7 +122,7 @@ class DatabaseOperationsValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $jsonData,
-            self::SCHEMA_BASE_PATH . "/common.json#/definitions/{$component}"
+            self::SCHEMA_BASE_PATH."/common.json#/definitions/{$component}"
         );
 
         if ($result->isValid()) {

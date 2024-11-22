@@ -313,7 +313,6 @@ test('select with cursor pagination', function () {
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
 
-
 test('select with cursor pagination and empty sorts', function () {
     global $validator;
 
