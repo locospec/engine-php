@@ -3,11 +3,11 @@
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 
 test('select with minimal requirements', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
-        'tableName' => 'users'
+        'tableName' => 'users',
     ];
 
     $result = $validator->validateOperation($operation);
@@ -16,7 +16,7 @@ test('select with minimal requirements', function () {
 });
 
 test('select with shorthand filters', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -25,8 +25,8 @@ test('select with shorthand filters', function () {
             'status' => 'active',
             'age' => 25,
             'is_admin' => true,
-            'deleted_at' => null
-        ]
+            'deleted_at' => null,
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -35,7 +35,7 @@ test('select with shorthand filters', function () {
 });
 
 test('select with full form filters - single condition', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -46,10 +46,10 @@ test('select with full form filters - single condition', function () {
                 [
                     'op' => 'eq',
                     'attribute' => 'status',
-                    'value' => 'active'
-                ]
-            ]
-        ]
+                    'value' => 'active',
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -58,7 +58,7 @@ test('select with full form filters - single condition', function () {
 });
 
 test('select with full form filters - multiple conditions', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -69,20 +69,20 @@ test('select with full form filters - multiple conditions', function () {
                 [
                     'op' => 'eq',
                     'attribute' => 'status',
-                    'value' => 'active'
+                    'value' => 'active',
                 ],
                 [
                     'op' => 'gt',
                     'attribute' => 'age',
-                    'value' => 18
+                    'value' => 18,
                 ],
                 [
                     'op' => 'like',
                     'attribute' => 'name',
-                    'value' => 'John%'
-                ]
-            ]
-        ]
+                    'value' => 'John%',
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -91,7 +91,7 @@ test('select with full form filters - multiple conditions', function () {
 });
 
 test('select with nested filter groups', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -102,7 +102,7 @@ test('select with nested filter groups', function () {
                 [
                     'op' => 'eq',
                     'attribute' => 'status',
-                    'value' => 'active'
+                    'value' => 'active',
                 ],
                 [
                     'op' => 'and',
@@ -110,17 +110,17 @@ test('select with nested filter groups', function () {
                         [
                             'op' => 'gt',
                             'attribute' => 'age',
-                            'value' => 18
+                            'value' => 18,
                         ],
                         [
                             'op' => 'lt',
                             'attribute' => 'age',
-                            'value' => 65
-                        ]
-                    ]
-                ]
-            ]
-        ]
+                            'value' => 65,
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -129,7 +129,7 @@ test('select with nested filter groups', function () {
 });
 
 test('select with all possible filter operators', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -148,9 +148,9 @@ test('select with all possible filter operators', function () {
                 ['op' => 'in', 'attribute' => 'field9', 'value' => [1, 2, 3]],
                 ['op' => 'notIn', 'attribute' => 'field10', 'value' => [4, 5, 6]],
                 ['op' => 'isNull', 'attribute' => 'field11'],
-                ['op' => 'isNotNull', 'attribute' => 'field12']
-            ]
-        ]
+                ['op' => 'isNotNull', 'attribute' => 'field12'],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -159,7 +159,7 @@ test('select with all possible filter operators', function () {
 });
 
 test('select with complete configuration', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -167,19 +167,19 @@ test('select with complete configuration', function () {
         'filters' => [
             'op' => 'and',
             'conditions' => [
-                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active']
-            ]
+                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+            ],
         ],
         'sorts' => [
             ['attribute' => 'created_at', 'order' => 'DESC'],
-            ['attribute' => 'name', 'order' => 'ASC']
+            ['attribute' => 'name', 'order' => 'ASC'],
         ],
         'attributes' => ['id', 'name', 'email', 'status'],
         'pagination' => [
             'type' => 'offset',
             'page' => 1,
-            'per_page' => 20
-        ]
+            'per_page' => 20,
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -190,7 +190,7 @@ test('select with complete configuration', function () {
 // Invalid cases
 
 test('select with invalid filter operator', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -201,10 +201,10 @@ test('select with invalid filter operator', function () {
                 [
                     'op' => 'invalid_operator',
                     'attribute' => 'status',
-                    'value' => 'active'
-                ]
-            ]
-        ]
+                    'value' => 'active',
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -213,14 +213,14 @@ test('select with invalid filter operator', function () {
 });
 
 test('select with invalid shorthand filter value type', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
         'tableName' => 'users',
         'filters' => [
-            'status' => ['this', 'should', 'not', 'be', 'an', 'array']
-        ]
+            'status' => ['this', 'should', 'not', 'be', 'an', 'array'],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -229,7 +229,7 @@ test('select with invalid shorthand filter value type', function () {
 });
 
 test('select with invalid filter group structure', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -242,12 +242,12 @@ test('select with invalid filter group structure', function () {
                         [
                             'op' => 'eq',
                             'attribute' => 'status',
-                            'value' => 'active'
-                        ]
-                    ]
-                ]
-            ]
-        ]
+                            'value' => 'active',
+                        ],
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -256,7 +256,7 @@ test('select with invalid filter group structure', function () {
 });
 
 test('select with missing attribute in filter condition', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -266,10 +266,10 @@ test('select with missing attribute in filter condition', function () {
             'conditions' => [
                 [
                     'op' => 'eq',
-                    'value' => 'active'  // Missing 'attribute'
-                ]
-            ]
-        ]
+                    'value' => 'active',  // Missing 'attribute'
+                ],
+            ],
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
@@ -278,7 +278,7 @@ test('select with missing attribute in filter condition', function () {
 });
 
 test('select with cursor pagination', function () {
-    $validator = new DatabaseOperationsValidator();
+    $validator = new DatabaseOperationsValidator;
 
     $operation = [
         'type' => 'select',
@@ -286,8 +286,8 @@ test('select with cursor pagination', function () {
         'pagination' => [
             'type' => 'cursor',
             'per_page' => 20,
-            'cursor' => 'encoded_cursor_value'
-        ]
+            'cursor' => 'encoded_cursor_value',
+        ],
     ];
 
     $result = $validator->validateOperation($operation);
