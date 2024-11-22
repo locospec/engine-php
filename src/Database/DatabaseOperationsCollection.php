@@ -14,33 +14,36 @@ class DatabaseOperationsCollection
 
     public function __construct()
     {
-        $this->validator = new DatabaseOperationsValidator();
+        $this->validator = new DatabaseOperationsValidator;
     }
 
     /**
      * Add a new operation to the collection
      *
-     * @param array $operation The operation to add
+     * @param  array  $operation  The operation to add
+     *
      * @throws RuntimeException if operation is invalid
      */
     public function add(array $operation): self
     {
         $validation = $this->validator->validateOperation($operation);
 
-        if (!$validation['isValid']) {
+        if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 
         $this->operations[] = $operation;
+
         return $this;
     }
 
     /**
      * Add multiple operations to the collection
      *
-     * @param array[] $operations Array of operations to add
+     * @param  array[]  $operations  Array of operations to add
+     *
      * @throws RuntimeException if any operation is invalid
      */
     public function addMany(array $operations): self
@@ -55,7 +58,7 @@ class DatabaseOperationsCollection
     /**
      * Execute all operations in collection using provided database operator
      *
-     * @param DatabaseOperatorInterface $operator Database operator to execute operations
+     * @param  DatabaseOperatorInterface  $operator  Database operator to execute operations
      * @return array Operation results from database operator
      */
     public function execute(DatabaseOperatorInterface $operator): array
@@ -69,6 +72,7 @@ class DatabaseOperationsCollection
     public function reset(): self
     {
         $this->operations = [];
+
         return $this;
     }
 }
