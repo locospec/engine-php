@@ -32,14 +32,14 @@ class DatabaseOperationsValidator
     {
         // Register common components schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH.'/common.json',
+            self::SCHEMA_BASE_PATH . '/common.json',
             'src/Specs/database-operations/common.json'
         );
 
         // Register individual operation schemas
         foreach (self::OPERATION_TYPES as $type) {
             $this->validator->resolver()->registerFile(
-                self::SCHEMA_BASE_PATH."/{$type}.json",
+                self::SCHEMA_BASE_PATH . "/{$type}.json",
                 "src/Specs/database-operations/{$type}.json"
             );
         }
@@ -75,10 +75,21 @@ class DatabaseOperationsValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $data,
-            self::SCHEMA_BASE_PATH."/{$type}.json"
+            self::SCHEMA_BASE_PATH . "/{$type}.json"
         );
 
         if ($result->isValid()) {
+
+            if ($type === 'select' && isset($operation['pagination']['type']) && $operation['pagination']['type'] === 'cursor') {
+
+                if (! isset($operation['sorts']) || empty($operation['sorts'])) {
+                    return [
+                        'isValid' => false,
+                        'errors' => ['Cursor pagination requires at least one sort to be specified'],
+                    ];
+                }
+            }
+
             return [
                 'isValid' => true,
                 'errors' => [],
@@ -111,7 +122,7 @@ class DatabaseOperationsValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $jsonData,
-            self::SCHEMA_BASE_PATH."/common.json#/definitions/{$component}"
+            self::SCHEMA_BASE_PATH . "/common.json#/definitions/{$component}"
         );
 
         if ($result->isValid()) {

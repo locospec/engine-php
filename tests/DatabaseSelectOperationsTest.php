@@ -21,6 +21,7 @@ test('select with minimal requirements', function () {
     ];
 
     $result = $validator->validateOperation($operation);
+
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
@@ -40,6 +41,9 @@ test('select with shorthand filters', function () {
     ];
 
     $result = $validator->validateOperation($operation);
+
+    // dd($result);
+
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
@@ -63,6 +67,7 @@ test('select with full form filters - single condition', function () {
     ];
 
     $result = $validator->validateOperation($operation);
+
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
@@ -293,6 +298,9 @@ test('select with cursor pagination', function () {
     $operation = [
         'type' => 'select',
         'tableName' => 'users',
+        'sorts' => [
+            ['attribute' => 'created_at', 'order' => 'DESC'],
+        ],
         'pagination' => [
             'type' => 'cursor',
             'per_page' => 20,
@@ -303,4 +311,30 @@ test('select with cursor pagination', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
+})->group('stable');
+
+
+test('select with cursor pagination and empty sorts', function () {
+    global $validator;
+
+    $operation = [
+        'type' => 'select',
+        'tableName' => 'users',
+        'filters' => [
+            'op' => 'and',
+            'conditions' => [
+                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+            ],
+        ],
+        'pagination' => [
+            'type' => 'cursor',
+            'per_page' => 20,
+            'cursor' => 'encoded_cursor_value',
+        ],
+    ];
+
+    $result = $validator->validateOperation($operation);
+
+    expect($result['isValid'])->toBeFalse()
+        ->and($result['errors'])->not->toBeEmpty();
 })->group('stable');
