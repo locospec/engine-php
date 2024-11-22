@@ -1746,6 +1746,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#property_items"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\AbstractRegistry\u003A\u003A\u0024defaultDriver",
+            "name": "defaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#property_defaultDriver"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface",
             "name": "DatabaseDriverInterface",
             "summary": "",
@@ -1776,25 +1781,10 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
             "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getItemName"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AgetDefaultDriver\u0028\u0029",
-            "name": "getDefaultDriver",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getDefaultDriver"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AsetDefaultDriver\u0028\u0029",
-            "name": "setDefaultDriver",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_setDefaultDriver"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003Aregister\u0028\u0029",
             "name": "register",
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_register"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003A\u0024defaultDriver",
-            "name": "defaultDriver",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#property_defaultDriver"
         },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\ModelRegistry",
             "name": "ModelRegistry",
