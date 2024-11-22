@@ -28,7 +28,11 @@ class DatabaseOperationsCollection
     public function add(array $operation): self
     {
         // Convert shorthand filters to full-form structure if present
-        if (isset($operation['filters']) && is_array($operation['filters'])) {
+        // if (isset($operation['filters']) && is_array($operation['filters'])) {
+        //     $operation = $this->convertShorthandFilters($operation);
+        // }
+
+        if (isset($operation['filters'])) {
             $operation = $this->convertShorthandFilters($operation);
         }
 
@@ -90,6 +94,29 @@ class DatabaseOperationsCollection
      */
     private function convertShorthandFilters(array $operation): array
     {
+        $filters = $operation['filters'];
+
+        // If filters is not an array, return unchanged
+        if (!is_array($filters)) {
+            return $operation;
+        }
+
+        // If already in full form (has op and conditions), return unchanged
+        if (isset($filters['op']) && isset($filters['conditions'])) {
+            return $operation;
+        }
+
+        // Handle array format of conditions
+        if (isset($filters[0])) {
+            // It's a numeric array, each element should be a condition
+            $operation['filters'] = [
+                'op' => 'and',
+                'conditions' => $filters
+            ];
+            return $operation;
+        }
+
+
         // Only process if filters exist and don't already have the proper structure
         if (isset($operation['filters']) && is_array($operation['filters'])) {
             // Check if filters are already in full form (have 'op' and 'conditions')

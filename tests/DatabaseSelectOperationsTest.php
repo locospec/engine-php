@@ -202,6 +202,34 @@ test('select with complete configuration', function () {
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
 
+
+test('select with direct filters configuration', function () {
+    global $validator;
+
+    $operation = [
+        'type' => 'select',
+        'tableName' => 'users',
+        'filters' => [
+            ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+            ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+        ],
+        'sorts' => [
+            ['attribute' => 'created_at', 'direction' => 'DESC'],
+            ['attribute' => 'name', 'direction' => 'ASC'],
+        ],
+        'attributes' => ['id', 'name', 'email', 'status'],
+        'pagination' => [
+            'type' => 'offset',
+            'page' => 1,
+            'per_page' => 20,
+        ],
+    ];
+
+    $result = $validator->validateOperation($operation);
+    expect($result['isValid'])->toBeTrue()
+        ->and($result['errors'])->toBeEmpty();
+})->group('stable');
+
 // Invalid cases
 
 test('select with invalid filter operator', function () {

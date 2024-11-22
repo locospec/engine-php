@@ -51,6 +51,13 @@
             "oneOf": [
                 { "$ref": "#/definitions/filterGroup" },
                 {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/condition"
+                    },
+                    "minItems": 1
+                },
+                {
                     "type": "object",
                     "additionalProperties": {
                         "type": ["string", "number", "boolean", "null"]
@@ -62,9 +69,9 @@
             "type": "object",
             "properties": {
                 "attribute": { "type": "string" },
-                "order": { "type": "string", "enum": ["ASC", "DESC"] }
+                "direction": { "type": "string", "enum": ["ASC", "DESC"] }
             },
-            "required": ["attribute", "order"],
+            "required": ["attribute", "direction"],
             "additionalProperties": false
         },
         "sorts": {
@@ -96,6 +103,65 @@
                 { "$ref": "#/definitions/offsetPagination" },
                 { "$ref": "#/definitions/cursorPagination" }
             ]
+        },
+        "aggregate": {
+            "type": "object",
+            "properties": {
+                "function": {
+                    "type": "string",
+                    "enum": ["count", "avg", "sum", "min", "max", "exists"]
+                },
+                "column": {
+                    "type": "string"
+                },
+                "distinct": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "alias": {
+                    "type": "string"
+                }
+            },
+            "required": ["function", "column", "distinct"]
+        },
+        "havingCondition": {
+            "type": "object",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": ["eq", "neq", "gt", "lt", "gte", "lte"]
+                },
+                "column": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": ["number", "string"]
+                }
+            },
+            "required": ["op", "column", "value"]
+        },
+        "havingGroup": {
+            "type": "object",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": ["and", "or"]
+                },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/havingCondition"
+                            },
+                            {
+                                "$ref": "#/definitions/havingGroup"
+                            }
+                        ]
+                    }
+                }
+            },
+            "required": ["op", "conditions"]
         }
     }
 }
