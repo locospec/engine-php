@@ -48,7 +48,7 @@ class UpdateOperation extends AbstractDatabaseOperation
 
         // Validate column names in data
         foreach ($this->data as $column => $value) {
-            if (!is_string($column)) {
+            if (! is_string($column)) {
                 throw new InvalidArgumentException('Column names must be strings');
             }
         }
@@ -58,7 +58,7 @@ class UpdateOperation extends AbstractDatabaseOperation
     {
         return array_merge(parent::toArray(), [
             'data' => $this->data,
-            'conditions' => $this->conditions->toArray()
+            'conditions' => $this->conditions->toArray(),
         ]);
     }
 }

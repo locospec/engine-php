@@ -40,7 +40,7 @@ abstract class AbstractDatabaseOperation implements DatabaseOperationInterface
     {
         return [
             'type' => $this->getType(),
-            'table' => $this->table
+            'table' => $this->table,
         ];
     }
 
