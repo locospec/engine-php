@@ -6,7 +6,6 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 
 class DatabaseDriverRegistry extends AbstractRegistry
 {
-
     private ?string $defaultDriver = null;
 
     /**
@@ -31,7 +30,7 @@ class DatabaseDriverRegistry extends AbstractRegistry
     public function getDefaultDriver(): DatabaseDriverInterface
     {
         if (! $this->has($this->defaultDriver)) {
-            throw new InvalidArgumentException("Default database driver not found");
+            throw new InvalidArgumentException('Default database driver not found');
         }
 
         return $this->get($this->defaultDriver);
