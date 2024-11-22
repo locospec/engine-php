@@ -97,7 +97,7 @@ class DatabaseOperationsCollection
         $filters = $operation['filters'];
 
         // If filters is not an array, return unchanged
-        if (!is_array($filters)) {
+        if (! is_array($filters)) {
             return $operation;
         }
 
@@ -111,16 +111,16 @@ class DatabaseOperationsCollection
             // It's a numeric array, each element should be a condition
             $operation['filters'] = [
                 'op' => 'and',
-                'conditions' => $filters
+                'conditions' => $filters,
             ];
+
             return $operation;
         }
-
 
         // Only process if filters exist and don't already have the proper structure
         if (isset($operation['filters']) && is_array($operation['filters'])) {
             // Check if filters are already in full form (have 'op' and 'conditions')
-            if (!isset($operation['filters']['op']) && !isset($operation['filters']['conditions'])) {
+            if (! isset($operation['filters']['op']) && ! isset($operation['filters']['conditions'])) {
                 $conditions = [];
 
                 // Convert each shorthand filter to a full condition

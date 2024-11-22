@@ -202,7 +202,6 @@ test('select with complete configuration', function () {
         ->and($result['errors'])->toBeEmpty();
 })->group('stable');
 
-
 test('select with direct filters configuration', function () {
     global $validator;
 
