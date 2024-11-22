@@ -98,8 +98,11 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    RegistryManager
+    DatabaseDriverRegistry
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html"><abbr title="\Locospec\LCS\Registry\AbstractRegistry">AbstractRegistry</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -117,9 +120,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">18</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
@@ -134,7 +137,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-LCS-Registry-RegistryManager.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -148,78 +151,85 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-LCS-Registry-RegistryManager.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#property_registries">$registries</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/Locospec-LCS-Registry-AbstractRegistry.html#property_items">$items</a>
     <span>
                         &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#property_defaultDriver">$defaultDriver</a>
+    <span>
+                        &nbsp;: string|null            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-LCS-Registry-RegistryManager.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method___construct">__construct()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_addRegistry">addRegistry()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_all">all()</a>
+    <a class="" href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_all">all()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_get">get()</a>
+    <a class="" href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_clear">clear()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_get">get()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_getRegistry">getRegistry()</a>
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getDefaultDriver">getDefaultDriver()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-LCS-Registry-RegistryInterface.html"><abbr title="\Locospec\LCS\Registry\RegistryInterface">RegistryInterface</abbr></a>|null    </span>
+                                &nbsp;: <a href="classes/Locospec-LCS-Registry-DatabaseDriverInterface.html"><abbr title="\Locospec\LCS\Registry\DatabaseDriverInterface">DatabaseDriverInterface</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_has">has()</a>
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getType">getType()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Get the registry type identifier</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_has">has()</a>
     <span>
                                 &nbsp;: bool    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_register">register()</a>
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_register">register()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDatabaseTasks">registerDatabaseTasks()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_setDefaultDriver">setDefaultDriver()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Register all database operation related tasks</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDefaults">registerDefaults()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getItemName">getItemName()</a>
     <span>
-                                &nbsp;: void    </span>
+                                &nbsp;: string    </span>
 </dt>
+<dd>Get the name identifier for a registry item.</dd>
 
     </dl>
 
@@ -231,9 +241,45 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-LCS-Registry-RegistryManager.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_items">
+        $items
+        <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#property_items" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/AbstractRegistry.php"><a href="files/src-registry-abstractregistry.html"><abbr title="src/Registry/AbstractRegistry.php">AbstractRegistry.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$items</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+    
+
+    
+
+</article>
                     <article
         class="
             phpdocumentor-element
@@ -241,17 +287,17 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_registries">
-        $registries
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#property_registries" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_defaultDriver">
+        $defaultDriver
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#property_defaultDriver" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -259,9 +305,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$registries</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+        <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$defaultDriver</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
 
     
     
@@ -275,7 +321,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-LCS-Registry-RegistryManager.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -284,116 +330,28 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">22</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_addRegistry">
-        addRegistry()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_addRegistry" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">addRegistry</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Registry-RegistryInterface.html"><abbr title="\Locospec\LCS\Registry\RegistryInterface">RegistryInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registry</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$registry</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Registry-RegistryInterface.html"><abbr title="\Locospec\LCS\Registry\RegistryInterface">RegistryInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_all">
         all()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_all" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_all" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/AbstractRegistry.php"><a href="files/src-registry-abstractregistry.html"><abbr title="src/Registry/AbstractRegistry.php">AbstractRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">95</span>
+    <span class="phpdocumentor-element-found-in__line">30</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">all</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">all</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
     
@@ -410,22 +368,56 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_get">
-        get()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_clear">
+        clear()
+        <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_clear" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/AbstractRegistry.php"><a href="files/src-registry-abstractregistry.html"><abbr title="src/Registry/AbstractRegistry.php">AbstractRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">81</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">clear</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_get">
+        get()
+        <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_get" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/AbstractRegistry.php"><a href="files/src-registry-abstractregistry.html"><abbr title="src/Registry/AbstractRegistry.php">AbstractRegistry.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">20</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">get</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -433,13 +425,6 @@
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$name</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
@@ -461,45 +446,74 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getRegistry">
-        getRegistry()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_getRegistry" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getDefaultDriver">
+        getDefaultDriver()
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getDefaultDriver" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getRegistry</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Registry-RegistryInterface.html"><abbr title="\Locospec\LCS\Registry\RegistryInterface">RegistryInterface</abbr></a>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getDefaultDriver</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Registry-DatabaseDriverInterface.html"><abbr title="\Locospec\LCS\Registry\DatabaseDriverInterface">DatabaseDriverInterface</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
+    
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Registry-RegistryInterface.html"><abbr title="\Locospec\LCS\Registry\RegistryInterface">RegistryInterface</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Registry-DatabaseDriverInterface.html"><abbr title="\Locospec\LCS\Registry\DatabaseDriverInterface">DatabaseDriverInterface</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getType">
+        getType()
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get the registry type identifier</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -511,20 +525,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_has">
         has()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_has" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_has" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/AbstractRegistry.php"><a href="files/src-registry-abstractregistry.html"><abbr title="src/Registry/AbstractRegistry.php">AbstractRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">88</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">has</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+                    <span class="phpdocumentor-signature__name">has</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -532,13 +546,6 @@
     
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$name</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
@@ -566,20 +573,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_register">
         register()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_register" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_register" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">72</span>
+    <span class="phpdocumentor-element-found-in__line">49</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">register</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">register</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$className</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -588,14 +595,7 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$item</span>
+                <span class="phpdocumentor-signature__argument__name">$className</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -612,32 +612,41 @@
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_registerDatabaseTasks">
-        registerDatabaseTasks()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDatabaseTasks" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setDefaultDriver">
+        setDefaultDriver()
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_setDefaultDriver" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">40</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Register all database operation related tasks</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">registerDatabaseTasks</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setDefaultDriver</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$driverName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$driverName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
     
@@ -647,36 +656,57 @@
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_registerDefaults">
-        registerDefaults()
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDefaults" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getItemName">
+        getItemName()
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getItemName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/RegistryManager.php"><a href="files/src-registry-registrymanager.html"><abbr title="src/Registry/RegistryManager.php">RegistryManager.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Registry/DatabaseDriverRegistry.php"><a href="files/src-registry-databasedriverregistry.html"><abbr title="src/Registry/DatabaseDriverRegistry.php">DatabaseDriverRegistry.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Get the name identifier for a registry item.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">registerDefaults</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getItemName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$item</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The item to get the name from</p>
+</section>
+
+            </dd>
+            </dl>
 
     
 
     
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The name of the item</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
@@ -684,7 +714,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Registry/RegistryManager.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Registry/DatabaseDriverRegistry.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -783,30 +813,31 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-LCS-Registry-RegistryManager.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-LCS-Registry-RegistryManager.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#property_registries">$registries</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#property_items">$items</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#property_defaultDriver">$defaultDriver</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_addRegistry">addRegistry()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_all">all()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_get">get()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_getRegistry">getRegistry()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_has">has()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_register">register()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDatabaseTasks">registerDatabaseTasks()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Registry-RegistryManager.html#method_registerDefaults">registerDefaults()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_all">all()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_clear">clear()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_get">get()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getDefaultDriver">getDefaultDriver()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getType">getType()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-AbstractRegistry.html#method_has">has()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_register">register()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_setDefaultDriver">setDefaultDriver()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getItemName">getItemName()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -826,7 +857,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-LCS-Registry-RegistryManager.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

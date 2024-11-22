@@ -1761,6 +1761,56 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#property_items"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface",
+            "name": "DatabaseDriverInterface",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverInterface.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverInterface.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface\u003A\u003Arun\u0028\u0029",
+            "name": "run",
+            "summary": "Run\u0020a\u0020collection\u0020of\u0020database\u0020operations",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverInterface.html#method_run"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry",
+            "name": "DatabaseDriverRegistry",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "Get\u0020the\u0020registry\u0020type\u0020identifier",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getType"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AgetItemName\u0028\u0029",
+            "name": "getItemName",
+            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getItemName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AgetDefaultDriver\u0028\u0029",
+            "name": "getDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_getDefaultDriver"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003AsetDefaultDriver\u0028\u0029",
+            "name": "setDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_setDefaultDriver"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003Aregister\u0028\u0029",
+            "name": "register",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#method_register"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverRegistry\u003A\u003A\u0024defaultDriver",
+            "name": "defaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-DatabaseDriverRegistry.html#property_defaultDriver"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\ModelRegistry",
             "name": "ModelRegistry",
             "summary": "ModelRegistry\u0020manages\u0020the\u0020registration\u0020and\u0020relationship\u0020graphs\u0020of\u0020models.",
