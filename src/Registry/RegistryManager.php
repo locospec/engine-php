@@ -28,6 +28,7 @@ class RegistryManager
     {
         $this->addRegistry(new ModelRegistry);
         $this->addRegistry(new TaskRegistry);
+        $this->addRegistry(new DatabaseDriverRegistry);
 
         $this->register('task', ValidateTask::class);
         $this->register('task', AuthorizeTask::class);
