@@ -2,8 +2,6 @@
 
 namespace Locospec\LCS\Registry;
 
-use Symfony\Component\VarDumper\Cloner\Data;
-
 interface RegistryInterface
 {
     public function register(mixed $item): void;
