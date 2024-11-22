@@ -1,0 +1,101 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://locospec.com/schemas/database-operations/common.json",
+    "definitions": {
+        "condition": {
+            "type": "object",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": [
+                        "eq",
+                        "neq",
+                        "gt",
+                        "lt",
+                        "gte",
+                        "lte",
+                        "like",
+                        "notLike",
+                        "in",
+                        "notIn",
+                        "isNull",
+                        "isNotNull"
+                    ]
+                },
+                "attribute": { "type": "string" },
+                "value": {
+                    "type": ["string", "number", "boolean", "array", "null"]
+                }
+            },
+            "required": ["op", "attribute"],
+            "additionalProperties": false
+        },
+        "filterGroup": {
+            "type": "object",
+            "properties": {
+                "op": { "type": "string", "enum": ["and", "or"] },
+                "conditions": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            { "$ref": "#/definitions/condition" },
+                            { "$ref": "#/definitions/filterGroup" }
+                        ]
+                    }
+                }
+            },
+            "required": ["op", "conditions"],
+            "additionalProperties": false
+        },
+        "filters": {
+            "oneOf": [
+                { "$ref": "#/definitions/filterGroup" },
+                {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": ["string", "number", "boolean", "null"]
+                    }
+                }
+            ]
+        },
+        "sort": {
+            "type": "object",
+            "properties": {
+                "attribute": { "type": "string" },
+                "order": { "type": "string", "enum": ["ASC", "DESC"] }
+            },
+            "required": ["attribute", "order"],
+            "additionalProperties": false
+        },
+        "sorts": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/sort" }
+        },
+        "offsetPagination": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string", "enum": ["offset"] },
+                "page": { "type": "integer", "minimum": 1 },
+                "per_page": { "type": "integer", "minimum": 1 }
+            },
+            "required": ["type", "page", "per_page"],
+            "additionalProperties": false
+        },
+        "cursorPagination": {
+            "type": "object",
+            "properties": {
+                "type": { "type": "string", "enum": ["cursor"] },
+                "per_page": { "type": "integer", "minimum": 1 },
+                "cursor": { "type": "string" }
+            },
+            "required": ["type", "per_page"],
+            "additionalProperties": false
+        },
+        "pagination": {
+            "oneOf": [
+                { "$ref": "#/definitions/offsetPagination" },
+                { "$ref": "#/definitions/cursorPagination" }
+            ]
+        }
+    }
+}

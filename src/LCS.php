@@ -23,6 +23,8 @@ class LCS
      */
     public static function bootstrap(array $config = []): void
     {
+        // $config should be proper class with validation
+
         if (self::$isInitialized) {
             return;
         }
@@ -31,6 +33,9 @@ class LCS
         self::$isInitialized = true;
 
         if (isset($config['paths'])) {
+            // Call SpecificationProcessor right here
+            // SpecificationProcessor::process
+            // Let it handle looping etc.,
             self::loadSpecifications($config['paths']);
         }
     }
@@ -48,7 +53,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path.'/*.json') as $file) {
+                foreach (glob($path . '/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
