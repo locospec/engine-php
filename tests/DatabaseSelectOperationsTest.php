@@ -2,8 +2,18 @@
 
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 
-test('select with minimal requirements', function () {
+beforeAll(function () {
+    global $validator;
     $validator = new DatabaseOperationsValidator();
+});
+
+it('uses shared data', function () {
+    global $validator;
+    expect($validator)->toBeInstanceOf(DatabaseOperationsValidator::class);
+})->group('stable');
+
+test('select with minimal requirements', function () {
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -13,10 +23,10 @@ test('select with minimal requirements', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with shorthand filters', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -32,10 +42,10 @@ test('select with shorthand filters', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with full form filters - single condition', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -55,10 +65,10 @@ test('select with full form filters - single condition', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with full form filters - multiple conditions', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -88,10 +98,10 @@ test('select with full form filters - multiple conditions', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with nested filter groups', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -126,10 +136,10 @@ test('select with nested filter groups', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with all possible filter operators', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -156,10 +166,10 @@ test('select with all possible filter operators', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 test('select with complete configuration', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -185,12 +195,12 @@ test('select with complete configuration', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');
 
 // Invalid cases
 
 test('select with invalid filter operator', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -210,10 +220,10 @@ test('select with invalid filter operator', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group('stable');
 
 test('select with invalid shorthand filter value type', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -226,10 +236,10 @@ test('select with invalid shorthand filter value type', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group('stable');
 
 test('select with invalid filter group structure', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -253,10 +263,10 @@ test('select with invalid filter group structure', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group('stable');
 
 test('select with missing attribute in filter condition', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -275,10 +285,10 @@ test('select with missing attribute in filter condition', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group('stable');
 
 test('select with cursor pagination', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'select',
@@ -293,4 +303,4 @@ test('select with cursor pagination', function () {
     $result = $validator->validateOperation($operation);
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group('stable');

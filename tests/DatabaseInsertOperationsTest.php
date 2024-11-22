@@ -2,8 +2,19 @@
 
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 
-test('valid insert operation with single row', function () {
+beforeAll(function () {
+    global $validator;
     $validator = new DatabaseOperationsValidator();
+});
+
+it('uses shared data', function () {
+    global $validator;
+    expect($validator)->toBeInstanceOf(DatabaseOperationsValidator::class);
+})->group("stable");
+
+test('valid insert operation with single row', function () {
+    // $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -17,10 +28,10 @@ test('valid insert operation with single row', function () {
 
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group("stable");
 
 test('valid insert operation with multiple rows', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -36,10 +47,10 @@ test('valid insert operation with multiple rows', function () {
 
     expect($result['isValid'])->toBeTrue()
         ->and($result['errors'])->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation without type', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'tableName' => 'users',
@@ -52,10 +63,10 @@ test('invalid insert operation without type', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation without table name', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -68,10 +79,10 @@ test('invalid insert operation without table name', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation with empty data array', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -83,10 +94,10 @@ test('invalid insert operation with empty data array', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation with wrong data type', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -98,10 +109,10 @@ test('invalid insert operation with wrong data type', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation with non-object data items', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -117,10 +128,10 @@ test('invalid insert operation with non-object data items', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation with extra properties', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'insert',
@@ -135,10 +146,10 @@ test('invalid insert operation with extra properties', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");
 
 test('invalid insert operation with wrong type value', function () {
-    $validator = new DatabaseOperationsValidator();
+    global $validator;
 
     $operation = [
         'type' => 'invalid_type',
@@ -152,4 +163,4 @@ test('invalid insert operation with wrong type value', function () {
 
     expect($result['isValid'])->toBeFalse()
         ->and($result['errors'])->not->toBeEmpty();
-});
+})->group("stable");

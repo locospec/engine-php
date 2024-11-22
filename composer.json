@@ -35,8 +35,8 @@
         }
     },
     "scripts": {
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
+        "test": "vendor/bin/pest --group=stable",
+        "test-coverage": "vendor/bin/pest --group=stable --coverage",
         "format": "vendor/bin/pint",
         "c2p": [
             "code2prompt src --output=../c2p-php/lcs_src.txt",
