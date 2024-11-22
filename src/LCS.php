@@ -2,7 +2,6 @@
 
 namespace Locospec\LCS;
 
-use Locospec\LCS\Database\DatabaseOperatorInterface;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\Registry\RegistryManager;
 use Locospec\LCS\Specifications\SpecificationProcessor;
@@ -10,8 +9,6 @@ use Locospec\LCS\Specifications\SpecificationProcessor;
 class LCS
 {
     private static ?RegistryManager $globalRegistryManager = null;
-
-    private static ?DatabaseOperatorInterface $databaseOperator = null;
 
     private static bool $isInitialized = false;
 
@@ -33,7 +30,7 @@ class LCS
         self::$isInitialized = true;
 
         if (isset($config['paths'])) {
-            // Call SpecificationProcessor right here
+            // TODO: Call SpecificationProcessor right here
             // SpecificationProcessor::process
             // Let it handle looping etc.,
             self::loadSpecifications($config['paths']);
@@ -53,41 +50,13 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path.'/*.json') as $file) {
+                foreach (glob($path . '/*.json') as $file) {
                     $specProcessor->processFile($file);
                 }
             } elseif (is_file($path)) {
                 $specProcessor->processFile($path);
             }
         }
-    }
-
-    /**
-     * Register a database operator implementation
-     */
-    public static function registerDatabaseOperator(DatabaseOperatorInterface $operator): void
-    {
-        self::$databaseOperator = $operator;
-    }
-
-    /**
-     * Get the registered database operator
-     */
-    public static function getDatabaseOperator(): DatabaseOperatorInterface
-    {
-        if (! self::$databaseOperator) {
-            throw new InvalidArgumentException('No database operator registered. Call registerDatabaseOperator first.');
-        }
-
-        return self::$databaseOperator;
-    }
-
-    /**
-     * Check if a database operator is registered
-     */
-    public static function hasDatabaseOperator(): bool
-    {
-        return self::$databaseOperator !== null;
     }
 
     /**
@@ -140,7 +109,6 @@ class LCS
     public static function reset(): void
     {
         self::$globalRegistryManager = null;
-        self::$databaseOperator = null;
         self::$isInitialized = false;
     }
 }

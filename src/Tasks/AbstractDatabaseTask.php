@@ -2,14 +2,14 @@
 
 namespace Locospec\LCS\Tasks;
 
-use Locospec\LCS\Database\DatabaseOperatorInterface;
 use Locospec\LCS\Exceptions\DatabaseOperationException;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\StateMachine\ContextInterface;
 
 abstract class AbstractDatabaseTask extends AbstractTask
 {
-    protected ?DatabaseOperatorInterface $operator = null;
+    protected ?DatabaseDriverInterface $operator = null;
 
     /**
      * Required context keys for database tasks
@@ -19,7 +19,7 @@ abstract class AbstractDatabaseTask extends AbstractTask
     /**
      * Set the database operator for this task
      */
-    public function setDatabaseOperator(DatabaseOperatorInterface $operator): void
+    public function setDatabaseOperator(DatabaseDriverInterface $operator): void
     {
         $this->operator = $operator;
     }

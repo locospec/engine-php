@@ -2,7 +2,7 @@
 
 namespace Locospec\LCS\StateMachine;
 
-use Locospec\LCS\Database\DatabaseOperatorInterface;
+use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\Registry\TaskRegistry;
 use Locospec\LCS\Tasks\TaskFactory;
 use Locospec\LCS\Tasks\TaskInterface;
@@ -35,7 +35,7 @@ class StateMachine
     /**
      * Register database operator for database tasks
      */
-    public function registerDatabaseOperator(DatabaseOperatorInterface $operator): void
+    public function registerDatabaseOperator(DatabaseDriverInterface $operator): void
     {
         $this->taskFactory->registerDatabaseOperator($operator);
     }

@@ -3,6 +3,7 @@
 namespace Locospec\LCS\Database;
 
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
+use Locospec\LCS\Registry\DatabaseDriverInterface;
 use RuntimeException;
 
 class DatabaseOperationsCollection
@@ -33,7 +34,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -61,10 +62,10 @@ class DatabaseOperationsCollection
     /**
      * Execute all operations in collection using provided database operator
      *
-     * @param  DatabaseOperatorInterface  $operator  Database operator to execute operations
+     * @param  DatabaseDriverInterface  $operator  Database operator to execute operations
      * @return array Operation results from database operator
      */
-    public function execute(DatabaseOperatorInterface $operator): array
+    public function execute(DatabaseDriverInterface $operator): array
     {
         return $operator->run($this->operations);
     }

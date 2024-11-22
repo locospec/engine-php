@@ -2,15 +2,15 @@
 
 namespace Locospec\LCS\Tasks;
 
-use Locospec\LCS\Database\DatabaseOperatorInterface;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\Registry\TaskRegistry;
 
 class TaskFactory
 {
     private TaskRegistry $taskRegistry;
 
-    private ?DatabaseOperatorInterface $databaseOperator = null;
+    private ?DatabaseDriverInterface $databaseOperator = null;
 
     /**
      * Initialize the task factory with task registry
@@ -23,7 +23,7 @@ class TaskFactory
     /**
      * Register database operator for database tasks
      */
-    public function registerDatabaseOperator(DatabaseOperatorInterface $operator): void
+    public function registerDatabaseOperator(DatabaseDriverInterface $operator): void
     {
         $this->databaseOperator = $operator;
     }
@@ -57,7 +57,7 @@ class TaskFactory
         if ($task instanceof AbstractDatabaseTask) {
             if ($this->databaseOperator === null) {
                 throw new InvalidArgumentException(
-                    "Cannot create database task '{$name}': No database operator registered. ".
+                    "Cannot create database task '{$name}': No database operator registered. " .
                         'Call TaskFactory::registerDatabaseOperator first.'
                 );
             }
