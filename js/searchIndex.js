@@ -546,6 +546,11 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020global\u0020registry\u0020manager\u0020instance",
             "url": "classes/Locospec-LCS-LCS.html#method_getRegistryManager"
         },                {
+            "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AgetDefaultDriverOfType\u0028\u0029",
+            "name": "getDefaultDriverOfType",
+            "summary": "",
+            "url": "classes/Locospec-LCS-LCS.html#method_getDefaultDriverOfType"
+        },                {
             "fqsen": "\\Locospec\\LCS\\LCS\u003A\u003AprocessSpecificationFile\u0028\u0029",
             "name": "processSpecificationFile",
             "summary": "Process\u0020a\u0020specification\u0020from\u0020file",
@@ -1726,6 +1731,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#method_getItemName"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\AbstractRegistry\u003A\u003AgetDefaultDriver\u0028\u0029",
+            "name": "getDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#method_getDefaultDriver"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\AbstractRegistry\u003A\u003AsetDefaultDriver\u0028\u0029",
+            "name": "setDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-AbstractRegistry.html#method_setDefaultDriver"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\AbstractRegistry\u003A\u003A\u0024items",
             "name": "items",
             "summary": "",
@@ -1875,6 +1890,16 @@ Search.appendIndex(
             "name": "getType",
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-RegistryInterface.html#method_getType"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\RegistryInterface\u003A\u003AgetDefaultDriver\u0028\u0029",
+            "name": "getDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-RegistryInterface.html#method_getDefaultDriver"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\RegistryInterface\u003A\u003AsetDefaultDriver\u0028\u0029",
+            "name": "setDefaultDriver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Registry-RegistryInterface.html#method_setDefaultDriver"
         },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\RegistryManager",
             "name": "RegistryManager",
