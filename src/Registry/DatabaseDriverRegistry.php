@@ -7,8 +7,6 @@ use Symfony\Component\VarDumper\Cloner\Data;
 
 class DatabaseDriverRegistry extends AbstractRegistry
 {
-    private ?string $defaultDriver = null;
-
     /**
      * Get the registry type identifier
      */
@@ -26,24 +24,6 @@ class DatabaseDriverRegistry extends AbstractRegistry
     protected function getItemName(mixed $item): string
     {
         return $item->getName();
-    }
-
-    public function getDefaultDriver(): DatabaseDriverInterface
-    {
-        if (! $this->has($this->defaultDriver)) {
-            throw new InvalidArgumentException('Default database driver not found');
-        }
-
-        return $this->get($this->defaultDriver);
-    }
-
-    public function setDefaultDriver(string $driverName): void
-    {
-        if (! $this->has($driverName)) {
-            throw new InvalidArgumentException("Database driver '{$driverName}' not found");
-        }
-
-        $this->defaultDriver = $driverName;
     }
 
     public function register(mixed $className): void

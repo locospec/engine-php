@@ -18,7 +18,7 @@ interface RegistryInterface
 
     public function getType(): string;
 
-    public function getDefaultDriver(): DatabaseDriverInterface;
+    public function getDefaultDriver();
 
-    public function setDefaultDriver(string $driverName): void;
+    public function setDefaultDriver(string $driverName);
 }

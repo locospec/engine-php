@@ -7,6 +7,7 @@ use Locospec\LCS\Exceptions\InvalidArgumentException;
 abstract class AbstractRegistry implements RegistryInterface
 {
     protected array $items = [];
+    protected ?string $defaultDriver = null;
 
     public function register(mixed $item): void
     {
@@ -39,7 +40,21 @@ abstract class AbstractRegistry implements RegistryInterface
 
     abstract protected function getItemName(mixed $item): string;
 
-    abstract public function getDefaultDriver(): DatabaseDriverInterface;
+    public function getDefaultDriver()
+    {
+        if (! $this->has($this->defaultDriver)) {
+            throw new InvalidArgumentException('Default database driver not found');
+        }
 
-    abstract public function setDefaultDriver(string $driverName): void;
+        return $this->get($this->defaultDriver);
+    }
+
+    public function setDefaultDriver(string $driverName): void
+    {
+        if (! $this->has($driverName)) {
+            throw new InvalidArgumentException("Database driver '{$driverName}' not found");
+        }
+
+        $this->defaultDriver = $driverName;
+    }
 }
