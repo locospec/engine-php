@@ -3,6 +3,7 @@
 namespace Locospec\LCS\Database;
 
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
+use Locospec\LCS\Query\FilterCondition;
 use RuntimeException;
 
 class DatabaseOperationsCollection
@@ -26,11 +27,14 @@ class DatabaseOperationsCollection
      */
     public function add(array $operation): self
     {
+        // Convert shorthand filters to full-form structure
+        $operation = $this->convertShorthandFilters($operation);
+
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -74,5 +78,41 @@ class DatabaseOperationsCollection
         $this->operations = [];
 
         return $this;
+    }
+
+    /**
+     * Convert shorthand filters to full-form structure
+     *
+     * @param  array  $operation  The operation to convert
+     * @return array  The operation with full-form filters
+     */
+    private function convertShorthandFilters(array $operation): array
+    {
+        if (isset($operation['filters']) && is_array($operation['filters'])) {
+            $operation['filters'] = $this->convertShorthandFilterConditions($operation['filters']);
+        }
+
+        return $operation;
+    }
+
+    /**
+     * Convert shorthand filter conditions to full-form structure
+     *
+     * @param  array  $shorthandFilters  The shorthand filters to convert
+     * @return array  The full-form filter conditions
+     */
+    private function convertShorthandFilterConditions(array $shorthandFilters): array
+    {
+        $fullFormFilters = [];
+
+        foreach ($shorthandFilters as $attribute => $value) {
+            $fullFormFilters[] = [
+                'attribute' => $attribute,
+                'operator' => '=',
+                'value' => $value,
+            ];
+        }
+
+        return $fullFormFilters;
     }
 }
