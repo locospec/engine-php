@@ -5,7 +5,7 @@ namespace Locospec\LCS\Database\Operations;
 interface DatabaseOperationInterface
 {
     /**
-     * Get the type of database operation
+     * Get the type of database operation (insert, update, delete, select)
      */
     public function getType(): string;
 
@@ -15,14 +15,7 @@ interface DatabaseOperationInterface
     public function getTable(): string;
 
     /**
-     * Convert operation to array format
+     * Convert operation to array format for validation and execution
      */
     public function toArray(): array;
-
-    /**
-     * Validate the operation parameters
-     *
-     * @throws \InvalidArgumentException
-     */
-    public function validate(): void;
 }
