@@ -366,20 +366,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_isRelationshipPath"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetSegments\u0028\u0029",
-            "name": "getSegments",
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetRelationships\u0028\u0029",
+            "name": "getRelationships",
             "summary": "",
-            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getSegments"
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getRelationships"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetAttribute\u0028\u0029",
+            "name": "getAttribute",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getAttribute"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetOriginalPath\u0028\u0029",
             "name": "getOriginalPath",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getOriginalPath"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024segments",
-            "name": "segments",
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024relationships",
+            "name": "relationships",
             "summary": "",
-            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#property_segments"
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#property_relationships"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024attribute",
+            "name": "attribute",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#property_attribute"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024originalPath",
             "name": "originalPath",
@@ -410,6 +420,11 @@ Search.appendIndex(
             "name": "resolveCondition",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method_resolveCondition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003AgetCurrentValueResolverKey\u0028\u0029",
+            "name": "getCurrentValueResolverKey",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method_getCurrentValueResolverKey"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003A\u0024model",
             "name": "model",
