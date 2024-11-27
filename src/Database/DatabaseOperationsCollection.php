@@ -2,8 +2,11 @@
 
 namespace Locospec\LCS\Database;
 
+use Locospec\LCS\Database\Filters\FilterGroup;
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 use Locospec\LCS\Registry\DatabaseDriverInterface;
+use Locospec\LCS\Database\Relationships\RelationshipResolver;
+use Locospec\LCS\Registry\RegistryManager;
 use RuntimeException;
 
 class DatabaseOperationsCollection
@@ -13,9 +16,32 @@ class DatabaseOperationsCollection
 
     private DatabaseOperationsValidator $validator;
 
-    public function __construct()
+    private ?RegistryManager $registryManager = null;
+    private ?string $currentModel = null;
+    private ?DatabaseDriverInterface $operator = null;
+
+    public function __construct(?DatabaseDriverInterface $operator = null)
     {
         $this->validator = new DatabaseOperationsValidator;
+        $this->operator = $operator;
+    }
+
+    public function setOperator(DatabaseDriverInterface $operator): self
+    {
+        $this->operator = $operator;
+        return $this;
+    }
+
+    public function setRegistryManager(RegistryManager $registryManager): self
+    {
+        $this->registryManager = $registryManager;
+        return $this;
+    }
+
+    public function setCurrentModel(string $modelName): self
+    {
+        $this->currentModel = $modelName;
+        return $this;
     }
 
     /**
@@ -32,15 +58,28 @@ class DatabaseOperationsCollection
         //     $operation = $this->convertShorthandFilters($operation);
         // }
 
+        // if (isset($operation['filters'])) {
+        //     $operation = $this->convertShorthandFilters($operation);
+        // }
+
+
         if (isset($operation['filters'])) {
-            $operation = $this->convertShorthandFilters($operation);
+            $operation = FilterGroup::normalize($operation);
+
+            if ($this->registryManager && $this->currentModel) {
+                $model = $this->registryManager->get('model', $this->currentModel);
+                $resolver = new RelationshipResolver($model, $this, $this->registryManager);
+                $operation = $resolver->resolveFilters($operation);
+            }
         }
+
+        // dd($operation);
 
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -71,9 +110,14 @@ class DatabaseOperationsCollection
      * @param  DatabaseDriverInterface  $operator  Database operator to execute operations
      * @return array Operation results from database operator
      */
-    public function execute(DatabaseDriverInterface $operator): array
+    public function execute(?DatabaseDriverInterface $operator = null): array
     {
-        return $operator->run($this->operations);
+        if (!$operator && !$this->operator) {
+            throw new RuntimeException('No database operator provided for execution');
+        }
+
+        $execOperator = $operator ?? $this->operator;
+        return $execOperator->run($this->operations);
     }
 
     /**
