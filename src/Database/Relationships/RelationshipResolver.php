@@ -13,7 +13,9 @@ use Locospec\LCS\Registry\RegistryManager;
 class RelationshipResolver
 {
     private ModelDefinition $model;
+
     private DatabaseOperationsCollection $dbOps;
+
     private RegistryManager $registryManager;
 
     public function __construct(
@@ -28,11 +30,12 @@ class RelationshipResolver
 
     public function resolveFilters(array $operation): array
     {
-        if (!isset($operation['filters'])) {
+        if (! isset($operation['filters'])) {
             return $operation;
         }
 
         $operation['filters'] = $this->resolveFilterGroup($operation['filters']);
+
         return $operation;
     }
 
@@ -43,6 +46,7 @@ class RelationshipResolver
         foreach ($group['conditions'] as $condition) {
             if (isset($condition['conditions'])) {
                 $resolvedConditions[] = $this->resolveFilterGroup($condition);
+
                 continue;
             }
 
@@ -52,7 +56,7 @@ class RelationshipResolver
 
         return [
             'op' => $group['op'],
-            'conditions' => $resolvedConditions
+            'conditions' => $resolvedConditions,
         ];
     }
 

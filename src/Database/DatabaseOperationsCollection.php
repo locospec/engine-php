@@ -3,9 +3,9 @@
 namespace Locospec\LCS\Database;
 
 use Locospec\LCS\Database\Filters\FilterGroup;
+use Locospec\LCS\Database\Relationships\RelationshipResolver;
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
 use Locospec\LCS\Registry\DatabaseDriverInterface;
-use Locospec\LCS\Database\Relationships\RelationshipResolver;
 use Locospec\LCS\Registry\RegistryManager;
 use RuntimeException;
 
@@ -17,7 +17,9 @@ class DatabaseOperationsCollection
     private DatabaseOperationsValidator $validator;
 
     private ?RegistryManager $registryManager = null;
+
     private ?string $currentModel = null;
+
     private ?DatabaseDriverInterface $operator = null;
 
     public function __construct(?DatabaseDriverInterface $operator = null)
@@ -29,18 +31,21 @@ class DatabaseOperationsCollection
     public function setOperator(DatabaseDriverInterface $operator): self
     {
         $this->operator = $operator;
+
         return $this;
     }
 
     public function setRegistryManager(RegistryManager $registryManager): self
     {
         $this->registryManager = $registryManager;
+
         return $this;
     }
 
     public function setCurrentModel(string $modelName): self
     {
         $this->currentModel = $modelName;
+
         return $this;
     }
 
@@ -61,7 +66,6 @@ class DatabaseOperationsCollection
         // if (isset($operation['filters'])) {
         //     $operation = $this->convertShorthandFilters($operation);
         // }
-
 
         if (isset($operation['filters'])) {
             $operation = FilterGroup::normalize($operation);
@@ -110,7 +114,7 @@ class DatabaseOperationsCollection
      */
     public function execute(?DatabaseDriverInterface $operator = null): array
     {
-        if (!$operator && !$this->operator) {
+        if (! $operator && ! $this->operator) {
             throw new RuntimeException('No database operator provided for execution');
         }
 
