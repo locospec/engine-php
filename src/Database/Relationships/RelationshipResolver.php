@@ -83,7 +83,7 @@ class RelationshipResolver
 
         for ($i = 0; $i < count($models); $i++) {
 
-            if (!isset($models[$i + 1])) {
+            if (! isset($models[$i + 1])) {
                 continue;
             }
 
@@ -108,10 +108,10 @@ class RelationshipResolver
                         [
                             'attribute' => $targetAttribute,
                             'op' => $condition['op'],
-                            'value' => $currentValue
-                        ]
-                    ]
-                ]
+                            'value' => $currentValue,
+                        ],
+                    ],
+                ],
             ];
 
             dump($targetAttribute);
@@ -128,8 +128,7 @@ class RelationshipResolver
 
             $targetAttribute = $relationship->getForeignKey();
 
-
-            dump("-----------------------");
+            dump('-----------------------');
         }
 
         // dump("-----------Resolved Relationships------------");
@@ -139,7 +138,7 @@ class RelationshipResolver
         return [[
             'attribute' => $this->getCurrentValueResolverKey($relationship),
             'op' => $condition['op'],
-            'value' => $currentValue
+            'value' => $currentValue,
         ]];
     }
 
@@ -147,7 +146,7 @@ class RelationshipResolver
     {
         if ($relationship instanceof BelongsTo) {
             return $relationship->getOwnerKey();
-        } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+        } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return $relationship->getLocalKey();
         }
     }

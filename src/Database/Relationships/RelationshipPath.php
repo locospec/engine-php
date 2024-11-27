@@ -7,7 +7,9 @@ use Locospec\LCS\Models\ModelDefinition;
 class RelationshipPath
 {
     private array $relationships = [];
+
     private string $attribute;
+
     private string $originalPath;
 
     private function __construct(string $path, ModelDefinition $startingModel)
@@ -17,17 +19,17 @@ class RelationshipPath
 
         $this->attribute = array_pop($segments);
 
-        if (!empty($segments)) {
+        if (! empty($segments)) {
             $target = array_pop($segments);
             $this->relationships[] = [
                 'source' => $startingModel->getName(),
-                'target' => $target
+                'target' => $target,
             ];
 
             for ($i = 0; $i < count($segments) - 1; $i++) {
                 $this->relationships[] = [
                     'source' => $segments[$i],
-                    'target' => $segments[$i + 1]
+                    'target' => $segments[$i + 1],
                 ];
             }
         }
@@ -40,7 +42,7 @@ class RelationshipPath
 
     public function isRelationshipPath(): bool
     {
-        return !empty($this->relationships);
+        return ! empty($this->relationships);
     }
 
     public function getRelationships(): array
