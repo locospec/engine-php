@@ -6,13 +6,8 @@ use Locospec\LCS\Models\ModelDefinition;
 
 class RelationshipPath
 {
-<<<<<<< HEAD
     private array $relationships = [];
     private string $attribute;
-=======
-    private array $segments;
-
->>>>>>> 978648bc3027ef7fe186abea939891e2bc040c94
     private string $originalPath;
 
     private function __construct(string $path, ModelDefinition $startingModel)
