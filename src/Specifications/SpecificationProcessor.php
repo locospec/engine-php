@@ -40,7 +40,6 @@ class SpecificationProcessor
     {
         $data = $this->parseJson($json);
         $specs = $this->normalizeSpecifications($data);
-
         // Phase 1: Register all models first
         foreach ($specs as $spec) {
             $this->processModelDefinition($spec);
@@ -54,7 +53,7 @@ class SpecificationProcessor
     {
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
         }
 
         return $data;

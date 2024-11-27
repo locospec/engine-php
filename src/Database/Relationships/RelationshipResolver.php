@@ -7,6 +7,7 @@ use Locospec\LCS\Models\ModelDefinition;
 use Locospec\LCS\Models\Relationships\BelongsTo;
 use Locospec\LCS\Models\Relationships\HasMany;
 use Locospec\LCS\Models\Relationships\HasOne;
+use Locospec\LCS\Models\Relationships\Relationship;
 use Locospec\LCS\Registry\RegistryManager;
 
 class RelationshipResolver
@@ -57,55 +58,93 @@ class RelationshipResolver
 
     private function resolveCondition(array $condition): array
     {
-        $path = RelationshipPath::parse($condition['attribute']);
+        $path = explode('.', $condition['attribute']);
 
-        if (!$path->isRelationshipPath()) {
+        // Not a relationship path
+        if (count($path) === 1) {
             return [$condition];
         }
 
-        $segments = $path->getSegments();
-        $finalAttribute = array_pop($segments);
-        $lastRelationship = array_pop($segments);
+        // Get target attribute
+        $targetAttribute = array_pop($path);
 
-        $relationship = $this->model->getRelationship($lastRelationship);
-        if (!$relationship) {
-            throw new \RuntimeException("Relationship {$lastRelationship} not found in model {$this->model->getName()}");
+        // Traverse path in reverse to build queries
+        $currentValue = $condition['value'];
+        $path = array_reverse($path);
+        $path[] = $this->model->getName();
+        $models = $path;
+        $relationship = null;
+
+        // dd($models);
+
+        for ($i = 0; $i < count($models); $i++) {
+
+            if (!isset($models[$i + 1])) {
+                continue;
+            }
+
+            $relatedModelName = $models[$i];
+            $currentModelName = $models[$i + 1];
+
+            $relatedModel = $this->registryManager->get('model', $relatedModelName);
+            $currentModel = $this->registryManager->get('model', $currentModelName);
+
+            // dump($relatedModelName, $currentModelName, $currentModel);
+
+            $relationship = $currentModel->getRelationship($relatedModelName);
+
+            dump($relationship);
+
+            $selectOp = [
+                'type' => 'select',
+                'tableName' => $relatedModel->getConfig()->getTable(),
+                'filters' => [
+                    'op' => 'and',
+                    'conditions' => [
+                        [
+                            'attribute' => $targetAttribute,
+                            'op' => $condition['op'],
+                            'value' => $currentValue
+                        ]
+                    ]
+                ]
+            ];
+
+            dump($targetAttribute);
+            dump($selectOp);
+
+            $result = $this->dbOps->add($selectOp)->execute();
+
+            dump(['Extract', $this->getCurrentValueResolverKey($relationship)]);
+
+            $currentValue = array_column(
+                $result['result'],
+                $this->getCurrentValueResolverKey($relationship)
+            );
+
+            $targetAttribute = $relationship->getForeignKey();
+
+
+            dump("-----------------------");
         }
 
-        $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
+        // dump("-----------Resolved Relationships------------");
 
-        $selectOp = [
-            'type' => 'select',
-            'tableName' => $relatedModel->getConfig()->getTable(),
-            'attributes' => ['id'],
-            'filters' => [
-                'op' => 'and',
-                'conditions' => [[
-                    'attribute' => implode('.', $segments) . ($segments ? '.' : '') . $finalAttribute,
-                    'op' => $condition['op'],
-                    'value' => $condition['value']
-                ]]
-            ]
-        ];
+        // dump($relationship);
 
-        $result = $this->dbOps->add($selectOp)->execute();
-        $resolvedIds = array_column($result['data'], 'id');
+        return [[
+            'attribute' => $this->getCurrentValueResolverKey($relationship),
+            'op' => $condition['op'],
+            'value' => $currentValue
+        ]];
+    }
 
-        // Different conditions based on relationship type
+    private function getCurrentValueResolverKey(Relationship $relationship): string
+    {
         if ($relationship instanceof BelongsTo) {
-            return [[
-                'op' => 'in',
-                'attribute' => $relationship->getForeignKey(),
-                'value' => $resolvedIds
-            ]];
+            return $relationship->getOwnerKey();
         } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-            return [[
-                'op' => 'in',
-                'attribute' => $relationship->getLocalKey(),
-                'value' => $resolvedIds
-            ]];
+            return $relationship->getLocalKey();
         }
-
-        throw new \RuntimeException("Unsupported relationship type for {$lastRelationship}");
     }
 }

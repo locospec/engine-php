@@ -73,8 +73,6 @@ class DatabaseOperationsCollection
             }
         }
 
-        // dd($operation);
-
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
@@ -117,7 +115,12 @@ class DatabaseOperationsCollection
         }
 
         $execOperator = $operator ?? $this->operator;
-        return $execOperator->run($this->operations);
+        $results = $execOperator->run($this->operations);
+
+        // Reset operations after execution
+        $this->reset();
+
+        return $results;
     }
 
     /**
