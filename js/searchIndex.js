@@ -246,6 +246,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method___construct"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetOperator\u0028\u0029",
+            "name": "setOperator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setOperator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetRegistryManager\u0028\u0029",
+            "name": "setRegistryManager",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setRegistryManager"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetCurrentModel\u0028\u0029",
+            "name": "setCurrentModel",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setCurrentModel"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003Aadd\u0028\u0029",
             "name": "add",
             "summary": "Add\u0020a\u0020new\u0020operation\u0020to\u0020the\u0020collection",
@@ -280,6 +295,136 @@ Search.appendIndex(
             "name": "validator",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_validator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_registryManager"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024currentModel",
+            "name": "currentModel",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_currentModel"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operator",
+            "name": "operator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_operator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterCondition",
+            "name": "FilterCondition",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterCondition.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterCondition\u003A\u003Anormalize\u0028\u0029",
+            "name": "normalize",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterCondition.html#method_normalize"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterCondition\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterCondition.html#method_validate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterCondition\u003A\u003AVALID_OPERATORS",
+            "name": "VALID_OPERATORS",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterCondition.html#constant_VALID_OPERATORS"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterGroup",
+            "name": "FilterGroup",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterGroup.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterGroup\u003A\u003Anormalize\u0028\u0029",
+            "name": "normalize",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterGroup.html#method_normalize"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterGroup\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Filters-FilterGroup.html#method_validate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath",
+            "name": "RelationshipPath",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_parse"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AisRelationshipPath\u0028\u0029",
+            "name": "isRelationshipPath",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_isRelationshipPath"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetSegments\u0028\u0029",
+            "name": "getSegments",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getSegments"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003AgetOriginalPath\u0028\u0029",
+            "name": "getOriginalPath",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#method_getOriginalPath"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024segments",
+            "name": "segments",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#property_segments"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipPath\u003A\u003A\u0024originalPath",
+            "name": "originalPath",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipPath.html#property_originalPath"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver",
+            "name": "RelationshipResolver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003AresolveFilters\u0028\u0029",
+            "name": "resolveFilters",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method_resolveFilters"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003AresolveFilterGroup\u0028\u0029",
+            "name": "resolveFilterGroup",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method_resolveFilterGroup"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003AresolveCondition\u0028\u0029",
+            "name": "resolveCondition",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#method_resolveCondition"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#property_model"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003A\u0024dbOps",
+            "name": "dbOps",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#property_dbOps"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#property_registryManager"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator",
             "name": "DatabaseOperationsValidator",
@@ -3215,6 +3360,16 @@ Search.appendIndex(
             "name": "Database",
             "summary": "",
             "url": "namespaces/locospec-lcs-database.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Filters",
+            "name": "Filters",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-database-filters.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships",
+            "name": "Relationships",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-database-relationships.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Validators",
             "name": "Validators",
