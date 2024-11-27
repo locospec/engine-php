@@ -12,7 +12,9 @@ use Locospec\LCS\Registry\RegistryManager;
 class RelationshipResolver
 {
     private ModelDefinition $model;
+
     private DatabaseOperationsCollection $dbOps;
+
     private RegistryManager $registryManager;
 
     public function __construct(
@@ -27,11 +29,12 @@ class RelationshipResolver
 
     public function resolveFilters(array $operation): array
     {
-        if (!isset($operation['filters'])) {
+        if (! isset($operation['filters'])) {
             return $operation;
         }
 
         $operation['filters'] = $this->resolveFilterGroup($operation['filters']);
+
         return $operation;
     }
 
@@ -42,6 +45,7 @@ class RelationshipResolver
         foreach ($group['conditions'] as $condition) {
             if (isset($condition['conditions'])) {
                 $resolvedConditions[] = $this->resolveFilterGroup($condition);
+
                 continue;
             }
 
@@ -51,7 +55,7 @@ class RelationshipResolver
 
         return [
             'op' => $group['op'],
-            'conditions' => $resolvedConditions
+            'conditions' => $resolvedConditions,
         ];
     }
 
@@ -59,7 +63,7 @@ class RelationshipResolver
     {
         $path = RelationshipPath::parse($condition['attribute']);
 
-        if (!$path->isRelationshipPath()) {
+        if (! $path->isRelationshipPath()) {
             return [$condition];
         }
 
@@ -68,7 +72,7 @@ class RelationshipResolver
         $lastRelationship = array_pop($segments);
 
         $relationship = $this->model->getRelationship($lastRelationship);
-        if (!$relationship) {
+        if (! $relationship) {
             throw new \RuntimeException("Relationship {$lastRelationship} not found in model {$this->model->getName()}");
         }
 
@@ -81,11 +85,11 @@ class RelationshipResolver
             'filters' => [
                 'op' => 'and',
                 'conditions' => [[
-                    'attribute' => implode('.', $segments) . ($segments ? '.' : '') . $finalAttribute,
+                    'attribute' => implode('.', $segments).($segments ? '.' : '').$finalAttribute,
                     'op' => $condition['op'],
-                    'value' => $condition['value']
-                ]]
-            ]
+                    'value' => $condition['value'],
+                ]],
+            ],
         ];
 
         $result = $this->dbOps->add($selectOp)->execute();
@@ -96,13 +100,13 @@ class RelationshipResolver
             return [[
                 'op' => 'in',
                 'attribute' => $relationship->getForeignKey(),
-                'value' => $resolvedIds
+                'value' => $resolvedIds,
             ]];
-        } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+        } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return [[
                 'op' => 'in',
                 'attribute' => $relationship->getLocalKey(),
-                'value' => $resolvedIds
+                'value' => $resolvedIds,
             ]];
         }
 

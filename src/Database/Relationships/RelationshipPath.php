@@ -5,6 +5,7 @@ namespace Locospec\LCS\Database\Relationships;
 class RelationshipPath
 {
     private array $segments;
+
     private string $originalPath;
 
     private function __construct(string $path)

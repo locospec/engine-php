@@ -8,14 +8,14 @@ class FilterGroup
 {
     public static function normalize(array $operation): array
     {
-        if (!isset($operation['filters'])) {
+        if (! isset($operation['filters'])) {
             return $operation;
         }
 
         $filters = $operation['filters'];
 
         // If filters is not an array, return unchanged
-        if (!is_array($filters)) {
+        if (! is_array($filters)) {
             return $operation;
         }
 
@@ -33,6 +33,7 @@ class FilterGroup
                     $filters
                 ),
             ];
+
             return $operation;
         }
 
@@ -58,15 +59,15 @@ class FilterGroup
 
     public static function validate(array $filters): void
     {
-        if (!isset($filters['op'])) {
+        if (! isset($filters['op'])) {
             throw new InvalidArgumentException('Filter group must specify an operator');
         }
 
-        if (!in_array(strtolower($filters['op']), ['and', 'or'])) {
+        if (! in_array(strtolower($filters['op']), ['and', 'or'])) {
             throw new InvalidArgumentException("Invalid operator: {$filters['op']}");
         }
 
-        if (!isset($filters['conditions']) || !is_array($filters['conditions'])) {
+        if (! isset($filters['conditions']) || ! is_array($filters['conditions'])) {
             throw new InvalidArgumentException('Filter group must specify conditions array');
         }
 

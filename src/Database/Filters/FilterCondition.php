@@ -18,7 +18,7 @@ class FilterCondition
         'in',
         'notIn',
         'isNull',
-        'isNotNull'
+        'isNotNull',
     ];
 
     public static function normalize(array $condition): array
@@ -28,7 +28,7 @@ class FilterCondition
             return $condition;
         }
 
-        if (!isset($condition['attribute'])) {
+        if (! isset($condition['attribute'])) {
             throw new InvalidArgumentException('Filter condition must specify an attribute');
         }
 
@@ -44,19 +44,20 @@ class FilterCondition
         // Skip validation for nested groups
         if (isset($condition['conditions'])) {
             FilterGroup::validate($condition);
+
             return;
         }
 
-        if (!isset($condition['attribute'])) {
+        if (! isset($condition['attribute'])) {
             throw new InvalidArgumentException('Filter condition must specify an attribute');
         }
 
-        if (!isset($condition['op'])) {
+        if (! isset($condition['op'])) {
             throw new InvalidArgumentException('Filter condition must specify an operator');
         }
 
         $operator = strtolower($condition['op']);
-        if (!in_array($operator, self::VALID_OPERATORS)) {
+        if (! in_array($operator, self::VALID_OPERATORS)) {
             throw new InvalidArgumentException("Invalid operator: {$operator}");
         }
     }
