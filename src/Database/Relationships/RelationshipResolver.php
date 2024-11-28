@@ -69,39 +69,47 @@ class RelationshipResolver
             return [$condition];
         }
 
-        // Get target attribute
+        // This is a relationship path at this point
+        // We will try to extract relations which needs resolving
+        $relations = [];
+
+        // Remove the last element from path, as it's not a model
         $targetAttribute = array_pop($path);
+        $relatedModelNames = $path;
+        $currentSourceName = $this->model->getName();
 
-        // Traverse path in reverse to build queries
+        foreach ($relatedModelNames as $relatedModelName) {
+            $sourceModel = $this->registryManager->get('model', $currentSourceName);
+            $targetModel = $this->registryManager->get('model', $relatedModelName);
+            $relationship = $sourceModel->getRelationship($relatedModelName);
+            $extractAndPointAttributes = $this->getExtractAndPointAttributes($relationship);
+
+            // dump($extractAndPointAttributes);
+
+            $relations[] = [
+                'source_model_name' => $currentSourceName,
+                'target_model_name' => $relatedModelName,
+                'source_model' => $sourceModel,
+                'target_model' => $targetModel,
+                'relationship' => $relationship,
+                'extract_attribute' => $extractAndPointAttributes['extract'],
+                'point_attribute' => $extractAndPointAttributes['point'],
+            ];
+            $currentSourceName = $relatedModelName;
+        }
+
+        // Reverse relations so that we can resolve
+        $relations = array_reverse($relations);
+
         $currentValue = $condition['value'];
-        $path = array_reverse($path);
-        $path[] = $this->model->getName();
-        $models = $path;
-        $relationship = null;
 
-        // dd($models);
-
-        for ($i = 0; $i < count($models); $i++) {
-
-            if (!isset($models[$i + 1])) {
-                continue;
-            }
-
-            $relatedModelName = $models[$i];
-            $currentModelName = $models[$i + 1];
-
-            $relatedModel = $this->registryManager->get('model', $relatedModelName);
-            $currentModel = $this->registryManager->get('model', $currentModelName);
-
-            // dump($relatedModelName, $currentModelName, $currentModel);
-
-            $relationship = $currentModel->getRelationship($relatedModelName);
-
-            dump($relationship);
-
+        for ($i = 0; $i < count($relations); $i++) {
+            $relation = $relations[$i];
+            $targetModel = $relation['target_model'];
+            // First we make query on the target model
             $selectOp = [
                 'type' => 'select',
-                'tableName' => $relatedModel->getConfig()->getTable(),
+                'tableName' => $targetModel->getConfig()->getTable(),
                 'filters' => [
                     'op' => 'and',
                     'conditions' => [
@@ -111,44 +119,33 @@ class RelationshipResolver
                             'value' => $currentValue
                         ]
                     ]
-                ]
+                ],
+                'attributes' => [$relation['extract_attribute']]
             ];
 
-            dump($targetAttribute);
-            dump($selectOp);
-
-            $result = $this->dbOps->add($selectOp)->execute();
-
-            dump(['Extract', $this->getCurrentValueResolverKey($relationship)]);
+            $dbOpsResponse = $this->dbOps->add($selectOp)->execute();
 
             $currentValue = array_column(
-                $result['result'],
-                $this->getCurrentValueResolverKey($relationship)
+                $dbOpsResponse['result'],
+                $relation['extract_attribute']
             );
 
-            $targetAttribute = $relationship->getForeignKey();
-
-
-            dump("-----------------------");
+            $targetAttribute = $relation['point_attribute'];
         }
 
-        // dump("-----------Resolved Relationships------------");
-
-        // dump($relationship);
-
         return [[
-            'attribute' => $this->getCurrentValueResolverKey($relationship),
+            'attribute' => $targetAttribute,
             'op' => $condition['op'],
             'value' => $currentValue
         ]];
     }
 
-    private function getCurrentValueResolverKey(Relationship $relationship): string
+    private function getExtractAndPointAttributes(Relationship $relationship): array
     {
         if ($relationship instanceof BelongsTo) {
-            return $relationship->getOwnerKey();
+            return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey()];
         } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-            return $relationship->getLocalKey();
+            return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey()];
         }
     }
 }
