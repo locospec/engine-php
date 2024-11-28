@@ -78,10 +78,16 @@ class RelationshipResolver
         $relatedModelNames = $path;
         $currentSourceName = $this->model->getName();
 
+        // dd($relatedModelNames);
+
         foreach ($relatedModelNames as $relatedModelName) {
             $sourceModel = $this->registryManager->get('model', $currentSourceName);
-            $targetModel = $this->registryManager->get('model', $relatedModelName);
+            // dump($sourceModel);
             $relationship = $sourceModel->getRelationship($relatedModelName);
+            // dump($relationship);
+            $targetModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
+            // dump($targetModel);
+
             $extractAndPointAttributes = $this->getExtractAndPointAttributes($relationship);
 
             // dump($extractAndPointAttributes);
@@ -95,7 +101,8 @@ class RelationshipResolver
                 'extract_attribute' => $extractAndPointAttributes['extract'],
                 'point_attribute' => $extractAndPointAttributes['point'],
             ];
-            $currentSourceName = $relatedModelName;
+
+            $currentSourceName = $targetModel->getName();
         }
 
         // Reverse relations so that we can resolve
