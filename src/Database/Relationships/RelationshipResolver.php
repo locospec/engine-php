@@ -136,7 +136,7 @@ class RelationshipResolver
         return [[
             'attribute' => $targetAttribute,
             'op' => $condition['op'],
-            'value' => $currentValue
+            'value' => $currentValue,
         ]];
     }
 
