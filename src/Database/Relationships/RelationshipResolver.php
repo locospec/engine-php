@@ -142,6 +142,10 @@ class RelationshipResolver
 
     private function getExtractAndPointAttributes(Relationship $relationship): array
     {
+        // If relationship is BelongsTo, we extract ownerKey, and point the values to foreignKey
+
+        // If relationship is HasMany or HasOne, we extract foreignKey, and point the values to localKey
+
         if ($relationship instanceof BelongsTo) {
             return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey()];
         } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
