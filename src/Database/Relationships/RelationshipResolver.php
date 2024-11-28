@@ -116,11 +116,11 @@ class RelationshipResolver
                         [
                             'attribute' => $targetAttribute,
                             'op' => $condition['op'],
-                            'value' => $currentValue
-                        ]
-                    ]
+                            'value' => $currentValue,
+                        ],
+                    ],
                 ],
-                'attributes' => [$relation['extract_attribute']]
+                'attributes' => [$relation['extract_attribute']],
             ];
 
             $dbOpsResponse = $this->dbOps->add($selectOp)->execute();
@@ -148,7 +148,7 @@ class RelationshipResolver
 
         if ($relationship instanceof BelongsTo) {
             return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey()];
-        } else if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+        } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey()];
         }
     }
