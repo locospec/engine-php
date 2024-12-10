@@ -8,6 +8,7 @@ use Locospec\LCS\Registry\RegistryManager;
 class ScopeResolver
 {
     private RegistryManager $registryManager;
+
     private string $currentModel;
 
     public function __construct(RegistryManager $registryManager, string $currentModel)
@@ -29,7 +30,7 @@ class ScopeResolver
                 'conditions' => array_map(
                     fn($scope) => $this->resolveSingleScope($scope)['conditions'][0],
                     $scopes
-                )
+                ),
             ];
         }
 
@@ -46,7 +47,7 @@ class ScopeResolver
                         return $resolved['conditions'][0];
                     },
                     $scopes['scopes']
-                )
+                ),
             ];
         }
 
@@ -60,7 +61,7 @@ class ScopeResolver
         }
 
         $model = $this->registryManager->get('model', $this->currentModel);
-        if (!$model->hasScope($scopeName)) {
+        if (! $model->hasScope($scopeName)) {
             throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModel}'");
         }
 
@@ -73,7 +74,7 @@ class ScopeResolver
         $model = $this->registryManager->get('model', $this->currentModel);
 
         $relationship = $model->getRelationship($relation);
-        if (!$relationship) {
+        if (! $relationship) {
             throw new InvalidArgumentException("Relationship '$relation' not found on model '{$this->currentModel}'");
         }
 

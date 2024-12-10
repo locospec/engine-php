@@ -103,7 +103,7 @@ class DatabaseOperationsCollection
         // }
 
         if (isset($operation['scopes'])) {
-            if (!$this->registryManager || !$this->currentModel) {
+            if (! $this->registryManager || ! $this->currentModel) {
                 throw new InvalidArgumentException('RegistryManager and current model are required for scope resolution');
             }
 
