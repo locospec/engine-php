@@ -246,6 +246,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method___construct"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setContext"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetOperator\u0028\u0029",
             "name": "setOperator",
             "summary": "",
@@ -301,6 +306,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_validator"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024valueResolver",
+            "name": "valueResolver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_valueResolver"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024registryManager",
             "name": "registryManager",
             "summary": "",
@@ -315,6 +325,11 @@ Search.appendIndex(
             "name": "operator",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_operator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_context"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Filters\\FilterCondition",
             "name": "FilterCondition",
@@ -350,6 +365,66 @@ Search.appendIndex(
             "name": "validate",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Filters-FilterGroup.html#method_validate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext",
+            "name": "QueryContext",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Aset\u0028\u0029",
+            "name": "set",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_set"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Aget\u0028\u0029",
+            "name": "get",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_get"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Ahas\u0028\u0029",
+            "name": "has",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_has"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Aremove\u0028\u0029",
+            "name": "remove",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_remove"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Aall\u0028\u0029",
+            "name": "all",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_all"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003AresolveValue\u0028\u0029",
+            "name": "resolveValue",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_resolveValue"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003AparsePath\u0028\u0029",
+            "name": "parsePath",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_parsePath"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Amerge\u0028\u0029",
+            "name": "merge",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_merge"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003Acreate\u0028\u0029",
+            "name": "create",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#method_create"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\QueryContext\u003A\u003A\u0024data",
+            "name": "data",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-QueryContext.html#property_data"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver",
             "name": "RelationshipResolver",
@@ -475,6 +550,21 @@ Search.appendIndex(
             "name": "validator",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#property_validator"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\ValueResolver",
+            "name": "ValueResolver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-ValueResolver.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\ValueResolver\u003A\u003AresolveValue\u0028\u0029",
+            "name": "resolveValue",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-ValueResolver.html#method_resolveValue"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\ValueResolver\u003A\u003AresolveFilters\u0028\u0029",
+            "name": "resolveFilters",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-ValueResolver.html#method_resolveFilters"
         },                {
             "fqsen": "\\Locospec\\LCS\\Edge",
             "name": "Edge",
