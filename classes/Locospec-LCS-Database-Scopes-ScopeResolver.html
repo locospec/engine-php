@@ -93,12 +93,13 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec.html">Locospec</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs.html">LCS</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-views.html">Views</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-database.html">Database</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-database-scopes.html">Scopes</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ViewDefinition
+    ScopeResolver
 
     
             <div class="phpdocumentor-element__package">
@@ -117,9 +118,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
@@ -134,7 +135,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-LCS-Views-ViewDefinition.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -148,80 +149,62 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-LCS-Views-ViewDefinition.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#property_additionalAttributes">$additionalAttributes</a>
-    <span>
-                        &nbsp;: mixed            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#property_centralModel">$centralModel</a>
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_currentModel">$currentModel</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#property_modelViewAttributes">$modelViewAttributes</a>
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_registryManager">$registryManager</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#property_name">$name</a>
-    <span>
-                        &nbsp;: string            </span>
+                        &nbsp;: <a href="classes/Locospec-LCS-Registry-RegistryManager.html"><abbr title="\Locospec\LCS\Registry\RegistryManager">RegistryManager</abbr></a>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-LCS-Views-ViewDefinition.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method___construct">__construct()</a>
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_fromArray">fromArray()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getAdditionalAttributes">getAdditionalAttributes()</a>
-    <span>
-                                &nbsp;: mixed    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModel">getCentralModel()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModelAttributes">getCentralModelAttributes()</a>
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveScopes">resolveScopes()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getName">getName()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_addRelationPathToFilters">addRelationPathToFilters()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Views-ViewDefinition.html#method_toArray">toArray()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveLocalScope">resolveLocalScope()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveRelationshipScope">resolveRelationshipScope()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveSingleScope">resolveSingleScope()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -236,7 +219,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-LCS-Views-ViewDefinition.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -246,53 +229,17 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_additionalAttributes">
-        $additionalAttributes
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_additionalAttributes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_currentModel">
+        $currentModel
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_currentModel" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">mixed</span>
-    <span class="phpdocumentor-signature__name">$additionalAttributes</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_centralModel">
-        $centralModel
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_centralModel" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -301,7 +248,7 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
         <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$centralModel</span>
+    <span class="phpdocumentor-signature__name">$currentModel</span>
     </code>
 
     
@@ -318,17 +265,17 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_modelViewAttributes">
-        $modelViewAttributes
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_modelViewAttributes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_registryManager">
+        $registryManager
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_registryManager" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -336,44 +283,8 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$modelViewAttributes</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_name">
-        $name
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">7</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$name</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-LCS-Registry-RegistryManager.html"><abbr title="\Locospec\LCS\Registry\RegistryManager">RegistryManager</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$registryManager</span>
     </code>
 
     
@@ -388,7 +299,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-LCS-Views-ViewDefinition.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -399,20 +310,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$centralModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelViewAttributes</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$additionalAttributes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Registry-RegistryManager.html"><abbr title="\Locospec\LCS\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -421,29 +332,15 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$name</span>
+                <span class="phpdocumentor-signature__argument__name">$registryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Registry-RegistryManager.html"><abbr title="\Locospec\LCS\Registry\RegistryManager">RegistryManager</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$centralModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$modelViewAttributes</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$additionalAttributes</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -460,24 +357,24 @@
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_fromArray">
-        fromArray()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_fromArray" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_resolveScopes">
+        resolveScopes()
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveScopes" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                    <span class="phpdocumentor-signature__name">resolveScopes</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scopes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -486,124 +383,14 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$scopes</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;|string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
             </dl>
 
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">self</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getAdditionalAttributes">
-        getAdditionalAttributes()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getAdditionalAttributes" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">38</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getAdditionalAttributes</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getCentralModel">
-        getCentralModel()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModel" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">28</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCentralModel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getCentralModelAttributes">
-        getCentralModelAttributes()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModelAttributes" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">33</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCentralModelAttributes</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
     
 
     
@@ -617,69 +404,192 @@
                     <article
         class="phpdocumentor-element
             -method
-            -public
+            -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getName">
-        getName()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_addRelationPathToFilters">
+        addRelationPathToFilters()
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_addRelationPathToFilters" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">88</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">addRelationPathToFilters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$filters</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relation</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
             </section>
 
 </article>
                     <article
         class="phpdocumentor-element
             -method
-            -public
+            -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toArray">
-        toArray()
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_resolveLocalScope">
+        resolveLocalScope()
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveLocalScope" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewDefinition.php"><a href="files/src-views-viewdefinition.html"><abbr title="src/Views/ViewDefinition.php">ViewDefinition.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">57</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveLocalScope</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scopeName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$scopeName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveRelationshipScope">
+        resolveRelationshipScope()
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveRelationshipScope" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">67</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveRelationshipScope</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scopeName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$scopeName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveSingleScope">
+        resolveSingleScope()
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveSingleScope" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Scopes/ScopeResolver.php"><a href="files/src-database-scopes-scoperesolver.html"><abbr title="src/Database/Scopes/ScopeResolver.php">ScopeResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">48</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveSingleScope</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$scopeName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$scopeName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
     
@@ -696,7 +606,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Views/ViewDefinition.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/Scopes/ScopeResolver.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -795,31 +705,28 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-LCS-Views-ViewDefinition.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-LCS-Views-ViewDefinition.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_additionalAttributes">$additionalAttributes</a></li>
-                                                    <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_centralModel">$centralModel</a></li>
-                                                    <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_modelViewAttributes">$modelViewAttributes</a></li>
-                                                    <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#property_name">$name</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_currentModel">$currentModel</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_registryManager">$registryManager</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_fromArray">fromArray()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getAdditionalAttributes">getAdditionalAttributes()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModel">getCentralModel()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModelAttributes">getCentralModelAttributes()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_getName">getName()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewDefinition.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveScopes">resolveScopes()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_addRelationPathToFilters">addRelationPathToFilters()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveLocalScope">resolveLocalScope()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveRelationshipScope">resolveRelationshipScope()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveSingleScope">resolveSingleScope()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -839,7 +746,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-LCS-Views-ViewDefinition.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

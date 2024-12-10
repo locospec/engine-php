@@ -391,6 +391,51 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Relationships-RelationshipResolver.html#property_registryManager"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver",
+            "name": "ScopeResolver",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveScopes\u0028\u0029",
+            "name": "resolveScopes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveScopes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveSingleScope\u0028\u0029",
+            "name": "resolveSingleScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveSingleScope"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveLocalScope\u0028\u0029",
+            "name": "resolveLocalScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveLocalScope"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveRelationshipScope\u0028\u0029",
+            "name": "resolveRelationshipScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveRelationshipScope"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AaddRelationPathToFilters\u0028\u0029",
+            "name": "addRelationPathToFilters",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_addRelationPathToFilters"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_registryManager"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003A\u0024currentModel",
+            "name": "currentModel",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_currentModel"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator",
             "name": "DatabaseOperationsValidator",
             "summary": "",
@@ -3485,6 +3530,11 @@ Search.appendIndex(
             "name": "Relationships",
             "summary": "",
             "url": "namespaces/locospec-lcs-database-relationships.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Scopes",
+            "name": "Scopes",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-database-scopes.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Validators",
             "name": "Validators",
