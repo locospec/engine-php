@@ -16,6 +16,7 @@ class ParserFactory
     private function registerDefaults(): void
     {
         $this->registerParser('model', new ModelParser);
+        $this->registerParser('view', new ViewParser);
     }
 
     public function registerParser(string $type, ParserInterface $parser): void

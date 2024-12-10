@@ -47,13 +47,17 @@ class SpecificationProcessor
 
         // Phase 2: Process all relationships after models are registered
         $this->processAllPendingRelationships();
+
+        foreach ($specs as $spec) {
+            $this->processViewDefinition($spec);
+        }
     }
 
     private function parseJson(string $json): array
     {
         $data = json_decode($json, true);
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
         }
 
         return $data;
@@ -74,7 +78,8 @@ class SpecificationProcessor
         }
 
         if ($spec['type'] !== 'model') {
-            throw new InvalidArgumentException('Only model specifications are supported');
+            return;
+            // throw new InvalidArgumentException('Only model specifications are supported');
         }
 
         // Store relationships for later processing
@@ -115,5 +120,21 @@ class SpecificationProcessor
 
         // Clear pending relationships after processing
         $this->pendingRelationships = [];
+    }
+
+    private function processViewDefinition(array $spec): void
+    {
+        if (! isset($spec['type'])) {
+            throw new InvalidArgumentException('Specification must include a type');
+        }
+
+        if ($spec['type'] !== 'view') {
+            return;
+        }
+
+        // Parse and register the model
+        $parser = $this->parserFactory->createParser($spec['type']);
+        $view = $parser->parseArray($spec);
+        $this->registryManager->register($spec['type'], $view);
     }
 }

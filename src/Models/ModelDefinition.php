@@ -16,6 +16,8 @@ class ModelDefinition
 
     private array $relationships = [];
 
+    private array $scopes = [];
+
     public function __construct(string $name, Schema $schema, ModelConfiguration $config)
     {
         $this->name = $name;
@@ -69,7 +71,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
+            fn(Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -88,7 +90,15 @@ class ModelDefinition
 
         $modelConfig = ModelConfiguration::fromArray($config);
 
-        return new self($data['name'], $schema, $modelConfig);
+        $model = new self($data['name'], $schema, $modelConfig);
+
+        if (isset($data['scopes']) && is_array($data['scopes'])) {
+            foreach ($data['scopes'] as $name => $filterSpec) {
+                $model->addScope($name, $filterSpec);
+            }
+        }
+
+        return $model;
     }
 
     public function toArray(): array
@@ -114,5 +124,26 @@ class ModelDefinition
         }
 
         return $result;
+    }
+
+
+    public function addScope(string $name, array $filterSpec): void
+    {
+        $this->scopes[$name] = $filterSpec;
+    }
+
+    public function getScope(string $name): ?array
+    {
+        return $this->scopes[$name] ?? null;
+    }
+
+    public function getScopes(): array
+    {
+        return $this->scopes;
+    }
+
+    public function hasScope(string $name): bool
+    {
+        return isset($this->scopes[$name]);
     }
 }
