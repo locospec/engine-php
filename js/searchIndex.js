@@ -861,6 +861,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Models-ModelDefinition.html#method_relationshipsToArray"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003AaddScope\u0028\u0029",
+            "name": "addScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelDefinition.html#method_addScope"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003AgetScope\u0028\u0029",
+            "name": "getScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelDefinition.html#method_getScope"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003AgetScopes\u0028\u0029",
+            "name": "getScopes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelDefinition.html#method_getScopes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003AhasScope\u0028\u0029",
+            "name": "hasScope",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelDefinition.html#method_hasScope"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003A\u0024name",
             "name": "name",
             "summary": "",
@@ -880,6 +900,11 @@ Search.appendIndex(
             "name": "relationships",
             "summary": "",
             "url": "classes/Locospec-LCS-Models-ModelDefinition.html#property_relationships"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelDefinition\u003A\u003A\u0024scopes",
+            "name": "scopes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelDefinition.html#property_scopes"
         },                {
             "fqsen": "\\Locospec\\LCS\\Models\\ModelValidator",
             "name": "ModelValidator",
@@ -1220,6 +1245,21 @@ Search.appendIndex(
             "name": "parseArray",
             "summary": "",
             "url": "classes/Locospec-LCS-Parsers-ParserInterface.html#method_parseArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser",
+            "name": "ViewParser",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Parsers-ViewParser.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser\u003A\u003AparseJson\u0028\u0029",
+            "name": "parseJson",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Parsers-ViewParser.html#method_parseJson"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser\u003A\u003AparseArray\u0028\u0029",
+            "name": "parseArray",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Parsers-ViewParser.html#method_parseArray"
         },                {
             "fqsen": "\\Locospec\\LCS\\Query\\AttributePath",
             "name": "AttributePath",
@@ -2071,6 +2111,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-TaskRegistry.html#method_register"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\ViewRegistry",
+            "name": "ViewRegistry",
+            "summary": "ModelRegistry\u0020manages\u0020the\u0020registration\u0020and\u0020relationship\u0020graphs\u0020of\u0020models.",
+            "url": "classes/Locospec-LCS-Registry-ViewRegistry.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\ViewRegistry\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "Get\u0020the\u0020registry\u0020type\u0020identifier.",
+            "url": "classes/Locospec-LCS-Registry-ViewRegistry.html#method_getType"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Registry\\ViewRegistry\u003A\u003AgetItemName\u0028\u0029",
+            "name": "getItemName",
+            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
+            "url": "classes/Locospec-LCS-Registry-ViewRegistry.html#method_getItemName"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Schema\\Properties\\AbstractSchemaProperty",
             "name": "AbstractSchemaProperty",
             "summary": "",
@@ -2490,6 +2545,11 @@ Search.appendIndex(
             "name": "processAllPendingRelationships",
             "summary": "Process\u0020all\u0020pending\u0020relationships\u0020after\u0020all\u0020models\u0020are\u0020registered",
             "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003AprocessViewDefinition\u0028\u0029",
+            "name": "processViewDefinition",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#method_processViewDefinition"
         },                {
             "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
@@ -3306,6 +3366,96 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Vertex.html#property_data"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition",
+            "name": "ViewDefinition",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AgetCentralModel\u0028\u0029",
+            "name": "getCentralModel",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModel"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AgetCentralModelAttributes\u0028\u0029",
+            "name": "getCentralModelAttributes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_getCentralModelAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AgetAdditionalAttributes\u0028\u0029",
+            "name": "getAdditionalAttributes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_getAdditionalAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_fromArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#method_toArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#property_name"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003A\u0024centralModel",
+            "name": "centralModel",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#property_centralModel"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003A\u0024modelViewAttributes",
+            "name": "modelViewAttributes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#property_modelViewAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewDefinition\u003A\u003A\u0024additionalAttributes",
+            "name": "additionalAttributes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewDefinition.html#property_additionalAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator",
+            "name": "ViewValidator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html#method_validate"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator\u003A\u003AvalidateStructure\u0028\u0029",
+            "name": "validateStructure",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html#method_validateStructure"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator\u003A\u003AvalidateName\u0028\u0029",
+            "name": "validateName",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html#method_validateName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views\\ViewValidator\u003A\u003A\u0024inflector",
+            "name": "inflector",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Views-ViewValidator.html#property_inflector"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -3410,6 +3560,11 @@ Search.appendIndex(
             "name": "Tasks",
             "summary": "",
             "url": "namespaces/locospec-lcs-tasks.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Views",
+            "name": "Views",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-views.html"
         },                {
             "fqsen": "\\Tests\\Locospec\\LCS\\Models",
             "name": "Models",

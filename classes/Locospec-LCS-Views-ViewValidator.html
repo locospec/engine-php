@@ -93,12 +93,12 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec.html">Locospec</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs.html">LCS</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-parsers.html">Parsers</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-lcs-views.html">Views</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ParserFactory
+    ViewValidator
 
     
             <div class="phpdocumentor-element__package">
@@ -117,9 +117,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">8</span>
 
     </aside>
 
@@ -134,7 +134,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Views-ViewValidator.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -148,44 +148,44 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Views-ViewValidator.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-LCS-Parsers-ParserFactory.html#property_parsers">$parsers</a>
+    <a class="" href="classes/Locospec-LCS-Views-ViewValidator.html#property_inflector">$inflector</a>
     <span>
-                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+                        &nbsp;: <a href="classes/Locospec-LCS-Support-StringInflector.html"><abbr title="\Locospec\LCS\Support\StringInflector">StringInflector</abbr></a>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Views-ViewValidator.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Parsers-ParserFactory.html#method___construct">__construct()</a>
+    <a class="" href="classes/Locospec-LCS-Views-ViewValidator.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_createParser">createParser()</a>
-    <span>
-                                &nbsp;: <a href="classes/Locospec-LCS-Parsers-ParserInterface.html"><abbr title="\Locospec\LCS\Parsers\ParserInterface">ParserInterface</abbr></a>    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerParser">registerParser()</a>
+    <a class="" href="classes/Locospec-LCS-Views-ViewValidator.html#method_validate">validate()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerDefaults">registerDefaults()</a>
+    <a class="" href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateName">validateName()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateStructure">validateStructure()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -200,7 +200,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Views-ViewValidator.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -210,17 +210,17 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_parsers">
-        $parsers
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#property_parsers" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_inflector">
+        $inflector
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#property_inflector" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -228,9 +228,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
-    <span class="phpdocumentor-signature__name">$parsers</span>
-     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-LCS-Support-StringInflector.html"><abbr title="\Locospec\LCS\Support\StringInflector">StringInflector</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$inflector</span>
+    </code>
 
     
     
@@ -244,7 +244,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Views-ViewValidator.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -255,13 +255,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -285,24 +285,24 @@
         class="phpdocumentor-element
             -method
             -public
-                                                        "
+                                    -static                    "
 >
-    <h4 class="phpdocumentor-element__name" id="method_createParser">
-        createParser()
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_createParser" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validate">
+        validate()
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">createParser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Parsers-ParserInterface.html"><abbr title="\Locospec\LCS\Parsers\ParserInterface">ParserInterface</abbr></a></span></code>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -311,63 +311,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Parsers-ParserInterface.html"><abbr title="\Locospec\LCS\Parsers\ParserInterface">ParserInterface</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_registerParser">
-        registerParser()
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerParser" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">22</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">registerParser</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Parsers-ParserInterface.html"><abbr title="\Locospec\LCS\Parsers\ParserInterface">ParserInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parser</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$parser</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Parsers-ParserInterface.html"><abbr title="\Locospec\LCS\Parsers\ParserInterface">ParserInterface</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -386,28 +331,82 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_registerDefaults">
-        registerDefaults()
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerDefaults" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validateName">
+        validateName()
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Parsers/ParserFactory.php"><a href="files/src-parsers-parserfactory.html"><abbr title="src/Parsers/ParserFactory.php">ParserFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">35</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">registerDefaults</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">validateName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateStructure">
+        validateStructure()
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateStructure" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Views/ViewValidator.php"><a href="files/src-views-viewvalidator.html"><abbr title="src/Views/ViewValidator.php">ViewValidator.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">validateStructure</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
     
 
     
@@ -420,7 +419,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Parsers/ParserFactory.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Views/ViewValidator.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -519,25 +518,25 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Views-ViewValidator.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-LCS-Views-ViewValidator.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#property_parsers">$parsers</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Views-ViewValidator.html#property_inflector">$inflector</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_createParser">createParser()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerParser">registerParser()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerDefaults">registerDefaults()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewValidator.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validate">validate()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateName">validateName()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Views-ViewValidator.html#method_validateStructure">validateStructure()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -557,7 +556,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-LCS-Parsers-ParserFactory.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-LCS-Views-ViewValidator.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
