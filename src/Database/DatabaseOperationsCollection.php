@@ -70,7 +70,7 @@ class DatabaseOperationsCollection
                 'conditions' => array_merge(
                     $scopeFilters['conditions'] ?? [],
                     $existingFilters['conditions'] ?? []
-                )
+                ),
             ];
         }
 
@@ -79,8 +79,8 @@ class DatabaseOperationsCollection
             'op' => 'and',
             'conditions' => [
                 $scopeFilters,
-                $existingFilters
-            ]
+                $existingFilters,
+            ],
         ];
     }
 
@@ -136,7 +136,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 

@@ -20,7 +20,7 @@ class ScopeResolver
     public function resolveScopes(array|string $scopes): array
     {
         // Handle simple array of scope names
-        if (is_array($scopes) && !isset($scopes['op'])) {
+        if (is_array($scopes) && ! isset($scopes['op'])) {
             if (count($scopes) === 1) {
                 return $this->resolveSingleScope($scopes[0]);
             }
@@ -28,7 +28,7 @@ class ScopeResolver
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn($scope) => $this->resolveSingleScope($scope)['conditions'][0],
+                    fn ($scope) => $this->resolveSingleScope($scope)['conditions'][0],
                     $scopes
                 ),
             ];
@@ -44,6 +44,7 @@ class ScopeResolver
                             return $this->resolveScopes($scope);
                         }
                         $resolved = $this->resolveSingleScope($scope);
+
                         return $resolved['conditions'][0];
                     },
                     $scopes['scopes']
@@ -79,11 +80,12 @@ class ScopeResolver
         }
 
         $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-        if (!$relatedModel->hasScope($scope)) {
+        if (! $relatedModel->hasScope($scope)) {
             throw new InvalidArgumentException("Scope '$scope' not found on model '{$relationship->getRelatedModelName()}'");
         }
 
         $scopeFilter = $relatedModel->getScope($scope);
+
         return $this->addRelationPathToFilters($scopeFilter, $relation);
     }
 
@@ -92,10 +94,11 @@ class ScopeResolver
         if (isset($filters['conditions'])) {
             foreach ($filters['conditions'] as &$condition) {
                 if (isset($condition['attribute'])) {
-                    $condition['attribute'] = $relation . '.' . $condition['attribute'];
+                    $condition['attribute'] = $relation.'.'.$condition['attribute'];
                 }
             }
         }
+
         return $filters;
     }
 }
