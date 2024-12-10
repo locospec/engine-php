@@ -8,6 +8,7 @@ use Locospec\LCS\Registry\RegistryManager;
 class ScopeResolver
 {
     private RegistryManager $registryManager;
+
     private string $currentModel;
 
     public function __construct(RegistryManager $registryManager, string $currentModel)
@@ -19,13 +20,13 @@ class ScopeResolver
     public function resolveScopes(array|string $scopes): array
     {
         // Handle simple array of scope names
-        if (is_array($scopes) && !isset($scopes['op'])) {
+        if (is_array($scopes) && ! isset($scopes['op'])) {
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn($scope) => $this->resolveSingleScope($scope),
+                    fn ($scope) => $this->resolveSingleScope($scope),
                     $scopes
-                )
+                ),
             ];
         }
 
@@ -34,11 +35,11 @@ class ScopeResolver
             return [
                 'op' => $scopes['op'],
                 'conditions' => array_map(
-                    fn($scope) => is_array($scope) ?
+                    fn ($scope) => is_array($scope) ?
                         $this->resolveScopes($scope) :
                         $this->resolveSingleScope($scope),
                     $scopes['scopes']
-                )
+                ),
             ];
         }
 
@@ -57,7 +58,7 @@ class ScopeResolver
     private function resolveLocalScope(string $scopeName): array
     {
         $model = $this->registryManager->get('model', $this->currentModel);
-        if (!$model->hasScope($scopeName)) {
+        if (! $model->hasScope($scopeName)) {
             throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModel}'");
         }
 
@@ -70,12 +71,12 @@ class ScopeResolver
         $model = $this->registryManager->get('model', $this->currentModel);
 
         $relationship = $model->getRelationship($relation);
-        if (!$relationship) {
+        if (! $relationship) {
             throw new InvalidArgumentException("Relationship '$relation' not found on model '{$this->currentModel}'");
         }
 
         $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-        if (!$relatedModel || !$relatedModel->hasScope($scope)) {
+        if (! $relatedModel || ! $relatedModel->hasScope($scope)) {
             throw new InvalidArgumentException("Scope '$scope' not found on model '{$relationship->getRelatedModelName()}'");
         }
 
@@ -89,8 +90,9 @@ class ScopeResolver
     {
         $addPath = function ($condition) use ($relation) {
             if (isset($condition['attribute'])) {
-                $condition['attribute'] = $relation . '.' . $condition['attribute'];
+                $condition['attribute'] = $relation.'.'.$condition['attribute'];
             }
+
             return $condition;
         };
 

@@ -111,7 +111,7 @@ class ModelDefinition
             'relationships' => $this->relationshipsToArray(),
         ];
 
-        if (!empty($this->scopes)) {
+        if (! empty($this->scopes)) {
             $array['scopes'] = $this->scopes;
         }
 

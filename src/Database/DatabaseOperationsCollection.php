@@ -69,9 +69,8 @@ class DatabaseOperationsCollection
         //     $operation = $this->convertShorthandFilters($operation);
         // }
 
-
         if (isset($operation['scopes'])) {
-            if (!$this->registryManager || !$this->currentModel) {
+            if (! $this->registryManager || ! $this->currentModel) {
                 throw new InvalidArgumentException('RegistryManager and current model are required for scope resolution');
             }
 
@@ -84,8 +83,8 @@ class DatabaseOperationsCollection
                     'op' => 'and',
                     'conditions' => [
                         $scopeFilters,
-                        $operation['filters']
-                    ]
+                        $operation['filters'],
+                    ],
                 ];
             } else {
                 $operation['filters'] = $scopeFilters;
@@ -108,7 +107,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 
