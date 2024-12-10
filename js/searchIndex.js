@@ -261,6 +261,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setCurrentModel"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AmergeFilters\u0028\u0029",
+            "name": "mergeFilters",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_mergeFilters"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003Aadd\u0028\u0029",
             "name": "add",
             "summary": "Add\u0020a\u0020new\u0020operation\u0020to\u0020the\u0020collection",
@@ -410,11 +415,6 @@ Search.appendIndex(
             "name": "resolveSingleScope",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveSingleScope"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveLocalScope\u0028\u0029",
-            "name": "resolveLocalScope",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#method_resolveLocalScope"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Scopes\\ScopeResolver\u003A\u003AresolveRelationshipScope\u0028\u0029",
             "name": "resolveRelationshipScope",
