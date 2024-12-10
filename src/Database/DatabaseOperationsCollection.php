@@ -4,7 +4,9 @@ namespace Locospec\LCS\Database;
 
 use Locospec\LCS\Database\Filters\FilterGroup;
 use Locospec\LCS\Database\Relationships\RelationshipResolver;
+use Locospec\LCS\Database\Scopes\ScopeResolver;
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
+use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\Registry\RegistryManager;
 use RuntimeException;
@@ -67,6 +69,31 @@ class DatabaseOperationsCollection
         //     $operation = $this->convertShorthandFilters($operation);
         // }
 
+
+        if (isset($operation['scopes'])) {
+            if (!$this->registryManager || !$this->currentModel) {
+                throw new InvalidArgumentException('RegistryManager and current model are required for scope resolution');
+            }
+
+            $resolver = new ScopeResolver($this->registryManager, $this->currentModel);
+            $scopeFilters = $resolver->resolveScopes($operation['scopes']);
+
+            // Merge scope filters with existing filters using AND
+            if (isset($operation['filters'])) {
+                $operation['filters'] = [
+                    'op' => 'and',
+                    'conditions' => [
+                        $scopeFilters,
+                        $operation['filters']
+                    ]
+                ];
+            } else {
+                $operation['filters'] = $scopeFilters;
+            }
+
+            unset($operation['scopes']);
+        }
+
         if (isset($operation['filters'])) {
             $operation = FilterGroup::normalize($operation);
 
@@ -81,7 +108,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 

@@ -103,13 +103,19 @@ class ModelDefinition
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'name' => $this->name,
             'type' => 'model',
             'config' => $this->config->toArray(),
             'schema' => $this->schema->toArray(),
             'relationships' => $this->relationshipsToArray(),
         ];
+
+        if (!empty($this->scopes)) {
+            $array['scopes'] = $this->scopes;
+        }
+
+        return $array;
     }
 
     private function relationshipsToArray(): array

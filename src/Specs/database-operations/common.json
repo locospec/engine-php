@@ -2,6 +2,41 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://locospec.com/schemas/database-operations/common.json",
     "definitions": {
+        "scopeReference": {
+            "type": "string",
+            "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)?$"
+        },
+
+        "scopeGroup": {
+            "type": "object",
+            "properties": {
+                "op": {
+                    "type": "string",
+                    "enum": ["and", "or"]
+                },
+                "scopes": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            { "$ref": "#/definitions/scopeReference" },
+                            { "$ref": "#/definitions/scopeGroup" }
+                        ]
+                    }
+                }
+            },
+            "required": ["op", "scopes"]
+        },
+
+        "scopes": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/scopeReference" }
+                },
+                { "$ref": "#/definitions/scopeGroup" }
+            ]
+        },
+
         "condition": {
             "type": "object",
             "properties": {
