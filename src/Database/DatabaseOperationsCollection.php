@@ -17,6 +17,7 @@ class DatabaseOperationsCollection
     private array $operations = [];
 
     private DatabaseOperationsValidator $validator;
+    private ValueResolver $valueResolver;
 
     private ?RegistryManager $registryManager = null;
 
@@ -24,10 +25,19 @@ class DatabaseOperationsCollection
 
     private ?DatabaseDriverInterface $operator = null;
 
+    private ?QueryContext $context = null;
+
     public function __construct(?DatabaseDriverInterface $operator = null)
     {
         $this->validator = new DatabaseOperationsValidator;
         $this->operator = $operator;
+        $this->valueResolver = new ValueResolver;
+    }
+
+    public function setContext(QueryContext $context): self
+    {
+        $this->context = $context;
+        return $this;
     }
 
     public function setOperator(DatabaseDriverInterface $operator): self
@@ -132,11 +142,19 @@ class DatabaseOperationsCollection
             }
         }
 
+        // 4. Resolve any context variables in filter values
+        if (isset($operation['filters']) && $this->context) {
+            $operation['filters'] = $this->valueResolver->resolveFilters(
+                $operation['filters'],
+                $this->context
+            );
+        }
+
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
