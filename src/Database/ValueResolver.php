@@ -2,17 +2,15 @@
 
 namespace Locospec\LCS\Database;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-
 class ValueResolver
 {
     public function resolveValue(mixed $value, ?QueryContext $context): mixed
     {
-        if (!is_string($value) || !$context) {
+        if (! is_string($value) || ! $context) {
             return $value;
         }
 
-        if (!str_starts_with($value, '$.')) {
+        if (! str_starts_with($value, '$.')) {
             return $value;
         }
 
@@ -21,7 +19,7 @@ class ValueResolver
 
     public function resolveFilters(array $filters, ?QueryContext $context): array
     {
-        if (!isset($filters['conditions'])) {
+        if (! isset($filters['conditions'])) {
             return $filters;
         }
 

@@ -27,7 +27,7 @@ class QueryContext
                 break;
             }
 
-            if (!isset($current[$segment]) || !is_array($current[$segment])) {
+            if (! isset($current[$segment]) || ! is_array($current[$segment])) {
                 $current[$segment] = [];
             }
 
@@ -41,7 +41,7 @@ class QueryContext
         $current = $this->data;
 
         foreach ($segments as $segment) {
-            if (!is_array($current) || !array_key_exists($segment, $current)) {
+            if (! is_array($current) || ! array_key_exists($segment, $current)) {
                 return $default;
             }
             $current = $current[$segment];
@@ -56,7 +56,7 @@ class QueryContext
         $current = $this->data;
 
         foreach ($segments as $segment) {
-            if (!is_array($current) || !array_key_exists($segment, $current)) {
+            if (! is_array($current) || ! array_key_exists($segment, $current)) {
                 return false;
             }
             $current = $current[$segment];
@@ -72,7 +72,7 @@ class QueryContext
 
         // Navigate to parent of target
         for ($i = 0; $i < count($segments) - 1; $i++) {
-            if (!isset($current[$segments[$i]]) || !is_array($current[$segments[$i]])) {
+            if (! isset($current[$segments[$i]]) || ! is_array($current[$segments[$i]])) {
                 return;
             }
             $current = &$current[$segments[$i]];
@@ -89,12 +89,12 @@ class QueryContext
 
     public function resolveValue(mixed $value): mixed
     {
-        if (!is_string($value) || !str_starts_with($value, '$.')) {
+        if (! is_string($value) || ! str_starts_with($value, '$.')) {
             return $value;
         }
 
         $path = substr($value, 2); // Remove the $. prefix
-        if (!$this->has($path)) {
+        if (! $this->has($path)) {
             throw new InvalidArgumentException("Context variable not found: {$value}");
         }
 

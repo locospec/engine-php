@@ -17,6 +17,7 @@ class DatabaseOperationsCollection
     private array $operations = [];
 
     private DatabaseOperationsValidator $validator;
+
     private ValueResolver $valueResolver;
 
     private ?RegistryManager $registryManager = null;
@@ -37,6 +38,7 @@ class DatabaseOperationsCollection
     public function setContext(QueryContext $context): self
     {
         $this->context = $context;
+
         return $this;
     }
 
@@ -154,7 +156,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 
