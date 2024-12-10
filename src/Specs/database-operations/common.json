@@ -54,7 +54,9 @@
                         "in",
                         "notIn",
                         "isNull",
-                        "isNotNull"
+                        "isNotNull",
+                        ">=",
+                        "<="
                     ]
                 },
                 "attribute": { "type": "string" },

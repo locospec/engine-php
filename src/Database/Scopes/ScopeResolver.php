@@ -20,10 +20,14 @@ class ScopeResolver
     {
         // Handle simple array of scope names
         if (is_array($scopes) && !isset($scopes['op'])) {
+            if (count($scopes) === 1) {
+                return $this->resolveSingleScope($scopes[0]);
+            }
+
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn($scope) => $this->resolveSingleScope($scope),
+                    fn($scope) => $this->resolveSingleScope($scope)['conditions'][0],
                     $scopes
                 )
             ];
@@ -34,9 +38,13 @@ class ScopeResolver
             return [
                 'op' => $scopes['op'],
                 'conditions' => array_map(
-                    fn($scope) => is_array($scope) ?
-                        $this->resolveScopes($scope) :
-                        $this->resolveSingleScope($scope),
+                    function ($scope) {
+                        if (is_array($scope) && isset($scope['op'])) {
+                            return $this->resolveScopes($scope);
+                        }
+                        $resolved = $this->resolveSingleScope($scope);
+                        return $resolved['conditions'][0];
+                    },
                     $scopes['scopes']
                 )
             ];
@@ -51,11 +59,6 @@ class ScopeResolver
             return $this->resolveRelationshipScope($scopeName);
         }
 
-        return $this->resolveLocalScope($scopeName);
-    }
-
-    private function resolveLocalScope(string $scopeName): array
-    {
         $model = $this->registryManager->get('model', $this->currentModel);
         if (!$model->hasScope($scopeName)) {
             throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModel}'");
@@ -75,29 +78,23 @@ class ScopeResolver
         }
 
         $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-        if (!$relatedModel || !$relatedModel->hasScope($scope)) {
+        if (!$relatedModel->hasScope($scope)) {
             throw new InvalidArgumentException("Scope '$scope' not found on model '{$relationship->getRelatedModelName()}'");
         }
 
-        return $this->addRelationPathToFilters(
-            $relatedModel->getScope($scope),
-            $relation
-        );
+        $scopeFilter = $relatedModel->getScope($scope);
+        return $this->addRelationPathToFilters($scopeFilter, $relation);
     }
 
     private function addRelationPathToFilters(array $filters, string $relation): array
     {
-        $addPath = function ($condition) use ($relation) {
-            if (isset($condition['attribute'])) {
-                $condition['attribute'] = $relation . '.' . $condition['attribute'];
-            }
-            return $condition;
-        };
-
         if (isset($filters['conditions'])) {
-            $filters['conditions'] = array_map($addPath, $filters['conditions']);
+            foreach ($filters['conditions'] as &$condition) {
+                if (isset($condition['attribute'])) {
+                    $condition['attribute'] = $relation . '.' . $condition['attribute'];
+                }
+            }
         }
-
         return $filters;
     }
 }

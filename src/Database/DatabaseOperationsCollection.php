@@ -51,6 +51,39 @@ class DatabaseOperationsCollection
         return $this;
     }
 
+    private function mergeFilters(array $scopeFilters, array $existingFilters): array
+    {
+        // If either filter is empty, return the other
+        if (empty($scopeFilters)) {
+            return $existingFilters;
+        }
+        if (empty($existingFilters)) {
+            return $scopeFilters;
+        }
+
+        // If both filters have 'and' operator, merge their conditions
+        if (($scopeFilters['op'] ?? 'and') === 'and' &&
+            ($existingFilters['op'] ?? 'and') === 'and'
+        ) {
+            return [
+                'op' => 'and',
+                'conditions' => array_merge(
+                    $scopeFilters['conditions'] ?? [],
+                    $existingFilters['conditions'] ?? []
+                )
+            ];
+        }
+
+        // Otherwise wrap them in an AND
+        return [
+            'op' => 'and',
+            'conditions' => [
+                $scopeFilters,
+                $existingFilters
+            ]
+        ];
+    }
+
     /**
      * Add a new operation to the collection
      *
@@ -69,7 +102,6 @@ class DatabaseOperationsCollection
         //     $operation = $this->convertShorthandFilters($operation);
         // }
 
-
         if (isset($operation['scopes'])) {
             if (!$this->registryManager || !$this->currentModel) {
                 throw new InvalidArgumentException('RegistryManager and current model are required for scope resolution');
@@ -78,21 +110,17 @@ class DatabaseOperationsCollection
             $resolver = new ScopeResolver($this->registryManager, $this->currentModel);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
 
-            // Merge scope filters with existing filters using AND
+            // Merge filters more efficiently
             if (isset($operation['filters'])) {
-                $operation['filters'] = [
-                    'op' => 'and',
-                    'conditions' => [
-                        $scopeFilters,
-                        $operation['filters']
-                    ]
-                ];
+                $operation['filters'] = $this->mergeFilters($scopeFilters, $operation['filters']);
             } else {
                 $operation['filters'] = $scopeFilters;
             }
 
             unset($operation['scopes']);
         }
+
+        // dd($operation);
 
         if (isset($operation['filters'])) {
             $operation = FilterGroup::normalize($operation);

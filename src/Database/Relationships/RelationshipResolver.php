@@ -100,6 +100,7 @@ class RelationshipResolver
                 'relationship' => $relationship,
                 'extract_attribute' => $extractAndPointAttributes['extract'],
                 'point_attribute' => $extractAndPointAttributes['point'],
+                'op' => $extractAndPointAttributes['op'],
             ];
 
             $currentSourceName = $targetModel->getName();
@@ -112,6 +113,7 @@ class RelationshipResolver
 
         for ($i = 0; $i < count($relations); $i++) {
             $relation = $relations[$i];
+
             $targetModel = $relation['target_model'];
             // First we make query on the target model
             $selectOp = [
@@ -138,11 +140,12 @@ class RelationshipResolver
             );
 
             $targetAttribute = $relation['point_attribute'];
+            $targetOp = $relation['op'];
         }
 
         return [[
             'attribute' => $targetAttribute,
-            'op' => $condition['op'],
+            'op' => $targetOp,
             'value' => $currentValue,
         ]];
     }
@@ -154,9 +157,9 @@ class RelationshipResolver
         // If relationship is HasMany or HasOne, we extract foreignKey, and point the values to localKey
 
         if ($relationship instanceof BelongsTo) {
-            return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey()];
+            return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey(), 'op' => 'in'];
         } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-            return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey()];
+            return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey(), 'op' => 'in'];
         }
     }
 }
