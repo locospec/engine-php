@@ -5,8 +5,11 @@ namespace Locospec\LCS\Views;
 class ViewDefinition
 {
     private string $name;
+
     private string $centralModel;
+
     private array $modelViewAttributes = [];
+
     private $additionalAttributes = [];
 
     public function __construct(string $name, string $centralModel, array $modelViewAttributes, $additionalAttributes)
