@@ -301,11 +301,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setRegistryManager"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetCurrentModel\u0028\u0029",
-            "name": "setCurrentModel",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setCurrentModel"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AmergeFilters\u0028\u0029",
             "name": "mergeFilters",
             "summary": "",
@@ -350,11 +345,6 @@ Search.appendIndex(
             "name": "registryManager",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_registryManager"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024currentModel",
-            "name": "currentModel",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_currentModel"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operator",
             "name": "operator",
@@ -460,6 +450,56 @@ Search.appendIndex(
             "name": "data",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-QueryContext.html#property_data"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander",
+            "name": "RelationshipExpander",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003Aexpand\u0028\u0029",
+            "name": "expand",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method_expand"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003AexpandSingle\u0028\u0029",
+            "name": "expandSingle",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method_expandSingle"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003AexpandRelation\u0028\u0029",
+            "name": "expandRelation",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method_expandRelation"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003AmapRelatedRecords\u0028\u0029",
+            "name": "mapRelatedRecords",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method_mapRelatedRecords"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003AgetExtractAndPointAttributes\u0028\u0029",
+            "name": "getExtractAndPointAttributes",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#method_getExtractAndPointAttributes"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#property_model"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003A\u0024dbOps",
+            "name": "dbOps",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#property_dbOps"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipExpander\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-Relationships-RelationshipExpander.html#property_registryManager"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\Relationships\\RelationshipResolver",
             "name": "RelationshipResolver",
