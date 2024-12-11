@@ -156,7 +156,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -196,6 +196,14 @@ class DatabaseOperationsCollection
         $execOperator = $operator ?? $this->operator;
         $results = $execOperator->run($this->operations);
 
+        if ($this->currentModel && isset($results['result'])) {
+            $model = $this->registryManager->get('model', $this->currentModel);
+            if ($model && $model->getAliases()) {
+                $aliasTransformer = new AliasTransformation($model);
+                $results['result'] = $aliasTransformer->transform($results['result']);
+            }
+        }
+
         // Reset operations after execution
         $this->reset();
 
@@ -210,62 +218,5 @@ class DatabaseOperationsCollection
         $this->operations = [];
 
         return $this;
-    }
-
-    /**
-     * Convert shorthand filters to full-form structure
-     *
-     * @param  array  $operation  The operation to convert
-     * @return array The operation with full-form filters
-     */
-    private function convertShorthandFilters(array $operation): array
-    {
-        $filters = $operation['filters'];
-
-        // If filters is not an array, return unchanged
-        if (! is_array($filters)) {
-            return $operation;
-        }
-
-        // If already in full form (has op and conditions), return unchanged
-        if (isset($filters['op']) && isset($filters['conditions'])) {
-            return $operation;
-        }
-
-        // Handle array format of conditions
-        if (isset($filters[0])) {
-            // It's a numeric array, each element should be a condition
-            $operation['filters'] = [
-                'op' => 'and',
-                'conditions' => $filters,
-            ];
-
-            return $operation;
-        }
-
-        // Only process if filters exist and don't already have the proper structure
-        if (isset($operation['filters']) && is_array($operation['filters'])) {
-            // Check if filters are already in full form (have 'op' and 'conditions')
-            if (! isset($operation['filters']['op']) && ! isset($operation['filters']['conditions'])) {
-                $conditions = [];
-
-                // Convert each shorthand filter to a full condition
-                foreach ($operation['filters'] as $attribute => $value) {
-                    $conditions[] = [
-                        'op' => 'eq',
-                        'attribute' => $attribute,
-                        'value' => $value,
-                    ];
-                }
-
-                // Wrap conditions in an 'and' group
-                $operation['filters'] = [
-                    'op' => 'and',
-                    'conditions' => $conditions,
-                ];
-            }
-        }
-
-        return $operation;
     }
 }

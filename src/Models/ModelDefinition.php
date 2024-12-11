@@ -5,9 +5,12 @@ namespace Locospec\LCS\Models;
 use Locospec\LCS\Models\Relationships\Relationship;
 use Locospec\LCS\Schema\Schema;
 use Locospec\LCS\Support\StringInflector;
+use Locospec\LCS\Models\Traits\HasAliases;
 
 class ModelDefinition
 {
+    use HasAliases;
+
     private string $name;
 
     private Schema $schema;
@@ -71,7 +74,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
+            fn(Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -98,6 +101,8 @@ class ModelDefinition
             }
         }
 
+        $model->loadAliasesFromArray($data);
+
         return $model;
     }
 
@@ -113,6 +118,10 @@ class ModelDefinition
 
         if (! empty($this->scopes)) {
             $array['scopes'] = $this->scopes;
+        }
+
+        if (! empty($this->aliases)) {
+            $array['aliases'] = $this->aliases;
         }
 
         return $array;
