@@ -41,9 +41,12 @@ class AliasTransformation
             // First extract
             $extracted = $this->executeJQExpression($record, $expression['extract']);
 
+            // dump($extracted);
+
             // Then transform if transform expression exists
             if ($extracted !== null && ! empty($expression['transform'])) {
-                $transformed = $this->executeJQExpression(['value' => $extracted], '.value | ' . $expression['transform']);
+                $toTransform = json_decode($extracted, true);
+                $transformed = $this->executeJQExpression(['value' => $toTransform], '.value | ' . $expression['transform']);
 
                 if ($transformed !== null) {
                     $processed[$aliasKey] = $transformed;
@@ -74,8 +77,15 @@ class AliasTransformation
                 return null;
             }
 
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                return null;
+            }
+
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
+
+            // dump(["errored jq", $data, $expression, $e]);
+
             return null;
         }
     }

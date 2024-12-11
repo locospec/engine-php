@@ -3,6 +3,7 @@
 namespace Locospec\LCS\Database;
 
 use Locospec\LCS\Database\Filters\FilterGroup;
+use Locospec\LCS\Database\Relationships\RelationshipExpander;
 use Locospec\LCS\Database\Relationships\RelationshipResolver;
 use Locospec\LCS\Database\Scopes\ScopeResolver;
 use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
@@ -21,8 +22,6 @@ class DatabaseOperationsCollection
     private ValueResolver $valueResolver;
 
     private ?RegistryManager $registryManager = null;
-
-    private ?string $currentModel = null;
 
     private ?DatabaseDriverInterface $operator = null;
 
@@ -56,12 +55,6 @@ class DatabaseOperationsCollection
         return $this;
     }
 
-    public function setCurrentModel(string $modelName): self
-    {
-        $this->currentModel = $modelName;
-
-        return $this;
-    }
 
     private function mergeFilters(array $scopeFilters, array $existingFilters): array
     {
@@ -105,21 +98,19 @@ class DatabaseOperationsCollection
      */
     public function add(array $operation): self
     {
-        // Convert shorthand filters to full-form structure if present
-        // if (isset($operation['filters']) && is_array($operation['filters'])) {
-        //     $operation = $this->convertShorthandFilters($operation);
-        // }
+        if (!isset($operation['modelName'])) {
+            throw new InvalidArgumentException('Operation must specify a modelName');
+        }
 
-        // if (isset($operation['filters'])) {
-        //     $operation = $this->convertShorthandFilters($operation);
-        // }
+        $model = $this->registryManager->get('model', $operation['modelName']);
+        if (!$model) {
+            throw new InvalidArgumentException("Model not found: {$operation['modelName']}");
+        }
+
+        $operation['tableName'] = $model->getConfig()->getTable() ?? $model->getPluralName();
 
         if (isset($operation['scopes'])) {
-            if (! $this->registryManager || ! $this->currentModel) {
-                throw new InvalidArgumentException('RegistryManager and current model are required for scope resolution');
-            }
-
-            $resolver = new ScopeResolver($this->registryManager, $this->currentModel);
+            $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
 
             // Merge filters more efficiently
@@ -136,12 +127,8 @@ class DatabaseOperationsCollection
 
         if (isset($operation['filters'])) {
             $operation = FilterGroup::normalize($operation);
-
-            if ($this->registryManager && $this->currentModel) {
-                $model = $this->registryManager->get('model', $this->currentModel);
-                $resolver = new RelationshipResolver($model, $this, $this->registryManager);
-                $operation = $resolver->resolveFilters($operation);
-            }
+            $resolver = new RelationshipResolver($model, $this, $this->registryManager);
+            $operation = $resolver->resolveFilters($operation);
         }
 
         // 4. Resolve any context variables in filter values
@@ -156,7 +143,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -194,20 +181,36 @@ class DatabaseOperationsCollection
         }
 
         $execOperator = $operator ?? $this->operator;
-        $results = $execOperator->run($this->operations);
-
-        if ($this->currentModel && isset($results['result'])) {
-            $model = $this->registryManager->get('model', $this->currentModel);
-            if ($model && $model->getAliases()) {
-                $aliasTransformer = new AliasTransformation($model);
-                $results['result'] = $aliasTransformer->transform($results['result']);
-            }
-        }
+        $dbOpResults = $execOperator->run($this->operations);
 
         // Reset operations after execution
         $this->reset();
 
-        return $results;
+        foreach ($dbOpResults as $index => $dbOpResult) {
+            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
+                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                if (isset($dbOpResult['operation']['expand'])) {
+                    $expander = new RelationshipExpander($model, $this, $this->registryManager);
+                    $dbOpResults[$index] = $expander->expand($dbOpResult);
+                }
+            }
+        }
+
+        foreach ($dbOpResults as $index => $dbOpResult) {
+
+            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
+
+                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                if ($model && $model->getAliases()) {
+                    $aliasTransformer = new AliasTransformation($model);
+                    $dbOpResults[$index]['result'] = $aliasTransformer->transform($dbOpResult['result']);
+                }
+            }
+        }
+
+        return $dbOpResults;
     }
 
     /**

@@ -115,10 +115,11 @@ class RelationshipResolver
             $relation = $relations[$i];
 
             $targetModel = $relation['target_model'];
+
             // First we make query on the target model
             $selectOp = [
                 'type' => 'select',
-                'tableName' => $targetModel->getConfig()->getTable(),
+                'modelName' => $targetModel->getName(),
                 'filters' => [
                     'op' => 'and',
                     'conditions' => [
@@ -135,7 +136,7 @@ class RelationshipResolver
             $dbOpsResponse = $this->dbOps->add($selectOp)->execute();
 
             $currentValue = array_column(
-                $dbOpsResponse['result'],
+                $dbOpsResponse[0]['result'],
                 $relation['extract_attribute']
             );
 
