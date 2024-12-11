@@ -43,7 +43,7 @@ class AliasTransformation
 
             // Then transform if transform expression exists
             if ($extracted !== null && ! empty($expression['transform'])) {
-                $transformed = $this->executeJQExpression(['value' => $extracted], '.value | ' . $expression['transform']);
+                $transformed = $this->executeJQExpression(['value' => $extracted], '.value | '.$expression['transform']);
 
                 if ($transformed !== null) {
                     $processed[$aliasKey] = $transformed;
