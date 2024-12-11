@@ -41,13 +41,9 @@ class AliasTransformation
             // First extract
             $extracted = $this->executeJQExpression($record, $expression['extract']);
 
-            dump([$aliasKey, $extracted, $record, $expression['extract']]);
-
             // Then transform if transform expression exists
             if ($extracted !== null && !empty($expression['transform'])) {
                 $transformed = $this->executeJQExpression(['value' => $extracted], '.value | ' . $expression['transform']);
-
-                dump(["transformed", $transformed]);
 
                 if ($transformed !== null) {
                     $processed[$aliasKey] = $transformed;
