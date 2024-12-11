@@ -236,6 +236,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Actions-StateMachineFactory.html#property_lcs"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasExpressionParser",
+            "name": "AliasExpressionParser",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasExpressionParser.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasExpressionParser\u003A\u003Aparse\u0028\u0029",
+            "name": "parse",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasExpressionParser.html#method_parse"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation",
+            "name": "AliasTransformation",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation\u003A\u003Atransform\u0028\u0029",
+            "name": "transform",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html#method_transform"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation\u003A\u003AprocessRecord\u0028\u0029",
+            "name": "processRecord",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html#method_processRecord"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation\u003A\u003AexecuteJQExpression\u0028\u0029",
+            "name": "executeJQExpression",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html#method_executeJQExpression"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Database\\AliasTransformation\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Database-AliasTransformation.html#property_model"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection",
             "name": "DatabaseOperationsCollection",
             "summary": "",
@@ -290,11 +330,6 @@ Search.appendIndex(
             "name": "reset",
             "summary": "Reset\u0020the\u0020collection",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_reset"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AconvertShorthandFilters\u0028\u0029",
-            "name": "convertShorthandFilters",
-            "summary": "Convert\u0020shorthand\u0020filters\u0020to\u0020full\u002Dform\u0020structure",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_convertShorthandFilters"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operations",
             "name": "operations",
@@ -1315,6 +1350,51 @@ Search.appendIndex(
             "name": "currentModelName",
             "summary": "",
             "url": "classes/Locospec-LCS-Models-Relationships-Relationship.html#property_currentModelName"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases",
+            "name": "HasAliases",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AgetExpressionParser\u0028\u0029",
+            "name": "getExpressionParser",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getExpressionParser"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AaddAlias\u0028\u0029",
+            "name": "addAlias",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_addAlias"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AgetAlias\u0028\u0029",
+            "name": "getAlias",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAlias"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AgetAliases\u0028\u0029",
+            "name": "getAliases",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAliases"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AloadAliasesFromArray\u0028\u0029",
+            "name": "loadAliasesFromArray",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_loadAliasesFromArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003AaliasesToArray\u0028\u0029",
+            "name": "aliasesToArray",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#method_aliasesToArray"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003A\u0024aliases",
+            "name": "aliases",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#property_aliases"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits\\HasAliases\u003A\u003A\u0024expressionParser",
+            "name": "expressionParser",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#property_expressionParser"
         },                {
             "fqsen": "\\Locospec\\LCS\\Parsers\\ModelParser",
             "name": "ModelParser",
@@ -3655,6 +3735,11 @@ Search.appendIndex(
             "name": "Relationships",
             "summary": "",
             "url": "namespaces/locospec-lcs-models-relationships.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\Traits",
+            "name": "Traits",
+            "summary": "",
+            "url": "namespaces/locospec-lcs-models-traits.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Parsers",
             "name": "Parsers",

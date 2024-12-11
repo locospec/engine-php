@@ -109,6 +109,9 @@
         </div>
     
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html"><abbr title="\Locospec\LCS\Models\Traits\HasAliases">HasAliases</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -119,7 +122,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -153,9 +156,21 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_aliases">$aliases</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/Locospec-LCS-Models-ModelDefinition.html#property_config">$config</a>
     <span>
                         &nbsp;: <a href="classes/Locospec-LCS-Models-ModelConfiguration.html"><abbr title="\Locospec\LCS\Models\ModelConfiguration">ModelConfiguration</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_expressionParser">$expressionParser</a>
+    <span>
+                        &nbsp;: <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html"><abbr title="\Locospec\LCS\Database\AliasExpressionParser">AliasExpressionParser</abbr></a>|null            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
@@ -197,6 +212,12 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_addAlias">addAlias()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-LCS-Models-ModelDefinition.html#method_addRelationship">addRelationship()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -212,6 +233,18 @@
     <a class="" href="classes/Locospec-LCS-Models-ModelDefinition.html#method_fromArray">fromArray()</a>
     <span>
                                 &nbsp;: self    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAlias">getAlias()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAliases">getAliases()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -286,6 +319,24 @@
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_aliasesToArray">aliasesToArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_loadAliasesFromArray">loadAliasesFromArray()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getExpressionParser">getExpressionParser()</a>
+    <span>
+                                &nbsp;: <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html"><abbr title="\Locospec\LCS\Database\AliasExpressionParser">AliasExpressionParser</abbr></a>    </span>
+</dt>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Locospec-LCS-Models-ModelDefinition.html#method_relationshipsToArray">relationshipsToArray()</a>
     <span>
@@ -312,6 +363,42 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_aliases">
+        $aliases
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_aliases" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$aliases</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_config">
         $config
         <a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_config" class="headerlink"><i class="fas fa-link"></i></a>
@@ -322,7 +409,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -348,6 +435,42 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_expressionParser">
+        $expressionParser
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_expressionParser" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">10</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-LCS-Database-AliasExpressionParser.html"><abbr title="\Locospec\LCS\Database\AliasExpressionParser">AliasExpressionParser</abbr></a>|null</span>
+    <span class="phpdocumentor-signature__name">$expressionParser</span>
+     = <span class="phpdocumentor-signature__default-value">null</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_name">
         $name
         <a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
@@ -358,7 +481,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -394,7 +517,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -430,7 +553,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -466,7 +589,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -507,7 +630,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -557,6 +680,57 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_addAlias">
+        addAlias()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_addAlias" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">20</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">addAlias</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expression</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$key</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$expression</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_addRelationship">
         addRelationship()
         <a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_addRelationship" class="headerlink"><i class="fas fa-link"></i></a>
@@ -565,7 +739,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">55</span>
+    <span class="phpdocumentor-element-found-in__line">58</span>
 
     </aside>
 
@@ -609,7 +783,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">135</span>
+    <span class="phpdocumentor-element-found-in__line">144</span>
 
     </aside>
 
@@ -660,7 +834,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">78</span>
+    <span class="phpdocumentor-element-found-in__line">81</span>
 
     </aside>
 
@@ -700,6 +874,92 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getAlias">
+        getAlias()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAlias" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">32</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAlias</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$key</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getAliases">
+        getAliases()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAliases" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">37</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAliases</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getConfig">
         getConfig()
         <a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_getConfig" class="headerlink"><i class="fas fa-link"></i></a>
@@ -708,7 +968,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">53</span>
 
     </aside>
 
@@ -746,7 +1006,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">28</span>
+    <span class="phpdocumentor-element-found-in__line">31</span>
 
     </aside>
 
@@ -784,7 +1044,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
@@ -822,7 +1082,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">60</span>
+    <span class="phpdocumentor-element-found-in__line">63</span>
 
     </aside>
 
@@ -870,7 +1130,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">65</span>
+    <span class="phpdocumentor-element-found-in__line">68</span>
 
     </aside>
 
@@ -908,7 +1168,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">73</span>
 
     </aside>
 
@@ -956,7 +1216,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">45</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
@@ -994,7 +1254,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">149</span>
 
     </aside>
 
@@ -1042,7 +1302,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">145</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
@@ -1080,7 +1340,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">33</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
@@ -1118,7 +1378,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">150</span>
+    <span class="phpdocumentor-element-found-in__line">159</span>
 
     </aside>
 
@@ -1166,7 +1426,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">109</span>
 
     </aside>
 
@@ -1193,6 +1453,126 @@
                     <article
         class="phpdocumentor-element
             -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_aliasesToArray">
+        aliasesToArray()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_aliasesToArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">aliasesToArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_loadAliasesFromArray">
+        loadAliasesFromArray()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_loadAliasesFromArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">loadAliasesFromArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getExpressionParser">
+        getExpressionParser()
+        <a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getExpressionParser" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Traits/HasAliases.php"><a href="files/src-models-traits-hasaliases.html"><abbr title="src/Models/Traits/HasAliases.php">HasAliases.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">12</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">getExpressionParser</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Database-AliasExpressionParser.html"><abbr title="\Locospec\LCS\Database\AliasExpressionParser">AliasExpressionParser</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-LCS-Database-AliasExpressionParser.html"><abbr title="\Locospec\LCS\Database\AliasExpressionParser">AliasExpressionParser</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
             -private
                                                         "
 >
@@ -1204,7 +1584,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelDefinition.php"><a href="files/src-models-modeldefinition.html"><abbr title="src/Models/ModelDefinition.php">ModelDefinition.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">121</span>
+    <span class="phpdocumentor-element-found-in__line">130</span>
 
     </aside>
 
@@ -1341,7 +1721,9 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_aliases">$aliases</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_config">$config</a></li>
+                                                    <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#property_expressionParser">$expressionParser</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_name">$name</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_relationships">$relationships</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#property_schema">$schema</a></li>
@@ -1353,9 +1735,12 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_addAlias">addAlias()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_addRelationship">addRelationship()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_addScope">addScope()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_fromArray">fromArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAlias">getAlias()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getAliases">getAliases()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_getConfig">getConfig()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_getName">getName()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_getPluralName">getPluralName()</a></li>
@@ -1368,6 +1753,9 @@
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_getSingularName">getSingularName()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_hasScope">hasScope()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_aliasesToArray">aliasesToArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_loadAliasesFromArray">loadAliasesFromArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-Traits-HasAliases.html#method_getExpressionParser">getExpressionParser()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelDefinition.html#method_relationshipsToArray">relationshipsToArray()</a></li>
                                     </ul>
             </li>

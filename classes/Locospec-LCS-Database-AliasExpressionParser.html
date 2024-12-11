@@ -98,7 +98,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ValueResolver
+    AliasExpressionParser
 
     
             <div class="phpdocumentor-element__package">
@@ -117,7 +117,7 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/AliasExpressionParser.php"><a href="files/src-database-aliasexpressionparser.html"><abbr title="src/Database/AliasExpressionParser.php">AliasExpressionParser.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">5</span>
 
@@ -134,7 +134,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-LCS-Database-ValueResolver.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -149,20 +149,14 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-LCS-Database-ValueResolver.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveFilters">resolveFilters()</a>
+    <a class="" href="classes/Locospec-LCS-Database-AliasExpressionParser.html#method_parse">parse()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveValue">resolveValue()</a>
-    <span>
-                                &nbsp;: mixed    </span>
 </dt>
 
     </dl>
@@ -176,7 +170,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-LCS-Database-ValueResolver.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -185,22 +179,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_resolveFilters">
-        resolveFilters()
-        <a href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveFilters" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_parse">
+        parse()
+        <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#method_parse" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/AliasExpressionParser.php"><a href="files/src-database-aliasexpressionparser.html"><abbr title="src/Database/AliasExpressionParser.php">AliasExpressionParser.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">resolveFilters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Database-QueryContext.html"><abbr title="\Locospec\LCS\Database\QueryContext">QueryContext</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">parse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expression</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -209,15 +203,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$context</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Database-QueryContext.html"><abbr title="\Locospec\LCS\Database\QueryContext">QueryContext</abbr></a>|null</span>
+                <span class="phpdocumentor-signature__argument__name">$expression</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -234,64 +221,13 @@
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_resolveValue">
-        resolveValue()
-        <a href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveValue" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">7</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">resolveValue</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Database-QueryContext.html"><abbr title="\Locospec\LCS\Database\QueryContext">QueryContext</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$value</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$context</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-LCS-Database-QueryContext.html"><abbr title="\Locospec\LCS\Database\QueryContext">QueryContext</abbr></a>|null</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/ValueResolver.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/AliasExpressionParser.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -390,7 +326,7 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/Locospec-LCS-Database-ValueResolver.html#toc-methods">Methods</a></li>
+                                                                                <li><a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -398,8 +334,7 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveFilters">resolveFilters()</a></li>
-                                            <li class=""><a href="classes/Locospec-LCS-Database-ValueResolver.html#method_resolveValue">resolveValue()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#method_parse">parse()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -419,7 +354,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-LCS-Database-ValueResolver.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-LCS-Database-AliasExpressionParser.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
