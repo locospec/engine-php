@@ -22,7 +22,7 @@ class AliasTransformation
             return $data;
         }
 
-        $isCollection = is_array($data) && !empty($data) && !isset($data['id']);
+        $isCollection = is_array($data) && ! empty($data) && ! isset($data['id']);
         $records = $isCollection ? $data : [$data];
 
         $transformedRecords = [];
@@ -42,7 +42,7 @@ class AliasTransformation
             $extracted = $this->executeJQExpression($record, $expression['extract']);
 
             // Then transform if transform expression exists
-            if ($extracted !== null && !empty($expression['transform'])) {
+            if ($extracted !== null && ! empty($expression['transform'])) {
                 $transformed = $this->executeJQExpression(['value' => $extracted], '.value | ' . $expression['transform']);
 
                 if ($transformed !== null) {
@@ -64,14 +64,13 @@ class AliasTransformation
             return null;
         }
 
-
         $process = new Process(['jq', '-r', $expression]);
         $process->setInput(json_encode($data));
 
         try {
             $process->mustRun();
 
-            if (!$process->isSuccessful()) {
+            if (! $process->isSuccessful()) {
                 return null;
             }
 

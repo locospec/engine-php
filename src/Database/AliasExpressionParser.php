@@ -10,10 +10,10 @@ class AliasExpressionParser
         $expression = trim($expression);
 
         // If there's no pipe, it's just extraction
-        if (!str_contains($expression, '|')) {
+        if (! str_contains($expression, '|')) {
             return [
                 'extract' => $expression,
-                'transform' => null
+                'transform' => null,
             ];
         }
 
@@ -22,7 +22,7 @@ class AliasExpressionParser
 
         return [
             'extract' => trim($parts[0]),
-            'transform' => trim($parts[1])
+            'transform' => trim($parts[1]),
         ];
     }
 }

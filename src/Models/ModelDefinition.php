@@ -3,9 +3,9 @@
 namespace Locospec\LCS\Models;
 
 use Locospec\LCS\Models\Relationships\Relationship;
+use Locospec\LCS\Models\Traits\HasAliases;
 use Locospec\LCS\Schema\Schema;
 use Locospec\LCS\Support\StringInflector;
-use Locospec\LCS\Models\Traits\HasAliases;
 
 class ModelDefinition
 {
@@ -74,7 +74,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn(Relationship $rel) => $rel->getType() === $type
+            fn (Relationship $rel) => $rel->getType() === $type
         );
     }
 
