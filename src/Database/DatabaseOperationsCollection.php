@@ -55,7 +55,6 @@ class DatabaseOperationsCollection
         return $this;
     }
 
-
     private function mergeFilters(array $scopeFilters, array $existingFilters): array
     {
         // If either filter is empty, return the other
@@ -98,12 +97,12 @@ class DatabaseOperationsCollection
      */
     public function add(array $operation): self
     {
-        if (!isset($operation['modelName'])) {
+        if (! isset($operation['modelName'])) {
             throw new InvalidArgumentException('Operation must specify a modelName');
         }
 
         $model = $this->registryManager->get('model', $operation['modelName']);
-        if (!$model) {
+        if (! $model) {
             throw new InvalidArgumentException("Model not found: {$operation['modelName']}");
         }
 
@@ -143,7 +142,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 

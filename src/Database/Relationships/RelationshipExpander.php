@@ -13,7 +13,9 @@ use Locospec\LCS\Registry\RegistryManager;
 class RelationshipExpander
 {
     private ModelDefinition $model;
+
     private DatabaseOperationsCollection $dbOps;
+
     private RegistryManager $registryManager;
 
     public function __construct(
@@ -36,6 +38,7 @@ class RelationshipExpander
         }
 
         $dbOpResult['result'] = $results;
+
         return $dbOpResult;
     }
 
@@ -82,9 +85,9 @@ class RelationshipExpander
                 'conditions' => [[
                     'attribute' => $relation['extract_by_attribute'],
                     'op' => $relation['op'],
-                    'value' => array_values(array_unique($sourceIds))
-                ]]
-            ]
+                    'value' => array_values(array_unique($sourceIds)),
+                ]],
+            ],
         ];
 
         // Add remaining expansion path if exists
@@ -113,7 +116,7 @@ class RelationshipExpander
             if ($relationship instanceof HasMany) {
                 $result[$relation['target_model_name']] = array_values($related);
             } else {
-                $result[$relation['target_model_name']] = !empty($related) ? reset($related) : null;
+                $result[$relation['target_model_name']] = ! empty($related) ? reset($related) : null;
             }
         }
 
@@ -126,13 +129,13 @@ class RelationshipExpander
             return [
                 'extract' => $relationship->getOwnerKey(),
                 'point' => $relationship->getForeignKey(),
-                'op' => 'in'
+                'op' => 'in',
             ];
         } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return [
                 'extract' => $relationship->getForeignKey(),
                 'point' => $relationship->getLocalKey(),
-                'op' => 'in'
+                'op' => 'in',
             ];
         }
     }
