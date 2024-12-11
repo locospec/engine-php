@@ -7,13 +7,15 @@ use Locospec\LCS\Database\AliasExpressionParser;
 trait HasAliases
 {
     private array $aliases = [];
+
     private ?AliasExpressionParser $expressionParser = null;
 
     private function getExpressionParser(): AliasExpressionParser
     {
         if ($this->expressionParser === null) {
-            $this->expressionParser = new AliasExpressionParser();
+            $this->expressionParser = new AliasExpressionParser;
         }
+
         return $this->expressionParser;
     }
 
@@ -22,7 +24,7 @@ trait HasAliases
         if (is_string($expression)) {
             $this->aliases[$key] = $this->getExpressionParser()->parse($expression);
         } else {
-            if (!isset($expression['extract'])) {
+            if (! isset($expression['extract'])) {
                 throw new \InvalidArgumentException("Alias array must contain 'extract' key");
             }
             $this->aliases[$key] = $expression;
@@ -50,6 +52,6 @@ trait HasAliases
 
     protected function aliasesToArray(): array
     {
-        return !empty($this->aliases) ? ['aliases' => $this->aliases] : [];
+        return ! empty($this->aliases) ? ['aliases' => $this->aliases] : [];
     }
 }
