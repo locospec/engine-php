@@ -23,27 +23,18 @@ class DatabaseOperationsCollection
 
     private ?RegistryManager $registryManager = null;
 
-    private ?DatabaseDriverInterface $operator = null;
 
     private ?QueryContext $context = null;
 
-    public function __construct(?DatabaseDriverInterface $operator = null)
+    public function __construct()
     {
         $this->validator = new DatabaseOperationsValidator;
-        $this->operator = $operator;
         $this->valueResolver = new ValueResolver;
     }
 
     public function setContext(QueryContext $context): self
     {
         $this->context = $context;
-
-        return $this;
-    }
-
-    public function setOperator(DatabaseDriverInterface $operator): self
-    {
-        $this->operator = $operator;
 
         return $this;
     }
@@ -142,7 +133,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
@@ -175,11 +166,14 @@ class DatabaseOperationsCollection
      */
     public function execute(?DatabaseDriverInterface $operator = null): array
     {
-        if (! $operator && ! $this->operator) {
+        $databaseDriverRegistry = $this->registryManager->getRegistry('database_driver');
+        $derivedOperator = $databaseDriverRegistry->getDefaultDriver();
+
+        if (! $operator && ! $derivedOperator) {
             throw new RuntimeException('No database operator provided for execution');
         }
 
-        $execOperator = $operator ?? $this->operator;
+        $execOperator = $operator ?? $derivedOperator;
         $dbOpResults = $execOperator->run($this->operations);
 
         // Reset operations after execution

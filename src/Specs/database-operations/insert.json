@@ -4,7 +4,7 @@
     "type": "object",
     "properties": {
         "type": { "type": "string", "enum": ["insert"] },
-        "tableName": { "type": "string" },
+        "modelName": { "type": "string" },
         "data": {
             "type": "array",
             "items": {
@@ -14,6 +14,6 @@
             "minItems": 1
         }
     },
-    "required": ["type", "tableName", "data"],
+    "required": ["type", "modelName", "data"],
     "additionalProperties": false
 }
