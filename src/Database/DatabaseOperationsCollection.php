@@ -96,8 +96,6 @@ class DatabaseOperationsCollection
             throw new InvalidArgumentException("Model not found: {$operation['modelName']}");
         }
 
-
-
         if (isset($operation['scopes'])) {
             $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
@@ -132,7 +130,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 

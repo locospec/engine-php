@@ -7,6 +7,7 @@ class ModelConfiguration
     private string $primaryKey;
 
     private string $table;
+
     private ?string $connection;
 
     private ?string $dbOperator;
@@ -82,6 +83,6 @@ class ModelConfiguration
             'dbOperator' => $this->dbOperator,
             'singular' => $this->singular,
             'plural' => $this->plural,
-        ], fn($value) => $value !== null);
+        ], fn ($value) => $value !== null);
     }
 }
