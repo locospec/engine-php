@@ -25,10 +25,10 @@ class DatabaseDriverRegistry extends AbstractRegistry
         return $item->getName();
     }
 
-    public function register(mixed $className): void
+    public function register(mixed $connection): void
     {
-        $task = new $className;
-        $name = $task->getName();
+        $name = $connection['name'];
+        $className = $connection['className'];
 
         if ($name === trim('')) {
             throw new InvalidArgumentException("Please set Driver name using getName on {$className}");
