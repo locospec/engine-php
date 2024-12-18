@@ -291,11 +291,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setContext"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetOperator\u0028\u0029",
-            "name": "setOperator",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#method_setOperator"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003AsetRegistryManager\u0028\u0029",
             "name": "setRegistryManager",
             "summary": "",
@@ -345,11 +340,6 @@ Search.appendIndex(
             "name": "registryManager",
             "summary": "",
             "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_registryManager"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operator",
-            "name": "operator",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-DatabaseOperationsCollection.html#property_operator"
         },                {
             "fqsen": "\\Locospec\\LCS\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024context",
             "name": "context",
