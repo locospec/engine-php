@@ -23,7 +23,6 @@ class DatabaseOperationsCollection
 
     private ?RegistryManager $registryManager = null;
 
-
     private ?QueryContext $context = null;
 
     public function __construct()
@@ -133,7 +132,7 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 
