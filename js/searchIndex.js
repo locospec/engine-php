@@ -2156,11 +2156,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Registry-DatabaseDriverInterface.html"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
-            "url": "classes/Locospec-LCS-Registry-DatabaseDriverInterface.html#method_getName"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Registry\\DatabaseDriverInterface\u003A\u003Arun\u0028\u0029",
             "name": "run",
             "summary": "Run\u0020a\u0020collection\u0020of\u0020database\u0020operations",
