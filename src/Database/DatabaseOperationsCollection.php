@@ -96,7 +96,7 @@ class DatabaseOperationsCollection
             throw new InvalidArgumentException("Model not found: {$operation['modelName']}");
         }
 
-        $operation['tableName'] = $model->getConfig()->getTable() ?? $model->getPluralName();
+
 
         if (isset($operation['scopes'])) {
             $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
@@ -132,10 +132,12 @@ class DatabaseOperationsCollection
 
         if (! $validation['isValid']) {
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 
+        $operation['tableName'] = $model->getConfig()->getTable();
+        $operation['connection'] = $model->getConfig()->getConnection() ?? 'default';
         $this->operations[] = $operation;
 
         return $this;
@@ -172,8 +174,18 @@ class DatabaseOperationsCollection
             throw new RuntimeException('No database operator provided for execution');
         }
 
-        $execOperator = $operator ?? $derivedOperator;
-        $dbOpResults = $execOperator->run($this->operations);
+        // If each operation here has different connection to be used, then how should we execute?
+
+        $dbOpResults = [];
+
+        foreach ($this->operations as $operation) {
+            $derivedOperator = $databaseDriverRegistry->get($operation['connection']);
+            $execOperator = $operator ?? $derivedOperator;
+            $dbOpResult = $execOperator->run([$operation]);
+            $dbOpResults[] = $dbOpResult[0];
+        }
+
+        // $dbOpResults = $execOperator->run($this->operations);
 
         // Reset operations after execution
         $this->reset();
