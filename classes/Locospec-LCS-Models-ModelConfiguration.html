@@ -153,6 +153,12 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_connection">$connection</a>
+    <span>
+                        &nbsp;: string|null            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_dbOperator">$dbOperator</a>
     <span>
                         &nbsp;: string|null            </span>
@@ -200,6 +206,12 @@
     <a class="" href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_fromArray">fromArray()</a>
     <span>
                                 &nbsp;: self    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getConnection">getConnection()</a>
+    <span>
+                                &nbsp;: string|null    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -258,6 +270,42 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="property_connection">
+        $connection
+        <a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_connection" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">10</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string|null</span>
+    <span class="phpdocumentor-signature__name">$connection</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="property_dbOperator">
         $dbOperator
         <a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_dbOperator" class="headerlink"><i class="fas fa-link"></i></a>
@@ -268,7 +316,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
@@ -304,7 +352,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -376,7 +424,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -453,14 +501,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$primaryKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOperator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$singular</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$plural</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$primaryKey</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;id&#039;</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connection</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOperator</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$singular</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$plural</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -477,6 +525,13 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$table</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$connection</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                  = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -525,7 +580,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
@@ -565,6 +620,44 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getConnection">
+        getConnection()
+        <a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getConnection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">56</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getConnection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string|null</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getDbOperator">
         getDbOperator()
         <a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getDbOperator" class="headerlink"><i class="fas fa-link"></i></a>
@@ -573,7 +666,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">52</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -611,7 +704,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
@@ -649,7 +742,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -687,7 +780,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">57</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -725,7 +818,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">47</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -763,7 +856,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Models/ModelConfiguration.php"><a href="files/src-models-modelconfiguration.html"><abbr title="src/Models/ModelConfiguration.php">ModelConfiguration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">67</span>
+    <span class="phpdocumentor-element-found-in__line">76</span>
 
     </aside>
 
@@ -900,6 +993,7 @@
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_connection">$connection</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_dbOperator">$dbOperator</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_plural">$plural</a></li>
                                                     <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#property_primaryKey">$primaryKey</a></li>
@@ -913,6 +1007,7 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_fromArray">fromArray()</a></li>
+                                            <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getConnection">getConnection()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getDbOperator">getDbOperator()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getPlural">getPlural()</a></li>
                                             <li class=""><a href="classes/Locospec-LCS-Models-ModelConfiguration.html#method_getPrimaryKey">getPrimaryKey()</a></li>

@@ -946,6 +946,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Models-ModelConfiguration.html#method_getTable"
         },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelConfiguration\u003A\u003AgetConnection\u0028\u0029",
+            "name": "getConnection",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelConfiguration.html#method_getConnection"
+        },                {
             "fqsen": "\\Locospec\\LCS\\Models\\ModelConfiguration\u003A\u003AgetDbOperator\u0028\u0029",
             "name": "getDbOperator",
             "summary": "",
@@ -975,6 +980,11 @@ Search.appendIndex(
             "name": "table",
             "summary": "",
             "url": "classes/Locospec-LCS-Models-ModelConfiguration.html#property_table"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Models\\ModelConfiguration\u003A\u003A\u0024connection",
+            "name": "connection",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Models-ModelConfiguration.html#property_connection"
         },                {
             "fqsen": "\\Locospec\\LCS\\Models\\ModelConfiguration\u003A\u003A\u0024dbOperator",
             "name": "dbOperator",
