@@ -1,7 +1,7 @@
 [github.copilot.chat]
 commitMessageGeneration.instructions = """
 Please generate commit messages in the following format:
-- Type: <type> (e.g., feat, fix, docs)
-- Short description: A concise summary of the change
-- Body: Additional details if necessary, wrapped to 72 characters
+<type>: <short description>
+
+<body, repeating the short description if needed>
 """
