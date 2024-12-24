@@ -1,7 +1,0 @@
-[github.copilot.chat]
-commitMessageGeneration.instructions = """
-Please generate commit messages in the following format:
-<type>: <short description>
-
-<body, repeating the short description if needed>
-"""
