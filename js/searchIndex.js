@@ -3825,25 +3825,5 @@ Search.appendIndex(
             "name": "Views",
             "summary": "",
             "url": "namespaces/locospec-lcs-views.html"
-        },                {
-            "fqsen": "\\Tests\\Locospec\\LCS\\Models",
-            "name": "Models",
-            "summary": "",
-            "url": "namespaces/tests-locospec-lcs-models.html"
-        },                {
-            "fqsen": "\\Tests\\Locospec\\LCS",
-            "name": "LCS",
-            "summary": "",
-            "url": "namespaces/tests-locospec-lcs.html"
-        },                {
-            "fqsen": "\\Tests\\Locospec",
-            "name": "Locospec",
-            "summary": "",
-            "url": "namespaces/tests-locospec.html"
-        },                {
-            "fqsen": "\\Tests",
-            "name": "Tests",
-            "summary": "",
-            "url": "namespaces/tests.html"
         }            ]
 );
