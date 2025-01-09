@@ -3,21 +3,19 @@
 namespace Locospec\LCS\Specifications;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Parsers\ParserFactory;
 use Locospec\LCS\Registry\RegistryManager;
+use Locospec\LCS\Models\ModelDefinition;
 
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
-
-    private ParserFactory $parserFactory;
 
     private array $pendingRelationships = [];
 
     public function __construct(RegistryManager $registryManager)
     {
         $this->registryManager = $registryManager;
-        $this->parserFactory = new ParserFactory;
+        $this->modelSpecValidator = new SpecificationValidator;
     }
 
     /**
@@ -47,10 +45,6 @@ class SpecificationProcessor
 
         // Phase 2: Process all relationships after models are registered
         $this->processAllPendingRelationships();
-
-        foreach ($specs as $spec) {
-            $this->processViewDefinition($spec);
-        }
     }
 
     private function parseJson(string $json): array
@@ -88,15 +82,26 @@ class SpecificationProcessor
                 'modelName' => $spec['name'],
                 'relationships' => $spec['relationships'],
             ];
-
-            // Remove relationships before parsing model
-            unset($spec['relationships']);
         }
 
-        // Parse and register the model
-        $parser = $this->parserFactory->createParser($spec['type']);
-        $model = $parser->parseArray($spec);
-        $this->registryManager->register($spec['type'], $model);
+        // Validate and register the model
+        $validation = $this->modelSpecValidator->validateModel($spec);
+        $model = ModelDefinition::fromArray($spec);
+
+        // dd($spec, $validation, $model);
+        if($validation['isValid']){
+            $this->registryManager->register($spec['type'], $model);
+        }
+        // else{
+        //     throw new InvalidArgumentException("helloo error found");
+        //     // throw exceptions when validation fails
+        //     foreach ($validation['errors'] as $path => $errors) {
+        //         $errorMessages[] = "$path: " . implode(', ', $errors);
+        //     }
+        //     throw new InvalidArgumentException(
+        //         "Model validation failed:\n" . implode("\n", $errorMessages)
+        //     );
+        // }
     }
 
     /**
@@ -120,21 +125,5 @@ class SpecificationProcessor
 
         // Clear pending relationships after processing
         $this->pendingRelationships = [];
-    }
-
-    private function processViewDefinition(array $spec): void
-    {
-        if (! isset($spec['type'])) {
-            throw new InvalidArgumentException('Specification must include a type');
-        }
-
-        if ($spec['type'] !== 'view') {
-            return;
-        }
-
-        // Parse and register the model
-        $parser = $this->parserFactory->createParser($spec['type']);
-        $view = $parser->parseArray($spec);
-        $this->registryManager->register($spec['type'], $view);
     }
 }

@@ -6,7 +6,7 @@ use Locospec\LCS\Database\Filters\FilterGroup;
 use Locospec\LCS\Database\Relationships\RelationshipExpander;
 use Locospec\LCS\Database\Relationships\RelationshipResolver;
 use Locospec\LCS\Database\Scopes\ScopeResolver;
-use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
+use Locospec\LCS\Specifications\SpecificationValidator;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\Registry\RegistryManager;
@@ -17,7 +17,7 @@ class DatabaseOperationsCollection
     /** @var array[] */
     private array $operations = [];
 
-    private DatabaseOperationsValidator $validator;
+    private SpecificationValidator $validator;
 
     private ValueResolver $valueResolver;
 
@@ -27,7 +27,7 @@ class DatabaseOperationsCollection
 
     public function __construct()
     {
-        $this->validator = new DatabaseOperationsValidator;
+        $this->validator = new SpecificationValidator;
         $this->valueResolver = new ValueResolver;
     }
 

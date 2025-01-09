@@ -1,0 +1,164 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://locospec.com/schemas/model.json",
+    "title": "Model Spec",
+    "description": "Spec for defining a data model",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Name of the model"
+        },
+        "type": {
+            "type": "string",
+            "enum": ["model"],
+            "description": "Type identifier for the spec"
+        },
+        "config": {
+            "type": "object",
+            "properties": {
+                "primaryKey": {
+                    "type": "string",
+                    "default": "id",
+                    "description": "Primary key field name"
+                },
+                "connection": {
+                    "type": "string",
+                    "default": "default",
+                    "description": "Database connection identifier"
+                }
+            },
+            "required": ["primaryKey"],
+            "additionalProperties": false
+        },
+        "schema": {
+            "type": "object",
+            "description": "Model field definitions",
+            "additionalProperties": {
+                "type": "string",
+                "description": "Field data type",
+                "enum": [
+                    "ulid",
+                    "id",
+                    "uuid",
+                    "string",
+                    "integer",
+                    "boolean",
+                    "date",
+                    "datetime",
+                    "decimal",
+                    "text",
+                    "json",
+                    "jsonb"
+                ]
+            }
+        },
+        "relationships": {
+            "type": "object",
+            "description": "Model relationships definitions (can not be empty)",
+            "properties": {
+                "belongs_to": {
+                    "type": "object",
+                    "description": "Database belongs to relationship (can not be empty)",
+                    "additionalProperties": {
+                        "type": "object",
+                        "description": "Relationship configuration (can not be empty)",
+                        "properties": {
+                            "foreignKey": {
+                                "type": "string",
+                                "description": "The foreign key field name"
+                            }
+                        },
+                        "required": ["foreignKey"]
+                    }
+                },
+                "has_many": {
+                    "type": "object",
+                    "description": "Database has many relationships (can not be empty)",
+                    "additionalProperties": {
+                        "type": "object",
+                        "description": "Relationship configuration (can not be empty)"
+                    }
+                },
+                "has_one": {
+                    "type": "object",
+                    "description": "Database has one relationships (can not be empty)",
+                    "additionalProperties": {
+                        "type": "object",
+                        "description": "Relationship configuration (can not be empty)"
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "scopes": {
+            "type": "object",
+            "description": "Model scopes definitions (can not be empty)",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "op": {
+                        "type": "string",
+                        "enum": ["and", "or"],
+                        "description": "Logical operator for combining conditions"
+                    },
+                    "conditions": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "attribute": {
+                                    "type": "string",
+                                    "description": "Field name to apply condition on"
+                                },
+                                "op": {
+                                    "type": "string",
+                                    "enum": [
+                                        "=",
+                                        "!=",
+                                        ">",
+                                        ">=",
+                                        "<",
+                                        "<=",
+                                        "like"
+                                    ],
+                                    "description": "Comparison operator"
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "Value to compare against"
+                                }
+                            },
+                            "required": ["attribute", "op", "value"],
+                            "additionalProperties": false
+                        },
+                        "minItems": 1
+                    }
+                },
+                "required": ["op", "conditions"],
+                "additionalProperties": false
+            }
+        },
+        "aliases": {
+            "type": "object",
+            "description": "Model aliases definitions (can not be empty)",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "extract": {
+                        "type": "string",
+                        "description": "JQ-style path expression to extract data"
+                    },
+                    "transform": {
+                        "type": "string",
+                        "description": "JQ-style transformation expression"
+                    }
+                },
+                "required": ["extract", "transform"],
+                "additionalProperties": false
+            }
+        }
+    },
+    "required": ["name", "type", "config", "schema"],
+    "additionalProperties": false
+}
