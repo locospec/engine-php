@@ -30,7 +30,13 @@ class SpecificationValidator
      */
     private function loadSchemas(): void
     {
-         // Register common components schema
+        // Register common components schema
+        $this->validator->resolver()->registerFile(
+            self::SCHEMA_BASE_PATH.'/common.json',
+            __DIR__.'/../Specs/common.json'
+        );
+        
+        // Register common components schema for operations
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/database-operations/common.json',
             __DIR__.'/../Specs/database-operations/common.json'

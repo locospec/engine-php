@@ -67,15 +67,6 @@ class SpecificationProcessor
      */
     private function processModelDefinition(array $spec): void
     {
-        if (! isset($spec['type'])) {
-            throw new InvalidArgumentException('Specification must include a type');
-        }
-
-        if ($spec['type'] !== 'model') {
-            return;
-            // throw new InvalidArgumentException('Only model specifications are supported');
-        }
-
         // Store relationships for later processing
         if (isset($spec['relationships'])) {
             $this->pendingRelationships[] = [
@@ -88,20 +79,19 @@ class SpecificationProcessor
         $validation = $this->modelSpecValidator->validateModel($spec);
         $model = ModelDefinition::fromArray($spec);
 
-        // dd($spec, $validation, $model);
-        if($validation['isValid']){
-            $this->registryManager->register($spec['type'], $model);
+        // throw exceptions when validation fails
+        if(!$validation['isValid']){
+            //     throw new InvalidArgumentException("helloo error found");
+            foreach ($validation['errors'] as $path => $errors) {
+                $errorMessages[] = "$path: " . implode(', ', $errors);
+            }
+            throw new InvalidArgumentException(
+                "Model validation failed:\n" . implode("\n", $errorMessages)
+            );
         }
-        // else{
-        //     throw new InvalidArgumentException("helloo error found");
-        //     // throw exceptions when validation fails
-        //     foreach ($validation['errors'] as $path => $errors) {
-        //         $errorMessages[] = "$path: " . implode(', ', $errors);
-        //     }
-        //     throw new InvalidArgumentException(
-        //         "Model validation failed:\n" . implode("\n", $errorMessages)
-        //     );
-        // }
+        
+        
+        $this->registryManager->register($spec['type'], $model);
     }
 
     /**

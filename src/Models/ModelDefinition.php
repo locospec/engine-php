@@ -84,7 +84,7 @@ class ModelDefinition
         ModelValidator::validate($data);
 
         // Create model without relationships
-        $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
+        $schema = isset($data['attributes']) ? Schema::fromArray($data['attributes']) : new Schema;
 
         $config = $data['config'] ?? [];
         if (! isset($config['table'])) {

@@ -31,7 +31,7 @@
             "required": ["primaryKey"],
             "additionalProperties": false
         },
-        "schema": {
+        "attributes": {
             "type": "object",
             "description": "Model field definitions",
             "additionalProperties": {
@@ -95,48 +95,7 @@
             "type": "object",
             "description": "Model scopes definitions (can not be empty)",
             "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "op": {
-                        "type": "string",
-                        "enum": ["and", "or"],
-                        "description": "Logical operator for combining conditions"
-                    },
-                    "conditions": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "attribute": {
-                                    "type": "string",
-                                    "description": "Field name to apply condition on"
-                                },
-                                "op": {
-                                    "type": "string",
-                                    "enum": [
-                                        "=",
-                                        "!=",
-                                        ">",
-                                        ">=",
-                                        "<",
-                                        "<=",
-                                        "like"
-                                    ],
-                                    "description": "Comparison operator"
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "description": "Value to compare against"
-                                }
-                            },
-                            "required": ["attribute", "op", "value"],
-                            "additionalProperties": false
-                        },
-                        "minItems": 1
-                    }
-                },
-                "required": ["op", "conditions"],
-                "additionalProperties": false
+                "$ref": "common.json#/definitions/filters"
             }
         },
         "aliases": {
@@ -154,11 +113,14 @@
                         "description": "JQ-style transformation expression"
                     }
                 },
-                "required": ["extract", "transform"],
+                "anyOf": [
+                    { "required": ["extract"] },
+                    { "required": ["transform"] }
+                ],
                 "additionalProperties": false
             }
         }
     },
-    "required": ["name", "type", "config", "schema"],
+    "required": ["name", "type", "config", "attributes"],
     "additionalProperties": false
 }
