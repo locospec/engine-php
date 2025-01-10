@@ -576,46 +576,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-LCS-Database-Scopes-ScopeResolver.html#property_currentModel"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator",
-            "name": "DatabaseOperationsValidator",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Create\u0020a\u0020new\u0020database\u0020operations\u0020validator",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method___construct"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AloadSchemas\u0028\u0029",
-            "name": "loadSchemas",
-            "summary": "Load\u0020all\u0020required\u0020JSON\u0020schemas",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_loadSchemas"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AvalidateOperation\u0028\u0029",
-            "name": "validateOperation",
-            "summary": "Validate\u0020a\u0020single\u0020database\u0020operation",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_validateOperation"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AvalidateComponent\u0028\u0029",
-            "name": "validateComponent",
-            "summary": "Validate\u0020common\u0020components\u0020\u0028filters,\u0020sorts,\u0020pagination\u0029",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#method_validateComponent"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003ASCHEMA_BASE_PATH",
-            "name": "SCHEMA_BASE_PATH",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#constant_SCHEMA_BASE_PATH"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003AOPERATION_TYPES",
-            "name": "OPERATION_TYPES",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#constant_OPERATION_TYPES"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators\\DatabaseOperationsValidator\u003A\u003A\u0024validator",
-            "name": "validator",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Database-Validators-DatabaseOperationsValidator.html#property_validator"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Database\\ValueResolver",
             "name": "ValueResolver",
             "summary": "",
@@ -1435,86 +1395,6 @@ Search.appendIndex(
             "name": "expressionParser",
             "summary": "",
             "url": "classes/Locospec-LCS-Models-Traits-HasAliases.html#property_expressionParser"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ModelParser",
-            "name": "ModelParser",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ModelParser.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ModelParser\u003A\u003AparseJson\u0028\u0029",
-            "name": "parseJson",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ModelParser.html#method_parseJson"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ModelParser\u003A\u003AparseArray\u0028\u0029",
-            "name": "parseArray",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ModelParser.html#method_parseArray"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ModelParser\u003A\u003AvalidateModelData\u0028\u0029",
-            "name": "validateModelData",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ModelParser.html#method_validateModelData"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory",
-            "name": "ParserFactory",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html#method___construct"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory\u003A\u003AregisterDefaults\u0028\u0029",
-            "name": "registerDefaults",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerDefaults"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory\u003A\u003AregisterParser\u0028\u0029",
-            "name": "registerParser",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html#method_registerParser"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory\u003A\u003AcreateParser\u0028\u0029",
-            "name": "createParser",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html#method_createParser"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserFactory\u003A\u003A\u0024parsers",
-            "name": "parsers",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserFactory.html#property_parsers"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserInterface",
-            "name": "ParserInterface",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserInterface.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserInterface\u003A\u003AparseJson\u0028\u0029",
-            "name": "parseJson",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserInterface.html#method_parseJson"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ParserInterface\u003A\u003AparseArray\u0028\u0029",
-            "name": "parseArray",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ParserInterface.html#method_parseArray"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser",
-            "name": "ViewParser",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ViewParser.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser\u003A\u003AparseJson\u0028\u0029",
-            "name": "parseJson",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ViewParser.html#method_parseJson"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers\\ViewParser\u003A\u003AparseArray\u0028\u0029",
-            "name": "parseArray",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Parsers-ViewParser.html#method_parseArray"
         },                {
             "fqsen": "\\Locospec\\LCS\\Query\\AttributePath",
             "name": "AttributePath",
@@ -2796,25 +2676,60 @@ Search.appendIndex(
             "summary": "Process\u0020all\u0020pending\u0020relationships\u0020after\u0020all\u0020models\u0020are\u0020registered",
             "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003AprocessViewDefinition\u0028\u0029",
-            "name": "processViewDefinition",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#method_processViewDefinition"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
             "summary": "",
             "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#property_registryManager"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003A\u0024parserFactory",
-            "name": "parserFactory",
-            "summary": "",
-            "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#property_parserFactory"
-        },                {
             "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingRelationships",
             "name": "pendingRelationships",
             "summary": "",
             "url": "classes/Locospec-LCS-Specifications-SpecificationProcessor.html#property_pendingRelationships"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator",
+            "name": "SpecificationValidator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "Create\u0020a\u0020new\u0020schema\u0020validator",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003AloadSchemas\u0028\u0029",
+            "name": "loadSchemas",
+            "summary": "Load\u0020all\u0020required\u0020JSON\u0020schemas",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#method_loadSchemas"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003AvalidateModel\u0028\u0029",
+            "name": "validateModel",
+            "summary": "Validate\u0020a\u0020model\u0020definition",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#method_validateModel"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003AvalidateOperation\u0028\u0029",
+            "name": "validateOperation",
+            "summary": "Validate\u0020a\u0020single\u0020database\u0020operation",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#method_validateOperation"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003AvalidateComponent\u0028\u0029",
+            "name": "validateComponent",
+            "summary": "Validate\u0020common\u0020components\u0020\u0028filters,\u0020sorts,\u0020pagination\u0029",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#method_validateComponent"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003ASCHEMA_BASE_PATH",
+            "name": "SCHEMA_BASE_PATH",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#constant_SCHEMA_BASE_PATH"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003AOPERATION_TYPES",
+            "name": "OPERATION_TYPES",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#constant_OPERATION_TYPES"
+        },                {
+            "fqsen": "\\Locospec\\LCS\\Specifications\\SpecificationValidator\u003A\u003A\u0024validator",
+            "name": "validator",
+            "summary": "",
+            "url": "classes/Locospec-LCS-Specifications-SpecificationValidator.html#property_validator"
         },                {
             "fqsen": "\\Locospec\\LCS\\StateMachine\\ChoiceState",
             "name": "ChoiceState",
@@ -3741,11 +3656,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/locospec-lcs-database-scopes.html"
         },                {
-            "fqsen": "\\Locospec\\LCS\\Database\\Validators",
-            "name": "Validators",
-            "summary": "",
-            "url": "namespaces/locospec-lcs-database-validators.html"
-        },                {
             "fqsen": "\\Locospec\\LCS",
             "name": "LCS",
             "summary": "",
@@ -3775,11 +3685,6 @@ Search.appendIndex(
             "name": "Traits",
             "summary": "",
             "url": "namespaces/locospec-lcs-models-traits.html"
-        },                {
-            "fqsen": "\\Locospec\\LCS\\Parsers",
-            "name": "Parsers",
-            "summary": "",
-            "url": "namespaces/locospec-lcs-parsers.html"
         },                {
             "fqsen": "\\Locospec\\LCS\\Query",
             "name": "Query",
