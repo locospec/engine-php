@@ -26,6 +26,10 @@
                     "type": "string",
                     "default": "default",
                     "description": "Database connection identifier"
+                },
+                "table": {
+                    "type": "string",
+                    "description": "Database table identifier (If not provided, plural of name will be taken)"
                 }
             },
             "required": ["primaryKey"],
