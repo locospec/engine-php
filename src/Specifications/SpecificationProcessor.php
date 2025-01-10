@@ -3,8 +3,8 @@
 namespace Locospec\LCS\Specifications;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Registry\RegistryManager;
 use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\Registry\RegistryManager;
 
 class SpecificationProcessor
 {

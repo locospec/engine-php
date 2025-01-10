@@ -6,10 +6,10 @@ use Locospec\LCS\Database\Filters\FilterGroup;
 use Locospec\LCS\Database\Relationships\RelationshipExpander;
 use Locospec\LCS\Database\Relationships\RelationshipResolver;
 use Locospec\LCS\Database\Scopes\ScopeResolver;
-use Locospec\LCS\Specifications\SpecificationValidator;
 use Locospec\LCS\Exceptions\InvalidArgumentException;
 use Locospec\LCS\Registry\DatabaseDriverInterface;
 use Locospec\LCS\Registry\RegistryManager;
+use Locospec\LCS\Specifications\SpecificationValidator;
 use RuntimeException;
 
 class DatabaseOperationsCollection
