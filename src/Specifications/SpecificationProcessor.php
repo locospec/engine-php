@@ -3,8 +3,8 @@
 namespace Locospec\LCS\Specifications;
 
 use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Registry\RegistryManager;
 use Locospec\LCS\Models\ModelDefinition;
+use Locospec\LCS\Registry\RegistryManager;
 
 class SpecificationProcessor
 {
@@ -80,17 +80,16 @@ class SpecificationProcessor
         $model = ModelDefinition::fromArray($spec);
 
         // throw exceptions when validation fails
-        if(!$validation['isValid']){
+        if (! $validation['isValid']) {
             //     throw new InvalidArgumentException("helloo error found");
             foreach ($validation['errors'] as $path => $errors) {
-                $errorMessages[] = "$path: " . implode(', ', $errors);
+                $errorMessages[] = "$path: ".implode(', ', $errors);
             }
             throw new InvalidArgumentException(
-                "Model validation failed:\n" . implode("\n", $errorMessages)
+                "Model validation failed:\n".implode("\n", $errorMessages)
             );
         }
-        
-        
+
         $this->registryManager->register($spec['type'], $model);
     }
 

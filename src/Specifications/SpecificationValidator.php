@@ -35,7 +35,7 @@ class SpecificationValidator
             self::SCHEMA_BASE_PATH.'/common.json',
             __DIR__.'/../Specs/common.json'
         );
-        
+
         // Register common components schema for operations
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/database-operations/common.json',
@@ -90,7 +90,7 @@ class SpecificationValidator
         ];
     }
 
-     /**
+    /**
      * Validate a single database operation
      *
      * @param  array  $operation  The operation to validate
