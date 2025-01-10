@@ -21,7 +21,7 @@ class LCS
     {
         // $config should be proper class with validation
 
-        try{
+        try {
             if (self::$isInitialized) {
                 return;
             }
@@ -35,9 +35,9 @@ class LCS
                 // Let it handle looping etc.,
                 self::loadSpecifications($config['paths']);
             }
-        }catch(RuntimeException $e){
+        } catch (RuntimeException $e) {
             throw $e;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             throw $e;
         }
     }
@@ -47,7 +47,7 @@ class LCS
      */
     public static function loadSpecifications(array $paths): void
     {
-        try{
+        try {
             if (! self::$isInitialized) {
                 throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
             }
@@ -63,9 +63,9 @@ class LCS
                     $specProcessor->processFile($path);
                 }
             }
-        }catch(RuntimeException $e){
+        } catch (RuntimeException $e) {
             throw $e;
-        }catch(Exception $e){
+        } catch (Exception $e) {
             throw $e;
         }
     }
