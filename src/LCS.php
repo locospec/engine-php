@@ -21,18 +21,24 @@ class LCS
     {
         // $config should be proper class with validation
 
-        if (self::$isInitialized) {
-            return;
-        }
+        try{
+            if (self::$isInitialized) {
+                return;
+            }
 
-        self::$globalRegistryManager = new RegistryManager;
-        self::$isInitialized = true;
+            self::$globalRegistryManager = new RegistryManager;
+            self::$isInitialized = true;
 
-        if (isset($config['paths'])) {
-            // TODO: Call SpecificationProcessor right here
-            // SpecificationProcessor::process
-            // Let it handle looping etc.,
-            self::loadSpecifications($config['paths']);
+            if (isset($config['paths'])) {
+                // TODO: Call SpecificationProcessor right here
+                // SpecificationProcessor::process
+                // Let it handle looping etc.,
+                self::loadSpecifications($config['paths']);
+            }
+        }catch(RuntimeException $e){
+            throw $e;
+        }catch(Exception $e){
+            throw $e;
         }
     }
 
@@ -41,20 +47,26 @@ class LCS
      */
     public static function loadSpecifications(array $paths): void
     {
-        if (! self::$isInitialized) {
-            throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
-        }
-
-        $specProcessor = new SpecificationProcessor(self::$globalRegistryManager);
-
-        foreach ($paths as $path) {
-            if (is_dir($path)) {
-                foreach (glob($path.'/*.json') as $file) {
-                    $specProcessor->processFile($file);
-                }
-            } elseif (is_file($path)) {
-                $specProcessor->processFile($path);
+        try{
+            if (! self::$isInitialized) {
+                throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
             }
+
+            $specProcessor = new SpecificationProcessor(self::$globalRegistryManager);
+
+            foreach ($paths as $path) {
+                if (is_dir($path)) {
+                    foreach (glob($path.'/*.json') as $file) {
+                        $specProcessor->processFile($file);
+                    }
+                } elseif (is_file($path)) {
+                    $specProcessor->processFile($path);
+                }
+            }
+        }catch(RuntimeException $e){
+            throw $e;
+        }catch(Exception $e){
+            throw $e;
         }
     }
 

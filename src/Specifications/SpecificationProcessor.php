@@ -23,12 +23,18 @@ class SpecificationProcessor
      */
     public function processFile(string $filePath): void
     {
-        if (! file_exists($filePath)) {
-            throw new InvalidArgumentException("Specification file not found: {$filePath}");
-        }
+        try{
+            if (! file_exists($filePath)) {
+                throw new InvalidArgumentException("Specification file not found: {$filePath}");
+            }
 
-        $json = file_get_contents($filePath);
-        $this->processJson($json);
+            $json = file_get_contents($filePath);
+            $this->processJson($json);
+        } catch (InvalidArgumentException $e) {
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException("Error processing file {$filePath}: " . $e->getMessage());
+        }
     }
 
     /**
@@ -36,15 +42,21 @@ class SpecificationProcessor
      */
     public function processJson(string $json): void
     {
-        $data = $this->parseJson($json);
-        $specs = $this->normalizeSpecifications($data);
-        // Phase 1: Register all models first
-        foreach ($specs as $spec) {
-            $this->processModelDefinition($spec);
-        }
+        try{
+            $data = $this->parseJson($json);
+            $specs = $this->normalizeSpecifications($data);
+            // Phase 1: Register all models first
+            foreach ($specs as $spec) {
+                $this->processModelDefinition($spec);
+            }
 
-        // Phase 2: Process all relationships after models are registered
-        $this->processAllPendingRelationships();
+            // Phase 2: Process all relationships after models are registered
+            $this->processAllPendingRelationships();
+        } catch (InvalidArgumentException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException("Error processing JSON: " . $e->getMessage());
+        }
     }
 
     private function parseJson(string $json): array
@@ -77,20 +89,18 @@ class SpecificationProcessor
 
         // Validate and register the model
         $validation = $this->modelSpecValidator->validateModel($spec);
-        $model = ModelDefinition::fromArray($spec);
-
+        
         // throw exceptions when validation fails
         if(!$validation['isValid']){
-            //     throw new InvalidArgumentException("helloo error found");
             foreach ($validation['errors'] as $path => $errors) {
-                $errorMessages[] = "$path: " . implode(', ', $errors);
+                $errorMessages[] =  "$path: " . implode(', ', $errors);
             }
             throw new InvalidArgumentException(
-                "Model validation failed:\n" . implode("\n", $errorMessages)
+                "Model validation failed: " . implode(", ", $errorMessages)
             );
         }
         
-        
+        $model = ModelDefinition::fromArray($spec);
         $this->registryManager->register($spec['type'], $model);
     }
 
