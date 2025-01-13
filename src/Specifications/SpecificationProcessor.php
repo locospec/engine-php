@@ -23,7 +23,7 @@ class SpecificationProcessor
      */
     public function processFile(string $filePath): void
     {
-        try{
+        try {
             if (! file_exists($filePath)) {
                 throw new InvalidArgumentException("Specification file not found: {$filePath}");
             }
@@ -33,7 +33,7 @@ class SpecificationProcessor
         } catch (InvalidArgumentException $e) {
             throw $e; // Rethrow to be caught in LCS.php
         } catch (\Exception $e) {
-            throw new InvalidArgumentException("Error processing file {$filePath}: " . $e->getMessage());
+            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
     }
 
@@ -42,7 +42,7 @@ class SpecificationProcessor
      */
     public function processJson(string $json): void
     {
-        try{
+        try {
             $data = $this->parseJson($json);
             $specs = $this->normalizeSpecifications($data);
             // Phase 1: Register all models first
@@ -52,7 +52,7 @@ class SpecificationProcessor
         } catch (InvalidArgumentException $e) {
             throw $e;
         } catch (\Exception $e) {
-            throw new InvalidArgumentException("Error processing JSON: " . $e->getMessage());
+            throw new InvalidArgumentException('Error processing JSON: '.$e->getMessage());
         }
     }
 
@@ -86,17 +86,17 @@ class SpecificationProcessor
 
         // Validate and register the model
         $validation = $this->modelSpecValidator->validateModel($spec);
-        
+
         // throw exceptions when validation fails
-        if(!$validation['isValid']){
+        if (! $validation['isValid']) {
             foreach ($validation['errors'] as $path => $errors) {
-                $errorMessages[] =  "$path: " . implode(', ', $errors);
+                $errorMessages[] = "$path: ".implode(', ', $errors);
             }
             throw new InvalidArgumentException(
-                "Model validation failed: " . implode(", ", $errorMessages)
+                'Model validation failed: '.implode(', ', $errorMessages)
             );
         }
-        
+
         $model = ModelDefinition::fromArray($spec);
         $this->registryManager->register($spec['type'], $model);
     }
@@ -106,7 +106,7 @@ class SpecificationProcessor
      */
     public function processAllPendingRelationships(): void
     {
-        try{
+        try {
             foreach ($this->pendingRelationships as $pending) {
                 $model = $this->registryManager->get('model', $pending['modelName']);
 
@@ -126,7 +126,7 @@ class SpecificationProcessor
         } catch (InvalidArgumentException $e) {
             throw $e; // Rethrow to be caught in LCS.php
         } catch (\Exception $e) {
-            throw new InvalidArgumentException("Error processing file {$filePath}: " . $e->getMessage());
+            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
     }
 }
