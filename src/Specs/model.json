@@ -81,7 +81,7 @@
                                 "description": "The key in the related model that this relationship references"
                             }
                         },
-                        "required": ["model", "foreignKey", "ownerKey"]
+                        "required": ["foreignKey"]
                     }
                 },
                 "has_many": {
@@ -104,7 +104,7 @@
                                 "description": "The key in the current model that this relationship references"
                             }
                         },
-                        "required": ["model", "foreignKey", "localKey"]
+                        "required": ["foreignKey"]
                     }
                 },
                 "has_one": {
@@ -127,7 +127,7 @@
                                 "description": "The key in the current model that this relationship references"
                             }
                         },
-                        "required": ["model", "foreignKey", "localKey"]
+                        "required": ["foreignKey"]
                     }
                 }
             },
