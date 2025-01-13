@@ -63,6 +63,9 @@ class LCS
                     $specProcessor->processFile($path);
                 }
             }
+            
+            // Process all relationships after all models are registered
+            $specProcessor->processAllPendingRelationships();
         }catch(RuntimeException $e){
             throw $e;
         }catch(Exception $e){
