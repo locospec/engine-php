@@ -26,6 +26,10 @@
                     "type": "string",
                     "default": "default",
                     "description": "Database connection identifier"
+                },
+                "table": {
+                    "type": "string",
+                    "description": "Database table identifier (If not provided, plural of name will be taken)"
                 }
             },
             "required": ["primaryKey"],
@@ -64,9 +68,17 @@
                         "type": "object",
                         "description": "Relationship configuration (can not be empty)",
                         "properties": {
+                            "model": {
+                                "type": "string",
+                                "description": "The related model name (can be different from the key name)"
+                            },
                             "foreignKey": {
                                 "type": "string",
                                 "description": "The foreign key field name"
+                            },
+                            "ownerKey": {
+                                "type": "string",
+                                "description": "The key in the related model that this relationship references"
                             }
                         },
                         "required": ["foreignKey"]
@@ -77,7 +89,22 @@
                     "description": "Database has many relationships (can not be empty)",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)"
+                        "description": "Relationship configuration (can not be empty)",
+                        "properties": {
+                            "model": {
+                                "type": "string",
+                                "description": "The related model name (can be different from the key name)"
+                            },
+                            "foreignKey": {
+                                "type": "string",
+                                "description": "The foreign key field name"
+                            },
+                            "localKey": {
+                                "type": "string",
+                                "description": "The key in the current model that this relationship references"
+                            }
+                        },
+                        "required": ["foreignKey"]
                     }
                 },
                 "has_one": {
@@ -85,7 +112,22 @@
                     "description": "Database has one relationships (can not be empty)",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)"
+                        "description": "Relationship configuration (can not be empty)",
+                        "properties": {
+                            "model": {
+                                "type": "string",
+                                "description": "The related model name (can be different from the key name)"
+                            },
+                            "foreignKey": {
+                                "type": "string",
+                                "description": "The foreign key field name"
+                            },
+                            "localKey": {
+                                "type": "string",
+                                "description": "The key in the current model that this relationship references"
+                            }
+                        },
+                        "required": ["foreignKey"]
                     }
                 }
             },

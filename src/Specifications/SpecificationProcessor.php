@@ -49,9 +49,6 @@ class SpecificationProcessor
             foreach ($specs as $spec) {
                 $this->processModelDefinition($spec);
             }
-
-            // Phase 2: Process all relationships after models are registered
-            $this->processAllPendingRelationships();
         } catch (InvalidArgumentException $e) {
             throw $e;
         } catch (\Exception $e) {
@@ -107,23 +104,29 @@ class SpecificationProcessor
     /**
      * Process all pending relationships after all models are registered
      */
-    private function processAllPendingRelationships(): void
+    public function processAllPendingRelationships(): void
     {
-        foreach ($this->pendingRelationships as $pending) {
-            $model = $this->registryManager->get('model', $pending['modelName']);
+        try {
+            foreach ($this->pendingRelationships as $pending) {
+                $model = $this->registryManager->get('model', $pending['modelName']);
 
-            if (! $model) {
-                throw new InvalidArgumentException(
-                    "Cannot process relationships: Model {$pending['modelName']} not found"
-                );
+                if (! $model) {
+                    throw new InvalidArgumentException(
+                        "Cannot process relationships: Model {$pending['modelName']} not found"
+                    );
+                }
+
+                // Use RelationshipProcessor to handle relationship creation
+                $relationshipProcessor = new RelationshipProcessor($this->registryManager);
+                $relationshipProcessor->processModelRelationships($model, $pending['relationships']);
             }
 
-            // Use RelationshipProcessor to handle relationship creation
-            $relationshipProcessor = new RelationshipProcessor($this->registryManager);
-            $relationshipProcessor->processModelRelationships($model, $pending['relationships']);
+            // Clear pending relationships after processing
+            $this->pendingRelationships = [];
+        } catch (InvalidArgumentException $e) {
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
-
-        // Clear pending relationships after processing
-        $this->pendingRelationships = [];
     }
 }
