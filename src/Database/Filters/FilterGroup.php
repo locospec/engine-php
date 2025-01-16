@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Database\Filters;
+namespace Locospec\Engine\Database\Filters;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class FilterGroup
 {

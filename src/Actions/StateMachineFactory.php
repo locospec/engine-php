@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\LCS\Actions;
+namespace Locospec\Engine\Actions;
 
-use Locospec\LCS\LCS;
-use Locospec\LCS\Registry\TaskRegistry;
-use Locospec\LCS\StateMachine\ContextInterface;
-use Locospec\LCS\StateMachine\StateMachine;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Registry\TaskRegistry;
+use Locospec\Engine\StateMachine\ContextInterface;
+use Locospec\Engine\StateMachine\StateMachine;
 
 class StateMachineFactory
 {

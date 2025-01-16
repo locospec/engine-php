@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\LCS\Models;
+namespace Locospec\Engine\Models;
 
-use Locospec\LCS\Models\Relationships\Relationship;
-use Locospec\LCS\Models\Traits\HasAliases;
-use Locospec\LCS\Schema\Schema;
-use Locospec\LCS\Support\StringInflector;
+use Locospec\Engine\Models\Relationships\Relationship;
+use Locospec\Engine\Models\Traits\HasAliases;
+use Locospec\Engine\Schema\Schema;
+use Locospec\Engine\Support\StringInflector;
 
 class ModelDefinition
 {

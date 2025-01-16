@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\LCS\Views;
+namespace Locospec\Engine\Views;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Support\StringInflector;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Support\StringInflector;
 
 class ViewValidator
 {

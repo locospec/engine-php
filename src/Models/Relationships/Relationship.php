@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Models\Relationships;
+namespace Locospec\Engine\Models\Relationships;
 
-use Locospec\LCS\Support\StringInflector;
+use Locospec\Engine\Support\StringInflector;
 
 abstract class Relationship
 {

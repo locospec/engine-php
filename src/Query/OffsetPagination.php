@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Query;
+namespace Locospec\Engine\Query;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class OffsetPagination implements Pagination
 {

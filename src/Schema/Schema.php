@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\LCS\Schema;
+namespace Locospec\Engine\Schema;
 
-use Locospec\LCS\Schema\Properties\SchemaPropertyFactory;
-use Locospec\LCS\Schema\Properties\SchemaPropertyInterface;
+use Locospec\Engine\Schema\Properties\SchemaPropertyFactory;
+use Locospec\Engine\Schema\Properties\SchemaPropertyInterface;
 
 class Schema
 {

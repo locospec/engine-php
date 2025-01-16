@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Specifications;
+namespace Locospec\Engine\Specifications;
 
 use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\JsonSchema\Helper;

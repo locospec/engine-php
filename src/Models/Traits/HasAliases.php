@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Models\Traits;
+namespace Locospec\Engine\Models\Traits;
 
-use Locospec\LCS\Database\AliasExpressionParser;
+use Locospec\Engine\Database\AliasExpressionParser;
 
 trait HasAliases
 {

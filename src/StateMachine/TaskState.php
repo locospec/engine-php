@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\StateMachine;
+namespace Locospec\Engine\StateMachine;
 
 class TaskState implements StateInterface
 {
@@ -28,7 +28,7 @@ class TaskState implements StateInterface
         $packet->addDebugLog("Executing TaskState: {$this->name}");
         $resource = $this->stateMachine->getTask($this->resource);
 
-        if (! $resource instanceof \Locospec\LCS\Tasks\TaskInterface) {
+        if (! $resource instanceof \Locospec\Engine\Tasks\TaskInterface) {
             throw new \RuntimeException("Invalid resource type for {$this->resource}");
         }
 

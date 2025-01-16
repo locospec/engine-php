@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Database;
+namespace Locospec\Engine\Database;
 
-use Locospec\LCS\Models\ModelDefinition;
+use Locospec\Engine\Models\ModelDefinition;
 use Symfony\Component\Process\Process;
 
 class AliasTransformation

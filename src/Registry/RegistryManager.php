@@ -1,19 +1,19 @@
 <?php
 
-namespace Locospec\LCS\Registry;
+namespace Locospec\Engine\Registry;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Tasks\AuthorizeTask;
-use Locospec\LCS\Tasks\DatabaseCountTask;
-use Locospec\LCS\Tasks\DatabaseDeleteTask;
-use Locospec\LCS\Tasks\DatabaseInsertTask;
-use Locospec\LCS\Tasks\DatabaseOperationTask;
-use Locospec\LCS\Tasks\DatabasePaginateTask;
-use Locospec\LCS\Tasks\DatabaseSelectTask;
-use Locospec\LCS\Tasks\DatabaseUpdateTask;
-use Locospec\LCS\Tasks\InsertDBTask;
-use Locospec\LCS\Tasks\JSONTransformationTask;
-use Locospec\LCS\Tasks\ValidateTask;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Tasks\AuthorizeTask;
+use Locospec\Engine\Tasks\DatabaseCountTask;
+use Locospec\Engine\Tasks\DatabaseDeleteTask;
+use Locospec\Engine\Tasks\DatabaseInsertTask;
+use Locospec\Engine\Tasks\DatabaseOperationTask;
+use Locospec\Engine\Tasks\DatabasePaginateTask;
+use Locospec\Engine\Tasks\DatabaseSelectTask;
+use Locospec\Engine\Tasks\DatabaseUpdateTask;
+use Locospec\Engine\Tasks\InsertDBTask;
+use Locospec\Engine\Tasks\JSONTransformationTask;
+use Locospec\Engine\Tasks\ValidateTask;
 
 class RegistryManager
 {

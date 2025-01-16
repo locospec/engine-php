@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Query;
+namespace Locospec\Engine\Query;
 
 class AttributePath
 {

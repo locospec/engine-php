@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use Locospec\LCS\Exceptions\DatabaseOperationException;
+use Locospec\Engine\Exceptions\DatabaseOperationException;
 
 class DatabaseOperationTask extends AbstractDatabaseTask
 {

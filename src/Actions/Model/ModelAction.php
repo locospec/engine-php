@@ -1,12 +1,12 @@
 <?php
 
-namespace Locospec\LCS\Actions\Model;
+namespace Locospec\Engine\Actions\Model;
 
-use Locospec\LCS\Actions\StateMachineFactory;
-use Locospec\LCS\LCS;
-use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\StateMachine\Context;
-use Locospec\LCS\StateMachine\StateFlowPacket;
+use Locospec\Engine\Actions\StateMachineFactory;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\StateMachine\Context;
+use Locospec\Engine\StateMachine\StateFlowPacket;
 
 abstract class ModelAction
 {
