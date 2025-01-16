@@ -1,9 +1,9 @@
 <?php
 
-use Locospec\LCS\Schema\Properties\SchemaPropertyFactory;
-use Locospec\LCS\Schema\Properties\SchemaPropertyInterface;
-use Locospec\LCS\Schema\Schema;
-use Locospec\LCS\Schema\SchemaBuilder;
+use Locospec\Engine\Schema\Properties\SchemaPropertyFactory;
+use Locospec\Engine\Schema\Properties\SchemaPropertyInterface;
+use Locospec\Engine\Schema\Schema;
+use Locospec\Engine\Schema\SchemaBuilder;
 
 beforeEach(function () {
     $this->sampleSchema = [

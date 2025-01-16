@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\StateMachine;
+namespace Locospec\Engine\StateMachine;
 
 class StateFactory
 {

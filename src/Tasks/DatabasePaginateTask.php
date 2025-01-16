@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\LCS\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use Locospec\LCS\Exceptions\DatabaseOperationException;
-use Locospec\LCS\Query\FilterGroup;
+use Locospec\Engine\Exceptions\DatabaseOperationException;
+use Locospec\Engine\Query\FilterGroup;
 
 class DatabasePaginateTask extends AbstractDatabaseTask
 {

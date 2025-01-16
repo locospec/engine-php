@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Views;
+namespace Locospec\Engine\Views;
 
 class ViewDefinition
 {

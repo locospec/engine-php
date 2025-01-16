@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\LCS\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use Locospec\LCS\Exceptions\DatabaseOperationException;
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Registry\DatabaseDriverInterface;
-use Locospec\LCS\StateMachine\ContextInterface;
+use Locospec\Engine\Exceptions\DatabaseOperationException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Registry\DatabaseDriverInterface;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 abstract class AbstractDatabaseTask extends AbstractTask
 {

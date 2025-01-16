@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Database;
+namespace Locospec\Engine\Database;
 
 class ValueResolver
 {

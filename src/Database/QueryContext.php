@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Database;
+namespace Locospec\Engine\Database;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class QueryContext
 {

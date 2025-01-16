@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\LCS\Specifications;
+namespace Locospec\Engine\Specifications;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\Registry\RegistryManager;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Registry\RegistryManager;
 
 class SpecificationProcessor
 {

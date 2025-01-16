@@ -1,10 +1,10 @@
 <?php
 
-use Locospec\LCS\Edge;
-use Locospec\LCS\Exceptions\DuplicateVertexException;
-use Locospec\LCS\Exceptions\VertexNotFoundException;
-use Locospec\LCS\Graph;
-use Locospec\LCS\Vertex;
+use Locospec\Engine\Edge;
+use Locospec\Engine\Exceptions\DuplicateVertexException;
+use Locospec\Engine\Exceptions\VertexNotFoundException;
+use Locospec\Engine\Graph;
+use Locospec\Engine\Vertex;
 
 beforeEach(function () {
     $this->graph = new Graph(false); // Undirected graph

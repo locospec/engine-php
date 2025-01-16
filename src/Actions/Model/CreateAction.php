@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Actions\Model;
+namespace Locospec\Engine\Actions\Model;
 
 /**
  * Standard Create action for models

@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\LCS;
+namespace Locospec\Engine;
 
-use Locospec\LCS\Registry\RegistryManager;
-use Locospec\LCS\Specifications\SpecificationProcessor;
+use Locospec\Engine\Registry\RegistryManager;
+use Locospec\Engine\Specifications\SpecificationProcessor;
 
 class LCS
 {
@@ -34,6 +34,7 @@ class LCS
                 // SpecificationProcessor::process
                 // Let it handle looping etc.,
                 self::loadSpecifications($config['paths']);
+                // Todo: change name to registerSpecification
             }
         } catch (RuntimeException $e) {
             throw $e;

@@ -1,14 +1,14 @@
 <?php
 
-namespace Locospec\LCS\Database\Relationships;
+namespace Locospec\Engine\Database\Relationships;
 
-use Locospec\LCS\Database\DatabaseOperationsCollection;
-use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\Models\Relationships\BelongsTo;
-use Locospec\LCS\Models\Relationships\HasMany;
-use Locospec\LCS\Models\Relationships\HasOne;
-use Locospec\LCS\Models\Relationships\Relationship;
-use Locospec\LCS\Registry\RegistryManager;
+use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Models\Relationships\BelongsTo;
+use Locospec\Engine\Models\Relationships\HasMany;
+use Locospec\Engine\Models\Relationships\HasOne;
+use Locospec\Engine\Models\Relationships\Relationship;
+use Locospec\Engine\Registry\RegistryManager;
 
 class RelationshipResolver
 {

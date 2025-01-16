@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\LCS\Schema\Properties;
+namespace Locospec\Engine\Schema\Properties;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Schema\Schema;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Schema\Schema;
 
 abstract class AbstractSchemaProperty implements SchemaPropertyInterface
 {
