@@ -33,7 +33,7 @@ class LCS
                 // TODO: Call SpecificationProcessor right here
                 // SpecificationProcessor::process
                 // Let it handle looping etc.,
-                self::loadSpecifications($config['paths']);
+                self::registerSpecifications($config['paths']);
                 // Todo: change name to registerSpecification
             }
         } catch (RuntimeException $e) {
@@ -44,9 +44,9 @@ class LCS
     }
 
     /**
-     * Load specifications from given paths
+     * Register specifications from given paths
      */
-    public static function loadSpecifications(array $paths): void
+    public static function registerSpecifications(array $paths): void
     {
         try {
             if (! self::$isInitialized) {

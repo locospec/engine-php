@@ -1,19 +1,19 @@
 <?php
 
-use Locospec\Engine\Specifications\SpecificationValidator;
+use Locospec\Engine\SpecValidator;
 
 beforeAll(function () {
     global $validator;
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 });
 
 it('uses shared data', function () {
     global $validator;
-    expect($validator)->toBeInstanceOf(SpecificationValidator::class);
+    expect($validator)->toBeInstanceOf(SpecValidator::class);
 })->group('stable');
 
 test('valid insert operation with single row', function () {
-    // $validator = new SpecificationValidator();
+    // $validator = new SpecValidator();
     global $validator;
 
     $operation = [

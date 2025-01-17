@@ -5,6 +5,7 @@ namespace Locospec\Engine\Specifications;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
+use Locospec\Engine\SpecValidator;
 
 class SpecificationProcessor
 {
@@ -15,7 +16,7 @@ class SpecificationProcessor
     public function __construct(RegistryManager $registryManager)
     {
         $this->registryManager = $registryManager;
-        $this->modelSpecValidator = new SpecificationValidator;
+        $this->specValidator = new SpecValidator;
     }
 
     /**
@@ -85,7 +86,7 @@ class SpecificationProcessor
         }
 
         // Validate and register the model
-        $validation = $this->modelSpecValidator->validateModel($spec);
+        $validation = $this->specValidator->validateModel($spec);
 
         // throw exceptions when validation fails
         if (! $validation['isValid']) {

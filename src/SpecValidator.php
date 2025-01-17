@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Specifications;
+namespace Locospec\Engine;
 
 use Opis\JsonSchema\Errors\ErrorFormatter;
 use Opis\JsonSchema\Helper;
@@ -8,7 +8,7 @@ use Opis\JsonSchema\ValidationResult;
 use Opis\JsonSchema\Validator;
 use RuntimeException;
 
-class SpecificationValidator
+class SpecValidator
 {
     private Validator $validator;
 
@@ -33,27 +33,27 @@ class SpecificationValidator
         // Register common components schema
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/common.json',
-            __DIR__.'/../Specs/common.json'
+            __DIR__.'/Specs/common.json'
         );
 
         // Register common components schema for operations
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/database-operations/common.json',
-            __DIR__.'/../Specs/database-operations/common.json'
+            __DIR__.'/Specs/database-operations/common.json'
         );
 
         // Register individual operation schemas
         foreach (self::OPERATION_TYPES as $type) {
             $this->validator->resolver()->registerFile(
                 self::SCHEMA_BASE_PATH."/database-operations/{$type}.json",
-                __DIR__.'/../Specs/database-operations/'.$type.'.json'
+                __DIR__.'/Specs/database-operations/'.$type.'.json'
             );
         }
 
         // Register model schema
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/model.json',
-            __DIR__.'/../Specs/model.json'
+            __DIR__.'/Specs/model.json'
         );
     }
 
