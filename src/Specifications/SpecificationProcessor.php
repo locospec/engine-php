@@ -45,10 +45,11 @@ class SpecificationProcessor
     {
         try {
             $data = $this->parseJson($json);
-            $specs = $this->normalizeSpecifications($data);
-            // Phase 1: Register all models first
+            $specs = $this->normalizeJson($data);
+
+            // Phase 1: Process all model spec first
             foreach ($specs as $spec) {
-                $this->processModelDefinition($spec);
+                $this->processModelSpec($spec);
             }
         } catch (InvalidArgumentException $e) {
             throw $e;
@@ -67,25 +68,58 @@ class SpecificationProcessor
         return $data;
     }
 
-    private function normalizeSpecifications(array $data): array
+    // Normalize the JSON data to ensure it is always returned as an array
+    // Todo: Change name to normalizeJson as we are not normalizing the spec here
+    private function normalizeJson(array $data): array
     {
         return is_array($data) && ! isset($data['type']) ? $data : [$data];
     }
 
     /**
      * Process a single model definition without relationships
+     * Todo: change name to processModelSpec
      */
-    private function processModelDefinition(array $spec): void
+    private function processModelSpec(array $spec): void
     {
-        // Store relationships for later processing
-        if (isset($spec['relationships'])) {
-            $this->pendingRelationships[] = [
-                'modelName' => $spec['name'],
-                'relationships' => $spec['relationships'],
-            ];
-        }
+        try{
+            // Store relationships for later processing
+            // Todo: We may not need to set the relationship here
+            if (isset($spec['relationships'])) {
+                $this->pendingRelationships[] = [
+                    'modelName' => $spec['name'],
+                    'relationships' => $spec['relationships'],
+                ];
+            }
 
-        // Validate and register the model
+            // Validate the model spec
+            $this->validateModelSpec($spec);
+            // $validation = $this->specValidator->validateModel($spec);
+
+            // // throw exceptions when validation fails
+            // if (! $validation['isValid']) {
+            //     foreach ($validation['errors'] as $path => $errors) {
+            //         $errorMessages[] = "$path: ".implode(', ', $errors);
+            //     }
+            //     throw new InvalidArgumentException(
+            //         'Model validation failed: '.implode(', ', $errorMessages)
+            //     );
+            // }
+
+            // Todo: We should normlize the model spec here, maybe change the name here 
+            $model = ModelDefinition::fromArray($spec);
+            
+            // dd($spec, $model);
+            // Todo: After normalize, validate the model spec again. 
+            // $this->validateModelSpec($model);
+
+            $this->registryManager->register($spec['type'], $model);
+        } catch (\Exception $e) {
+            throw $e;
+        }
+    }
+
+    public function validateModelSpec(array $spec)
+    {
         $validation = $this->specValidator->validateModel($spec);
 
         // throw exceptions when validation fails
@@ -97,15 +131,12 @@ class SpecificationProcessor
                 'Model validation failed: '.implode(', ', $errorMessages)
             );
         }
-
-        $model = ModelDefinition::fromArray($spec);
-        $this->registryManager->register($spec['type'], $model);
     }
 
     /**
-     * Process all pending relationships after all models are registered
+     * Process all the relationships after all models are registered
      */
-    public function processAllPendingRelationships(): void
+    public function processRelationships(): void
     {
         try {
             foreach ($this->pendingRelationships as $pending) {
@@ -118,8 +149,12 @@ class SpecificationProcessor
                 }
 
                 // Use RelationshipProcessor to handle relationship creation
+                // Todo: Normalize the relationships and add to the model
                 $relationshipProcessor = new RelationshipProcessor($this->registryManager);
                 $relationshipProcessor->processModelRelationships($model, $pending['relationships']);
+
+                // Todo: Validate the model again with the relationship
+                // Todo: Register the model again with the relationship
             }
 
             // Clear pending relationships after processing

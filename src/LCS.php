@@ -36,8 +36,6 @@ class LCS
                 self::registerSpecifications($config['paths']);
                 // Todo: change name to registerSpecification
             }
-        } catch (RuntimeException $e) {
-            throw $e;
         } catch (Exception $e) {
             throw $e;
         }
@@ -66,9 +64,7 @@ class LCS
             }
 
             // Process all relationships after all models are registered
-            $specProcessor->processAllPendingRelationships();
-        } catch (RuntimeException $e) {
-            throw $e;
+            $specProcessor->processRelationships();
         } catch (Exception $e) {
             throw $e;
         }
