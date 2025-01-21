@@ -73,11 +73,11 @@ class SpecificationProcessor
      */
     private function processModelSpec(object $spec): void
     {
-        try{
+        try {
             // Store relationships for later processing
             // Todo: We may not need to set the relationship here
             if (isset($spec->relationships)) {
-                $relationshipP = new \stdClass();
+                $relationshipP = new \stdClass;
                 $relationshipP->modelName = $spec->name;
                 $relationshipP->relationships = $spec->relationships;
 
@@ -87,10 +87,10 @@ class SpecificationProcessor
             // Validate the model spec
             $this->validateModelSpec($spec);
 
-            // Todo: We should normlize the model spec here, maybe change the name here 
+            // Todo: We should normlize the model spec here, maybe change the name here
             $model = ModelDefinition::fromObject($spec);
-            
-            // Todo: After normalize, validate the model spec again. 
+
+            // Todo: After normalize, validate the model spec again.
             $this->validateModelSpec($model->toObject());
 
             $this->registryManager->register($spec->type, $model);
@@ -123,19 +123,19 @@ class SpecificationProcessor
         try {
             foreach ($this->pendingRelationships as $pending) {
                 $model = $this->registryManager->get('model', $pending->modelName);
-                
+
                 if (! $model) {
                     throw new InvalidArgumentException(
                         "Cannot process relationships: Model {$pending->modelName} not found"
                     );
                 }
-                
+
                 // Use RelationshipProcessor to handle relationship creation
                 $relationshipProcessor = new RelationshipProcessor($this->registryManager);
-                
+
                 // Todo: Normalize the relationships and add to the model: Align with the spec with base schema
                 $relationshipProcessor->normalizeModelRelationships($model, $pending->relationships);
-                
+
                 // Todo: Validate the model again with the relationship
                 $this->validateModelSpec($model->toObject());
 

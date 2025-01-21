@@ -26,8 +26,8 @@ class ModelDefinition
         $this->name = $name;
         $this->schema = $schema;
         $this->config = $config;
-        $this->relationships = new \stdClass();
-        $this->scopes = new \stdClass();
+        $this->relationships = new \stdClass;
+        $this->scopes = new \stdClass;
     }
 
     public function getName(): string
@@ -92,24 +92,24 @@ class ModelDefinition
 
         // Create model without relationships
         $schema = isset($data->attributes) ? Schema::fromObject($data->attributes) : new Schema;
-        
-        $config = $data->config ?? new \stdClass();
+
+        $config = $data->config ?? new \stdClass;
         if (! isset($config->table)) {
             $config->table = StringInflector::getInstance()->plural($data->name);
         }
-        
+
         $modelConfig = ModelConfiguration::fromObject($config);
 
         $model = new self($data->name, $schema, $modelConfig);
-        
+
         if (isset($data->scopes)) {
             foreach ($data->scopes as $name => $filterSpec) {
                 $model->addScope($name, $filterSpec);
             }
         }
-        
+
         $model->loadAliasesFromArray($data);
-        
+
         return $model;
     }
 
@@ -136,18 +136,17 @@ class ModelDefinition
 
     public function toObject(): object
     {
-        $result = new \stdClass();
+        $result = new \stdClass;
         $result->name = $this->name;
         $result->type = 'model';
         $result->config = $this->config->toObject();
         $result->attributes = $this->schema->toObject();
         $result->relationships = $this->relationships;
-        
-        
+
         if (! empty($this->scopes)) {
             $result->scopes = $this->scopes;
         }
-        
+
         if (! empty($this->aliases)) {
             $result->aliases = $this->aliases;
         }

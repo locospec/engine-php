@@ -32,7 +32,7 @@ class ModelValidator
 
     private function validateConfig(object $data): void
     {
-        if (!isset($data->config)) {
+        if (! isset($data->config)) {
             throw new InvalidArgumentException('Model config not found');
         }
     }

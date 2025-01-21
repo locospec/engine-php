@@ -17,7 +17,7 @@ class Schema
     {
         $this->title = $title;
         $this->description = $description;
-        $this->properties = new \stdClass(); // Initialize as an empty object
+        $this->properties = new \stdClass; // Initialize as an empty object
     }
 
     public function addProperty(string $name, SchemaPropertyInterface $property): self
@@ -53,7 +53,7 @@ class Schema
 
     public function toObject(): object
     {
-        $result = new \stdClass();
+        $result = new \stdClass;
 
         if ($this->title) {
             $result->title = $this->title;
@@ -74,11 +74,11 @@ class Schema
     {
         return json_encode($this->toArray(), JSON_PRETTY_PRINT);
     }
-    
+
     public static function fromObject(object $data): self
     {
         $schema = new self;
-        
+
         foreach ($data as $propertyName => $propertyData) {
             if (is_string($propertyData)) {
                 // Simple type definition
@@ -99,6 +99,7 @@ class Schema
                 $schema->addProperty($propertyName, $property);
             }
         }
+
         return $schema;
     }
 
