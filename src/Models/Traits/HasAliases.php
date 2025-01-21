@@ -27,7 +27,7 @@ trait HasAliases
             if (! isset($expression->extract)) {
                 throw new \InvalidArgumentException("Alias array must contain 'extract' key");
             }
-            
+
             $this->aliases->$key = $expression;
         }
     }
@@ -45,9 +45,9 @@ trait HasAliases
     protected function loadAliasesFromArray(object $data): void
     {
         if (! isset($this->aliases)) {
-            $this->aliases = new \stdClass(); // Initialize aliases as an object
+            $this->aliases = new \stdClass; // Initialize aliases as an object
         }
-        
+
         if (isset($data->aliases)) {
             foreach ($data->aliases as $key => $expression) {
                 $this->addAlias($key, $expression);

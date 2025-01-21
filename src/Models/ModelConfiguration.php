@@ -100,7 +100,7 @@ class ModelConfiguration
 
     public function toObject(): object
     {
-        $object = new \stdClass();
+        $object = new \stdClass;
         $object->primaryKey = $this->primaryKey;
         $object->table = $this->table;
         $object->connection = $this->connection;

@@ -48,9 +48,9 @@ class RelationshipProcessor
                 ));
             }
 
-            $normalizedRelations = new \stdClass();
+            $normalizedRelations = new \stdClass;
             foreach ($relations as $relationshipName => $config) {
-                $normalizedRelations->$relationshipName =  $this->normalizeRelationship($currentModel, $type, $relationshipName, $config);
+                $normalizedRelations->$relationshipName = $this->normalizeRelationship($currentModel, $type, $relationshipName, $config);
             }
 
             $currentModel->addNormalizedRelationship($type, $normalizedRelations);
@@ -83,7 +83,7 @@ class RelationshipProcessor
         // Set parent model name and description
         $relationship->setCurrentModelName($currentModel->getName());
         $relationship->setDescription("{$currentModel->getName()} $type $relationshipName");
-        
+
         // Add the relationship to the model
         $currentModel->addRelationship($relationship);
     }
@@ -103,7 +103,7 @@ class RelationshipProcessor
                 "Related model '$relatedModelName' not found for relationship '$relationshipName' in model '{$currentModel->getName()}'"
             );
         }
-        
+
         // Create relationship with proper key configuration
         $relationship = match ($type) {
             'has_one' => $this->normalizeHasOneRelationship($currentModel, $relatedModel, $relationshipName, $config),
@@ -121,7 +121,7 @@ class RelationshipProcessor
         string $relationshipName,
         object $config
     ): object {
-        $hasOneRelationship = new \stdClass();
+        $hasOneRelationship = new \stdClass;
         $currentModelName = $this->inflector->singular($currentModel->getName());
         $currentModelPrimaryKey = $currentModel->getConfig()->getPrimaryKey();
 
@@ -131,10 +131,11 @@ class RelationshipProcessor
 
         // localKey is the primary key of current model
         $localKey = $config->localKey ?? $currentModelPrimaryKey;
-        
+
         $hasOneRelationship->model = $relatedModel->getName();
         $hasOneRelationship->foreignKey = $foreignKey;
         $hasOneRelationship->localKey = $localKey;
+
         return $hasOneRelationship;
     }
 
@@ -144,7 +145,7 @@ class RelationshipProcessor
         string $relationshipName,
         object $config
     ): object {
-        $belongsToRelationship = new \stdClass();
+        $belongsToRelationship = new \stdClass;
 
         $relatedModelName = $this->inflector->singular($relatedModel->getName());
         $relatedModelPrimaryKey = $relatedModel->getConfig()->getPrimaryKey();
@@ -159,6 +160,7 @@ class RelationshipProcessor
         $belongsToRelationship->model = $relatedModel->getName();
         $belongsToRelationship->foreignKey = $foreignKey;
         $belongsToRelationship->ownerKey = $ownerKey;
+
         return $belongsToRelationship;
     }
 
@@ -168,7 +170,7 @@ class RelationshipProcessor
         string $relationshipName,
         object $config
     ): object {
-        $hasManyRelationship = new \stdClass();
+        $hasManyRelationship = new \stdClass;
 
         $currentModelName = $this->inflector->singular($currentModel->getName());
         $currentModelPrimaryKey = $currentModel->getConfig()->getPrimaryKey();
@@ -176,7 +178,7 @@ class RelationshipProcessor
         // foreignKey is in related model, referencing current model's primary key
         $foreignKey = $config->foreignKey ??
         $this->inflector->snake("{$currentModelName}_{$currentModelPrimaryKey}");
-        
+
         // localKey is the primary key of current model
         $localKey = $config->localKey ?? $currentModelPrimaryKey;
         $hasManyRelationship->model = $relatedModel->getName();

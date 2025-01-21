@@ -24,7 +24,7 @@ abstract class AbstractSchemaProperty implements SchemaPropertyInterface
 
     public function toObject(): object
     {
-        $result = new \stdClass();
+        $result = new \stdClass;
 
         $result->type = $this->getType();
         if ($this->schema) {
