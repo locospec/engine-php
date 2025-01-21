@@ -33,7 +33,7 @@ class AliasTransformation
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
-    private function processRecord(array $record, array $aliases): array
+    private function processRecord(array $record, object $aliases): array
     {
         $processed = $record;
 

@@ -4,7 +4,7 @@ namespace Locospec\Engine\Database;
 
 class AliasExpressionParser
 {
-    public function parse(string $expression): array
+    public function parse(string $expression): object
     {
         // Remove any leading/trailing whitespace
         $expression = trim($expression);

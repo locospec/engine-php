@@ -63,10 +63,8 @@ class SpecValidator
      * @param  array  $model  The model definition to validate
      * @return array{isValid: bool, errors: array} Validation result and any errors
      */
-    public function validateModel(array $model): array
+    public function validateModel(object $model): array
     {
-        // Validate against model schema
-
         $data = Helper::toJSON($model);
 
         /** @var ValidationResult $result */
