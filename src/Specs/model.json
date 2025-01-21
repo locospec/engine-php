@@ -73,14 +73,14 @@
         },
         "relationships": {
             "type": "object",
-            "description": "Model relationships definitions (can not be empty)",
+            "description": "Model relationships definitions",
             "properties": {
                 "belongs_to": {
                     "type": "object",
-                    "description": "Database belongs to relationship (can not be empty)",
+                    "description": "Database belongs to relationship",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
@@ -99,10 +99,10 @@
                 },
                 "has_many": {
                     "type": "object",
-                    "description": "Database has many relationships (can not be empty)",
+                    "description": "Database has many relationships",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
@@ -121,10 +121,10 @@
                 },
                 "has_one": {
                     "type": "object",
-                    "description": "Database has one relationships (can not be empty)",
+                    "description": "Database has one relationships",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
