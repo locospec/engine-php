@@ -20,16 +20,16 @@ class AliasTransformation
         if (empty($aliases)) {
             return $data;
         }
-        
+
         $isCollection = is_array($data) && ! empty($data) && ! isset($data['id']);
         $records = $isCollection ? $data : [$data];
-        
+
         $transformedRecords = [];
 
         foreach ($records as $record) {
             $transformedRecords[] = $this->processRecord($record, $aliases);
         }
-        
+
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
@@ -52,18 +52,18 @@ class AliasTransformation
         }
         $process = new Process(['jq', '-r', $expression]);
         $process->setInput(json_encode($data));
-        
+
         try {
             $process->mustRun();
-            
+
             if (! $process->isSuccessful()) {
                 return null;
             }
-            
+
             if (json_last_error() !== JSON_ERROR_NONE) {
                 return null;
             }
-            
+
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
             return null;
