@@ -2,32 +2,15 @@
 
 namespace Locospec\Engine\Models\Traits;
 
-use Locospec\Engine\Database\AliasExpressionParser;
-
 trait HasAliases
 {
     private object $aliases;
 
-    private ?AliasExpressionParser $expressionParser = null;
-
-    private function getExpressionParser(): AliasExpressionParser
-    {
-        if ($this->expressionParser === null) {
-            $this->expressionParser = new AliasExpressionParser;
-        }
-
-        return $this->expressionParser;
-    }
-
     public function addAlias(string $key, string|object $expression): void
     {
         if (is_string($expression)) {
-            $this->aliases->$key = $this->getExpressionParser()->parse($expression);
+            $this->aliases->$key = $expression;
         } else {
-            if (! isset($expression->extract)) {
-                throw new \InvalidArgumentException("Alias array must contain 'extract' key");
-            }
-
             $this->aliases->$key = $expression;
         }
     }

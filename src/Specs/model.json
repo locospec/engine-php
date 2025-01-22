@@ -146,31 +146,17 @@
         },
         "scopes": {
             "type": "object",
-            "description": "Model scopes definitions (can not be empty)",
+            "description": "Model scopes definitions",
             "additionalProperties": {
                 "$ref": "common.json#/definitions/filters"
             }
         },
         "aliases": {
             "type": "object",
-            "description": "Model aliases definitions (can not be empty)",
+            "description": "Model aliases definitions",
             "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "extract": {
-                        "type": "string",
-                        "description": "JQ-style path expression to extract data"
-                    },
-                    "transform": {
-                        "type": "string",
-                        "description": "JQ-style transformation expression"
-                    }
-                },
-                "anyOf": [
-                    { "required": ["extract"] },
-                    { "required": ["transform"] }
-                ],
-                "additionalProperties": false
+                "type": "string",
+                "description": "JQ-style path expression to extract/transformation data"
             }
         }
     },
