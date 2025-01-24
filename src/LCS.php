@@ -13,6 +13,8 @@ class LCS
 
     private SpecificationProcessor $specProcessor;
 
+    private static ?Logger $logger = null;
+
     /**
      * Bootstrap LCS with initial configuration
      * This should be called only once during application startup
@@ -26,16 +28,17 @@ class LCS
                 return;
             }
 
+            self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
+            self::$logger->info('Initializing LCS...');
+
             self::$globalRegistryManager = new RegistryManager;
             self::$isInitialized = true;
-
+            
             if (isset($config['paths'])) {
-                // TODO: Call SpecificationProcessor right here
-                // SpecificationProcessor::process
-                // Let it handle looping etc.,
+                // register specification
                 self::registerSpecifications($config['paths']);
-                // Todo: change name to registerSpecification
             }
+            self::$logger->info('LCS successfully bootstrapped.');
         } catch (Exception $e) {
             throw $e;
         }
@@ -47,12 +50,14 @@ class LCS
     public static function registerSpecifications(array $paths): void
     {
         try {
+            self::$logger->info('Specification registration started');
             if (! self::$isInitialized) {
                 throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
             }
 
             $specProcessor = new SpecificationProcessor(self::$globalRegistryManager);
 
+            self::$logger->info('Looping all the JSON Spec for registration');
             foreach ($paths as $path) {
                 if (is_dir($path)) {
                     foreach (glob($path.'/*.json') as $file) {
@@ -65,6 +70,7 @@ class LCS
 
             // Process all relationships after all models are registered
             $specProcessor->processRelationships();
+            self::$logger->info('Specification registration finished');
         } catch (Exception $e) {
             throw $e;
         }
@@ -79,6 +85,8 @@ class LCS
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 
+        self::$logger?->info('LCS instance created');
+
         $this->specProcessor = new SpecificationProcessor(self::$globalRegistryManager);
     }
 
@@ -87,6 +95,7 @@ class LCS
      */
     public function getRegistryManager(): RegistryManager
     {
+        self::$logger?->info('Fetching global RegistryManager');
         return self::$globalRegistryManager;
     }
 
@@ -100,6 +109,7 @@ class LCS
      */
     public function processSpecificationFile(string $path): void
     {
+        self::$logger?->info("Processing specification file: {$path}");
         $this->specProcessor->processFile($path);
     }
 
@@ -118,13 +128,22 @@ class LCS
     {
         return self::$isInitialized;
     }
-
+    
     /**
      * Reset LCS (mainly for testing purposes)
      */
     public static function reset(): void
     {
+        self::$logger?->warning('Resetting LCS system');
         self::$globalRegistryManager = null;
         self::$isInitialized = false;
+    }
+
+    /**
+     * Retrieve the Logger instance.
+     */
+    public static function getLogger(): ?Logger
+    {
+        return self::$logger;
     }
 }
