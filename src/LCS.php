@@ -33,7 +33,7 @@ class LCS
 
             self::$globalRegistryManager = new RegistryManager;
             self::$isInitialized = true;
-            
+
             if (isset($config['paths'])) {
                 // register specification
                 self::registerSpecifications($config['paths']);
@@ -96,6 +96,7 @@ class LCS
     public function getRegistryManager(): RegistryManager
     {
         self::$logger?->info('Fetching global RegistryManager');
+
         return self::$globalRegistryManager;
     }
 
@@ -128,7 +129,7 @@ class LCS
     {
         return self::$isInitialized;
     }
-    
+
     /**
      * Reset LCS (mainly for testing purposes)
      */

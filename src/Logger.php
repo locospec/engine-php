@@ -2,33 +2,33 @@
 
 namespace Locospec\Engine;
 
-use Monolog\Level;
-use Monolog\Logger as MonologLogger;
 use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\TestHandler;
-use RuntimeException;
+use Monolog\Level;
+use Monolog\Logger as MonologLogger;
 
 class Logger
 {
     private MonologLogger $logger;
+
     private TestHandler $testHandler;
 
     // Constructor to initialize the logger with a log file
     public function __construct(string $logFilePath, int $maxFiles = 7)
     {
         $this->logger = new MonologLogger('lcs_logger');
-        
+
         // Main handler for writing logs to file
         $fileHandler = new RotatingFileHandler($logFilePath, $maxFiles, Level::Debug);
         $this->logger->pushHandler($fileHandler);
 
-        // BufferHandler stores logs temporarily (without flushing immediately) 
-        // This doesnt have the way to get the logs, It addes the logs to the file itself once buffer is flushed 
+        // BufferHandler stores logs temporarily (without flushing immediately)
+        // This doesnt have the way to get the logs, It addes the logs to the file itself once buffer is flushed
         // $this->bufferHandler = new BufferHandler($fileHandler);
         // $this->logger->pushHandler($this->bufferHandler);
 
         // TestHandler for capturing logs in memory (without writing to file)
-        $this->testHandler = new TestHandler();
+        $this->testHandler = new TestHandler;
         $this->logger->pushHandler($this->testHandler);
     }
 
@@ -43,13 +43,12 @@ class Logger
     {
         $this->logger->warning($message, $context);
     }
-    
+
     // Method to log an error message
     public function error(string $message, array $context = []): void
     {
         $this->logger->error($message, $context);
     }
-
 
     // Retrieve log records from the in-memory TestHandler
     public function getLogs(): array
@@ -64,5 +63,4 @@ class Logger
             ];
         }, $this->testHandler->getRecords());
     }
-
 }

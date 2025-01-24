@@ -3,10 +3,10 @@
 namespace Locospec\Engine\Specifications;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
-use Locospec\Engine\LCS;
 
 class SpecificationProcessor
 {
@@ -19,7 +19,7 @@ class SpecificationProcessor
         $this->registryManager = $registryManager;
         $this->specValidator = new SpecValidator;
         $this->logger = LCS::getLogger();
-        
+
         $this->logger?->info('SpecificationProcessor initialized');
     }
 
@@ -38,18 +38,18 @@ class SpecificationProcessor
 
             $json = file_get_contents($filePath);
             $this->processJson($json);
-            
+
             $this->logger?->info('Successfully processed spec file', ['filePath' => $filePath]);
         } catch (InvalidArgumentException $e) {
             $this->logger?->error('InvalidArgumentException during spec file processing', [
                 'filePath' => $filePath,
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw $e; // Rethrow to be caught in LCS.php
         } catch (\Exception $e) {
             $this->logger?->error('Unexpected error processing spec file', [
                 'filePath' => $filePath,
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
@@ -62,7 +62,7 @@ class SpecificationProcessor
     {
         try {
             $this->logger?->info('Processing JSON spec');
-            
+
             $specs = $this->parseJson($json);
 
             foreach ($specs as $spec) {
@@ -72,12 +72,12 @@ class SpecificationProcessor
             $this->logger?->info('Successfully processed JSON spec');
         } catch (InvalidArgumentException $e) {
             $this->logger?->error('InvalidArgumentException during JSON processing', [
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw $e;
         } catch (\Exception $e) {
             $this->logger?->error('Unexpected error processing JSON', [
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw new InvalidArgumentException('Error processing JSON: '.$e->getMessage());
         }
@@ -94,6 +94,7 @@ class SpecificationProcessor
         }
 
         $this->logger?->info('Successfully parsed JSON data');
+
         return is_array($data) ? $data : [$data];
     }
 
@@ -116,7 +117,7 @@ class SpecificationProcessor
 
             // Validate the model spec
             $this->validateModelSpec($spec);
-            
+
             // Convert object to ModelDefinition
             $model = ModelDefinition::fromObject($spec);
             $this->logger?->info('Normalized model spec', ['modelName' => $model->getName()]);
@@ -129,7 +130,7 @@ class SpecificationProcessor
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model spec', [
                 'modelName' => $spec->name ?? 'Unknown',
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw $e;
         }
@@ -148,7 +149,7 @@ class SpecificationProcessor
 
             $this->logger?->error('Model validation failed', [
                 'modelName' => $spec->name,
-                'errors' => $errorMessages
+                'errors' => $errorMessages,
             ]);
 
             throw new InvalidArgumentException(
@@ -172,7 +173,7 @@ class SpecificationProcessor
 
                 if (! $model) {
                     $this->logger?->error('Model not found for relationship processing', [
-                        'modelName' => $pending->modelName
+                        'modelName' => $pending->modelName,
                     ]);
                     throw new InvalidArgumentException(
                         "Cannot process relationships: Model {$pending->modelName} not found"
@@ -188,7 +189,7 @@ class SpecificationProcessor
 
                 // Register relationships
                 $relationshipProcessor->processModelRelationships($model, $pending->relationships);
-                
+
                 $this->logger?->info('Successfully processed relationships for model', ['modelName' => $pending->modelName]);
             }
 
@@ -197,12 +198,12 @@ class SpecificationProcessor
             $this->logger?->info('Successfully processed relationships for all the models');
         } catch (InvalidArgumentException $e) {
             $this->logger?->error('InvalidArgumentException during relationship processing', [
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw $e; // Rethrow to be caught in LCS.php
         } catch (\Exception $e) {
             $this->logger?->error('Unexpected error processing relationships', [
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ]);
             throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
