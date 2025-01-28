@@ -119,7 +119,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -179,13 +179,6 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships">processAllPendingRelationships()</a>
-    <span>
-                                &nbsp;: void    </span>
-</dt>
-<dd>Process all pending relationships after all models are registered</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processFile">processFile()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -199,10 +192,17 @@
 </dt>
 <dd>Process specifications from a JSON string</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_normalizeSpecifications">normalizeSpecifications()</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processRelationships">processRelationships()</a>
     <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Process all the relationships after all models are registered</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_validateModelSpec">validateModelSpec()</a>
+    <span>
+                                &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
@@ -212,7 +212,7 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelDefinition">processModelDefinition()</a>
+    <a class="" href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelSpec">processModelSpec()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -248,7 +248,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -284,7 +284,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -325,7 +325,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -361,41 +361,6 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processAllPendingRelationships">
-        processAllPendingRelationships()
-        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">107</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Process all pending relationships after all models are registered</p>
-
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">processAllPendingRelationships</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_processFile">
         processFile()
         <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processFile" class="headerlink"><i class="fas fa-link"></i></a>
@@ -404,7 +369,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -449,7 +414,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">43</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -483,25 +448,60 @@
                     <article
         class="phpdocumentor-element
             -method
-            -private
+            -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_normalizeSpecifications">
-        normalizeSpecifications()
-        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_normalizeSpecifications" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_processRelationships">
+        processRelationships()
+        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processRelationships" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">165</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Process all the relationships after all models are registered</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">processRelationships</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validateModelSpec">
+        validateModelSpec()
+        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_validateModelSpec" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">139</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">normalizeSpecifications</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">validateModelSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -510,8 +510,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$data</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$spec</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -522,11 +522,7 @@
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -542,7 +538,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">86</span>
 
     </aside>
 
@@ -582,15 +578,15 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processModelDefinition">
-        processModelDefinition()
-        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelDefinition" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_processModelSpec">
+        processModelSpec()
+        <a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelSpec" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">77</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -598,7 +594,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processModelDefinition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processModelSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -608,7 +604,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$spec</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -743,12 +739,12 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships">processAllPendingRelationships()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processFile">processFile()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processJson">processJson()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_normalizeSpecifications">normalizeSpecifications()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processRelationships">processRelationships()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_validateModelSpec">validateModelSpec()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_parseJson">parseJson()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelDefinition">processModelDefinition()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelSpec">processModelSpec()</a></li>
                                     </ul>
             </li>
                     </ul>

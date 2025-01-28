@@ -93,13 +93,11 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec.html">Locospec</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine.html">Engine</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine-schema.html">Schema</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine-schema-properties.html">Properties</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    AbstractSchemaProperty
+    Logger
 
     
             <div class="phpdocumentor-element__package">
@@ -109,23 +107,18 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/Locospec-Engine-Schema-Properties-SchemaPropertyInterface.html"><abbr title="\Locospec\Engine\Schema\Properties\SchemaPropertyInterface">SchemaPropertyInterface</abbr></a>                    </span>
     
     </h2>
 
 <div class="phpdocumentor-label-line">
 
 
-    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
-
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">10</span>
 
     </aside>
 
@@ -140,19 +133,12 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Logger.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/Locospec-Engine-Schema-Properties-SchemaPropertyInterface.html"><abbr title="\Locospec\Engine\Schema\Properties\SchemaPropertyInterface">SchemaPropertyInterface</abbr></a></dt>    </dl>
 
 
 
@@ -161,52 +147,58 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Logger.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#property_schema">$schema</a>
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-Engine-Logger.html#property_logger">$logger</a>
     <span>
-                        &nbsp;: <a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>|null            </span>
+                        &nbsp;: <abbr title="\Monolog\Logger">Logger</abbr>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/Locospec-Engine-Logger.html#property_testHandler">$testHandler</a>
+    <span>
+                        &nbsp;: <abbr title="\Monolog\Handler\TestHandler">TestHandler</abbr>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Logger.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getSchema">getSchema()</a>
+    <a class="" href="classes/Locospec-Engine-Logger.html#method___construct">__construct()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>|null    </span>
+                                &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getType">getType()</a>
+    <a class="" href="classes/Locospec-Engine-Logger.html#method_error">error()</a>
     <span>
-                                &nbsp;: string    </span>
+                                &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_setSchema">setSchema()</a>
-    <span>
-                                &nbsp;: self    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toArray">toArray()</a>
+    <a class="" href="classes/Locospec-Engine-Logger.html#method_getLogs">getLogs()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toObject">toObject()</a>
+    <a class="" href="classes/Locospec-Engine-Logger.html#method_info">info()</a>
     <span>
-                                &nbsp;: object    </span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Logger.html#method_warning">warning()</a>
+    <span>
+                                &nbsp;: void    </span>
 </dt>
 
     </dl>
@@ -219,37 +211,73 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-Engine-Logger.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="
             phpdocumentor-element
             -property
-            -protected
+            -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_schema">
-        $schema
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#property_schema" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_logger">
+        $logger
+        <a href="classes/Locospec-Engine-Logger.html#property_logger" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">12</span>
 
     </aside>
 
     
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>|null</span>
-    <span class="phpdocumentor-signature__name">$schema</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Monolog\Logger">Logger</abbr></span>
+    <span class="phpdocumentor-signature__name">$logger</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_testHandler">
+        $testHandler
+        <a href="classes/Locospec-Engine-Logger.html#property_testHandler" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">14</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Monolog\Handler\TestHandler">TestHandler</abbr></span>
+    <span class="phpdocumentor-signature__name">$testHandler</span>
+    </code>
 
     
     
@@ -263,7 +291,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-Engine-Logger.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -272,98 +300,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getSchema">
-        getSchema()
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getSchema" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/Locospec-Engine-Logger.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">42</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getSchema</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>|null</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>|null</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                        -abstract                                "
->
-    <h4 class="phpdocumentor-element__name" id="method_getType">
-        getType()
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getType" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">12</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setSchema">
-        setSchema()
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_setSchema" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">37</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setSchema</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$schema</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$logFilePath</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">int&nbsp;</span><span class="phpdocumentor-signature__argument__name">$maxFiles</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">7</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -372,9 +324,16 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$schema</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Schema-Schema.html"><abbr title="\Locospec\Engine\Schema\Schema">Schema</abbr></a></span>
+                <span class="phpdocumentor-signature__argument__name">$logFilePath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$maxFiles</span>
+                : <span class="phpdocumentor-signature__argument__return-type">int</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">7</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -384,11 +343,7 @@
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">self</span>
-            </section>
-
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -396,22 +351,73 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toArray">
-        toArray()
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_error">
+        error()
+        <a href="classes/Locospec-Engine-Logger.html#method_error" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">48</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">error</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$context</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getLogs">
+        getLogs()
+        <a href="classes/Locospec-Engine-Logger.html#method_getLogs" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">54</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getLogs</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -434,37 +440,101 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_toObject">
-        toObject()
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toObject" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_info">
+        info()
+        <a href="classes/Locospec-Engine-Logger.html#method_info" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schema/Properties/AbstractSchemaProperty.php"><a href="files/src-schema-properties-abstractschemaproperty.html"><abbr title="src/Schema/Properties/AbstractSchemaProperty.php">AbstractSchemaProperty.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">toObject</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+                    <span class="phpdocumentor-signature__name">info</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$context</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">object</span>
-            </section>
+    
 
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_warning">
+        warning()
+        <a href="classes/Locospec-Engine-Logger.html#method_warning" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Logger.php"><a href="files/src-logger.html"><abbr title="src/Logger.php">Logger.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">42</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">warning</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$message</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$message</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$context</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                 = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
 </article>
             </section>
 
@@ -472,7 +542,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schema/Properties/AbstractSchemaProperty.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Logger.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -571,26 +641,27 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-Engine-Logger.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-Engine-Logger.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#property_schema">$schema</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Logger.html#property_logger">$logger</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Logger.html#property_testHandler">$testHandler</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getSchema">getSchema()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_getType">getType()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_setSchema">setSchema()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toArray">toArray()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toObject">toObject()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Logger.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Logger.html#method_error">error()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Logger.html#method_getLogs">getLogs()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Logger.html#method_info">info()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Logger.html#method_warning">warning()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -610,7 +681,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-Engine-Logger.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

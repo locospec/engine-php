@@ -179,6 +179,12 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeModelRelationships">normalizeModelRelationships()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_processModelRelationships">processModelRelationships()</a>
     <span>
                                 &nbsp;: void    </span>
@@ -191,27 +197,33 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createBelongsToRelationship">createBelongsToRelationship()</a>
-    <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-Models-Relationships-BelongsTo.html"><abbr title="\Locospec\Engine\Models\Relationships\BelongsTo">BelongsTo</abbr></a>    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasManyRelationship">createHasManyRelationship()</a>
-    <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-Models-Relationships-HasMany.html"><abbr title="\Locospec\Engine\Models\Relationships\HasMany">HasMany</abbr></a>    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasOneRelationship">createHasOneRelationship()</a>
-    <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-Models-Relationships-HasOne.html"><abbr title="\Locospec\Engine\Models\Relationships\HasOne">HasOne</abbr></a>    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_determineRelatedModelName">determineRelatedModelName()</a>
     <span>
                                 &nbsp;: string    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeBelongsToRelationship">normalizeBelongsToRelationship()</a>
+    <span>
+                                &nbsp;: object    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasManyRelationship">normalizeHasManyRelationship()</a>
+    <span>
+                                &nbsp;: object    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasOneRelationship">normalizeHasOneRelationship()</a>
+    <span>
+                                &nbsp;: object    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeRelationship">normalizeRelationship()</a>
+    <span>
+                                &nbsp;: object    </span>
 </dt>
 
     </dl>
@@ -357,22 +369,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processModelRelationships">
-        processModelRelationships()
-        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_processModelRelationships" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeModelRelationships">
+        normalizeModelRelationships()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeModelRelationships" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">processModelRelationships</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationships</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">normalizeModelRelationships</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationships</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -389,7 +401,58 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$relationships</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_processModelRelationships">
+        processModelRelationships()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_processModelRelationships" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">25</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">processModelRelationships</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationships</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationships</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -416,14 +479,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">60</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createAndValidateRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">createAndValidateRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -454,7 +517,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -466,213 +529,6 @@
     
 
     
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createBelongsToRelationship">
-        createBelongsToRelationship()
-        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createBelongsToRelationship" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">93</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createBelongsToRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-BelongsTo.html"><abbr title="\Locospec\Engine\Models\Relationships\BelongsTo">BelongsTo</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-BelongsTo.html"><abbr title="\Locospec\Engine\Models\Relationships\BelongsTo">BelongsTo</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createHasManyRelationship">
-        createHasManyRelationship()
-        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasManyRelationship" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">112</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createHasManyRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-HasMany.html"><abbr title="\Locospec\Engine\Models\Relationships\HasMany">HasMany</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-HasMany.html"><abbr title="\Locospec\Engine\Models\Relationships\HasMany">HasMany</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_createHasOneRelationship">
-        createHasOneRelationship()
-        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasOneRelationship" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">74</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">createHasOneRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-HasOne.html"><abbr title="\Locospec\Engine\Models\Relationships\HasOne">HasOne</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Models-Relationships-HasOne.html"><abbr title="\Locospec\Engine\Models\Relationships\HasOne">HasOne</abbr></a></span>
-            </section>
-
 </article>
                     <article
         class="phpdocumentor-element
@@ -688,14 +544,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">131</span>
+    <span class="phpdocumentor-element-found-in__line">191</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">determineRelatedModelName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+                    <span class="phpdocumentor-signature__name">determineRelatedModelName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -712,7 +568,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$config</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -726,6 +582,282 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeBelongsToRelationship">
+        normalizeBelongsToRelationship()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeBelongsToRelationship" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">142</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">normalizeBelongsToRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$config</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">object</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeHasManyRelationship">
+        normalizeHasManyRelationship()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasManyRelationship" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">167</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">normalizeHasManyRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$config</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">object</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeHasOneRelationship">
+        normalizeHasOneRelationship()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasOneRelationship" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">118</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">normalizeHasOneRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relatedModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$config</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">object</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_normalizeRelationship">
+        normalizeRelationship()
+        <a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeRelationship" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/RelationshipProcessor.php"><a href="files/src-specifications-relationshipprocessor.html"><abbr title="src/Specifications/RelationshipProcessor.php">RelationshipProcessor.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">91</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">normalizeRelationship</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$config</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$currentModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$type</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$config</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">object</span>
             </section>
 
 </article>
@@ -851,12 +983,14 @@
             <li>
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeModelRelationships">normalizeModelRelationships()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_processModelRelationships">processModelRelationships()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createAndValidateRelationship">createAndValidateRelationship()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createBelongsToRelationship">createBelongsToRelationship()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasManyRelationship">createHasManyRelationship()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasOneRelationship">createHasOneRelationship()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_determineRelatedModelName">determineRelatedModelName()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeBelongsToRelationship">normalizeBelongsToRelationship()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasManyRelationship">normalizeHasManyRelationship()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasOneRelationship">normalizeHasOneRelationship()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeRelationship">normalizeRelationship()</a></li>
                                     </ul>
             </li>
                     </ul>

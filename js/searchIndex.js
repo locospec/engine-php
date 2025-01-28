@@ -236,16 +236,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Actions-StateMachineFactory.html#property_lcs"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Database\\AliasExpressionParser",
-            "name": "AliasExpressionParser",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Database-AliasExpressionParser.html"
-        },                {
-            "fqsen": "\\Locospec\\Engine\\Database\\AliasExpressionParser\u003A\u003Aparse\u0028\u0029",
-            "name": "parse",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Database-AliasExpressionParser.html#method_parse"
-        },                {
             "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation",
             "name": "AliasTransformation",
             "summary": "",
@@ -796,10 +786,10 @@ Search.appendIndex(
             "summary": "Bootstrap\u0020LCS\u0020with\u0020initial\u0020configuration\nThis\u0020should\u0020be\u0020called\u0020only\u0020once\u0020during\u0020application\u0020startup",
             "url": "classes/Locospec-Engine-LCS.html#method_bootstrap"
         },                {
-            "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003AloadSpecifications\u0028\u0029",
-            "name": "loadSpecifications",
-            "summary": "Load\u0020specifications\u0020from\u0020given\u0020paths",
-            "url": "classes/Locospec-Engine-LCS.html#method_loadSpecifications"
+            "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003AregisterSpecifications\u0028\u0029",
+            "name": "registerSpecifications",
+            "summary": "Register\u0020specifications\u0020from\u0020given\u0020paths",
+            "url": "classes/Locospec-Engine-LCS.html#method_registerSpecifications"
         },                {
             "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
@@ -836,6 +826,11 @@ Search.appendIndex(
             "summary": "Reset\u0020LCS\u0020\u0028mainly\u0020for\u0020testing\u0020purposes\u0029",
             "url": "classes/Locospec-Engine-LCS.html#method_reset"
         },                {
+            "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003AgetLogger\u0028\u0029",
+            "name": "getLogger",
+            "summary": "Retrieve\u0020the\u0020Logger\u0020instance.",
+            "url": "classes/Locospec-Engine-LCS.html#method_getLogger"
+        },                {
             "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003A\u0024globalRegistryManager",
             "name": "globalRegistryManager",
             "summary": "",
@@ -845,6 +840,51 @@ Search.appendIndex(
             "name": "specProcessor",
             "summary": "",
             "url": "classes/Locospec-Engine-LCS.html#property_specProcessor"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\LCS\u003A\u003A\u0024logger",
+            "name": "logger",
+            "summary": "",
+            "url": "classes/Locospec-Engine-LCS.html#property_logger"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger",
+            "name": "Logger",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003Ainfo\u0028\u0029",
+            "name": "info",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method_info"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003Awarning\u0028\u0029",
+            "name": "warning",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method_warning"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003Aerror\u0028\u0029",
+            "name": "error",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method_error"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003AgetLogs\u0028\u0029",
+            "name": "getLogs",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method_getLogs"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A\u0024logger",
+            "name": "logger",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#property_logger"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A\u0024testHandler",
+            "name": "testHandler",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#property_testHandler"
         },                {
             "fqsen": "\\Locospec\\Engine\\MermaidRenderer",
             "name": "MermaidRenderer",
@@ -896,6 +936,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_fromArray"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AfromObject\u0028\u0029",
+            "name": "fromObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_fromObject"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AgetPrimaryKey\u0028\u0029",
             "name": "getPrimaryKey",
             "summary": "",
@@ -930,6 +975,11 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_toArray"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_toObject"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003A\u0024primaryKey",
             "name": "primaryKey",
@@ -1001,6 +1051,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_addRelationship"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AaddNormalizedRelationship\u0028\u0029",
+            "name": "addNormalizedRelationship",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_addNormalizedRelationship"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AgetRelationship\u0028\u0029",
             "name": "getRelationship",
             "summary": "",
@@ -1016,15 +1071,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_getRelationshipsByType"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AfromArray\u0028\u0029",
-            "name": "fromArray",
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AfromObject\u0028\u0029",
+            "name": "fromObject",
             "summary": "",
-            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_fromArray"
+            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_fromObject"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_toArray"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_toObject"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003ArelationshipsToArray\u0028\u0029",
             "name": "relationshipsToArray",
@@ -1090,11 +1150,6 @@ Search.appendIndex(
             "name": "validate",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelValidator.html#method_validate"
-        },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\ModelValidator\u003A\u003AvalidateStructure\u0028\u0029",
-            "name": "validateStructure",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Models-ModelValidator.html#method_validateStructure"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelValidator\u003A\u003AvalidateName\u0028\u0029",
             "name": "validateName",
@@ -1356,11 +1411,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003AgetExpressionParser\u0028\u0029",
-            "name": "getExpressionParser",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#method_getExpressionParser"
-        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003AaddAlias\u0028\u0029",
             "name": "addAlias",
             "summary": "",
@@ -1390,11 +1440,6 @@ Search.appendIndex(
             "name": "aliases",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#property_aliases"
-        },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003A\u0024expressionParser",
-            "name": "expressionParser",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#property_expressionParser"
         },                {
             "fqsen": "\\Locospec\\Engine\\Query\\AttributePath",
             "name": "AttributePath",
@@ -2271,6 +2316,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toArray"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Schema\\Properties\\AbstractSchemaProperty\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Schema-Properties-AbstractSchemaProperty.html#method_toObject"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Schema\\Properties\\AbstractSchemaProperty\u003A\u003AsetSchema\u0028\u0029",
             "name": "setSchema",
             "summary": "",
@@ -2411,6 +2461,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Schema-Properties-SchemaPropertyInterface.html#method_toArray"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Schema\\Properties\\SchemaPropertyInterface\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Schema-Properties-SchemaPropertyInterface.html#method_toObject"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Schema\\Properties\\SchemaPropertyInterface\u003A\u003AsetSchema\u0028\u0029",
             "name": "setSchema",
             "summary": "",
@@ -2486,15 +2541,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Schema-Schema.html#method_toArray"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Schema-Schema.html#method_toObject"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AtoJson\u0028\u0029",
             "name": "toJson",
             "summary": "",
             "url": "classes/Locospec-Engine-Schema-Schema.html#method_toJson"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AfromArray\u0028\u0029",
-            "name": "fromArray",
+            "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AfromObject\u0028\u0029",
+            "name": "fromObject",
             "summary": "",
-            "url": "classes/Locospec-Engine-Schema-Schema.html#method_fromArray"
+            "url": "classes/Locospec-Engine-Schema-Schema.html#method_fromObject"
         },                {
             "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AtoShortArray\u0028\u0029",
             "name": "toShortArray",
@@ -2601,25 +2661,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_processModelRelationships"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeModelRelationships\u0028\u0029",
+            "name": "normalizeModelRelationships",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeModelRelationships"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AcreateAndValidateRelationship\u0028\u0029",
             "name": "createAndValidateRelationship",
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createAndValidateRelationship"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AcreateHasOneRelationship\u0028\u0029",
-            "name": "createHasOneRelationship",
+            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeRelationship\u0028\u0029",
+            "name": "normalizeRelationship",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasOneRelationship"
+            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeRelationship"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AcreateBelongsToRelationship\u0028\u0029",
-            "name": "createBelongsToRelationship",
+            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeHasOneRelationship\u0028\u0029",
+            "name": "normalizeHasOneRelationship",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createBelongsToRelationship"
+            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasOneRelationship"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AcreateHasManyRelationship\u0028\u0029",
-            "name": "createHasManyRelationship",
+            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeBelongsToRelationship\u0028\u0029",
+            "name": "normalizeBelongsToRelationship",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_createHasManyRelationship"
+            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeBelongsToRelationship"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeHasManyRelationship\u0028\u0029",
+            "name": "normalizeHasManyRelationship",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Specifications-RelationshipProcessor.html#method_normalizeHasManyRelationship"
         },                {
             "fqsen": "\\Locospec\\Engine\\Specifications\\RelationshipProcessor\u003A\u003AdetermineRelatedModelName\u0028\u0029",
             "name": "determineRelatedModelName",
@@ -2661,20 +2731,20 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_parseJson"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AnormalizeSpecifications\u0028\u0029",
-            "name": "normalizeSpecifications",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_normalizeSpecifications"
-        },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessModelDefinition\u0028\u0029",
-            "name": "processModelDefinition",
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessModelSpec\u0028\u0029",
+            "name": "processModelSpec",
             "summary": "Process\u0020a\u0020single\u0020model\u0020definition\u0020without\u0020relationships",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelDefinition"
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processModelSpec"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllPendingRelationships\u0028\u0029",
-            "name": "processAllPendingRelationships",
-            "summary": "Process\u0020all\u0020pending\u0020relationships\u0020after\u0020all\u0020models\u0020are\u0020registered",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processAllPendingRelationships"
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AvalidateModelSpec\u0028\u0029",
+            "name": "validateModelSpec",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_validateModelSpec"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessRelationships\u0028\u0029",
+            "name": "processRelationships",
+            "summary": "Process\u0020all\u0020the\u0020relationships\u0020after\u0020all\u0020models\u0020are\u0020registered",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processRelationships"
         },                {
             "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
@@ -2686,50 +2756,50 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#property_pendingRelationships"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator",
-            "name": "SpecificationValidator",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator",
+            "name": "SpecValidator",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html"
+            "url": "classes/Locospec-Engine-SpecValidator.html"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "Create\u0020a\u0020new\u0020schema\u0020validator",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#method___construct"
+            "url": "classes/Locospec-Engine-SpecValidator.html#method___construct"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003AloadSchemas\u0028\u0029",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003AloadSchemas\u0028\u0029",
             "name": "loadSchemas",
             "summary": "Load\u0020all\u0020required\u0020JSON\u0020schemas",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#method_loadSchemas"
+            "url": "classes/Locospec-Engine-SpecValidator.html#method_loadSchemas"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003AvalidateModel\u0028\u0029",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003AvalidateModel\u0028\u0029",
             "name": "validateModel",
             "summary": "Validate\u0020a\u0020model\u0020definition",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#method_validateModel"
+            "url": "classes/Locospec-Engine-SpecValidator.html#method_validateModel"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003AvalidateOperation\u0028\u0029",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003AvalidateOperation\u0028\u0029",
             "name": "validateOperation",
             "summary": "Validate\u0020a\u0020single\u0020database\u0020operation",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#method_validateOperation"
+            "url": "classes/Locospec-Engine-SpecValidator.html#method_validateOperation"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003AvalidateComponent\u0028\u0029",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003AvalidateComponent\u0028\u0029",
             "name": "validateComponent",
             "summary": "Validate\u0020common\u0020components\u0020\u0028filters,\u0020sorts,\u0020pagination\u0029",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#method_validateComponent"
+            "url": "classes/Locospec-Engine-SpecValidator.html#method_validateComponent"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003ASCHEMA_BASE_PATH",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003ASCHEMA_BASE_PATH",
             "name": "SCHEMA_BASE_PATH",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#constant_SCHEMA_BASE_PATH"
+            "url": "classes/Locospec-Engine-SpecValidator.html#constant_SCHEMA_BASE_PATH"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003AOPERATION_TYPES",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003AOPERATION_TYPES",
             "name": "OPERATION_TYPES",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#constant_OPERATION_TYPES"
+            "url": "classes/Locospec-Engine-SpecValidator.html#constant_OPERATION_TYPES"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationValidator\u003A\u003A\u0024validator",
+            "fqsen": "\\Locospec\\Engine\\SpecValidator\u003A\u003A\u0024validator",
             "name": "validator",
             "summary": "",
-            "url": "classes/Locospec-Engine-Specifications-SpecificationValidator.html#property_validator"
+            "url": "classes/Locospec-Engine-SpecValidator.html#property_validator"
         },                {
             "fqsen": "\\Locospec\\Engine\\StateMachine\\ChoiceState",
             "name": "ChoiceState",
