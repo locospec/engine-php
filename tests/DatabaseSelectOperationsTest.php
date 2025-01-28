@@ -1,15 +1,15 @@
 <?php
 
-use Locospec\Engine\Specifications\SpecificationValidator;
+use Locospec\Engine\SpecValidator;
 
 beforeAll(function () {
     global $validator;
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 });
 
 it('uses shared data', function () {
     global $validator;
-    expect($validator)->toBeInstanceOf(SpecificationValidator::class);
+    expect($validator)->toBeInstanceOf(SpecValidator::class);
 })->group('stable');
 
 test('select with minimal requirements', function () {

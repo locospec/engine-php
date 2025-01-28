@@ -1,10 +1,10 @@
 <?php
 
-use Locospec\Engine\Specifications\SpecificationValidator;
+use Locospec\Engine\SpecValidator;
 
 // Update Operation Tests
 test('valid update with shorthand filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'update',
@@ -25,7 +25,7 @@ test('valid update with shorthand filters', function () {
 })->group('stable');
 
 test('valid update with complex filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'update',
@@ -48,7 +48,7 @@ test('valid update with complex filters', function () {
 })->group('stable');
 
 test('invalid update without data', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'update',
@@ -65,7 +65,7 @@ test('invalid update without data', function () {
 })->group('stable');
 
 test('invalid update with empty data', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'update',
@@ -83,7 +83,7 @@ test('invalid update with empty data', function () {
 
 // Delete Operation Tests
 test('valid delete with shorthand filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'delete',
@@ -100,7 +100,7 @@ test('valid delete with shorthand filters', function () {
 })->group('stable');
 
 test('valid delete with complex filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'delete',
@@ -126,7 +126,7 @@ test('valid delete with complex filters', function () {
 })->group('stable');
 
 test('invalid delete without filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'delete',
@@ -140,7 +140,7 @@ test('invalid delete without filters', function () {
 })->group('stable');
 
 test('invalid delete with empty filters', function () {
-    $validator = new SpecificationValidator;
+    $validator = new SpecValidator;
 
     $operation = [
         'type' => 'delete',

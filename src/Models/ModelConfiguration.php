@@ -44,6 +44,18 @@ class ModelConfiguration
         );
     }
 
+    public static function fromObject(object $config): self
+    {
+        return new self(
+            $config->primaryKey ?? 'id',
+            $config->table ?? null,
+            $config->connection ?? null,
+            $config->dbOperator ?? null,
+            $config->singular ?? null,
+            $config->plural ?? null,
+        );
+    }
+
     public function getPrimaryKey(): string
     {
         return $this->primaryKey;
@@ -84,5 +96,18 @@ class ModelConfiguration
             'singular' => $this->singular,
             'plural' => $this->plural,
         ], fn ($value) => $value !== null);
+    }
+
+    public function toObject(): object
+    {
+        $object = new \stdClass;
+        $object->primaryKey = $this->primaryKey;
+        $object->table = $this->table;
+        $object->connection = $this->connection;
+        $object->dbOperator = $this->dbOperator;
+        $object->singular = $this->singular;
+        $object->plural = $this->plural;
+
+        return $object;
     }
 }

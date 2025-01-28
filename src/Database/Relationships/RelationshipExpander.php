@@ -3,6 +3,7 @@
 namespace Locospec\Engine\Database\Relationships;
 
 use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Models\Relationships\BelongsTo;
 use Locospec\Engine\Models\Relationships\HasMany;
@@ -26,10 +27,17 @@ class RelationshipExpander
         $this->model = $model;
         $this->dbOps = $dbOps;
         $this->registryManager = $registryManager;
+        $this->logger = LCS::getLogger();
+
+        $this->logger?->info('RelationshipExpander initialized', ['modelName' => $model->getName()]);
     }
 
     public function expand($dbOpResult)
     {
+        $this->logger?->info('Starting relationship expansion', [
+            'modelName' => $this->model->getName(),
+            'expandPaths' => $dbOpResult['operation']['expand'],
+        ]);
         $expand = $dbOpResult['operation']['expand'];
         $results = $dbOpResult['result'];
 
@@ -39,11 +47,17 @@ class RelationshipExpander
 
         $dbOpResult['result'] = $results;
 
+        $this->logger?->info('Relationship expansion completed', [
+            'modelName' => $this->model->getName(),
+            'expandedPaths' => $expand,
+        ]);
+
         return $dbOpResult;
     }
 
     private function expandSingle($expandPath, $results)
     {
+        $this->logger?->info('Expanding single relationship', ['expandPath' => $expandPath]);
         // Split path into current relationship and remaining path
         $parts = explode('.', $expandPath, 2);
         $relationshipName = $parts[0];
@@ -65,14 +79,32 @@ class RelationshipExpander
             'op' => $extractAndPointAttributes['op'],
         ];
 
+        $this->logger?->info('Processing single relationship expansion', [
+            'relationshipName' => $relationshipName,
+            'remainingPath' => $remainingPath,
+            'relation' => $relation,
+        ]);
+
         return $this->expandRelation($results, $relation, $remainingPath);
     }
 
     private function expandRelation(array $results, array $relation, ?string $remainingPath): array
     {
+
+        $this->logger?->info('Expanding relationship in results', [
+            'sourceModel' => $relation['source_model_name'],
+            'targetModel' => $relation['target_model_name'],
+            'attributeMapping' => [
+                'extractBy' => $relation['extract_by_attribute'],
+                'pointTo' => $relation['source_by_attribute'],
+                'operation' => $relation['op'],
+            ],
+        ]);
         // Collect IDs from source records
         $sourceIds = array_filter(array_column($results, $relation['source_by_attribute']));
         if (empty($sourceIds)) {
+            $this->logger?->info('No source IDs found, skipping expansion');
+
             return $results;
         }
 
@@ -95,6 +127,8 @@ class RelationshipExpander
             $operation['expand'] = [$remainingPath];
         }
 
+        $this->logger?->info('Fetching related records for expansion', ['operation' => $operation]);
+
         $relatedResults = $this->dbOps->add($operation)->execute();
 
         $relatedRecords = $relatedResults[0]['result'] ?? [];
@@ -106,11 +140,17 @@ class RelationshipExpander
     {
         $relationship = $relation['relationship'];
 
+        $this->logger?->info('Mapping related records', [
+            'relationship' => $relationship,
+            'relatedRecordsCount' => count($relatedRecords),
+            'sourceModel' => $relation['source_model_name'],
+            'targetModel' => $relation['target_model_name'],
+        ]);
+
         foreach ($results as &$result) {
             $sourceValue = $result[$relation['source_by_attribute']];
-
             $related = array_filter($relatedRecords, function ($record) use ($relation, $sourceValue) {
-                return $record[$relation['extract_by_attribute']] === $sourceValue;
+                return ($record[$relation['extract_by_attribute']] ?? null) === $sourceValue;
             });
 
             if ($relationship instanceof HasMany) {
@@ -120,11 +160,20 @@ class RelationshipExpander
             }
         }
 
+        $this->logger?->info('Successfully mapped related records', [
+            'sourceModel' => $relation['source_model_name'],
+            'targetModel' => $relation['target_model_name'],
+        ]);
+
         return $results;
     }
 
     private function getExtractAndPointAttributes(Relationship $relationship): array
     {
+        $this->logger?->info('Determining extract and point attributes for relationship', [
+            'relationshipType' => get_class($relationship),
+        ]);
+
         if ($relationship instanceof BelongsTo) {
             return [
                 'extract' => $relationship->getOwnerKey(),
@@ -138,5 +187,6 @@ class RelationshipExpander
                 'op' => 'in',
             ];
         }
+        $this->logger?->error('Unknown relationship type encountered', ['relationship' => $relationship]);
     }
 }

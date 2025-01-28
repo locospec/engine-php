@@ -9,7 +9,7 @@ use Locospec\Engine\Database\Scopes\ScopeResolver;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Registry\DatabaseDriverInterface;
 use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\Specifications\SpecificationValidator;
+use Locospec\Engine\SpecValidator;
 use RuntimeException;
 
 class DatabaseOperationsCollection
@@ -17,7 +17,7 @@ class DatabaseOperationsCollection
     /** @var array[] */
     private array $operations = [];
 
-    private SpecificationValidator $validator;
+    private SpecValidator $validator;
 
     private ValueResolver $valueResolver;
 
@@ -27,7 +27,7 @@ class DatabaseOperationsCollection
 
     public function __construct()
     {
-        $this->validator = new SpecificationValidator;
+        $this->validator = new SpecValidator;
         $this->valueResolver = new ValueResolver;
     }
 

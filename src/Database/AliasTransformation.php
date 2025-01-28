@@ -17,7 +17,6 @@ class AliasTransformation
     public function transform(array $data): array
     {
         $aliases = $this->model->getAliases();
-
         if (empty($aliases)) {
             return $data;
         }
@@ -26,6 +25,7 @@ class AliasTransformation
         $records = $isCollection ? $data : [$data];
 
         $transformedRecords = [];
+
         foreach ($records as $record) {
             $transformedRecords[] = $this->processRecord($record, $aliases);
         }
@@ -33,29 +33,13 @@ class AliasTransformation
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
-    private function processRecord(array $record, array $aliases): array
+    private function processRecord(array $record, object $aliases): array
     {
         $processed = $record;
 
         foreach ($aliases as $aliasKey => $expression) {
-            // First extract
-            $extracted = $this->executeJQExpression($record, $expression['extract']);
-
-            // dump($extracted);
-
-            // Then transform if transform expression exists
-            if ($extracted !== null && ! empty($expression['transform'])) {
-                $toTransform = json_decode($extracted, true);
-                $transformed = $this->executeJQExpression(['value' => $toTransform], '.value | '.$expression['transform']);
-
-                if ($transformed !== null) {
-                    $processed[$aliasKey] = $transformed;
-                } else {
-                    $processed[$aliasKey] = $extracted;
-                }
-            } else {
-                $processed[$aliasKey] = $extracted;
-            }
+            $extracted = $this->executeJQExpression($record, $expression);
+            $processed[$aliasKey] = $extracted;
         }
 
         return $processed;
@@ -66,7 +50,6 @@ class AliasTransformation
         if (empty($expression)) {
             return null;
         }
-
         $process = new Process(['jq', '-r', $expression]);
         $process->setInput(json_encode($data));
 
@@ -83,9 +66,6 @@ class AliasTransformation
 
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
-
-            // dump(["errored jq", $data, $expression, $e]);
-
             return null;
         }
     }

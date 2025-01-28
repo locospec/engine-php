@@ -22,12 +22,12 @@ class RelationshipProcessor
         $this->inflector = StringInflector::getInstance();
     }
 
-    public function processModelRelationships(ModelDefinition $currentModel, array $relationships): void
+    public function processModelRelationships(ModelDefinition $currentModel, object $relationships): void
     {
         foreach ($relationships as $type => $relations) {
-            if (! is_array($relations)) {
+            if (! is_object($relations)) {
                 throw new InvalidArgumentException(sprintf(
-                    'Relationship type %s must be an array',
+                    'Relationship type %s must be an object',
                     htmlspecialchars($type, ENT_QUOTES, 'UTF-8')
                 ));
             }
@@ -38,15 +38,33 @@ class RelationshipProcessor
         }
     }
 
+    public function normalizeModelRelationships(ModelDefinition $currentModel, object $relationships): void
+    {
+        foreach ($relationships as $type => $relations) {
+            if (! is_object($relations)) {
+                throw new InvalidArgumentException(sprintf(
+                    'Relationship type %s must be an object',
+                    htmlspecialchars($type, ENT_QUOTES, 'UTF-8')
+                ));
+            }
+
+            $normalizedRelations = new \stdClass;
+            foreach ($relations as $relationshipName => $config) {
+                $normalizedRelations->$relationshipName = $this->normalizeRelationship($currentModel, $type, $relationshipName, $config);
+            }
+
+            $currentModel->addNormalizedRelationship($type, $normalizedRelations);
+        }
+    }
+
     private function createAndValidateRelationship(
         ModelDefinition $currentModel,
         string $type,
         string $relationshipName,
-        array $config
+        object $config
     ): void {
         // Get or derive the related model name
         $relatedModelName = $this->determineRelatedModelName($relationshipName, $config);
-
         // Validate related model exists
         $relatedModel = $this->registryManager->get('model', $relatedModelName);
         if (! $relatedModel) {
@@ -57,12 +75,11 @@ class RelationshipProcessor
 
         // Create relationship with proper key configuration
         $relationship = match ($type) {
-            'has_one' => $this->createHasOneRelationship($currentModel, $relatedModel, $relationshipName, $config),
-            'belongs_to' => $this->createBelongsToRelationship($currentModel, $relatedModel, $relationshipName, $config),
-            'has_many' => $this->createHasManyRelationship($currentModel, $relatedModel, $relationshipName, $config),
+            'has_one' => new HasOne($relationshipName, $relatedModel->getName(), $currentModel->getRelationships()->$type->$relationshipName->foreignKey, $currentModel->getRelationships()->$type->$relationshipName->localKey),
+            'belongs_to' => new BelongsTo($relationshipName, $relatedModel->getName(), $currentModel->getRelationships()->$type->$relationshipName->foreignKey, $currentModel->getRelationships()->$type->$relationshipName->ownerKey),
+            'has_many' => new HasMany($relationshipName, $relatedModel->getName(), $currentModel->getRelationships()->$type->$relationshipName->foreignKey, $currentModel->getRelationships()->$type->$relationshipName->localKey),
             default => throw new InvalidArgumentException("Unsupported relationship type: $type")
         };
-
         // Set parent model name and description
         $relationship->setCurrentModelName($currentModel->getName());
         $relationship->setDescription("{$currentModel->getName()} $type $relationshipName");
@@ -71,65 +88,108 @@ class RelationshipProcessor
         $currentModel->addRelationship($relationship);
     }
 
-    private function createHasOneRelationship(
+    private function normalizeRelationship(
+        ModelDefinition $currentModel,
+        string $type,
+        string $relationshipName,
+        object $config
+    ): object {
+        // Get or derive the related model name
+        $relatedModelName = $this->determineRelatedModelName($relationshipName, $config);
+        // Validate related model exists
+        $relatedModel = $this->registryManager->get('model', $relatedModelName);
+        if (! $relatedModel) {
+            throw new InvalidArgumentException(
+                "Related model '$relatedModelName' not found for relationship '$relationshipName' in model '{$currentModel->getName()}'"
+            );
+        }
+
+        // Create relationship with proper key configuration
+        $relationship = match ($type) {
+            'has_one' => $this->normalizeHasOneRelationship($currentModel, $relatedModel, $relationshipName, $config),
+            'belongs_to' => $this->normalizeBelongsToRelationship($currentModel, $relatedModel, $relationshipName, $config),
+            'has_many' => $this->normalizeHasManyRelationship($currentModel, $relatedModel, $relationshipName, $config),
+            default => throw new InvalidArgumentException("Unsupported relationship type: $type")
+        };
+
+        return $relationship;
+    }
+
+    private function normalizeHasOneRelationship(
         ModelDefinition $currentModel,
         ModelDefinition $relatedModel,
         string $relationshipName,
-        array $config
-    ): HasOne {
+        object $config
+    ): object {
+        $hasOneRelationship = new \stdClass;
         $currentModelName = $this->inflector->singular($currentModel->getName());
         $currentModelPrimaryKey = $currentModel->getConfig()->getPrimaryKey();
 
         // foreignKey is in related model, referencing current model's primary key
-        $foreignKey = $config['foreignKey'] ??
+        $foreignKey = $config->foreignKey ??
             $this->inflector->snake("{$currentModelName}_{$currentModelPrimaryKey}");
 
         // localKey is the primary key of current model
-        $localKey = $config['localKey'] ?? $currentModelPrimaryKey;
+        $localKey = $config->localKey ?? $currentModelPrimaryKey;
 
-        return new HasOne($relationshipName, $relatedModel->getName(), $foreignKey, $localKey);
+        $hasOneRelationship->model = $relatedModel->getName();
+        $hasOneRelationship->foreignKey = $foreignKey;
+        $hasOneRelationship->localKey = $localKey;
+
+        return $hasOneRelationship;
     }
 
-    private function createBelongsToRelationship(
+    private function normalizeBelongsToRelationship(
         ModelDefinition $currentModel,
         ModelDefinition $relatedModel,
         string $relationshipName,
-        array $config
-    ): BelongsTo {
+        object $config
+    ): object {
+        $belongsToRelationship = new \stdClass;
+
         $relatedModelName = $this->inflector->singular($relatedModel->getName());
         $relatedModelPrimaryKey = $relatedModel->getConfig()->getPrimaryKey();
 
         // foreignKey is in current model, referencing related model's primary key
-        $foreignKey = $config['foreignKey'] ??
+        $foreignKey = $config->foreignKey ??
             $this->inflector->snake("{$relatedModelName}_{$relatedModelPrimaryKey}");
 
         // ownerKey is the primary key of related model
-        $ownerKey = $config['ownerKey'] ?? $relatedModelPrimaryKey;
+        $ownerKey = $config->ownerKey ?? $relatedModelPrimaryKey;
 
-        return new BelongsTo($relationshipName, $relatedModel->getName(), $foreignKey, $ownerKey);
+        $belongsToRelationship->model = $relatedModel->getName();
+        $belongsToRelationship->foreignKey = $foreignKey;
+        $belongsToRelationship->ownerKey = $ownerKey;
+
+        return $belongsToRelationship;
     }
 
-    private function createHasManyRelationship(
+    private function normalizeHasManyRelationship(
         ModelDefinition $currentModel,
         ModelDefinition $relatedModel,
         string $relationshipName,
-        array $config
-    ): HasMany {
+        object $config
+    ): object {
+        $hasManyRelationship = new \stdClass;
+
         $currentModelName = $this->inflector->singular($currentModel->getName());
         $currentModelPrimaryKey = $currentModel->getConfig()->getPrimaryKey();
 
         // foreignKey is in related model, referencing current model's primary key
-        $foreignKey = $config['foreignKey'] ??
-            $this->inflector->snake("{$currentModelName}_{$currentModelPrimaryKey}");
+        $foreignKey = $config->foreignKey ??
+        $this->inflector->snake("{$currentModelName}_{$currentModelPrimaryKey}");
 
         // localKey is the primary key of current model
-        $localKey = $config['localKey'] ?? $currentModelPrimaryKey;
+        $localKey = $config->localKey ?? $currentModelPrimaryKey;
+        $hasManyRelationship->model = $relatedModel->getName();
+        $hasManyRelationship->foreignKey = $foreignKey;
+        $hasManyRelationship->localKey = $localKey;
 
-        return new HasMany($relationshipName, $relatedModel->getName(), $foreignKey, $localKey);
+        return $hasManyRelationship;
     }
 
-    private function determineRelatedModelName(string $relationshipName, array $config): string
+    private function determineRelatedModelName(string $relationshipName, object $config): string
     {
-        return $config['model'] ?? $this->inflector->singular($relationshipName);
+        return $config->model ?? $this->inflector->singular($relationshipName);
     }
 }

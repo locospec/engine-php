@@ -22,6 +22,18 @@ abstract class AbstractSchemaProperty implements SchemaPropertyInterface
         return $result;
     }
 
+    public function toObject(): object
+    {
+        $result = new \stdClass;
+
+        $result->type = $this->getType();
+        if ($this->schema) {
+            $result->schema = $this->schema->toObject();
+        }
+
+        return $result;
+    }
+
     public function setSchema(Schema $schema): self
     {
         throw new InvalidArgumentException('Schema can only be set for object or array types');

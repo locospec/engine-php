@@ -7,7 +7,7 @@ use Locospec\Engine\Schema\Properties\SchemaPropertyInterface;
 
 class Schema
 {
-    private array $properties = [];
+    private object $properties;
 
     private ?string $title = null;
 
@@ -17,11 +17,12 @@ class Schema
     {
         $this->title = $title;
         $this->description = $description;
+        $this->properties = new \stdClass; // Initialize as an empty object
     }
 
     public function addProperty(string $name, SchemaPropertyInterface $property): self
     {
-        $this->properties[$name] = $property;
+        $this->properties->$name = $property;
 
         return $this;
     }
@@ -50,12 +51,31 @@ class Schema
         return $result;
     }
 
+    public function toObject(): object
+    {
+        $result = new \stdClass;
+
+        if ($this->title) {
+            $result->title = $this->title;
+        }
+
+        if ($this->description) {
+            $result->description = $this->description;
+        }
+
+        foreach ($this->properties as $name => $property) {
+            $result->$name = $property->toObject()->type;
+        }
+
+        return $result;
+    }
+
     public function toJson(): string
     {
         return json_encode($this->toArray(), JSON_PRETTY_PRINT);
     }
 
-    public static function fromArray(array $data): self
+    public static function fromObject(object $data): self
     {
         $schema = new self;
 

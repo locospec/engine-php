@@ -7,7 +7,9 @@
     "properties": {
         "name": {
             "type": "string",
-            "description": "Name of the model"
+            "description": "Name of the model",
+            "minLength": 1,
+            "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
         },
         "type": {
             "type": "string",
@@ -29,6 +31,18 @@
                 },
                 "table": {
                     "type": "string",
+                    "description": "Database table identifier (If not provided, plural of name will be taken)"
+                },
+                "dbOperator": {
+                    "type": ["string", "null"],
+                    "description": "Database table identifier (If not provided, plural of name will be taken)"
+                },
+                "singular": {
+                    "type": ["string", "null"],
+                    "description": "Database table identifier (If not provided, plural of name will be taken)"
+                },
+                "plural": {
+                    "type": ["string", "null"],
                     "description": "Database table identifier (If not provided, plural of name will be taken)"
                 }
             },
@@ -59,14 +73,14 @@
         },
         "relationships": {
             "type": "object",
-            "description": "Model relationships definitions (can not be empty)",
+            "description": "Model relationships definitions",
             "properties": {
                 "belongs_to": {
                     "type": "object",
-                    "description": "Database belongs to relationship (can not be empty)",
+                    "description": "Database belongs to relationship",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
@@ -80,16 +94,15 @@
                                 "type": "string",
                                 "description": "The key in the related model that this relationship references"
                             }
-                        },
-                        "required": ["foreignKey"]
+                        }
                     }
                 },
                 "has_many": {
                     "type": "object",
-                    "description": "Database has many relationships (can not be empty)",
+                    "description": "Database has many relationships",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
@@ -103,16 +116,15 @@
                                 "type": "string",
                                 "description": "The key in the current model that this relationship references"
                             }
-                        },
-                        "required": ["foreignKey"]
+                        }
                     }
                 },
                 "has_one": {
                     "type": "object",
-                    "description": "Database has one relationships (can not be empty)",
+                    "description": "Database has one relationships",
                     "additionalProperties": {
                         "type": "object",
-                        "description": "Relationship configuration (can not be empty)",
+                        "description": "Relationship configuration",
                         "properties": {
                             "model": {
                                 "type": "string",
@@ -126,8 +138,7 @@
                                 "type": "string",
                                 "description": "The key in the current model that this relationship references"
                             }
-                        },
-                        "required": ["foreignKey"]
+                        }
                     }
                 }
             },
@@ -135,31 +146,17 @@
         },
         "scopes": {
             "type": "object",
-            "description": "Model scopes definitions (can not be empty)",
+            "description": "Model scopes definitions",
             "additionalProperties": {
                 "$ref": "common.json#/definitions/filters"
             }
         },
         "aliases": {
             "type": "object",
-            "description": "Model aliases definitions (can not be empty)",
+            "description": "Model aliases definitions",
             "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "extract": {
-                        "type": "string",
-                        "description": "JQ-style path expression to extract data"
-                    },
-                    "transform": {
-                        "type": "string",
-                        "description": "JQ-style transformation expression"
-                    }
-                },
-                "anyOf": [
-                    { "required": ["extract"] },
-                    { "required": ["transform"] }
-                ],
-                "additionalProperties": false
+                "type": "string",
+                "description": "JQ-style path expression to extract/transformation data"
             }
         }
     },

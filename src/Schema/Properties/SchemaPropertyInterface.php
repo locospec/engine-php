@@ -10,6 +10,8 @@ interface SchemaPropertyInterface
 
     public function toArray(): array;
 
+    public function toObject(): object;
+
     public function setSchema(Schema $schema): self;
 
     public function getSchema(): ?Schema;
