@@ -29,7 +29,12 @@ class Schema
 
     public function getProperty(string $name): ?SchemaPropertyInterface
     {
-        return $this->properties[$name] ?? null;
+        return $this->properties->$name ?? null;
+    }
+
+    public function getProperties()
+    {
+        return $this->properties ?? null;
     }
 
     public function toArray(): array
