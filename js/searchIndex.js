@@ -311,6 +311,11 @@ Search.appendIndex(
             "summary": "Reset\u0020the\u0020collection",
             "url": "classes/Locospec-Engine-Database-DatabaseOperationsCollection.html#method_reset"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\DatabaseOperationsCollection\u003A\u003AprocessJsonObjectProperties\u0028\u0029",
+            "name": "processJsonObjectProperties",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-DatabaseOperationsCollection.html#method_processJsonObjectProperties"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operations",
             "name": "operations",
             "summary": "",
@@ -2535,6 +2540,11 @@ Search.appendIndex(
             "name": "getProperty",
             "summary": "",
             "url": "classes/Locospec-Engine-Schema-Schema.html#method_getProperty"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AgetProperties\u0028\u0029",
+            "name": "getProperties",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Schema-Schema.html#method_getProperties"
         },                {
             "fqsen": "\\Locospec\\Engine\\Schema\\Schema\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
