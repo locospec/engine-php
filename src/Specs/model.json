@@ -67,7 +67,8 @@
                     "decimal",
                     "text",
                     "json",
-                    "jsonb"
+                    "jsonb",
+                    "object"
                 ]
             }
         },

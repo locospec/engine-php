@@ -188,6 +188,21 @@ class DatabaseOperationsCollection
         // Reset operations after execution
         $this->reset();
 
+        // convert the stringified json to json 
+        foreach ($dbOpResults as $index => $dbOpResult) {
+            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
+                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                $processedResult = $this->processJsonObjectProperties(
+                    $model,
+                    $dbOpResult['result']
+                );
+
+                // Update the result with decoded values
+                $dbOpResults[$index]['result'] = $processedResult;
+            }
+        }
+
         foreach ($dbOpResults as $index => $dbOpResult) {
             if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
                 $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
@@ -223,5 +238,35 @@ class DatabaseOperationsCollection
         $this->operations = [];
 
         return $this;
+    }
+
+    private function processJsonObjectProperties($model, array $result): array
+    {
+        // Step 1: Get all JSON/object property names from the schema
+        $objectKeys = [];
+        $schema = $model->getSchema();
+
+        if ($schema) {
+            foreach ($schema->getProperties() as $name => $property) {
+                $type = $property->getType();
+                if ($type === 'json' || $type === 'object') {
+                    $objectKeys[] = $name;
+                }
+            }
+        }
+
+        // Step 2: Decode JSON strings in the result for these keys
+        foreach ($result as &$item) {
+            foreach ($objectKeys as $key) {
+                if (isset($item[$key]) && is_string($item[$key])) {
+                    $decoded = json_decode($item[$key], true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $item[$key] = $decoded; // Replace string with decoded array
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 }
