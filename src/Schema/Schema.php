@@ -31,12 +31,12 @@ class Schema
     {
         return $this->properties->$name ?? null;
     }
-    
+
     public function getProperties()
     {
         return $this->properties ?? null;
     }
-    
+
     public function toArray(): array
     {
         $result = [];

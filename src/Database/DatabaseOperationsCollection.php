@@ -188,7 +188,7 @@ class DatabaseOperationsCollection
         // Reset operations after execution
         $this->reset();
 
-        // convert the stringified json to json 
+        // convert the stringified json to json
         foreach ($dbOpResults as $index => $dbOpResult) {
             if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
                 $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
