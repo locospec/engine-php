@@ -113,7 +113,7 @@ class DatabaseOperationsCollection
         // dd($operation);
 
         if (isset($operation['filters'])) {
-            $operation = FilterGroup::normalize($operation);
+            $operation = FilterGroup::normalize($operation, $model);
             $resolver = new RelationshipResolver($model, $this, $this->registryManager);
             $operation = $resolver->resolveFilters($operation);
         }

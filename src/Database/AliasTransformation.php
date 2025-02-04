@@ -43,7 +43,7 @@ class AliasTransformation
                 $source = $expression->source;
 
                 if (strpos($expression->source, '->') !== false) {
-                    $source = preg_replace(['/^/', '/->>?/', "/'/"], ['.', '.', ''], $expression->source);
+                    $source = preg_replace(['/^/', '/->?/'], ['.', '.'], $expression->source);
                 } else {
                     $source = '.'.$source;
                 }
