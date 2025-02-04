@@ -30,7 +30,7 @@ trait HasAliases
         if (! isset($this->aliases)) {
             $this->aliases = new \stdClass; // Initialize aliases as an object
         }
-        
+
         if (isset($data->aliases)) {
             foreach ($data->aliases as $key => $expression) {
                 $this->addAlias($key, $expression);

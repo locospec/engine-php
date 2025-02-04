@@ -39,25 +39,26 @@ class AliasTransformation
 
         foreach ($aliases as $aliasKey => $expression) {
             $extracted = null;
-            if(isset($expression->source)){
+            if (isset($expression->source)) {
                 $source = $expression->source;
 
-                if(strpos($expression->source, '->') !== false){
-                    $source = preg_replace(["/^/", "/->>?/", "/'/"], [".", ".", ""], $expression->source);
-                }else{
-                    $source = '.' . $source;
+                if (strpos($expression->source, '->') !== false) {
+                    $source = preg_replace(['/^/', '/->>?/', "/'/"], ['.', '.', ''], $expression->source);
+                } else {
+                    $source = '.'.$source;
                 }
 
                 $extracted = $this->executeJQExpression($record, $source);
                 $processed[$aliasKey] = $extracted;
             }
 
-            if(isset($expression->transform)){
-                $valueToTransform = (!empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
-                $inputData = isset($extracted) && !empty($extracted) ? ['value' => $valueToTransform] : $record;
+            if (isset($expression->transform)) {
+                $valueToTransform = (! empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
+                $inputData = isset($extracted) && ! empty($extracted) ? ['value' => $valueToTransform] : $record;
                 $processed[$aliasKey] = $this->executeJQExpression($inputData, $expression->transform);
             }
         }
+
         return $processed;
     }
 
@@ -68,7 +69,7 @@ class AliasTransformation
         }
         $process = new Process(['jq', '-r', $expression]);
         $process->setInput(json_encode($data));
-        
+
         try {
             $process->mustRun();
 

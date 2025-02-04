@@ -108,7 +108,7 @@ class ModelDefinition
                 $model->addScope($name, $filterSpec);
             }
         }
-        
+
         $model->addAliases($data);
 
         return $model;
