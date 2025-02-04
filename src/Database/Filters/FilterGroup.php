@@ -28,6 +28,7 @@ class FilterGroup
                 }
             }
             $operation['filters'] = $filters;
+
             return $operation;
         }
 
