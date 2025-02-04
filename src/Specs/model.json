@@ -156,8 +156,22 @@
             "type": "object",
             "description": "Model aliases definitions",
             "additionalProperties": {
-                "type": "string",
-                "description": "JQ-style path expression to extract/transformation data"
+                "type": "object",
+                "description": "Relationship/JQ-style path expression to find/transform data",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "Relationship/JSON path to find the value"
+                    },
+                    "transform": {
+                        "type": "string",
+                        "description": "JQ-style path expression to transform data"
+                    }
+                },
+                "anyOf": [
+                    { "required": ["source"] },
+                    { "required": ["transform"] }
+                ]
             }
         }
     },
