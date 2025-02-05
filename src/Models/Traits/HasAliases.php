@@ -25,7 +25,7 @@ trait HasAliases
         return $this->aliases;
     }
 
-    protected function loadAliasesFromArray(object $data): void
+    protected function addAliases(object $data): void
     {
         if (! isset($this->aliases)) {
             $this->aliases = new \stdClass; // Initialize aliases as an object

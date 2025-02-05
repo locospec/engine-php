@@ -28,6 +28,7 @@ class ModelDefinition
         $this->config = $config;
         $this->relationships = new \stdClass;
         $this->scopes = new \stdClass;
+        $this->aliases = new \stdClass;
     }
 
     public function getName(): string
@@ -108,7 +109,7 @@ class ModelDefinition
             }
         }
 
-        $model->loadAliasesFromArray($data);
+        $model->addAliases($data);
 
         return $model;
     }
