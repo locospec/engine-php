@@ -1431,10 +1431,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#method_getAliases"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003AloadAliasesFromArray\u0028\u0029",
-            "name": "loadAliasesFromArray",
+            "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003AaddAliases\u0028\u0029",
+            "name": "addAliases",
             "summary": "",
-            "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#method_loadAliasesFromArray"
+            "url": "classes/Locospec-Engine-Models-Traits-HasAliases.html#method_addAliases"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\Traits\\HasAliases\u003A\u003AaliasesToArray\u0028\u0029",
             "name": "aliasesToArray",
