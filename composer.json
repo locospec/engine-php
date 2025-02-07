@@ -1,56 +1,57 @@
 {
-  "name": "locospec/engine-php",
-  "version": "1.0.0-alpha.5",
-  "description": "This is my package engine-php",
-  "keywords": [
-    "locospec",
-    "engine-php"
-  ],
-  "homepage": "https://github.com/locospec/engine-php",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Rajiv Seelam",
-      "email": "rajiv@betalectic.com",
-      "role": "Developer"
-    }
-  ],
-  "require": {
-    "php": "^8.2",
-    "doctrine/inflector": "^2.0",
-    "opis/json-schema": "^2.3"
-  },
-  "require-dev": {
-    "laravel/pint": "^1.0",
-    "pestphp/pest": "^3.5",
-    "spatie/ray": "^1.28"
-  },
-  "autoload": {
-    "psr-4": {
-      "Locospec\\LCS\\": "src"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Locospec\\LCS\\Tests\\": "tests"
-    }
-  },
-  "scripts": {
-    "test": "vendor/bin/pest --group=stable",
-    "test-coverage": "vendor/bin/pest --group=stable --coverage",
-    "format": "vendor/bin/pint",
-    "c2p": [
-      "code2prompt src --output=../c2p-php/lcs_src.txt",
-      "code2prompt tests --output=../c2p-php/lcs_tests.txt"
-    ]
-  },
-  "config": {
-    "sort-packages": true,
-    "allow-plugins": {
-      "pestphp/pest-plugin": true,
-      "phpstan/extension-installer": true
-    }
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "locospec/engine-php",
+    "version": "1.0.0-alpha.5",
+    "description": "This is my package engine-php",
+    "keywords": [
+        "locospec",
+        "engine-php"
+    ],
+    "homepage": "https://github.com/locospec/engine-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rajiv Seelam",
+            "email": "rajiv@betalectic.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "doctrine/inflector": "^2.0",
+        "monolog/monolog": "^3.8",
+        "opis/json-schema": "^2.3"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "pestphp/pest": "^3.5",
+        "spatie/ray": "^1.28"
+    },
+    "autoload": {
+        "psr-4": {
+            "Locospec\\Engine\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Locospec\\Engine\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest --group=stable",
+        "test-coverage": "vendor/bin/pest --group=stable --coverage",
+        "format": "vendor/bin/pint",
+        "c2p": [
+            "code2prompt src --output=../c2p-php/lcs_src.txt",
+            "code2prompt tests --output=../c2p-php/lcs_tests.txt"
+        ]
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

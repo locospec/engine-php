@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Schema\Properties;
+namespace Locospec\Engine\Schema\Properties;
 
 class ArrayProperty extends AbstractSchemaProperty implements SchemaPropertyInterface
 {

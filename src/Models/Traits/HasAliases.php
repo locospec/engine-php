@@ -1,50 +1,38 @@
 <?php
 
-namespace Locospec\LCS\Models\Traits;
-
-use Locospec\LCS\Database\AliasExpressionParser;
+namespace Locospec\Engine\Models\Traits;
 
 trait HasAliases
 {
-    private array $aliases = [];
+    private object $aliases;
 
-    private ?AliasExpressionParser $expressionParser = null;
-
-    private function getExpressionParser(): AliasExpressionParser
-    {
-        if ($this->expressionParser === null) {
-            $this->expressionParser = new AliasExpressionParser;
-        }
-
-        return $this->expressionParser;
-    }
-
-    public function addAlias(string $key, string|array $expression): void
+    public function addAlias(string $key, string|object $expression): void
     {
         if (is_string($expression)) {
-            $this->aliases[$key] = $this->getExpressionParser()->parse($expression);
+            $this->aliases->$key = $expression;
         } else {
-            if (! isset($expression['extract'])) {
-                throw new \InvalidArgumentException("Alias array must contain 'extract' key");
-            }
-            $this->aliases[$key] = $expression;
+            $this->aliases->$key = $expression;
         }
     }
 
-    public function getAlias(string $key): ?array
+    public function getAlias(string $key): ?object
     {
-        return $this->aliases[$key] ?? null;
+        return $this->aliases->$key ?? null;
     }
 
-    public function getAliases(): array
+    public function getAliases(): object
     {
         return $this->aliases;
     }
 
-    protected function loadAliasesFromArray(array $data): void
+    protected function addAliases(object $data): void
     {
-        if (isset($data['aliases']) && is_array($data['aliases'])) {
-            foreach ($data['aliases'] as $key => $expression) {
+        if (! isset($this->aliases)) {
+            $this->aliases = new \stdClass; // Initialize aliases as an object
+        }
+
+        if (isset($data->aliases)) {
+            foreach ($data->aliases as $key => $expression) {
                 $this->addAlias($key, $expression);
             }
         }

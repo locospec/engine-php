@@ -1,18 +1,19 @@
 <?php
 
-namespace Locospec\LCS\Database\Filters;
+namespace Locospec\Engine\Database\Filters;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class FilterGroup
 {
-    public static function normalize(array $operation): array
+    public static function normalize(array $operation, $model): array
     {
         if (! isset($operation['filters'])) {
             return $operation;
         }
 
         $filters = $operation['filters'];
+        $aliases = $model->getAliases();
 
         // If filters is not an array, return unchanged
         if (! is_array($filters)) {
@@ -21,11 +22,23 @@ class FilterGroup
 
         // If already in full form (has op and conditions), return unchanged
         if (isset($filters['op']) && isset($filters['conditions'])) {
+            foreach ($filters['conditions'] as $key => $condition) {
+                if (isset($aliases->{$condition['attribute']}) && isset($aliases->{$condition['attribute']}->source)) {
+                    $filters['conditions'][$key]['attribute'] = $aliases->{$condition['attribute']}->source;
+                }
+            }
+            $operation['filters'] = $filters;
+
             return $operation;
         }
 
         // Handle array format of conditions (numbered array)
         if (isset($filters[0])) {
+            foreach ($filters as $key => $condition) {
+                if (isset($aliases->{$condition['attribute']}) && isset($aliases->{$condition['attribute']}->source)) {
+                    $filters[$key]['attribute'] = $aliases->{$condition['attribute']}->source;
+                }
+            }
             $operation['filters'] = [
                 'op' => 'and',
                 'conditions' => array_map(
@@ -41,6 +54,10 @@ class FilterGroup
         if (is_array($filters)) {
             $conditions = [];
             foreach ($filters as $attribute => $value) {
+                if (isset($aliases->{$attribute}) && isset($aliases->{$attribute}->source)) {
+                    $attribute = $aliases->{$attribute}->source;
+                }
+
                 $conditions[] = [
                     'op' => 'eq',
                     'attribute' => $attribute,

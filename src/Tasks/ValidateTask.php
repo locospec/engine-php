@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\LCS\Tasks;
+namespace Locospec\Engine\Tasks;
 
 class ValidateTask extends AbstractTask implements TaskInterface
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace Locospec\LCS\Database;
+namespace Locospec\Engine\Database;
 
-use Locospec\LCS\Database\Filters\FilterGroup;
-use Locospec\LCS\Database\Relationships\RelationshipExpander;
-use Locospec\LCS\Database\Relationships\RelationshipResolver;
-use Locospec\LCS\Database\Scopes\ScopeResolver;
-use Locospec\LCS\Database\Validators\DatabaseOperationsValidator;
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\Registry\DatabaseDriverInterface;
-use Locospec\LCS\Registry\RegistryManager;
+use Locospec\Engine\Database\Filters\FilterGroup;
+use Locospec\Engine\Database\Relationships\RelationshipExpander;
+use Locospec\Engine\Database\Relationships\RelationshipResolver;
+use Locospec\Engine\Database\Scopes\ScopeResolver;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Registry\DatabaseDriverInterface;
+use Locospec\Engine\Registry\RegistryManager;
+use Locospec\Engine\SpecValidator;
 use RuntimeException;
 
 class DatabaseOperationsCollection
@@ -17,7 +17,7 @@ class DatabaseOperationsCollection
     /** @var array[] */
     private array $operations = [];
 
-    private DatabaseOperationsValidator $validator;
+    private SpecValidator $validator;
 
     private ValueResolver $valueResolver;
 
@@ -27,7 +27,7 @@ class DatabaseOperationsCollection
 
     public function __construct()
     {
-        $this->validator = new DatabaseOperationsValidator;
+        $this->validator = new SpecValidator;
         $this->valueResolver = new ValueResolver;
     }
 
@@ -113,7 +113,7 @@ class DatabaseOperationsCollection
         // dd($operation);
 
         if (isset($operation['filters'])) {
-            $operation = FilterGroup::normalize($operation);
+            $operation = FilterGroup::normalize($operation, $model);
             $resolver = new RelationshipResolver($model, $this, $this->registryManager);
             $operation = $resolver->resolveFilters($operation);
         }
@@ -188,6 +188,21 @@ class DatabaseOperationsCollection
         // Reset operations after execution
         $this->reset();
 
+        // convert the stringified json to json
+        foreach ($dbOpResults as $index => $dbOpResult) {
+            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
+                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                $processedResult = $this->processJsonObjectProperties(
+                    $model,
+                    $dbOpResult['result']
+                );
+
+                // Update the result with decoded values
+                $dbOpResults[$index]['result'] = $processedResult;
+            }
+        }
+
         foreach ($dbOpResults as $index => $dbOpResult) {
             if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result'])) {
                 $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
@@ -223,5 +238,35 @@ class DatabaseOperationsCollection
         $this->operations = [];
 
         return $this;
+    }
+
+    private function processJsonObjectProperties($model, array $result): array
+    {
+        // Step 1: Get all JSON/object property names from the schema
+        $objectKeys = [];
+        $schema = $model->getSchema();
+
+        if ($schema) {
+            foreach ($schema->getProperties() as $name => $property) {
+                $type = $property->getType();
+                if ($type === 'json' || $type === 'object') {
+                    $objectKeys[] = $name;
+                }
+            }
+        }
+
+        // Step 2: Decode JSON strings in the result for these keys
+        foreach ($result as &$item) {
+            foreach ($objectKeys as $key) {
+                if (isset($item[$key]) && is_string($item[$key])) {
+                    $decoded = json_decode($item[$key], true);
+                    if (json_last_error() === JSON_ERROR_NONE) {
+                        $item[$key] = $decoded; // Replace string with decoded array
+                    }
+                }
+            }
+        }
+
+        return $result;
     }
 }

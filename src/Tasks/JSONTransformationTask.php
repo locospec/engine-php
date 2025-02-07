@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use Locospec\LCS\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Symfony\Component\Process\Process;
 
 class JSONTransformationTask extends AbstractTask

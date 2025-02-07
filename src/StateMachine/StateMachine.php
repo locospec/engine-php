@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\LCS\StateMachine;
+namespace Locospec\Engine\StateMachine;
 
-use Locospec\LCS\Registry\DatabaseDriverInterface;
-use Locospec\LCS\Registry\TaskRegistry;
-use Locospec\LCS\Tasks\TaskFactory;
-use Locospec\LCS\Tasks\TaskInterface;
+use Locospec\Engine\Registry\DatabaseDriverInterface;
+use Locospec\Engine\Registry\TaskRegistry;
+use Locospec\Engine\Tasks\TaskFactory;
+use Locospec\Engine\Tasks\TaskInterface;
 
 class StateMachine
 {

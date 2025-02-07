@@ -1,13 +1,13 @@
 <?php
 
-namespace Locospec\LCS\Schema;
+namespace Locospec\Engine\Schema;
 
-use Locospec\LCS\Schema\Properties\SchemaPropertyFactory;
-use Locospec\LCS\Schema\Properties\SchemaPropertyInterface;
+use Locospec\Engine\Schema\Properties\SchemaPropertyFactory;
+use Locospec\Engine\Schema\Properties\SchemaPropertyInterface;
 
 class Schema
 {
-    private array $properties = [];
+    private object $properties;
 
     private ?string $title = null;
 
@@ -17,18 +17,24 @@ class Schema
     {
         $this->title = $title;
         $this->description = $description;
+        $this->properties = new \stdClass; // Initialize as an empty object
     }
 
     public function addProperty(string $name, SchemaPropertyInterface $property): self
     {
-        $this->properties[$name] = $property;
+        $this->properties->$name = $property;
 
         return $this;
     }
 
     public function getProperty(string $name): ?SchemaPropertyInterface
     {
-        return $this->properties[$name] ?? null;
+        return $this->properties->$name ?? null;
+    }
+
+    public function getProperties()
+    {
+        return $this->properties ?? null;
     }
 
     public function toArray(): array
@@ -50,12 +56,31 @@ class Schema
         return $result;
     }
 
+    public function toObject(): object
+    {
+        $result = new \stdClass;
+
+        if ($this->title) {
+            $result->title = $this->title;
+        }
+
+        if ($this->description) {
+            $result->description = $this->description;
+        }
+
+        foreach ($this->properties as $name => $property) {
+            $result->$name = $property->toObject()->type;
+        }
+
+        return $result;
+    }
+
     public function toJson(): string
     {
         return json_encode($this->toArray(), JSON_PRETTY_PRINT);
     }
 
-    public static function fromArray(array $data): self
+    public static function fromObject(object $data): self
     {
         $schema = new self;
 

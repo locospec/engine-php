@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Database;
+namespace Locospec\Engine\Database;
 
-use Locospec\LCS\Models\ModelDefinition;
+use Locospec\Engine\Models\ModelDefinition;
 use Symfony\Component\Process\Process;
 
 class AliasTransformation
@@ -17,7 +17,6 @@ class AliasTransformation
     public function transform(array $data): array
     {
         $aliases = $this->model->getAliases();
-
         if (empty($aliases)) {
             return $data;
         }
@@ -26,6 +25,7 @@ class AliasTransformation
         $records = $isCollection ? $data : [$data];
 
         $transformedRecords = [];
+
         foreach ($records as $record) {
             $transformedRecords[] = $this->processRecord($record, $aliases);
         }
@@ -33,28 +33,29 @@ class AliasTransformation
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
-    private function processRecord(array $record, array $aliases): array
+    private function processRecord(array $record, object $aliases): array
     {
         $processed = $record;
 
         foreach ($aliases as $aliasKey => $expression) {
-            // First extract
-            $extracted = $this->executeJQExpression($record, $expression['extract']);
+            $extracted = null;
+            if (isset($expression->source)) {
+                $source = $expression->source;
 
-            // dump($extracted);
-
-            // Then transform if transform expression exists
-            if ($extracted !== null && ! empty($expression['transform'])) {
-                $toTransform = json_decode($extracted, true);
-                $transformed = $this->executeJQExpression(['value' => $toTransform], '.value | '.$expression['transform']);
-
-                if ($transformed !== null) {
-                    $processed[$aliasKey] = $transformed;
+                if (strpos($expression->source, '->') !== false) {
+                    $source = preg_replace(['/^/', '/->?/'], ['.', '.'], $expression->source);
                 } else {
-                    $processed[$aliasKey] = $extracted;
+                    $source = '.'.$source;
                 }
-            } else {
+
+                $extracted = $this->executeJQExpression($record, $source);
                 $processed[$aliasKey] = $extracted;
+            }
+
+            if (isset($expression->transform)) {
+                $valueToTransform = (! empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
+                $inputData = isset($extracted) && ! empty($extracted) ? ['value' => $valueToTransform] : $record;
+                $processed[$aliasKey] = $this->executeJQExpression($inputData, $expression->transform);
             }
         }
 
@@ -66,7 +67,6 @@ class AliasTransformation
         if (empty($expression)) {
             return null;
         }
-
         $process = new Process(['jq', '-r', $expression]);
         $process->setInput(json_encode($data));
 
@@ -83,9 +83,6 @@ class AliasTransformation
 
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
-
-            // dump(["errored jq", $data, $expression, $e]);
-
             return null;
         }
     }

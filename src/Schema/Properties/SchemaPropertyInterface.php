@@ -1,14 +1,16 @@
 <?php
 
-namespace Locospec\LCS\Schema\Properties;
+namespace Locospec\Engine\Schema\Properties;
 
-use Locospec\LCS\Schema\Schema;
+use Locospec\Engine\Schema\Schema;
 
 interface SchemaPropertyInterface
 {
     public function getType(): string;
 
     public function toArray(): array;
+
+    public function toObject(): object;
 
     public function setSchema(Schema $schema): self;
 

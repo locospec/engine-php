@@ -1,17 +1,17 @@
 <?php
 
-namespace Locospec\LCS\Actions;
+namespace Locospec\Engine\Actions;
 
-use Locospec\LCS\Actions\Model\CreateAction;
-use Locospec\LCS\Actions\Model\DeleteAction;
-use Locospec\LCS\Actions\Model\ModelAction;
-use Locospec\LCS\Actions\Model\ReadListAction;
-use Locospec\LCS\Actions\Model\ReadOneAction;
-use Locospec\LCS\Actions\Model\UpdateAction;
-use Locospec\LCS\Exceptions\InvalidArgumentException;
-use Locospec\LCS\LCS;
-use Locospec\LCS\Models\ModelDefinition;
-use Locospec\LCS\StateMachine\StateFlowPacket;
+use Locospec\Engine\Actions\Model\CreateAction;
+use Locospec\Engine\Actions\Model\DeleteAction;
+use Locospec\Engine\Actions\Model\ModelAction;
+use Locospec\Engine\Actions\Model\ReadListAction;
+use Locospec\Engine\Actions\Model\ReadOneAction;
+use Locospec\Engine\Actions\Model\UpdateAction;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\StateMachine\StateFlowPacket;
 
 class ActionOrchestrator
 {

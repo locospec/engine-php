@@ -1,5 +1,5 @@
 <?php
 
-namespace Locospec\LCS\Exceptions;
+namespace Locospec\Engine\Exceptions;
 
 class InvalidArgumentException extends \Exception {}

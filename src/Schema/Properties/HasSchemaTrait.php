@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\LCS\Schema\Properties;
+namespace Locospec\Engine\Schema\Properties;
 
-use Locospec\LCS\Schema\Schema;
+use Locospec\Engine\Schema\Schema;
 
 trait HasSchemaTrait
 {

@@ -1,11 +1,11 @@
 <?php
 
-namespace Locospec\LCS\Models;
+namespace Locospec\Engine\Models;
 
-use Locospec\LCS\Models\Relationships\Relationship;
-use Locospec\LCS\Models\Traits\HasAliases;
-use Locospec\LCS\Schema\Schema;
-use Locospec\LCS\Support\StringInflector;
+use Locospec\Engine\Models\Relationships\Relationship;
+use Locospec\Engine\Models\Traits\HasAliases;
+use Locospec\Engine\Schema\Schema;
+use Locospec\Engine\Support\StringInflector;
 
 class ModelDefinition
 {
@@ -17,15 +17,18 @@ class ModelDefinition
 
     private ModelConfiguration $config;
 
-    private array $relationships = [];
+    private object $relationships;
 
-    private array $scopes = [];
+    private object $scopes;
 
     public function __construct(string $name, Schema $schema, ModelConfiguration $config)
     {
         $this->name = $name;
         $this->schema = $schema;
         $this->config = $config;
+        $this->relationships = new \stdClass;
+        $this->scopes = new \stdClass;
+        $this->aliases = new \stdClass;
     }
 
     public function getName(): string
@@ -57,20 +60,25 @@ class ModelDefinition
 
     public function addRelationship(Relationship $relationship): void
     {
-        $this->relationships[$relationship->getRelationshipName()] = $relationship;
+        $this->relationships->{$relationship->getRelationshipName()} = $relationship;
+    }
+
+    public function addNormalizedRelationship($type, $normalizedRelations): void
+    {
+        $this->relationships->{$type} = $normalizedRelations;
     }
 
     public function getRelationship(string $relationshipName): ?Relationship
     {
-        return $this->relationships[$relationshipName] ?? null;
+        return $this->relationships->$relationshipName ?? null;
     }
 
-    public function getRelationships(): array
+    public function getRelationships(): object
     {
         return $this->relationships;
     }
 
-    public function getRelationshipsByType(string $type): array
+    public function getRelationshipsByType(string $type): object
     {
         return array_filter(
             $this->relationships,
@@ -78,30 +86,30 @@ class ModelDefinition
         );
     }
 
-    public static function fromArray(array $data): self
+    public static function fromObject(object $data): self
     {
         // Validate the basic model structure
         ModelValidator::validate($data);
 
         // Create model without relationships
-        $schema = isset($data['schema']) ? Schema::fromArray($data['schema']) : new Schema;
+        $schema = isset($data->attributes) ? Schema::fromObject($data->attributes) : new Schema;
 
-        $config = $data['config'] ?? [];
-        if (! isset($config['table'])) {
-            $config['table'] = StringInflector::getInstance()->plural($data['name']);
+        $config = $data->config ?? new \stdClass;
+        if (! isset($config->table)) {
+            $config->table = StringInflector::getInstance()->plural($data->name);
         }
 
-        $modelConfig = ModelConfiguration::fromArray($config);
+        $modelConfig = ModelConfiguration::fromObject($config);
 
-        $model = new self($data['name'], $schema, $modelConfig);
+        $model = new self($data->name, $schema, $modelConfig);
 
-        if (isset($data['scopes']) && is_array($data['scopes'])) {
-            foreach ($data['scopes'] as $name => $filterSpec) {
+        if (isset($data->scopes)) {
+            foreach ($data->scopes as $name => $filterSpec) {
                 $model->addScope($name, $filterSpec);
             }
         }
 
-        $model->loadAliasesFromArray($data);
+        $model->addAliases($data);
 
         return $model;
     }
@@ -127,6 +135,26 @@ class ModelDefinition
         return $array;
     }
 
+    public function toObject(): object
+    {
+        $result = new \stdClass;
+        $result->name = $this->name;
+        $result->type = 'model';
+        $result->config = $this->config->toObject();
+        $result->attributes = $this->schema->toObject();
+        $result->relationships = $this->relationships;
+
+        if (! empty($this->scopes)) {
+            $result->scopes = $this->scopes;
+        }
+
+        if (! empty($this->aliases)) {
+            $result->aliases = $this->aliases;
+        }
+
+        return $result;
+    }
+
     private function relationshipsToArray(): array
     {
         $result = [];
@@ -141,14 +169,14 @@ class ModelDefinition
         return $result;
     }
 
-    public function addScope(string $name, array $filterSpec): void
+    public function addScope(string $name, object $filterSpec): void
     {
-        $this->scopes[$name] = $filterSpec;
+        $this->scopes->$name = $filterSpec;
     }
 
     public function getScope(string $name): ?array
     {
-        return $this->scopes[$name] ?? null;
+        return $this->scopes->$name ?? null;
     }
 
     public function getScopes(): array
@@ -158,6 +186,6 @@ class ModelDefinition
 
     public function hasScope(string $name): bool
     {
-        return isset($this->scopes[$name]);
+        return isset($this->scopes->$name);
     }
 }
