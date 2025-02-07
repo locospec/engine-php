@@ -55,3 +55,21 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+npx commitlint --from v1.0.0-alpha.4 --to HEAD --verbose
+
+conventional-changelog -i CHANGELOG.md -s -r 0
+
+conventional-changelog -i CHANGELOG.md -s
+
+# Generate for a specific version range
+
+conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path . --from v1.0.0-alpha.4 --to HEAD
+
+conventional-changelog -i CHANGELOG.md -s --commit-path . --from v1.0.0-alpha.4 --to HEAD
+
+conventional-changelog -i CHANGELOG.md -s -r 0
+
+conventional-changelog -n ./.changelog.config.js -i CHANGELOG.md -s --commit-path . --from v1.0.0-alpha.4 --to HEAD
+
+conventional-changelog -n ./.changelog.config.js -i CHANGELOG.md -s -r 0
