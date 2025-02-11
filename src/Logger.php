@@ -51,16 +51,33 @@ class Logger
     }
 
     // Retrieve log records from the in-memory TestHandler
-    public function getLogs(): array
+    public function getLogs(string $type = null): array
     {
-        return array_map(function ($record) {
-            // dd($record);
-            return [
-                'level' => $record['level_name'],
-                'message' => $record['message'],
-                'context' => $record['context'],
-                'datetime' => $record['datetime']->format('Y-m-d H:i:s.u'),
-            ];
-        }, $this->testHandler->getRecords());
+        if(isset($type)){
+            return array_reduce(
+                $this->testHandler->getRecords(),
+                function (array $carry, $record) use ($type) {
+                    if (($record['context']['type'] ?? null) === $type) {
+                        $carry[] = [
+                            'level'    => $record['level_name'],
+                            'message'  => $record['message'],
+                            'context'  => $record['context'],
+                            'datetime' => $record['datetime']->format('Y-m-d H:i:s.u'),
+                        ];
+                    }
+                    return $carry;
+                },
+                []
+            );
+        }else{
+            return array_map(function ($record) {
+                return [
+                    'level' => $record['level_name'],
+                    'message' => $record['message'],
+                    'context' => $record['context'],
+                    'datetime' => $record['datetime']->format('Y-m-d H:i:s.u'),
+                ];
+            }, $this->testHandler->getRecords());
+        }
     }
 }
