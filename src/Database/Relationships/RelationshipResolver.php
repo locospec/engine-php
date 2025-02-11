@@ -33,7 +33,6 @@ class RelationshipResolver
         if (! isset($operation['filters'])) {
             return $operation;
         }
-
         $operation['filters'] = $this->resolveFilterGroup($operation['filters']);
 
         return $operation;
@@ -94,12 +93,12 @@ class RelationshipResolver
 
             $relations[] = [
                 'source_model_name' => $currentSourceName,
-                'target_model_name' => $relatedModelName,
+                'target_model_name' => $targetModel->getName(),
                 'source_model' => $sourceModel,
                 'target_model' => $targetModel,
                 'relationship' => $relationship,
                 'extract_attribute' => $extractAndPointAttributes['extract'],
-                'point_attribute' => $extractAndPointAttributes['point'],
+                'target_attribute' => $extractAndPointAttributes['point'],
                 'op' => $extractAndPointAttributes['op'],
             ];
 
@@ -110,6 +109,7 @@ class RelationshipResolver
         $relations = array_reverse($relations);
 
         $currentValue = $condition['value'];
+        $targetOp = $condition['op'];
 
         for ($i = 0; $i < count($relations); $i++) {
             $relation = $relations[$i];
@@ -125,7 +125,7 @@ class RelationshipResolver
                     'conditions' => [
                         [
                             'attribute' => $targetAttribute,
-                            'op' => $condition['op'],
+                            'op' => $targetOp,
                             'value' => $currentValue,
                         ],
                     ],
@@ -140,7 +140,7 @@ class RelationshipResolver
                 $relation['extract_attribute']
             );
 
-            $targetAttribute = $relation['point_attribute'];
+            $targetAttribute = $relation['target_attribute'];
             $targetOp = $relation['op'];
         }
 
