@@ -23,14 +23,13 @@ class FilterGroup
         // If already in full form (has op and conditions), return unchanged
         if (isset($filters['op']) && isset($filters['conditions'])) {
             foreach ($filters['conditions'] as $key => $condition) {
-                if(isset($condition['op']) && isset($condition['conditions'])){
+                if (isset($condition['op']) && isset($condition['conditions'])) {
                     foreach ($condition['conditions'] as $nestedKey => $nestedCondition) {
                         if (isset($aliases->{$nestedCondition['attribute']}) && isset($aliases->{$nestedCondition['attribute']}->source)) {
                             $filters['conditions'][$key]['conditions'][$nestedKey]['attribute'] = $aliases->{$nestedCondition['attribute']}->source;
                         }
                     }
-                }
-                else{
+                } else {
                     if (isset($aliases->{$condition['attribute']}) && isset($aliases->{$condition['attribute']}->source)) {
                         $filters['conditions'][$key]['attribute'] = $aliases->{$condition['attribute']}->source;
                     }

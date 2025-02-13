@@ -176,7 +176,7 @@ class ModelDefinition
 
     public function getScope(string $name): ?array
     {
-        return  $this->objectToArray($this->scopes->$name) ?? null;
+        return $this->objectToArray($this->scopes->$name) ?? null;
     }
 
     public function getScopes(): array
