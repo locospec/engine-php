@@ -176,7 +176,7 @@ class ModelDefinition
 
     public function getScope(string $name): ?array
     {
-        return $this->scopes->$name ?? null;
+        return  $this->objectToArray($this->scopes->$name) ?? null;
     }
 
     public function getScopes(): array
@@ -187,5 +187,10 @@ class ModelDefinition
     public function hasScope(string $name): bool
     {
         return isset($this->scopes->$name);
+    }
+
+    private function objectToArray($obj): array
+    {
+        return json_decode(json_encode($obj), true);
     }
 }
