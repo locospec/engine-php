@@ -1116,6 +1116,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_hasScope"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AobjectToArray\u0028\u0029",
+            "name": "objectToArray",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_objectToArray"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003A\u0024name",
             "name": "name",
             "summary": "",
