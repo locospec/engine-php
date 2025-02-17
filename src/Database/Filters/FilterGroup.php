@@ -67,7 +67,7 @@ class FilterGroup
                 }
 
                 $conditions[] = [
-                    'op' => 'eq',
+                    'op' => 'is',
                     'attribute' => $attribute,
                     'value' => $value,
                 ];

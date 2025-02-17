@@ -33,8 +33,8 @@ test('valid update with complex filters', function () {
         'filters' => [
             'op' => 'and',
             'conditions' => [
-                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
-                ['op' => 'lt', 'attribute' => 'last_login', 'value' => '2024-01-01'],
+                ['op' => 'is', 'attribute' => 'status', 'value' => 'active'],
+                ['op' => 'less_than', 'attribute' => 'last_login', 'value' => '2024-01-01'],
             ],
         ],
         'data' => [
@@ -111,11 +111,11 @@ test('valid delete with complex filters', function () {
                 [
                     'op' => 'and',
                     'conditions' => [
-                        ['op' => 'eq', 'attribute' => 'status', 'value' => 'inactive'],
-                        ['op' => 'lt', 'attribute' => 'last_login', 'value' => '2023-01-01'],
+                        ['op' => 'is', 'attribute' => 'status', 'value' => 'inactive'],
+                        ['op' => 'less_than', 'attribute' => 'last_login', 'value' => '2023-01-01'],
                     ],
                 ],
-                ['op' => 'isNull', 'attribute' => 'email'],
+                ['op' => 'is_empty', 'attribute' => 'email'],
             ],
         ],
     ];

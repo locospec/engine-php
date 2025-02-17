@@ -2,8 +2,8 @@
 
 ```json
 "filters": [
-    {"attribute": "status", "op": "eq", "value": "active"},
-    {"attribute": "age", "op": "gt", "value": 18}
+    {"attribute": "status", "op": "is", "value": "active"},
+    {"attribute": "age", "op": "greater_than", "value": 18}
 ]
 ```
 

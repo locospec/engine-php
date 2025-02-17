@@ -101,7 +101,14 @@
             "properties": {
                 "op": {
                     "type": "string",
-                    "enum": ["eq", "neq", "gt", "lt", "gte", "lte"]
+                    "enum": [
+                        "is",
+                        "is_not",
+                        "greater_than",
+                        "less_than",
+                        "greater_than_or_equal",
+                        "less_than_or_equal"
+                    ]
                 },
                 "column": {
                     "type": "string"

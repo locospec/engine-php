@@ -178,13 +178,13 @@ class RelationshipExpander
             return [
                 'extract' => $relationship->getOwnerKey(),
                 'point' => $relationship->getForeignKey(),
-                'op' => 'in',
+                'op' => 'is_any_of',
             ];
         } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return [
                 'extract' => $relationship->getForeignKey(),
                 'point' => $relationship->getLocalKey(),
-                'op' => 'in',
+                'op' => 'is_any_of',
             ];
         }
         $this->logger?->error('Unknown relationship type encountered', ['relationship' => $relationship]);

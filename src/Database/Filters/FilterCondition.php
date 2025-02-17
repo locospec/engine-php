@@ -7,18 +7,18 @@ use Locospec\Engine\Exceptions\InvalidArgumentException;
 class FilterCondition
 {
     private const VALID_OPERATORS = [
-        'eq',
-        'neq',
-        'gt',
-        'lt',
-        'gte',
-        'lte',
-        'like',
-        'notLike',
-        'in',
-        'notIn',
-        'isNull',
-        'isNotNull',
+        'is',
+        'is_not',
+        'greater_than',
+        'less_than',
+        'greater_than_or_equal',
+        'less_than_or_equal',
+        'contains',
+        'not_contains',
+        'is_any_of',
+        'is_none_of',
+        'is_empty',
+        'is_not_empty',
     ];
 
     public static function normalize(array $condition): array
@@ -33,7 +33,7 @@ class FilterCondition
         }
 
         return [
-            'op' => $condition['op'] ?? 'eq',
+            'op' => $condition['op'] ?? 'is',
             'attribute' => $condition['attribute'],
             'value' => $condition['value'] ?? null,
         ];
