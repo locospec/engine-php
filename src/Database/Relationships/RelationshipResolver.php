@@ -158,9 +158,9 @@ class RelationshipResolver
         // If relationship is HasMany or HasOne, we extract foreignKey, and point the values to localKey
 
         if ($relationship instanceof BelongsTo) {
-            return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey(), 'op' => 'in'];
+            return ['extract' => $relationship->getOwnerKey(), 'point' => $relationship->getForeignKey(), 'op' => 'is_any_of'];
         } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-            return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey(), 'op' => 'in'];
+            return ['extract' => $relationship->getForeignKey(), 'point' => $relationship->getLocalKey(), 'op' => 'is_any_of'];
         }
     }
 }

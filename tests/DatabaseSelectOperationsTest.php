@@ -58,7 +58,7 @@ test('select with full form filters - single condition', function () {
             'op' => 'and',
             'conditions' => [
                 [
-                    'op' => 'eq',
+                    'op' => 'is',
                     'attribute' => 'status',
                     'value' => 'active',
                 ],
@@ -82,17 +82,17 @@ test('select with full form filters - multiple conditions', function () {
             'op' => 'and',
             'conditions' => [
                 [
-                    'op' => 'eq',
+                    'op' => 'is',
                     'attribute' => 'status',
                     'value' => 'active',
                 ],
                 [
-                    'op' => 'gt',
+                    'op' => 'greater_than',
                     'attribute' => 'age',
                     'value' => 18,
                 ],
                 [
-                    'op' => 'like',
+                    'op' => 'contains',
                     'attribute' => 'name',
                     'value' => 'John%',
                 ],
@@ -115,7 +115,7 @@ test('select with nested filter groups', function () {
             'op' => 'or',
             'conditions' => [
                 [
-                    'op' => 'eq',
+                    'op' => 'is',
                     'attribute' => 'status',
                     'value' => 'active',
                 ],
@@ -123,12 +123,12 @@ test('select with nested filter groups', function () {
                     'op' => 'and',
                     'conditions' => [
                         [
-                            'op' => 'gt',
+                            'op' => 'greater_than',
                             'attribute' => 'age',
                             'value' => 18,
                         ],
                         [
-                            'op' => 'lt',
+                            'op' => 'less_than',
                             'attribute' => 'age',
                             'value' => 65,
                         ],
@@ -152,18 +152,18 @@ test('select with all possible filter operators', function () {
         'filters' => [
             'op' => 'and',
             'conditions' => [
-                ['op' => 'eq', 'attribute' => 'field1', 'value' => 'value1'],
-                ['op' => 'neq', 'attribute' => 'field2', 'value' => 'value2'],
-                ['op' => 'gt', 'attribute' => 'field3', 'value' => 100],
-                ['op' => 'lt', 'attribute' => 'field4', 'value' => 200],
-                ['op' => 'gte', 'attribute' => 'field5', 'value' => 300],
-                ['op' => 'lte', 'attribute' => 'field6', 'value' => 400],
-                ['op' => 'like', 'attribute' => 'field7', 'value' => '%value%'],
-                ['op' => 'notLike', 'attribute' => 'field8', 'value' => '%value%'],
-                ['op' => 'in', 'attribute' => 'field9', 'value' => [1, 2, 3]],
-                ['op' => 'notIn', 'attribute' => 'field10', 'value' => [4, 5, 6]],
-                ['op' => 'isNull', 'attribute' => 'field11'],
-                ['op' => 'isNotNull', 'attribute' => 'field12'],
+                ['op' => 'is', 'attribute' => 'field1', 'value' => 'value1'],
+                ['op' => 'is_not', 'attribute' => 'field2', 'value' => 'value2'],
+                ['op' => 'greater_than', 'attribute' => 'field3', 'value' => 100],
+                ['op' => 'less_than', 'attribute' => 'field4', 'value' => 200],
+                ['op' => 'greater_than_or_equal', 'attribute' => 'field5', 'value' => 300],
+                ['op' => 'less_than_or_equal', 'attribute' => 'field6', 'value' => 400],
+                ['op' => 'contains', 'attribute' => 'field7', 'value' => '%value%'],
+                ['op' => 'not_contains', 'attribute' => 'field8', 'value' => '%value%'],
+                ['op' => 'is_any_of', 'attribute' => 'field9', 'value' => [1, 2, 3]],
+                ['op' => 'is_none_of', 'attribute' => 'field10', 'value' => [4, 5, 6]],
+                ['op' => 'is_empty', 'attribute' => 'field11'],
+                ['op' => 'is_not_empty', 'attribute' => 'field12'],
             ],
         ],
     ];
@@ -182,7 +182,7 @@ test('select with complete configuration', function () {
         'filters' => [
             'op' => 'and',
             'conditions' => [
-                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+                ['op' => 'is', 'attribute' => 'status', 'value' => 'active'],
             ],
         ],
         'sorts' => [
@@ -209,8 +209,8 @@ test('select with direct filters configuration', function () {
         'type' => 'select',
         'tableName' => 'users',
         'filters' => [
-            ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
-            ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+            ['op' => 'is', 'attribute' => 'status', 'value' => 'active'],
+            ['op' => 'is', 'attribute' => 'status', 'value' => 'active'],
         ],
         'sorts' => [
             ['attribute' => 'created_at', 'direction' => 'DESC'],
@@ -282,7 +282,7 @@ test('select with invalid filter group structure', function () {
                 [
                     'conditions' => [  // Missing 'op' in nested group
                         [
-                            'op' => 'eq',
+                            'op' => 'is',
                             'attribute' => 'status',
                             'value' => 'active',
                         ],
@@ -307,7 +307,7 @@ test('select with missing attribute in filter condition', function () {
             'op' => 'and',
             'conditions' => [
                 [
-                    'op' => 'eq',
+                    'op' => 'is',
                     'value' => 'active',  // Missing 'attribute'
                 ],
             ],
@@ -349,7 +349,7 @@ test('select with cursor pagination and empty sorts', function () {
         'filters' => [
             'op' => 'and',
             'conditions' => [
-                ['op' => 'eq', 'attribute' => 'status', 'value' => 'active'],
+                ['op' => 'is', 'attribute' => 'status', 'value' => 'active'],
             ],
         ],
         'pagination' => [
