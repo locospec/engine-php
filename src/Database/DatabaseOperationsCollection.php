@@ -9,8 +9,8 @@ use Locospec\Engine\Database\Scopes\ScopeResolver;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Registry\DatabaseDriverInterface;
-use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\Registry\RegistryManager;
+use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\SpecValidator;
 use RuntimeException;
 
@@ -275,7 +275,7 @@ class DatabaseOperationsCollection
      * @param  DatabaseDriverInterface  $operator  Database operator to execute operations
      * @return array Operation results from database operator
      */
-    public function execute(?DatabaseDriverInterface $operator = null, ?ValidatorInterface $crudValidator): array
+    public function execute(?DatabaseDriverInterface $operator, ?ValidatorInterface $crudValidator): array
     {
         // dd($crudValidator->validate());
         $this->logger->info('Starting execution of operations', [
@@ -313,7 +313,7 @@ class DatabaseOperationsCollection
                 'connection' => $operation['connection'],
             ]);
             // dd("operations", $operation); // we can validate create/update request here
-            
+
             $dbOpResult = $execOperator->run([$operation]);
             $this->logger->info('Operation executed', [
                 'type' => 'dbOps',
