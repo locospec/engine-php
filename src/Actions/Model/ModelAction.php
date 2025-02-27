@@ -55,7 +55,7 @@ abstract class ModelAction
         $methodName = 'validate'.ucfirst($this->name);
 
         $this->validator->$methodName($input, $this->model);
-        
+
         // Normalize conditions if present
         $input = $this->validator->normalizeConditions($input);
 

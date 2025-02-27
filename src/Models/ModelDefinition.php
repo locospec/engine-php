@@ -2,11 +2,10 @@
 
 namespace Locospec\Engine\Models;
 
+use Locospec\Engine\Attributes\Attributes;
 use Locospec\Engine\Models\Relationships\Relationship;
 use Locospec\Engine\Models\Traits\HasAliases;
 use Locospec\Engine\Support\StringInflector;
-use Locospec\Engine\Attributes\Attributes;
-
 
 class ModelDefinition
 {
@@ -36,7 +35,7 @@ class ModelDefinition
         $this->aliases = new \stdClass;
         $this->label = '';
         $this->filterable = [];
-        
+
     }
 
     public function getName(): string
@@ -60,7 +59,7 @@ class ModelDefinition
     {
         return $this->attributes;
     }
-   
+
     public function getFilterable(): array
     {
         return $this->filterable;

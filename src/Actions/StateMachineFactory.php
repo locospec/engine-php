@@ -2,11 +2,11 @@
 
 namespace Locospec\Engine\Actions;
 
+use Locospec\Engine\Database\DatabaseOperationsCollection;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Registry\TaskRegistry;
 use Locospec\Engine\StateMachine\ContextInterface;
 use Locospec\Engine\StateMachine\StateMachine;
-use Locospec\Engine\Database\DatabaseOperationsCollection;
 
 class StateMachineFactory
 {
@@ -24,10 +24,10 @@ class StateMachineFactory
     {
         // Create state machine with task registry
         $stateMachine = new StateMachine($definition, $this->taskRegistry);
-        
+
         // Get registry manager
         // $registryManager = $this->lcs->getRegistryManager();
-        
+
         // Get default database driver
         // $dbOperator = $this->lcs->getDefaultDriverOfType('database_driver');
 
@@ -41,7 +41,7 @@ class StateMachineFactory
         // if ($this->lcs->hasDatabaseOperator()) {
         //     $stateMachine->registerDatabaseOperator($this->lcs->getDatabaseOperator());
         // }
-            
+
         $stateMachine->registerDatabaseOperator($this->lcs->getDefaultDriverOfType('database_driver'));
 
         // Set context values

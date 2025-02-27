@@ -20,10 +20,10 @@ class GenerateConfigTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        
+
         $attributes = $this->context->get('model')->getAttributes()->toObject();
         $filterable = $this->context->get('model')->getFilterable();
-        // Todo: Get default view 
+        // Todo: Get default view
         // - For now default view is hardcoded, for the asset type table
 
         $result = [
@@ -31,28 +31,28 @@ class GenerateConfigTask implements TaskInterface
             'attributes' => $attributes,
             'filterable' => $filterable,
             'defaultView' => [
-                "selectionType"=> "none",
-                "attributes"=>[
-                    "uuid"=> [ "type"=> "uuid", "label"=> "ID" ],
-                    "name"=> ["type"=> "string", "label"=> "Name" ],
-                    "asset_type_name"=>[ "type"=> "string", "label"=> "Asset Type" ]
+                'selectionType' => 'none',
+                'attributes' => [
+                    'uuid' => ['type' => 'uuid', 'label' => 'ID'],
+                    'name' => ['type' => 'string', 'label' => 'Name'],
+                    'asset_type_name' => ['type' => 'string', 'label' => 'Asset Type'],
                 ],
-                "filters"=> [
-                    "asset_type_name"=> [
-                        "type"=> "enum",
-                        "label"=> "Asset Type",
-                        "modelName"=> "asset_type",
-                        "isNullable"=> false
+                'filters' => [
+                    'asset_type_name' => [
+                        'type' => 'enum',
+                        'label' => 'Asset Type',
+                        'modelName' => 'asset_type',
+                        'isNullable' => false,
                     ],
-                    "name"=>[
-                        "type"=> "enum",
-                        "label"=> "Sub Asset Type",
-                        "modelName"=> "sub_asset_type",
-                        "dependsOn"=> ["asset_type_name"],
-                        "isNullable"=> false
-                    ]
-                ]
-            ]
+                    'name' => [
+                        'type' => 'enum',
+                        'label' => 'Sub Asset Type',
+                        'modelName' => 'sub_asset_type',
+                        'dependsOn' => ['asset_type_name'],
+                        'isNullable' => false,
+                    ],
+                ],
+            ],
         ];
 
         return $result;

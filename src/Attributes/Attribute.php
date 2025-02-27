@@ -2,11 +2,12 @@
 
 namespace Locospec\Engine\Attributes;
 
-
 class Attribute implements AttributeInterface
 {
     private string $name;
+
     private string $type;
+
     private string $label;
 
     public function __construct(string $name, string $type, string $label)
@@ -19,14 +20,14 @@ class Attribute implements AttributeInterface
     /**
      * Create an Attribute instance from an object.
      *
-     * @param string $name The attribute name (e.g., "uuid").
-     * @param object $data The object containing attribute details (e.g., type, label).
-     * @return self
+     * @param  string  $name  The attribute name (e.g., "uuid").
+     * @param  object  $data  The object containing attribute details (e.g., type, label).
      */
     public static function fromObject(string $name, object $data): self
     {
-        $type  = $data->type  ?? 'string';
+        $type = $data->type ?? 'string';
         $label = $data->label ?? $name;
+
         return new self($name, $type, $label);
     }
 

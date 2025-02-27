@@ -11,11 +11,11 @@ class ReadListAction extends ModelAction
 
     protected function getStateMachineDefinition(): array
     {
-        // ToDoRajesh: 
-        // - Write the state machine to read the list of data 
+        // ToDoRajesh:
+        // - Write the state machine to read the list of data
         // - Validate the payload
         // - How to get the database operator
-        // - How to send the error 
+        // - How to send the error
         // - How to clean the response
         return [
             'StartAt' => 'ValidateInput',

@@ -1,8 +1,6 @@
 <?php
 
 namespace Locospec\Engine\Attributes;
-use Locospec\Engine\Attributes\AttributeInterface;
-use Locospec\Engine\Attributes\Attribute;
 
 class Attributes
 {
@@ -26,7 +24,7 @@ class Attributes
      *
      * Expects an object where each property represents an attribute definition,
      * for example:
-     * 
+     *
      * {
      *   "uuid": { "type": "uuid", "label": "ID" },
      *   "name": { "type": "string", "label": "Name" },
@@ -35,12 +33,13 @@ class Attributes
      */
     public static function fromObject(object $data): self
     {
-        $instance = new self();
+        $instance = new self;
         foreach ($data as $name => $attrData) {
             // Ensure $attrData is an object
-            $attrData = is_object($attrData) ? $attrData : (object)$attrData;
+            $attrData = is_object($attrData) ? $attrData : (object) $attrData;
             $instance->addAttribute(Attribute::fromObject($name, $attrData));
         }
+
         return $instance;
     }
 
@@ -51,7 +50,7 @@ class Attributes
     {
         return $this->attributes[$name] ?? null;
     }
-   
+
     /**
      * Retrieve attributes.
      */
@@ -79,6 +78,7 @@ class Attributes
         foreach ($this->attributes as $name => $attribute) {
             $result[$name] = $attribute->toArray();
         }
+
         return $result;
     }
 
