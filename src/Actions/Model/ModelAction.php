@@ -53,19 +53,19 @@ abstract class ModelAction
     {
         // Validate input
         $methodName = 'validate'.ucfirst($this->name);
-        $this->validator->$methodName($input, $this->model);
 
+        $this->validator->$methodName($input, $this->model);
+        
         // Normalize conditions if present
         $input = $this->validator->normalizeConditions($input);
 
         // Create context with required values
         $context = new Context([
             'model' => $this->model,
-            'schema' => $this->model->getSchema(),
+            'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
         ]);
-
         // Create state machine via factory
         $stateMachine = $this->stateMachineFactory->create(
             $this->getStateMachineDefinition(),

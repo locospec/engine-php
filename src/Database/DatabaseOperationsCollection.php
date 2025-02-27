@@ -429,11 +429,11 @@ class DatabaseOperationsCollection
 
         // Step 1: Get all JSON/object property names from the schema
         $objectKeys = [];
-        $schema = $model->getSchema();
+        $attributes = $model->getAttributes();
 
-        if ($schema) {
-            foreach ($schema->getProperties() as $name => $property) {
-                $type = $property->getType();
+        if ($attributes) {
+            foreach ($attributes->getAttributes() as $name => $attribute) {
+                $type = $attribute->getType();
                 if ($type === 'json' || $type === 'object') {
                     $objectKeys[] = $name;
                     $this->logger->info('Found JSON/object property', [

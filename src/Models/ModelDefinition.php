@@ -4,8 +4,9 @@ namespace Locospec\Engine\Models;
 
 use Locospec\Engine\Models\Relationships\Relationship;
 use Locospec\Engine\Models\Traits\HasAliases;
-use Locospec\Engine\Schema\Schema;
 use Locospec\Engine\Support\StringInflector;
+use Locospec\Engine\Attributes\Attributes;
+
 
 class ModelDefinition
 {
@@ -13,22 +14,29 @@ class ModelDefinition
 
     private string $name;
 
-    private Schema $schema;
-
     private ModelConfiguration $config;
 
     private object $relationships;
 
     private object $scopes;
 
-    public function __construct(string $name, Schema $schema, ModelConfiguration $config)
+    private string $label;
+
+    private array $filterable;
+
+    private Attributes $attributes;
+
+    public function __construct(string $name, Attributes $attributes, ModelConfiguration $config)
     {
         $this->name = $name;
-        $this->schema = $schema;
+        $this->attributes = $attributes;
         $this->config = $config;
         $this->relationships = new \stdClass;
         $this->scopes = new \stdClass;
         $this->aliases = new \stdClass;
+        $this->label = '';
+        $this->filterable = [];
+        
     }
 
     public function getName(): string
@@ -48,9 +56,14 @@ class ModelDefinition
             StringInflector::getInstance()->plural($this->name);
     }
 
-    public function getSchema(): Schema
+    public function getAttributes(): Attributes
     {
-        return $this->schema;
+        return $this->attributes;
+    }
+   
+    public function getFilterable(): array
+    {
+        return $this->filterable;
     }
 
     public function getConfig(): ModelConfiguration
@@ -92,7 +105,7 @@ class ModelDefinition
         ModelValidator::validate($data);
 
         // Create model without relationships
-        $schema = isset($data->attributes) ? Schema::fromObject($data->attributes) : new Schema;
+        $attributes = isset($data->attributes) ? Attributes::fromObject($data->attributes) : new Attributes;
 
         $config = $data->config ?? new \stdClass;
         if (! isset($config->table)) {
@@ -101,12 +114,20 @@ class ModelDefinition
 
         $modelConfig = ModelConfiguration::fromObject($config);
 
-        $model = new self($data->name, $schema, $modelConfig);
+        $model = new self($data->name, $attributes, $modelConfig);
 
         if (isset($data->scopes)) {
             foreach ($data->scopes as $name => $filterSpec) {
                 $model->addScope($name, $filterSpec);
             }
+        }
+
+        if (isset($data->label)) {
+            $model->label = $data->label;
+        }
+
+        if (isset($data->filterable)) {
+            $model->filterable = $data->filterable;
         }
 
         $model->addAliases($data);
@@ -119,8 +140,9 @@ class ModelDefinition
         $array = [
             'name' => $this->name,
             'type' => 'model',
+            'label' => $this->label,
             'config' => $this->config->toArray(),
-            'schema' => $this->schema->toArray(),
+            'attributes' => $this->attributes->toArray(),
             'relationships' => $this->relationshipsToArray(),
         ];
 
@@ -132,6 +154,10 @@ class ModelDefinition
             $array['aliases'] = $this->aliases;
         }
 
+        if (! empty($this->filterable)) {
+            $array['filterable'] = $this->filterable;
+        }
+
         return $array;
     }
 
@@ -140,8 +166,9 @@ class ModelDefinition
         $result = new \stdClass;
         $result->name = $this->name;
         $result->type = 'model';
+        $result->label = $this->label;
         $result->config = $this->config->toObject();
-        $result->attributes = $this->schema->toObject();
+        $result->attributes = $this->attributes->toObject();
         $result->relationships = $this->relationships;
 
         if (! empty($this->scopes)) {
@@ -150,6 +177,10 @@ class ModelDefinition
 
         if (! empty($this->aliases)) {
             $result->aliases = $this->aliases;
+        }
+
+        if (! empty($this->filterable)) {
+            $result->filterable = $this->filterable;
         }
 
         return $result;
@@ -192,5 +223,10 @@ class ModelDefinition
     private function objectToArray($obj): array
     {
         return json_decode(json_encode($obj), true);
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label;
     }
 }

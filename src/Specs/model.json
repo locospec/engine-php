@@ -16,6 +16,17 @@
             "enum": ["model"],
             "description": "Type identifier for the spec"
         },
+        "label": {
+            "type": "string",
+            "description": "Label of the model"
+        },
+        "filterable": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Array of strings indicating which fields are filterable"
+        },
         "config": {
             "type": "object",
             "properties": {
@@ -53,23 +64,34 @@
             "type": "object",
             "description": "Model field definitions",
             "additionalProperties": {
-                "type": "string",
-                "description": "Field data type",
-                "enum": [
-                    "ulid",
-                    "id",
-                    "uuid",
-                    "string",
-                    "integer",
-                    "boolean",
-                    "date",
-                    "datetime",
-                    "decimal",
-                    "text",
-                    "json",
-                    "jsonb",
-                    "object"
-                ]
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Field data type",
+                        "enum": [
+                            "uuid",
+                            "string",
+                            "timestamp",
+                            "ulid",
+                            "id",
+                            "integer",
+                            "boolean",
+                            "date",
+                            "datetime",
+                            "decimal",
+                            "text",
+                            "json",
+                            "jsonb",
+                            "object"
+                        ]
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "Label for the attribute"
+                    }
+                },
+                "required": ["type", "label"]
             }
         },
         "relationships": {
@@ -175,6 +197,6 @@
             }
         }
     },
-    "required": ["name", "type", "config", "attributes"],
+    "required": ["name", "type", "label", "config", "attributes"],
     "additionalProperties": false
 }

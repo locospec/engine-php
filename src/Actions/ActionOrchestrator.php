@@ -2,6 +2,7 @@
 
 namespace Locospec\Engine\Actions;
 
+use Locospec\Engine\Actions\Model\ConfigAction;
 use Locospec\Engine\Actions\Model\CreateAction;
 use Locospec\Engine\Actions\Model\DeleteAction;
 use Locospec\Engine\Actions\Model\ModelAction;
@@ -42,6 +43,7 @@ class ActionOrchestrator
     protected function createAction(ModelDefinition $model, string $actionName): ModelAction
     {
         $actionClass = match ($actionName) {
+            '_config' => ConfigAction::class,
             'create' => CreateAction::class,
             'readOne' => ReadOneAction::class,
             'readList' => ReadListAction::class,
