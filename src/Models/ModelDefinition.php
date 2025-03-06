@@ -11,6 +11,8 @@ class ModelDefinition
 {
     use HasAliases;
 
+    private string $type;
+    
     private string $name;
 
     private ModelConfiguration $config;
@@ -27,6 +29,7 @@ class ModelDefinition
 
     public function __construct(string $name, Attributes $attributes, ModelConfiguration $config)
     {
+        $this->type = 'model';
         $this->name = $name;
         $this->attributes = $attributes;
         $this->config = $config;
@@ -38,6 +41,11 @@ class ModelDefinition
 
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+  
     public function getName(): string
     {
         return $this->name;
@@ -138,7 +146,7 @@ class ModelDefinition
     {
         $array = [
             'name' => $this->name,
-            'type' => 'model',
+            'type' => $this->type,
             'label' => $this->label,
             'config' => $this->config->toArray(),
             'attributes' => $this->attributes->toArray(),
@@ -164,7 +172,7 @@ class ModelDefinition
     {
         $result = new \stdClass;
         $result->name = $this->name;
-        $result->type = 'model';
+        $result->type = $this->type;
         $result->label = $this->label;
         $result->config = $this->config->toObject();
         $result->attributes = $this->attributes->toObject();

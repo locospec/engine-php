@@ -71,6 +71,9 @@ class LCS
             // Process all relationships after all models are registered
             $specProcessor->processRelationships();
             self::$logger->info('Specification registration finished');
+            // Process all views after all models and relationships are registered
+            $specProcessor->processAllViewSpec();
+            self::$logger->info('Views registration finished');
         } catch (Exception $e) {
             throw $e;
         }

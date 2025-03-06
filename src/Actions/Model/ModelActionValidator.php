@@ -16,10 +16,7 @@ class ModelActionValidator
      */
     public function validate_Config(array $input, ModelDefinition $model): void
     {
-        // if (empty($input)) {
-        //     throw new InvalidArgumentException('Config action requires input data');
-        // }
-
+        // Validation for the config
         // Additional model-specific validation can be added here
     }
 

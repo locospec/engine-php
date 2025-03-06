@@ -5,12 +5,15 @@ namespace Locospec\Engine\Actions\Model;
 use Locospec\Engine\Actions\StateMachineFactory;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Views\ViewDefinition;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 
 abstract class ModelAction
 {
     protected ModelDefinition $model;
+    
+    protected ViewDefinition $view;
 
     protected array $config;
 
@@ -24,11 +27,13 @@ abstract class ModelAction
 
     public function __construct(
         ModelDefinition $model,
+        ViewDefinition $view,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
+        $this->view = $view;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -62,6 +67,7 @@ abstract class ModelAction
         // Create context with required values
         $context = new Context([
             'model' => $this->model,
+            'view' => $this->view,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
@@ -84,6 +90,14 @@ abstract class ModelAction
     public function getModel(): ModelDefinition
     {
         return $this->model;
+    }
+    
+    /**
+     * Get the view definition this action operates on
+     */
+    public function getView(): ViewDefinition
+    {
+        return $this->view;
     }
 
     /**

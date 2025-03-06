@@ -55,6 +55,12 @@ class SpecValidator
             self::SCHEMA_BASE_PATH.'/model.json',
             __DIR__.'/Specs/model.json'
         );
+       
+        // Register view schema
+        $this->validator->resolver()->registerFile(
+            self::SCHEMA_BASE_PATH.'/view.json',
+            __DIR__.'/Specs/view.json'
+        );
     }
 
     /**
@@ -63,14 +69,14 @@ class SpecValidator
      * @param  array  $model  The model definition to validate
      * @return array{isValid: bool, errors: array} Validation result and any errors
      */
-    public function validateModel(object $model): array
+    public function validateSpec(object $spec): array
     {
-        $data = Helper::toJSON($model);
+        $data = Helper::toJSON($spec);
 
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $data,
-            self::SCHEMA_BASE_PATH.'/model.json'
+            self::SCHEMA_BASE_PATH.'/'.$spec->type.'.json'
         );
 
         if ($result->isValid()) {

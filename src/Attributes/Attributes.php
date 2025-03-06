@@ -58,6 +58,35 @@ class Attributes
     {
         return $this->attributes;
     }
+   
+    /**
+     * Retrieve attributes for the given names.
+     *
+     * @param string[] $names Array of attribute names.
+     * @return AttributeInterface[] Array of attribute objects corresponding to the given names.
+     */
+    public function getAttributesByNames(array $names): array
+    {
+        // return $this->attributes;
+        $result = [];
+        foreach ($names as $name) {
+            $attribute = $this->getAttribute($name);
+            if ($attribute !== null) {
+                $result[$name] = $attribute->toArray();
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Retrieve all attribute names.
+     *
+     * @return string[]
+     */
+    public function getAllAttributeNames(): array
+    {
+        return array_keys($this->attributes);
+    }
 
     /**
      * Return all attributes.
