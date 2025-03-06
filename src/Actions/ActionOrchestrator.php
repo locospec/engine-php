@@ -12,8 +12,8 @@ use Locospec\Engine\Actions\Model\UpdateAction;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Views\ViewDefinition;
 use Locospec\Engine\StateMachine\StateFlowPacket;
+use Locospec\Engine\Views\ViewDefinition;
 
 class ActionOrchestrator
 {
@@ -35,17 +35,17 @@ class ActionOrchestrator
             throw new InvalidArgumentException("Model/View not found: {$modelViewName}");
         }
 
-        $modelName = $data->getType() === 'view'? $data->getModelName() : $modelViewName;
-        $viewName = $data->getType() === 'model' ? $data->getName()."_default_view" : $modelViewName;
+        $modelName = $data->getType() === 'view' ? $data->getModelName() : $modelViewName;
+        $viewName = $data->getType() === 'model' ? $data->getName().'_default_view' : $modelViewName;
 
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
         $view = $this->lcs->getRegistryManager()->get('view', $viewName);
-        
+
         if (! $model) {
             throw new InvalidArgumentException("Model not found: {$modelName}");
         }
-       
+
         if (! $view) {
             throw new InvalidArgumentException("View not found: {$viewName}");
         }

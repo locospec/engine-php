@@ -10,13 +10,13 @@ class ViewDefinition
     private string $type;
 
     private string $name;
-    
+
     private string $label;
 
     private string $model;
 
     private array $attributes = [];
-    
+
     private array $lensSimpleFilters = [];
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters)
@@ -33,12 +33,12 @@ class ViewDefinition
     {
         return $this->type;
     }
-   
+
     public function getName(): string
     {
         return $this->name;
     }
-   
+
     public function getLabel(): string
     {
         return $this->label;
@@ -64,7 +64,7 @@ class ViewDefinition
 
         $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
         $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
-  
+
         return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters);
     }
 
@@ -79,23 +79,23 @@ class ViewDefinition
     {
         $defaultView = [];
 
-        if(isset($spec->defaultView)){
+        if (isset($spec->defaultView)) {
             // create default view when defaultView is in model
             $defaultView = [
-                "name" => $spec->defaultView->name,
-                "label" => $spec->defaultView->label,
-                "model" => $model->getName(),
-                "attributes" => $spec->defaultView->attributes,
-                "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
+                'name' => $spec->defaultView->name,
+                'label' => $spec->defaultView->label,
+                'model' => $model->getName(),
+                'attributes' => $spec->defaultView->attributes,
+                'lensSimpleFilters' => self::generateLensFilter($spec->defaultView, $model, $registryManager),
             ];
-        }else{
+        } else {
             // create default view from model
             $defaultView = [
-                "name" => $model->getName()."_default_view",
-                "label" => $model->getLabel()." Default View",
-                "model" => $model->getName(),
-                "attributes" => $model->getAttributes()->toArray(),
-                "lensSimpleFilters" => [],
+                'name' => $model->getName().'_default_view',
+                'label' => $model->getLabel().' Default View',
+                'model' => $model->getName(),
+                'attributes' => $model->getAttributes()->toArray(),
+                'lensSimpleFilters' => [],
             ];
         }
 
@@ -107,18 +107,18 @@ class ViewDefinition
         $lensSimpleFilters = [];
         foreach ($data->lensSimpleFilters as $lensSimpleFilter) {
             $path = explode('.', $lensSimpleFilter);
-            if(count($path) === 2){
+            if (count($path) === 2) {
                 $relatedModel = $registryManager->get('model', $path[0]);
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
-                    'label' => $relatedModel->getLabel()." ".ucfirst($path[1]),
-                    'model' => $path[0]
+                    'label' => $relatedModel->getLabel().' '.ucfirst($path[1]),
+                    'model' => $path[0],
                 ];
-            }elseif(count($path) === 1){
+            } elseif (count($path) === 1) {
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
                     'label' => ucfirst($path[0]),
-                    'model' => $model->getName()
+                    'model' => $model->getName(),
                 ];
             }
 
