@@ -16,13 +16,16 @@ class ModelConfiguration
 
     private ?string $plural;
 
+    private ?string $labelKey;
+
     public function __construct(
         string $primaryKey = 'id',
         ?string $table = null,
         ?string $connection = null,
         ?string $dbOperator = null,
         ?string $singular = null,
-        ?string $plural = null
+        ?string $plural = null,
+        ?string $labelKey = null
     ) {
         $this->primaryKey = $primaryKey;
         $this->table = $table;
@@ -30,6 +33,7 @@ class ModelConfiguration
         $this->dbOperator = $dbOperator;
         $this->singular = $singular;
         $this->plural = $plural;
+        $this->labelKey = $labelKey;
     }
 
     public static function fromArray(array $config): self
@@ -41,6 +45,7 @@ class ModelConfiguration
             $config['dbOperator'] ?? null,
             $config['singular'] ?? null,
             $config['plural'] ?? null,
+            $config['labelKey'] ?? null,
         );
     }
 
@@ -53,12 +58,18 @@ class ModelConfiguration
             $config->dbOperator ?? null,
             $config->singular ?? null,
             $config->plural ?? null,
+            $config->labelKey ?? null,
         );
     }
 
     public function getPrimaryKey(): string
     {
         return $this->primaryKey;
+    }
+   
+    public function getLabelKey(): string
+    {
+        return $this->labelKey;
     }
 
     public function getTable(): ?string
@@ -95,6 +106,7 @@ class ModelConfiguration
             'dbOperator' => $this->dbOperator,
             'singular' => $this->singular,
             'plural' => $this->plural,
+            'plural' => $this->labelKey,
         ], fn ($value) => $value !== null);
     }
 
@@ -107,6 +119,7 @@ class ModelConfiguration
         $object->dbOperator = $this->dbOperator;
         $object->singular = $this->singular;
         $object->plural = $this->plural;
+        $object->plural = $this->labelKey;
 
         return $object;
     }

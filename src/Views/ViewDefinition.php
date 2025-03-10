@@ -4,6 +4,7 @@ namespace Locospec\Engine\Views;
 
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
+use Locospec\Engine\Models\Relationships\BelongsTo;
 
 class ViewDefinition
 {
@@ -81,20 +82,45 @@ class ViewDefinition
 
         if(isset($spec->defaultView)){
             // create default view when defaultView is in model
+            $attributes = $model->getAttributes()->getAttributesByNames($spec->defaultView->attributes);
+            $aliases = array_keys((array) $model->getAliases());
+             if(!empty($aliases)){
+                foreach ($aliases as $alias) {
+                    if(in_array($alias, $spec->defaultView->attributes)){
+                        $attributes[$alias] = [
+                            'type' => 'string',
+                            'label' => ucwords(str_replace('_', ' ', $alias))
+                        ];
+                    }
+                }
+            }
+
             $defaultView = [
                 "name" => $spec->defaultView->name,
                 "label" => $spec->defaultView->label,
                 "model" => $model->getName(),
-                "attributes" => $spec->defaultView->attributes,
+                "attributes" => $attributes,
                 "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
             ];
         }else{
             // create default view from model
+            $attributes = $model->getAttributes()->toArray();
+            $aliases = array_keys((array) $model->getAliases());
+
+            if(!empty($aliases)){
+                foreach ($aliases as $alias) {
+                    $attributes[$alias] = [
+                        'type' => 'string',
+                        'label' => ucwords(str_replace('_', ' ', $alias))
+                    ];
+                }
+            }
+
             $defaultView = [
                 "name" => $model->getName()."_default_view",
                 "label" => $model->getLabel()." Default View",
                 "model" => $model->getName(),
-                "attributes" => $model->getAttributes()->toArray(),
+                "attributes" => $attributes,
                 "lensSimpleFilters" => [],
             ];
         }
@@ -105,23 +131,42 @@ class ViewDefinition
     public static function generateLensFilter($data, ModelDefinition $model, RegistryManager $registryManager): array
     {
         $lensSimpleFilters = [];
+
         foreach ($data->lensSimpleFilters as $lensSimpleFilter) {
             $path = explode('.', $lensSimpleFilter);
             if(count($path) === 2){
                 $relatedModel = $registryManager->get('model', $path[0]);
+                // instanceof BelongsTo
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
                     'label' => $relatedModel->getLabel()." ".ucfirst($path[1]),
-                    'model' => $path[0]
+                    'model' => $path[0],
                 ];
             }elseif(count($path) === 1){
+                $dependsOn = [];
+                // dump("check relations", $model->getAliases(), $model->getName(), $model->getRelationships());
+                if(!empty($model->getRelationships())){
+                    foreach ($model->getRelationships() as $key => $relationship) {
+                        if($relationship instanceof BelongsTo){
+                            $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
+                            $dependsOn[] = $key.".".$relationshipModel->getConfig()->getLabelKey();
+                        }
+                    }
+                }
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
                     'label' => ucfirst($path[0]),
-                    'model' => $model->getName()
+                    'model' => $model->getName(),
                 ];
-            }
 
+                if(!empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])){
+                   $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
+                }
+
+                if(!empty($dependsOn)){
+                    $lensSimpleFilters[$lensSimpleFilter]['dependsOn'] = $dependsOn;
+                }
+            }
         }
 
         return $lensSimpleFilters;

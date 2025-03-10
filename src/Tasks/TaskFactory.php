@@ -54,15 +54,13 @@ class TaskFactory
         }
 
         // Inject database operator for database tasks if available
-        if ($task instanceof AbstractDatabaseTask) {
-            if ($this->databaseOperator === null) {
-                throw new InvalidArgumentException(
-                    "Cannot create database task '{$name}': No database operator registered. ".
-                        'Call TaskFactory::registerDatabaseOperator first.'
-                );
-            }
-            $task->setDatabaseOperator($this->databaseOperator);
+        if ($this->databaseOperator === null) {
+            throw new InvalidArgumentException(
+                "Cannot create database task '{$name}': No database operator registered. ".
+                    'Call TaskFactory::registerDatabaseOperator first.'
+            );
         }
+        $task->setDatabaseOperator($this->databaseOperator);
 
         return $task;
     }

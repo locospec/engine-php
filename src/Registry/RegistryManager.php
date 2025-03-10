@@ -4,17 +4,11 @@ namespace Locospec\Engine\Registry;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Tasks\AuthorizeTask;
-use Locospec\Engine\Tasks\DatabaseCountTask;
-use Locospec\Engine\Tasks\DatabaseDeleteTask;
-use Locospec\Engine\Tasks\DatabaseInsertTask;
-use Locospec\Engine\Tasks\DatabaseOperationTask;
-use Locospec\Engine\Tasks\DatabasePaginateTask;
-use Locospec\Engine\Tasks\DatabaseSelectTask;
-use Locospec\Engine\Tasks\DatabaseUpdateTask;
-use Locospec\Engine\Tasks\GenerateConfigTask;
-use Locospec\Engine\Tasks\InsertDBTask;
-use Locospec\Engine\Tasks\JSONTransformationTask;
 use Locospec\Engine\Tasks\ValidateTask;
+use Locospec\Engine\Tasks\GenerateConfigTask;
+use Locospec\Engine\Tasks\PreparePayloadTask;
+use Locospec\Engine\Tasks\HandlePayloadTask;
+use Locospec\Engine\Tasks\HandleResponseTask;
 
 class RegistryManager
 {
@@ -34,31 +28,10 @@ class RegistryManager
 
         $this->register('task', ValidateTask::class);
         $this->register('task', AuthorizeTask::class);
-        $this->register('task', InsertDBTask::class);
-        $this->register('task', JSONTransformationTask::class);
         $this->register('task', GenerateConfigTask::class);
-
-        $this->registerDatabaseTasks();
-    }
-
-    /**
-     * Register all database operation related tasks
-     */
-    private function registerDatabaseTasks(): void
-    {
-        $databaseTasks = [
-            DatabaseOperationTask::class,
-            DatabaseInsertTask::class,
-            DatabaseUpdateTask::class,
-            DatabaseDeleteTask::class,
-            DatabaseSelectTask::class,
-            DatabaseCountTask::class,
-            DatabasePaginateTask::class,
-        ];
-
-        foreach ($databaseTasks as $taskClass) {
-            $this->register('task', $taskClass);
-        }
+        $this->register('task', PreparePayloadTask::class);
+        $this->register('task', HandlePayloadTask::class);
+        $this->register('task', HandleResponseTask::class);
     }
 
     public function addRegistry(RegistryInterface $registry): void

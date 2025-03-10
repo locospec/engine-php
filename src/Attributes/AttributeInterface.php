@@ -10,6 +10,8 @@ interface AttributeInterface
 
     public function getLabel(): string;
 
+    public function getOptions(): array;
+
     public function toArray(): array;
 
     public function toObject(): object;

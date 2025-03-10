@@ -7,6 +7,7 @@ use Locospec\Engine\Actions\Model\CreateAction;
 use Locospec\Engine\Actions\Model\DeleteAction;
 use Locospec\Engine\Actions\Model\ModelAction;
 use Locospec\Engine\Actions\Model\ReadListAction;
+use Locospec\Engine\Actions\Model\ReadRelationOptionsAction;
 use Locospec\Engine\Actions\Model\ReadOneAction;
 use Locospec\Engine\Actions\Model\UpdateAction;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
@@ -60,9 +61,10 @@ class ActionOrchestrator
     {
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
+            '_read' => ReadListAction::class,
+            '_read_relation_options' => ReadRelationOptionsAction::class,
             'create' => CreateAction::class,
             'readOne' => ReadOneAction::class,
-            'readList' => ReadListAction::class,
             'update' => UpdateAction::class,
             'delete' => DeleteAction::class,
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")

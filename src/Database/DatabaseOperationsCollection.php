@@ -120,6 +120,8 @@ class DatabaseOperationsCollection
      */
     public function add(array $operation): self
     {
+        // ToDoRajesh:preparePayload
+        // This should be a task: we are preparing the payload here 
         $this->logger->info('Adding operation', [
             'type' => 'dbOps',
             'operation' => $operation,
@@ -212,7 +214,11 @@ class DatabaseOperationsCollection
                 'filters' => $operation['filters'],
             ]);
         }
+        // ToDoRajesh:preparePayload end
 
+
+        // ToDoRajesh:validate
+        // this should be a task: validate payload
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
@@ -229,7 +235,10 @@ class DatabaseOperationsCollection
             'type' => 'dbOps',
             'modelName' => $operation['modelName'],
         ]);
+        // ToDoRajesh:validate end
 
+        // ToDoRajesh:validate
+        // this should be a task: handle 
         $operation['tableName'] = $model->getConfig()->getTable();
         $operation['connection'] = $model->getConfig()->getConnection() ?? 'default';
         $this->operations[] = $operation;

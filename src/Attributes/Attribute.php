@@ -9,12 +9,15 @@ class Attribute implements AttributeInterface
     private string $type;
 
     private string $label;
+    
+    private array $options;
 
-    public function __construct(string $name, string $type, string $label)
+    public function __construct(string $name, string $type, string $label, array $options=[])
     {
         $this->name = $name;
         $this->type = $type;
         $this->label = $label;
+        $this->options = $options;
     }
 
     /**
@@ -27,8 +30,9 @@ class Attribute implements AttributeInterface
     {
         $type = $data->type ?? 'string';
         $label = $data->label ?? $name;
+        $options = $data->options ?? [];
 
-        return new self($name, $type, $label);
+        return new self($name, $type, $label, $options);
     }
 
     public function getName(): string
@@ -41,6 +45,11 @@ class Attribute implements AttributeInterface
         return $this->type;
     }
 
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
     public function getLabel(): string
     {
         return $this->label;
@@ -48,10 +57,16 @@ class Attribute implements AttributeInterface
 
     public function toArray(): array
     {
-        return [
+        $data = [
             'type' => $this->type,
             'label' => $this->label,
         ];
+
+        if(!empty($this->options)){
+           $data["options"] = $this->options;
+        }
+
+        return $data;
     }
 
     public function toObject(): object

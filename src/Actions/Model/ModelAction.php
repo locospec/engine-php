@@ -23,8 +23,6 @@ abstract class ModelAction
 
     protected LCS $lcs;
 
-    protected ModelActionValidator $validator;
-
     public function __construct(
         ModelDefinition $model,
         ViewDefinition $view,
@@ -38,7 +36,6 @@ abstract class ModelAction
         $this->lcs = $lcs;
         $this->config = $config;
         $this->name = static::getName();
-        $this->validator = new ModelActionValidator;
     }
 
     /**
@@ -56,14 +53,6 @@ abstract class ModelAction
      */
     public function execute(array $input = []): StateFlowPacket
     {
-        // Validate input
-        $methodName = 'validate'.ucfirst($this->name);
-
-        $this->validator->$methodName($input, $this->model);
-
-        // Normalize conditions if present
-        $input = $this->validator->normalizeConditions($input);
-
         // Create context with required values
         $context = new Context([
             'model' => $this->model,
@@ -71,6 +60,7 @@ abstract class ModelAction
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
+            'lcs' => $this->lcs,
         ]);
         // Create state machine via factory
         $stateMachine = $this->stateMachineFactory->create(

@@ -136,8 +136,12 @@ class ModelDefinition
         if (isset($data->filterable)) {
             $model->filterable = $data->filterable;
         }
-
         $model->addAliases($data);
+
+        // dd($model->getConfig()->getPrimaryKey(),$model->getConfig()->getLabelKey());
+        $model->addAlias('const', (object) [ 'transform' => ".".$model->getConfig()->getPrimaryKey() ]);
+        $model->addAlias('title', (object) [ 'transform' => ".".$model->getConfig()->getLabelKey() ]);
+
 
         return $model;
     }
@@ -235,5 +239,12 @@ class ModelDefinition
     public function getLabel(): string
     {
         return $this->label;
+    }
+   
+    public function cleanRelationships(): void
+    {
+        unset($this->relationships->has_one);
+        unset($this->relationships->belongs_to);
+        unset($this->relationships->has_many);
     }
 }
