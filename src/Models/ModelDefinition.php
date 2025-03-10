@@ -12,7 +12,7 @@ class ModelDefinition
     use HasAliases;
 
     private string $type;
-    
+
     private string $name;
 
     private ModelConfiguration $config;
@@ -45,7 +45,7 @@ class ModelDefinition
     {
         return $this->type;
     }
-  
+
     public function getName(): string
     {
         return $this->name;

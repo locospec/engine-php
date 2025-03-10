@@ -5,15 +5,16 @@ namespace Locospec\Engine\Specifications;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Views\ViewDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
+use Locospec\Engine\Views\ViewDefinition;
 
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
 
     private array $pendingRelationships = [];
+
     private array $pendingViews = [];
 
     public function __construct(RegistryManager $registryManager)
@@ -76,7 +77,7 @@ class SpecificationProcessor
                     case 'view':
                         $this->pendingViews[] = $spec;
                         break;
-                    
+
                     default:
                         break;
                 }
@@ -144,7 +145,7 @@ class SpecificationProcessor
 
             // Create the defatul view
             $view = ViewDefinition::fromModel($model, $spec, $this->registryManager);
-            
+
             $this->logger?->info('Normalized default view for model', ['viewName' => $view->getName()]);
 
             // register the view
@@ -252,7 +253,7 @@ class SpecificationProcessor
                         "Cannot process view: Model {$pending->model} not found"
                     );
                 }
-            
+
                 $this->processViewSpec($pending, $model);
             }
             // Clear pending views after processing
@@ -271,7 +272,6 @@ class SpecificationProcessor
         }
     }
 
-
     /**
      * Process a single view definition
      */
@@ -279,16 +279,16 @@ class SpecificationProcessor
     {
         try {
             $this->logger?->info('Processing view spec', ['viewName' => $spec->name]);
-            
+
             // Validate the model spec
             $this->validateSpec($spec);
-            
+
             // Convert object to ViewDefinition
             $view = ViewDefinition::fromObject($spec, $this->registryManager, $model);
 
             $this->logger?->info('Normalized view spec', ['viewName' => $view->getName()]);
 
-             // register the view
+            // register the view
             $this->registryManager->register('view', $view);
             $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
         } catch (\Exception $e) {

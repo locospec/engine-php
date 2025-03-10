@@ -82,7 +82,6 @@ class RegistryManager
      * the first registry item matching the given name. If no item is found,
      * it returns null.
      *
-     * @param string $name
      * @return mixed|null
      */
     public function getRegisterByName(string $name): mixed
@@ -92,6 +91,7 @@ class RegistryManager
                 return $registry->get($name);
             }
         }
+
         return null;
     }
 }

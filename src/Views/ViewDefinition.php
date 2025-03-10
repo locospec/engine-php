@@ -11,13 +11,13 @@ class ViewDefinition
     private string $type;
 
     private string $name;
-    
+
     private string $label;
 
     private string $model;
 
     private array $attributes = [];
-    
+
     private array $lensSimpleFilters = [];
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters)
@@ -34,12 +34,12 @@ class ViewDefinition
     {
         return $this->type;
     }
-   
+
     public function getName(): string
     {
         return $this->name;
     }
-   
+
     public function getLabel(): string
     {
         return $this->label;
@@ -65,7 +65,7 @@ class ViewDefinition
 
         $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
         $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
-  
+
         return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters);
     }
 
@@ -80,7 +80,7 @@ class ViewDefinition
     {
         $defaultView = [];
 
-        if(isset($spec->defaultView)){
+        if (isset($spec->defaultView)) {
             // create default view when defaultView is in model
             $attributes = $model->getAttributes()->getAttributesByNames($spec->defaultView->attributes);
             $aliases = array_keys((array) $model->getAliases());
@@ -102,7 +102,7 @@ class ViewDefinition
                 "attributes" => $attributes,
                 "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
             ];
-        }else{
+        } else {
             // create default view from model
             $attributes = $model->getAttributes()->toArray();
             $aliases = array_keys((array) $model->getAliases());
@@ -134,7 +134,7 @@ class ViewDefinition
 
         foreach ($data->lensSimpleFilters as $lensSimpleFilter) {
             $path = explode('.', $lensSimpleFilter);
-            if(count($path) === 2){
+            if (count($path) === 2) {
                 $relatedModel = $registryManager->get('model', $path[0]);
                 // instanceof BelongsTo
                 $lensSimpleFilters[$lensSimpleFilter] = [

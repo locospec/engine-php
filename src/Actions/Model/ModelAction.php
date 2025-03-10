@@ -5,14 +5,14 @@ namespace Locospec\Engine\Actions\Model;
 use Locospec\Engine\Actions\StateMachineFactory;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Views\ViewDefinition;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
+use Locospec\Engine\Views\ViewDefinition;
 
 abstract class ModelAction
 {
     protected ModelDefinition $model;
-    
+
     protected ViewDefinition $view;
 
     protected array $config;
@@ -81,7 +81,7 @@ abstract class ModelAction
     {
         return $this->model;
     }
-    
+
     /**
      * Get the view definition this action operates on
      */
