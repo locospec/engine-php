@@ -66,7 +66,7 @@ class ModelConfiguration
     {
         return $this->primaryKey;
     }
-   
+
     public function getLabelKey(): string
     {
         return $this->labelKey;

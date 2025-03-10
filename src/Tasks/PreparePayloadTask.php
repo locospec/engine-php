@@ -20,7 +20,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function execute(array $payload): array
     {
-       $preparedPayload=[];
+        $preparedPayload = [];
         switch ($this->context->get('action')) {
             case '_read':
                 $preparedPayload = $this->preparePayloadForRead($payload);
@@ -29,14 +29,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_read_relation_options':
                 $preparedPayload = $this->preparePayloadForReadOptions($payload);
                 break;
-            
+
             default:
                 break;
         }
 
         return [
             'payload' => $payload,
-            'preparedPayload' => $preparedPayload
+            'preparedPayload' => $preparedPayload,
         ];
     }
 
@@ -47,44 +47,44 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'modelName' => $this->context->get('model')->getName(),
         ];
 
-        if(isset($payload['pagination']) && !empty($payload['pagination'])){
-            if(!isset($payload['pagination']['cursor'])){
+        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
+            if (! isset($payload['pagination']['cursor'])) {
                 unset($payload['pagination']['cursor']);
             }
 
             $preparedPayload['pagination'] = $payload['pagination'];
         }
-       
-        if(isset($payload['sorts']) && !empty($payload['sorts'])){
+
+        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
-        }else{
+        } else {
             $preparedPayload['sorts'] = [[
-                "attribute" => 'created_at',
-                "direction" => 'DESC',
+                'attribute' => 'created_at',
+                'direction' => 'DESC',
             ]];
         }
-        
-        if(isset($payload['filters']) && !empty($payload['filters'])){
+
+        if (isset($payload['filters']) && ! empty($payload['filters'])) {
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if(isset($payload['search']) && !empty($payload['search'])){
+        if (isset($payload['search']) && ! empty($payload['search'])) {
             $preparedPayload['scopes'] = ['search'];
         }
 
         $relationsShipKeys = array_keys((array) $this->context->get('model')->getRelationships());
 
-        if(!empty($relationsShipKeys)){
-            $preparedPayload['expand'] =  $relationsShipKeys;
+        if (! empty($relationsShipKeys)) {
+            $preparedPayload['expand'] = $relationsShipKeys;
         }
-        
+
         return $preparedPayload;
     }
 
     public function preparePayloadForReadOptions(array $payload): array
     {
         $registryManager = $this->context->get('lcs')->getRegistryManager();
-        $optionsModel = $registryManager->get("model", $payload['relation']);
+        $optionsModel = $registryManager->get('model', $payload['relation']);
 
         $preparedPayload = [
             'type' => 'select',
@@ -92,31 +92,31 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             // 'attributes' => ["name", "uuid"]
         ];
 
-        if(isset($payload['pagination']) && !empty($payload['pagination'])){
-            if(!isset($payload['pagination']['cursor'])){
+        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
+            if (! isset($payload['pagination']['cursor'])) {
                 unset($payload['pagination']['cursor']);
             }
 
             $preparedPayload['pagination'] = $payload['pagination'];
         }
-       
-        if(isset($payload['sorts']) && !empty($payload['sorts'])){
+
+        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
-        }else{
+        } else {
             $preparedPayload['sorts'] = [[
-                "attribute" => 'created_at',
-                "direction" => 'DESC',
+                'attribute' => 'created_at',
+                'direction' => 'DESC',
             ]];
         }
-        
-        if(isset($payload['filters']) && !empty($payload['filters'])){
+
+        if (isset($payload['filters']) && ! empty($payload['filters'])) {
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if(isset($payload['search']) && !empty($payload['search'])){
+        if (isset($payload['search']) && ! empty($payload['search'])) {
             $preparedPayload['scopes'] = ['search'];
         }
-        
+
         return $preparedPayload;
     }
 }

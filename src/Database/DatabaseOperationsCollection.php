@@ -121,7 +121,7 @@ class DatabaseOperationsCollection
     public function add(array $operation): self
     {
         // ToDoRajesh:preparePayload
-        // This should be a task: we are preparing the payload here 
+        // This should be a task: we are preparing the payload here
         $this->logger->info('Adding operation', [
             'type' => 'dbOps',
             'operation' => $operation,
@@ -216,7 +216,6 @@ class DatabaseOperationsCollection
         }
         // ToDoRajesh:preparePayload end
 
-
         // ToDoRajesh:validate
         // this should be a task: validate payload
         $validation = $this->validator->validateOperation($operation);
@@ -238,7 +237,7 @@ class DatabaseOperationsCollection
         // ToDoRajesh:validate end
 
         // ToDoRajesh:validate
-        // this should be a task: handle 
+        // this should be a task: handle
         $operation['tableName'] = $model->getConfig()->getTable();
         $operation['connection'] = $model->getConfig()->getConnection() ?? 'default';
         $this->operations[] = $operation;

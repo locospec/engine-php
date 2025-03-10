@@ -32,7 +32,7 @@ class ReadRelationOptionsAction extends ModelAction
                 'HandleResponse' => [
                     'Type' => 'Task',
                     'Resource' => 'handle_response',
-                    'End' => true
+                    'End' => true,
                 ],
             ],
         ];

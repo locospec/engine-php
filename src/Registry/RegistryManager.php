@@ -4,11 +4,11 @@ namespace Locospec\Engine\Registry;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Tasks\AuthorizeTask;
-use Locospec\Engine\Tasks\ValidateTask;
 use Locospec\Engine\Tasks\GenerateConfigTask;
-use Locospec\Engine\Tasks\PreparePayloadTask;
 use Locospec\Engine\Tasks\HandlePayloadTask;
 use Locospec\Engine\Tasks\HandleResponseTask;
+use Locospec\Engine\Tasks\PreparePayloadTask;
+use Locospec\Engine\Tasks\ValidateTask;
 
 class RegistryManager
 {

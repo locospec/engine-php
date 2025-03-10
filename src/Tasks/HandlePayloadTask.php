@@ -2,10 +2,9 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
 use Locospec\Engine\Database\DatabaseOperationsCollection;
 use Locospec\Engine\Database\QueryContext;
-
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class HandlePayloadTask extends AbstractTask implements TaskInterface
 {
@@ -27,10 +26,10 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         $dbOps = new DatabaseOperationsCollection($this->operator);
 
         $context = QueryContext::create([
-              'search' => $input['payload']['search']
+            'search' => $input['payload']['search'],
         ]);
 
-        if(isset($input['payload']['search']) && !empty($input['payload']['search'])){
+        if (isset($input['payload']['search']) && ! empty($input['payload']['search'])) {
             $dbOps->setContext($context);
         }
 
@@ -38,6 +37,7 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
         $dbOps->add($input['preparedPayload']);
         $response = $dbOps->execute($this->operator);
-        return [ ...$input,'response' => $response ];
+
+        return [...$input, 'response' => $response];
     }
 }

@@ -28,7 +28,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             case '_read_relation_options':
                 return $this->handleReadOptionsResponse($input);
                 break;
-            
+
             default:
                 break;
         }
@@ -38,22 +38,22 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     {
         return [
             'data' => $input['response'][0]['result'],
-            'meta' => $input['response'][0]['pagination'] ?? []
+            'meta' => $input['response'][0]['pagination'] ?? [],
         ];
     }
 
     public function handleReadOptionsResponse(array $input): array
     {
-        $modifiedResult = array_map(function($item) {
+        $modifiedResult = array_map(function ($item) {
             return [
                 'const' => $item['const'],
-                'title' => $item['title']
+                'title' => $item['title'],
             ];
         }, $input['response'][0]['result']);
 
         return [
             'data' => $modifiedResult,
-            'meta' => $input['response'][0]['pagination'] ?? []
+            'meta' => $input['response'][0]['pagination'] ?? [],
         ];
     }
 }
