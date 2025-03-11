@@ -64,6 +64,17 @@ class ViewDefinition
         }
 
         $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
+        $aliases = array_keys((array) $model->getAliases());
+        if(!empty($aliases)){
+            foreach ($aliases as $alias) {
+                if(in_array($alias, $data->attributes)){
+                    $attributes[$alias] = [
+                        'type' => 'string',
+                        'label' => ucwords(str_replace('_', ' ', $alias))
+                    ];
+                }
+            }
+        }
         $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
 
         return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters);
@@ -80,29 +91,29 @@ class ViewDefinition
     {
         $defaultView = [];
 
-        if (isset($spec->defaultView)) {
+        // if (isset($spec->defaultView)) {
             // create default view when defaultView is in model
-            $attributes = $model->getAttributes()->getAttributesByNames($spec->defaultView->attributes);
-            $aliases = array_keys((array) $model->getAliases());
-             if(!empty($aliases)){
-                foreach ($aliases as $alias) {
-                    if(in_array($alias, $spec->defaultView->attributes)){
-                        $attributes[$alias] = [
-                            'type' => 'string',
-                            'label' => ucwords(str_replace('_', ' ', $alias))
-                        ];
-                    }
-                }
-            }
+            // $attributes = $model->getAttributes()->getAttributesByNames($spec->defaultView->attributes);
+            // $aliases = array_keys((array) $model->getAliases());
+            //  if(!empty($aliases)){
+            //     foreach ($aliases as $alias) {
+            //         if(in_array($alias, $spec->defaultView->attributes)){
+            //             $attributes[$alias] = [
+            //                 'type' => 'string',
+            //                 'label' => ucwords(str_replace('_', ' ', $alias))
+            //             ];
+            //         }
+            //     }
+            // }
 
-            $defaultView = [
-                "name" => $spec->defaultView->name,
-                "label" => $spec->defaultView->label,
-                "model" => $model->getName(),
-                "attributes" => $attributes,
-                "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
-            ];
-        } else {
+            // $defaultView = [
+            //     "name" => $spec->defaultView->name,
+            //     "label" => $spec->defaultView->label,
+            //     "model" => $model->getName(),
+            //     "attributes" => $attributes,
+            //     "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
+            // ];
+        // } else {
             // create default view from model
             $attributes = $model->getAttributes()->toArray();
             $aliases = array_keys((array) $model->getAliases());
@@ -123,7 +134,7 @@ class ViewDefinition
                 "attributes" => $attributes,
                 "lensSimpleFilters" => [],
             ];
-        }
+        // }
 
         return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters']);
     }
@@ -144,7 +155,6 @@ class ViewDefinition
                 ];
             }elseif(count($path) === 1){
                 $dependsOn = [];
-                // dump("check relations", $model->getAliases(), $model->getName(), $model->getRelationships());
                 if(!empty($model->getRelationships())){
                     foreach ($model->getRelationships() as $key => $relationship) {
                         if($relationship instanceof BelongsTo){
@@ -153,6 +163,7 @@ class ViewDefinition
                         }
                     }
                 }
+
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
                     'label' => ucfirst($path[0]),
@@ -161,6 +172,14 @@ class ViewDefinition
 
                 if(!empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])){
                    $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
+                }
+
+                if($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['type']=== 'timestamp'){
+                    $lensSimpleFilters[$lensSimpleFilter]['type'] = 'date';
+                }
+                
+                if(isset($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'])){
+                    $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'];
                 }
 
                 if(!empty($dependsOn)){

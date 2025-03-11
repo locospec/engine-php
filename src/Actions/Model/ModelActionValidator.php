@@ -71,7 +71,6 @@ class ModelActionValidator
      */
     public function validateReadList(array $input, ModelDefinition $model): void
     {
-        dd("hellooo");
         // Pagination validation
         if (isset($input['pagination'])) {
             if (isset($input['pagination']['page']) && $input['pagination']['page'] < 1) {
