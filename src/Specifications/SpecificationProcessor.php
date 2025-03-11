@@ -7,12 +7,15 @@ use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
+use Locospec\Engine\Views\ViewDefinition;
 
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
 
     private array $pendingRelationships = [];
+
+    private array $pendingViews = [];
 
     public function __construct(RegistryManager $registryManager)
     {
@@ -66,7 +69,18 @@ class SpecificationProcessor
             $specs = $this->parseJson($json);
 
             foreach ($specs as $spec) {
-                $this->processModelSpec($spec);
+                switch ($spec->type) {
+                    case 'model':
+                        $this->processModelSpec($spec);
+                        break;
+
+                    case 'view':
+                        $this->pendingViews[] = $spec;
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
             $this->logger?->info('Successfully processed JSON spec');
@@ -116,17 +130,37 @@ class SpecificationProcessor
             }
 
             // Validate the model spec
-            $this->validateModelSpec($spec);
+            $this->validateSpec($spec);
 
             // Convert object to ModelDefinition
             $model = ModelDefinition::fromObject($spec);
+
             $this->logger?->info('Normalized model spec', ['modelName' => $model->getName()]);
 
             // Revalidate after conversion
-            $this->validateModelSpec($model->toObject());
+            $this->validateSpec($model->toObject());
 
             $this->registryManager->register($spec->type, $model);
             $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
+
+            if (isset($spec->defaultView)) {
+                if (isset($spec->defaultView->model)) {
+                    $this->pendingViews[] = $spec->defaultView;
+                } else {
+                    $spec->defaultView->model = $model->getName();
+                    $this->pendingViews[] = $spec->defaultView;
+                }
+            } else {
+                // Create the defatul view
+                $view = ViewDefinition::fromModel($model, $spec, $this->registryManager);
+
+                $this->logger?->info('Normalized default view for model', ['viewName' => $view->getName()]);
+
+                // register the view
+                $this->registryManager->register('view', $view);
+                $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
+            }
+
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model spec', [
                 'modelName' => $spec->name ?? 'Unknown',
@@ -136,10 +170,10 @@ class SpecificationProcessor
         }
     }
 
-    public function validateModelSpec(object $spec): void
+    public function validateSpec(object $spec): void
     {
-        $this->logger?->info('Validating model spec', ['modelName' => $spec->name]);
-        $validation = $this->specValidator->validateModel($spec);
+        $this->logger?->info('Validating '.$spec->type.' spec', [$spec->type.'Name' => $spec->name]);
+        $validation = $this->specValidator->validateSpec($spec);
 
         // throw exceptions when validation fails
         if (! $validation['isValid']) {
@@ -147,16 +181,16 @@ class SpecificationProcessor
                 $errorMessages[] = "$path: ".implode(', ', $errors);
             }
 
-            $this->logger?->error('Model validation failed', [
-                'modelName' => $spec->name,
+            $this->logger?->error($spec->type.' validation failed', [
+                $spec->type.'Name' => $spec->name,
                 'errors' => $errorMessages,
             ]);
 
             throw new InvalidArgumentException(
-                'Model validation failed: '.implode(', ', $errorMessages)
+                $spec->type.' validation failed: '.implode(', ', $errorMessages)
             );
         }
-        $this->logger?->info('Model spec validated successfully', ['modelName' => $spec->name]);
+        $this->logger?->info($spec->type.' spec validated successfully', [$spec->type.'Name' => $spec->name]);
     }
 
     /**
@@ -185,7 +219,7 @@ class SpecificationProcessor
 
                 // Normalize and validate relationships
                 $relationshipProcessor->normalizeModelRelationships($model, $pending->relationships);
-                $this->validateModelSpec($model->toObject());
+                $this->validateSpec($model->toObject());
 
                 // Register relationships
                 $relationshipProcessor->processModelRelationships($model, $pending->relationships);
@@ -205,7 +239,73 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing relationships', [
                 'error' => $e->getMessage(),
             ]);
+            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Process a single view definition
+     */
+    public function processAllViewSpec(): void
+    {
+        try {
+            $this->logger?->info('Processing all the views');
+            foreach ($this->pendingViews as $pending) {
+                $this->logger?->info('Processing view', ['viewName' => $pending->name]);
+                $model = $this->registryManager->get('model', $pending->model);
+
+                if (! $model) {
+                    $this->logger?->error('Model not found for view processing', [
+                        'modelName' => $pending->model,
+                    ]);
+                    throw new InvalidArgumentException(
+                        "Cannot process view: Model {$pending->model} not found"
+                    );
+                }
+
+                $this->processViewSpec($pending, $model);
+            }
+            // Clear pending views after processing
+            $this->pendingViews = [];
+            $this->logger?->info('Successfully processed all the views');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during view processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing view', [
+                'error' => $e->getMessage(),
+            ]);
             throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
+        }
+    }
+
+    /**
+     * Process a single view definition
+     */
+    private function processViewSpec(object $spec, ModelDefinition $model): void
+    {
+        try {
+            $this->logger?->info('Processing view spec', ['viewName' => $spec->name]);
+
+            // Validate the model spec
+            $this->validateSpec($spec);
+
+            // Convert object to ViewDefinition
+            $view = ViewDefinition::fromObject($spec, $this->registryManager, $model);
+
+            $this->logger?->info('Normalized view spec', ['viewName' => $view->getName()]);
+
+            // register the view
+            $this->registryManager->register('view', $view);
+            $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing view spec', [
+                'viewName' => $spec->name ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
         }
     }
 }

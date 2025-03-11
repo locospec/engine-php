@@ -2,11 +2,11 @@
 
 namespace Locospec\Engine\Actions\Model;
 
-class ReadListAction extends ModelAction
+class ReadRelationOptionsAction extends ModelAction
 {
     public static function getName(): string
     {
-        return '_read';
+        return '_read_relation_options';
     }
 
     protected function getStateMachineDefinition(): array

@@ -35,6 +35,8 @@ class RelationshipProcessor
             foreach ($relations as $relationshipName => $config) {
                 $this->createAndValidateRelationship($currentModel, $type, $relationshipName, $config);
             }
+            // clean relationships 'has_one', 'belongs_to', 'has_many'
+            $currentModel->cleanRelationships();
         }
     }
 

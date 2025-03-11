@@ -7,10 +7,13 @@ use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
+use Locospec\Engine\Views\ViewDefinition;
 
 abstract class ModelAction
 {
     protected ModelDefinition $model;
+
+    protected ViewDefinition $view;
 
     protected array $config;
 
@@ -20,20 +23,19 @@ abstract class ModelAction
 
     protected LCS $lcs;
 
-    protected ModelActionValidator $validator;
-
     public function __construct(
         ModelDefinition $model,
+        ViewDefinition $view,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
+        $this->view = $view;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
         $this->name = static::getName();
-        $this->validator = new ModelActionValidator;
     }
 
     /**
@@ -51,21 +53,15 @@ abstract class ModelAction
      */
     public function execute(array $input = []): StateFlowPacket
     {
-        // Validate input
-        $methodName = 'validate'.ucfirst($this->name);
-        $this->validator->$methodName($input, $this->model);
-
-        // Normalize conditions if present
-        $input = $this->validator->normalizeConditions($input);
-
         // Create context with required values
         $context = new Context([
             'model' => $this->model,
-            'schema' => $this->model->getSchema(),
+            'view' => $this->view,
+            'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
+            'lcs' => $this->lcs,
         ]);
-
         // Create state machine via factory
         $stateMachine = $this->stateMachineFactory->create(
             $this->getStateMachineDefinition(),
@@ -84,6 +80,14 @@ abstract class ModelAction
     public function getModel(): ModelDefinition
     {
         return $this->model;
+    }
+
+    /**
+     * Get the view definition this action operates on
+     */
+    public function getView(): ViewDefinition
+    {
+        return $this->view;
     }
 
     /**

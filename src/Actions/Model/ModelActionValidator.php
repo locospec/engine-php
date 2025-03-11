@@ -14,6 +14,15 @@ class ModelActionValidator
     /**
      * Validate create action input
      */
+    public function validate_Config(array $input, ModelDefinition $model): void
+    {
+        // Validation for the config
+        // Additional model-specific validation can be added here
+    }
+
+    /**
+     * Validate create action input
+     */
     public function validateCreate(array $input, ModelDefinition $model): void
     {
         if (empty($input)) {

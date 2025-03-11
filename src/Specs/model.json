@@ -16,6 +16,17 @@
             "enum": ["model"],
             "description": "Type identifier for the spec"
         },
+        "label": {
+            "type": "string",
+            "description": "Label of the model"
+        },
+        "filterable": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Array of strings indicating which fields are filterable"
+        },
         "config": {
             "type": "object",
             "properties": {
@@ -44,6 +55,14 @@
                 "plural": {
                     "type": ["string", "null"],
                     "description": "Database table identifier (If not provided, plural of name will be taken)"
+                },
+                "labelKey": {
+                    "type": "string",
+                    "description": "Label key field name"
+                },
+                "flagKey": {
+                    "type": "string",
+                    "description": "Flag key field name"
                 }
             },
             "required": ["primaryKey"],
@@ -53,23 +72,33 @@
             "type": "object",
             "description": "Model field definitions",
             "additionalProperties": {
-                "type": "string",
-                "description": "Field data type",
-                "enum": [
-                    "ulid",
-                    "id",
-                    "uuid",
-                    "string",
-                    "integer",
-                    "boolean",
-                    "date",
-                    "datetime",
-                    "decimal",
-                    "text",
-                    "json",
-                    "jsonb",
-                    "object"
-                ]
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Field data type",
+                        "enum": [
+                            "id",
+                            "uuid",
+                            "ulid",
+                            "string",
+                            "text",
+                            "timestamp",
+                            "boolean",
+                            "integer",
+                            "date",
+                            "decimal",
+                            "json",
+                            "jsonb",
+                            "object"
+                        ]
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "Label for the attribute"
+                    }
+                },
+                "required": ["type", "label"]
             }
         },
         "relationships": {
@@ -173,8 +202,41 @@
                     { "required": ["transform"] }
                 ]
             }
+        },
+        "defaultView": {
+            "type": "object",
+            "description": "Default View definitions",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Name of the default view"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": ["view"],
+                    "description": "Type of the default view"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Label for the default view"
+                },
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Array of attribute names included in the default view"
+                },
+                "lensSimpleFilters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Array of filters for the default view"
+                }
+            }
         }
     },
-    "required": ["name", "type", "config", "attributes"],
+    "required": ["name", "type", "label", "config", "attributes"],
     "additionalProperties": false
 }

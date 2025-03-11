@@ -23,11 +23,7 @@ class StateMachineFactory
     {
         // Create state machine with task registry
         $stateMachine = new StateMachine($definition, $this->taskRegistry);
-
-        // Register database operator if available
-        if ($this->lcs->hasDatabaseOperator()) {
-            $stateMachine->registerDatabaseOperator($this->lcs->getDatabaseOperator());
-        }
+        $stateMachine->registerDatabaseOperator($this->lcs->getDefaultDriverOfType('database_driver'));
 
         // Set context values
         foreach ($context->all() as $key => $value) {

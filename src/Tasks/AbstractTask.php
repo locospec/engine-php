@@ -2,15 +2,16 @@
 
 namespace Locospec\Engine\Tasks;
 
+use Locospec\Engine\Attributes\Attributes;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\Schema\Schema;
+use Locospec\Engine\Registry\DatabaseDriverInterface;
 use Locospec\Engine\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {
     protected ContextInterface $context;
 
-    protected Schema $jsonSchema;
+    protected Attributes $attributes;
 
     protected string $action;
 
@@ -21,7 +22,7 @@ abstract class AbstractTask implements TaskInterface
 
     protected string $description = '';
 
-    protected array $requiredContextKeys = ['schema', 'action'];
+    protected array $requiredContextKeys = ['attributes', 'action'];
 
     /**
      * Set the execution context
@@ -30,8 +31,13 @@ abstract class AbstractTask implements TaskInterface
     {
         $this->validateContext($context);
         $this->context = $context;
-        $this->jsonSchema = $context->get('schema');
+        $this->attributes = $context->get('attributes');
         $this->action = $context->get('action');
+    }
+
+    public function setDatabaseOperator(DatabaseDriverInterface $operator): void
+    {
+        $this->operator = $operator;
     }
 
     /**
