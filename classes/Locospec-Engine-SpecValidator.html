@@ -199,18 +199,18 @@
 <dd>Validate common components (filters, sorts, pagination)</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-SpecValidator.html#method_validateModel">validateModel()</a>
-    <span>
-                                &nbsp;: array{isValid: bool, errors: array}    </span>
-</dt>
-<dd>Validate a model definition</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-Engine-SpecValidator.html#method_validateOperation">validateOperation()</a>
     <span>
                                 &nbsp;: array{isValid: bool, errors: array}    </span>
 </dt>
 <dd>Validate a single database operation</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-SpecValidator.html#method_validateSpec">validateSpec()</a>
+    <span>
+                                &nbsp;: array{isValid: bool, errors: array}    </span>
+</dt>
+<dd>Validate a model definition</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/Locospec-Engine-SpecValidator.html#method_loadSchemas">loadSchemas()</a>
@@ -394,7 +394,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SpecValidator.php"><a href="files/src-specvalidator.html"><abbr title="src/SpecValidator.php">SpecValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">157</span>
+    <span class="phpdocumentor-element-found-in__line">163</span>
 
     </aside>
 
@@ -446,23 +446,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validateModel">
-        validateModel()
-        <a href="classes/Locospec-Engine-SpecValidator.html#method_validateModel" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validateOperation">
+        validateOperation()
+        <a href="classes/Locospec-Engine-SpecValidator.html#method_validateOperation" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SpecValidator.php"><a href="files/src-specvalidator.html"><abbr title="src/SpecValidator.php">SpecValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">66</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Validate a model definition</p>
+        <p class="phpdocumentor-summary">Validate a single database operation</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validateModel</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{isValid: bool, errors: array}</span></code>
+                    <span class="phpdocumentor-signature__name">validateOperation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{isValid: bool, errors: array}</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -471,11 +471,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$model</span>
+                <span class="phpdocumentor-signature__argument__name">$operation</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The model definition to validate</p>
+                    <section class="phpdocumentor-description"><p>The operation to validate</p>
 </section>
 
             </dd>
@@ -501,23 +501,23 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validateOperation">
-        validateOperation()
-        <a href="classes/Locospec-Engine-SpecValidator.html#method_validateOperation" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_validateSpec">
+        validateSpec()
+        <a href="classes/Locospec-Engine-SpecValidator.html#method_validateSpec" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/SpecValidator.php"><a href="files/src-specvalidator.html"><abbr title="src/SpecValidator.php">SpecValidator.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">97</span>
+    <span class="phpdocumentor-element-found-in__line">72</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Validate a single database operation</p>
+        <p class="phpdocumentor-summary">Validate a model definition</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">validateOperation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{isValid: bool, errors: array}</span></code>
+                    <span class="phpdocumentor-signature__name">validateSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array{isValid: bool, errors: array}</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -526,13 +526,11 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$operation</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$spec</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The operation to validate</p>
-</section>
-
+                
             </dd>
             </dl>
 
@@ -715,8 +713,8 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method_validateComponent">validateComponent()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method_validateModel">validateModel()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method_validateOperation">validateOperation()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method_validateSpec">validateSpec()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-SpecValidator.html#method_loadSchemas">loadSchemas()</a></li>
                                     </ul>
             </li>

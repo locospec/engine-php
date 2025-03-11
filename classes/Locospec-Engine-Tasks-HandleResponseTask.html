@@ -98,7 +98,7 @@
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ValidateTask
+    HandleResponseTask
 
         <span class="phpdocumentor-element__extends">
         extends <a href="classes/Locospec-Engine-Tasks-AbstractTask.html"><abbr title="\Locospec\Engine\Tasks\AbstractTask">AbstractTask</abbr></a>
@@ -123,9 +123,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/ValidateTask.php"><a href="files/src-tasks-validatetask.html"><abbr title="src/Tasks/ValidateTask.php">ValidateTask.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
@@ -140,7 +140,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -148,7 +148,7 @@
 
     <h4 id="toc-interfaces">
         Interfaces
-        <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
@@ -161,7 +161,7 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
@@ -178,7 +178,7 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_context">$context</a>
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#property_context">$context</a>
     <span>
                         &nbsp;: <a href="classes/Locospec-Engine-StateMachine-ContextInterface.html"><abbr title="\Locospec\Engine\StateMachine\ContextInterface">ContextInterface</abbr></a>            </span>
 </dt>
@@ -206,12 +206,12 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_execute">execute()</a>
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_execute">execute()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -225,14 +225,26 @@
 <dd>Get task description</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_getName">getName()</a>
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_getName">getName()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 <dd>Get task name</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_setContext">setContext()</a>
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadOptionsResponse">handleReadOptionsResponse()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadResponse">handleReadResponse()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_setContext">setContext()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
@@ -268,7 +280,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -352,15 +364,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_context">
         $context
-        <a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_context" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#property_context" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/AbstractTask.php"><a href="files/src-tasks-abstracttask.html"><abbr title="src/Tasks/AbstractTask.php">AbstractTask.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
@@ -493,7 +505,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -504,13 +516,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_execute">
         execute()
-        <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_execute" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_execute" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/ValidateTask.php"><a href="files/src-tasks-validatetask.html"><abbr title="src/Tasks/ValidateTask.php">ValidateTask.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -598,13 +610,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_getName">
         getName()
-        <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/ValidateTask.php"><a href="files/src-tasks-validatetask.html"><abbr title="src/Tasks/ValidateTask.php">ValidateTask.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -635,15 +647,111 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setContext">
-        setContext()
-        <a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_setContext" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_handleReadOptionsResponse">
+        handleReadOptionsResponse()
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadOptionsResponse" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/AbstractTask.php"><a href="files/src-tasks-abstracttask.html"><abbr title="src/Tasks/AbstractTask.php">AbstractTask.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">30</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">handleReadOptionsResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_handleReadResponse">
+        handleReadResponse()
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadResponse" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">37</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">handleReadResponse</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$input</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$input</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setContext">
+        setContext()
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_setContext" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/HandleResponseTask.php"><a href="files/src-tasks-handleresponsetask.html"><abbr title="src/Tasks/HandleResponseTask.php">HandleResponseTask.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">16</span>
 
     </aside>
 
@@ -836,7 +944,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Tasks/ValidateTask.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Tasks/HandleResponseTask.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -935,8 +1043,8 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-Engine-Tasks-ValidateTask.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
@@ -945,7 +1053,7 @@
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_action">$action</a></li>
                                                     <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_attributes">$attributes</a></li>
-                                                    <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_context">$context</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#property_context">$context</a></li>
                                                     <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_description">$description</a></li>
                                                     <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_name">$name</a></li>
                                                     <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#property_requiredContextKeys">$requiredContextKeys</a></li>
@@ -955,10 +1063,12 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_execute">execute()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_execute">execute()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_getDescription">getDescription()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Tasks-ValidateTask.html#method_getName">getName()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_setContext">setContext()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_getName">getName()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadOptionsResponse">handleReadOptionsResponse()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleReadResponse">handleReadResponse()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_setContext">setContext()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_setDatabaseOperator">setDatabaseOperator()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_getContextValue">getContextValue()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Tasks-AbstractTask.html#method_validateContext">validateContext()</a></li>
@@ -981,7 +1091,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-Engine-Tasks-ValidateTask.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-Engine-Tasks-HandleResponseTask.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

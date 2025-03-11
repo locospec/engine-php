@@ -93,33 +93,24 @@
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec.html">Locospec</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine.html">Engine</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine-actions.html">Actions</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/locospec-engine-attributes.html">Attributes</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -class">
+    <article class="phpdocumentor-element -interface">
         <h2 class="phpdocumentor-content__title">
-    StateMachineFactory
-
-    
-            <div class="phpdocumentor-element__package">
-            in package
+    AttributeInterface
+                <div class="phpdocumentor-element__package">
+            in
             <ul class="phpdocumentor-breadcrumbs">
-                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Application.html">Application</a></li>
+                                    <li><a href="packages/Application.html">Application</a></li>
                             </ul>
         </div>
-    
-    
     </h2>
 
-<div class="phpdocumentor-label-line">
-
-
-</div>
-
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">5</span>
 
     </aside>
 
@@ -134,7 +125,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -146,141 +137,60 @@
 
 
 
-<h4 id="toc-properties">
-    Properties
-    <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-</h4>
-<dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_lcs">$lcs</a>
-    <span>
-                        &nbsp;: <a href="classes/Locospec-Engine-LCS.html"><abbr title="\Locospec\Engine\LCS">LCS</abbr></a>            </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_taskRegistry">$taskRegistry</a>
-    <span>
-                        &nbsp;: <a href="classes/Locospec-Engine-Registry-TaskRegistry.html"><abbr title="\Locospec\Engine\Registry\TaskRegistry">TaskRegistry</abbr></a>            </span>
-</dt>
-
-    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method___construct">__construct()</a>
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getLabel">getLabel()</a>
     <span>
-                                &nbsp;: mixed    </span>
+                                &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_create">create()</a>
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getName">getName()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-StateMachine-StateMachine.html"><abbr title="\Locospec\Engine\StateMachine\StateMachine">StateMachine</abbr></a>    </span>
+                                &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_getTaskRegistry">getTaskRegistry()</a>
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getOptions">getOptions()</a>
     <span>
-                                &nbsp;: <a href="classes/Locospec-Engine-Registry-TaskRegistry.html"><abbr title="\Locospec\Engine\Registry\TaskRegistry">TaskRegistry</abbr></a>    </span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getType">getType()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toArray">toArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toObject">toObject()</a>
+    <span>
+                                &nbsp;: object    </span>
 </dt>
 
     </dl>
 
 
 
-        
 
         
-    <section class="phpdocumentor-properties">
-        <h3 class="phpdocumentor-elements__header" id="properties">
-            Properties
-            <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
-
-        </h3>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_lcs">
-        $lcs
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_lcs" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">14</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-Engine-LCS.html"><abbr title="\Locospec\Engine\LCS">LCS</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$lcs</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_taskRegistry">
-        $taskRegistry
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_taskRegistry" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">12</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/Locospec-Engine-Registry-TaskRegistry.html"><abbr title="\Locospec\Engine\Registry\TaskRegistry">TaskRegistry</abbr></a></span>
-    <span class="phpdocumentor-signature__name">$taskRegistry</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -289,96 +199,35 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method___construct">
-        __construct()
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getLabel">
+        getLabel()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getLabel" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-LCS.html"><abbr title="\Locospec\Engine\LCS">LCS</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$lcs</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">getLabel</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$lcs</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-LCS.html"><abbr title="\Locospec\Engine\LCS">LCS</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
     
-
-    
-
-    
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_create">
-        create()
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_create" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">22</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">create</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$definition</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-StateMachine-ContextInterface.html"><abbr title="\Locospec\Engine\StateMachine\ContextInterface">ContextInterface</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-StateMachine-StateMachine.html"><abbr title="\Locospec\Engine\StateMachine\StateMachine">StateMachine</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$definition</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$context</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-StateMachine-ContextInterface.html"><abbr title="\Locospec\Engine\StateMachine\ContextInterface">ContextInterface</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
     
 
     
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-StateMachine-StateMachine.html"><abbr title="\Locospec\Engine\StateMachine\StateMachine">StateMachine</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">string</span>
             </section>
 
 </article>
@@ -388,22 +237,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getTaskRegistry">
-        getTaskRegistry()
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_getTaskRegistry" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_getName">
+        getName()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Actions/StateMachineFactory.php"><a href="files/src-actions-statemachinefactory.html"><abbr title="src/Actions/StateMachineFactory.php">StateMachineFactory.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">36</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getTaskRegistry</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Registry-TaskRegistry.html"><abbr title="\Locospec\Engine\Registry\TaskRegistry">TaskRegistry</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -416,7 +265,159 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/Locospec-Engine-Registry-TaskRegistry.html"><abbr title="\Locospec\Engine\Registry\TaskRegistry">TaskRegistry</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getOptions">
+        getOptions()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getOptions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getType">
+        getType()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getType" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toObject">
+        toObject()
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toObject" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Attributes/AttributeInterface.php"><a href="files/src-attributes-attributeinterface.html"><abbr title="src/Attributes/AttributeInterface.php">AttributeInterface.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toObject</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">object</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">object</span>
             </section>
 
 </article>
@@ -426,7 +427,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Actions/StateMachineFactory.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Attributes/AttributeInterface.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -517,7 +518,7 @@
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                                
+                            
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -525,27 +526,22 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#toc-methods">Methods</a></li>
-                                    </ul>
+                    <li><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#toc-constants">Constants</a></li>
+                    <li><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#toc-methods">Methods</a></li>
+                </ul>
             </li>
-            
-                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                            <li class="phpdocumentor-on-this-page-section__title">Methods</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_lcs">$lcs</a></li>
-                                                    <li class=""><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#property_taskRegistry">$taskRegistry</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getLabel">getLabel()</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getName">getName()</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getOptions">getOptions()</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_getType">getType()</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toArray">toArray()</a></li>
+                                                    <li class=""><a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#method_toObject">toObject()</a></li>
                                             </ul>
                 </li>
             
-                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
-            <li>
-                <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_create">create()</a></li>
-                                            <li class=""><a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#method_getTaskRegistry">getTaskRegistry()</a></li>
-                                    </ul>
-            </li>
                     </ul>
     </section>
 
@@ -563,7 +559,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/Locospec-Engine-Actions-StateMachineFactory.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/Locospec-Engine-Attributes-AttributeInterface.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
