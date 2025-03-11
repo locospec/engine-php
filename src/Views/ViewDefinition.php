@@ -3,8 +3,8 @@
 namespace Locospec\Engine\Views;
 
 use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\Models\Relationships\BelongsTo;
+use Locospec\Engine\Registry\RegistryManager;
 
 class ViewDefinition
 {
@@ -91,50 +91,26 @@ class ViewDefinition
     {
         $defaultView = [];
 
-        // if (isset($spec->defaultView)) {
-            // create default view when defaultView is in model
-            // $attributes = $model->getAttributes()->getAttributesByNames($spec->defaultView->attributes);
-            // $aliases = array_keys((array) $model->getAliases());
-            //  if(!empty($aliases)){
-            //     foreach ($aliases as $alias) {
-            //         if(in_array($alias, $spec->defaultView->attributes)){
-            //             $attributes[$alias] = [
-            //                 'type' => 'string',
-            //                 'label' => ucwords(str_replace('_', ' ', $alias))
-            //             ];
-            //         }
-            //     }
-            // }
+        // create default view from model
+        $attributes = $model->getAttributes()->toArray();
+        $aliases = array_keys((array) $model->getAliases());
 
-            // $defaultView = [
-            //     "name" => $spec->defaultView->name,
-            //     "label" => $spec->defaultView->label,
-            //     "model" => $model->getName(),
-            //     "attributes" => $attributes,
-            //     "lensSimpleFilters" => self::generateLensFilter($spec->defaultView, $model, $registryManager)
-            // ];
-        // } else {
-            // create default view from model
-            $attributes = $model->getAttributes()->toArray();
-            $aliases = array_keys((array) $model->getAliases());
-
-            if(!empty($aliases)){
-                foreach ($aliases as $alias) {
-                    $attributes[$alias] = [
-                        'type' => 'string',
-                        'label' => ucwords(str_replace('_', ' ', $alias))
-                    ];
-                }
+        if (! empty($aliases)) {
+            foreach ($aliases as $alias) {
+                $attributes[$alias] = [
+                    'type' => 'string',
+                    'label' => ucwords(str_replace('_', ' ', $alias)),
+                ];
             }
+        }
 
-            $defaultView = [
-                "name" => $model->getName()."_default_view",
-                "label" => $model->getLabel()." Default View",
-                "model" => $model->getName(),
-                "attributes" => $attributes,
-                "lensSimpleFilters" => [],
-            ];
-        // }
+        $defaultView = [
+            'name' => $model->getName().'_default_view',
+            'label' => $model->getLabel().' Default View',
+            'model' => $model->getName(),
+            'attributes' => $attributes,
+            'lensSimpleFilters' => [],
+        ];
 
         return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters']);
     }
@@ -150,16 +126,16 @@ class ViewDefinition
                 // instanceof BelongsTo
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
-                    'label' => $relatedModel->getLabel()." ".ucfirst($path[1]),
+                    'label' => $relatedModel->getLabel().' '.ucfirst($path[1]),
                     'model' => $path[0],
                 ];
-            }elseif(count($path) === 1){
+            } elseif (count($path) === 1) {
                 $dependsOn = [];
                 if(!empty($model->getRelationships())){
                     foreach ($model->getRelationships() as $key => $relationship) {
-                        if($relationship instanceof BelongsTo){
+                        if ($relationship instanceof BelongsTo) {
                             $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
-                            $dependsOn[] = $key.".".$relationshipModel->getConfig()->getLabelKey();
+                            $dependsOn[] = $key.'.'.$relationshipModel->getConfig()->getLabelKey();
                         }
                     }
                 }
@@ -170,8 +146,8 @@ class ViewDefinition
                     'model' => $model->getName(),
                 ];
 
-                if(!empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])){
-                   $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
+                if (! empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])) {
+                    $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
                 }
 
                 if($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['type']=== 'timestamp'){

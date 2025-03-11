@@ -139,9 +139,8 @@ class ModelDefinition
         $model->addAliases($data);
 
         // dd($model->getConfig()->getPrimaryKey(),$model->getConfig()->getLabelKey());
-        $model->addAlias('const', (object) [ 'transform' => ".".$model->getConfig()->getPrimaryKey() ]);
-        $model->addAlias('title', (object) [ 'transform' => ".".$model->getConfig()->getLabelKey() ]);
-
+        $model->addAlias('const', (object) ['transform' => '.'.$model->getConfig()->getPrimaryKey()]);
+        $model->addAlias('title', (object) ['transform' => '.'.$model->getConfig()->getLabelKey()]);
 
         return $model;
     }
@@ -240,7 +239,7 @@ class ModelDefinition
     {
         return $this->label;
     }
-   
+
     public function cleanRelationships(): void
     {
         unset($this->relationships->has_one);

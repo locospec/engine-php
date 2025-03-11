@@ -2,15 +2,15 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Attributes\Attributes;
-use Locospec\Engine\StateMachine\ContextInterface;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Registry\DatabaseDriverInterface;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {
     protected ContextInterface $context;
-    
+
     protected Attributes $attributes;
 
     protected string $action;

@@ -9,10 +9,10 @@ class Attribute implements AttributeInterface
     private string $type;
 
     private string $label;
-    
+
     private array $options;
 
-    public function __construct(string $name, string $type, string $label, array $options=[])
+    public function __construct(string $name, string $type, string $label, array $options = [])
     {
         $this->name = $name;
         $this->type = $type;
@@ -62,8 +62,8 @@ class Attribute implements AttributeInterface
             'label' => $this->label,
         ];
 
-        if(!empty($this->options)){
-           $data["options"] = $this->options;
+        if (! empty($this->options)) {
+            $data['options'] = $this->options;
         }
 
         return $data;
