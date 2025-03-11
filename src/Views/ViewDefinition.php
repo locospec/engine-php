@@ -65,12 +65,12 @@ class ViewDefinition
 
         $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
         $aliases = array_keys((array) $model->getAliases());
-        if(!empty($aliases)){
+        if (! empty($aliases)) {
             foreach ($aliases as $alias) {
-                if(in_array($alias, $data->attributes)){
+                if (in_array($alias, $data->attributes)) {
                     $attributes[$alias] = [
                         'type' => 'string',
-                        'label' => ucwords(str_replace('_', ' ', $alias))
+                        'label' => ucwords(str_replace('_', ' ', $alias)),
                     ];
                 }
             }
@@ -131,7 +131,7 @@ class ViewDefinition
                 ];
             } elseif (count($path) === 1) {
                 $dependsOn = [];
-                if(!empty($model->getRelationships())){
+                if (! empty($model->getRelationships())) {
                     foreach ($model->getRelationships() as $key => $relationship) {
                         if ($relationship instanceof BelongsTo) {
                             $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
@@ -150,15 +150,15 @@ class ViewDefinition
                     $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
                 }
 
-                if($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['type']=== 'timestamp'){
+                if ($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['type'] === 'timestamp') {
                     $lensSimpleFilters[$lensSimpleFilter]['type'] = 'date';
                 }
-                
-                if(isset($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'])){
+
+                if (isset($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'])) {
                     $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'];
                 }
 
-                if(!empty($dependsOn)){
+                if (! empty($dependsOn)) {
                     $lensSimpleFilters[$lensSimpleFilter]['dependsOn'] = $dependsOn;
                 }
             }

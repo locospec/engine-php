@@ -144,23 +144,22 @@ class SpecificationProcessor
             $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
 
             if (isset($spec->defaultView)) {
-                if(isset($spec->defaultView->model)){
+                if (isset($spec->defaultView->model)) {
                     $this->pendingViews[] = $spec->defaultView;
-                }else{
+                } else {
                     $spec->defaultView->model = $model->getName();
                     $this->pendingViews[] = $spec->defaultView;
                 }
-            }else{
+            } else {
                 // Create the defatul view
                 $view = ViewDefinition::fromModel($model, $spec, $this->registryManager);
-    
+
                 $this->logger?->info('Normalized default view for model', ['viewName' => $view->getName()]);
-    
+
                 // register the view
                 $this->registryManager->register('view', $view);
                 $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
             }
-
 
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model spec', [
@@ -240,7 +239,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing relationships', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing relationships: ".$e->getMessage());
+            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
         }
     }
 
