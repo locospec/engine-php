@@ -13,10 +13,10 @@ use Locospec\Engine\Actions\Model\UpdateAction;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Registry\GeneratorInterface;
+use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Registry\ValidatorInterface;
-use Locospec\Engine\Registry\GeneratorInterface;
 
 class ActionOrchestrator
 {

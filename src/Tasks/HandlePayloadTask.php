@@ -25,15 +25,15 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         // dd("helloo", $input);
         // Initialize DB Operator Collection
         $dbOps = new DatabaseOperationsCollection($this->operator);
-        
+
         if (isset($input['payload']['search']) && ! empty($input['payload']['search'])) {
             $context = QueryContext::create([
                 'search' => $input['payload']['search'],
             ]);
-        
+
             $dbOps->setContext($context);
         }
-        
+
         // Set registry manager
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
         $dbOps->add($input['preparedPayload']);

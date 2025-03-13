@@ -130,7 +130,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForCreateAndUpdate(array $payload, string $type): array
     {
-        $currentOperation =  $this->context->get('action');
+        $currentOperation = $this->context->get('action');
         $preparedPayload = [
             'type' => $type,
             'modelName' => $this->context->get('model')->getName(),
@@ -142,20 +142,21 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             // If the attribute already exists in payload, keep it
             if (isset($payload[$attributeName])) {
                 $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+
                 continue;
             }
-            
+
             // Check if the attribute has a generation rule
-            if (!empty($attribute->getGenerations())) {
+            if (! empty($attribute->getGenerations())) {
                 foreach ($attribute->getGenerations() as $generation) {
                     // Only process the generation if the current operation is included in the operations list
                     if (isset($generation->operations) && is_array($generation->operations)) {
-                        if (!in_array($currentOperation, $generation->operations)) {
+                        if (! in_array($currentOperation, $generation->operations)) {
                             continue;
                         }
                     }
 
-                    if(isset($generation->source)){
+                    if (isset($generation->source)) {
                         $sourceKey = $generation->source;
                         $sourceValue = $payload[$sourceKey] ?? null;
 
@@ -165,10 +166,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
 
                     $generatedValue = $generator->generate(
-                        $generation->type, 
+                        $generation->type,
                         (array) $generation // Convert any extra options to array
                     );
-                    
+
                     if ($generatedValue !== null) {
                         $preparedPayload['data'][0][$attributeName] = $generatedValue;
                     }

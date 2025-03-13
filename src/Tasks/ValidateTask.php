@@ -14,7 +14,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        $currentOperation =  $this->context->get('action');
+        $currentOperation = $this->context->get('action');
         $validator = new SpecValidator;
 
         switch ($this->context->get('action')) {
@@ -30,16 +30,16 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 break;
         }
 
-        if($currentOperation=== "_update"){
+        if ($currentOperation === '_update') {
             $data = $input['preparedPayload']['data'][0];
             unset($input['preparedPayload']['data']);
             $input['preparedPayload']['filters'] = [
-                'uuid' => $data['uuid']
+                'uuid' => $data['uuid'],
             ];
             unset($data['uuid']);
             $input['preparedPayload']['data'] = $data;
         }
-        
+
         $validation = $validator->validateOperation($input['preparedPayload']);
 
         if (! $validation['isValid']) {
@@ -53,12 +53,12 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
     public function validatePayloadForCreateAndUpdate(array $payload): array
     {
-        $currentOperation =  $this->context->get('action');
+        $currentOperation = $this->context->get('action');
         $validator = $this->context->get('crudValidator');
         $model = $this->context->get('model');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
         $errors = [];
-        
+
         // Ensure "data" is an array of records
         $records = $payload['data'] ?? [];
 
@@ -72,7 +72,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
         }
 
         // Return validation errors if any
-        if (!empty($errors)) {
+        if (! empty($errors)) {
             throw new RuntimeException($errors[0]);
         }
 
