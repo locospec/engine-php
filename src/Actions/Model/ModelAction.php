@@ -8,6 +8,8 @@ use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Registry\ValidatorInterface;
+use Locospec\Engine\Registry\GeneratorInterface;
 
 abstract class ModelAction
 {
@@ -24,6 +26,8 @@ abstract class ModelAction
     protected LCS $lcs;
 
     public function __construct(
+        ValidatorInterface $curdValidator, 
+        GeneratorInterface $generator,
         ModelDefinition $model,
         ViewDefinition $view,
         StateMachineFactory $stateMachineFactory,
@@ -36,6 +40,8 @@ abstract class ModelAction
         $this->lcs = $lcs;
         $this->config = $config;
         $this->name = static::getName();
+        $this->crudValidator = $curdValidator;
+        $this->generator = $generator;
     }
 
     /**
@@ -61,6 +67,8 @@ abstract class ModelAction
             'action' => $this->name,
             'config' => $this->config,
             'lcs' => $this->lcs,
+            'crudValidator' => $this->crudValidator,
+            'generator' => $this->generator
         ]);
         // Create state machine via factory
         $stateMachine = $this->stateMachineFactory->create(
@@ -74,6 +82,22 @@ abstract class ModelAction
         return $packet;
     }
 
+    /**
+     * Get the validator
+     */
+    public function getCrudValidator(): ValidatorInterface
+    {
+        return $this->crudValidator;
+    }
+    
+    /**
+     * Get the generator
+     */
+    public function getGenerator(): GeneratorInterface
+    {
+        return $this->generator;
+    }
+   
     /**
      * Get the model definition this action operates on
      */

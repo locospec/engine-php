@@ -22,6 +22,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     {
         $preparedPayload = [];
         switch ($this->context->get('action')) {
+            case '_create':
+                $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'insert');
+                break;
+
+            case '_update':
+                $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'update');
+                break;
+
             case '_read':
                 $preparedPayload = $this->preparePayloadForRead($payload);
                 break;
@@ -115,6 +123,57 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         if (isset($payload['search']) && ! empty($payload['search'])) {
             $preparedPayload['scopes'] = ['search'];
+        }
+
+        return $preparedPayload;
+    }
+
+    public function preparePayloadForCreateAndUpdate(array $payload, string $type): array
+    {
+        $currentOperation =  $this->context->get('action');
+        $preparedPayload = [
+            'type' => $type,
+            'modelName' => $this->context->get('model')->getName(),
+        ];
+        $generator = $this->context->get('generator');
+        $attributes = $this->context->get('model')->getAttributes()->getAttributes();
+
+        foreach ($attributes as $attributeName => $attribute) {
+            // If the attribute already exists in payload, keep it
+            if (isset($payload[$attributeName])) {
+                $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+                continue;
+            }
+            
+            // Check if the attribute has a generation rule
+            if (!empty($attribute->getGenerations())) {
+                foreach ($attribute->getGenerations() as $generation) {
+                    // Only process the generation if the current operation is included in the operations list
+                    if (isset($generation->operations) && is_array($generation->operations)) {
+                        if (!in_array($currentOperation, $generation->operations)) {
+                            continue;
+                        }
+                    }
+
+                    if(isset($generation->source)){
+                        $sourceKey = $generation->source;
+                        $sourceValue = $payload[$sourceKey] ?? null;
+
+                        if ($sourceValue) {
+                            $generation->source = $sourceValue;
+                        }
+                    }
+
+                    $generatedValue = $generator->generate(
+                        $generation->type, 
+                        (array) $generation // Convert any extra options to array
+                    );
+                    
+                    if ($generatedValue !== null) {
+                        $preparedPayload['data'][0][$attributeName] = $generatedValue;
+                    }
+                }
+            }
         }
 
         return $preparedPayload;
