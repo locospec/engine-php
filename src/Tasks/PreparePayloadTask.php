@@ -129,15 +129,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
-    public function preparePayloadForCreateAndUpdate(array $payload, string $type): array
+    public function preparePayloadForCreateAndUpdate(array $payload, string $dbOp): array
     {
-        $currentOperation =  $this->context->get('action');
         $preparedPayload = [
-            'type' => $type,
+            'type' => $dbOp,
             'modelName' => $this->context->get('model')->getName(),
         ];
 
-        if($currentOperation === "_update"){
+        if($dbOp === "update"){
             $preparedPayload['filters'] = $payload['filters'];
         }
 
@@ -148,12 +147,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
-            if ($currentOperation === "_create" && isset($payload[$attributeName])) {
+            if ($dbOp === "insert" && isset($payload[$attributeName])) {
                 $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
                 continue;
             }
             
-            if ($currentOperation === "_update" && isset($payload['data'][$attributeName])) {
+            if ($dbOp === "update" && isset($payload['data'][$attributeName])) {
                 $preparedPayload['data'][$attributeName] = $payload['data'][$attributeName];
                 continue;
             }
@@ -163,7 +162,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 foreach ($attribute->getGenerations() as $generation) {
                     // Only process the generation if the current operation is included in the operations list
                     if (isset($generation->operations) && is_array($generation->operations)) {
-                        if (!in_array($currentOperation, $generation->operations)) {
+                        if (!in_array($dbOp, $generation->operations)) {
                             continue;
                         }
                     }
@@ -171,7 +170,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     if(isset($generation->source)){
                         $sourceKey = $generation->source;
                         $sourceValue = null;
-                        if($currentOperation === "_update"){
+                        if($dbOp === "update"){
                             $sourceValue = $payload['data'][$sourceKey] ?? null;
                         }else{
                             $sourceValue = $payload[$sourceKey] ?? null;
@@ -193,7 +192,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     );
                     
                     if ($generatedValue !== null) {
-                        if($currentOperation === "_update"){
+                        if($dbOp === "update"){
                             $preparedPayload['data'][$attributeName] = $generatedValue;
                         }else{
                             $preparedPayload['data'][0][$attributeName] = $generatedValue;

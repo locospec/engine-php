@@ -14,16 +14,15 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        $currentOperation =  $this->context->get('action');
         $validator = new SpecValidator;
 
         switch ($this->context->get('action')) {
             case '_create':
-                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']);
+                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload'], 'insert');
                 break;
 
             case '_update':
-                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']['data']);
+                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']['data'], 'update');
                 break;
 
             default:
@@ -41,9 +40,8 @@ class ValidateTask extends AbstractTask implements TaskInterface
         return [...$input, 'validated' => $validation['isValid']];
     }
 
-    public function validatePayloadForCreateAndUpdate(array $payload): array
+    public function validatePayloadForCreateAndUpdate(array $payload, string $dbOp): array
     {
-        $currentOperation =  $this->context->get('action');
         $validator = $this->context->get('crudValidator');
         $model = $this->context->get('model');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
@@ -54,7 +52,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
         // Validate each record individually using the attributes.
         foreach ($records as $index => $record) {
-            $result = $validator->validate($record, $attributes, $currentOperation);
+            $result = $validator->validate($record, $attributes, $dbOp);
             // If the validator returns errors (not true), capture them.
             if ($result !== true) {
                 $errors[$index] = $result;
