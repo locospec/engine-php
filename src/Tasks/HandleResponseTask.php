@@ -24,11 +24,11 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             case '_create':
                 return $this->handleCreateResponse($input);
                 break;
-            
+
             case '_update':
                 return $this->handleUpdateResponse($input);
                 break;
-           
+
             case '_read':
                 return $this->handleReadResponse($input);
                 break;
@@ -49,7 +49,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             'meta' => $input['response'][0]['pagination'] ?? [],
         ];
     }
-    
+
     public function handleUpdateResponse(array $input): array
     {
         return [
@@ -57,7 +57,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             'meta' => $input['response'][0]['pagination'] ?? [],
         ];
     }
-  
+
     public function handleReadResponse(array $input): array
     {
         return [

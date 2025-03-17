@@ -28,7 +28,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
             default:
                 break;
         }
-        
+
         $validation = $validator->validateOperation($input['preparedPayload']);
 
         if (! $validation['isValid']) {

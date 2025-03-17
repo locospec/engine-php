@@ -381,7 +381,7 @@ class DatabaseOperationsCollection
         }
 
         foreach ($dbOpResults as $index => $dbOpResult) {
-            if(!in_array($dbOpResult['operation']['type'], ["update", "insert"])){
+            if (! in_array($dbOpResult['operation']['type'], ['update', 'insert'])) {
                 if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
 
                     $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
