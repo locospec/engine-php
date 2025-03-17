@@ -96,6 +96,64 @@
                     "label": {
                         "type": "string",
                         "description": "Label for the attribute"
+                    },
+                    "generations": {
+                        "type": "array",
+                        "description": "List of generation rules for the attribute",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "description": "Type of generation"
+                                },
+                                "operations": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["insert", "update", "delete"]
+                                    },
+                                    "description": "Operations during which the generation applies"
+                                },
+                                "source": {
+                                    "type": "string",
+                                    "description": "Source field for generation",
+                                    "optional": true
+                                },
+                                "value": {
+                                    "type": "string",
+                                    "description": "Value for generation",
+                                    "optional": true
+                                }
+                            },
+                            "required": ["type", "operations"]
+                        }
+                    },
+                    "validations": {
+                        "type": "array",
+                        "description": "List of validation rules for the attribute",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "description": "Type of validation"
+                                },
+                                "operations": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["insert", "update", "delete"]
+                                    },
+                                    "description": "Operations during which the validation applies"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "description": "Validation error message"
+                                }
+                            },
+                            "required": ["type", "operations", "message"]
+                        }
                     }
                 },
                 "required": ["type", "label"]

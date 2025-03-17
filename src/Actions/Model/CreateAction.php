@@ -9,37 +9,32 @@ class CreateAction extends ModelAction
 {
     public static function getName(): string
     {
-        return 'create';
+        return '_create';
     }
 
     protected function getStateMachineDefinition(): array
     {
         return [
-            'StartAt' => 'CleanInput',
+            'StartAt' => 'PreparePayload',
             'States' => [
-                'CleanInput' => [
+                'PreparePayload' => [
                     'Type' => 'Task',
-                    'Resource' => 'clean_input',
-                    'Next' => 'ValidateInput',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'ValidatePayload',
                 ],
-                'ValidateInput' => [
+                'ValidatePayload' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'GenerateAttributes',
+                    'Next' => 'HandlePayload',
                 ],
-                'GenerateAttributes' => [
+                'HandlePayload' => [
                     'Type' => 'Task',
-                    'Resource' => 'generate_attributes',
-                    'Next' => 'DatabaseInsert',
+                    'Resource' => 'handle_payload',
+                    'Next' => 'HandleResponse',
                 ],
-                'DatabaseInsert' => [
+                'HandleResponse' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.insert',
-                    'Next' => 'DatabaseRead',
-                ],
-                'DatabaseRead' => [
-                    'Type' => 'Task',
-                    'Resource' => 'database.select',
+                    'Resource' => 'handle_response',
                     'End' => true,
                 ],
             ],
