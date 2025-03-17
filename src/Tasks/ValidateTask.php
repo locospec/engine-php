@@ -22,7 +22,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 break;
 
             case '_update':
-                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']['data'], 'update');
+                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload'], 'update');
                 break;
 
             default:
@@ -51,17 +51,28 @@ class ValidateTask extends AbstractTask implements TaskInterface
         $records = $payload['data'] ?? [];
 
         // Validate each record individually using the attributes.
-        foreach ($records as $index => $record) {
-            $result = $validator->validate($record, $attributes, $dbOp);
+        if(is_array($records) && isset($records[0])){
+            foreach ($records as $index => $record) {
+                $result = $validator->validate($record, $attributes, $dbOp);
+                // If the validator returns errors (not true), capture them.
+                if ($result !== true) {
+                    $errors[$index] = $result;
+                }
+            }
+        }else{
+            $result = $validator->validate($records, $attributes, $dbOp);
             // If the validator returns errors (not true), capture them.
             if ($result !== true) {
-                $errors[$index] = $result;
+                $errors = $result;
             }
         }
-
         // Return validation errors if any
         if (! empty($errors)) {
-            throw new RuntimeException($errors[0]);
+            if(is_array($errors) && isset($errors[0])){
+                throw new RuntimeException($errors[0]);
+            }else{
+                throw new RuntimeException($errors);
+            }
         }
 
         return [
