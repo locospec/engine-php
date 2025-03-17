@@ -27,8 +27,7 @@ class UpdateAction extends ModelAction
                 'HandlePayload' => [
                     'Type' => 'Task',
                     'Resource' => 'handle_payload',
-                    // 'Next' => 'HandleResponse',
-                    'End' => true,
+                    'Next' => 'HandleResponse',
                 ],
                 'HandleResponse' => [
                     'Type' => 'Task',

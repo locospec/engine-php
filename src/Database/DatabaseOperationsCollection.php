@@ -381,24 +381,25 @@ class DatabaseOperationsCollection
         }
 
         foreach ($dbOpResults as $index => $dbOpResult) {
+            if(!in_array($dbOpResult['operation']['type'], ["update", "insert"])){
+                if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
 
-            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
+                    $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
 
-                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+                    if ($model && $model->getAliases()) {
+                        $this->logger->info('Applying alias transformation for model', [
+                            'type' => 'dbOps',
+                            'modelName' => $dbOpResult['operation']['modelName'],
+                        ]);
 
-                if ($model && $model->getAliases()) {
-                    $this->logger->info('Applying alias transformation for model', [
-                        'type' => 'dbOps',
-                        'modelName' => $dbOpResult['operation']['modelName'],
-                    ]);
+                        $aliasTransformer = new AliasTransformation($model);
+                        $dbOpResults[$index]['result'] = $aliasTransformer->transform($dbOpResult['result']);
 
-                    $aliasTransformer = new AliasTransformation($model);
-                    $dbOpResults[$index]['result'] = $aliasTransformer->transform($dbOpResult['result']);
-
-                    $this->logger->info('Alias transformation applied for model', [
-                        'type' => 'dbOps',
-                        'modelName' => $dbOpResult['operation']['modelName'],
-                    ]);
+                        $this->logger->info('Alias transformation applied for model', [
+                            'type' => 'dbOps',
+                            'modelName' => $dbOpResult['operation']['modelName'],
+                        ]);
+                    }
                 }
             }
         }

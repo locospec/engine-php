@@ -23,21 +23,11 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 break;
 
             case '_update':
-                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']);
+                $validation = $this->validatePayloadForCreateAndUpdate($input['preparedPayload']['data']);
                 break;
 
             default:
                 break;
-        }
-
-        if($currentOperation=== "_update"){
-            $data = $input['preparedPayload']['data'][0];
-            unset($input['preparedPayload']['data']);
-            $input['preparedPayload']['filters'] = [
-                'uuid' => $data['uuid']
-            ];
-            unset($data['uuid']);
-            $input['preparedPayload']['data'] = $data;
         }
         
         $validation = $validator->validateOperation($input['preparedPayload']);

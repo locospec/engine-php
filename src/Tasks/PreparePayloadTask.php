@@ -136,6 +136,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'type' => $type,
             'modelName' => $this->context->get('model')->getName(),
         ];
+
+        if($currentOperation === "_update"){
+            $preparedPayload['filters'] = $payload['filters'];
+        }
+
         $generator = $this->context->get('generator');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
         $dbOps = new DatabaseOperationsCollection($this->operator);
@@ -143,8 +148,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
-            if (isset($payload[$attributeName])) {
+            if ($currentOperation === "_create" && isset($payload[$attributeName])) {
                 $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+                continue;
+            }
+            
+            if ($currentOperation === "_update" && isset($payload['data'][$attributeName])) {
+                $preparedPayload['data'][$attributeName] = $payload['data'][$attributeName];
                 continue;
             }
             
@@ -160,7 +170,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
                     if(isset($generation->source)){
                         $sourceKey = $generation->source;
-                        $sourceValue = $payload[$sourceKey] ?? null;
+                        $sourceValue = null;
+                        if($currentOperation === "_update"){
+                            $sourceValue = $payload['data'][$sourceKey] ?? null;
+                        }else{
+                            $sourceValue = $payload[$sourceKey] ?? null;
+                        }
 
                         if ($sourceValue) {
                             $generation->sourceValue = $sourceValue;
@@ -178,7 +193,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     );
                     
                     if ($generatedValue !== null) {
-                        $preparedPayload['data'][0][$attributeName] = $generatedValue;
+                        if($currentOperation === "_update"){
+                            $preparedPayload['data'][$attributeName] = $generatedValue;
+                        }else{
+                            $preparedPayload['data'][0][$attributeName] = $generatedValue;
+                        }
+
                     }
                 }
             }

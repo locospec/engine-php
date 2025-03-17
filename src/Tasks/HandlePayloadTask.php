@@ -22,7 +22,6 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        // dd("helloo", $input);
         // Initialize DB Operator Collection
         $dbOps = new DatabaseOperationsCollection($this->operator);
         
