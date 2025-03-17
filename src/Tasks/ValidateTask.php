@@ -46,7 +46,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
         $model = $this->context->get('model');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
         $errors = [];
-        
+
         // Ensure "data" is an array of records
         $records = $payload['data'] ?? [];
 
@@ -60,7 +60,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
         }
 
         // Return validation errors if any
-        if (!empty($errors)) {
+        if (! empty($errors)) {
             throw new RuntimeException($errors[0]);
         }
 

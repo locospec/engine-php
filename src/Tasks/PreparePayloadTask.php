@@ -149,6 +149,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             // If the attribute already exists in payload, keep it
             if ($dbOp === "insert" && isset($payload[$attributeName])) {
                 $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+
                 continue;
             }
             
@@ -158,7 +159,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
             
             // Check if the attribute has a generation rule
-            if (!empty($attribute->getGenerations())) {
+            if (! empty($attribute->getGenerations())) {
                 foreach ($attribute->getGenerations() as $generation) {
                     // Only process the generation if the current operation is included in the operations list
                     if (isset($generation->operations) && is_array($generation->operations)) {
@@ -167,7 +168,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         }
                     }
 
-                    if(isset($generation->source)){
+                    if (isset($generation->source)) {
                         $sourceKey = $generation->source;
                         $sourceValue = null;
                         if($dbOp === "update"){
@@ -187,10 +188,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     $generation->attributeName = $attributeName;
 
                     $generatedValue = $generator->generate(
-                        $generation->type, 
+                        $generation->type,
                         (array) $generation // Convert any extra options to array
                     );
-                    
+
                     if ($generatedValue !== null) {
                         if($dbOp === "update"){
                             $preparedPayload['data'][$attributeName] = $generatedValue;

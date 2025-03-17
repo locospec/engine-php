@@ -11,12 +11,12 @@ class Attribute implements AttributeInterface
     private string $label;
 
     private array $options;
-    
+
     private array $generations;
 
     private array $validations;
 
-    public function __construct(string $name, string $type, string $label, array $generations, array $validations,  array $options = [])
+    public function __construct(string $name, string $type, string $label, array $generations, array $validations, array $options = [])
     {
         $this->name = $name;
         $this->type = $type;
@@ -62,7 +62,7 @@ class Attribute implements AttributeInterface
     {
         return $this->generations;
     }
-   
+
     public function getValidations(): array
     {
         return $this->validations;

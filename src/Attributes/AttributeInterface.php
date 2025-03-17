@@ -13,7 +13,7 @@ interface AttributeInterface
     public function getOptions(): array;
 
     public function getGenerations(): array;
-    
+
     public function getValidations(): array;
 
     public function toArray(): array;
