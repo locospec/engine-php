@@ -3,6 +3,7 @@
 namespace Locospec\Engine\Tasks;
 
 use Locospec\Engine\StateMachine\ContextInterface;
+use Locospec\Engine\Database\DatabaseOperationsCollection;
 
 class PreparePayloadTask extends AbstractTask implements TaskInterface
 {
@@ -137,6 +138,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         ];
         $generator = $this->context->get('generator');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
+        $dbOps = new DatabaseOperationsCollection($this->operator);
+        $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
@@ -160,9 +163,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $sourceValue = $payload[$sourceKey] ?? null;
 
                         if ($sourceValue) {
-                            $generation->source = $sourceValue;
+                            $generation->sourceValue = $sourceValue;
                         }
                     }
+
+                    $generation->dbOps = $dbOps;
+                    $generation->dbOperator = $this->operator;
+                    $generation->modelName = $this->context->get('model')->getName();
+                    $generation->attributeName = $attributeName;
 
                     $generatedValue = $generator->generate(
                         $generation->type, 
