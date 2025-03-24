@@ -107,7 +107,7 @@ class ModelConfiguration
             'singular' => $this->singular,
             'plural' => $this->plural,
             'labelKey' => $this->labelKey,
-        ], fn($value) => $value !== null);
+        ], fn ($value) => $value !== null);
     }
 
     public function toObject(): object
