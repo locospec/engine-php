@@ -70,7 +70,7 @@ class ActionDefinition
                 throw new InvalidArgumentException(
                     "Attribute doesn't exists in the model: Model {$model->getName()} not found"
                 );
-            }else{
+            } else {
                 $attributes[$key] = (array) $attribute;
             }
         }
