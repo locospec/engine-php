@@ -20,7 +20,7 @@ class SpecificationProcessor
     private array $pendingViews = [];
 
     private static ?Logger $logger = null;
-    
+
     private array $pendingActions = [];
 
     public function __construct(RegistryManager $registryManager)
