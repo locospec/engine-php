@@ -5,6 +5,7 @@ namespace Locospec\Engine\Specifications;
 use Locospec\Engine\Actions\ActionDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
+use Locospec\Engine\Logger;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
@@ -18,6 +19,8 @@ class SpecificationProcessor
 
     private array $pendingViews = [];
 
+    private static ?Logger $logger = null;
+    
     private array $pendingActions = [];
 
     public function __construct(RegistryManager $registryManager)

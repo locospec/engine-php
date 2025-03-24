@@ -41,7 +41,7 @@ class LCS
             }
 
             self::$logger->info('LCS successfully bootstrapped.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -79,7 +79,7 @@ class LCS
             // Process all action after all views models and relationships are registered
             $specProcessor->processAllActionSpec();
             self::$logger->info('Actions registration finished');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
