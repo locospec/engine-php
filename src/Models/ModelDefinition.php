@@ -23,8 +23,6 @@ class ModelDefinition
 
     private string $label;
 
-    private array $filterable;
-
     private Attributes $attributes;
 
     public function __construct(string $name, Attributes $attributes, ModelConfiguration $config)
@@ -37,7 +35,6 @@ class ModelDefinition
         $this->scopes = new \stdClass;
         $this->aliases = new \stdClass;
         $this->label = '';
-        $this->filterable = [];
 
     }
 
@@ -66,11 +63,6 @@ class ModelDefinition
     public function getAttributes(): Attributes
     {
         return $this->attributes;
-    }
-
-    public function getFilterable(): array
-    {
-        return $this->filterable;
     }
 
     public function getConfig(): ModelConfiguration
@@ -133,9 +125,6 @@ class ModelDefinition
             $model->label = $data->label;
         }
 
-        if (isset($data->filterable)) {
-            $model->filterable = $data->filterable;
-        }
         $model->addAliases($data);
 
         // dd($model->getConfig()->getPrimaryKey(),$model->getConfig()->getLabelKey());
@@ -164,10 +153,6 @@ class ModelDefinition
             $array['aliases'] = $this->aliases;
         }
 
-        if (! empty($this->filterable)) {
-            $array['filterable'] = $this->filterable;
-        }
-
         return $array;
     }
 
@@ -187,10 +172,6 @@ class ModelDefinition
 
         if (! empty($this->aliases)) {
             $result->aliases = $this->aliases;
-        }
-
-        if (! empty($this->filterable)) {
-            $result->filterable = $this->filterable;
         }
 
         return $result;

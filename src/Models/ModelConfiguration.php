@@ -106,7 +106,7 @@ class ModelConfiguration
             'dbOperator' => $this->dbOperator,
             'singular' => $this->singular,
             'plural' => $this->plural,
-            'plural' => $this->labelKey,
+            'labelKey' => $this->labelKey,
         ], fn ($value) => $value !== null);
     }
 
@@ -119,7 +119,7 @@ class ModelConfiguration
         $object->dbOperator = $this->dbOperator;
         $object->singular = $this->singular;
         $object->plural = $this->plural;
-        $object->plural = $this->labelKey;
+        $object->labelKey = $this->labelKey;
 
         return $object;
     }

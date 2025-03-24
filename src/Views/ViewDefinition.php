@@ -20,12 +20,15 @@ class ViewDefinition
 
     private array $lensSimpleFilters = [];
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters)
+    private string $selectionType;
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType)
     {
         $this->type = 'view';
         $this->name = $name;
         $this->label = $label;
         $this->model = $modelName;
+        $this->selectionType = $selectionType ?? 'none';
         $this->attributes = $attributes;
         $this->lensSimpleFilters = $lensSimpleFilters;
     }
@@ -77,14 +80,14 @@ class ViewDefinition
         }
         $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
 
-        return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters);
+        return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $data->selectionType);
     }
 
     public static function fromArray(array $data): self
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -110,9 +113,10 @@ class ViewDefinition
             'model' => $model->getName(),
             'attributes' => $attributes,
             'lensSimpleFilters' => [],
+            'selectionType' => 'none',
         ];
 
-        return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters']);
+        return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType']);
     }
 
     public static function generateLensFilter($data, ModelDefinition $model, RegistryManager $registryManager): array
@@ -176,6 +180,7 @@ class ViewDefinition
             'model' => $this->model,
             'attributes' => $this->attributes,
             'lensSimpleFilters' => $this->lensSimpleFilters,
+            'selectionType' => $this->selectionType,
         ];
     }
 
@@ -188,6 +193,7 @@ class ViewDefinition
         $result->model = $this->model;
         $result->attributes = $this->attributes;
         $result->lensSimpleFilters = $this->lensSimpleFilters;
+        $result->selectionType = $this->selectionType;
 
         return $result;
     }
