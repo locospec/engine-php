@@ -362,20 +362,19 @@ class SpecificationProcessor
     private function processActionSpec(object $spec, ModelDefinition $model): void
     {
         try {
-            $this->logger?->info('Processing action spec', ['actionName' => $spec->name]);
+            $this->logger?->info('Processing action spec', ['actionSpecName' => $spec->name]);
 
             // Validate the action spec
             $this->validateSpec($spec);
 
             // Convert object to ActionDefinition
-            $action = ActionDefinition::fromObject($spec, $this->registryManager, $model);
-            dd('hello action is getting processed', $spec, $action);
+            $actionSpec = ActionDefinition::fromObject($spec, $this->registryManager, $model);
 
-            $this->logger?->info('Normalized action spec', ['actionName' => $action->getName()]);
+            $this->logger?->info('Normalized action spec', ['actionSpecName' => $actionSpec->getName()]);
 
             // register the action
-            $this->registryManager->register('action', $action);
-            $this->logger?->info('Action registered in registry', ['modelName' => $action->getName()]);
+            $this->registryManager->register('action', $actionSpec);
+            $this->logger?->info('Action registered in registry', ['modelName' => $actionSpec->getName()]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing action spec', [
                 'actionName' => $spec->name ?? 'Unknown',

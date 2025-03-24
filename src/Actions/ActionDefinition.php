@@ -62,23 +62,18 @@ class ActionDefinition
 
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
-        // $actionModel = $registryManager->get('model', $data->model);
+        $attributes = [];
 
-        // if (! $model) {
-        //     throw new InvalidArgumentException("Model not found: {$data->model}");
-        // }
-
-        $validAttributeKeys = array_keys($model->getAttributes()->getAttributes()->toArray());
+        $validAttributeKeys = array_keys($model->getAttributes()->getAttributes());
         foreach ($data->attributes as $key => $attribute) {
-            dd($key, $validAttributeKeys, ! array_key_exists($key, $validAttributeKeys));
-            if (! array_key_exists($key, $validAttributeKeys)) {
+            if (! in_array($key, $validAttributeKeys)) {
                 throw new InvalidArgumentException(
                     "Attribute doesn't exists in the model: Model {$model->getName()} not found"
                 );
-                dd($key, $attribute);
+            }else{
+                $attributes[$key] = (array) $attribute;
             }
         }
-        dd($data, $attributes);
 
         return new self($data->name, $data->label, $data->dbOp, $data->model, $attributes);
     }
@@ -98,7 +93,6 @@ class ActionDefinition
             'type' => $this->type,
             'model' => $this->model,
             'attributes' => $this->attributes,
-            'lensSimpleFilters' => $this->lensSimpleFilters,
         ];
     }
 

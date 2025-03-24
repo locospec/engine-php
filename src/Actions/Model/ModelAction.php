@@ -10,12 +10,15 @@ use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Actions\ActionDefinition;
 
 abstract class ModelAction
 {
     protected ModelDefinition $model;
 
     protected ViewDefinition $view;
+    
+    protected ?ActionDefinition $actionSpec;
 
     protected array $config;
 
@@ -30,12 +33,14 @@ abstract class ModelAction
         GeneratorInterface $generator,
         ModelDefinition $model,
         ViewDefinition $view,
+        ?ActionDefinition $actionSpec,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
         $this->view = $view;
+        $this->actionSpec = $actionSpec;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -63,6 +68,7 @@ abstract class ModelAction
         $context = new Context([
             'model' => $this->model,
             'view' => $this->view,
+            'actionSpec' => $this->actionSpec,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,

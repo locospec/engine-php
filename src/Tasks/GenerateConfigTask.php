@@ -20,15 +20,16 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-
-        // return the config, what else should be in the config?
-        // $attributes = $this->context->get('model')->getAttributes()->toObject();
-
         // Get view
         $view = $this->context->get('view');
+        $actionSpec = $this->context->get('actionSpec');
 
-        $result = $view->toArray();
-
-        return ['data' => $result];
+        if(isset($actionSpec)){
+            $result = $actionSpec->toArray();
+            return ['data' => $result];
+        }else{
+            $result = $view->toArray();
+            return ['data' => $result];
+        }
     }
 }
