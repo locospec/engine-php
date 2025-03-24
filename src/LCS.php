@@ -28,9 +28,10 @@ class LCS
                 return;
             }
 
-            self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
-            self::$logger->info('Initializing LCS...');
-
+            if (isset($config['logging'])) {
+                self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
+                self::$logger->info('Initializing LCS...');
+            }
             self::$globalRegistryManager = new RegistryManager;
             self::$isInitialized = true;
 
@@ -38,6 +39,7 @@ class LCS
                 // register specification
                 self::registerSpecifications($config['paths']);
             }
+
             self::$logger->info('LCS successfully bootstrapped.');
         } catch (Exception $e) {
             throw $e;
@@ -51,7 +53,7 @@ class LCS
     {
         try {
             self::$logger->info('Specification registration started');
-            if (! self::$isInitialized) {
+            if (!self::$isInitialized) {
                 throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
             }
 
@@ -60,7 +62,7 @@ class LCS
             self::$logger->info('Looping all the JSON Spec for registration');
             foreach ($paths as $path) {
                 if (is_dir($path)) {
-                    foreach (glob($path.'/*.json') as $file) {
+                    foreach (glob($path . '/*.json') as $file) {
                         $specProcessor->processFile($file);
                     }
                 } elseif (is_file($path)) {
@@ -84,7 +86,7 @@ class LCS
      */
     public function __construct()
     {
-        if (! self::$isInitialized) {
+        if (!self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 
