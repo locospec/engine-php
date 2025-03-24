@@ -23,8 +23,6 @@ class ModelDefinition
 
     private string $label;
 
-    private array $filterable;
-
     private Attributes $attributes;
 
     public function __construct(string $name, Attributes $attributes, ModelConfiguration $config)
@@ -37,7 +35,6 @@ class ModelDefinition
         $this->scopes = new \stdClass;
         $this->aliases = new \stdClass;
         $this->label = '';
-        $this->filterable = [];
 
     }
 
@@ -66,11 +63,6 @@ class ModelDefinition
     public function getAttributes(): Attributes
     {
         return $this->attributes;
-    }
-
-    public function getFilterable(): array
-    {
-        return $this->filterable;
     }
 
     public function getConfig(): ModelConfiguration
@@ -102,7 +94,7 @@ class ModelDefinition
     {
         return array_filter(
             $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
+            fn(Relationship $rel) => $rel->getType() === $type
         );
     }
 
@@ -115,7 +107,7 @@ class ModelDefinition
         $attributes = isset($data->attributes) ? Attributes::fromObject($data->attributes) : new Attributes;
 
         $config = $data->config ?? new \stdClass;
-        if (! isset($config->table)) {
+        if (!isset($config->table)) {
             $config->table = StringInflector::getInstance()->plural($data->name);
         }
 
@@ -133,14 +125,11 @@ class ModelDefinition
             $model->label = $data->label;
         }
 
-        if (isset($data->filterable)) {
-            $model->filterable = $data->filterable;
-        }
         $model->addAliases($data);
 
         // dd($model->getConfig()->getPrimaryKey(),$model->getConfig()->getLabelKey());
-        $model->addAlias('const', (object) ['transform' => '.'.$model->getConfig()->getPrimaryKey()]);
-        $model->addAlias('title', (object) ['transform' => '.'.$model->getConfig()->getLabelKey()]);
+        $model->addAlias('const', (object) ['transform' => '.' . $model->getConfig()->getPrimaryKey()]);
+        $model->addAlias('title', (object) ['transform' => '.' . $model->getConfig()->getLabelKey()]);
 
         return $model;
     }
@@ -156,16 +145,12 @@ class ModelDefinition
             'relationships' => $this->relationshipsToArray(),
         ];
 
-        if (! empty($this->scopes)) {
+        if (!empty($this->scopes)) {
             $array['scopes'] = $this->scopes;
         }
 
-        if (! empty($this->aliases)) {
+        if (!empty($this->aliases)) {
             $array['aliases'] = $this->aliases;
-        }
-
-        if (! empty($this->filterable)) {
-            $array['filterable'] = $this->filterable;
         }
 
         return $array;
@@ -181,16 +166,12 @@ class ModelDefinition
         $result->attributes = $this->attributes->toObject();
         $result->relationships = $this->relationships;
 
-        if (! empty($this->scopes)) {
+        if (!empty($this->scopes)) {
             $result->scopes = $this->scopes;
         }
 
-        if (! empty($this->aliases)) {
+        if (!empty($this->aliases)) {
             $result->aliases = $this->aliases;
-        }
-
-        if (! empty($this->filterable)) {
-            $result->filterable = $this->filterable;
         }
 
         return $result;
@@ -201,7 +182,7 @@ class ModelDefinition
         $result = [];
         foreach ($this->relationships as $relationship) {
             $type = $relationship->getType();
-            if (! isset($result[$type])) {
+            if (!isset($result[$type])) {
                 $result[$type] = [];
             }
             $result[$type][$relationship->getRelationshipName()] = $relationship->toArray();

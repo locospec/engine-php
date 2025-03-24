@@ -23,7 +23,6 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
         // return the config, what else should be in the config?
         // $attributes = $this->context->get('model')->getAttributes()->toObject();
-        // $filterable = $this->context->get('model')->getFilterable();
 
         // Get view
         $view = $this->context->get('view');
