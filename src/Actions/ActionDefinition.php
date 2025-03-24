@@ -2,9 +2,9 @@
 
 namespace Locospec\Engine\Actions;
 
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class ActionDefinition
 {
@@ -13,13 +13,12 @@ class ActionDefinition
     private string $name;
 
     private string $label;
-    
+
     private string $dbOp;
 
     private string $model;
 
     private array $attributes = [];
-
 
     public function __construct(string $name, string $label, string $dbOp, string $modelName, array $attributes)
     {
@@ -45,7 +44,7 @@ class ActionDefinition
     {
         return $this->label;
     }
-   
+
     public function getDbOp(): string
     {
         return $this->dbOp;
@@ -64,15 +63,15 @@ class ActionDefinition
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
         // $actionModel = $registryManager->get('model', $data->model);
-        
+
         // if (! $model) {
         //     throw new InvalidArgumentException("Model not found: {$data->model}");
         // }
-        
+
         $validAttributeKeys = array_keys($model->getAttributes()->getAttributes()->toArray());
         foreach ($data->attributes as $key => $attribute) {
-            dd($key, $validAttributeKeys, !array_key_exists($key, $validAttributeKeys));
-            if(!array_key_exists($key, $validAttributeKeys)){
+            dd($key, $validAttributeKeys, ! array_key_exists($key, $validAttributeKeys));
+            if (! array_key_exists($key, $validAttributeKeys)) {
                 throw new InvalidArgumentException(
                     "Attribute doesn't exists in the model: Model {$model->getName()} not found"
                 );

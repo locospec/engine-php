@@ -2,13 +2,13 @@
 
 namespace Locospec\Engine\Specifications;
 
+use Locospec\Engine\Actions\ActionDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Actions\ActionDefinition;
 
 class SpecificationProcessor
 {
@@ -17,7 +17,7 @@ class SpecificationProcessor
     private array $pendingRelationships = [];
 
     private array $pendingViews = [];
-    
+
     private array $pendingActions = [];
 
     public function __construct(RegistryManager $registryManager)
@@ -80,7 +80,7 @@ class SpecificationProcessor
                     case 'view':
                         $this->pendingViews[] = $spec;
                         break;
-                    
+
                     case 'action':
                         $this->pendingActions[] = $spec;
                         break;
@@ -137,7 +137,6 @@ class SpecificationProcessor
             }
             // Validate the model spec
             $this->validateSpec($spec);
-            
 
             // Convert object to ModelDefinition
             $model = ModelDefinition::fromObject($spec);
@@ -284,7 +283,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing view', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing view: ".$e->getMessage());
+            throw new InvalidArgumentException('Error processing view: '.$e->getMessage());
         }
     }
 
@@ -350,7 +349,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing action', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing action: ".$e->getMessage());
+            throw new InvalidArgumentException('Error processing action: '.$e->getMessage());
         }
     }
 
@@ -361,13 +360,13 @@ class SpecificationProcessor
     {
         try {
             $this->logger?->info('Processing action spec', ['actionName' => $spec->name]);
-            
+
             // Validate the action spec
             $this->validateSpec($spec);
-            
+
             // Convert object to ActionDefinition
             $action = ActionDefinition::fromObject($spec, $this->registryManager, $model);
-            dd("hello action is getting processed", $spec, $action);
+            dd('hello action is getting processed', $spec, $action);
 
             $this->logger?->info('Normalized action spec', ['actionName' => $action->getName()]);
 
