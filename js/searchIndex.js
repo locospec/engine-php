@@ -1261,11 +1261,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_getAttributes"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AgetFilterable\u0028\u0029",
-            "name": "getFilterable",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#method_getFilterable"
-        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003AgetConfig\u0028\u0029",
             "name": "getConfig",
             "summary": "",
@@ -1380,11 +1375,6 @@ Search.appendIndex(
             "name": "label",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelDefinition.html#property_label"
-        },                {
-            "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003A\u0024filterable",
-            "name": "filterable",
-            "summary": "",
-            "url": "classes/Locospec-Engine-Models-ModelDefinition.html#property_filterable"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition\u003A\u003A\u0024attributes",
             "name": "attributes",
@@ -3525,6 +3515,11 @@ Search.appendIndex(
             "name": "lensSimpleFilters",
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_lensSimpleFilters"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024selectionType",
+            "name": "selectionType",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_selectionType"
         },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewValidator",
             "name": "ViewValidator",
