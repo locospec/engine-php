@@ -20,13 +20,6 @@
             "type": "string",
             "description": "Label of the model"
         },
-        "filterable": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "description": "Array of strings indicating which fields are filterable"
-        },
         "config": {
             "type": "object",
             "properties": {
@@ -65,7 +58,7 @@
                     "description": "Flag key field name"
                 }
             },
-            "required": ["primaryKey"],
+            "required": ["primaryKey", "labelKey", "connection"],
             "additionalProperties": false
         },
         "attributes": {
@@ -233,6 +226,12 @@
                         "type": "string"
                     },
                     "description": "Array of filters for the default view"
+                },
+                "selectionType": {
+                    "type": "string",
+                    "enum": ["none", "single", "multiple"],
+                    "default": "none",
+                    "description": "Selection type for the table."
                 }
             }
         }
