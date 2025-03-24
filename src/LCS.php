@@ -41,7 +41,7 @@ class LCS
             }
 
             self::$logger->info('LCS successfully bootstrapped.');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -53,7 +53,7 @@ class LCS
     {
         try {
             self::$logger->info('Specification registration started');
-            if (! self::$isInitialized) {
+            if (!self::$isInitialized) {
                 throw new \RuntimeException('LCS must be bootstrapped before loading specifications');
             }
 
@@ -62,7 +62,7 @@ class LCS
             self::$logger->info('Looping all the JSON Spec for registration');
             foreach ($paths as $path) {
                 if (is_dir($path)) {
-                    foreach (glob($path.'/*.json') as $file) {
+                    foreach (glob($path . '/*.json') as $file) {
                         $specProcessor->processFile($file);
                     }
                 } elseif (is_file($path)) {
@@ -76,7 +76,7 @@ class LCS
             // Process all views after all models and relationships are registered
             $specProcessor->processAllViewSpec();
             self::$logger->info('Views registration finished');
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             throw $e;
         }
     }
@@ -86,7 +86,7 @@ class LCS
      */
     public function __construct()
     {
-        if (! self::$isInitialized) {
+        if (!self::$isInitialized) {
             throw new \RuntimeException('LCS must be bootstrapped before instantiation');
         }
 

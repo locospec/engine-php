@@ -8,6 +8,7 @@ use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Logger;
 
 class SpecificationProcessor
 {
@@ -16,6 +17,8 @@ class SpecificationProcessor
     private array $pendingRelationships = [];
 
     private array $pendingViews = [];
+
+    private static ?Logger $logger = null;
 
     public function __construct(RegistryManager $registryManager)
     {
@@ -34,7 +37,7 @@ class SpecificationProcessor
         try {
             $this->logger?->info('Processing spec file', ['filePath' => $filePath]);
 
-            if (! file_exists($filePath)) {
+            if (!file_exists($filePath)) {
                 $this->logger?->error('Spec json file not found', ['filePath' => $filePath]);
                 throw new InvalidArgumentException("Specification file not found: {$filePath}");
             }
@@ -54,7 +57,7 @@ class SpecificationProcessor
                 'filePath' => $filePath,
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
+            throw new InvalidArgumentException("Error processing file {$filePath}: " . $e->getMessage());
         }
     }
 
@@ -93,7 +96,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing JSON', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing JSON: '.$e->getMessage());
+            throw new InvalidArgumentException('Error processing JSON: ' . $e->getMessage());
         }
     }
 
@@ -104,7 +107,7 @@ class SpecificationProcessor
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $this->logger?->error('Invalid JSON provided', ['error' => json_last_error_msg()]);
-            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
         }
 
         $this->logger?->info('Successfully parsed JSON data');
@@ -172,25 +175,25 @@ class SpecificationProcessor
 
     public function validateSpec(object $spec): void
     {
-        $this->logger?->info('Validating '.$spec->type.' spec', [$spec->type.'Name' => $spec->name]);
+        $this->logger?->info('Validating ' . $spec->type . ' spec', [$spec->type . 'Name' => $spec->name]);
         $validation = $this->specValidator->validateSpec($spec);
 
         // throw exceptions when validation fails
-        if (! $validation['isValid']) {
+        if (!$validation['isValid']) {
             foreach ($validation['errors'] as $path => $errors) {
-                $errorMessages[] = "$path: ".implode(', ', $errors);
+                $errorMessages[] = "$path: " . implode(', ', $errors);
             }
 
-            $this->logger?->error($spec->type.' validation failed', [
-                $spec->type.'Name' => $spec->name,
+            $this->logger?->error($spec->type . ' validation failed', [
+                $spec->type . 'Name' => $spec->name,
                 'errors' => $errorMessages,
             ]);
 
             throw new InvalidArgumentException(
-                $spec->type.' validation failed: '.implode(', ', $errorMessages)
+                $spec->type . ' validation failed: ' . implode(', ', $errorMessages)
             );
         }
-        $this->logger?->info($spec->type.' spec validated successfully', [$spec->type.'Name' => $spec->name]);
+        $this->logger?->info($spec->type . ' spec validated successfully', [$spec->type . 'Name' => $spec->name]);
     }
 
     /**
@@ -205,7 +208,7 @@ class SpecificationProcessor
                 $this->logger?->info('Processing relationships for model', ['modelName' => $pending->modelName]);
                 $model = $this->registryManager->get('model', $pending->modelName);
 
-                if (! $model) {
+                if (!$model) {
                     $this->logger?->error('Model not found for relationship processing', [
                         'modelName' => $pending->modelName,
                     ]);
@@ -239,7 +242,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing relationships', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
+            throw new InvalidArgumentException('Error processing relationships: ' . $e->getMessage());
         }
     }
 
@@ -254,7 +257,7 @@ class SpecificationProcessor
                 $this->logger?->info('Processing view', ['viewName' => $pending->name]);
                 $model = $this->registryManager->get('model', $pending->model);
 
-                if (! $model) {
+                if (!$model) {
                     $this->logger?->error('Model not found for view processing', [
                         'modelName' => $pending->model,
                     ]);
@@ -277,7 +280,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing view', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
+            throw new InvalidArgumentException("Error processing file: " . $e->getMessage());
         }
     }
 
