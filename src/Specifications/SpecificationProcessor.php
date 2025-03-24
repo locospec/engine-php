@@ -19,7 +19,7 @@ class SpecificationProcessor
 
     private array $pendingViews = [];
 
-    private static ?Logger $logger = null;
+    private ?Logger $logger = null;
     
     private array $pendingActions = [];
 
