@@ -51,7 +51,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
         $records = $payload['data'] ?? [];
 
         // Validate each record individually using the attributes.
-        if(is_array($records) && isset($records[0])){
+        if (is_array($records) && isset($records[0])) {
             foreach ($records as $index => $record) {
                 $result = $validator->validate($record, $attributes, $dbOp);
                 // If the validator returns errors (not true), capture them.
@@ -59,7 +59,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
                     $errors[$index] = $result;
                 }
             }
-        }else{
+        } else {
             $result = $validator->validate($records, $attributes, $dbOp);
             // If the validator returns errors (not true), capture them.
             if ($result !== true) {
@@ -68,9 +68,9 @@ class ValidateTask extends AbstractTask implements TaskInterface
         }
         // Return validation errors if any
         if (! empty($errors)) {
-            if(is_array($errors) && isset($errors[0])){
+            if (is_array($errors) && isset($errors[0])) {
                 throw new RuntimeException($errors[0]);
-            }else{
+            } else {
                 throw new RuntimeException($errors);
             }
         }
