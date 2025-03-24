@@ -4,6 +4,7 @@ namespace Locospec\Engine\Specifications;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
+use Locospec\Engine\Logger;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
@@ -16,6 +17,8 @@ class SpecificationProcessor
     private array $pendingRelationships = [];
 
     private array $pendingViews = [];
+
+    private static ?Logger $logger = null;
 
     public function __construct(RegistryManager $registryManager)
     {
@@ -277,7 +280,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing view', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
+            throw new InvalidArgumentException('Error processing file: '.$e->getMessage());
         }
     }
 

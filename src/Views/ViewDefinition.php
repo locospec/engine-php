@@ -2,6 +2,7 @@
 
 namespace Locospec\Engine\Views;
 
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Models\Relationships\BelongsTo;
 use Locospec\Engine\Registry\RegistryManager;
@@ -60,6 +61,7 @@ class ViewDefinition
 
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
+        $selectionType = 'none';
         $viewModel = $registryManager->get('model', $data->model);
 
         if (! $viewModel) {
@@ -80,7 +82,11 @@ class ViewDefinition
         }
         $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
 
-        return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $data->selectionType);
+        if (isset($data->selectionType)) {
+            $selectionType = $data->selectionType;
+        }
+
+        return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType);
     }
 
     public static function fromArray(array $data): self
