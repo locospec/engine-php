@@ -61,16 +61,16 @@ class ViewDefinition
 
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
-        $selectionType = "none";
+        $selectionType = 'none';
         $viewModel = $registryManager->get('model', $data->model);
 
-        if (!$viewModel) {
+        if (! $viewModel) {
             throw new InvalidArgumentException("Model not found: {$data->model}");
         }
 
         $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
         $aliases = array_keys((array) $model->getAliases());
-        if (!empty($aliases)) {
+        if (! empty($aliases)) {
             foreach ($aliases as $alias) {
                 if (in_array($alias, $data->attributes)) {
                     $attributes[$alias] = [
@@ -104,7 +104,7 @@ class ViewDefinition
         $attributes = $model->getAttributes()->toArray();
         $aliases = array_keys((array) $model->getAliases());
 
-        if (!empty($aliases)) {
+        if (! empty($aliases)) {
             foreach ($aliases as $alias) {
                 $attributes[$alias] = [
                     'type' => 'string',
@@ -114,8 +114,8 @@ class ViewDefinition
         }
 
         $defaultView = [
-            'name' => $model->getName() . '_default_view',
-            'label' => $model->getLabel() . ' Default View',
+            'name' => $model->getName().'_default_view',
+            'label' => $model->getLabel().' Default View',
             'model' => $model->getName(),
             'attributes' => $attributes,
             'lensSimpleFilters' => [],
@@ -136,16 +136,16 @@ class ViewDefinition
                 // instanceof BelongsTo
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
-                    'label' => $relatedModel->getLabel() . ' ' . ucfirst($path[1]),
+                    'label' => $relatedModel->getLabel().' '.ucfirst($path[1]),
                     'model' => $path[0],
                 ];
             } elseif (count($path) === 1) {
                 $dependsOn = [];
-                if (!empty($model->getRelationships())) {
+                if (! empty($model->getRelationships())) {
                     foreach ($model->getRelationships() as $key => $relationship) {
                         if ($relationship instanceof BelongsTo) {
                             $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
-                            $dependsOn[] = $key . '.' . $relationshipModel->getConfig()->getLabelKey();
+                            $dependsOn[] = $key.'.'.$relationshipModel->getConfig()->getLabelKey();
                         }
                     }
                 }
@@ -156,7 +156,7 @@ class ViewDefinition
                     'model' => $model->getName(),
                 ];
 
-                if (!empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])) {
+                if (! empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])) {
                     $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
                 }
 
@@ -168,7 +168,7 @@ class ViewDefinition
                     $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'];
                 }
 
-                if (!empty($dependsOn)) {
+                if (! empty($dependsOn)) {
                     $lensSimpleFilters[$lensSimpleFilter]['dependsOn'] = $dependsOn;
                 }
             }
