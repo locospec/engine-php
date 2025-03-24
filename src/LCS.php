@@ -28,9 +28,10 @@ class LCS
                 return;
             }
 
-            self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
-            self::$logger->info('Initializing LCS...');
-
+            if (isset($config['logging'])) {
+                self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
+                self::$logger->info('Initializing LCS...');
+            }
             self::$globalRegistryManager = new RegistryManager;
             self::$isInitialized = true;
 
@@ -38,6 +39,7 @@ class LCS
                 // register specification
                 self::registerSpecifications($config['paths']);
             }
+
             self::$logger->info('LCS successfully bootstrapped.');
         } catch (Exception $e) {
             throw $e;
