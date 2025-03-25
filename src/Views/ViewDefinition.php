@@ -23,7 +23,9 @@ class ViewDefinition
 
     private string $selectionType;
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType)
+    private ?object $scopes;
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes)
     {
         $this->type = 'view';
         $this->name = $name;
@@ -32,6 +34,7 @@ class ViewDefinition
         $this->selectionType = $selectionType ?? 'none';
         $this->attributes = $attributes;
         $this->lensSimpleFilters = $lensSimpleFilters;
+        $this->scopes = $scopes ?? new \stdClass;
     }
 
     public function getType(): string
@@ -59,70 +62,103 @@ class ViewDefinition
         return $this->attributes;
     }
 
+    public function hasScope(string $name): bool
+    {
+        return isset($this->scopes->$name);
+    }
+
+    public function getScope(string $name): ?array
+    {
+        return $this->objectToArray($this->scopes->$name) ?? null;
+    }
+
+    public function getScopes(): object
+    {
+        return $this->scopes;
+    }
+
+    private function objectToArray($obj): array
+    {
+        return json_decode(json_encode($obj), true);
+    }
+
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
-        $selectionType = 'none';
-        $viewModel = $registryManager->get('model', $data->model);
+        try {
+            $selectionType = 'none';
+            $viewModel = $registryManager->get('model', $data->model);
 
-        if (! $viewModel) {
-            throw new InvalidArgumentException("Model not found: {$data->model}");
-        }
+            if (! $viewModel) {
+                throw new InvalidArgumentException("Model not found: {$data->model}");
+            }
 
-        $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
-        $aliases = array_keys((array) $model->getAliases());
-        if (! empty($aliases)) {
-            foreach ($aliases as $alias) {
-                if (in_array($alias, $data->attributes)) {
-                    $attributes[$alias] = [
-                        'type' => 'string',
-                        'label' => ucwords(str_replace('_', ' ', $alias)),
-                    ];
+            $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
+            $aliases = array_keys((array) $model->getAliases());
+            if (! empty($aliases)) {
+                foreach ($aliases as $alias) {
+                    if (in_array($alias, $data->attributes)) {
+                        $attributes[$alias] = [
+                            'type' => 'string',
+                            'label' => ucwords(str_replace('_', ' ', $alias)),
+                        ];
+                    }
                 }
             }
-        }
-        $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
+            $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
 
-        if (isset($data->selectionType)) {
-            $selectionType = $data->selectionType;
-        }
+            if (isset($data->selectionType)) {
+                $selectionType = $data->selectionType;
+            }
 
-        return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null);
+        } catch (InvalidArgumentException $e) {
+            throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: ".$e->getMessage());
+        }
     }
 
     public static function fromArray(array $data): self
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
     {
-        $defaultView = [];
+        try {
+            $defaultView = [];
 
-        // create default view from model
-        $attributes = $model->getAttributes()->toArray();
-        $aliases = array_keys((array) $model->getAliases());
+            // create default view from model
+            $attributes = $model->getAttributes()->toArray();
+            $aliases = array_keys((array) $model->getAliases());
 
-        if (! empty($aliases)) {
-            foreach ($aliases as $alias) {
-                $attributes[$alias] = [
-                    'type' => 'string',
-                    'label' => ucwords(str_replace('_', ' ', $alias)),
-                ];
+            if (! empty($aliases)) {
+                foreach ($aliases as $alias) {
+                    $attributes[$alias] = [
+                        'type' => 'string',
+                        'label' => ucwords(str_replace('_', ' ', $alias)),
+                    ];
+                }
             }
+
+            $defaultView = [
+                'name' => $model->getName().'_default_view',
+                'label' => $model->getLabel().' Default View',
+                'model' => $model->getName(),
+                'attributes' => $attributes,
+                'lensSimpleFilters' => [],
+                'selectionType' => 'none',
+                'scopes' => $model->getScopes() ?? new \stdClass,
+            ];
+
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes']);
+        } catch (InvalidArgumentException $e) {
+            throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Unexpected error while creating {$spec->name} view definition from model: ".$e->getMessage());
         }
-
-        $defaultView = [
-            'name' => $model->getName().'_default_view',
-            'label' => $model->getLabel().' Default View',
-            'model' => $model->getName(),
-            'attributes' => $attributes,
-            'lensSimpleFilters' => [],
-            'selectionType' => 'none',
-        ];
-
-        return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType']);
     }
 
     public static function generateLensFilter($data, ModelDefinition $model, RegistryManager $registryManager): array
@@ -179,7 +215,7 @@ class ViewDefinition
 
     public function toArray(): array
     {
-        return [
+        $data = [
             'name' => $this->name,
             'label' => $this->label,
             'type' => $this->type,
@@ -188,6 +224,12 @@ class ViewDefinition
             'lensSimpleFilters' => $this->lensSimpleFilters,
             'selectionType' => $this->selectionType,
         ];
+
+        if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
+            $data['scopes'] = $this->scopes;
+        }
+
+        return $data;
     }
 
     public function toObject(): object
@@ -200,6 +242,10 @@ class ViewDefinition
         $result->attributes = $this->attributes;
         $result->lensSimpleFilters = $this->lensSimpleFilters;
         $result->selectionType = $this->selectionType;
+
+        if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
+            $result->scopes = $this->scopes;
+        }
 
         return $result;
     }

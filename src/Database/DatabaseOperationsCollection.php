@@ -137,6 +137,7 @@ class DatabaseOperationsCollection
         }
 
         $model = $this->registryManager->get('model', $operation['modelName']);
+
         if (! $model) {
             $this->logger->error('Model not found', [
                 'type' => 'dbOps',
@@ -150,8 +151,9 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'scopes' => $operation['scopes'],
             ]);
+            $viewName = isset($operation['viewName']) ? $operation['viewName'] : null;
 
-            $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
+            $resolver = new ScopeResolver($this->registryManager, $operation['modelName'], $viewName);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
 
             $this->logger->info('Scopes resolved to filters', [

@@ -37,7 +37,7 @@ class ActionOrchestrator
         }
 
         $modelName = $data->getType() === 'view' ? $data->getModelName() : $modelViewName;
-        $viewName = $data->getType() === 'model' ? $data->getName().'_default_view' : $modelViewName;
+        $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : $modelViewName;
 
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
