@@ -3461,6 +3461,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getAttributes"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AhasScope\u0028\u0029",
+            "name": "hasScope",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_hasScope"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AgetScope\u0028\u0029",
+            "name": "getScope",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getScope"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AgetScopes\u0028\u0029",
+            "name": "getScopes",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getScopes"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AobjectToArray\u0028\u0029",
+            "name": "objectToArray",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_objectToArray"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AfromObject\u0028\u0029",
             "name": "fromObject",
             "summary": "",
@@ -3525,6 +3545,11 @@ Search.appendIndex(
             "name": "selectionType",
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_selectionType"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024scopes",
+            "name": "scopes",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_scopes"
         },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewValidator",
             "name": "ViewValidator",
