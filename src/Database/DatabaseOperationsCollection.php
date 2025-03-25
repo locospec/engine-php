@@ -151,7 +151,7 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'scopes' => $operation['scopes'],
             ]);
-            $viewName = isset($operation['viewName']) ? $operation['viewName']: null;
+            $viewName = isset($operation['viewName']) ? $operation['viewName'] : null;
 
             $resolver = new ScopeResolver($this->registryManager, $operation['modelName'], $viewName);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);

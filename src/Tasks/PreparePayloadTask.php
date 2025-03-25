@@ -45,7 +45,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $preparedPayload = [
             'type' => 'select',
             'modelName' => $this->context->get('model')->getName(),
-            'viewName' => $this->context->get('view')->getName()
+            'viewName' => $this->context->get('view')->getName(),
         ];
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -69,12 +69,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if(!empty($payload['globalContext'])){
+        if (! empty($payload['globalContext'])) {
             $preparedPayload['scopes'] = array_keys($payload['globalContext']);
         }
 
-        if(!empty($payload['localContext'])){
-            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && !empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
+        if (! empty($payload['localContext'])) {
+            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && ! empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
         }
 
         $relationsShipKeys = array_keys((array) $this->context->get('model')->getRelationships());
@@ -118,12 +118,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if(!empty($payload['globalContext'])){
+        if (! empty($payload['globalContext'])) {
             $preparedPayload['scopes'] = array_keys($payload['globalContext']);
         }
 
-        if(!empty($payload['localContext'])){
-            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && !empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
+        if (! empty($payload['localContext'])) {
+            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && ! empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
         }
 
         return $preparedPayload;

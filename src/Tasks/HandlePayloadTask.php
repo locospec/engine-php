@@ -26,19 +26,19 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         // Initialize DB Operator Collection
         $dbOps = new DatabaseOperationsCollection($this->operator);
 
-        if(!empty($input['payload']['globalContext'])){
+        if (! empty($input['payload']['globalContext'])) {
             $context = $input['payload']['globalContext'];
         }
-        
-        if(!empty($input['payload']['localContext'])){
-            $context = !empty($context) ? array_merge($context, $input['payload']['localContext']) : $input['payload']['localContext'];
+
+        if (! empty($input['payload']['localContext'])) {
+            $context = ! empty($context) ? array_merge($context, $input['payload']['localContext']) : $input['payload']['localContext'];
         }
 
-        if(!empty($context)){
+        if (! empty($context)) {
             $createdContext = QueryContext::create($context);
             $dbOps->setContext($createdContext);
         }
-        
+
         // Set registry manager
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
         $dbOps->add($input['preparedPayload']);

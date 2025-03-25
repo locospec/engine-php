@@ -62,15 +62,16 @@ class ScopeResolver
             return $this->resolveRelationshipScope($scopeName);
         }
         $model = $this->registryManager->get('model', $this->currentModel);
-        
+
         if (! $model->hasScope($scopeName)) {
-            if(isset($this->currentView)){
+            if (isset($this->currentView)) {
                 $view = $this->registryManager->get('view', $this->currentView);
-                if(! $view->hasScope($scopeName)){
+                if (! $view->hasScope($scopeName)) {
                     throw new InvalidArgumentException("Scope '$scopeName' not found on model or view '{$this->currentModel}', '{$this->currentView}'");
                 }
+
                 return $view->getScope($scopeName);
-            }else{
+            } else {
                 throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModel}'");
             }
         }

@@ -22,7 +22,7 @@ class ViewDefinition
     private array $lensSimpleFilters = [];
 
     private string $selectionType;
-    
+
     private ?object $scopes;
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes)
@@ -34,7 +34,7 @@ class ViewDefinition
         $this->selectionType = $selectionType ?? 'none';
         $this->attributes = $attributes;
         $this->lensSimpleFilters = $lensSimpleFilters;
-        $this->scopes = $scopes ??  new \stdClass;
+        $this->scopes = $scopes ?? new \stdClass;
     }
 
     public function getType(): string
@@ -84,7 +84,7 @@ class ViewDefinition
 
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
-        try{
+        try {
             $selectionType = 'none';
             $viewModel = $registryManager->get('model', $data->model);
 
@@ -110,11 +110,11 @@ class ViewDefinition
                 $selectionType = $data->selectionType;
             }
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes??null);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$data->name} view definition: " . $e->getMessage());
+            throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: " . $e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: ".$e->getMessage());
         }
     }
 
@@ -127,7 +127,7 @@ class ViewDefinition
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
     {
-        try{
+        try {
             $defaultView = [];
 
             // create default view from model
@@ -150,14 +150,14 @@ class ViewDefinition
                 'attributes' => $attributes,
                 'lensSimpleFilters' => [],
                 'selectionType' => 'none',
-                'scopes' => $model->getScopes() ??  new \stdClass
+                'scopes' => $model->getScopes() ?? new \stdClass,
             ];
 
             return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes']);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: " . $e->getMessage());
+            throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$spec->name} view definition from model: " . $e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$spec->name} view definition from model: ".$e->getMessage());
         }
     }
 
@@ -225,10 +225,9 @@ class ViewDefinition
             'selectionType' => $this->selectionType,
         ];
 
-        if(isset($this->scopes) && !empty(get_object_vars($this->scopes))){
+        if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $data['scopes'] = $this->scopes;
         }
-
 
         return $data;
     }
@@ -244,7 +243,7 @@ class ViewDefinition
         $result->lensSimpleFilters = $this->lensSimpleFilters;
         $result->selectionType = $this->selectionType;
 
-        if(isset($this->scopes) && !empty(get_object_vars($this->scopes))){
+        if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $result->scopes = $this->scopes;
         }
 
