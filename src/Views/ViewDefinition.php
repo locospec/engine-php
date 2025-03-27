@@ -16,7 +16,7 @@ class ViewDefinition
     private string $label;
 
     private string $model;
-    
+
     private string $selectionKey;
 
     private array $attributes = [];
@@ -59,7 +59,7 @@ class ViewDefinition
     {
         return $this->model;
     }
- 
+
     public function getSelectionKey(): string
     {
         return $this->selectionKey;
@@ -118,7 +118,7 @@ class ViewDefinition
                 $selectionType = $data->selectionType;
             }
 
-            $selectionKey = isset($data->selectionKey) ? $data->selectionKey :  $viewModel->getConfig()->getPrimaryKey();
+            $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
 
             return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey);
         } catch (InvalidArgumentException $e) {
