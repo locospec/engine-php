@@ -46,6 +46,10 @@
             "default": "none",
             "description": "Selection type for the table."
         },
+        "selectionKey": {
+            "type": "string",
+            "description": "Selection key for the table."
+        },
         "scopes": {
             "type": "object",
             "description": "Model scopes definitions",
