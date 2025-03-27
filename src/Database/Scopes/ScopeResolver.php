@@ -25,12 +25,16 @@ class ScopeResolver
                 return $this->resolveSingleScope($scopes[0]);
             }
 
+            $allConditions = array_map(
+                fn($scope) => $this->resolveSingleScope($scope)['conditions'],
+                $scopes
+            );
+
+            $flattenedConditions = array_merge(...$allConditions);
+
             return [
                 'op' => 'and',
-                'conditions' => array_map(
-                    fn ($scope) => $this->resolveSingleScope($scope)['conditions'][0],
-                    $scopes
-                ),
+                'conditions' => $flattenedConditions,
             ];
         }
 
@@ -94,7 +98,7 @@ class ScopeResolver
         if (isset($filters['conditions'])) {
             foreach ($filters['conditions'] as &$condition) {
                 if (isset($condition['attribute'])) {
-                    $condition['attribute'] = $relation.'.'.$condition['attribute'];
+                    $condition['attribute'] = $relation . '.' . $condition['attribute'];
                 }
             }
         }
