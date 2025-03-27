@@ -12,11 +12,11 @@ class Logger
     private MonologLogger $logger;
 
     private TestHandler $testHandler;
-    
+
     private bool $query_logs;
 
     // Constructor to initialize the logger with a log file
-    public function __construct(string $logFilePath, int $maxFiles = 7, bool $query_logs)
+    public function __construct(string $logFilePath, int $maxFiles, bool $query_logs)
     {
         $this->logger = new MonologLogger('lcs_logger');
 

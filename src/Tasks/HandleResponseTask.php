@@ -2,9 +2,8 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
 use Locospec\Engine\LCS;
-
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class HandleResponseTask extends AbstractTask implements TaskInterface
 {
@@ -24,7 +23,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     {
         $res = [];
         $logger = LCS::getLogger();
-        
+
         switch ($this->context->get('action')) {
             case '_read':
                 $res = $this->handleReadResponse($input);
@@ -38,7 +37,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
                 break;
         }
 
-        if($logger->isQueryLogsEnabled()) {
+        if ($logger->isQueryLogsEnabled()) {
             $res['meta']['logs'] = $logger->getLogs('dbOps');
         }
 
