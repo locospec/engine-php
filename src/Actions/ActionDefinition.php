@@ -17,9 +17,9 @@ class ActionDefinition
     private string $dbOp;
 
     private string $model;
-    
+
     private array $schema = [];
-    
+
     private array $uiSchema = [];
 
     private array $attributes = [];
@@ -65,7 +65,7 @@ class ActionDefinition
     {
         return $this->attributes;
     }
- 
+
     public function getSchema(): array
     {
         return $this->schema;
@@ -124,10 +124,10 @@ class ActionDefinition
         return $result;
     }
 
-     /**
+    /**
      * Generates JSON schema from attributes
-     * @param object $attributes
-     * @return array
+     *
+     * @param  object  $attributes
      */
     public static function generateSchema(array $attributes): array
     {
@@ -137,7 +137,7 @@ class ActionDefinition
         foreach ($attributes as $fieldName => $fieldConfig) {
             $property = [
                 'type' => $fieldConfig['type'],
-                'description' => $fieldConfig['label'] ?? ucfirst($fieldName)
+                'description' => $fieldConfig['label'] ?? ucfirst($fieldName),
             ];
 
             // Add the property to schema
@@ -170,14 +170,14 @@ class ActionDefinition
         return [
             'type' => 'object',
             'properties' => $properties,
-            'required' => $required
+            'required' => $required,
         ];
     }
 
     /**
      * Generates UI schema from attributes
-     * @param object $attributes
-     * @return array
+     *
+     * @param  object  $attributes
      */
     public static function generateUiSchema(array $attributes): array
     {
@@ -186,7 +186,7 @@ class ActionDefinition
         foreach ($attributes as $fieldName => $fieldConfig) {
             $element = [
                 'type' => 'Control',
-                'scope' => "#/properties/{$fieldName}"
+                'scope' => "#/properties/{$fieldName}",
             ];
 
             // Add label if provided
@@ -199,7 +199,7 @@ class ActionDefinition
 
         return [
             'type' => 'VerticalLayout',
-            'elements' => $elements
+            'elements' => $elements,
         ];
     }
 }
