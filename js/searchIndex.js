@@ -3466,6 +3466,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getModelName"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AgetSelectionKey\u0028\u0029",
+            "name": "getSelectionKey",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getSelectionKey"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AgetAttributes\u0028\u0029",
             "name": "getAttributes",
             "summary": "",
@@ -3540,6 +3545,11 @@ Search.appendIndex(
             "name": "model",
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_model"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024selectionKey",
+            "name": "selectionKey",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_selectionKey"
         },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024attributes",
             "name": "attributes",
