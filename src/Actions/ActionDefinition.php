@@ -102,6 +102,7 @@ class ActionDefinition
         return [
             'name' => $this->name,
             'label' => $this->label,
+            'dbOp' => $this->dbOp,
             'type' => $this->type,
             'model' => $this->model,
             'attributes' => $this->attributes,
@@ -115,6 +116,7 @@ class ActionDefinition
         $result = new \stdClass;
         $result->name = $this->name;
         $result->label = $this->label;
+        $result->dbOp = $this->dbOp;
         $result->type = $this->type;
         $result->model = $this->model;
         $result->attributes = $this->attributes;
