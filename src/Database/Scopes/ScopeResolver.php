@@ -25,16 +25,12 @@ class ScopeResolver
                 return $this->resolveSingleScope($scopes[0]);
             }
 
-            $allConditions = array_map(
-                fn($scope) => $this->resolveSingleScope($scope)['conditions'],
-                $scopes
-            );
-
-            $flattenedConditions = array_merge(...$allConditions);
-
             return [
                 'op' => 'and',
-                'conditions' => $flattenedConditions,
+                'conditions' => array_map(
+                    fn($scope) => $this->resolveSingleScope($scope),
+                    $scopes
+                ),
             ];
         }
 
