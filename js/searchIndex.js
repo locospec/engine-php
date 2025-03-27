@@ -2686,6 +2686,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#property_logger"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024specValidator",
+            "name": "specValidator",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#property_specValidator"
+        },                {
             "fqsen": "\\Locospec\\Engine\\SpecValidator",
             "name": "SpecValidator",
             "summary": "",
