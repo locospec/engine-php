@@ -29,7 +29,7 @@ class LCS
             }
 
             if (isset($config['logging']['file_path'])) {
-                self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days']);
+                self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days'], $config['logging']['query_logs']);
                 self::$logger->info('Initializing LCS...');
             }
             self::$globalRegistryManager = new RegistryManager;
