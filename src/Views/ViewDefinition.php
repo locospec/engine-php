@@ -16,6 +16,8 @@ class ViewDefinition
     private string $label;
 
     private string $model;
+    
+    private string $selectionKey;
 
     private array $attributes = [];
 
@@ -25,11 +27,12 @@ class ViewDefinition
 
     private ?object $scopes;
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes)
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey)
     {
         $this->type = 'view';
         $this->name = $name;
         $this->label = $label;
+        $this->selectionKey = $selectionKey;
         $this->model = $modelName;
         $this->selectionType = $selectionType ?? 'none';
         $this->attributes = $attributes;
@@ -55,6 +58,11 @@ class ViewDefinition
     public function getModelName(): string
     {
         return $this->model;
+    }
+ 
+    public function getSelectionKey(): string
+    {
+        return $this->selectionKey;
     }
 
     public function getAttributes(): array
@@ -110,7 +118,9 @@ class ViewDefinition
                 $selectionType = $data->selectionType;
             }
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null);
+            $selectionKey = isset($data->selectionKey) ? $data->selectionKey :  $viewModel->getConfig()->getPrimaryKey();
+
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -122,7 +132,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -150,10 +160,11 @@ class ViewDefinition
                 'attributes' => $attributes,
                 'lensSimpleFilters' => [],
                 'selectionType' => 'none',
+                'selectionKey' => $model->getConfig()->getPrimaryKey(),
                 'scopes' => $model->getScopes() ?? new \stdClass,
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey']);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -223,6 +234,7 @@ class ViewDefinition
             'attributes' => $this->attributes,
             'lensSimpleFilters' => $this->lensSimpleFilters,
             'selectionType' => $this->selectionType,
+            'selectionKey' => $this->selectionKey,
         ];
 
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
@@ -242,6 +254,7 @@ class ViewDefinition
         $result->attributes = $this->attributes;
         $result->lensSimpleFilters = $this->lensSimpleFilters;
         $result->selectionType = $this->selectionType;
+        $result->selectionKey = $this->selectionKey;
 
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $result->scopes = $this->scopes;
