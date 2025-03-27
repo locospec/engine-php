@@ -45,7 +45,7 @@ class AliasTransformation
                 if (strpos($expression->source, '->') !== false) {
                     $source = preg_replace(['/^/', '/->?/'], ['.', '.'], $expression->source);
                 } else {
-                    $source = '.'.$source;
+                    $source = '.' . $source;
                 }
 
                 $extracted = $this->executeJQExpression($record, $source);
@@ -83,7 +83,7 @@ class AliasTransformation
 
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
-            return null;
+            throw $e;
         }
     }
 }
