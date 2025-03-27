@@ -201,7 +201,7 @@ class ModelDefinition
         return $this->objectToArray($this->scopes->$name) ?? null;
     }
 
-    public function getScopes(): array
+    public function getScopes(): object
     {
         return $this->scopes;
     }

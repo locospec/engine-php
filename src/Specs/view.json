@@ -45,6 +45,13 @@
             "enum": ["none", "single", "multiple"],
             "default": "none",
             "description": "Selection type for the table."
+        },
+        "scopes": {
+            "type": "object",
+            "description": "Model scopes definitions",
+            "additionalProperties": {
+                "$ref": "common.json#/definitions/filters"
+            }
         }
     },
     "required": ["name", "type", "label", "model", "attributes"],

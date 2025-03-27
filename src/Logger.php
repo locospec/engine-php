@@ -13,14 +13,18 @@ class Logger
 
     private TestHandler $testHandler;
 
+    private bool $query_logs;
+
     // Constructor to initialize the logger with a log file
-    public function __construct(string $logFilePath, int $maxFiles = 7)
+    public function __construct(string $logFilePath, int $maxFiles, bool $query_logs)
     {
         $this->logger = new MonologLogger('lcs_logger');
 
         // Main handler for writing logs to file
         $fileHandler = new RotatingFileHandler($logFilePath, $maxFiles, Level::Debug);
         $this->logger->pushHandler($fileHandler);
+
+        $this->query_logs = $query_logs;
 
         // BufferHandler stores logs temporarily (without flushing immediately)
         // This doesnt have the way to get the logs, It addes the logs to the file itself once buffer is flushed
@@ -80,5 +84,11 @@ class Logger
                 ];
             }, $this->testHandler->getRecords());
         }
+    }
+
+    // Check if query logs are enabled
+    public function isQueryLogsEnabled(): bool
+    {
+        return $this->query_logs;
     }
 }
