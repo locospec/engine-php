@@ -17,10 +17,14 @@ class ActionDefinition
     private string $dbOp;
 
     private string $model;
+    
+    private array $schema = [];
+    
+    private array $uiSchema = [];
 
     private array $attributes = [];
 
-    public function __construct(string $name, string $label, string $dbOp, string $modelName, array $attributes)
+    public function __construct(string $name, string $label, string $dbOp, string $modelName, array $attributes, array $schema, array $uiSchema)
     {
         $this->type = 'action';
         $this->name = $name;
@@ -28,6 +32,8 @@ class ActionDefinition
         $this->model = $modelName;
         $this->dbOp = $dbOp;
         $this->attributes = $attributes;
+        $this->schema = $schema;
+        $this->uiSchema = $uiSchema;
     }
 
     public function getType(): string
@@ -59,6 +65,16 @@ class ActionDefinition
     {
         return $this->attributes;
     }
+ 
+    public function getSchema(): array
+    {
+        return $this->schema;
+    }
+
+    public function getUiSchema(): array
+    {
+        return $this->uiSchema;
+    }
 
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
@@ -75,14 +91,10 @@ class ActionDefinition
             }
         }
 
-        return new self($data->name, $data->label, $data->dbOp, $data->model, $attributes);
-    }
+        $schema = isset($data->schema) ? (array) $data->schema : self::generateSchema($attributes);
+        $uiSchema = isset($data->uiSchema) ? (array) $data->uiSchema : self::generateUiSchema($attributes);
 
-    public static function fromArray(array $data): self
-    {
-        ViewValidator::validate($data);
-
-        return new self($data['name'], $data['label'], $data['dbOp'], $data['model'], $data['attributes']);
+        return new self($data->name, $data->label, $data->dbOp, $data->model, $attributes, $schema, $uiSchema);
     }
 
     public function toArray(): array
@@ -93,6 +105,8 @@ class ActionDefinition
             'type' => $this->type,
             'model' => $this->model,
             'attributes' => $this->attributes,
+            'schema' => $this->schema,
+            'uiSchema' => $this->uiSchema,
         ];
     }
 
@@ -104,7 +118,88 @@ class ActionDefinition
         $result->type = $this->type;
         $result->model = $this->model;
         $result->attributes = $this->attributes;
+        $result->schema = $this->schema;
+        $result->uiSchema = $this->uiSchema;
 
         return $result;
+    }
+
+     /**
+     * Generates JSON schema from attributes
+     * @param object $attributes
+     * @return array
+     */
+    public static function generateSchema(array $attributes): array
+    {
+        $properties = [];
+        $required = [];
+
+        foreach ($attributes as $fieldName => $fieldConfig) {
+            $property = [
+                'type' => $fieldConfig['type'],
+                'description' => $fieldConfig['label'] ?? ucfirst($fieldName)
+            ];
+
+            // Add the property to schema
+            $properties[$fieldName] = $property;
+
+            // Check validations
+            if (isset($fieldConfig['validations'])) {
+                foreach ($fieldConfig['validations'] as $validation) {
+                    // Handle required validation
+                    if ($validation->type === 'required') {
+                        $required[] = $fieldName;
+                    }
+
+                    // Handle regex pattern
+                    if (str_starts_with($validation->type, 'regex:')) {
+                        $pattern = substr($validation->type, 6); // Remove 'regex:' prefix
+                        $property['pattern'] = trim($pattern, '/'); // Remove regex delimiters
+                    }
+
+                    // Add error message if provided
+                    if (isset($validation->message)) {
+                        $property['errorMessage'] = $validation->message;
+                    }
+                }
+            }
+
+            $properties[$fieldName] = $property;
+        }
+
+        return [
+            'type' => 'object',
+            'properties' => $properties,
+            'required' => $required
+        ];
+    }
+
+    /**
+     * Generates UI schema from attributes
+     * @param object $attributes
+     * @return array
+     */
+    public static function generateUiSchema(array $attributes): array
+    {
+        $elements = [];
+
+        foreach ($attributes as $fieldName => $fieldConfig) {
+            $element = [
+                'type' => 'Control',
+                'scope' => "#/properties/{$fieldName}"
+            ];
+
+            // Add label if provided
+            if (isset($fieldConfig['label'])) {
+                $element['label'] = $fieldConfig['label'];
+            }
+
+            $elements[] = $element;
+        }
+
+        return [
+            'type' => 'VerticalLayout',
+            'elements' => $elements
+        ];
     }
 }

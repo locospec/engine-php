@@ -105,6 +105,81 @@
                 },
                 "required": ["type", "label"]
             }
+        },
+        "schema": {
+            "type": "object",
+            "description": "Schema definition for the action",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["object"],
+                    "default": "object"
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "description": "Type of the property"
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "Description of the property"
+                            }
+                        },
+                        "required": ["type"]
+                    }
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of required properties"
+                }
+            },
+            "required": ["type", "properties", "required"]
+        },
+        "uiSchema": {
+            "type": "object",
+            "description": "UI Schema definition for form layout",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["VerticalLayout", "HorizontalLayout", "Group"],
+                    "description": "Layout type for the form"
+                },
+                "elements": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "Control",
+                                    "Group",
+                                    "VerticalLayout",
+                                    "HorizontalLayout"
+                                ],
+                                "description": "Type of the UI element"
+                            },
+                            "scope": {
+                                "type": "string",
+                                "description": "JSON Schema path to the property"
+                            },
+                            "label": {
+                                "type": "string",
+                                "description": "Optional label for the element"
+                            }
+                        },
+                        "required": ["type", "scope"]
+                    }
+                }
+            },
+            "required": ["type", "elements"]
         }
     },
     "required": ["name", "type", "label", "dbOp", "model", "attributes"],
