@@ -81,8 +81,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['expand'] = $payload['expand'];
         } else {
             $relationshipKeys = (array) $this->context->get('model')->getRelationships();
-            if (! empty($relationsShipKeys)) {
-                $preparedPayload['expand'] = $relationsShipKeys;
+            if (! empty($relationshipKeys)) {
+                $preparedPayload['expand'] = array_keys($relationshipKeys);
             }
         }
 
