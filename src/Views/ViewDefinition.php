@@ -27,7 +27,7 @@ class ViewDefinition
 
     private ?object $scopes;
 
-    private array $expand=[];
+    private array $expand = [];
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand)
     {
@@ -121,7 +121,7 @@ class ViewDefinition
             if (isset($data->selectionType)) {
                 $selectionType = $data->selectionType;
             }
-            
+
             if (isset($data->expand)) {
                 $expand = $data->expand;
             }
