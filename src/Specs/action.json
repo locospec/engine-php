@@ -22,7 +22,7 @@
         },
         "dbOp": {
             "type": "string",
-            "enum": ["insert", "update", "delete"],
+            "enum": ["create", "insert", "update", "delete"],
             "description": "Type of database operation for the spec."
         },
         "model": {
