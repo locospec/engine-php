@@ -27,11 +27,14 @@ class ViewDefinition
 
     private ?object $scopes;
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey)
+    private array $expand = [];
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand)
     {
         $this->type = 'view';
         $this->name = $name;
         $this->label = $label;
+        $this->expand = $expand;
         $this->selectionKey = $selectionKey;
         $this->model = $modelName;
         $this->selectionType = $selectionType ?? 'none';
@@ -94,6 +97,7 @@ class ViewDefinition
     {
         try {
             $selectionType = 'none';
+            $expand = [];
             $viewModel = $registryManager->get('model', $data->model);
 
             if (! $viewModel) {
@@ -118,9 +122,13 @@ class ViewDefinition
                 $selectionType = $data->selectionType;
             }
 
+            if (isset($data->expand)) {
+                $expand = $data->expand;
+            }
+
             $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -132,7 +140,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -160,11 +168,12 @@ class ViewDefinition
                 'attributes' => $attributes,
                 'lensSimpleFilters' => [],
                 'selectionType' => 'none',
+                'expand' => [],
                 'selectionKey' => $model->getConfig()->getPrimaryKey(),
                 'scopes' => $model->getScopes() ?? new \stdClass,
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand']);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -231,6 +240,7 @@ class ViewDefinition
             'label' => $this->label,
             'type' => $this->type,
             'model' => $this->model,
+            'expand' => $this->expand,
             'attributes' => $this->attributes,
             'lensSimpleFilters' => $this->lensSimpleFilters,
             'selectionType' => $this->selectionType,
@@ -251,6 +261,7 @@ class ViewDefinition
         $result->label = $this->label;
         $result->type = $this->type;
         $result->model = $this->model;
+        $result->expand = $this->expand;
         $result->attributes = $this->attributes;
         $result->lensSimpleFilters = $this->lensSimpleFilters;
         $result->selectionType = $this->selectionType;
