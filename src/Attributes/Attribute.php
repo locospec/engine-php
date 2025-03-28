@@ -12,12 +12,18 @@ class Attribute implements AttributeInterface
 
     private array $options;
 
-    public function __construct(string $name, string $type, string $label, array $options = [])
+    private array $generations;
+
+    private array $validations;
+
+    public function __construct(string $name, string $type, string $label, array $generations, array $validations, array $options = [])
     {
         $this->name = $name;
         $this->type = $type;
         $this->label = $label;
         $this->options = $options;
+        $this->generations = $generations;
+        $this->validations = $validations;
     }
 
     /**
@@ -31,8 +37,10 @@ class Attribute implements AttributeInterface
         $type = $data->type ?? 'string';
         $label = $data->label ?? $name;
         $options = $data->options ?? [];
+        $generations = $data->generations ?? [];
+        $validations = $data->validations ?? [];
 
-        return new self($name, $type, $label, $options);
+        return new self($name, $type, $label, $generations, $validations, $options);
     }
 
     public function getName(): string
@@ -50,6 +58,16 @@ class Attribute implements AttributeInterface
         return $this->options;
     }
 
+    public function getGenerations(): array
+    {
+        return $this->generations;
+    }
+
+    public function getValidations(): array
+    {
+        return $this->validations;
+    }
+
     public function getLabel(): string
     {
         return $this->label;
@@ -64,6 +82,14 @@ class Attribute implements AttributeInterface
 
         if (! empty($this->options)) {
             $data['options'] = $this->options;
+        }
+
+        if (! empty($this->generations)) {
+            $data['generations'] = $this->generations;
+        }
+
+        if (! empty($this->validations)) {
+            $data['validations'] = $this->validations;
         }
 
         return $data;

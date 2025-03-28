@@ -2,6 +2,7 @@
 
 namespace Locospec\Engine\Specifications;
 
+use Locospec\Engine\Actions\ActionDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Logger;
@@ -19,6 +20,8 @@ class SpecificationProcessor
     private array $pendingViews = [];
 
     private ?Logger $logger = null;
+
+    private array $pendingActions = [];
 
     private SpecValidator $specValidator;
 
@@ -83,6 +86,10 @@ class SpecificationProcessor
                         $this->pendingViews[] = $spec;
                         break;
 
+                    case 'action':
+                        $this->pendingActions[] = $spec;
+                        break;
+
                     default:
                         break;
                 }
@@ -133,7 +140,6 @@ class SpecificationProcessor
                 $this->pendingRelationships[] = $relationshipP;
                 $this->logger?->info('Stored pending relationships', ['modelName' => $spec->name]);
             }
-
             // Validate the model spec
             $this->validateSpec($spec);
 
@@ -248,7 +254,7 @@ class SpecificationProcessor
     }
 
     /**
-     * Process a single view definition
+     * Process a all view definition
      */
     public function processAllViewSpec(): void
     {
@@ -281,7 +287,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing view', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing file: '.$e->getMessage());
+            throw new InvalidArgumentException('Error processing view: '.$e->getMessage());
         }
     }
 
@@ -307,6 +313,72 @@ class SpecificationProcessor
         } catch (\Exception $e) {
             $this->logger?->error('Error processing view spec', [
                 'viewName' => $spec->name ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
+        }
+    }
+
+    /**
+     * Process a all action definition
+     */
+    public function processAllActionSpec(): void
+    {
+        try {
+            $this->logger?->info('Processing all the actions');
+            foreach ($this->pendingActions as $pending) {
+                $this->logger?->info('Processing action', ['actionName' => $pending->name]);
+                $model = $this->registryManager->get('model', $pending->model);
+
+                if (! $model) {
+                    $this->logger?->error('Model not found for action processing', [
+                        'modelName' => $pending->model,
+                    ]);
+                    throw new InvalidArgumentException(
+                        "Cannot process action: Model {$pending->model} not found"
+                    );
+                }
+
+                $this->processActionSpec($pending, $model);
+            }
+            // Clear pending views after processing
+            $this->pendingActions = [];
+            $this->logger?->info('Successfully processed all the actions');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during action processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing action', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error processing action: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Process a single action definition
+     */
+    private function processActionSpec(object $spec, ModelDefinition $model): void
+    {
+        try {
+            $this->logger?->info('Processing action spec', ['actionSpecName' => $spec->name]);
+
+            // Validate the action spec
+            $this->validateSpec($spec);
+
+            // Convert object to ActionDefinition
+            $actionSpec = ActionDefinition::fromObject($spec, $this->registryManager, $model);
+
+            $this->logger?->info('Normalized action spec', ['actionSpecName' => $actionSpec->getName()]);
+
+            // register the action
+            $this->registryManager->register('action', $actionSpec);
+            $this->logger?->info('Action registered in registry', ['modelName' => $actionSpec->getName()]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing action spec', [
+                'actionName' => $spec->name ?? 'Unknown',
                 'error' => $e->getMessage(),
             ]);
             throw $e;
