@@ -83,7 +83,7 @@ class AliasTransformation
 
             return trim($process->getOutput()) ?: null;
         } catch (\Exception $e) {
-            return null;
+            throw $e;
         }
     }
 }

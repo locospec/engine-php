@@ -22,6 +22,8 @@ class SpecificationProcessor
     private ?Logger $logger = null;
 
     private array $pendingActions = [];
+    
+    private SpecValidator $specValidator;
 
     public function __construct(RegistryManager $registryManager)
     {
@@ -169,7 +171,6 @@ class SpecificationProcessor
                 $this->registryManager->register('view', $view);
                 $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
             }
-
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model spec', [
                 'modelName' => $spec->name ?? 'Unknown',

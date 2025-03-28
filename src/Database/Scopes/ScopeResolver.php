@@ -29,7 +29,7 @@ class ScopeResolver
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn ($scope) => $this->resolveSingleScope($scope)['conditions'][0],
+                    fn ($scope) => $this->resolveSingleScope($scope),
                     $scopes
                 ),
             ];

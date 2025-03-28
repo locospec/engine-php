@@ -86,10 +86,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && ! empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
         }
 
-        $relationsShipKeys = array_keys((array) $this->context->get('model')->getRelationships());
-
-        if (! empty($relationsShipKeys)) {
-            $preparedPayload['expand'] = $relationsShipKeys;
+        if (isset($payload['expand']) && ! empty($payload['expand'])) {
+            $preparedPayload['expand'] = $payload['expand'];
+        } else {
+            $relationshipKeys = (array) $this->context->get('model')->getRelationships();
+            if (! empty($relationsShipKeys)) {
+                $preparedPayload['expand'] = $relationsShipKeys;
+            }
         }
 
         return $preparedPayload;
