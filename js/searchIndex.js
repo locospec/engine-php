@@ -3576,6 +3576,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_scopes"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024expand",
+            "name": "expand",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_expand"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewValidator",
             "name": "ViewValidator",
             "summary": "",
