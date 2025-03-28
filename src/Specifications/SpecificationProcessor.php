@@ -22,7 +22,7 @@ class SpecificationProcessor
     private ?Logger $logger = null;
 
     private array $pendingActions = [];
-    
+
     private SpecValidator $specValidator;
 
     public function __construct(RegistryManager $registryManager)
