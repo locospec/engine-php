@@ -63,6 +63,13 @@
             "additionalProperties": {
                 "$ref": "common.json#/definitions/filters"
             }
+        },
+        "allowedScopes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "An array of scope names that should be applied on the view."
         }
     },
     "required": ["name", "type", "label", "model", "attributes"],
