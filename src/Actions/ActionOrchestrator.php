@@ -13,11 +13,11 @@ use Locospec\Engine\Actions\Model\UpdateAction;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\GeneratorInterface;
 use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Mutators\MutatorDefinition;
 
 class ActionOrchestrator
 {
@@ -40,7 +40,7 @@ class ActionOrchestrator
 
         $mutatorSpecName = $data->getType() === 'mutator' ? $data->getName() : '';
         $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorSpecName);
-    
+
         if ($data->getType() === 'mutator' && ! $mutator) {
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
@@ -61,6 +61,7 @@ class ActionOrchestrator
 
         // Create and execute appropriate action
         $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator);
+
         return $action->execute($input);
     }
 

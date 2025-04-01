@@ -16,7 +16,7 @@ class MutatorValidator
 
     public static function validate(object $data): void
     {
-       
+
         $validator = new self;
         $validator->validateName($data->name);
     }
