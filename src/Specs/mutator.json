@@ -1,23 +1,23 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://locospec.com/schemas/action.json",
-    "title": "Action Spec",
-    "description": "Spec for defining a action",
+    "$id": "https://locospec.com/schemas/mutator.json",
+    "title": "Mutator Spec",
+    "description": "Spec for defining a mutator",
     "type": "object",
     "properties": {
         "name": {
             "type": "string",
-            "description": "The unique identifier for the action, following a specific naming convention.",
+            "description": "The unique identifier for the mutator, following a specific naming convention.",
             "minLength": 1,
             "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
         },
         "label": {
             "type": "string",
-            "description": "A human-readable label for the action."
+            "description": "A human-readable label for the mutator."
         },
         "type": {
             "type": "string",
-            "enum": ["action"],
+            "enum": ["mutator"],
             "description": "Type identifier for the spec."
         },
         "dbOp": {
@@ -108,7 +108,7 @@
         },
         "schema": {
             "type": "object",
-            "description": "Schema definition for the action",
+            "description": "JSON form schema definition for the mutator",
             "properties": {
                 "type": {
                     "type": "string",
@@ -144,7 +144,7 @@
         },
         "uiSchema": {
             "type": "object",
-            "description": "UI Schema definition for form layout",
+            "description": "JSON form UI Schema definition for mutator form layout",
             "properties": {
                 "type": {
                     "type": "string",

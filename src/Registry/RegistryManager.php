@@ -23,7 +23,7 @@ class RegistryManager
     {
         $this->addRegistry(new ModelRegistry);
         $this->addRegistry(new ViewRegistry);
-        $this->addRegistry(new ActionRegistry);
+        $this->addRegistry(new MutatorRegistry);
         $this->addRegistry(new TaskRegistry);
         $this->addRegistry(new DatabaseDriverRegistry);
 

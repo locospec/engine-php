@@ -2,7 +2,6 @@
 
 namespace Locospec\Engine\Specifications;
 
-use Locospec\Engine\Actions\ActionDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Logger;
@@ -10,6 +9,7 @@ use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 
 class SpecificationProcessor
 {
@@ -21,7 +21,7 @@ class SpecificationProcessor
 
     private ?Logger $logger = null;
 
-    private array $pendingActions = [];
+    private array $pendingMutators = [];
 
     private SpecValidator $specValidator;
 
@@ -86,8 +86,8 @@ class SpecificationProcessor
                         $this->pendingViews[] = $spec;
                         break;
 
-                    case 'action':
-                        $this->pendingActions[] = $spec;
+                    case 'mutator':
+                        $this->pendingMutators[] = $spec;
                         break;
 
                     default:
@@ -320,65 +320,64 @@ class SpecificationProcessor
     }
 
     /**
-     * Process a all action definition
+     * Process a all mutators definition
      */
-    public function processAllActionSpec(): void
+    public function processAllMutatorsSpec(): void
     {
         try {
-            $this->logger?->info('Processing all the actions');
-            foreach ($this->pendingActions as $pending) {
-                $this->logger?->info('Processing action', ['actionName' => $pending->name]);
+            $this->logger?->info('Processing all the mutators');
+            foreach ($this->pendingMutators as $pending) {
+                $this->logger?->info('Processing mutator', ['mutatorName' => $pending->name]);
                 $model = $this->registryManager->get('model', $pending->model);
 
                 if (! $model) {
-                    $this->logger?->error('Model not found for action processing', [
+                    $this->logger?->error('Model not found for mutator processing', [
                         'modelName' => $pending->model,
                     ]);
                     throw new InvalidArgumentException(
-                        "Cannot process action: Model {$pending->model} not found"
+                        "Cannot process mutator: Model {$pending->model} not found"
                     );
                 }
 
-                $this->processActionSpec($pending, $model);
+                $this->processMutatorSpec($pending, $model);
             }
-            // Clear pending views after processing
-            $this->pendingActions = [];
-            $this->logger?->info('Successfully processed all the actions');
+            // Clear pending mutators after processing
+            $this->pendingMutators = [];
+            $this->logger?->info('Successfully processed all the mutators');
         } catch (InvalidArgumentException $e) {
-            $this->logger?->error('InvalidArgumentException during action processing', [
+            $this->logger?->error('InvalidArgumentException during mutator processing', [
                 'error' => $e->getMessage(),
             ]);
             throw $e; // Rethrow to be caught in LCS.php
         } catch (\Exception $e) {
-            $this->logger?->error('Unexpected error processing action', [
+            $this->logger?->error('Unexpected error processing mutator', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing action: '.$e->getMessage());
+            throw new InvalidArgumentException('Error processing mutator: '.$e->getMessage());
         }
     }
 
     /**
-     * Process a single action definition
+     * Process a single mutator definition
      */
-    private function processActionSpec(object $spec, ModelDefinition $model): void
+    private function processMutatorSpec(object $spec, ModelDefinition $model): void
     {
         try {
-            $this->logger?->info('Processing action spec', ['actionSpecName' => $spec->name]);
+            $this->logger?->info('Processing mutator spec', ['mutatorSpecName' => $spec->name]);
 
-            // Validate the action spec
+            // Validate the mutator spec
             $this->validateSpec($spec);
+            // Convert object to MutatorDefinition
+            $mutatorSpec = MutatorDefinition::fromObject($spec, $this->registryManager, $model);
 
-            // Convert object to ActionDefinition
-            $actionSpec = ActionDefinition::fromObject($spec, $this->registryManager, $model);
+            $this->logger?->info('Normalized mutator spec', ['mutatorSpecName' => $mutatorSpec->getName()]);
 
-            $this->logger?->info('Normalized action spec', ['actionSpecName' => $actionSpec->getName()]);
-
-            // register the action
-            $this->registryManager->register('action', $actionSpec);
-            $this->logger?->info('Action registered in registry', ['modelName' => $actionSpec->getName()]);
+            // register the mutator
+            $this->registryManager->register('mutator', $mutatorSpec);
+            $this->logger?->info('Mutator registered in registry', ['modelName' => $mutatorSpec->getName()]);
         } catch (\Exception $e) {
-            $this->logger?->error('Error processing action spec', [
-                'actionName' => $spec->name ?? 'Unknown',
+            $this->logger?->error('Error processing mutator spec', [
+                'mutatorName' => $spec->name ?? 'Unknown',
                 'error' => $e->getMessage(),
             ]);
             throw $e;

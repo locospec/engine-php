@@ -22,10 +22,10 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
     {
         // Get view
         $view = $this->context->get('view');
-        $actionSpec = $this->context->get('actionSpec');
+        $mutator = $this->context->get('mutator');
 
-        if (isset($actionSpec)) {
-            $result = $actionSpec->toArray();
+        if (isset($mutator)) {
+            $result = $mutator->toArray();
 
             return ['data' => $result];
         } else {

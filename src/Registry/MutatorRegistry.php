@@ -3,22 +3,22 @@
 namespace Locospec\Engine\Registry;
 
 /**
- * ActionRegistry manages the registration of actions.
+ * MutatorRegistry manages the registration of mutators.
  *
  * This class extends AbstractRegistry to provide specific functionality for managing
- * model definitions and their relationships. It maintains a graph representation
+ * mutator definitions. It maintains a graph representation
  * of model relationships that can be used for analysis and traversal.
  */
-class ActionRegistry extends AbstractRegistry
+class MutatorRegistry extends AbstractRegistry
 {
     /**
      * Get the registry type identifier.
      *
-     * @return string Returns 'action' as the registry type
+     * @return string Returns 'mutator' as the registry type
      */
     public function getType(): string
     {
-        return 'action';
+        return 'mutator';
     }
 
     /**

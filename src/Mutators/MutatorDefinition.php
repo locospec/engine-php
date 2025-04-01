@@ -1,12 +1,12 @@
 <?php
 
-namespace Locospec\Engine\Actions;
+namespace Locospec\Engine\Mutators;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 
-class ActionDefinition
+class MutatorDefinition
 {
     private string $type;
 
@@ -26,7 +26,7 @@ class ActionDefinition
 
     public function __construct(string $name, string $label, string $dbOp, string $modelName, array $attributes, array $schema, array $uiSchema)
     {
-        $this->type = 'action';
+        $this->type = 'mutator';
         $this->name = $name;
         $this->label = $label;
         $this->model = $modelName;
@@ -79,6 +79,8 @@ class ActionDefinition
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
         $attributes = [];
+
+        MutatorValidator::validate($data);
 
         $validAttributeKeys = array_keys($model->getAttributes()->getAttributes());
         foreach ($data->attributes as $key => $attribute) {

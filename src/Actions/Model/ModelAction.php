@@ -2,7 +2,6 @@
 
 namespace Locospec\Engine\Actions\Model;
 
-use Locospec\Engine\Actions\ActionDefinition;
 use Locospec\Engine\Actions\StateMachineFactory;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
@@ -11,6 +10,7 @@ use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 
 abstract class ModelAction
 {
@@ -18,7 +18,7 @@ abstract class ModelAction
 
     protected ViewDefinition $view;
 
-    protected ?ActionDefinition $actionSpec;
+    protected ?MutatorDefinition $mutator;
 
     protected array $config;
 
@@ -33,14 +33,14 @@ abstract class ModelAction
         GeneratorInterface $generator,
         ModelDefinition $model,
         ViewDefinition $view,
-        ?ActionDefinition $actionSpec,
+        ?MutatorDefinition $mutator,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
         $this->view = $view;
-        $this->actionSpec = $actionSpec;
+        $this->mutator = $mutator;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -68,7 +68,7 @@ abstract class ModelAction
         $context = new Context([
             'model' => $this->model,
             'view' => $this->view,
-            'actionSpec' => $this->actionSpec,
+            'mutator' => $this->mutator,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
