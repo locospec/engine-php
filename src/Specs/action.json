@@ -162,7 +162,8 @@
                                     "Control",
                                     "Group",
                                     "VerticalLayout",
-                                    "HorizontalLayout"
+                                    "HorizontalLayout",
+                                    "ENUM"
                                 ],
                                 "description": "Type of the UI element"
                             },
