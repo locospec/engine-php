@@ -28,7 +28,7 @@ class ViewDefinition
     private ?object $scopes;
 
     private array $expand = [];
-    
+
     private array $allowedScopes = [];
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes)
@@ -75,7 +75,7 @@ class ViewDefinition
     {
         return $this->attributes;
     }
-    
+
     public function getAllowedScopes(): array
     {
         return $this->allowedScopes;
@@ -134,7 +134,7 @@ class ViewDefinition
             if (isset($data->expand)) {
                 $expand = $data->expand;
             }
-            
+
             if (isset($data->allowedScopes)) {
                 $allowedScopes = $data->allowedScopes;
             }
