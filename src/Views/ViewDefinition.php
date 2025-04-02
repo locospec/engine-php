@@ -201,13 +201,14 @@ class ViewDefinition
 
         foreach ($data->lensSimpleFilters as $lensSimpleFilter) {
             $path = explode('.', $lensSimpleFilter);
-            if (count($path) === 2) {
-                $relatedModel = $registryManager->get('model', $path[0]);
+            if (count($path) > 1) {
+                $lastModelName = $path[count($path) - 2];
+                $relatedModel = $registryManager->get('model', $lastModelName);
                 // instanceof BelongsTo
                 $lensSimpleFilters[$lensSimpleFilter] = [
                     'type' => 'enum',
-                    'label' => $relatedModel->getLabel().' '.ucfirst($path[1]),
-                    'model' => $path[0],
+                    'label' => $relatedModel->getLabel(),
+                    'model' => $lastModelName,
                 ];
             } elseif (count($path) === 1) {
                 $dependsOn = [];
@@ -215,7 +216,7 @@ class ViewDefinition
                     foreach ($model->getRelationships() as $key => $relationship) {
                         if ($relationship instanceof BelongsTo) {
                             $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
-                            $dependsOn[] = $key.'.'.$relationshipModel->getConfig()->getLabelKey();
+                            $dependsOn[] = $key.'.'.$relationshipModel->getConfig()->getPrimaryKey();
                         }
                     }
                 }
