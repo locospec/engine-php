@@ -3481,6 +3481,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getAttributes"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AgetAllowedScopes\u0028\u0029",
+            "name": "getAllowedScopes",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#method_getAllowedScopes"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003AhasScope\u0028\u0029",
             "name": "hasScope",
             "summary": "",
@@ -3580,6 +3585,11 @@ Search.appendIndex(
             "name": "expand",
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_expand"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024allowedScopes",
+            "name": "allowedScopes",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_allowedScopes"
         },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewValidator",
             "name": "ViewValidator",
