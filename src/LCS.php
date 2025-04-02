@@ -39,7 +39,7 @@ class LCS
             if (isset($config['cache_path'])) {
                 // Ensure the cache path doesn't end with a directory separator.
                 self::$cacheFile = rtrim($config['cache_path'], DIRECTORY_SEPARATOR)
-                    . DIRECTORY_SEPARATOR . 'registry_cache.php';
+                    .DIRECTORY_SEPARATOR.'registry_cache.php';
             } else {
                 // Fallback to a default path within the package directory.
                 self::$cacheFile = 'registry_cache.php';
@@ -71,13 +71,14 @@ class LCS
             }
 
             // Try to load from cache if specs haven't changed
-            if (!self::needsReprocessing($paths) && self::loadFromCache()) {
+            if (! self::needsReprocessing($paths) && self::loadFromCache()) {
                 self::$logger->info('Using cached registry');
+
                 return;
             }
 
             // Create new registry manager if needed
-            if (!self::$globalRegistryManager) {
+            if (! self::$globalRegistryManager) {
                 self::$globalRegistryManager = new RegistryManager;
             }
 
@@ -184,7 +185,7 @@ class LCS
         return self::$logger;
     }
 
-     /**
+    /**
      * Save registry to cache
      */
     private static function saveToCache(): void
@@ -193,10 +194,10 @@ class LCS
             self::$logger->info('Saving registry to cache');
             $cacheData = [
                 'registry' => serialize(self::$globalRegistryManager),
-                'timestamp' => time()
+                'timestamp' => time(),
             ];
-            
-            $cacheContent = '<?php return ' . var_export($cacheData, true) . ';';
+
+            $cacheContent = '<?php return '.var_export($cacheData, true).';';
             file_put_contents(self::$cacheFile, $cacheContent);
             self::$logger->info('Registry saved to cache successfully');
         } catch (\Exception $e) {
@@ -210,8 +211,9 @@ class LCS
      */
     private static function needsReprocessing(array $paths): bool
     {
-        if (!file_exists(self::$cacheFile)) {
+        if (! file_exists(self::$cacheFile)) {
             self::$logger->info('Cache file not found, reprocessing required');
+
             return true;
         }
 
@@ -222,12 +224,14 @@ class LCS
                 foreach (glob($path.'/*.json') as $file) {
                     if (filemtime($file) > $cacheTime) {
                         self::$logger->info('Spec file modified, reprocessing required', ['file' => $file]);
+
                         return true;
                     }
                 }
             } elseif (is_file($path)) {
                 if (filemtime($path) > $cacheTime) {
                     self::$logger->info('Spec file modified, reprocessing required', ['file' => $path]);
+
                     return true;
                 }
             }
@@ -242,22 +246,24 @@ class LCS
     private static function loadFromCache(): bool
     {
         try {
-            if (!file_exists(self::$cacheFile)) {
+            if (! file_exists(self::$cacheFile)) {
                 return false;
             }
 
             self::$logger->info('Loading registry from cache');
             $cached = require self::$cacheFile;
-            
-            if (!$cached || !isset($cached['registry'])) {
+
+            if (! $cached || ! isset($cached['registry'])) {
                 return false;
             }
 
             self::$globalRegistryManager = unserialize($cached['registry']);
             self::$logger->info('Registry loaded from cache successfully');
+
             return true;
         } catch (\Exception $e) {
             self::$logger->error('Failed to load from cache', ['error' => $e->getMessage()]);
+
             return false;
         }
     }
@@ -271,8 +277,10 @@ class LCS
     {
         if (file_exists(self::$cacheFile)) {
             self::$logger->info('Clearing registry cache');
+
             return unlink(self::$cacheFile);
         }
+
         return true;
     }
 
@@ -288,9 +296,10 @@ class LCS
             return [
                 'exists' => true,
                 'modified' => filemtime(self::$cacheFile),
-                'size' => filesize(self::$cacheFile)
+                'size' => filesize(self::$cacheFile),
             ];
         }
+
         return ['exists' => false];
     }
 }
