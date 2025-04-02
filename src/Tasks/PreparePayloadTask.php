@@ -78,12 +78,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if (! empty($payload['globalContext'])) {
-            $preparedPayload['scopes'] = array_keys($payload['globalContext']);
-        }
-
-        if (! empty($payload['localContext'])) {
-            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && ! empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
+        if (! empty($payload['scopes'])) {
+            $preparedPayload['scopes'] = $payload['scopes'];
         }
 
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
@@ -106,7 +102,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $preparedPayload = [
             'type' => 'select',
             'modelName' => $optionsModel->getName(),
-            // 'attributes' => ["name", "uuid"]
         ];
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -130,12 +125,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if (! empty($payload['globalContext'])) {
-            $preparedPayload['scopes'] = array_keys($payload['globalContext']);
-        }
-
-        if (! empty($payload['localContext'])) {
-            $preparedPayload['scopes'] = isset($preparedPayload['scopes']) && ! empty($preparedPayload['scopes']) ? array_merge($preparedPayload['scopes'], array_keys($payload['localContext'])) : array_keys($payload['localContext']);
+        if (! empty($payload['scopes'])) {
+            $preparedPayload['scopes'] = array_keys($payload['scopes']);
         }
 
         return $preparedPayload;
