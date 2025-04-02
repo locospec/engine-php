@@ -35,14 +35,14 @@ class LCS
                 self::$logger->info('Initializing LCS...');
             }
 
-            // Set the cache file path from config (e.g., public directory of the ABC app)
+            // Set the cache file path from config
             if (isset($config['cache_path'])) {
                 // Ensure the cache path doesn't end with a directory separator.
                 self::$cacheFile = rtrim($config['cache_path'], DIRECTORY_SEPARATOR)
-                    .DIRECTORY_SEPARATOR.'registry_cache.php';
+                    .DIRECTORY_SEPARATOR.'locospec_registry_cache.php';
             } else {
                 // Fallback to a default path within the package directory.
-                self::$cacheFile = 'registry_cache.php';
+                self::$cacheFile = __DIR__ . '/locospec_registry_cache.php';
             }
 
             // self::$globalRegistryManager = new RegistryManager;
