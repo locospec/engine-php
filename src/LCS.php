@@ -42,7 +42,7 @@ class LCS
                     .DIRECTORY_SEPARATOR.'locospec_registry_cache.php';
             } else {
                 // Fallback to a default path within the package directory.
-                self::$cacheFile = __DIR__ . '/locospec_registry_cache.php';
+                self::$cacheFile = __DIR__.'/locospec_registry_cache.php';
             }
 
             // self::$globalRegistryManager = new RegistryManager;
