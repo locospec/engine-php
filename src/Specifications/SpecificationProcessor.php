@@ -6,10 +6,10 @@ use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Logger;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Mutators\MutatorDefinition;
 
 class SpecificationProcessor
 {

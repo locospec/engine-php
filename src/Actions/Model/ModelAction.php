@@ -5,12 +5,12 @@ namespace Locospec\Engine\Actions\Model;
 use Locospec\Engine\Actions\StateMachineFactory;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\GeneratorInterface;
 use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Mutators\MutatorDefinition;
 
 abstract class ModelAction
 {
