@@ -29,7 +29,9 @@ class ViewDefinition
 
     private array $expand = [];
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand)
+    private array $allowedScopes = [];
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes)
     {
         $this->type = 'view';
         $this->name = $name;
@@ -41,6 +43,7 @@ class ViewDefinition
         $this->attributes = $attributes;
         $this->lensSimpleFilters = $lensSimpleFilters;
         $this->scopes = $scopes ?? new \stdClass;
+        $this->allowedScopes = $allowedScopes;
     }
 
     public function getType(): string
@@ -73,6 +76,11 @@ class ViewDefinition
         return $this->attributes;
     }
 
+    public function getAllowedScopes(): array
+    {
+        return $this->allowedScopes;
+    }
+
     public function hasScope(string $name): bool
     {
         return isset($this->scopes->$name);
@@ -98,6 +106,7 @@ class ViewDefinition
         try {
             $selectionType = 'none';
             $expand = [];
+            $allowedScopes = [];
             $viewModel = $registryManager->get('model', $data->model);
 
             if (! $viewModel) {
@@ -126,9 +135,13 @@ class ViewDefinition
                 $expand = $data->expand;
             }
 
+            if (isset($data->allowedScopes)) {
+                $allowedScopes = $data->allowedScopes;
+            }
+
             $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -140,7 +153,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -171,9 +184,10 @@ class ViewDefinition
                 'expand' => [],
                 'selectionKey' => $model->getConfig()->getPrimaryKey(),
                 'scopes' => $model->getScopes() ?? new \stdClass,
+                'allowedScopes' => [],
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes']);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -245,6 +259,7 @@ class ViewDefinition
             'lensSimpleFilters' => $this->lensSimpleFilters,
             'selectionType' => $this->selectionType,
             'selectionKey' => $this->selectionKey,
+            'allowedScopes' => $this->allowedScopes,
         ];
 
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
@@ -266,6 +281,7 @@ class ViewDefinition
         $result->lensSimpleFilters = $this->lensSimpleFilters;
         $result->selectionType = $this->selectionType;
         $result->selectionKey = $this->selectionKey;
+        $result->allowedScopes = $this->allowedScopes;
 
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $result->scopes = $this->scopes;
