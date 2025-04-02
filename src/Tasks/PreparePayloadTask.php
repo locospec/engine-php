@@ -78,8 +78,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if (! empty($payload['scopes'])) {
-            $preparedPayload['scopes'] = $payload['scopes'];
+        if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
+            $scopes = [];
+            foreach ($payload['scopes'] as $scope) {
+                if (isset($payload['globalContext'][$scope])) {
+                    $scopes[] = $scope;
+                }
+            }
+            $preparedPayload['scopes'] = $scopes;
         }
 
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
@@ -125,8 +131,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if (! empty($payload['scopes'])) {
-            $preparedPayload['scopes'] = array_keys($payload['scopes']);
+        if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
+            $scopes = [];
+            foreach ($payload['scopes'] as $scope) {
+                if (isset($payload['globalContext'][$scope])) {
+                    $scopes[] = $scope;
+                }
+            }
+            $preparedPayload['scopes'] = $scopes;
         }
 
         return $preparedPayload;
