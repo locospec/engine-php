@@ -38,6 +38,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_read_relation_options':
                 $preparedPayload = $this->preparePayloadForReadOptions($payload);
                 break;
+            
+            case '_config':
+                $preparedPayload = $this->preparePayloadForConfig($payload);
+                break;
 
             default:
                 break;
@@ -218,6 +222,31 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
+        }
+
+        return $preparedPayload;
+    }
+
+    public function preparePayloadForConfig(array $payload): array
+    {
+        $preparedPayload = [];
+        if (isset($payload['primaryKey']) && ! empty($payload['primaryKey'])) {
+            $preparedPayload = [
+                'type' => 'select',
+                'modelName' => $this->context->get('model')->getName(),
+                'viewName' => $this->context->get('view')->getName(),
+            ];
+
+            $preparedPayload['filters'] = [
+                "op" => "and",
+                "conditions" => [
+                    [
+                        "attribute" => $this->context->get('model')->getConfig()->getPrimaryKey(),
+                        "op" => "is",
+                        "value" => $payload['primaryKey']
+                    ]
+                ]
+            ];
         }
 
         return $preparedPayload;
