@@ -38,7 +38,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_read_relation_options':
                 $preparedPayload = $this->preparePayloadForReadOptions($payload);
                 break;
-            
+
             case '_config':
                 $preparedPayload = $this->preparePayloadForConfig($payload);
                 break;
@@ -238,14 +238,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             ];
 
             $preparedPayload['filters'] = [
-                "op" => "and",
-                "conditions" => [
+                'op' => 'and',
+                'conditions' => [
                     [
-                        "attribute" => $this->context->get('model')->getConfig()->getPrimaryKey(),
-                        "op" => "is",
-                        "value" => $payload['primaryKey']
-                    ]
-                ]
+                        'attribute' => $this->context->get('model')->getConfig()->getPrimaryKey(),
+                        'op' => 'is',
+                        'value' => $payload['primaryKey'],
+                    ],
+                ],
             ];
         }
 

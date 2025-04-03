@@ -22,7 +22,7 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        if(isset($input['preparedPayload'])&& !empty($input['preparedPayload'])){
+        if (isset($input['preparedPayload']) && ! empty($input['preparedPayload'])) {
             $context = [];
             // Initialize DB Operator Collection
             $dbOps = new DatabaseOperationsCollection($this->operator);
@@ -46,8 +46,8 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
             $response = $dbOps->execute($this->operator);
 
             return [...$input, 'response' => $response];
-        }else{
-            return [...$input ]; 
+        } else {
+            return [...$input];
         }
     }
 }
