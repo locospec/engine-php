@@ -491,6 +491,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Database-AliasTransformation.html#method___construct"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation\u003A\u003AsetModel\u0028\u0029",
+            "name": "setModel",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-AliasTransformation.html#method_setModel"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation\u003A\u003Atransform\u0028\u0029",
             "name": "transform",
             "summary": "",
