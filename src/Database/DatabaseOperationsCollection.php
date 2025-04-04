@@ -383,8 +383,8 @@ class DatabaseOperationsCollection
         }
 
         $startTime = microtime(true);
-        
-        $aliasTransformer = new AliasTransformation();
+
+        $aliasTransformer = new AliasTransformation;
 
         $endAliasInitializeTime = microtime(true);
         $AliasInitializeTime = ($endAliasInitializeTime - $startTime) * 1000;

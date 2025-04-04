@@ -14,10 +14,10 @@ class AliasTransformation
         // $this->model = $model;
     }
 
-    public function setModel(ModelDefinition $model){
-         $this->model = $model;
+    public function setModel(ModelDefinition $model)
+    {
+        $this->model = $model;
     }
-
 
     public function transform(array $data): array
     {
