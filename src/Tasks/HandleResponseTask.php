@@ -25,6 +25,14 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
         $logger = LCS::getLogger();
 
         switch ($this->context->get('action')) {
+            case '_create':
+                return $this->handleCreateResponse($input);
+                break;
+
+            case '_update':
+                return $this->handleUpdateResponse($input);
+                break;
+
             case '_read':
                 $res = $this->handleReadResponse($input);
                 break;
@@ -42,6 +50,22 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
         }
 
         return $res;
+    }
+
+    public function handleCreateResponse(array $input): array
+    {
+        return [
+            'data' => $input['response'][0]['result'][0],
+            'meta' => $input['response'][0]['pagination'] ?? [],
+        ];
+    }
+
+    public function handleUpdateResponse(array $input): array
+    {
+        return [
+            'data' => $input['response'][0]['result'],
+            'meta' => $input['response'][0]['pagination'] ?? [],
+        ];
     }
 
     public function handleReadResponse(array $input): array

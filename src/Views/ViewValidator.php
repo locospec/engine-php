@@ -55,8 +55,8 @@ class ViewValidator
         }
 
         // Check if name is singular
-        if ($this->inflector->plural($name) !== $name) {
-            throw new InvalidArgumentException("View name: {$name} - must be in plural form");
+        if ($this->inflector->plural($name) === $name) {
+            throw new InvalidArgumentException("View name: {$name} - must be in singular form");
         }
     }
 }

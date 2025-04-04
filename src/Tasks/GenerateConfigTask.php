@@ -20,15 +20,33 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-
-        // return the config, what else should be in the config?
-        // $attributes = $this->context->get('model')->getAttributes()->toObject();
-
         // Get view
         $view = $this->context->get('view');
+        $model = $this->context->get('model');
+        $mutator = $this->context->get('mutator');
 
-        $result = $view->toArray();
+        if (isset($mutator)) {
+            $result = $mutator->toArray();
+            $schema = $mutator->getSchema();
+            $keys = array_keys((array) $schema['properties']);
 
-        return ['data' => $result];
+            if (isset($input['response']) && ! empty($input['response']) && ! empty($input['response'][0]['result'])) {
+                $data = $input['response'][0]['result'][0];
+
+                foreach ($keys as $key) {
+                    if (array_key_exists($key, $data)) {
+                        $result['initialData'][$key] = $data[$key];
+                    }
+                }
+
+                $result['initialData'][$model->getConfig()->getPrimaryKey()] = $data[$model->getConfig()->getPrimaryKey()];
+            }
+
+            return ['data' => $result];
+        } else {
+            $result = $view->toArray();
+
+            return ['data' => $result];
+        }
     }
 }

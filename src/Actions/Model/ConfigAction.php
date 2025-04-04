@@ -15,8 +15,18 @@ class ConfigAction extends ModelAction
     protected function getStateMachineDefinition(): array
     {
         return [
-            'StartAt' => 'GenerateConfig',
+            'StartAt' => 'PreparePayload',
             'States' => [
+                'PreparePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'HandlePayload',
+                ],
+                'HandlePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'handle_payload',
+                    'Next' => 'GenerateConfig',
+                ],
                 'GenerateConfig' => [
                     'Type' => 'Task',
                     'Resource' => 'generate_config',

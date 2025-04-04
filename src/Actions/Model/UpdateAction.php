@@ -6,27 +6,32 @@ class UpdateAction extends ModelAction
 {
     public static function getName(): string
     {
-        return 'update';
+        return '_update';
     }
 
     protected function getStateMachineDefinition(): array
     {
         return [
-            'StartAt' => 'ValidateInput',
+            'StartAt' => 'PreparePayload',
             'States' => [
-                'ValidateInput' => [
+                'PreparePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'ValidatePayload',
+                ],
+                'ValidatePayload' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'DatabaseUpdate',
+                    'Next' => 'HandlePayload',
                 ],
-                'DatabaseUpdate' => [
+                'HandlePayload' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.update',
-                    'Next' => 'DatabaseRead',
+                    'Resource' => 'handle_payload',
+                    'Next' => 'HandleResponse',
                 ],
-                'DatabaseRead' => [
+                'HandleResponse' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.select',
+                    'Resource' => 'handle_response',
                     'End' => true,
                 ],
             ],

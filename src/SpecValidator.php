@@ -61,6 +61,12 @@ class SpecValidator
             self::SCHEMA_BASE_PATH.'/view.json',
             __DIR__.'/Specs/view.json'
         );
+
+        // Register action schema
+        $this->validator->resolver()->registerFile(
+            self::SCHEMA_BASE_PATH.'/mutator.json',
+            __DIR__.'/Specs/mutator.json'
+        );
     }
 
     /**

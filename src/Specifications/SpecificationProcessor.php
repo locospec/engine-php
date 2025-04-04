@@ -6,6 +6,7 @@ use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Logger;
 use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
@@ -19,6 +20,8 @@ class SpecificationProcessor
     private array $pendingViews = [];
 
     private ?Logger $logger = null;
+
+    private array $pendingMutators = [];
 
     private SpecValidator $specValidator;
 
@@ -83,6 +86,10 @@ class SpecificationProcessor
                         $this->pendingViews[] = $spec;
                         break;
 
+                    case 'mutator':
+                        $this->pendingMutators[] = $spec;
+                        break;
+
                     default:
                         break;
                 }
@@ -133,7 +140,6 @@ class SpecificationProcessor
                 $this->pendingRelationships[] = $relationshipP;
                 $this->logger?->info('Stored pending relationships', ['modelName' => $spec->name]);
             }
-
             // Validate the model spec
             $this->validateSpec($spec);
 
@@ -248,7 +254,7 @@ class SpecificationProcessor
     }
 
     /**
-     * Process a single view definition
+     * Process a all view definition
      */
     public function processAllViewSpec(): void
     {
@@ -281,7 +287,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing view', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing file: '.$e->getMessage());
+            throw new InvalidArgumentException('Error processing view: '.$e->getMessage());
         }
     }
 
@@ -307,6 +313,71 @@ class SpecificationProcessor
         } catch (\Exception $e) {
             $this->logger?->error('Error processing view spec', [
                 'viewName' => $spec->name ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
+        }
+    }
+
+    /**
+     * Process a all mutators definition
+     */
+    public function processAllMutatorsSpec(): void
+    {
+        try {
+            $this->logger?->info('Processing all the mutators');
+            foreach ($this->pendingMutators as $pending) {
+                $this->logger?->info('Processing mutator', ['mutatorName' => $pending->name]);
+                $model = $this->registryManager->get('model', $pending->model);
+
+                if (! $model) {
+                    $this->logger?->error('Model not found for mutator processing', [
+                        'modelName' => $pending->model,
+                    ]);
+                    throw new InvalidArgumentException(
+                        "Cannot process mutator: Model {$pending->model} not found"
+                    );
+                }
+
+                $this->processMutatorSpec($pending, $model);
+            }
+            // Clear pending mutators after processing
+            $this->pendingMutators = [];
+            $this->logger?->info('Successfully processed all the mutators');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during mutator processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing mutator', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error processing mutator: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Process a single mutator definition
+     */
+    private function processMutatorSpec(object $spec, ModelDefinition $model): void
+    {
+        try {
+            $this->logger?->info('Processing mutator spec', ['mutatorSpecName' => $spec->name]);
+
+            // Validate the mutator spec
+            $this->validateSpec($spec);
+            // Convert object to MutatorDefinition
+            $mutatorSpec = MutatorDefinition::fromObject($spec, $this->registryManager, $model);
+
+            $this->logger?->info('Normalized mutator spec', ['mutatorSpecName' => $mutatorSpec->getName()]);
+
+            // register the mutator
+            $this->registryManager->register('mutator', $mutatorSpec);
+            $this->logger?->info('Mutator registered in registry', ['modelName' => $mutatorSpec->getName()]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing mutator spec', [
+                'mutatorName' => $spec->name ?? 'Unknown',
                 'error' => $e->getMessage(),
             ]);
             throw $e;
