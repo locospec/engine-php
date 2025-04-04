@@ -28,8 +28,8 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
         if (isset($mutator)) {
             $result = $mutator->toArray();
             $schema = $mutator->getSchema();
-            $keys = array_keys((array) $schema["properties"]);
-            
+            $keys = array_keys((array) $schema['properties']);
+
             if (isset($input['response']) && ! empty($input['response']) && ! empty($input['response'][0]['result'])) {
                 $data = $input['response'][0]['result'][0];
 
