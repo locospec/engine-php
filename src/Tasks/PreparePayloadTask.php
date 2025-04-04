@@ -154,11 +154,27 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'type' => $dbOp,
             'modelName' => $this->context->get('model')->getName(),
         ];
-
+        
+        // dd("hello");
         if ($dbOp === 'update') {
-            $preparedPayload['filters'] = $payload['filters'];
+            if(isset($payload['filters'])){
+                $preparedPayload['filters'] = $payload['filters'];
+            }else{
+                $primaryKey = $this->context->get('model')->getConfig()->getPrimaryKey();
+                $preparedPayload['filters'] = [
+                    "op" => "and",
+                    "conditions" => [
+                        [
+                            "attribute" => $primaryKey,
+                            "op" => "is",
+                            "value" => $payload[$primaryKey]
+                        ]
+                    ]
+                ];
+                $payload['data'] = $payload;
+            }
         }
-
+        
         $generator = $this->context->get('generator');
         $attributes = $this->context->get('model')->getAttributes()->getAttributes();
         $dbOps = new DatabaseOperationsCollection($this->operator);

@@ -22,13 +22,24 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
     {
         // Get view
         $view = $this->context->get('view');
+        $model = $this->context->get('model');
         $mutator = $this->context->get('mutator');
 
         if (isset($mutator)) {
             $result = $mutator->toArray();
-
+            $schema = $mutator->getSchema();
+            $keys = array_keys((array) $schema["properties"]);
+            
             if (isset($input['response']) && ! empty($input['response']) && ! empty($input['response'][0]['result'])) {
-                $result['initialData'] = $input['response'][0]['result'][0];
+                $data = $input['response'][0]['result'][0];
+
+                foreach ($keys as $key) {
+                    if (array_key_exists($key, $data)) {
+                        $result['initialData'][$key] = $data[$key];
+                    }
+                }
+
+                $result['initialData'][$model->getConfig()->getPrimaryKey()] = $data[$model->getConfig()->getPrimaryKey()];
             }
 
             return ['data' => $result];
