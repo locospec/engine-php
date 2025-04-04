@@ -383,6 +383,11 @@ class DatabaseOperationsCollection
         }
 
         $startTime = microtime(true);
+        
+        $aliasTransformer = new AliasTransformation();
+
+        $endAliasInitializeTime = microtime(true);
+        $AliasInitializeTime = ($endAliasInitializeTime - $startTime) * 1000;
 
         foreach ($dbOpResults as $index => $dbOpResult) {
             if (! in_array($dbOpResult['operation']['type'], ['update', 'insert'])) {
@@ -396,7 +401,7 @@ class DatabaseOperationsCollection
                             'modelName' => $dbOpResult['operation']['modelName'],
                         ]);
 
-                        $aliasTransformer = new AliasTransformation($model);
+                        $aliasTransformer->setModel($model);
                         $dbOpResults[$index]['result'] = $aliasTransformer->transform($dbOpResult['result']);
 
                         $this->logger->info('Alias transformation applied for model', [
@@ -417,6 +422,7 @@ class DatabaseOperationsCollection
             'startTime' => $startTime,
             'endTime' => $endTime,
             'executionTime' => $executionTime,
+            'AliasInitializeTime' => $AliasInitializeTime,
         ]);
 
         $this->logger->info('Execution completed', [

@@ -9,10 +9,15 @@ class AliasTransformation
 {
     private ModelDefinition $model;
 
-    public function __construct(ModelDefinition $model)
+    public function __construct()
     {
-        $this->model = $model;
+        // $this->model = $model;
     }
+
+    public function setModel(ModelDefinition $model){
+         $this->model = $model;
+    }
+
 
     public function transform(array $data): array
     {
