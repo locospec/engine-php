@@ -26,11 +26,11 @@ class ViewDefinition
     private string $selectionType;
 
     private ?object $scopes;
-    
+
     private array $expand = [];
-    
+
     private array $allowedScopes = [];
-    
+
     private ?object $actions;
 
     public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions)
@@ -98,7 +98,7 @@ class ViewDefinition
     {
         return $this->scopes;
     }
-   
+
     public function getActions(): object
     {
         return $this->actions;
@@ -148,7 +148,7 @@ class ViewDefinition
             if (isset($data->allowedScopes)) {
                 $allowedScopes = $data->allowedScopes;
             }
-            
+
             if (isset($data->actions)) {
                 $actions = $data->actions;
             }
@@ -281,7 +281,7 @@ class ViewDefinition
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $data['scopes'] = $this->scopes;
         }
-      
+
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $data['actions'] = $this->actions;
         }
@@ -306,7 +306,7 @@ class ViewDefinition
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $result->scopes = $this->scopes;
         }
-       
+
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $result->actions = $this->actions;
         }
