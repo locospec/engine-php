@@ -31,7 +31,9 @@ class ViewDefinition
 
     private array $allowedScopes = [];
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes)
+    private ?object $actions;
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions)
     {
         $this->type = 'view';
         $this->name = $name;
@@ -44,6 +46,7 @@ class ViewDefinition
         $this->lensSimpleFilters = $lensSimpleFilters;
         $this->scopes = $scopes ?? new \stdClass;
         $this->allowedScopes = $allowedScopes;
+        $this->actions = $actions;
     }
 
     public function getType(): string
@@ -96,6 +99,11 @@ class ViewDefinition
         return $this->scopes;
     }
 
+    public function getActions(): object
+    {
+        return $this->actions;
+    }
+
     private function objectToArray($obj): array
     {
         return json_decode(json_encode($obj), true);
@@ -107,6 +115,8 @@ class ViewDefinition
             $selectionType = 'none';
             $expand = [];
             $allowedScopes = [];
+            $actions = new \stdClass;
+
             $viewModel = $registryManager->get('model', $data->model);
 
             if (! $viewModel) {
@@ -139,9 +149,13 @@ class ViewDefinition
                 $allowedScopes = $data->allowedScopes;
             }
 
+            if (isset($data->actions)) {
+                $actions = $data->actions;
+            }
+
             $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -153,7 +167,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -185,9 +199,10 @@ class ViewDefinition
                 'selectionKey' => $model->getConfig()->getPrimaryKey(),
                 'scopes' => $model->getScopes() ?? new \stdClass,
                 'allowedScopes' => [],
+                'actions' => new \stdClass,
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions']);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -267,6 +282,10 @@ class ViewDefinition
             $data['scopes'] = $this->scopes;
         }
 
+        if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
+            $data['actions'] = $this->actions;
+        }
+
         return $data;
     }
 
@@ -286,6 +305,10 @@ class ViewDefinition
 
         if (isset($this->scopes) && ! empty(get_object_vars($this->scopes))) {
             $result->scopes = $this->scopes;
+        }
+
+        if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
+            $result->actions = $this->actions;
         }
 
         return $result;
