@@ -382,6 +382,8 @@ class DatabaseOperationsCollection
             }
         }
 
+        $startTime = microtime(true);
+
         foreach ($dbOpResults as $index => $dbOpResult) {
             if (! in_array($dbOpResult['operation']['type'], ['update', 'insert'])) {
                 if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
@@ -405,6 +407,17 @@ class DatabaseOperationsCollection
                 }
             }
         }
+
+        $endTime = microtime(true);
+        $executionTime = ($endTime - $startTime) * 1000;
+
+        $this->logger->info('Time tacken by Alias transformation', [
+            'type' => 'dbOps',
+            'modelName' => $dbOpResult['operation']['modelName'],
+            'startTime' => $startTime,
+            'endTime' => $endTime,
+            'executionTime' => $executionTime,
+        ]);
 
         $this->logger->info('Execution completed', [
             'type' => 'dbOps',
