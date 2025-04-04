@@ -410,7 +410,7 @@ class DatabaseOperationsCollection
 
         $endTime = microtime(true);
         $executionTime = ($endTime - $startTime) * 1000;
-        
+
         $this->logger->info('Time tacken by Alias transformation', [
             'type' => 'dbOps',
             'modelName' => $dbOpResult['operation']['modelName'],
