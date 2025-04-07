@@ -2,9 +2,8 @@
 
 namespace Locospec\Engine\Database;
 
-use Locospec\Engine\Models\ModelDefinition;
-
 use JmesPath\Env as JmesPath;
+use Locospec\Engine\Models\ModelDefinition;
 
 class AliasTransformation
 {
