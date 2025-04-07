@@ -2,10 +2,8 @@
 
 namespace Locospec\Engine\Database;
 
-use Locospec\Engine\Models\ModelDefinition;
-
-require base_Path('/vendor/autoload.php');
 use JmesPath\Env as JmesPath;
+use Locospec\Engine\Models\ModelDefinition;
 
 class AliasTransformation
 {
