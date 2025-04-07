@@ -506,10 +506,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Database-AliasTransformation.html#method_processRecord"
         },                {
-            "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation\u003A\u003AexecuteJQExpression\u0028\u0029",
-            "name": "executeJQExpression",
+            "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation\u003A\u003AexecuteJMESPathExpression\u0028\u0029",
+            "name": "executeJMESPathExpression",
             "summary": "",
-            "url": "classes/Locospec-Engine-Database-AliasTransformation.html#method_executeJQExpression"
+            "url": "classes/Locospec-Engine-Database-AliasTransformation.html#method_executeJMESPathExpression"
         },                {
             "fqsen": "\\Locospec\\Engine\\Database\\AliasTransformation\u003A\u003A\u0024model",
             "name": "model",
@@ -580,6 +580,11 @@ Search.appendIndex(
             "name": "valueResolver",
             "summary": "",
             "url": "classes/Locospec-Engine-Database-DatabaseOperationsCollection.html#property_valueResolver"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024aliasTransformer",
+            "name": "aliasTransformer",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-DatabaseOperationsCollection.html#property_aliasTransformer"
         },                {
             "fqsen": "\\Locospec\\Engine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024registryManager",
             "name": "registryManager",
