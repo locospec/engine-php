@@ -3,16 +3,15 @@
 namespace Locospec\Engine\Database;
 
 use Locospec\Engine\Models\ModelDefinition;
-use Symfony\Component\Process\Process;
+
+require __DIR__.'/../../vendor/autoload.php';
+use JmesPath\Env as JmesPath;
 
 class AliasTransformation
 {
     private ModelDefinition $model;
 
-    public function __construct()
-    {
-        // $this->model = $model;
-    }
+    public function __construct() {}
 
     public function setModel(ModelDefinition $model)
     {
@@ -48,47 +47,37 @@ class AliasTransformation
                 $source = $expression->source;
 
                 if (strpos($expression->source, '->') !== false) {
-                    $source = preg_replace(['/^/', '/->?/'], ['.', '.'], $expression->source);
-                } else {
-                    $source = '.'.$source;
+                    $source = preg_replace(['/^/', '/->?/'], ['', '.'], $expression->source);
                 }
 
-                $extracted = $this->executeJQExpression($record, $source);
+                $extracted = $this->executeJMESPathExpression($record, $source);
                 $processed[$aliasKey] = $extracted;
             }
 
             if (isset($expression->transform)) {
                 $valueToTransform = (! empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
                 $inputData = isset($extracted) && ! empty($extracted) ? ['value' => $valueToTransform] : $record;
-                $processed[$aliasKey] = $this->executeJQExpression($inputData, $expression->transform);
+                $processed[$aliasKey] = $this->executeJMESPathExpression($inputData, $expression->transform);
             }
         }
 
         return $processed;
     }
 
-    private function executeJQExpression(array $data, ?string $expression): mixed
+    private function executeJMESPathExpression(array $data, ?string $expression): mixed
     {
         if (empty($expression)) {
             return null;
         }
-        $process = new Process(['jq', '-r', $expression]);
-        $process->setInput(json_encode($data));
 
         try {
-            $process->mustRun();
+            $output = JmesPath::search($expression, $data);
 
-            if (! $process->isSuccessful()) {
-                return null;
-            }
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                return null;
-            }
-
-            return trim($process->getOutput()) ?: null;
+            return $output;
         } catch (\Exception $e) {
+            dd($e);
             throw $e;
         }
+
     }
 }

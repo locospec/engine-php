@@ -19,6 +19,7 @@
         "php": "^8.2",
         "doctrine/inflector": "^2.0",
         "monolog/monolog": "^3.8",
+        "mtdowling/jmespath.php": "^2.8",
         "opis/json-schema": "^2.3"
     },
     "require-dev": {
