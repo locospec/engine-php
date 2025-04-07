@@ -68,7 +68,7 @@ class AliasTransformation
         }
 
         try {
-            $runtime = new JMESPathCustomRuntime();
+            $runtime = new JMESPathCustomRuntime;
             $output = $runtime->search($expression, $data);
 
             return $output;
