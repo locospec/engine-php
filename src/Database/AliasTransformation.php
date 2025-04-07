@@ -3,16 +3,15 @@
 namespace Locospec\Engine\Database;
 
 use Locospec\Engine\Models\ModelDefinition;
-require __DIR__ . '/../../vendor/autoload.php';
+
+require __DIR__.'/../../vendor/autoload.php';
 use JmesPath\Env as JmesPath;
 
 class AliasTransformation
 {
     private ModelDefinition $model;
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function setModel(ModelDefinition $model)
     {
@@ -71,10 +70,11 @@ class AliasTransformation
             return null;
         }
 
-        try{
-            $output  = JmesPath::search($expression, $data);
+        try {
+            $output = JmesPath::search($expression, $data);
+
             return $output;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             dd($e);
             throw $e;
         }

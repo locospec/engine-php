@@ -21,7 +21,7 @@ class DatabaseOperationsCollection
     private SpecValidator $validator;
 
     private ValueResolver $valueResolver;
-    
+
     private AliasTransformation $aliasTransformer;
 
     private ?RegistryManager $registryManager = null;
@@ -405,7 +405,6 @@ class DatabaseOperationsCollection
                         $this->aliasTransformer->setModel($model);
                         $dbOpResults[$index]['result'] = $this->aliasTransformer->transform($dbOpResult['result']);
 
-                        
                         $this->logger->info('Alias transformation applied for model', [
                             'type' => 'dbOps',
                             'modelName' => $dbOpResult['operation']['modelName'],
