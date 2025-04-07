@@ -631,6 +631,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Database-Filters-FilterGroup.html#method_validate"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\JMESPathCustomRuntime",
+            "name": "JMESPathCustomRuntime",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-JMESPathCustomRuntime.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\JMESPathCustomRuntime\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-JMESPathCustomRuntime.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\JMESPathCustomRuntime\u003A\u003Asearch\u0028\u0029",
+            "name": "search",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-JMESPathCustomRuntime.html#method_search"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\JMESPathCustomRuntime\u003A\u003AhandleFormatDate\u0028\u0029",
+            "name": "handleFormatDate",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-JMESPathCustomRuntime.html#method_handleFormatDate"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\JMESPathCustomRuntime\u003A\u003A\u0024runtime",
+            "name": "runtime",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Database-JMESPathCustomRuntime.html#property_runtime"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Database\\QueryContext",
             "name": "QueryContext",
             "summary": "",
