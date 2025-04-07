@@ -73,7 +73,6 @@ class AliasTransformation
 
             return $output;
         } catch (\Exception $e) {
-            dd($e);
             throw $e;
         }
 
