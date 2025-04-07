@@ -21,6 +21,8 @@ class DatabaseOperationsCollection
     private SpecValidator $validator;
 
     private ValueResolver $valueResolver;
+    
+    private AliasTransformation $aliasTransformer;
 
     private ?RegistryManager $registryManager = null;
 
@@ -30,6 +32,7 @@ class DatabaseOperationsCollection
     {
         $this->validator = new SpecValidator;
         $this->valueResolver = new ValueResolver;
+        $this->aliasTransformer = new AliasTransformation;
         $this->logger = LCS::getLogger();
         $this->logger->info('DatabaseOperationsCollection initialized', ['type' => 'dbOps']);
     }
@@ -384,8 +387,6 @@ class DatabaseOperationsCollection
 
         $startTime = microtime(true);
 
-        $aliasTransformer = new AliasTransformation;
-
         $endAliasInitializeTime = microtime(true);
         $AliasInitializeTime = ($endAliasInitializeTime - $startTime) * 1000;
 
@@ -401,9 +402,10 @@ class DatabaseOperationsCollection
                             'modelName' => $dbOpResult['operation']['modelName'],
                         ]);
 
-                        $aliasTransformer->setModel($model);
-                        $dbOpResults[$index]['result'] = $aliasTransformer->transform($dbOpResult['result']);
+                        $this->aliasTransformer->setModel($model);
+                        $dbOpResults[$index]['result'] = $this->aliasTransformer->transform($dbOpResult['result']);
 
+                        
                         $this->logger->info('Alias transformation applied for model', [
                             'type' => 'dbOps',
                             'modelName' => $dbOpResult['operation']['modelName'],
