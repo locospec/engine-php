@@ -2,7 +2,6 @@
 
 namespace Locospec\Engine\Database;
 
-use JmesPath\Env as JmesPath;
 use Locospec\Engine\Models\ModelDefinition;
 
 class AliasTransformation
@@ -69,7 +68,8 @@ class AliasTransformation
         }
 
         try {
-            $output = JmesPath::search($expression, $data);
+            $runtime = new JMESPathCustomRuntime();
+            $output = $runtime->search($expression, $data);
 
             return $output;
         } catch (\Exception $e) {
