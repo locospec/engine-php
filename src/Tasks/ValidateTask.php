@@ -2,8 +2,8 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\SpecValidator;
 use RuntimeException;
 
 class ValidateTask extends AbstractTask implements TaskInterface
@@ -15,7 +15,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input): array
     {
-        try{
+        try {
             $validator = new SpecValidator;
 
             switch ($this->context->get('action')) {
@@ -40,21 +40,21 @@ class ValidateTask extends AbstractTask implements TaskInterface
             }
 
             return [...$input, 'validated' => $validation['isValid']];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw $e;
         }
     }
 
     public function validatePayloadForCreateAndUpdate(array $payload, string $action): array
     {
-        try{
+        try {
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
             $options = [
                 'dbOps' => $dbOps,
                 'action' => $action,
                 'dbOperator' => $this->operator,
-                'modelName' => $this->context->get('model')->getName()
+                'modelName' => $this->context->get('model')->getName(),
             ];
             $validator = $this->context->get('crudValidator');
             $model = $this->context->get('model');
@@ -92,7 +92,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
             return [
                 'isValid' => true,
             ];
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             throw $e;
         }
     }
