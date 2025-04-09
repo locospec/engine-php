@@ -2826,6 +2826,11 @@ Search.appendIndex(
             "summary": "Validate\u0020input\u0020data\u0020against\u0020the\u0020provided\u0020JSON\u0020schema.",
             "url": "classes/Locospec-Engine-Registry-ValidatorInterface.html#method_validate"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\ValidatorInterface\u003A\u003AvalidateCustomRule\u0028\u0029",
+            "name": "validateCustomRule",
+            "summary": "Validate\u0020input\u0020data\u0020against\u0020the\u0020provided\u0020custom\u0020rules.",
+            "url": "classes/Locospec-Engine-Registry-ValidatorInterface.html#method_validateCustomRule"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Registry\\ViewRegistry",
             "name": "ViewRegistry",
             "summary": "ModelRegistry\u0020manages\u0020the\u0020registration\u0020and\u0020relationship\u0020graphs\u0020of\u0020models.",
