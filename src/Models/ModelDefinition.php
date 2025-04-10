@@ -92,10 +92,15 @@ class ModelDefinition
 
     public function getRelationshipsByType(string $type): object
     {
-        return array_filter(
-            $this->relationships,
-            fn (Relationship $rel) => $rel->getType() === $type
-        );
+        $filteredRelationships = new \stdClass();
+        
+        foreach ($this->relationships as $key => $relationship) {
+            if ($relationship->getType() === $type) {
+                $filteredRelationships->$key = $relationship;
+            }
+        }
+        
+        return $filteredRelationships;
     }
 
     public static function fromObject(object $data): self

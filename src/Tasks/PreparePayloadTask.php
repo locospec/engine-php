@@ -30,6 +30,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_update':
                 $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'update');
                 break;
+           
+            case '_delete':
+                $preparedPayload = $this->preparePayloadForDelete($payload, 'delete');
+                break;
 
             case '_read':
                 $preparedPayload = $this->preparePayloadForRead($payload);
@@ -55,8 +59,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForRead(array $payload): array
     {
+        $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
         $preparedPayload = [
             'type' => 'select',
+            'deleteColumn' =>  $deleteColumn,
             'modelName' => $this->context->get('model')->getName(),
             'viewName' => $this->context->get('view')->getName(),
         ];
@@ -111,6 +117,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $preparedPayload = [
             'type' => 'select',
+            'deleteColumn' => $optionsModel->getConfig()->getDeleteColumn(),
             'modelName' => $optionsModel->getName(),
         ];
 
@@ -266,5 +273,117 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         return $preparedPayload;
+    }
+
+    public function preparePayloadForDelete(array $payload, string $dbOp): array
+    {
+        $softDelete = $this->context->get('model')->getConfig()->getSoftDelete();
+        $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
+        $sourceModel = $this->context->get('model');
+        $primaryKey = $this->context->get('model')->getConfig()->getPrimaryKey();
+        $dbOps = new DatabaseOperationsCollection($this->operator);
+        $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
+        
+        $mainPayload = [
+            'type' => $dbOp,
+            'modelName' => $this->context->get('model')->getName(),
+            'softDelete' => $softDelete,
+            'deleteColumn' => $deleteColumn,
+            'filters' => [
+                'op' => 'and',
+                'conditions' => [
+                    [
+                        'attribute' => $primaryKey,
+                        'op' => 'is',
+                        'value' => $payload['primary_key'],
+                    ],
+                ]
+            ]
+        ];
+
+        $cascadePayloads = $this->prepareCascadeDeletePayloads($sourceModel->getName(), [$payload['primary_key']], $dbOps);
+        
+        $preparedPayload = array_merge([$mainPayload], $cascadePayloads);
+        
+        return $preparedPayload;
+    }
+
+    private function prepareCascadeDeletePayloads(
+        string $sourceModelName, 
+        array $sourceIds, 
+        $dbOps,
+        array &$cascadePayloads = [],
+    ): array {
+        $sourceModel = $this->context->get('lcs')->getRegistryManager()->get('model', $sourceModelName);
+        $hasManyRelationships = $sourceModel->getRelationshipsByType('has_many');
+
+        foreach ($hasManyRelationships as $relationName => $relationship) {
+            $targetModelName = $relationship->getRelatedModelName();
+            $targetModelForeignKey = $relationship->getForeignKey();
+            $targetModelLocalKey = $relationship->getLocalKey();
+            $targetModel = $this->context->get('lcs')->getRegistryManager()->get('model', $targetModelName);
+
+            $payload = [
+                'type' => 'delete',
+                'modelName' => $targetModelName,
+                'softDelete' => $targetModel->getConfig()->getSoftDelete(),
+                'deleteColumn' => $targetModel->getConfig()->getDeleteColumn(),
+                'filters' => [
+                    'op' => 'and',
+                    'conditions' => [
+                        [
+                            'attribute' => $targetModelForeignKey,
+                            'op' => 'is_any_of',
+                            'value' => $sourceIds
+                        ]
+                    ]
+                ]
+            ];
+            
+            $cascadePayloads[] = $payload;
+
+            // Get the target model and check for nested relationships
+            $nestedHasManyRelationships = $targetModel->getRelationshipsByType('has_many');
+
+            // If target model has its own has_many relationships, recurse
+            if (!empty($nestedHasManyRelationships)) {
+                $relatedIds = $this->getRelatedModelIds($targetModelName, $targetModelForeignKey, $sourceIds, $targetModelLocalKey, $dbOps);
+
+                if (!empty($relatedIds)) {
+                    $this->prepareCascadeDeletePayloads($targetModelName, $relatedIds, $dbOps, $cascadePayloads);
+                }
+            }
+        }
+
+        return $cascadePayloads;
+    }
+
+    private function getRelatedModelIds(string $modelName, string $foreignKey, array $parentIds, string $localKey, $dbOps): array
+    {
+        $relatedIds = [];
+        $payload = [
+            'type' => 'select',
+            'modelName' => $modelName,
+            'filters' => [
+                [
+                    'attribute' => $foreignKey,
+                    'op' => 'is_any_of',
+                    'value' => $parentIds
+                ]
+            ]
+        ];
+
+        $dbOps->add($payload);
+        $response = $dbOps->execute($this->operator);
+
+        if(isset($response[0]['result']) && is_array($response[0]['result'])&&!empty($response[0]['result'])){
+            foreach ($response[0]['result'] as $record) {
+                if (isset($record[$localKey])) {
+                    $relatedIds[] = $record[$localKey];
+                }
+            }
+        }
+
+        return $relatedIds;
     }
 }

@@ -6,38 +6,32 @@ class DeleteAction extends ModelAction
 {
     public static function getName(): string
     {
-        return 'delete';
+        return '_delete';
     }
 
     protected function getStateMachineDefinition(): array
     {
         return [
-            'StartAt' => 'ValidateInput',
+           'StartAt' => 'PreparePayload',
             'States' => [
-                'ValidateInput' => [
+                'PreparePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'ValidatePayload',
+                ],
+                'ValidatePayload' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'CheckSoftDelete',
+                    'Next' => 'HandlePayload',
                 ],
-                'CheckSoftDelete' => [
-                    'Type' => 'Choice',
-                    'Choices' => [
-                        [
-                            'Variable' => '$.config.softDelete',
-                            'BooleanEquals' => true,
-                            'Next' => 'SoftDelete',
-                        ],
-                    ],
-                    'Default' => 'HardDelete',
-                ],
-                'SoftDelete' => [
+                'HandlePayload' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.soft_delete',
-                    'End' => true,
+                    'Resource' => 'handle_payload',
+                    'Next' => 'HandleResponse',
                 ],
-                'HardDelete' => [
+                'HandleResponse' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.delete',
+                    'Resource' => 'handle_response',
                     'End' => true,
                 ],
             ],

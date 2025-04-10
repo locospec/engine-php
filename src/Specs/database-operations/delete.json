@@ -5,6 +5,8 @@
     "properties": {
         "type": { "type": "string", "enum": ["delete"] },
         "modelName": { "type": "string" },
+        "softDelete": { "type": "boolean" },
+        "deleteColumn": { "type": "string" },
         "filters": { "$ref": "common.json#/definitions/filters" }
     },
     "required": ["type", "modelName", "filters"],

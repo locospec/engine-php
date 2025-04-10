@@ -32,6 +32,10 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             case '_update':
                 return $this->handleUpdateResponse($input);
                 break;
+            
+            case '_delete':
+                return $this->handleDeleteResponse($input);
+                break;
 
             case '_read':
                 $res = $this->handleReadResponse($input);
@@ -56,7 +60,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     {
         return [
             'data' => $input['response'][0]['result'][0],
-            'meta' => $input['response'][0]['pagination'] ?? [],
+            'meta' => [],
         ];
     }
 
@@ -64,7 +68,15 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     {
         return [
             'data' => $input['response'][0]['result'],
-            'meta' => $input['response'][0]['pagination'] ?? [],
+            'meta' => [],
+        ];
+    }
+    
+    public function handleDeleteResponse(array $input): array
+    {
+        return [
+            'data' => $input['response'][0]['result'],
+            'meta' => [],
         ];
     }
 

@@ -6,6 +6,7 @@
         "type": { "type": "string", "enum": ["select"] },
         "modelName": { "type": "string" },
         "viewName": { "type": "string" },
+        "deleteColumn": { "type": "string" },
         "scopes": { "$ref": "common.json#/definitions/scopes" },
         "filters": { "$ref": "common.json#/definitions/filters" },
         "sorts": { "$ref": "common.json#/definitions/sorts" },
