@@ -30,7 +30,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_update':
                 $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'update');
                 break;
-           
+
             case '_delete':
                 $preparedPayload = $this->preparePayloadForDelete($payload, 'delete');
                 break;
@@ -62,7 +62,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
         $preparedPayload = [
             'type' => 'select',
-            'deleteColumn' =>  $deleteColumn,
+            'deleteColumn' => $deleteColumn,
             'modelName' => $this->context->get('model')->getName(),
             'viewName' => $this->context->get('view')->getName(),
         ];
@@ -283,7 +283,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $primaryKey = $this->context->get('model')->getConfig()->getPrimaryKey();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
-        
+
         $mainPayload = [
             'type' => $dbOp,
             'modelName' => $this->context->get('model')->getName(),
@@ -297,20 +297,20 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         'op' => 'is',
                         'value' => $payload['primary_key'],
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
 
         $cascadePayloads = $this->prepareCascadeDeletePayloads($sourceModel->getName(), [$payload['primary_key']], $dbOps);
-        
+
         $preparedPayload = array_merge([$mainPayload], $cascadePayloads);
-        
+
         return $preparedPayload;
     }
 
     private function prepareCascadeDeletePayloads(
-        string $sourceModelName, 
-        array $sourceIds, 
+        string $sourceModelName,
+        array $sourceIds,
         $dbOps,
         array &$cascadePayloads = [],
     ): array {
@@ -334,22 +334,22 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         [
                             'attribute' => $targetModelForeignKey,
                             'op' => 'is_any_of',
-                            'value' => $sourceIds
-                        ]
-                    ]
-                ]
+                            'value' => $sourceIds,
+                        ],
+                    ],
+                ],
             ];
-            
+
             $cascadePayloads[] = $payload;
 
             // Get the target model and check for nested relationships
             $nestedHasManyRelationships = $targetModel->getRelationshipsByType('has_many');
 
             // If target model has its own has_many relationships, recurse
-            if (!empty($nestedHasManyRelationships)) {
+            if (! empty($nestedHasManyRelationships)) {
                 $relatedIds = $this->getRelatedModelIds($targetModelName, $targetModelForeignKey, $sourceIds, $targetModelLocalKey, $dbOps);
 
-                if (!empty($relatedIds)) {
+                if (! empty($relatedIds)) {
                     $this->prepareCascadeDeletePayloads($targetModelName, $relatedIds, $dbOps, $cascadePayloads);
                 }
             }
@@ -368,15 +368,15 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 [
                     'attribute' => $foreignKey,
                     'op' => 'is_any_of',
-                    'value' => $parentIds
-                ]
-            ]
+                    'value' => $parentIds,
+                ],
+            ],
         ];
 
         $dbOps->add($payload);
         $response = $dbOps->execute($this->operator);
 
-        if(isset($response[0]['result']) && is_array($response[0]['result'])&&!empty($response[0]['result'])){
+        if (isset($response[0]['result']) && is_array($response[0]['result']) && ! empty($response[0]['result'])) {
             foreach ($response[0]['result'] as $record) {
                 if (isset($record[$localKey])) {
                     $relatedIds[] = $record[$localKey];

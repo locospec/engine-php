@@ -23,13 +23,13 @@ class ModelConfiguration
     private string $deleteColumn;
 
     public function __construct(
-        string $primaryKey = 'id',
-        ?string $table = null,
-        ?string $connection = null,
-        ?string $dbOperator = null,
-        ?string $singular = null,
-        ?string $plural = null,
-        ?string $labelKey = null,
+        string $primaryKey,
+        ?string $table,
+        ?string $connection,
+        ?string $dbOperator,
+        ?string $singular,
+        ?string $plural,
+        ?string $labelKey,
         bool $softDelete,
         string $deleteColumn
     ) {
@@ -55,7 +55,7 @@ class ModelConfiguration
             $config['plural'] ?? null,
             $config['labelKey'] ?? null,
             $config['softDelete'] ?? true,
-            $config['deleteColumn'] ?? "deleted_at",
+            $config['deleteColumn'] ?? 'deleted_at',
         );
     }
 
@@ -70,7 +70,7 @@ class ModelConfiguration
             $config->plural ?? null,
             $config->labelKey ?? null,
             $config->softDelete ?? true,
-            $config->deleteColumn ?? "deleted_at",
+            $config->deleteColumn ?? 'deleted_at',
         );
     }
 
@@ -113,7 +113,7 @@ class ModelConfiguration
     {
         return $this->softDelete;
     }
-    
+
     public function getDeleteColumn(): ?string
     {
         return $this->deleteColumn;

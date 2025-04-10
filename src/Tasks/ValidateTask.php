@@ -30,22 +30,22 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 default:
                     break;
             }
-            
+
             $validation = [];
 
-            if(is_array($input['preparedPayload']) && array_is_list($input['preparedPayload'])){
+            if (is_array($input['preparedPayload']) && array_is_list($input['preparedPayload'])) {
                 foreach ($input['preparedPayload'] as $key => $value) {
                     $validation = $validator->validateOperation($value);
-                    
+
                     if (! $validation['isValid']) {
                         throw new RuntimeException(
                             'Invalid operation: '.json_encode($validation['errors'])
                         );
                     }
                 }
-            }else{
+            } else {
                 $validation = $validator->validateOperation($input['preparedPayload']);
-    
+
                 if (! $validation['isValid']) {
                     throw new RuntimeException(
                         'Invalid operation: '.json_encode($validation['errors'])
@@ -53,7 +53,6 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 }
 
             }
-
 
             return [...$input, 'validated' => $validation['isValid']];
         } catch (\Exception $e) {

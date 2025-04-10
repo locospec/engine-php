@@ -12,7 +12,7 @@ class DeleteAction extends ModelAction
     protected function getStateMachineDefinition(): array
     {
         return [
-           'StartAt' => 'PreparePayload',
+            'StartAt' => 'PreparePayload',
             'States' => [
                 'PreparePayload' => [
                     'Type' => 'Task',

@@ -32,7 +32,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             case '_update':
                 return $this->handleUpdateResponse($input);
                 break;
-            
+
             case '_delete':
                 return $this->handleDeleteResponse($input);
                 break;
@@ -71,7 +71,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
             'meta' => [],
         ];
     }
-    
+
     public function handleDeleteResponse(array $input): array
     {
         return [
