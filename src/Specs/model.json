@@ -56,6 +56,16 @@
                 "flagKey": {
                     "type": "string",
                     "description": "Flag key field name"
+                },
+                "softDelete": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable soft delete functionality"
+                },
+                "deleteColumn": {
+                    "type": "string",
+                    "default": "deleted_at",
+                    "description": "Column name for soft delete timestamp"
                 }
             },
             "required": ["primaryKey", "labelKey", "connection"],

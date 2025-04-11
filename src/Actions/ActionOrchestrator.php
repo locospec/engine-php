@@ -67,14 +67,15 @@ class ActionOrchestrator
 
     protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, ModelDefinition $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator): ModelAction
     {
+        // dd($actionName, $model);
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
             '_read' => ReadListAction::class,
             '_read_relation_options' => ReadRelationOptionsAction::class,
             '_create' => CreateAction::class,
             '_update' => UpdateAction::class,
+            '_delete' => DeleteAction::class,
             'readOne' => ReadOneAction::class,
-            'delete' => DeleteAction::class,
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")
         };
 

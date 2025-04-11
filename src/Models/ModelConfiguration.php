@@ -18,14 +18,20 @@ class ModelConfiguration
 
     private ?string $labelKey;
 
+    private bool $softDelete;
+
+    private string $deleteColumn;
+
     public function __construct(
-        string $primaryKey = 'id',
-        ?string $table = null,
-        ?string $connection = null,
-        ?string $dbOperator = null,
-        ?string $singular = null,
-        ?string $plural = null,
-        ?string $labelKey = null
+        string $primaryKey,
+        ?string $table,
+        ?string $connection,
+        ?string $dbOperator,
+        ?string $singular,
+        ?string $plural,
+        ?string $labelKey,
+        bool $softDelete,
+        string $deleteColumn
     ) {
         $this->primaryKey = $primaryKey;
         $this->table = $table;
@@ -34,6 +40,8 @@ class ModelConfiguration
         $this->singular = $singular;
         $this->plural = $plural;
         $this->labelKey = $labelKey;
+        $this->softDelete = $softDelete;
+        $this->deleteColumn = $deleteColumn;
     }
 
     public static function fromArray(array $config): self
@@ -46,6 +54,8 @@ class ModelConfiguration
             $config['singular'] ?? null,
             $config['plural'] ?? null,
             $config['labelKey'] ?? null,
+            $config['softDelete'] ?? true,
+            $config['deleteColumn'] ?? 'deleted_at',
         );
     }
 
@@ -59,6 +69,8 @@ class ModelConfiguration
             $config->singular ?? null,
             $config->plural ?? null,
             $config->labelKey ?? null,
+            $config->softDelete ?? true,
+            $config->deleteColumn ?? 'deleted_at',
         );
     }
 
@@ -97,6 +109,16 @@ class ModelConfiguration
         return $this->plural;
     }
 
+    public function getSoftDelete(): ?bool
+    {
+        return $this->softDelete;
+    }
+
+    public function getDeleteColumn(): ?string
+    {
+        return $this->deleteColumn;
+    }
+
     public function toArray(): array
     {
         return array_filter([
@@ -107,6 +129,8 @@ class ModelConfiguration
             'singular' => $this->singular,
             'plural' => $this->plural,
             'labelKey' => $this->labelKey,
+            'softDelete' => $this->softDelete,
+            'deleteColumn' => $this->deleteColumn,
         ], fn ($value) => $value !== null);
     }
 
@@ -120,6 +144,8 @@ class ModelConfiguration
         $object->singular = $this->singular;
         $object->plural = $this->plural;
         $object->labelKey = $this->labelKey;
+        $object->softDelete = $this->softDelete;
+        $object->deleteColumn = $this->deleteColumn;
 
         return $object;
     }
