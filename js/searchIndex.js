@@ -3971,6 +3971,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_actions"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Views\\ViewDefinition\u003A\u003A\u0024serialize",
+            "name": "serialize",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Views-ViewDefinition.html#property_serialize"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Views\\ViewValidator",
             "name": "ViewValidator",
             "summary": "",
