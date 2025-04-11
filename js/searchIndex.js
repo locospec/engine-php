@@ -1301,6 +1301,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_getPlural"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AgetSoftDelete\u0028\u0029",
+            "name": "getSoftDelete",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_getSoftDelete"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AgetDeleteColumn\u0028\u0029",
+            "name": "getDeleteColumn",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#method_getDeleteColumn"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
@@ -1345,6 +1355,16 @@ Search.appendIndex(
             "name": "labelKey",
             "summary": "",
             "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#property_labelKey"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003A\u0024softDelete",
+            "name": "softDelete",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#property_softDelete"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Models\\ModelConfiguration\u003A\u003A\u0024deleteColumn",
+            "name": "deleteColumn",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Models-ModelConfiguration.html#property_deleteColumn"
         },                {
             "fqsen": "\\Locospec\\Engine\\Models\\ModelDefinition",
             "name": "ModelDefinition",
@@ -3606,6 +3626,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleUpdateResponse"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleResponseTask\u003A\u003AhandleDeleteResponse\u0028\u0029",
+            "name": "handleDeleteResponse",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-HandleResponseTask.html#method_handleDeleteResponse"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\HandleResponseTask\u003A\u003AhandleReadResponse\u0028\u0029",
             "name": "handleReadResponse",
             "summary": "",
@@ -3660,6 +3685,21 @@ Search.appendIndex(
             "name": "preparePayloadForConfig",
             "summary": "",
             "url": "classes/Locospec-Engine-Tasks-PreparePayloadTask.html#method_preparePayloadForConfig"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForDelete\u0028\u0029",
+            "name": "preparePayloadForDelete",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-PreparePayloadTask.html#method_preparePayloadForDelete"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\PreparePayloadTask\u003A\u003AprepareCascadeDeletePayloads\u0028\u0029",
+            "name": "prepareCascadeDeletePayloads",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-PreparePayloadTask.html#method_prepareCascadeDeletePayloads"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\PreparePayloadTask\u003A\u003AgetRelatedModelIds\u0028\u0029",
+            "name": "getRelatedModelIds",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-PreparePayloadTask.html#method_getRelatedModelIds"
         },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\PreparePayloadTask\u003A\u003A\u0024context",
             "name": "context",
