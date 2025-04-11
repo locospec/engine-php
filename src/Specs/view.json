@@ -131,6 +131,32 @@
             },
             "required": ["items"],
             "description": "Configuration for row actions in the view"
+        },
+        "serialize": {
+            "oneOf": [
+                {
+                    "type": "boolean",
+                    "description": "Enable serialization with default settings"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "header": {
+                            "type": "string",
+                            "description": "Custom header text for the serialization column"
+                        },
+                        "align": {
+                            "type": "string",
+                            "enum": ["left", "center", "right"],
+                            "description": "Text alignment for the serialization column"
+                        }
+                    },
+                    "required": ["header"],
+                    "additionalProperties": false,
+                    "description": "Serialization configuration object"
+                }
+            ],
+            "description": "Configuration for row serialization in the view"
         }
     },
     "required": ["name", "type", "label", "model", "attributes"],

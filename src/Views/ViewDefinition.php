@@ -33,7 +33,9 @@ class ViewDefinition
 
     private ?object $actions;
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions)
+    private mixed $serialize;
+
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions, mixed $serialize)
     {
         $this->type = 'view';
         $this->name = $name;
@@ -47,6 +49,7 @@ class ViewDefinition
         $this->scopes = $scopes ?? new \stdClass;
         $this->allowedScopes = $allowedScopes;
         $this->actions = $actions;
+        $this->serialize = $serialize;
     }
 
     public function getType(): string
@@ -116,6 +119,7 @@ class ViewDefinition
             $expand = [];
             $allowedScopes = [];
             $actions = new \stdClass;
+            $serialize = false;
 
             $viewModel = $registryManager->get('model', $data->model);
 
@@ -152,10 +156,14 @@ class ViewDefinition
             if (isset($data->actions)) {
                 $actions = $data->actions;
             }
+            
+            if (isset($data->serialize)) {
+                $serialize = $data->serialize;
+            }
 
             $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -167,7 +175,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions'], $data['serialize']);
     }
 
     public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
@@ -200,9 +208,10 @@ class ViewDefinition
                 'scopes' => $model->getScopes() ?? new \stdClass,
                 'allowedScopes' => [],
                 'actions' => new \stdClass,
+                'serialize' => false
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize']);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -285,6 +294,10 @@ class ViewDefinition
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $data['actions'] = $this->actions;
         }
+        
+        if (isset($this->serialize) && ! empty($this->serialize)) {
+            $data['serialize'] = $this->serialize;
+        }
 
         return $data;
     }
@@ -309,6 +322,10 @@ class ViewDefinition
 
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $result->actions = $this->actions;
+        }
+        
+        if (isset($this->serialize) && ! empty($this->serialize)) {
+            $result->serialize = $this->serialize;
         }
 
         return $result;
