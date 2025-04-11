@@ -156,7 +156,7 @@ class ViewDefinition
             if (isset($data->actions)) {
                 $actions = $data->actions;
             }
-            
+
             if (isset($data->serialize)) {
                 $serialize = $data->serialize;
             }
@@ -208,7 +208,7 @@ class ViewDefinition
                 'scopes' => $model->getScopes() ?? new \stdClass,
                 'allowedScopes' => [],
                 'actions' => new \stdClass,
-                'serialize' => false
+                'serialize' => false,
             ];
 
             return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize']);
@@ -294,7 +294,7 @@ class ViewDefinition
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $data['actions'] = $this->actions;
         }
-        
+
         if (isset($this->serialize) && ! empty($this->serialize)) {
             $data['serialize'] = $this->serialize;
         }
@@ -323,7 +323,7 @@ class ViewDefinition
         if (isset($this->actions) && ! empty(get_object_vars($this->actions))) {
             $result->actions = $this->actions;
         }
-        
+
         if (isset($this->serialize) && ! empty($this->serialize)) {
             $result->serialize = $this->serialize;
         }
