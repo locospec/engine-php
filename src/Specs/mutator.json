@@ -180,8 +180,12 @@
                                 "description": "Optional label for the element"
                             }
                         },
-                        "required": ["type", "scope"]
+                        "required": ["type"]
                     }
+                },
+                "options": {
+                    "type": "object",
+                    "description": "Additional options for the UI elements"
                 }
             },
             "required": ["type", "elements"]
