@@ -163,7 +163,11 @@
                                     "Group",
                                     "VerticalLayout",
                                     "HorizontalLayout",
-                                    "ENUM"
+                                    "ENUM",
+                                    "lens-switch",
+                                    "lens-text-input",
+                                    "lens-dropdown",
+                                    "lens-calendar"
                                 ],
                                 "description": "Type of the UI element"
                             },
