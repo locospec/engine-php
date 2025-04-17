@@ -141,6 +141,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Actions-Model-ModelAction.html#property_mutator"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\Model\\ModelAction\u003A\u003A\u0024entity",
+            "name": "entity",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-Model-ModelAction.html#property_entity"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Actions\\Model\\ModelAction\u003A\u003A\u0024config",
             "name": "config",
             "summary": "",
@@ -920,6 +925,141 @@ Search.appendIndex(
             "name": "data",
             "summary": "",
             "url": "classes/Locospec-Engine-Edge.html#property_data"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition",
+            "name": "EntityDefinition",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_getType"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_getLabel"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgetModelName\u0028\u0029",
+            "name": "getModelName",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_getModelName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgetLayout\u0028\u0029",
+            "name": "getLayout",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_getLayout"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AfromObject\u0028\u0029",
+            "name": "fromObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_fromObject"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_toArray"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AtoObject\u0028\u0029",
+            "name": "toObject",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_toObject"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgenerateFullLayout\u0028\u0029",
+            "name": "generateFullLayout",
+            "summary": "Generates\u0020layout",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_generateFullLayout"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AtransformLayout\u0028\u0029",
+            "name": "transformLayout",
+            "summary": "Transforms\u0020a\u0020shorthand\u0020layout\u0020into\u0020a\u0020full\u0020layout\u0020specification",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_transformLayout"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AprocessLayout\u0028\u0029",
+            "name": "processLayout",
+            "summary": "Processes\u0020the\u0020layout\u0020array,\u0020handling\u0020sections\u0020\u0028named\u0020or\u0020unnamed\u0029\u0020and\u0020nested\u0020structures",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_processLayout"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AprocessFields\u0028\u0029",
+            "name": "processFields",
+            "summary": "Processes\u0020an\u0020array\u0020of\u0020fields,\u0020handling\u0020both\u0020simple\u0020fields\u0020and\u0020list\u0020fields",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_processFields"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AexpandField\u0028\u0029",
+            "name": "expandField",
+            "summary": "Expands\u0020a\u0020single\u0020field\u0020key\u0020into\u0020a\u0020full\u0020field\u0020object",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_expandField"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AexpandListField\u0028\u0029",
+            "name": "expandListField",
+            "summary": "Expands\u0020list\u0020fields\u0020\u0028e.g.,\u0020\u005B\u0022images\u005B\u002A\u005D.url\u0022,\u0020\u0022images\u005B\u002A\u005D.caption\u0022\u005D\u0029",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_expandListField"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003AgenerateLabel\u0028\u0029",
+            "name": "generateLabel",
+            "summary": "Generates\u0020a\u0020human\u002Dreadable\u0020label\u0020from\u0020a\u0020field\u0020key",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#method_generateLabel"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_type"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_name"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_label"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_model"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024layout",
+            "name": "layout",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_layout"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator",
+            "name": "EntityValidator",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityValidator.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityValidator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator\u003A\u003Avalidate\u0028\u0029",
+            "name": "validate",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityValidator.html#method_validate"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator\u003A\u003AvalidateName\u0028\u0029",
+            "name": "validateName",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityValidator.html#method_validateName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator\u003A\u003A\u0024inflector",
+            "name": "inflector",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityValidator.html#property_inflector"
         },                {
             "fqsen": "\\Locospec\\Engine\\Exceptions\\DatabaseOperationException",
             "name": "DatabaseOperationException",
@@ -2631,6 +2771,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Registry-DatabaseDriverRegistry.html#method_register"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\EntityRegistry",
+            "name": "EntityRegistry",
+            "summary": "MutatorRegistry\u0020manages\u0020the\u0020registration\u0020of\u0020mutators.",
+            "url": "classes/Locospec-Engine-Registry-EntityRegistry.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\EntityRegistry\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "Get\u0020the\u0020registry\u0020type\u0020identifier.",
+            "url": "classes/Locospec-Engine-Registry-EntityRegistry.html#method_getType"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\EntityRegistry\u003A\u003AgetItemName\u0028\u0029",
+            "name": "getItemName",
+            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
+            "url": "classes/Locospec-Engine-Registry-EntityRegistry.html#method_getItemName"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Registry\\GeneratorInterface",
             "name": "GeneratorInterface",
             "summary": "",
@@ -2986,6 +3141,16 @@ Search.appendIndex(
             "summary": "Process\u0020a\u0020single\u0020mutator\u0020definition",
             "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processMutatorSpec"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllEntitySpec\u0028\u0029",
+            "name": "processAllEntitySpec",
+            "summary": "Process\u0020a\u0020all\u0020entities\u0020definition",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processAllEntitySpec"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003AprocessEntitySpec\u0028\u0029",
+            "name": "processEntitySpec",
+            "summary": "Process\u0020a\u0020single\u0020entity\u0020definition",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#method_processEntitySpec"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
             "summary": "",
@@ -3010,6 +3175,11 @@ Search.appendIndex(
             "name": "pendingMutators",
             "summary": "",
             "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#property_pendingMutators"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingEntities",
+            "name": "pendingEntities",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Specifications-SpecificationProcessor.html#property_pendingEntities"
         },                {
             "fqsen": "\\Locospec\\Engine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024specValidator",
             "name": "specValidator",
@@ -4055,6 +4225,11 @@ Search.appendIndex(
             "name": "Locospec",
             "summary": "",
             "url": "namespaces/locospec.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Entities",
+            "name": "Entities",
+            "summary": "",
+            "url": "namespaces/locospec-engine-entities.html"
         },                {
             "fqsen": "\\Locospec\\Engine\\Exceptions",
             "name": "Exceptions",
