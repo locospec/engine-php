@@ -55,7 +55,7 @@ class EntityDefinition
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
         $attributes = [];
-        
+
         EntityValidator::validate($data);
 
         $fullLayout = self::generateFullLayout($model, $data->layout);
@@ -102,14 +102,15 @@ class EntityDefinition
     /**
      * Transforms a shorthand layout into a full layout specification
      *
-     * @param array $shorthandLayout The shorthand layout
-     * @param array $attributes The model attributes for field metadata
+     * @param  array  $shorthandLayout  The shorthand layout
+     * @param  array  $attributes  The model attributes for field metadata
      * @return array The transformed full layout
+     *
      * @throws InvalidArgumentException If the layout is invalid
      */
     private static function transformLayout(array $shorthandLayout, array $attributes): array
     {
-      $layout = $shorthandLayout['layout'] ?? $shorthandLayout;
+        $layout = $shorthandLayout['layout'] ?? $shorthandLayout;
 
         // Check if the layout is a flat array of field keys
         $isFlatArray = true;
@@ -123,7 +124,7 @@ class EntityDefinition
         if ($isFlatArray) {
             // Handle flat array format (Example 2)
             return [[
-                'fields' => self::processFields($layout, $attributes)
+                'fields' => self::processFields($layout, $attributes),
             ]];
         }
 
@@ -131,12 +132,13 @@ class EntityDefinition
         return self::processLayout($layout, $attributes);
     }
 
-  /**
+    /**
      * Processes the layout array, handling sections (named or unnamed) and nested structures
      *
-     * @param array $layout The layout array
-     * @param array $attributes The model attributes
+     * @param  array  $layout  The layout array
+     * @param  array  $attributes  The model attributes
      * @return array Processed layout
+     *
      * @throws InvalidArgumentException
      */
     private static function processLayout(array $layout, array $attributes): array
@@ -144,7 +146,7 @@ class EntityDefinition
         $result = [];
 
         foreach ($layout as $section) {
-            if (!is_array($section) || empty($section)) {
+            if (! is_array($section) || empty($section)) {
                 throw new InvalidArgumentException('Invalid section: Each section must be a non-empty array');
             }
 
@@ -162,17 +164,17 @@ class EntityDefinition
                 $item = $section[$i];
 
                 if (is_array($item)) {
-                    if (!empty($item) && is_string($item[0]) && str_starts_with($item[0], '$')) {
+                    if (! empty($item) && is_string($item[0]) && str_starts_with($item[0], '$')) {
                         // Nested section
                         $nestedSectionName = substr($item[0], 1);
                         $sectionData['fields'][] = [
                             'section' => $nestedSectionName,
-                            'fields' => self::processFields(array_slice($item, 1), $attributes)
+                            'fields' => self::processFields(array_slice($item, 1), $attributes),
                         ];
                     } else {
                         // Column (array of fields)
                         $sectionData['fields'][] = [
-                            'fields' => self::processFields($item, $attributes)
+                            'fields' => self::processFields($item, $attributes),
                         ];
                     }
                 } else {
@@ -190,9 +192,10 @@ class EntityDefinition
     /**
      * Processes an array of fields, handling both simple fields and list fields
      *
-     * @param array $fields The fields array
-     * @param array $attributes The model attributes
+     * @param  array  $fields  The fields array
+     * @param  array  $attributes  The model attributes
      * @return array Processed fields
+     *
      * @throws InvalidArgumentException
      */
     private static function processFields(array $fields, array $attributes): array
@@ -215,9 +218,10 @@ class EntityDefinition
     /**
      * Expands a single field key into a full field object
      *
-     * @param string $key The field key
-     * @param array $attributes The model attributes
+     * @param  string  $key  The field key
+     * @param  array  $attributes  The model attributes
      * @return array The expanded field object
+     *
      * @throws InvalidArgumentException
      */
     private static function expandField(string $key, array $attributes): array
@@ -235,7 +239,7 @@ class EntityDefinition
         $field = [
             'key' => $key,
             'label' => self::generateLabel($key),
-            'type' => 'string'
+            'type' => 'string',
         ];
 
         // Add optional properties if present
@@ -249,9 +253,10 @@ class EntityDefinition
     /**
      * Expands list fields (e.g., ["images[*].url", "images[*].caption"])
      *
-     * @param array $fieldKeys The list field keys
-     * @param array $attributes The model attributes
+     * @param  array  $fieldKeys  The list field keys
+     * @param  array  $attributes  The model attributes
      * @return array The expanded list field object
+     *
      * @throws InvalidArgumentException
      */
     private static function expandListField(array $fieldKeys, array $attributes): array
@@ -260,14 +265,14 @@ class EntityDefinition
         $subFields = [];
 
         foreach ($fieldKeys as $key) {
-            if (!preg_match('/^(.+)\[\*\]\.(.+)$/', $key, $matches)) {
+            if (! preg_match('/^(.+)\[\*\]\.(.+)$/', $key, $matches)) {
                 throw new InvalidArgumentException("Invalid list field syntax: '$key'. Expected format: 'field[*].subfield'");
             }
 
             $baseKey = $matches[1];
             $subKey = $matches[2];
 
-            if (!isset($attributes[$baseKey]) || !isset($attributes[$baseKey]['fields'][$subKey])) {
+            if (! isset($attributes[$baseKey]) || ! isset($attributes[$baseKey]['fields'][$subKey])) {
                 throw new InvalidArgumentException("List field '$key' not found in model attributes");
             }
 
@@ -275,7 +280,7 @@ class EntityDefinition
             $subField = [
                 'key' => $subKey,
                 'label' => $subAttr['label'] ?? self::generateLabel($subKey),
-                'type' => $subAttr['type'] ?? 'string'
+                'type' => $subAttr['type'] ?? 'string',
             ];
 
             if (isset($subAttr['display'])) {
@@ -285,23 +290,24 @@ class EntityDefinition
             $subFields[] = $subField;
         }
 
-        if (!$baseKey) {
+        if (! $baseKey) {
             throw new InvalidArgumentException('No valid list fields provided');
         }
 
         $attr = $attributes[$baseKey] ?? [];
+
         return [
             'key' => $baseKey,
             'label' => $attr['label'] ?? self::generateLabel($baseKey),
             'type' => 'list',
-            'fields' => $subFields
+            'fields' => $subFields,
         ];
     }
 
     /**
      * Generates a human-readable label from a field key
      *
-     * @param string $key The field key
+     * @param  string  $key  The field key
      * @return string The generated label
      */
     private static function generateLabel(string $key): string

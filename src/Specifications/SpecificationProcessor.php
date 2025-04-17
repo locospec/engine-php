@@ -2,6 +2,7 @@
 
 namespace Locospec\Engine\Specifications;
 
+use Locospec\Engine\Entities\EntityDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Logger;
@@ -10,7 +11,6 @@ use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Entities\EntityDefinition;
 
 class SpecificationProcessor
 {
@@ -23,7 +23,7 @@ class SpecificationProcessor
     private ?Logger $logger = null;
 
     private array $pendingMutators = [];
-    
+
     private array $pendingEntities = [];
 
     private SpecValidator $specValidator;
@@ -92,7 +92,7 @@ class SpecificationProcessor
                     case 'mutator':
                         $this->pendingMutators[] = $spec;
                         break;
-                    
+
                     case 'entity':
                         $this->pendingEntities[] = $spec;
                         break;
@@ -446,7 +446,7 @@ class SpecificationProcessor
 
             // register the entity
             $this->registryManager->register('entity', $entitySpec);
-            
+
             $this->logger?->info('Entity registered in registry', ['modelName' => $entitySpec->getName()]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing entity spec', [

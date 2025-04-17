@@ -3,6 +3,7 @@
 namespace Locospec\Engine\Actions\Model;
 
 use Locospec\Engine\Actions\StateMachineFactory;
+use Locospec\Engine\Entities\EntityDefinition;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Mutators\MutatorDefinition;
@@ -11,7 +12,6 @@ use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Entities\EntityDefinition;
 
 abstract class ModelAction
 {
@@ -20,7 +20,7 @@ abstract class ModelAction
     protected ViewDefinition $view;
 
     protected ?MutatorDefinition $mutator;
-    
+
     protected ?EntityDefinition $entity;
 
     protected array $config;

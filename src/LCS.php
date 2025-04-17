@@ -106,7 +106,7 @@ class LCS
             // Process all mutator after all views models and relationships are registered
             $specProcessor->processAllMutatorsSpec();
             self::$logger->info('Mutators registration finished');
-            
+
             // Process all mutator after all views models and relationships are registered
             $specProcessor->processAllEntitySpec();
             self::$logger->info('Entities registration finished');

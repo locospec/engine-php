@@ -44,13 +44,14 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
             }
 
             return ['data' => $result];
-        }elseif(isset($entity)){
+        } elseif (isset($entity)) {
             $result = $entity->toArray();
             $result['initialData'] = $input['response'][0]['result'][0];
+
             return ['data' => $result];
-        }
-        else {
+        } else {
             $result = $view->toArray();
+
             return ['data' => $result];
         }
     }

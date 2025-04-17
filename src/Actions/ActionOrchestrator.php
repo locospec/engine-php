@@ -10,6 +10,7 @@ use Locospec\Engine\Actions\Model\ReadListAction;
 use Locospec\Engine\Actions\Model\ReadOneAction;
 use Locospec\Engine\Actions\Model\ReadRelationOptionsAction;
 use Locospec\Engine\Actions\Model\UpdateAction;
+use Locospec\Engine\Entities\EntityDefinition;
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
@@ -18,7 +19,6 @@ use Locospec\Engine\Registry\GeneratorInterface;
 use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
-use Locospec\Engine\Entities\EntityDefinition;
 
 class ActionOrchestrator
 {
@@ -45,7 +45,7 @@ class ActionOrchestrator
         if ($data->getType() === 'mutator' && ! $mutator) {
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
-        
+
         $entitySpecName = $data->getType() === 'entity' ? $data->getName() : '';
         $entity = $this->lcs->getRegistryManager()->get('entity', $entitySpecName);
 
