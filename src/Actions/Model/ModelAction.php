@@ -11,6 +11,7 @@ use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\Context;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Entities\EntityDefinition;
 
 abstract class ModelAction
 {
@@ -19,6 +20,8 @@ abstract class ModelAction
     protected ViewDefinition $view;
 
     protected ?MutatorDefinition $mutator;
+    
+    protected ?EntityDefinition $entity;
 
     protected array $config;
 
@@ -34,6 +37,7 @@ abstract class ModelAction
         ModelDefinition $model,
         ViewDefinition $view,
         ?MutatorDefinition $mutator,
+        ?EntityDefinition $entity,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
@@ -41,6 +45,7 @@ abstract class ModelAction
         $this->model = $model;
         $this->view = $view;
         $this->mutator = $mutator;
+        $this->entity = $entity;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -69,6 +74,7 @@ abstract class ModelAction
             'model' => $this->model,
             'view' => $this->view,
             'mutator' => $this->mutator,
+            'entity' => $this->entity,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,

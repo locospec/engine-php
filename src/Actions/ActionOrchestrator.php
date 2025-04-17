@@ -18,6 +18,7 @@ use Locospec\Engine\Registry\GeneratorInterface;
 use Locospec\Engine\Registry\ValidatorInterface;
 use Locospec\Engine\StateMachine\StateFlowPacket;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Entities\EntityDefinition;
 
 class ActionOrchestrator
 {
@@ -44,9 +45,16 @@ class ActionOrchestrator
         if ($data->getType() === 'mutator' && ! $mutator) {
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
+        
+        $entitySpecName = $data->getType() === 'entity' ? $data->getName() : '';
+        $entity = $this->lcs->getRegistryManager()->get('entity', $entitySpecName);
 
-        $modelName = $data->getType() === 'view' ? $data->getModelName() : ($data->getType() === 'mutator' ? $data->getModelName() : $specName);
-        $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : ($data->getType() === 'mutator' ? $data->getModelName().'_default_view' : $specName);
+        if ($data->getType() === 'entity' && ! $entity) {
+            throw new InvalidArgumentException("Entity Spec not found: {$entitySpecName}");
+        }
+
+        $modelName = in_array($data->getType(), ['view', 'mutator', 'entity']) ? $data->getModelName() : $specName;
+        $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator', 'entity']) ? $data->getModelName().'_default_view' : $specName);
 
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
@@ -60,12 +68,12 @@ class ActionOrchestrator
         }
 
         // Create and execute appropriate action
-        $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator);
+        $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator, $entity);
 
         return $action->execute($input);
     }
 
-    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, ModelDefinition $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator): ModelAction
+    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, ModelDefinition $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator, ?EntityDefinition $entity): ModelAction
     {
         // dd($actionName, $model);
         $actionClass = match ($actionName) {
@@ -85,6 +93,7 @@ class ActionOrchestrator
             $model,
             $view,
             $mutator,
+            $entity,
             $this->stateMachineFactory,
             $this->lcs
         );

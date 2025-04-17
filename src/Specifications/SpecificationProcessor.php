@@ -10,6 +10,7 @@ use Locospec\Engine\Mutators\MutatorDefinition;
 use Locospec\Engine\Registry\RegistryManager;
 use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Views\ViewDefinition;
+use Locospec\Engine\Entities\EntityDefinition;
 
 class SpecificationProcessor
 {
@@ -22,6 +23,8 @@ class SpecificationProcessor
     private ?Logger $logger = null;
 
     private array $pendingMutators = [];
+    
+    private array $pendingEntities = [];
 
     private SpecValidator $specValidator;
 
@@ -88,6 +91,10 @@ class SpecificationProcessor
 
                     case 'mutator':
                         $this->pendingMutators[] = $spec;
+                        break;
+                    
+                    case 'entity':
+                        $this->pendingEntities[] = $spec;
                         break;
 
                     default:
@@ -378,6 +385,72 @@ class SpecificationProcessor
         } catch (\Exception $e) {
             $this->logger?->error('Error processing mutator spec', [
                 'mutatorName' => $spec->name ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
+        }
+    }
+
+    /**
+     * Process a all entities definition
+     */
+    public function processAllEntitySpec(): void
+    {
+        try {
+            $this->logger?->info('Processing all the entities');
+            foreach ($this->pendingEntities as $pending) {
+                $this->logger?->info('Processing entity', ['entityName' => $pending->name]);
+                $model = $this->registryManager->get('model', $pending->model);
+
+                if (! $model) {
+                    $this->logger?->error('Model not found for entity processing', [
+                        'modelName' => $pending->model,
+                    ]);
+                    throw new InvalidArgumentException(
+                        "Cannot process entity: Model {$pending->model} not found"
+                    );
+                }
+
+                $this->processEntitySpec($pending, $model);
+            }
+            // Clear pending mutators after processing
+            $this->pendingEntities = [];
+            $this->logger?->info('Successfully processed all the entities');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during entity processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing entity', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error processing entity: '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Process a single entity definition
+     */
+    private function processEntitySpec(object $spec, ModelDefinition $model): void
+    {
+        try {
+            $this->logger?->info('Processing entity spec', ['entitySpecName' => $spec->name]);
+
+            // Validate the entity spec
+            $this->validateSpec($spec);
+            // Convert object to EntityDefinition
+            $entitySpec = EntityDefinition::fromObject($spec, $this->registryManager, $model);
+
+            $this->logger?->info('Normalized entity spec', ['entitySpecName' => $entitySpec->getName()]);
+
+            // register the entity
+            $this->registryManager->register('entity', $entitySpec);
+            
+            $this->logger?->info('Entity registered in registry', ['modelName' => $entitySpec->getName()]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing entity spec', [
+                'entityName' => $spec->name ?? 'Unknown',
                 'error' => $e->getMessage(),
             ]);
             throw $e;

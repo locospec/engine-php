@@ -24,6 +24,7 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
         $view = $this->context->get('view');
         $model = $this->context->get('model');
         $mutator = $this->context->get('mutator');
+        $entity = $this->context->get('entity');
 
         if (isset($mutator)) {
             $result = $mutator->toArray();
@@ -43,9 +44,13 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
             }
 
             return ['data' => $result];
-        } else {
+        }elseif(isset($entity)){
+            $result = $entity->toArray();
+            $result['initialData'] = $input['response'][0]['result'][0];
+            return ['data' => $result];
+        }
+        else {
             $result = $view->toArray();
-
             return ['data' => $result];
         }
     }
