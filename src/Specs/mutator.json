@@ -164,6 +164,7 @@
                                     "VerticalLayout",
                                     "HorizontalLayout",
                                     "ENUM",
+                                    "lens-enum",
                                     "lens-switch",
                                     "lens-text-input",
                                     "lens-dropdown",
