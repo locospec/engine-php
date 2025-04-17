@@ -3,6 +3,7 @@
 namespace Locospec\Engine\Actions\Model;
 
 use Locospec\Engine\Actions\StateMachineFactory;
+use Locospec\Engine\Entities\EntityDefinition;
 use Locospec\Engine\LCS;
 use Locospec\Engine\Models\ModelDefinition;
 use Locospec\Engine\Mutators\MutatorDefinition;
@@ -20,6 +21,8 @@ abstract class ModelAction
 
     protected ?MutatorDefinition $mutator;
 
+    protected ?EntityDefinition $entity;
+
     protected array $config;
 
     protected string $name;
@@ -34,6 +37,7 @@ abstract class ModelAction
         ModelDefinition $model,
         ViewDefinition $view,
         ?MutatorDefinition $mutator,
+        ?EntityDefinition $entity,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
@@ -41,6 +45,7 @@ abstract class ModelAction
         $this->model = $model;
         $this->view = $view;
         $this->mutator = $mutator;
+        $this->entity = $entity;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -69,6 +74,7 @@ abstract class ModelAction
             'model' => $this->model,
             'view' => $this->view,
             'mutator' => $this->mutator,
+            'entity' => $this->entity,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
