@@ -26,6 +26,13 @@
             "minLength": 1,
             "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
         },
+        "expand": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "An array of field names that can be expanded for the entity."
+        },
         "layout": {
             "type": "array",
             "description": "Defines the layout structure for displaying entity fields",

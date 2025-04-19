@@ -260,6 +260,15 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 'viewName' => $this->context->get('view')->getName(),
             ];
 
+            if (isset($payload['expand']) && ! empty($payload['expand'])) {
+                $preparedPayload['expand'] = $payload['expand'];
+            }else{
+                $relationshipKeys = (array) $this->context->get('model')->getRelationships();
+                if (! empty($relationshipKeys)) {
+                    $preparedPayload['expand'] = array_keys($relationshipKeys);
+                }
+            }
+
             $preparedPayload['filters'] = [
                 'op' => 'and',
                 'conditions' => [
