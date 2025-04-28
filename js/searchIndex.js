@@ -1036,6 +1036,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_layout"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Entities\\EntityDefinition\u003A\u003A\u0024expand",
+            "name": "expand",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Entities-EntityDefinition.html#property_expand"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Entities\\EntityValidator",
             "name": "EntityValidator",
             "summary": "",
