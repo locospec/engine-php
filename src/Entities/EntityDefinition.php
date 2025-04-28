@@ -18,13 +18,16 @@ class EntityDefinition
 
     private array $layout = [];
 
-    public function __construct(string $name, string $label, string $modelName, array $layout)
+    private array $expand = [];
+
+    public function __construct(string $name, string $label, string $modelName, array $layout, array $expand)
     {
         $this->type = 'entity';
         $this->name = $name;
         $this->label = $label;
         $this->model = $modelName;
         $this->layout = $layout;
+        $this->expand = $expand;
     }
 
     public function getType(): string
@@ -55,12 +58,17 @@ class EntityDefinition
     public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
     {
         $attributes = [];
+        $expand = [];
 
         EntityValidator::validate($data);
 
         $fullLayout = self::generateFullLayout($model, $data->layout);
 
-        return new self($data->name, $data->label, $data->model, $fullLayout);
+        if (isset($data->expand)) {
+            $expand = $data->expand;
+        }
+
+        return new self($data->name, $data->label, $data->model, $fullLayout, $expand);
     }
 
     public function toArray(): array
@@ -71,6 +79,7 @@ class EntityDefinition
             'type' => $this->type,
             'model' => $this->model,
             'layout' => $this->layout,
+            'expand' => $this->expand,
         ];
     }
 
@@ -82,6 +91,7 @@ class EntityDefinition
         $result->type = $this->type;
         $result->model = $this->model;
         $result->layout = $this->layout;
+        $result->expand = $this->expand;
 
         return $result;
     }
@@ -272,15 +282,21 @@ class EntityDefinition
             $baseKey = $matches[1];
             $subKey = $matches[2];
 
-            if (! isset($attributes[$baseKey]) || ! isset($attributes[$baseKey]['fields'][$subKey])) {
-                throw new InvalidArgumentException("List field '$key' not found in model attributes");
-            }
+            // if (! isset($attributes[$baseKey]) || ! isset($attributes[$baseKey]['fields'][$subKey])) {
+            //     throw new InvalidArgumentException("List field '$key' not found in model attributes");
+            // }
 
-            $subAttr = $attributes[$baseKey]['fields'][$subKey];
+            // $subAttr = $attributes[$baseKey]['fields'][$subKey];
+            // $subField = [
+            //     'key' => $subKey,
+            //     'label' => $subAttr['label'] ?? self::generateLabel($subKey),
+            //     'type' => $subAttr['type'] ?? 'string',
+            // ];
+
             $subField = [
                 'key' => $subKey,
-                'label' => $subAttr['label'] ?? self::generateLabel($subKey),
-                'type' => $subAttr['type'] ?? 'string',
+                'label' => self::generateLabel($subKey),
+                'type' => 'string',
             ];
 
             if (isset($subAttr['display'])) {
@@ -298,7 +314,8 @@ class EntityDefinition
 
         return [
             'key' => $baseKey,
-            'label' => $attr['label'] ?? self::generateLabel($baseKey),
+            // 'label' => $attr['label'] ?? self::generateLabel($baseKey),
+            'label' => self::generateLabel($baseKey),
             'type' => 'list',
             'fields' => $subFields,
         ];
