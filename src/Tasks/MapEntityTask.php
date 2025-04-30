@@ -2,10 +2,8 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
-use Locospec\Engine\Database\QueryContext;
-use Locospec\Engine\Database\DatabaseOperationsCollection;
 use Locospec\Engine\Database\JMESPathCustomRuntime;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class MapEntityTask extends AbstractTask implements TaskInterface
 {
@@ -21,22 +19,22 @@ class MapEntityTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $input, array $taskArgs=[]): array
+    public function execute(array $input, array $taskArgs = []): array
     {
         $template = $taskArgs['template'] ?? [];
-        
+
         $data = [
-            'result'  => $input['result']  ?? null,
+            'result' => $input['result'] ?? null,
             'payload' => $input['payload'] ?? null,
         ];
-        
+
         $mapped = [];
         $runtime = new JMESPathCustomRuntime;
 
         foreach ($template as $outputKey => $expression) {
             $mapped[$outputKey] = $runtime->search($expression, $data);
         }
-        
+
         $input['result']['mappedData'] = $mapped;
 
         return $input;

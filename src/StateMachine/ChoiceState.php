@@ -92,24 +92,24 @@ class ChoiceState implements StateInterface
         if (isset($expression['BooleanEquals'])) {
             return $variable === $expression['BooleanEquals'];
         }
-        
+
         if (isset($expression['IsBoolean'])) {
             return is_bool($variable);
         }
 
         if (isset($expression['IsNull'])) {
-            if($expression['IsNull']){
-                if(!isset($variable)){
+            if ($expression['IsNull']) {
+                if (! isset($variable)) {
                     return true;
-                }else{
+                } else {
                     return false;
-                } 
-            }else{
-                if(isset($variable)){
+                }
+            } else {
+                if (isset($variable)) {
                     return true;
-                }else{
+                } else {
                     return false;
-                } 
+                }
             }
         }
 
@@ -122,9 +122,9 @@ class ChoiceState implements StateInterface
         $current = $input;
 
         foreach ($parts as $part) {
-            if(isset($current[$part])){
+            if (isset($current[$part])) {
                 $current = $current[$part];
-            }else{
+            } else {
                 $current = null;
             }
         }

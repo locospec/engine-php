@@ -19,7 +19,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $payload, array $taskArgs=[]): array
+    public function execute(array $payload, array $taskArgs = []): array
     {
         $preparedPayload = [];
         switch ($this->context->get('action')) {
@@ -50,8 +50,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             default:
                 break;
         }
-        
-        
+
         return [
             'payload' => $payload,
             'preparedPayload' => $preparedPayload,
@@ -158,7 +157,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForCreateAndUpdate(array $payload, string $dbOp): array
     {
-        try{
+        try {
             $preparedPayload = [
                 'type' => $dbOp,
                 'modelName' => $this->context->get('model')->getName(),
@@ -249,7 +248,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             return $preparedPayload;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             dd($e);
         }
     }

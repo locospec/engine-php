@@ -9,14 +9,13 @@ class TaskState implements StateInterface
     private string $resource;
 
     private ?string $next;
-    
-    
+
     private bool $end;
-    
+
     private StateMachine $stateMachine;
-    
+
     private ?array $taskArgs;
-    
+
     public function __construct(string $name, array $definition, StateMachine $stateMachine)
     {
         $this->name = $name;

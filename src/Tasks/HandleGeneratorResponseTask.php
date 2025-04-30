@@ -2,7 +2,6 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\LCS;
 use Locospec\Engine\StateMachine\ContextInterface;
 
 class HandleGeneratorResponseTask extends AbstractTask implements TaskInterface
@@ -19,7 +18,7 @@ class HandleGeneratorResponseTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $input, array $taskArgs=[]): array
+    public function execute(array $input, array $taskArgs = []): array
     {
         return $input;
     }

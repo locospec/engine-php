@@ -2,11 +2,11 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
-use Locospec\Engine\Database\QueryContext;
 use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\Database\QueryContext;
 use Locospec\Engine\Models\Relationships\HasMany;
 use Locospec\Engine\Models\Relationships\HasOne;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class CreateEntityTask extends AbstractTask implements TaskInterface
 {
@@ -22,23 +22,23 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $input, array $taskArgs=[]): array
+    public function execute(array $input, array $taskArgs = []): array
     {
         $model = $this->context->get('lcs')->getRegistryManager()->get('model', $taskArgs['modelName']);
         $queryPayload = $this->preparePayloadForCreate($taskArgs, $model);
         $contextData = $input['payload'];
-        
+
         // Initialize DB Operator Collection
         $dbOps = new DatabaseOperationsCollection($this->operator);
         if (! empty($contextData)) {
             $createdContext = QueryContext::create($contextData);
             $dbOps->setContext($createdContext);
         }
-        
+
         // Set registry manager
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
         $dbOps->add($queryPayload);
-        
+
         $response = $dbOps->execute($this->operator);
         $parentRecord = $response[0]['result'][0];
         $relatedResults = [];
@@ -46,7 +46,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
 
         foreach ($relationships as $relationName => $relationship) {
             if ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                
+
                 // Expect a single child‐record payload, not an array
                 // $childData = $contextData[$relationName] ?? null;
                 // $childData = $contextData ?? null;
@@ -54,11 +54,11 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                 if (! is_array($childData)) {
                     continue;
                 }
-                
+
                 // Inject the parent’s key into the child
                 $childData[$relationship->getForeignKey()]
                 = $parentRecord[$relationship->getLocalKey()];
-                
+
                 // Prepare & execute the child insert
                 $childModel = $this->context->get('lcs')->getRegistryManager()->get('model', $relationship->getRelatedModelName());
                 $childQuery = $this->preparePayloadForCreate($childData, $childModel);
@@ -71,17 +71,17 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                 $relatedResults[$relationName] = $childResponse[0]['result'][0];
             }
         }
-        
+
         $parentRecord['relatedResults'] = $relatedResults;
-      
-        return ["result" => $parentRecord];
+
+        return ['result' => $parentRecord];
     }
 
-     public function preparePayloadForCreate(array $payload, $model): array
+    public function preparePayloadForCreate(array $payload, $model): array
     {
         // $model = $this->context->get('lcs')->getRegistryManager()->get('model', $payload['modelName']);
         $preparedPayload = [
-            'type' => "insert",
+            'type' => 'insert',
             'modelName' => $model->getName(),
         ];
 
@@ -134,6 +134,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                 }
             }
         }
+
         // dd("preparedPayload", $preparedPayload);
         return $preparedPayload;
     }

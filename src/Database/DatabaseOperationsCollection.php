@@ -219,17 +219,16 @@ class DatabaseOperationsCollection
         }
 
         // Resolve any context variables in Data for insert
-        if(isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data'])&& $this->context){
+        if (isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data']) && $this->context) {
             $this->logger->info('Resolving context in data', [
                 'type' => 'dbOps',
                 'filters' => $operation['data'],
             ]);
-            
+
             $operation['data'] = $this->valueResolver->resolveData(
                 $operation['data'],
                 $this->context
             );
-            
 
             $this->logger->info('Context resolved in data', [
                 'type' => 'dbOps',
@@ -238,12 +237,12 @@ class DatabaseOperationsCollection
         }
 
         // Resolve any json columns in Data for insert
-        if(isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data'])){
+        if (isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data'])) {
             $this->logger->info('Resolving json column values in data', [
                 'type' => 'dbOps',
                 'filters' => $operation['data'],
             ]);
-            
+
             $operation['data'] = $this->valueResolver->resolveJsonColumnData(
                 $operation['data'],
                 $model
@@ -340,7 +339,7 @@ class DatabaseOperationsCollection
         // If each operation here has different connection to be used, then how should we execute?
 
         $dbOpResults = [];
-        
+
         foreach ($this->operations as $operation) {
             $this->logger->info('Executing operation', [
                 'type' => 'dbOps',

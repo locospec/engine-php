@@ -19,5 +19,5 @@ interface TaskInterface
      * @param  array  $input  The input data for the task
      * @return array The result of the task execution
      */
-    public function execute(array $input, array $taskArgs=[]): array;
+    public function execute(array $input, array $taskArgs = []): array;
 }

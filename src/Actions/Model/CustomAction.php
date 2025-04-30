@@ -14,9 +14,9 @@ class CustomAction extends ModelAction
 
     protected function getStateMachineDefinition(array $def = []): array
     {
-        try{
+        try {
             return $def;
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             dd($e);
         }
     }

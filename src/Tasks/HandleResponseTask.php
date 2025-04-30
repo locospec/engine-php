@@ -19,7 +19,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $input, array $taskArgs=[]): array
+    public function execute(array $input, array $taskArgs = []): array
     {
         $res = [];
         $logger = LCS::getLogger();

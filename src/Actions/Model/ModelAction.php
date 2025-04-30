@@ -83,18 +83,18 @@ abstract class ModelAction
             'generator' => $this->generator,
         ]);
 
-        if(isset($input['def'])){
+        if (isset($input['def'])) {
             // Create state machine via factory
             $stateMachine = $this->stateMachineFactory->create(
                 $this->getStateMachineDefinition(json_decode(json_encode($input['def']), true)),
                 $context
             );
-            
+
             // Execute state machine
             $packet = $stateMachine->execute($input);
-            
+
             return $packet;
-        }else{
+        } else {
             $stateMachine = $this->stateMachineFactory->create(
                 $this->getStateMachineDefinition(),
                 $context
