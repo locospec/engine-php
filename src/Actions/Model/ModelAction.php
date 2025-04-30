@@ -82,16 +82,29 @@ abstract class ModelAction
             'crudValidator' => $this->crudValidator,
             'generator' => $this->generator,
         ]);
-        // Create state machine via factory
-        $stateMachine = $this->stateMachineFactory->create(
-            $this->getStateMachineDefinition(),
-            $context
-        );
 
-        // Execute state machine
-        $packet = $stateMachine->execute($input);
+        if(isset($input['def'])){
+            // Create state machine via factory
+            $stateMachine = $this->stateMachineFactory->create(
+                $this->getStateMachineDefinition(json_decode(json_encode($input['def']), true)),
+                $context
+            );
+            
+            // Execute state machine
+            $packet = $stateMachine->execute($input);
+            
+            return $packet;
+        }else{
+            $stateMachine = $this->stateMachineFactory->create(
+                $this->getStateMachineDefinition(),
+                $context
+            );
 
-        return $packet;
+            // Execute state machine
+            $packet = $stateMachine->execute($input);
+
+            return $packet;
+        }
     }
 
     /**

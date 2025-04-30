@@ -9,7 +9,7 @@ class AuthorizeTask extends AbstractTask
         return 'authorize';
     }
 
-    public function execute(array $input): array
+    public function execute(array $input, array $taskArgs=[]): array
     {
         return ['authorized' => true];
     }

@@ -89,13 +89,28 @@ class ChoiceState implements StateInterface
     private function evaluateDataTestExpression(array $expression, array $input): bool
     {
         $variable = $this->resolvePath($expression['Variable'], $input);
-
         if (isset($expression['BooleanEquals'])) {
             return $variable === $expression['BooleanEquals'];
         }
-
+        
         if (isset($expression['IsBoolean'])) {
             return is_bool($variable);
+        }
+
+        if (isset($expression['IsNull'])) {
+            if($expression['IsNull']){
+                if(!isset($variable)){
+                    return true;
+                }else{
+                    return false;
+                } 
+            }else{
+                if(isset($variable)){
+                    return true;
+                }else{
+                    return false;
+                } 
+            }
         }
 
         throw new \RuntimeException("Unsupported data test expression in state: {$this->name}");
@@ -107,10 +122,11 @@ class ChoiceState implements StateInterface
         $current = $input;
 
         foreach ($parts as $part) {
-            if (! isset($current[$part])) {
-                throw new \RuntimeException("Invalid path: $path in state: {$this->name}");
+            if(isset($current[$part])){
+                $current = $current[$part];
+            }else{
+                $current = null;
             }
-            $current = $current[$part];
         }
 
         return $current;

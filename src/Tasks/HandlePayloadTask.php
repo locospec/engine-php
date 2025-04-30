@@ -20,7 +20,7 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         $this->context = $context;
     }
 
-    public function execute(array $input): array
+    public function execute(array $input, array $taskArgs=[]): array
     {
         if (isset($input['preparedPayload']) && ! empty($input['preparedPayload'])) {
             $context = [];
