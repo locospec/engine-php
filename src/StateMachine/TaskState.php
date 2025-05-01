@@ -14,6 +14,8 @@ class TaskState implements StateInterface
 
     private StateMachine $stateMachine;
 
+    private ?array $taskArgs;
+
     public function __construct(string $name, array $definition, StateMachine $stateMachine)
     {
         $this->name = $name;
@@ -21,6 +23,7 @@ class TaskState implements StateInterface
         $this->next = $definition['Next'] ?? null;
         $this->end = $definition['End'] ?? false;
         $this->stateMachine = $stateMachine;
+        $this->taskArgs = $definition['TaskArgs'] ?? [];
     }
 
     public function execute(StateFlowPacket $packet): void
@@ -33,7 +36,7 @@ class TaskState implements StateInterface
         }
 
         $resource->setContext($packet->context);
-        $packet->currentOutput = $resource->execute($packet->currentInput);
+        $packet->currentOutput = $resource->execute($packet->currentInput, $this->taskArgs);
         $packet->addDebugLog('Resource execution completed');
     }
 

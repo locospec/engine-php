@@ -13,7 +13,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
         return 'validate';
     }
 
-    public function execute(array $input): array
+    public function execute(array $input, array $taskArgs = []): array
     {
         try {
             $validator = new SpecValidator;

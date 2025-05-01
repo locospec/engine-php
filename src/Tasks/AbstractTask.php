@@ -43,7 +43,7 @@ abstract class AbstractTask implements TaskInterface
     /**
      * Execute the task
      */
-    abstract public function execute(array $input): array;
+    abstract public function execute(array $input, array $taskArgs = []): array;
 
     /**
      * Validate that context has required properties

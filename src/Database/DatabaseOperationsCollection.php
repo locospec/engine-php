@@ -182,8 +182,6 @@ class DatabaseOperationsCollection
             unset($operation['scopes']);
         }
 
-        // dd($operation);
-
         if (isset($operation['filters'])) {
             $this->logger->info('Normalizing filters', [
                 'type' => 'dbOps',
@@ -219,8 +217,42 @@ class DatabaseOperationsCollection
                 'filters' => $operation['filters'],
             ]);
         }
-        // ToDoRajesh:preparePayload end
 
+        // Resolve any context variables in Data for insert
+        if (isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data']) && $this->context) {
+            $this->logger->info('Resolving context in data', [
+                'type' => 'dbOps',
+                'filters' => $operation['data'],
+            ]);
+
+            $operation['data'] = $this->valueResolver->resolveData(
+                $operation['data'],
+                $this->context
+            );
+
+            $this->logger->info('Context resolved in data', [
+                'type' => 'dbOps',
+                'filters' => $operation['data'],
+            ]);
+        }
+
+        // Resolve any json columns in Data for insert
+        if (isset($operation['type']) && $operation['type'] === 'insert' && isset($operation['data'])) {
+            $this->logger->info('Resolving json column values in data', [
+                'type' => 'dbOps',
+                'filters' => $operation['data'],
+            ]);
+
+            $operation['data'] = $this->valueResolver->resolveJsonColumnData(
+                $operation['data'],
+                $model
+            );
+
+            $this->logger->info('Resolved json column values in data', [
+                'type' => 'dbOps',
+                'filters' => $operation['data'],
+            ]);
+        }
         // ToDoRajesh:validate
         // this should be a task: validate payload
         $validation = $this->validator->validateOperation($operation);
@@ -246,7 +278,6 @@ class DatabaseOperationsCollection
         $operation['tableName'] = $model->getConfig()->getTable();
         $operation['connection'] = $model->getConfig()->getConnection() ?? 'default';
         $this->operations[] = $operation;
-
         $this->logger->info('Operation added successfully', [
             'type' => 'dbOps',
             'operation' => $operation,
@@ -323,8 +354,8 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'connection' => $operation['connection'],
             ]);
-
             $dbOpResult = $execOperator->run([$operation]);
+
             $this->logger->info('Operation executed', [
                 'type' => 'dbOps',
                 'result' => $dbOpResult,

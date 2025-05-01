@@ -4,9 +4,13 @@ namespace Locospec\Engine\Registry;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Tasks\AuthorizeTask;
+use Locospec\Engine\Tasks\CreateEntityTask;
+use Locospec\Engine\Tasks\FindEntityTask;
 use Locospec\Engine\Tasks\GenerateConfigTask;
+use Locospec\Engine\Tasks\HandleGeneratorResponseTask;
 use Locospec\Engine\Tasks\HandlePayloadTask;
 use Locospec\Engine\Tasks\HandleResponseTask;
+use Locospec\Engine\Tasks\MapEntityTask;
 use Locospec\Engine\Tasks\PreparePayloadTask;
 use Locospec\Engine\Tasks\ValidateTask;
 
@@ -34,6 +38,10 @@ class RegistryManager
         $this->register('task', PreparePayloadTask::class);
         $this->register('task', HandlePayloadTask::class);
         $this->register('task', HandleResponseTask::class);
+        $this->register('task', FindEntityTask::class);
+        $this->register('task', CreateEntityTask::class);
+        $this->register('task', HandleGeneratorResponseTask::class);
+        $this->register('task', MapEntityTask::class);
     }
 
     public function addRegistry(RegistryInterface $registry): void
