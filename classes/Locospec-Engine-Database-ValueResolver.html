@@ -119,7 +119,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
@@ -154,16 +154,37 @@
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveData">resolveData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Recursively resolve any &#039;$.&#039; placeholders in the data rows.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveFilters">resolveFilters()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveJsonColumnData">resolveJsonColumnData()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>JSON-encode any columns defined as &#039;json&#039; or &#039;object&#039; in the model spec.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveValue">resolveValue()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveRow">resolveRow()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+<dd>Resolve one row (recursively handling nested arrays).</dd>
 
     </dl>
 
@@ -185,6 +206,70 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_resolveData">
+        resolveData()
+        <a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Recursively resolve any &#039;$.&#039; placeholders in the data rows.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">resolveData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Database-QueryContext.html"><abbr title="\Locospec\Engine\Database\QueryContext">QueryContext</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of rows (each row is an associative array).</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$context</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Database-QueryContext.html"><abbr title="\Locospec\Engine\Database\QueryContext">QueryContext</abbr></a>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>QueryContext for placeholder resolution.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The data with all placeholders resolved.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_resolveFilters">
         resolveFilters()
         <a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveFilters" class="headerlink"><i class="fas fa-link"></i></a>
@@ -193,7 +278,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">20</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -240,6 +325,70 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_resolveJsonColumnData">
+        resolveJsonColumnData()
+        <a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveJsonColumnData" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">81</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">JSON-encode any columns defined as &#039;json&#039; or &#039;object&#039; in the model spec.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">resolveJsonColumnData</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of rows to process.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$model</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Models-ModelDefinition.html"><abbr title="\Locospec\Engine\Models\ModelDefinition">ModelDefinition</abbr></a>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>ModelDefinition holding attribute types.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The data with JSON columns encoded.</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_resolveValue">
         resolveValue()
         <a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveValue" class="headerlink"><i class="fas fa-link"></i></a>
@@ -248,7 +397,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
@@ -284,6 +433,70 @@
     
 
     
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveRow">
+        resolveRow()
+        <a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveRow" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/ValueResolver.php"><a href="files/src-database-valueresolver.html"><abbr title="src/Database/ValueResolver.php">ValueResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolve one row (recursively handling nested arrays).</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">resolveRow</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Database-QueryContext.html"><abbr title="\Locospec\Engine\Database\QueryContext">QueryContext</abbr></a>|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$context</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>A scalar or array value from the row.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$context</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/Locospec-Engine-Database-QueryContext.html"><abbr title="\Locospec\Engine\Database\QueryContext">QueryContext</abbr></a>|null</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>QueryContext for placeholder resolution.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">mixed</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The resolved value.</p>
+</section>
+
+            </section>
+
 </article>
             </section>
 
@@ -398,8 +611,11 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveData">resolveData()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveFilters">resolveFilters()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveJsonColumnData">resolveJsonColumnData()</a></li>
                                             <li class=""><a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveValue">resolveValue()</a></li>
+                                            <li class=""><a href="classes/Locospec-Engine-Database-ValueResolver.html#method_resolveRow">resolveRow()</a></li>
                                     </ul>
             </li>
                     </ul>

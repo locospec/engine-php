@@ -31,6 +31,31 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Actions-ActionOrchestrator.html#property_stateMachineFactory"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\CustomActionOrchestrator",
+            "name": "CustomActionOrchestrator",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-CustomActionOrchestrator.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\CustomActionOrchestrator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-CustomActionOrchestrator.html#method___construct"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\CustomActionOrchestrator\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-CustomActionOrchestrator.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\CustomActionOrchestrator\u003A\u003A\u0024lcs",
+            "name": "lcs",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-CustomActionOrchestrator.html#property_lcs"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\CustomActionOrchestrator\u003A\u003A\u0024stateMachineFactory",
+            "name": "stateMachineFactory",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Actions-CustomActionOrchestrator.html#property_stateMachineFactory"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Actions\\Model\\ConfigAction",
             "name": "ConfigAction",
             "summary": "Standard\u0020Create\u0020action\u0020for\u0020models",
@@ -60,6 +85,21 @@ Search.appendIndex(
             "name": "getStateMachineDefinition",
             "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
             "url": "classes/Locospec-Engine-Actions-Model-CreateAction.html#method_getStateMachineDefinition"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\Model\\CustomAction",
+            "name": "CustomAction",
+            "summary": "Standard\u0020Create\u0020action\u0020for\u0020models",
+            "url": "classes/Locospec-Engine-Actions-Model-CustomAction.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\Model\\CustomAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-Engine-Actions-Model-CustomAction.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Actions\\Model\\CustomAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/Locospec-Engine-Actions-Model-CustomAction.html#method_getStateMachineDefinition"
         },                {
             "fqsen": "\\Locospec\\Engine\\Actions\\Model\\DeleteAction",
             "name": "DeleteAction",
@@ -870,6 +910,21 @@ Search.appendIndex(
             "name": "resolveFilters",
             "summary": "",
             "url": "classes/Locospec-Engine-Database-ValueResolver.html#method_resolveFilters"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\ValueResolver\u003A\u003AresolveData\u0028\u0029",
+            "name": "resolveData",
+            "summary": "Recursively\u0020resolve\u0020any\u0020\u0027\u0024.\u0027\u0020placeholders\u0020in\u0020the\u0020data\u0020rows.",
+            "url": "classes/Locospec-Engine-Database-ValueResolver.html#method_resolveData"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\ValueResolver\u003A\u003AresolveRow\u0028\u0029",
+            "name": "resolveRow",
+            "summary": "Resolve\u0020one\u0020row\u0020\u0028recursively\u0020handling\u0020nested\u0020arrays\u0029.",
+            "url": "classes/Locospec-Engine-Database-ValueResolver.html#method_resolveRow"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Database\\ValueResolver\u003A\u003AresolveJsonColumnData\u0028\u0029",
+            "name": "resolveJsonColumnData",
+            "summary": "JSON\u002Dencode\u0020any\u0020columns\u0020defined\u0020as\u0020\u0027json\u0027\u0020or\u0020\u0027object\u0027\u0020in\u0020the\u0020model\u0020spec.",
+            "url": "classes/Locospec-Engine-Database-ValueResolver.html#method_resolveJsonColumnData"
         },                {
             "fqsen": "\\Locospec\\Engine\\Edge",
             "name": "Edge",
@@ -3576,6 +3631,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-StateMachine-TaskState.html#property_stateMachine"
         },                {
+            "fqsen": "\\Locospec\\Engine\\StateMachine\\TaskState\u003A\u003A\u0024taskArgs",
+            "name": "taskArgs",
+            "summary": "",
+            "url": "classes/Locospec-Engine-StateMachine-TaskState.html#property_taskArgs"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Support\\StringInflector",
             "name": "StringInflector",
             "summary": "",
@@ -3721,6 +3781,61 @@ Search.appendIndex(
             "summary": "Execute\u0020the\u0020task",
             "url": "classes/Locospec-Engine-Tasks-AuthorizeTask.html#method_execute"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask",
+            "name": "CreateEntityTask",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "Set\u0020the\u0020execution\u0020context",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html#method_setContext"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask\u003A\u003ApreparePayloadForCreate\u0028\u0029",
+            "name": "preparePayloadForCreate",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html#method_preparePayloadForCreate"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-CreateEntityTask.html#property_context"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\FindEntityTask",
+            "name": "FindEntityTask",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-FindEntityTask.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\FindEntityTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-Engine-Tasks-FindEntityTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\FindEntityTask\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "Set\u0020the\u0020execution\u0020context",
+            "url": "classes/Locospec-Engine-Tasks-FindEntityTask.html#method_setContext"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\FindEntityTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-Engine-Tasks-FindEntityTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\FindEntityTask\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-FindEntityTask.html#property_context"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\GenerateConfigTask",
             "name": "GenerateConfigTask",
             "summary": "",
@@ -3745,6 +3860,31 @@ Search.appendIndex(
             "name": "context",
             "summary": "",
             "url": "classes/Locospec-Engine-Tasks-GenerateConfigTask.html#property_context"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleGeneratorResponseTask",
+            "name": "HandleGeneratorResponseTask",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-HandleGeneratorResponseTask.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleGeneratorResponseTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-Engine-Tasks-HandleGeneratorResponseTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleGeneratorResponseTask\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "Set\u0020the\u0020execution\u0020context",
+            "url": "classes/Locospec-Engine-Tasks-HandleGeneratorResponseTask.html#method_setContext"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleGeneratorResponseTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-Engine-Tasks-HandleGeneratorResponseTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\HandleGeneratorResponseTask\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-HandleGeneratorResponseTask.html#property_context"
         },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\HandlePayloadTask",
             "name": "HandlePayloadTask",
@@ -3820,6 +3960,31 @@ Search.appendIndex(
             "name": "context",
             "summary": "",
             "url": "classes/Locospec-Engine-Tasks-HandleResponseTask.html#property_context"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\MapEntityTask",
+            "name": "MapEntityTask",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-MapEntityTask.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\MapEntityTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-Engine-Tasks-MapEntityTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\MapEntityTask\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "Set\u0020the\u0020execution\u0020context",
+            "url": "classes/Locospec-Engine-Tasks-MapEntityTask.html#method_setContext"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\MapEntityTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-Engine-Tasks-MapEntityTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\MapEntityTask\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-MapEntityTask.html#property_context"
         },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\PreparePayloadTask",
             "name": "PreparePayloadTask",
