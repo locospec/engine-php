@@ -9,7 +9,7 @@ interface ValidatorInterface
      *
      * @return mixed True if validation passes, or errors collection.
      */
-    public function validate(array $input, array $schema, array $options);
+    public function validate(array $input, array $attributes, array $options);
 
     /**
      * Validate input data against the provided custom rules.
