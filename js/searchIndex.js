@@ -1396,6 +1396,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Logger.html#method_isQueryLogsEnabled"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003AisEnabled\u0028\u0029",
+            "name": "isEnabled",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#method_isEnabled"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A\u0024logger",
             "name": "logger",
             "summary": "",
@@ -1410,6 +1415,16 @@ Search.appendIndex(
             "name": "query_logs",
             "summary": "",
             "url": "classes/Locospec-Engine-Logger.html#property_query_logs"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A\u0024enabled",
+            "name": "enabled",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#property_enabled"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Logger\u003A\u003A\u0024retention_days",
+            "name": "retention_days",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Logger.html#property_retention_days"
         },                {
             "fqsen": "\\Locospec\\Engine\\MermaidRenderer",
             "name": "MermaidRenderer",
