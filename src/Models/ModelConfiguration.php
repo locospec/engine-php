@@ -20,7 +20,7 @@ class ModelConfiguration
 
     private bool $softDelete;
 
-    private string $deleteColumn;
+    private ?string $deleteColumn;
 
     public function __construct(
         string $primaryKey,
@@ -31,7 +31,7 @@ class ModelConfiguration
         ?string $plural,
         ?string $labelKey,
         bool $softDelete,
-        string $deleteColumn
+        ?string $deleteColumn
     ) {
         $this->primaryKey = $primaryKey;
         $this->table = $table;
@@ -55,7 +55,7 @@ class ModelConfiguration
             $config['plural'] ?? null,
             $config['labelKey'] ?? null,
             $config['softDelete'] ?? true,
-            $config['deleteColumn'] ?? 'deleted_at',
+            $config['deleteColumn'] ?? null,
         );
     }
 
@@ -70,7 +70,7 @@ class ModelConfiguration
             $config->plural ?? null,
             $config->labelKey ?? null,
             $config->softDelete ?? true,
-            $config->deleteColumn ?? 'deleted_at',
+            $config->deleteColumn ?? null,
         );
     }
 

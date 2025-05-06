@@ -60,12 +60,17 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     public function preparePayloadForRead(array $payload): array
     {
         $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
+
         $preparedPayload = [
             'type' => 'select',
-            'deleteColumn' => $deleteColumn,
+            // 'deleteColumn' => $deleteColumn,
             'modelName' => $this->context->get('model')->getName(),
             'viewName' => $this->context->get('view')->getName(),
         ];
+
+        if($deleteColumn){
+            $preparedPayload['deleteColumn'] =  $deleteColumn;
+        }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
             if (! isset($payload['pagination']['cursor'])) {
@@ -114,12 +119,16 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     {
         $registryManager = $this->context->get('lcs')->getRegistryManager();
         $optionsModel = $registryManager->get('model', $payload['relation']);
+        $deleteColumn = $optionsModel->getConfig()->getDeleteColumn();
 
         $preparedPayload = [
             'type' => 'select',
-            'deleteColumn' => $optionsModel->getConfig()->getDeleteColumn(),
             'modelName' => $optionsModel->getName(),
         ];
+
+        if($deleteColumn){
+            $preparedPayload['deleteColumn'] = $deleteColumn;
+        }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
             if (! isset($payload['pagination']['cursor'])) {
