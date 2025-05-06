@@ -6,6 +6,7 @@ use Monolog\Handler\RotatingFileHandler;
 use Monolog\Handler\TestHandler;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
+use Monolog\Handler\NullHandler;
 
 class Logger
 {
@@ -15,25 +16,35 @@ class Logger
 
     private bool $query_logs;
 
+    private bool $enabled;
+    
+    private int $retention_days;
+
     // Constructor to initialize the logger with a log file
-    public function __construct(string $logFilePath, int $maxFiles, bool $query_logs)
+    public function __construct(array $config)
     {
+        $this->query_logs = $config['query_logs']??false;
+        $this->enabled = $config['enabled']??false;
+        $this->retention_days = $config['retention_days']??7;
         $this->logger = new MonologLogger('lcs_logger');
 
-        // Main handler for writing logs to file
-        $fileHandler = new RotatingFileHandler($logFilePath, $maxFiles, Level::Debug);
-        $this->logger->pushHandler($fileHandler);
+        if ($this->enabled) {
+            // Main handler for writing logs to file
+            $fileHandler = new RotatingFileHandler($config['file_path'], $this->retention_days, Level::Debug);
+            $this->logger->pushHandler($fileHandler);
 
-        $this->query_logs = $query_logs;
+            // BufferHandler stores logs temporarily (without flushing immediately)
+            // This doesnt have the way to get the logs, It addes the logs to the file itself once buffer is flushed
+            // $this->bufferHandler = new BufferHandler($fileHandler);
+            // $this->logger->pushHandler($this->bufferHandler);
 
-        // BufferHandler stores logs temporarily (without flushing immediately)
-        // This doesnt have the way to get the logs, It addes the logs to the file itself once buffer is flushed
-        // $this->bufferHandler = new BufferHandler($fileHandler);
-        // $this->logger->pushHandler($this->bufferHandler);
-
-        // TestHandler for capturing logs in memory (without writing to file)
-        $this->testHandler = new TestHandler;
-        $this->logger->pushHandler($this->testHandler);
+            // TestHandler for capturing logs in memory (without writing to file)
+            $this->testHandler = new TestHandler;
+            $this->logger->pushHandler($this->testHandler);
+        }else{
+            // NullHandler drops all records
+            $this->logger->pushHandler(new NullHandler());
+        }
     }
 
     // Method to log an info message
@@ -57,6 +68,10 @@ class Logger
     // Retrieve log records from the in-memory TestHandler
     public function getLogs(?string $type = null): array
     {
+        if (! $this->enabled || ! $this->testHandler) {
+            return [];
+        }
+
         if (isset($type)) {
             return array_reduce(
                 $this->testHandler->getRecords(),
@@ -90,5 +105,11 @@ class Logger
     public function isQueryLogsEnabled(): bool
     {
         return $this->query_logs;
+    }
+ 
+    // Check if logs are enabled
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
     }
 }

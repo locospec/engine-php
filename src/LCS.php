@@ -30,8 +30,8 @@ class LCS
                 return;
             }
 
-            if (isset($config['logging']['file_path'])) {
-                self::$logger = new Logger($config['logging']['file_path'], $config['logging']['retention_days'], $config['logging']['query_logs']);
+            if (isset($config['logging'])) {
+                self::$logger = new Logger($config['logging']);
                 self::$logger->info('Initializing LCS...');
             }
 
