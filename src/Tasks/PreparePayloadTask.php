@@ -68,8 +68,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'viewName' => $this->context->get('view')->getName(),
         ];
 
-        if($deleteColumn){
-            $preparedPayload['deleteColumn'] =  $deleteColumn;
+        if ($deleteColumn) {
+            $preparedPayload['deleteColumn'] = $deleteColumn;
         }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -126,7 +126,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'modelName' => $optionsModel->getName(),
         ];
 
-        if($deleteColumn){
+        if ($deleteColumn) {
             $preparedPayload['deleteColumn'] = $deleteColumn;
         }
 
