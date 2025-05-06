@@ -63,7 +63,7 @@
                     "description": "Enable soft delete functionality"
                 },
                 "deleteColumn": {
-                    "type": "string",
+                    "type": ["string", "null"],
                     "default": "deleted_at",
                     "description": "Column name for soft delete timestamp"
                 }
