@@ -4,6 +4,7 @@ namespace Locospec\Engine;
 
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\RotatingFileHandler;
+use Monolog\Handler\StreamHandler;
 use Monolog\Handler\TestHandler;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
@@ -41,6 +42,9 @@ class Logger
             // TestHandler for capturing logs in memory (without writing to file)
             $this->testHandler = new TestHandler;
             $this->logger->pushHandler($this->testHandler);
+
+            $consoleHandler = new StreamHandler('php://stdout', Level::Debug);
+            $this->logger->pushHandler($consoleHandler);
         } else {
             // NullHandler drops all records
             $this->logger->pushHandler(new NullHandler);

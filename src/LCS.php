@@ -30,7 +30,7 @@ class LCS
                 return;
             }
 
-            if (isset($config['logging'])) {
+            if (isset($config['logging']) && ! empty($config['logging'])) {
                 self::$logger = new Logger($config['logging']);
                 self::$logger->info('Initializing LCS...');
             }
