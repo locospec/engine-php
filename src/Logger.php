@@ -4,8 +4,8 @@ namespace Locospec\Engine;
 
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\RotatingFileHandler;
-use Monolog\Handler\TestHandler;
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\TestHandler;
 use Monolog\Level;
 use Monolog\Logger as MonologLogger;
 
