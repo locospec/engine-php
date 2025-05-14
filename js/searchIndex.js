@@ -1136,6 +1136,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Locospec-Engine-Exceptions-InvalidArgumentException.html"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Exceptions\\PermissionDeniedException",
+            "name": "PermissionDeniedException",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Exceptions-PermissionDeniedException.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Exceptions\\ValidationException",
+            "name": "ValidationException",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Exceptions-ValidationException.html"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Exceptions\\VertexNotFoundException",
             "name": "VertexNotFoundException",
             "summary": "",
@@ -3041,6 +3051,16 @@ Search.appendIndex(
             "summary": "Get\u0020a\u0020registry\u0020item\u0020by\u0020its\u0020name.",
             "url": "classes/Locospec-Engine-Registry-RegistryManager.html#method_getRegisterByName"
         },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\RegistryManager\u003A\u003AgetRegistryNames\u0028\u0029",
+            "name": "getRegistryNames",
+            "summary": "Get\u0020the\u0020names\/types\u0020of\u0020all\u0020registered\u0020registries.",
+            "url": "classes/Locospec-Engine-Registry-RegistryManager.html#method_getRegistryNames"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Registry\\RegistryManager\u003A\u003AgetAllRegistyItemsName\u0028\u0029",
+            "name": "getAllRegistyItemsName",
+            "summary": "Get\u0020names\u0020of\u0020all\u0020registered\u0020items\u0020from\u0020specified\u0020registry\u0020types.",
+            "url": "classes/Locospec-Engine-Registry-RegistryManager.html#method_getAllRegistyItemsName"
+        },                {
             "fqsen": "\\Locospec\\Engine\\Registry\\RegistryManager\u003A\u003A\u0024registries",
             "name": "registries",
             "summary": "",
@@ -3795,6 +3815,31 @@ Search.appendIndex(
             "name": "execute",
             "summary": "Execute\u0020the\u0020task",
             "url": "classes/Locospec-Engine-Tasks-AuthorizeTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CheckPermissionTask",
+            "name": "CheckPermissionTask",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-CheckPermissionTask.html"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CheckPermissionTask\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020task\u0020name",
+            "url": "classes/Locospec-Engine-Tasks-CheckPermissionTask.html#method_getName"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CheckPermissionTask\u003A\u003AsetContext\u0028\u0029",
+            "name": "setContext",
+            "summary": "Set\u0020the\u0020execution\u0020context",
+            "url": "classes/Locospec-Engine-Tasks-CheckPermissionTask.html#method_setContext"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CheckPermissionTask\u003A\u003Aexecute\u0028\u0029",
+            "name": "execute",
+            "summary": "Execute\u0020the\u0020task",
+            "url": "classes/Locospec-Engine-Tasks-CheckPermissionTask.html#method_execute"
+        },                {
+            "fqsen": "\\Locospec\\Engine\\Tasks\\CheckPermissionTask\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/Locospec-Engine-Tasks-CheckPermissionTask.html#property_context"
         },                {
             "fqsen": "\\Locospec\\Engine\\Tasks\\CreateEntityTask",
             "name": "CreateEntityTask",
