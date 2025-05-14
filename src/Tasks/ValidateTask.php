@@ -3,8 +3,8 @@
 namespace Locospec\Engine\Tasks;
 
 use Locospec\Engine\Database\DatabaseOperationsCollection;
-use Locospec\Engine\SpecValidator;
 use Locospec\Engine\Exceptions\ValidationException;
+use Locospec\Engine\SpecValidator;
 
 class ValidateTask extends AbstractTask implements TaskInterface
 {

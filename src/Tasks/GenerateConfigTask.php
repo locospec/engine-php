@@ -53,24 +53,26 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
             $result = $view->toArray();
 
             $permissions = $input['payload']['locospecPermissions'];
-            if($permissions['isPermissionsEnabled'] && !empty($permissions['userPermissions'])){
+            if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
                 $userPermissions = $permissions['userPermissions'];
                 // Filter items based on permissions
                 if (isset($result['actions']->items)) {
                     $result['actions']->items = array_values(
                         array_filter(
-                            array_map(function($item) use ($userPermissions) {
+                            array_map(function ($item) use ($userPermissions) {
                                 if (isset($item->options)) {
                                     $filteredOptions = array_values(
-                                        array_filter($item->options, function($option) use ($userPermissions) {
+                                        array_filter($item->options, function ($option) use ($userPermissions) {
                                             return in_array($option->key, $userPermissions);
                                         })
                                     );
-                                    
-                                    if (!empty($filteredOptions)) {
+
+                                    if (! empty($filteredOptions)) {
                                         $item->options = $filteredOptions;
+
                                         return $item;
                                     }
+
                                     return null;
                                 }
 

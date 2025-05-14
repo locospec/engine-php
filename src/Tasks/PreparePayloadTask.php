@@ -23,7 +23,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     {
         $preparedPayload = [];
         // dd($this->context);
-        if(isset($payload['globalContext']['userPermissions'])){
+        if (isset($payload['globalContext']['userPermissions'])) {
             $payload['locospecPermissions']['userPermissions'] = $payload['globalContext']['userPermissions'];
             unset($payload['globalContext']['userPermissions']);
         }

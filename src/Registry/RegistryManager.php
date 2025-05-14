@@ -4,6 +4,7 @@ namespace Locospec\Engine\Registry;
 
 use Locospec\Engine\Exceptions\InvalidArgumentException;
 use Locospec\Engine\Tasks\AuthorizeTask;
+use Locospec\Engine\Tasks\CheckPermissionTask;
 use Locospec\Engine\Tasks\CreateEntityTask;
 use Locospec\Engine\Tasks\FindEntityTask;
 use Locospec\Engine\Tasks\GenerateConfigTask;
@@ -13,7 +14,6 @@ use Locospec\Engine\Tasks\HandleResponseTask;
 use Locospec\Engine\Tasks\MapEntityTask;
 use Locospec\Engine\Tasks\PreparePayloadTask;
 use Locospec\Engine\Tasks\ValidateTask;
-use Locospec\Engine\Tasks\CheckPermissionTask;
 
 class RegistryManager
 {
@@ -120,13 +120,13 @@ class RegistryManager
     /**
      * Get names of all registered items from specified registry types.
      *
-     * @param array<string> $types Array of registry types to get item names from
+     * @param  array<string>  $types  Array of registry types to get item names from
      * @return array<string, array<string>> Array of registry types and their registered item names
      */
     public function getAllRegistyItemsName(array $types = []): array
     {
         $result = [];
-        
+
         // If no types specified, use all available types
         if (empty($types)) {
             $types = $this->getRegistryNames();

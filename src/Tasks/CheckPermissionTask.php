@@ -2,8 +2,8 @@
 
 namespace Locospec\Engine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
 use Locospec\Engine\Exceptions\PermissionDeniedException;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class CheckPermissionTask extends AbstractTask implements TaskInterface
 {
@@ -21,20 +21,20 @@ class CheckPermissionTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input, array $taskArgs = []): array
     {
-        if (!isset($input['locospecPermissions'])) {
+        if (! isset($input['locospecPermissions'])) {
             throw new \RuntimeException('Permissions data not found in input');
         }
 
         $permissions = $input['locospecPermissions'];
-        
-        if (!$permissions['isPermissionsEnabled']) {
+
+        if (! $permissions['isPermissionsEnabled']) {
             return $input;
         }
 
-        if (!$permissions['isUserAllowed']) {
+        if (! $permissions['isUserAllowed']) {
             throw new PermissionDeniedException('User does not have required permissions');
         }
-        
+
         return $input;
     }
 }
