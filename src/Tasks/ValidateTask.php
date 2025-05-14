@@ -3,8 +3,8 @@
 namespace Locospec\Engine\Tasks;
 
 use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\Exceptions\ValidationException;
 use Locospec\Engine\SpecValidator;
-use RuntimeException;
 
 class ValidateTask extends AbstractTask implements TaskInterface
 {
@@ -38,7 +38,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
                     $validation = $validator->validateOperation($value);
 
                     if (! $validation['isValid']) {
-                        throw new RuntimeException(
+                        throw new ValidationException(
                             'Invalid operation: '.json_encode($validation['errors'])
                         );
                     }
@@ -47,7 +47,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 $validation = $validator->validateOperation($input['preparedPayload']);
 
                 if (! $validation['isValid']) {
-                    throw new RuntimeException(
+                    throw new ValidationException(
                         'Invalid operation: '.json_encode($validation['errors'])
                     );
                 }
@@ -99,9 +99,9 @@ class ValidateTask extends AbstractTask implements TaskInterface
             // Return validation errors if any
             if (! empty($errors)) {
                 if (is_array($errors) && isset($errors[0])) {
-                    throw new RuntimeException($errors[0]);
+                    throw new ValidationException($errors[0]);
                 } else {
-                    throw new RuntimeException($errors);
+                    throw new ValidationException($errors);
                 }
             }
 
