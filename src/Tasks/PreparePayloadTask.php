@@ -22,6 +22,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     public function execute(array $payload, array $taskArgs = []): array
     {
         $preparedPayload = [];
+        // dd($this->context);
+        if(isset($payload['globalContext']['userPermissions'])){
+            $payload['locospecPermissions']['userPermissions'] = $payload['globalContext']['userPermissions'];
+            unset($payload['globalContext']['userPermissions']);
+        }
+
         switch ($this->context->get('action')) {
             case '_create':
                 $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'insert');
