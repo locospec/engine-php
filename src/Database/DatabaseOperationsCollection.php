@@ -320,132 +320,142 @@ class DatabaseOperationsCollection
      */
     public function execute(?DatabaseDriverInterface $operator = null): array
     {
-        $this->logger->info('Starting execution of operations', [
-            'type' => 'dbOps',
-            'totalOperations' => count($this->operations),
-        ]);
-
-        $databaseDriverRegistry = $this->registryManager->getRegistry('database_driver');
-        $derivedOperator = $databaseDriverRegistry->getDefaultDriver();
-
-        if (! $operator && ! $derivedOperator) {
-            $this->logger->error('No database operator available for execution', [
+        try{
+            $this->logger->info('Starting execution of operations', [
                 'type' => 'dbOps',
+                'totalOperations' => count($this->operations),
             ]);
 
-            throw new RuntimeException('No database operator provided for execution');
-        }
+            $databaseDriverRegistry = $this->registryManager->getRegistry('database_driver');
+            $derivedOperator = $databaseDriverRegistry->getDefaultDriver();
 
-        // If each operation here has different connection to be used, then how should we execute?
-
-        $dbOpResults = [];
-
-        foreach ($this->operations as $operation) {
-            $this->logger->info('Executing operation', [
-                'type' => 'dbOps',
-                'modelName' => $operation['modelName'],
-                'connection' => $operation['connection'],
-            ]);
-
-            $derivedOperator = $databaseDriverRegistry->get($operation['connection']);
-            $execOperator = $operator ?? $derivedOperator;
-
-            $this->logger->info('Running operation on operator', [
-                'type' => 'dbOps',
-                'connection' => $operation['connection'],
-            ]);
-            $dbOpResult = $execOperator->run([$operation]);
-
-            $this->logger->info('Operation executed', [
-                'type' => 'dbOps',
-                'result' => $dbOpResult,
-            ]);
-
-            $dbOpResults[] = $dbOpResult[0];
-        }
-
-        // $dbOpResults = $execOperator->run($this->operations);
-
-        // Reset operations after execution
-        $this->reset();
-        $this->logger->info('Operations reset after execution', ['type' => 'dbOps']);
-
-        // convert the stringified json to json
-        foreach ($dbOpResults as $index => $dbOpResult) {
-            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
-                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
-
-                $this->logger->info('Processing JSON object properties for result', [
+            if (! $operator && ! $derivedOperator) {
+                $this->logger->error('No database operator available for execution', [
                     'type' => 'dbOps',
-                    'modelName' => $dbOpResult['operation']['modelName'],
                 ]);
 
-                $processedResult = $this->processJsonObjectProperties(
-                    $model,
-                    $dbOpResult['result']
-                );
+                throw new RuntimeException('No database operator provided for execution');
+            }
 
-                $this->logger->info('JSON object properties processed', [
+            // If each operation here has different connection to be used, then how should we execute?
+
+            $dbOpResults = [];
+
+            foreach ($this->operations as $operation) {
+                $this->logger->info('Executing operation', [
                     'type' => 'dbOps',
-                    'modelName' => $dbOpResult['operation']['modelName'],
+                    'modelName' => $operation['modelName'],
+                    'connection' => $operation['connection'],
                 ]);
 
-                // Update the result with decoded values
-                $dbOpResults[$index]['result'] = $processedResult;
+                $derivedOperator = $databaseDriverRegistry->get($operation['connection']);
+                $execOperator = $operator ?? $derivedOperator;
+
+                $this->logger->info('Running operation on operator', [
+                    'type' => 'dbOps',
+                    'connection' => $operation['connection'],
+                ]);
+                $dbOpResult = $execOperator->run([$operation]);
+                
+                $this->logger->info('Operation executed', [
+                    'type' => 'dbOps',
+                    // 'result' => $dbOpResult,
+                ]);
+
+                $dbOpResults[] = $dbOpResult[0];
             }
-        }
 
-        foreach ($dbOpResults as $index => $dbOpResult) {
-            if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
-                $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+            // $dbOpResults = $execOperator->run($this->operations);
 
-                if (isset($dbOpResult['operation']['expand'])) {
-                    $this->logger->info('Expanding relationships for model', [
-                        'type' => 'dbOps',
-                        'modelName' => $dbOpResult['operation']['modelName'],
-                    ]);
+            // Reset operations after execution
+            $this->reset();
+            $this->logger->info('Operations reset after execution', ['type' => 'dbOps']);
 
-                    $expander = new RelationshipExpander($model, $this, $this->registryManager);
-                    $dbOpResults[$index] = $expander->expand($dbOpResult);
-
-                    $this->logger->info('Relationships expanded for model', [
-                        'type' => 'dbOps',
-                        'modelName' => $dbOpResult['operation']['modelName'],
-                    ]);
-                }
-            }
-        }
-
-        foreach ($dbOpResults as $index => $dbOpResult) {
-            if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete'])) {
+            
+            // convert the stringified json to json
+            foreach ($dbOpResults as $index => $dbOpResult) {
                 if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
-
                     $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
 
-                    if ($model && $model->getAliases()) {
-                        $this->logger->info('Applying alias transformation for model', [
+                    $this->logger->info('Processing JSON object properties for result', [
+                        'type' => 'dbOps',
+                        'modelName' => $dbOpResult['operation']['modelName'],
+                    ]);
+
+                    $processedResult = $this->processJsonObjectProperties(
+                        $model,
+                        $dbOpResult['result']
+                    );
+                    // dd($dbOpResults);
+
+                    $this->logger->info('JSON object properties processed', [
+                        'type' => 'dbOps',
+                        'modelName' => $dbOpResult['operation']['modelName'],
+                    ]);
+
+                    // Update the result with decoded values
+                    $dbOpResults[$index]['result'] = $processedResult;
+                }
+            }
+            
+            foreach ($dbOpResults as $index => $dbOpResult) {
+                if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
+                    $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                    if (isset($dbOpResult['operation']['expand'])) {
+                        $this->logger->info('Expanding relationships for model', [
                             'type' => 'dbOps',
                             'modelName' => $dbOpResult['operation']['modelName'],
                         ]);
 
-                        $this->aliasTransformer->setModel($model);
-                        $dbOpResults[$index]['result'] = $this->aliasTransformer->transform($dbOpResult['result']);
+                        $expander = new RelationshipExpander($model, $this, $this->registryManager);
+                        $dbOpResults[$index] = $expander->expand($dbOpResult);
 
-                        $this->logger->info('Alias transformation applied for model', [
+                        $this->logger->info('Relationships expanded for model', [
                             'type' => 'dbOps',
                             'modelName' => $dbOpResult['operation']['modelName'],
                         ]);
                     }
                 }
             }
+
+            foreach ($dbOpResults as $index => $dbOpResult) {
+                if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete'])) {
+                    if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
+
+                        $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
+
+                        if ($model && $model->getAliases()) {
+                            $this->logger->info('Applying alias transformation for model', [
+                                'type' => 'dbOps',
+                                'modelName' => $dbOpResult['operation']['modelName'],
+                            ]);
+
+                            $this->aliasTransformer->setModel($model);
+                            $dbOpResults[$index]['result'] = $this->aliasTransformer->transform($dbOpResult['result']);
+
+                            $this->logger->info('Alias transformation applied for model', [
+                                'type' => 'dbOps',
+                                'modelName' => $dbOpResult['operation']['modelName'],
+                            ]);
+                        }
+                    }
+                }
+            }
+
+            $this->logger->info('Execution completed', [
+                'type' => 'dbOps',
+                'result' => $dbOpResults,
+            ]);
+            
+            return $dbOpResults;
+        } catch (\Exception $e) {
+            throw $e;
+            $this->logger->error('Error processing JSON/object properties', [
+                'type' => 'dbOps',
+                'error' => $e->getMessage(),
+            ]);
         }
-
-        $this->logger->info('Execution completed', [
-            'type' => 'dbOps',
-            'result' => $dbOpResults,
-        ]);
-
-        return $dbOpResults;
     }
 
     /**
@@ -467,55 +477,51 @@ class DatabaseOperationsCollection
 
     private function processJsonObjectProperties($model, array $result): array
     {
-        $this->logger->info('Processing JSON/object properties', [
-            'type' => 'dbOps',
-            'modelName' => $model->getName(),
-        ]);
+        try{
+            $this->logger->info('Processing JSON/object properties', [
+                'type' => 'dbOps',
+                'modelName' => $model->getName(),
+            ]);
 
-        // Step 1: Get all JSON/object property names from the schema
-        $objectKeys = [];
-        $attributes = $model->getAttributes();
-
-        if ($attributes) {
-            foreach ($attributes->getAttributes() as $name => $attribute) {
-                $type = $attribute->getType();
-                if ($type === 'json' || $type === 'object') {
-                    $objectKeys[] = $name;
-                    $this->logger->info('Found JSON/object property', [
-                        'type' => 'dbOps',
-                        'attributeName' => $name,
-                        'attributeType' => $type,
-                    ]);
-                }
-            }
-        }
-
-        // Step 2: Decode JSON strings in the result for these keys
-        foreach ($result as &$item) {
-            foreach ($objectKeys as $key) {
-                if (isset($item[$key]) && is_string($item[$key])) {
-                    $decoded = json_decode($item[$key], true);
-                    if (json_last_error() === JSON_ERROR_NONE) {
-                        $this->logger->info('Decoded JSON', [
+            // Step 1: Get all JSON/object property names from the schema
+            $objectKeys = [];
+            $attributes = $model->getAttributes();
+            if ($attributes) {
+                foreach ($attributes->getAttributes() as $name => $attribute) {
+                    $type = $attribute->getType();
+                    if ($type === 'json' || $type === 'object') {
+                        $objectKeys[] = $name;
+                        $this->logger->info('Found JSON/object property', [
                             'type' => 'dbOps',
-                            'attribute' => $key,
-                            'decodedValue' => $decoded,
-                        ]);
-
-                        $item[$key] = $decoded; // Replace string with decoded array
-                    } else {
-                        $this->logger->error('Failed to decode JSON', [
-                            'type' => 'dbOps',
-                            'attribute' => $key,
-                            'value' => $item[$key],
+                            'attributeName' => $name,
+                            'attributeType' => $type,
                         ]);
                     }
                 }
             }
+
+            // Step 2: Decode JSON strings in the result for these keys
+             $result = array_map(function($item) use ($objectKeys) {
+                foreach ($objectKeys as $key) {
+                    if (isset($item[$key]) && is_string($item[$key])) {
+                        $decoded = json_decode($item[$key], true);
+                        if (json_last_error() === JSON_ERROR_NONE) {
+                            $item[$key] = $decoded;
+                        }
+                    }
+                }
+                return $item;
+            }, $result);
+
+            $this->logger->info('Completed processing JSON/object properties', ['type' => 'dbOps']);
+
+            return $result;
+        } catch (\Exception $e) {
+            $this->logger->error('Error processing JSON/object properties', [
+                'type' => 'dbOps',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
         }
-
-        $this->logger->info('Completed processing JSON/object properties', ['type' => 'dbOps']);
-
-        return $result;
     }
 }
