@@ -320,7 +320,7 @@ class DatabaseOperationsCollection
      */
     public function execute(?DatabaseDriverInterface $operator = null): array
     {
-        try{
+        try {
             $this->logger->info('Starting execution of operations', [
                 'type' => 'dbOps',
                 'totalOperations' => count($this->operations),
@@ -356,7 +356,7 @@ class DatabaseOperationsCollection
                     'connection' => $operation['connection'],
                 ]);
                 $dbOpResult = $execOperator->run([$operation]);
-                
+
                 $this->logger->info('Operation executed', [
                     'type' => 'dbOps',
                     // 'result' => $dbOpResult,
@@ -371,7 +371,6 @@ class DatabaseOperationsCollection
             $this->reset();
             $this->logger->info('Operations reset after execution', ['type' => 'dbOps']);
 
-            
             // convert the stringified json to json
             foreach ($dbOpResults as $index => $dbOpResult) {
                 if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
@@ -397,7 +396,7 @@ class DatabaseOperationsCollection
                     $dbOpResults[$index]['result'] = $processedResult;
                 }
             }
-            
+
             foreach ($dbOpResults as $index => $dbOpResult) {
                 if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
                     $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
@@ -447,7 +446,7 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'result' => $dbOpResults,
             ]);
-            
+
             return $dbOpResults;
         } catch (\Exception $e) {
             throw $e;
@@ -477,7 +476,7 @@ class DatabaseOperationsCollection
 
     private function processJsonObjectProperties($model, array $result): array
     {
-        try{
+        try {
             $this->logger->info('Processing JSON/object properties', [
                 'type' => 'dbOps',
                 'modelName' => $model->getName(),
@@ -501,7 +500,7 @@ class DatabaseOperationsCollection
             }
 
             // Step 2: Decode JSON strings in the result for these keys
-             $result = array_map(function($item) use ($objectKeys) {
+            $result = array_map(function ($item) use ($objectKeys) {
                 foreach ($objectKeys as $key) {
                     if (isset($item[$key]) && is_string($item[$key])) {
                         $decoded = json_decode($item[$key], true);
@@ -510,6 +509,7 @@ class DatabaseOperationsCollection
                         }
                     }
                 }
+
                 return $item;
             }, $result);
 
