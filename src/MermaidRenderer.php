@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine;
+namespace LCSEngine;
 
 class MermaidRenderer
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace Locospec\Engine\Specifications;
+namespace LCSEngine\Specifications;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Models\Relationships\BelongsTo;
-use Locospec\Engine\Models\Relationships\HasMany;
-use Locospec\Engine\Models\Relationships\HasOne;
-use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\Support\StringInflector;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\Models\ModelDefinition;
+use LCSEngine\Models\Relationships\BelongsTo;
+use LCSEngine\Models\Relationships\HasMany;
+use LCSEngine\Models\Relationships\HasOne;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Support\StringInflector;
 
 class RelationshipProcessor
 {

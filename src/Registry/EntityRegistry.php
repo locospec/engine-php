@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Registry;
+namespace LCSEngine\Registry;
 
 /**
  * MutatorRegistry manages the registration of mutators.

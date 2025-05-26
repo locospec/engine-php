@@ -1,16 +1,16 @@
 <?php
 
-namespace Locospec\Engine\Database;
+namespace LCSEngine\Database;
 
-use Locospec\Engine\Database\Filters\FilterGroup;
-use Locospec\Engine\Database\Relationships\RelationshipExpander;
-use Locospec\Engine\Database\Relationships\RelationshipResolver;
-use Locospec\Engine\Database\Scopes\ScopeResolver;
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\LCS;
-use Locospec\Engine\Registry\DatabaseDriverInterface;
-use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\SpecValidator;
+use LCSEngine\Database\Filters\FilterGroup;
+use LCSEngine\Database\Relationships\RelationshipExpander;
+use LCSEngine\Database\Relationships\RelationshipResolver;
+use LCSEngine\Database\Scopes\ScopeResolver;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\LCS;
+use LCSEngine\Registry\DatabaseDriverInterface;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\SpecValidator;
 use RuntimeException;
 
 class DatabaseOperationsCollection

@@ -1,6 +1,6 @@
 <?php
 
-use Locospec\Engine\SpecValidator;
+use LCSEngine\SpecValidator;
 
 // Update Operation Tests
 test('valid update with shorthand filters', function () {

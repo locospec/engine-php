@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\Engine\Tasks;
+namespace LCSEngine\Tasks;
 
-use Locospec\Engine\Database\DatabaseOperationsCollection;
-use Locospec\Engine\Exceptions\ValidationException;
-use Locospec\Engine\SpecValidator;
+use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Exceptions\ValidationException;
+use LCSEngine\SpecValidator;
 
 class ValidateTask extends AbstractTask implements TaskInterface
 {

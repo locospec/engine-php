@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\Engine\Registry;
+namespace LCSEngine\Registry;
 
-use Locospec\Engine\Database\Operations\DatabaseOperationInterface;
+use LCSEngine\Database\Operations\DatabaseOperationInterface;
 
 interface DatabaseDriverInterface
 {

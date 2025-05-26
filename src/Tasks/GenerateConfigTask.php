@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\Engine\Tasks;
+namespace LCSEngine\Tasks;
 
-use Locospec\Engine\StateMachine\ContextInterface;
+use LCSEngine\StateMachine\ContextInterface;
 
 class GenerateConfigTask extends AbstractTask implements TaskInterface
 {

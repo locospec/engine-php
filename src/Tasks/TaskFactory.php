@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\Engine\Tasks;
+namespace LCSEngine\Tasks;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\Registry\DatabaseDriverInterface;
-use Locospec\Engine\Registry\TaskRegistry;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\Registry\DatabaseDriverInterface;
+use LCSEngine\Registry\TaskRegistry;
 
 class TaskFactory
 {

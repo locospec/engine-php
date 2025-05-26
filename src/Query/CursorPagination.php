@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\Engine\Query;
+namespace LCSEngine\Query;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
+use LCSEngine\Exceptions\InvalidArgumentException;
 
 class CursorPagination implements Pagination
 {
