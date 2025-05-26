@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Attributes;
+namespace LCSEngine\Attributes;
 
 class Attribute implements AttributeInterface
 {

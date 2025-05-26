@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\Engine;
+namespace LCSEngine;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
+use LCSEngine\Exceptions\InvalidArgumentException;
 
 class Edge
 {

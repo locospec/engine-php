@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Models\Traits;
+namespace LCSEngine\Models\Traits;
 
 trait HasAliases
 {

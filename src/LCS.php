@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\Engine;
+namespace LCSEngine;
 
-use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\Specifications\SpecificationProcessor;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Specifications\SpecificationProcessor;
 
 class LCS
 {

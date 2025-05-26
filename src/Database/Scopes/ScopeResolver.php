@@ -1,9 +1,9 @@
 <?php
 
-namespace Locospec\Engine\Database\Scopes;
+namespace LCSEngine\Database\Scopes;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\Registry\RegistryManager;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\Registry\RegistryManager;
 
 class ScopeResolver
 {

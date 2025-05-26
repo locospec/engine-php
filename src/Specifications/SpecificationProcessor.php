@@ -1,16 +1,16 @@
 <?php
 
-namespace Locospec\Engine\Specifications;
+namespace LCSEngine\Specifications;
 
-use Locospec\Engine\Entities\EntityDefinition;
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\LCS;
-use Locospec\Engine\Logger;
-use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Mutators\MutatorDefinition;
-use Locospec\Engine\Registry\RegistryManager;
-use Locospec\Engine\SpecValidator;
-use Locospec\Engine\Views\ViewDefinition;
+use LCSEngine\Entities\EntityDefinition;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\LCS;
+use LCSEngine\Logger;
+use LCSEngine\Models\ModelDefinition;
+use LCSEngine\Mutators\MutatorDefinition;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\SpecValidator;
+use LCSEngine\Views\ViewDefinition;
 
 class SpecificationProcessor
 {

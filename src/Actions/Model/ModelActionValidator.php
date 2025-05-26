@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\Engine\Actions\Model;
+namespace LCSEngine\Actions\Model;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\Models\ModelDefinition;
-use Locospec\Engine\Query\FilterGroup;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\Models\ModelDefinition;
+use LCSEngine\Query\FilterGroup;
 
 /**
  * Validates inputs for model actions

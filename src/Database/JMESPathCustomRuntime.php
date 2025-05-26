@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Database;
+namespace LCSEngine\Database;
 
 use DateTime;
 use JmesPath\AstRuntime;
