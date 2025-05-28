@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\LCS;
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\LCS;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class HandleResponseTask extends AbstractTask implements TaskInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class PreparePayloadTask extends AbstractTask implements TaskInterface
 {

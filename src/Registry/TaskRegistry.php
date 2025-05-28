@@ -1,8 +1,8 @@
 <?php
 
-namespace LCSEngine\Registry;
+namespace Locospec\Engine\Registry;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class TaskRegistry extends AbstractRegistry
 {

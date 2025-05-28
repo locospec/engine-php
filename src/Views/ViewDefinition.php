@@ -1,11 +1,11 @@
 <?php
 
-namespace LCSEngine\Views;
+namespace Locospec\Engine\Views;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Registry\RegistryManager;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Models\Relationships\BelongsTo;
+use Locospec\Engine\Registry\RegistryManager;
 
 class ViewDefinition
 {

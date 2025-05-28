@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\Exceptions\PermissionDeniedException;
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\Exceptions\PermissionDeniedException;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class CheckPermissionTask extends AbstractTask implements TaskInterface
 {

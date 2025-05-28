@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\LCSEngine\Models;
+namespace Tests\Locospec\Engine\Models;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Parsers\ModelParser;
-use LCSEngine\Schema\Schema;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Parsers\ModelParser;
+use Locospec\Engine\Schema\Schema;
 
 beforeEach(function () {
     $this->parser = new ModelParser;

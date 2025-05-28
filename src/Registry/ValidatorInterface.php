@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Registry;
+namespace Locospec\Engine\Registry;
 
 interface ValidatorInterface
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Mutators;
+namespace Locospec\Engine\Mutators;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Support\StringInflector;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Support\StringInflector;
 
 class MutatorValidator
 {

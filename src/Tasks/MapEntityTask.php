@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\Database\JMESPathCustomRuntime;
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\Database\JMESPathCustomRuntime;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class MapEntityTask extends AbstractTask implements TaskInterface
 {

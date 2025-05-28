@@ -1,8 +1,8 @@
 <?php
 
-namespace LCSEngine\Database;
+namespace Locospec\Engine\Database;
 
-use LCSEngine\Models\ModelDefinition;
+use Locospec\Engine\Models\ModelDefinition;
 
 class AliasTransformation
 {

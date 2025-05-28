@@ -1,10 +1,10 @@
 <?php
 
-namespace LCSEngine\Mutators;
+namespace Locospec\Engine\Mutators;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Registry\RegistryManager;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Registry\RegistryManager;
 
 class MutatorDefinition
 {

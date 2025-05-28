@@ -1,6 +1,6 @@
 <?php
 
-use LCSEngine\SpecValidator;
+use Locospec\Engine\SpecValidator;
 
 beforeAll(function () {
     global $validator;

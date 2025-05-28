@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Query;
+namespace Locospec\Engine\Query;
 
 interface Pagination
 {

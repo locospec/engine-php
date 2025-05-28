@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine\Entities;
+namespace Locospec\Engine\Entities;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Support\StringInflector;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Support\StringInflector;
 
 class EntityValidator
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Registry;
+namespace Locospec\Engine\Registry;
 
 /**
  * ModelRegistry manages the registration and relationship graphs of models.

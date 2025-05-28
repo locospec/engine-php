@@ -1,15 +1,15 @@
 <?php
 
-namespace LCSEngine\Database\Relationships;
+namespace Locospec\Engine\Database\Relationships;
 
-use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\LCS;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Models\Relationships\HasMany;
-use LCSEngine\Models\Relationships\HasOne;
-use LCSEngine\Models\Relationships\Relationship;
-use LCSEngine\Registry\RegistryManager;
+use Locospec\Engine\Database\DatabaseOperationsCollection;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Models\Relationships\BelongsTo;
+use Locospec\Engine\Models\Relationships\HasMany;
+use Locospec\Engine\Models\Relationships\HasOne;
+use Locospec\Engine\Models\Relationships\Relationship;
+use Locospec\Engine\Registry\RegistryManager;
 
 class RelationshipExpander
 {

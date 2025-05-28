@@ -1,8 +1,8 @@
 <?php
 
-namespace LCSEngine\Database\Filters;
+namespace Locospec\Engine\Database\Filters;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
 
 class FilterCondition
 {

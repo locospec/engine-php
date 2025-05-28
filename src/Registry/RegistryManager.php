@@ -1,19 +1,19 @@
 <?php
 
-namespace LCSEngine\Registry;
+namespace Locospec\Engine\Registry;
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Tasks\AuthorizeTask;
-use LCSEngine\Tasks\CheckPermissionTask;
-use LCSEngine\Tasks\CreateEntityTask;
-use LCSEngine\Tasks\FindEntityTask;
-use LCSEngine\Tasks\GenerateConfigTask;
-use LCSEngine\Tasks\HandleGeneratorResponseTask;
-use LCSEngine\Tasks\HandlePayloadTask;
-use LCSEngine\Tasks\HandleResponseTask;
-use LCSEngine\Tasks\MapEntityTask;
-use LCSEngine\Tasks\PreparePayloadTask;
-use LCSEngine\Tasks\ValidateTask;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Tasks\AuthorizeTask;
+use Locospec\Engine\Tasks\CheckPermissionTask;
+use Locospec\Engine\Tasks\CreateEntityTask;
+use Locospec\Engine\Tasks\FindEntityTask;
+use Locospec\Engine\Tasks\GenerateConfigTask;
+use Locospec\Engine\Tasks\HandleGeneratorResponseTask;
+use Locospec\Engine\Tasks\HandlePayloadTask;
+use Locospec\Engine\Tasks\HandleResponseTask;
+use Locospec\Engine\Tasks\MapEntityTask;
+use Locospec\Engine\Tasks\PreparePayloadTask;
+use Locospec\Engine\Tasks\ValidateTask;
 
 class RegistryManager
 {

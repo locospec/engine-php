@@ -1,5 +1,5 @@
 <?php
 
-namespace LCSEngine\Exceptions;
+namespace Locospec\Engine\Exceptions;
 
 class VertexNotFoundException extends \Exception {}

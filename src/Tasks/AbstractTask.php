@@ -1,11 +1,11 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\Attributes\Attributes;
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Registry\DatabaseDriverInterface;
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\Attributes\Attributes;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Registry\DatabaseDriverInterface;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 abstract class AbstractTask implements TaskInterface
 {

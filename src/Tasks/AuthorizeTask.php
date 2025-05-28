@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
 class AuthorizeTask extends AbstractTask
 {

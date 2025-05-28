@@ -1,24 +1,24 @@
 <?php
 
-namespace LCSEngine\Actions;
+namespace Locospec\Engine\Actions;
 
-use LCSEngine\Actions\Model\ConfigAction;
-use LCSEngine\Actions\Model\CreateAction;
-use LCSEngine\Actions\Model\DeleteAction;
-use LCSEngine\Actions\Model\ModelAction;
-use LCSEngine\Actions\Model\ReadListAction;
-use LCSEngine\Actions\Model\ReadOneAction;
-use LCSEngine\Actions\Model\ReadRelationOptionsAction;
-use LCSEngine\Actions\Model\UpdateAction;
-use LCSEngine\Entities\EntityDefinition;
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\LCS;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Mutators\MutatorDefinition;
-use LCSEngine\Registry\GeneratorInterface;
-use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\StateMachine\StateFlowPacket;
-use LCSEngine\Views\ViewDefinition;
+use Locospec\Engine\Actions\Model\ConfigAction;
+use Locospec\Engine\Actions\Model\CreateAction;
+use Locospec\Engine\Actions\Model\DeleteAction;
+use Locospec\Engine\Actions\Model\ModelAction;
+use Locospec\Engine\Actions\Model\ReadListAction;
+use Locospec\Engine\Actions\Model\ReadOneAction;
+use Locospec\Engine\Actions\Model\ReadRelationOptionsAction;
+use Locospec\Engine\Actions\Model\UpdateAction;
+use Locospec\Engine\Entities\EntityDefinition;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
+use Locospec\Engine\Registry\GeneratorInterface;
+use Locospec\Engine\Registry\ValidatorInterface;
+use Locospec\Engine\StateMachine\StateFlowPacket;
+use Locospec\Engine\Views\ViewDefinition;
 
 class ActionOrchestrator
 {

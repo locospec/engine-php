@@ -1,8 +1,8 @@
 <?php
 
-namespace LCSEngine\Tasks;
+namespace Locospec\Engine\Tasks;
 
-use LCSEngine\StateMachine\ContextInterface;
+use Locospec\Engine\StateMachine\ContextInterface;
 
 class HandleGeneratorResponseTask extends AbstractTask implements TaskInterface
 {

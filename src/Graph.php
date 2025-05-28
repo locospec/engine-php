@@ -1,9 +1,9 @@
 <?php
 
-namespace LCSEngine;
+namespace Locospec\Engine;
 
-use LCSEngine\Exceptions\DuplicateVertexException;
-use LCSEngine\Exceptions\VertexNotFoundException;
+use Locospec\Engine\Exceptions\DuplicateVertexException;
+use Locospec\Engine\Exceptions\VertexNotFoundException;
 
 class Graph
 {

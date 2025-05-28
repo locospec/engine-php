@@ -1,17 +1,17 @@
 <?php
 
-namespace LCSEngine\Actions\Model;
+namespace Locospec\Engine\Actions\Model;
 
-use LCSEngine\Actions\StateMachineFactory;
-use LCSEngine\Entities\EntityDefinition;
-use LCSEngine\LCS;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Mutators\MutatorDefinition;
-use LCSEngine\Registry\GeneratorInterface;
-use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\StateMachine\Context;
-use LCSEngine\StateMachine\StateFlowPacket;
-use LCSEngine\Views\ViewDefinition;
+use Locospec\Engine\Actions\StateMachineFactory;
+use Locospec\Engine\Entities\EntityDefinition;
+use Locospec\Engine\LCS;
+use Locospec\Engine\Models\ModelDefinition;
+use Locospec\Engine\Mutators\MutatorDefinition;
+use Locospec\Engine\Registry\GeneratorInterface;
+use Locospec\Engine\Registry\ValidatorInterface;
+use Locospec\Engine\StateMachine\Context;
+use Locospec\Engine\StateMachine\StateFlowPacket;
+use Locospec\Engine\Views\ViewDefinition;
 
 abstract class ModelAction
 {

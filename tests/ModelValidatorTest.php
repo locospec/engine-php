@@ -1,7 +1,7 @@
 <?php
 
-use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
+use Locospec\Engine\Exceptions\InvalidArgumentException;
+use Locospec\Engine\Models\ModelDefinition;
 
 test('model names are properly validated', function ($name, $shouldPass) {
     $data = [
