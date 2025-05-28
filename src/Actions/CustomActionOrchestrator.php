@@ -1,13 +1,13 @@
 <?php
 
-namespace Locospec\Engine\Actions;
+namespace LCSEngine\Actions;
 
-use Locospec\Engine\Actions\Model\CustomAction;
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\LCS;
-use Locospec\Engine\Registry\GeneratorInterface;
-use Locospec\Engine\Registry\ValidatorInterface;
-use Locospec\Engine\StateMachine\StateFlowPacket;
+use LCSEngine\Actions\Model\CustomAction;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\LCS;
+use LCSEngine\Registry\GeneratorInterface;
+use LCSEngine\Registry\ValidatorInterface;
+use LCSEngine\StateMachine\StateFlowPacket;
 
 class CustomActionOrchestrator
 {

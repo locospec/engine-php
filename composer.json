@@ -1,6 +1,5 @@
 {
     "name": "locospec/engine-php",
-    "version": "1.0.0-alpha.5",
     "description": "This is my package engine-php",
     "keywords": [
         "locospec",
@@ -29,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Locospec\\Engine\\": "src"
+            "LCSEngine\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Locospec\\Engine\\Tests\\": "tests"
+            "LCSEngine\\Tests\\": "tests"
         }
     },
     "scripts": {

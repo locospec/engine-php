@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Models\Relationships;
+namespace LCSEngine\Models\Relationships;
 
 class HasOne extends Relationship
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Locospec\Engine\Tasks;
+namespace LCSEngine\Tasks;
 
-use Locospec\Engine\Database\DatabaseOperationsCollection;
-use Locospec\Engine\Database\QueryContext;
-use Locospec\Engine\Models\Relationships\HasMany;
-use Locospec\Engine\Models\Relationships\HasOne;
-use Locospec\Engine\StateMachine\ContextInterface;
+use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Database\QueryContext;
+use LCSEngine\Models\Relationships\HasMany;
+use LCSEngine\Models\Relationships\HasOne;
+use LCSEngine\StateMachine\ContextInterface;
 
 class CreateEntityTask extends AbstractTask implements TaskInterface
 {

@@ -1,7 +1,7 @@
 <?php
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
-use Locospec\Engine\LCS;
+use LCSEngine\Exceptions\InvalidArgumentException;
+use LCSEngine\LCS;
 
 beforeAll(function () {
     LCS::bootstrap();

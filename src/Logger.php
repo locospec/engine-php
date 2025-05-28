@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine;
+namespace LCSEngine;
 
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\RotatingFileHandler;

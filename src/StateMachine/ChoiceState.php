@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\StateMachine;
+namespace LCSEngine\StateMachine;
 
 class ChoiceState implements StateInterface
 {

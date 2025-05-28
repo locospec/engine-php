@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Query;
+namespace LCSEngine\Query;
 
 class Query
 {

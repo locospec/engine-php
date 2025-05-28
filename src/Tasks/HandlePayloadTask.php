@@ -1,10 +1,10 @@
 <?php
 
-namespace Locospec\Engine\Tasks;
+namespace LCSEngine\Tasks;
 
-use Locospec\Engine\Database\DatabaseOperationsCollection;
-use Locospec\Engine\Database\QueryContext;
-use Locospec\Engine\StateMachine\ContextInterface;
+use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Database\QueryContext;
+use LCSEngine\StateMachine\ContextInterface;
 
 class HandlePayloadTask extends AbstractTask implements TaskInterface
 {

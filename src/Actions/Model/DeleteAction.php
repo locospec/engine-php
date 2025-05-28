@@ -1,6 +1,6 @@
 <?php
 
-namespace Locospec\Engine\Actions\Model;
+namespace LCSEngine\Actions\Model;
 
 class DeleteAction extends ModelAction
 {

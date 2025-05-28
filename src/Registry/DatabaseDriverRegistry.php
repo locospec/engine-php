@@ -1,8 +1,8 @@
 <?php
 
-namespace Locospec\Engine\Registry;
+namespace LCSEngine\Registry;
 
-use Locospec\Engine\Exceptions\InvalidArgumentException;
+use LCSEngine\Exceptions\InvalidArgumentException;
 
 class DatabaseDriverRegistry extends AbstractRegistry
 {

@@ -1,11 +1,11 @@
 <?php
 
-use Locospec\Engine\Query\CursorPagination;
-use Locospec\Engine\Query\FilterGroup;
-use Locospec\Engine\Query\OffsetPagination;
-use Locospec\Engine\Query\Query;
-use Locospec\Engine\Query\Sort;
-use Locospec\Engine\Query\SortCollection;
+use LCSEngine\Query\CursorPagination;
+use LCSEngine\Query\FilterGroup;
+use LCSEngine\Query\OffsetPagination;
+use LCSEngine\Query\Query;
+use LCSEngine\Query\Sort;
+use LCSEngine\Query\SortCollection;
 
 beforeEach(function () {
     $this->sampleQueryData = [
