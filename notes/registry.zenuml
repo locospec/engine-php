@@ -1,0 +1,42 @@
+title Model Registry
+
+group RegistryService {
+  @Boundary RegistryManager #0747A6
+  @Boundary ModelRegistry
+  @Boundary SchemaRegistry
+}
+
+group SchemaService {
+  @Boundary Model
+  @Boundary JSONValidator
+}
+
+// Already a Model object is created
+// new Model(), $model->name = "property";, $model->valid();
+RegistryManager.register(name, object) {
+  if (object.isSchemaClass) {
+    ModelRegistry.register(name, model) {
+      if(object.isSchemaModel && model.valid) {
+        SchemaRegistry.register(name, model) {
+          // Checks if there is anything else with that name
+          if(name.notExists) {
+             return SchemaRegistry->RegistryManager: stored
+          } else {
+            return SchemaRegistry->RegistryManager: rejected
+          }
+        }
+      }
+    }
+  } else if(object.IsValidJSON) {
+      JSONValidator.validateSchema(object)
+      if(object.isValid && object.isModel){
+        // model->createFromJSON(object)
+        model = new Model()
+        ModelRegistry.register(nane, model)
+      } else {
+        return SchemaRegistry->RegistryManager: rejected
+      }
+  } else {
+    return rejected
+  }
+}
