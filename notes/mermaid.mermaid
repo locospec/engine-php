@@ -1,0 +1,31 @@
+sequenceDiagram
+    title Model Registry
+
+    participant RegistryManager
+    participant ModelRegistry
+    participant SchemaRegistry
+    participant JSONValidator
+    participant Model
+
+    RegistryManager->>ModelRegistry: register(name, object)
+    alt isSchemaClass
+        ModelRegistry->>SchemaRegistry: register(name, model)
+        alt isSchemaModel and model.valid
+            SchemaRegistry->>SchemaRegistry: check name.notExists
+            alt name.notExists
+                SchemaRegistry-->>RegistryManager: stored
+            else
+                SchemaRegistry-->>RegistryManager: rejected
+            end
+        end
+    else isValidJSON
+        RegistryManager->>JSONValidator: validateSchema(object)
+        alt isValid and isModel
+            RegistryManager->>Model: Model::initFromJSON(object)
+            RegistryManager-->>ModelRegistry: register(name, model)
+        else
+            JSONValidator-->>RegistryManager: rejected
+        end
+    else
+        RegistryManager-->>RegistryManager: rejected
+    end
