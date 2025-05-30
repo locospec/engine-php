@@ -8,12 +8,12 @@ use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\SpecValidator;
-use LCSEngine\Schemas\Model\Filters\Filters;
-use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ContextResolver;
+use LCSEngine\Schemas\Model\Filters\Filters;
+use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
+use LCSEngine\SpecValidator;
 use RuntimeException;
 
 class DatabaseOperationsCollection

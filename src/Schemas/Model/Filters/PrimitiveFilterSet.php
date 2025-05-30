@@ -6,9 +6,7 @@ class PrimitiveFilterSet implements FilterInterface
 {
     private array $filters = [];
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function getFilters(): array
     {
@@ -18,6 +16,7 @@ class PrimitiveFilterSet implements FilterInterface
     public function add(string $key, mixed $value): self
     {
         $this->filters[$key] = $value;
+
         return $this;
     }
 
@@ -34,4 +33,4 @@ class PrimitiveFilterSet implements FilterInterface
 
         return $group->toArray();
     }
-} 
+}

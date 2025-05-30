@@ -18,7 +18,7 @@ test('filter group basic creation', function () {
 
 test('filter group with conditions', function () {
     $group = new FilterGroup(LogicalOperator::OR);
-    
+
     $condition1 = new Condition('status', ComparisonOperator::IS, 'active');
     $condition2 = new Condition('age', ComparisonOperator::GREATER_THAN, 18);
 
@@ -32,7 +32,7 @@ test('filter group with conditions', function () {
 
 test('filter group to array', function () {
     $group = new FilterGroup(LogicalOperator::AND);
-    
+
     $condition1 = new Condition('name', ComparisonOperator::CONTAINS, 'John');
     $condition2 = new Condition('age', ComparisonOperator::GREATER_THAN, 18);
 
@@ -64,4 +64,4 @@ test('nested filter groups', function () {
         ->and($array['conditions'])->toHaveCount(1)
         ->and($array['conditions'][0]['op'])->toBe(LogicalOperator::OR->value)
         ->and($array['conditions'][0]['conditions'])->toHaveCount(2);
-}); 
+});

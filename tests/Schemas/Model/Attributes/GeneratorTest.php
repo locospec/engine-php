@@ -7,7 +7,7 @@ use LCSEngine\Schemas\Model\Attributes\GeneratorType;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
 
 test('generator basic creation', function () {
-    $generator = new Generator();
+    $generator = new Generator;
     $generator->setType(GeneratorType::UUID_GENERATOR)
         ->setOperations([OperationType::INSERT->value]);
 
@@ -18,7 +18,7 @@ test('generator basic creation', function () {
 });
 
 test('generator with source and value', function () {
-    $generator = new Generator();
+    $generator = new Generator;
     $generator->setType(GeneratorType::SLUG_GENERATOR)
         ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
         ->setSource('title')
@@ -31,7 +31,7 @@ test('generator with source and value', function () {
 });
 
 test('generator to array', function () {
-    $generator = new Generator();
+    $generator = new Generator;
     $generator->setType(GeneratorType::TIMESTAMP_GENERATOR)
         ->setOperations([OperationType::INSERT->value])
         ->setSource('created_at');
@@ -44,8 +44,8 @@ test('generator to array', function () {
 });
 
 test('generator with invalid operation throws exception', function () {
-    $generator = new Generator();
-    
-    expect(fn() => $generator->setOperations(['invalid_operation']))
+    $generator = new Generator;
+
+    expect(fn () => $generator->setOperations(['invalid_operation']))
         ->toThrow(\InvalidArgumentException::class, 'Invalid operation type: invalid_operation');
-}); 
+});

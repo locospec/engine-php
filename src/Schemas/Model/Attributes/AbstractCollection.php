@@ -35,4 +35,4 @@ abstract class AbstractCollection
     {
         return count($this->items);
     }
-} 
+}

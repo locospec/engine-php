@@ -11,6 +11,6 @@ class Validators extends AbstractCollection
 
     public function toArray(): array
     {
-        return array_map(fn(Validator $validator) => $validator->toArray(), $this->items);
+        return array_map(fn (Validator $validator) => $validator->toArray(), $this->items);
     }
-} 
+}

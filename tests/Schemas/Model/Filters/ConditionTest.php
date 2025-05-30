@@ -42,4 +42,4 @@ test('condition with array value', function () {
 
     expect($condition->getValue())->toBe(['active', 'pending'])
         ->and($condition->toArray()['value'])->toBe(['active', 'pending']);
-}); 
+});

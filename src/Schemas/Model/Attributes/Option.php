@@ -5,7 +5,9 @@ namespace LCSEngine\Schemas\Model\Attributes;
 class Option
 {
     private string $id;
+
     private string $const;
+
     private string $title;
 
     public function __construct()
@@ -21,6 +23,7 @@ class Option
     public function setConst(string $const): self
     {
         $this->const = $const;
+
         return $this;
     }
 
@@ -32,6 +35,7 @@ class Option
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -47,4 +51,4 @@ class Option
             'title' => $this->title,
         ];
     }
-} 
+}

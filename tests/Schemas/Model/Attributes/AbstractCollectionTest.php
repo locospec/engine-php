@@ -7,10 +7,9 @@ use LCSEngine\Schemas\Model\Attributes\Generators;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
 
-
 // test('collection basic operations', function () {
 //     $collection = new Generators();
-    
+
 //     expect($collection->isEmpty())->toBeTrue()
 //         ->and($collection->count())->toBe(0);
 
@@ -28,7 +27,7 @@ use LCSEngine\Schemas\Model\Attributes\OperationType;
 
 // test('collection remove operation', function () {
 //     $collection = new Generators();
-    
+
 //     $generator = new Generator();
 //     $generator->setType(GeneratorType::UUID_GENERATOR)
 //         ->setOperations([OperationType::INSERT->value]);
@@ -46,7 +45,7 @@ use LCSEngine\Schemas\Model\Attributes\OperationType;
 
 // test('collection with multiple items', function () {
 //     $collection = new Generators();
-    
+
 //     $generator1 = new Generator();
 //     $generator1->setType(GeneratorType::UUID_GENERATOR)
 //         ->setOperations([OperationType::INSERT->value]);
@@ -62,4 +61,4 @@ use LCSEngine\Schemas\Model\Attributes\OperationType;
 //         ->and($collection->getAll())->toHaveCount(2)
 //         ->and($collection->getAll()[0])->toBe($generator1)
 //         ->and($collection->getAll()[1])->toBe($generator2);
-// }); 
+// });

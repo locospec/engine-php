@@ -33,17 +33,18 @@ class Filters
 
     public static function primitive(): PrimitiveFilterSet
     {
-        return new PrimitiveFilterSet();
+        return new PrimitiveFilterSet;
     }
 
     public static function fromArray(array $data): self
     {
         // Case 3: Simple key-value pairs (convert to IS conditions in AND group)
-        if (count($data) > 0 && !isset($data[0]) && !isset($data['op'])) {
+        if (count($data) > 0 && ! isset($data[0]) && ! isset($data['op'])) {
             $group = new FilterGroup(LogicalOperator::AND);
             foreach ($data as $key => $value) {
                 $group->add(new Condition($key, ComparisonOperator::IS, $value));
             }
+
             return new self($group);
         }
 
@@ -53,6 +54,7 @@ class Filters
             foreach ($data as $condition) {
                 $group->add(self::fromArray($condition)->getRoot());
             }
+
             return new self($group);
         }
 
@@ -62,6 +64,7 @@ class Filters
             foreach ($data['conditions'] as $condition) {
                 $group->add(self::fromArray($condition)->getRoot());
             }
+
             return new self($group);
         }
 
@@ -72,9 +75,10 @@ class Filters
                 ComparisonOperator::from($data['op']),
                 $data['value']
             );
+
             return new self($condition);
         }
 
         throw new \InvalidArgumentException('Invalid filter structure');
     }
-} 
+}

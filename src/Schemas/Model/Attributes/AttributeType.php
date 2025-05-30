@@ -16,4 +16,4 @@ enum AttributeType: string
     case JSON = 'json';
     case JSONB = 'jsonb';
     case OBJECT = 'object';
-} 
+}

@@ -5,15 +5,25 @@ namespace LCSEngine\Schemas\Model\Attributes;
 class Attribute
 {
     private string $name;
+
     private string $label;
+
     private AttributeType $type;
+
     private ?Generators $generators = null;
+
     private ?Validators $validators = null;
+
     private ?Options $options = null;
+
     private bool $primaryKey = false;
+
     private bool $deleteKey = false;
+
     private bool $labelKey = false;
+
     private ?string $source = null;
+
     private ?string $transform = null;
 
     public function setName(string $name): void
@@ -99,7 +109,7 @@ class Attribute
     public function addGenerator(Generator $generator): void
     {
         if ($this->generators === null) {
-            $this->generators = new Generators();
+            $this->generators = new Generators;
         }
         $this->generators->add($generator);
     }
@@ -107,7 +117,7 @@ class Attribute
     public function addValidator(Validator $validator): void
     {
         if ($this->validators === null) {
-            $this->validators = new Validators();
+            $this->validators = new Validators;
         }
         $this->validators->add($validator);
     }
@@ -115,7 +125,7 @@ class Attribute
     public function addOption(Option $option): void
     {
         if ($this->options === null) {
-            $this->options = new Options();
+            $this->options = new Options;
         }
         $this->options->add($option);
     }
@@ -176,4 +186,4 @@ class Attribute
 
         return $data;
     }
-} 
+}

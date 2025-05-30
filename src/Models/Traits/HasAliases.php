@@ -24,10 +24,10 @@ trait HasAliases
     {
         return $this->aliases;
     }
-   
+
     public function getAliasesArray(): array
     {
-        if (!isset($this->aliases)) {
+        if (! isset($this->aliases)) {
             return [];
         }
 

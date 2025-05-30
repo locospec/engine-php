@@ -9,15 +9,15 @@ use LCSEngine\Schemas\Model\Filters\PrimitiveFilterSet;
 uses()->group('filters');
 
 test('primitive filter set basic creation', function () {
-    $filterSet = new PrimitiveFilterSet();
+    $filterSet = new PrimitiveFilterSet;
 
     expect($filterSet->getFilters())->toBeEmpty()
         ->and($filterSet->toArray())->toBeEmpty();
 });
 
 test('primitive filter set with filters', function () {
-    $filterSet = new PrimitiveFilterSet();
-    
+    $filterSet = new PrimitiveFilterSet;
+
     $filterSet->add('status', 'active')
         ->add('age', 18)
         ->add('name', 'John');
@@ -29,8 +29,8 @@ test('primitive filter set with filters', function () {
 });
 
 test('primitive filter set to array', function () {
-    $filterSet = new PrimitiveFilterSet();
-    
+    $filterSet = new PrimitiveFilterSet;
+
     $filterSet->add('status', 'active')
         ->add('age', 18);
 
@@ -46,8 +46,8 @@ test('primitive filter set to array', function () {
 });
 
 test('primitive filter set with array values', function () {
-    $filterSet = new PrimitiveFilterSet();
-    
+    $filterSet = new PrimitiveFilterSet;
+
     $filterSet->add('tags', ['important', 'urgent'])
         ->add('settings', ['notifications' => true, 'theme' => 'dark']);
 
@@ -60,4 +60,4 @@ test('primitive filter set with array values', function () {
         ->and($array['conditions'][1]['attribute'])->toBe('settings')
         ->and($array['conditions'][1]['op'])->toBe(ComparisonOperator::IS->value)
         ->and($array['conditions'][1]['value'])->toBe(['notifications' => true, 'theme' => 'dark']);
-}); 
+});

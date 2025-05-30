@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\Model\Filters;
 class FilterGroup implements FilterInterface
 {
     private LogicalOperator $op;
+
     private array $conditions = [];
 
     public function __construct(LogicalOperator $op)
@@ -25,6 +26,7 @@ class FilterGroup implements FilterInterface
     public function add(FilterInterface $filter): self
     {
         $this->conditions[] = $filter;
+
         return $this;
     }
 
@@ -32,7 +34,7 @@ class FilterGroup implements FilterInterface
     {
         return [
             'op' => $this->op->value,
-            'conditions' => array_map(fn(FilterInterface $filter) => $filter->toArray(), $this->conditions),
+            'conditions' => array_map(fn (FilterInterface $filter) => $filter->toArray(), $this->conditions),
         ];
     }
-} 
+}

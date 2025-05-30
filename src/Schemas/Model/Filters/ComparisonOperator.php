@@ -16,4 +16,4 @@ enum ComparisonOperator: string
     case IS_NONE_OF = 'is_none_of';
     case IS_EMPTY = 'is_empty';
     case IS_NOT_EMPTY = 'is_not_empty';
-} 
+}

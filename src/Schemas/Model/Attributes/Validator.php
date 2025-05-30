@@ -5,8 +5,11 @@ namespace LCSEngine\Schemas\Model\Attributes;
 class Validator
 {
     private string $id;
+
     private ValidatorType $type;
+
     private string $message;
+
     private array $operations = [];
 
     public function __construct()
@@ -22,6 +25,7 @@ class Validator
     public function setType(ValidatorType $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -33,6 +37,7 @@ class Validator
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -45,6 +50,7 @@ class Validator
     {
         $this->validateOperations($operations);
         $this->operations = $operations;
+
         return $this;
     }
 
@@ -56,7 +62,7 @@ class Validator
     private function validateOperations(array $operations): void
     {
         foreach ($operations as $operation) {
-            if (!in_array($operation, array_column(OperationType::cases(), 'value'))) {
+            if (! in_array($operation, array_column(OperationType::cases(), 'value'))) {
                 throw new \InvalidArgumentException("Invalid operation type: {$operation}");
             }
         }
@@ -70,4 +76,4 @@ class Validator
             'operations' => $this->operations,
         ];
     }
-} 
+}

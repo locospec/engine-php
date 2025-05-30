@@ -5,9 +5,13 @@ namespace LCSEngine\Schemas\Model\Attributes;
 class Generator
 {
     private string $id;
+
     private GeneratorType $type;
+
     private ?string $source = null;
+
     private ?string $value = null;
+
     private array $operations = [];
 
     public function __construct()
@@ -23,6 +27,7 @@ class Generator
     public function setType(GeneratorType $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -34,6 +39,7 @@ class Generator
     public function setSource(?string $source): self
     {
         $this->source = $source;
+
         return $this;
     }
 
@@ -45,6 +51,7 @@ class Generator
     public function setValue(?string $value): self
     {
         $this->value = $value;
+
         return $this;
     }
 
@@ -57,6 +64,7 @@ class Generator
     {
         $this->validateOperations($operations);
         $this->operations = $operations;
+
         return $this;
     }
 
@@ -68,7 +76,7 @@ class Generator
     private function validateOperations(array $operations): void
     {
         foreach ($operations as $operation) {
-            if (!in_array($operation, array_column(OperationType::cases(), 'value'))) {
+            if (! in_array($operation, array_column(OperationType::cases(), 'value'))) {
                 throw new \InvalidArgumentException("Invalid operation type: {$operation}");
             }
         }
@@ -91,4 +99,4 @@ class Generator
 
         return $data;
     }
-} 
+}

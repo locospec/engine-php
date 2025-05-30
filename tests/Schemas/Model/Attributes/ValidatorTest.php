@@ -2,12 +2,12 @@
 
 namespace LCSEngine\Tests\Schemas\Model;
 
+use LCSEngine\Schemas\Model\Attributes\OperationType;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
-use LCSEngine\Schemas\Model\Attributes\OperationType;
 
 test('validator basic creation', function () {
-    $validator = new Validator();
+    $validator = new Validator;
     $validator->setType(ValidatorType::REQUIRED)
         ->setOperations([OperationType::INSERT->value])
         ->setMessage('Field is required');
@@ -18,7 +18,7 @@ test('validator basic creation', function () {
 });
 
 test('validator with multiple operations', function () {
-    $validator = new Validator();
+    $validator = new Validator;
     $validator->setType(ValidatorType::UNIQUE)
         ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
         ->setMessage('Value must be unique');
@@ -29,7 +29,7 @@ test('validator with multiple operations', function () {
 });
 
 test('validator to array', function () {
-    $validator = new Validator();
+    $validator = new Validator;
     $validator->setType(ValidatorType::REQUIRED)
         ->setOperations([OperationType::INSERT->value])
         ->setMessage('Field is required');
@@ -42,8 +42,8 @@ test('validator to array', function () {
 });
 
 test('validator with invalid operation throws exception', function () {
-    $validator = new Validator();
-    
-    expect(fn() => $validator->setOperations(['invalid_operation']))
+    $validator = new Validator;
+
+    expect(fn () => $validator->setOperations(['invalid_operation']))
         ->toThrow(\InvalidArgumentException::class, 'Invalid operation type: invalid_operation');
-}); 
+});

@@ -13,26 +13,26 @@ class AliasResolver
 
     /**
      * Resolve aliases in a filter structure
-     * 
-     * @param Filters $filters The filters to resolve aliases in
+     *
+     * @param  Filters  $filters  The filters to resolve aliases in
      * @return Filters A new Filters instance with resolved aliases
      */
     public function resolve(Filters $filters): Filters
     {
         $root = $filters->getRoot();
-        
+
         if ($root instanceof Condition) {
             return new Filters($this->resolveCondition($root));
         }
-        
+
         if ($root instanceof FilterGroup) {
             return new Filters($this->resolveGroup($root));
         }
-        
+
         if ($root instanceof PrimitiveFilterSet) {
             return new Filters($this->resolvePrimitiveSet($root));
         }
-        
+
         return $filters;
     }
 
@@ -42,7 +42,7 @@ class AliasResolver
     private function resolveCondition(Condition $condition): Condition
     {
         $attribute = $condition->getAttribute();
-        
+
         if (isset($this->aliases[$attribute])) {
             $alias = $this->aliases[$attribute];
             if (isset($alias['source'])) {
@@ -53,7 +53,7 @@ class AliasResolver
                 );
             }
         }
-        
+
         return $condition;
     }
 
@@ -63,7 +63,7 @@ class AliasResolver
     private function resolveGroup(FilterGroup $group): FilterGroup
     {
         $resolvedGroup = new FilterGroup($group->getOperator());
-        
+
         foreach ($group->getConditions() as $condition) {
             if ($condition instanceof Condition) {
                 $resolvedGroup->add($this->resolveCondition($condition));
@@ -73,7 +73,7 @@ class AliasResolver
                 $resolvedGroup->add($this->resolvePrimitiveSet($condition));
             }
         }
-        
+
         return $resolvedGroup;
     }
 
@@ -82,19 +82,20 @@ class AliasResolver
      */
     private function resolvePrimitiveSet(PrimitiveFilterSet $set): PrimitiveFilterSet
     {
-        $resolvedSet = new PrimitiveFilterSet();
-        
+        $resolvedSet = new PrimitiveFilterSet;
+
         foreach ($set->getFilters() as $key => $value) {
             if (isset($this->aliases[$key])) {
                 $alias = $this->aliases[$key];
                 if (isset($alias['source'])) {
                     $resolvedSet->add($alias['source'], $value);
+
                     continue;
                 }
             }
             $resolvedSet->add($key, $value);
         }
-        
+
         return $resolvedSet;
     }
-} 
+}

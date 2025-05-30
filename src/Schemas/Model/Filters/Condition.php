@@ -5,7 +5,9 @@ namespace LCSEngine\Schemas\Model\Filters;
 class Condition implements FilterInterface
 {
     private string $attribute;
+
     private ComparisonOperator $op;
+
     private mixed $value;
 
     public function __construct(string $attribute, ComparisonOperator $op, mixed $value)
@@ -38,4 +40,4 @@ class Condition implements FilterInterface
             'value' => $this->value,
         ];
     }
-} 
+}

@@ -6,4 +6,4 @@ enum LogicalOperator: string
 {
     case AND = 'and';
     case OR = 'or';
-} 
+}

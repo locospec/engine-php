@@ -13,7 +13,9 @@ use LCSEngine\Registry\RegistryManager;
 class RelationshipResolver
 {
     private ModelDefinition $model;
+
     private DatabaseOperationsCollection $dbOps;
+
     private RegistryManager $registryManager;
 
     public function __construct(
@@ -29,19 +31,19 @@ class RelationshipResolver
     public function resolve(Filters $filters): Filters
     {
         $root = $filters->getRoot();
-        
+
         if ($root instanceof Condition) {
             return new Filters($this->resolveCondition($root));
         }
-        
+
         if ($root instanceof FilterGroup) {
             return new Filters($this->resolveGroup($root));
         }
-        
+
         if ($root instanceof PrimitiveFilterSet) {
             return new Filters($this->resolvePrimitiveSet($root));
         }
-        
+
         return $filters;
     }
 
@@ -130,7 +132,7 @@ class RelationshipResolver
     private function resolveGroup(FilterGroup $group): FilterGroup
     {
         $resolvedGroup = new FilterGroup($group->getOperator());
-        
+
         foreach ($group->getConditions() as $condition) {
             if ($condition instanceof Condition) {
                 $resolved = $this->resolveCondition($condition);
@@ -147,18 +149,18 @@ class RelationshipResolver
                 $resolvedGroup->add($this->resolvePrimitiveSet($condition));
             }
         }
-        
+
         return $resolvedGroup;
     }
 
     private function resolvePrimitiveSet(PrimitiveFilterSet $set): PrimitiveFilterSet
     {
-        $resolvedSet = new PrimitiveFilterSet();
-        
+        $resolvedSet = new PrimitiveFilterSet;
+
         foreach ($set->getFilters() as $key => $value) {
             $condition = new Condition($key, ComparisonOperator::IS, $value);
             $resolved = $this->resolveCondition($condition);
-            
+
             if ($resolved instanceof FilterGroup) {
                 foreach ($resolved->getConditions() as $resolvedCondition) {
                     $resolvedSet->add(
@@ -173,7 +175,7 @@ class RelationshipResolver
                 );
             }
         }
-        
+
         return $resolvedSet;
     }
 
@@ -183,14 +185,14 @@ class RelationshipResolver
             return [
                 'extract' => $relationship->getOwnerKey(),
                 'point' => $relationship->getForeignKey(),
-                'operator' => ComparisonOperator::IS_ANY_OF
+                'operator' => ComparisonOperator::IS_ANY_OF,
             ];
         } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
             return [
                 'extract' => $relationship->getForeignKey(),
                 'point' => $relationship->getLocalKey(),
-                'operator' => ComparisonOperator::IS_ANY_OF
+                'operator' => ComparisonOperator::IS_ANY_OF,
             ];
         }
     }
-} 
+}

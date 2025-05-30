@@ -35,12 +35,12 @@ class SpecValidator
             self::SCHEMA_BASE_PATH.'/filters.json',
             __DIR__.'/Specs/filters.json'
         );
-        
+
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/attributes.json',
             __DIR__.'/Specs/attributes.json'
         );
-        
+
         $this->validator->resolver()->registerFile(
             self::SCHEMA_BASE_PATH.'/relationships.json',
             __DIR__.'/Specs/relationships.json'

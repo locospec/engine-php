@@ -11,6 +11,6 @@ class Options extends AbstractCollection
 
     public function toArray(): array
     {
-        return array_map(fn(Option $option) => $option->toArray(), $this->items);
+        return array_map(fn (Option $option) => $option->toArray(), $this->items);
     }
-} 
+}

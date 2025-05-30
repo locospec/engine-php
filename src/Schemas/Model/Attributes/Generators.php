@@ -11,6 +11,6 @@ class Generators extends AbstractCollection
 
     public function toArray(): array
     {
-        return array_map(fn(Generator $generator) => $generator->toArray(), $this->items);
+        return array_map(fn (Generator $generator) => $generator->toArray(), $this->items);
     }
-} 
+}

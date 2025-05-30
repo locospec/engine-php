@@ -6,15 +6,15 @@ use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Attributes\AttributeType;
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
-use LCSEngine\Schemas\Model\Attributes\Option;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
+use LCSEngine\Schemas\Model\Attributes\Option;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
 
 uses()->group('attributes');
 
 test('basic attribute creation', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('name')
         ->setType(AttributeType::UUID)
         ->setLabel('Name');
@@ -33,7 +33,7 @@ test('basic attribute creation', function () {
 });
 
 test('attribute with primary key flag', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('id')
         ->setType(AttributeType::UUID)
         ->setLabel('ID')
@@ -44,7 +44,7 @@ test('attribute with primary key flag', function () {
 });
 
 test('attribute with label key flag', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('title')
         ->setType(AttributeType::STRING)
         ->setLabel('Title')
@@ -55,7 +55,7 @@ test('attribute with label key flag', function () {
 });
 
 test('attribute with delete key flag', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('deleted_at')
         ->setType(AttributeType::TIMESTAMP)
         ->setLabel('Deleted At')
@@ -66,7 +66,7 @@ test('attribute with delete key flag', function () {
 });
 
 test('attribute with alias source and transformation', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('full_name')
         ->setType(AttributeType::ALIAS)
         ->setLabel('Full Name')
@@ -80,12 +80,12 @@ test('attribute with alias source and transformation', function () {
 });
 
 test('attribute with generator', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('created_at')
         ->setType(AttributeType::TIMESTAMP)
         ->setLabel('Created At');
 
-    $generator = new Generator();
+    $generator = new Generator;
     $generator->setType(GeneratorType::TIMESTAMP_GENERATOR)
         ->setOperations([OperationType::INSERT->value]);
 
@@ -99,12 +99,12 @@ test('attribute with generator', function () {
 });
 
 test('attribute with validator', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('email')
         ->setType(AttributeType::STRING)
         ->setLabel('Email');
 
-    $validator = new Validator();
+    $validator = new Validator;
     $validator->setType(ValidatorType::REQUIRED)
         ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
         ->setMessage('Email is required');
@@ -120,16 +120,16 @@ test('attribute with validator', function () {
 });
 
 test('attribute with options', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('status')
         ->setType(AttributeType::STRING)
         ->setLabel('Status');
 
-    $option1 = new Option();
+    $option1 = new Option;
     $option1->setTitle('Active')
         ->setConst('active');
 
-    $option2 = new Option();
+    $option2 = new Option;
     $option2->setTitle('Inactive')
         ->setConst('inactive');
 
@@ -146,20 +146,20 @@ test('attribute with options', function () {
 });
 
 test('complete attribute example', function () {
-    $attribute = new Attribute();
+    $attribute = new Attribute;
     $attribute->setName('user_id')
         ->setType(AttributeType::UUID)
         ->setLabel('User ID')
         ->setPrimaryKey(true);
 
     // Add generator
-    $generator = new Generator();
+    $generator = new Generator;
     $generator->setType(GeneratorType::UUID_GENERATOR)
         ->setOperations([OperationType::INSERT->value]);
     $attribute->addGenerator($generator);
 
     // Add validator
-    $validator = new Validator();
+    $validator = new Validator;
     $validator->setType(ValidatorType::REQUIRED)
         ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
         ->setMessage('User ID is required');
@@ -172,4 +172,4 @@ test('complete attribute example', function () {
         ->and($array['primaryKey'])->toBeTrue()
         ->and($array['generations'][0]['type'])->toBe(GeneratorType::UUID_GENERATOR->value)
         ->and($array['validations'][0]['type'])->toBe(ValidatorType::REQUIRED->value);
-}); 
+});

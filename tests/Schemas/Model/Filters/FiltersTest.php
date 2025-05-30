@@ -4,10 +4,8 @@ namespace LCSEngine\Tests\Schemas\Model\Filters;
 
 use LCSEngine\Schemas\Model\Filters\ComparisonOperator;
 use LCSEngine\Schemas\Model\Filters\Condition;
-use LCSEngine\Schemas\Model\Filters\FilterGroup;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
-use LCSEngine\Schemas\Model\Filters\PrimitiveFilterSet;
 
 uses()->group('filters');
 
@@ -15,7 +13,7 @@ test('filters with condition root', function () {
     $group = Filters::group(LogicalOperator::AND);
     $condition = Filters::condition('name', ComparisonOperator::IS, 'John');
     $filters = new Filters($condition);
-    
+
     // dump(["Log"=>"1", "condition" => $condition, "filters" => $filters, "filters array"=> $filters->toArray()]);
 
     expect($filters->getRoot())->toBe($condition)
@@ -63,7 +61,7 @@ test('filters with primitive root', function () {
 
 test('complex filter structure', function () {
     $group = Filters::group(LogicalOperator::AND);
-    
+
     $orGroup = Filters::group(LogicalOperator::OR);
     $orGroup->add(Filters::condition('status', ComparisonOperator::IS, 'active'))
         ->add(Filters::condition('status', ComparisonOperator::IS, 'pending'));
@@ -93,21 +91,21 @@ test('create filters from array - case 1: full structure', function () {
                     [
                         'attribute' => 'status',
                         'op' => 'is',
-                        'value' => 'active'
+                        'value' => 'active',
                     ],
                     [
                         'attribute' => 'status',
                         'op' => 'is',
-                        'value' => 'pending'
-                    ]
-                ]
+                        'value' => 'pending',
+                    ],
+                ],
             ],
             [
                 'attribute' => 'age',
                 'op' => 'greater_than',
-                'value' => 18
-            ]
-        ]
+                'value' => 18,
+            ],
+        ],
     ];
 
     $filters = Filters::fromArray($data);
@@ -134,13 +132,13 @@ test('create filters from array - case 2: array of conditions', function () {
         [
             'attribute' => 'status',
             'op' => 'is',
-            'value' => 'active'
+            'value' => 'active',
         ],
         [
             'attribute' => 'age',
             'op' => 'is',
-            'value' => 18
-        ]
+            'value' => 18,
+        ],
     ];
 
     $filters = Filters::fromArray($data);
@@ -160,7 +158,7 @@ test('create filters from array - case 2: array of conditions', function () {
 test('create filters from array - case 3: simple key-value pairs', function () {
     $data = [
         'status' => 'active',
-        'age' => 18
+        'age' => 18,
     ];
 
     $filters = Filters::fromArray($data);
@@ -175,4 +173,4 @@ test('create filters from array - case 3: simple key-value pairs', function () {
         ->and($array['conditions'][1]['attribute'])->toBe('age')
         ->and($array['conditions'][1]['op'])->toBe(ComparisonOperator::IS->value)
         ->and($array['conditions'][1]['value'])->toBe(18);
-}); 
+});
