@@ -1,146 +1,146 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://locospec.com/schemas/database-operations/common.json",
-    "definitions": {
-        "scopeReference": {
-            "type": "string",
-            "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)?$"
-        },
-        "scopeGroup": {
-            "type": "object",
-            "properties": {
-                "op": {
-                    "type": "string",
-                    "enum": ["and", "or"]
-                },
-                "scopes": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            { "$ref": "#/definitions/scopeReference" },
-                            { "$ref": "#/definitions/scopeGroup" }
-                        ]
-                    }
-                }
-            },
-            "required": ["op", "scopes"]
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://locospec.com/schemas/database-operations/common.json",
+  "definitions": {
+    "scopeReference": {
+      "type": "string",
+      "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*(\\.[a-zA-Z_][a-zA-Z0-9_]*)?$"
+    },
+    "scopeGroup": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": ["and", "or"]
         },
         "scopes": {
+          "type": "array",
+          "items": {
             "oneOf": [
-                {
-                    "type": "array",
-                    "items": { "$ref": "#/definitions/scopeReference" }
-                },
-                { "$ref": "#/definitions/scopeGroup" }
+              { "$ref": "#/definitions/scopeReference" },
+              { "$ref": "#/definitions/scopeGroup" }
             ]
-        },
-        "filters": {
-            "$ref": "../common.json#/definitions/filters"
-        },
-        "sort": {
-            "type": "object",
-            "properties": {
-                "attribute": { "type": "string" },
-                "direction": { "type": "string", "enum": ["ASC", "DESC"] }
-            },
-            "required": ["attribute", "direction"],
-            "additionalProperties": false
-        },
-        "sorts": {
-            "type": "array",
-            "items": { "$ref": "#/definitions/sort" }
-        },
-        "offsetPagination": {
-            "type": "object",
-            "properties": {
-                "type": { "type": "string", "enum": ["offset"] },
-                "page": { "type": "integer", "minimum": 1 },
-                "per_page": { "type": "integer", "minimum": 1 }
-            },
-            "required": ["type", "page", "per_page"],
-            "additionalProperties": false
-        },
-        "cursorPagination": {
-            "type": "object",
-            "properties": {
-                "type": { "type": "string", "enum": ["cursor"] },
-                "per_page": { "type": "integer", "minimum": 1 },
-                "cursor": { "type": "string" }
-            },
-            "required": ["type", "per_page"],
-            "additionalProperties": false
-        },
-        "pagination": {
-            "oneOf": [
-                { "$ref": "#/definitions/offsetPagination" },
-                { "$ref": "#/definitions/cursorPagination" }
-            ]
-        },
-        "aggregate": {
-            "type": "object",
-            "properties": {
-                "function": {
-                    "type": "string",
-                    "enum": ["count", "avg", "sum", "min", "max", "exists"]
-                },
-                "column": {
-                    "type": "string"
-                },
-                "distinct": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "alias": {
-                    "type": "string"
-                }
-            },
-            "required": ["function", "column", "distinct"]
-        },
-        "havingCondition": {
-            "type": "object",
-            "properties": {
-                "op": {
-                    "type": "string",
-                    "enum": [
-                        "is",
-                        "is_not",
-                        "greater_than",
-                        "less_than",
-                        "greater_than_or_equal",
-                        "less_than_or_equal"
-                    ]
-                },
-                "column": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": ["number", "string"]
-                }
-            },
-            "required": ["op", "column", "value"]
-        },
-        "havingGroup": {
-            "type": "object",
-            "properties": {
-                "op": {
-                    "type": "string",
-                    "enum": ["and", "or"]
-                },
-                "conditions": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/havingCondition"
-                            },
-                            {
-                                "$ref": "#/definitions/havingGroup"
-                            }
-                        ]
-                    }
-                }
-            },
-            "required": ["op", "conditions"]
+          }
         }
+      },
+      "required": ["op", "scopes"]
+    },
+    "scopes": {
+      "oneOf": [
+        {
+          "type": "array",
+          "items": { "$ref": "#/definitions/scopeReference" }
+        },
+        { "$ref": "#/definitions/scopeGroup" }
+      ]
+    },
+    "filters": {
+      "$ref": "../filters.json#/definitions/filters"
+    },
+    "sort": {
+      "type": "object",
+      "properties": {
+        "attribute": { "type": "string" },
+        "direction": { "type": "string", "enum": ["ASC", "DESC"] }
+      },
+      "required": ["attribute", "direction"],
+      "additionalProperties": false
+    },
+    "sorts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/sort" }
+    },
+    "offsetPagination": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["offset"] },
+        "page": { "type": "integer", "minimum": 1 },
+        "per_page": { "type": "integer", "minimum": 1 }
+      },
+      "required": ["type", "page", "per_page"],
+      "additionalProperties": false
+    },
+    "cursorPagination": {
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "enum": ["cursor"] },
+        "per_page": { "type": "integer", "minimum": 1 },
+        "cursor": { "type": "string" }
+      },
+      "required": ["type", "per_page"],
+      "additionalProperties": false
+    },
+    "pagination": {
+      "oneOf": [
+        { "$ref": "#/definitions/offsetPagination" },
+        { "$ref": "#/definitions/cursorPagination" }
+      ]
+    },
+    "aggregate": {
+      "type": "object",
+      "properties": {
+        "function": {
+          "type": "string",
+          "enum": ["count", "avg", "sum", "min", "max", "exists"]
+        },
+        "column": {
+          "type": "string"
+        },
+        "distinct": {
+          "type": "boolean",
+          "default": false
+        },
+        "alias": {
+          "type": "string"
+        }
+      },
+      "required": ["function", "column", "distinct"]
+    },
+    "havingCondition": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": [
+            "is",
+            "is_not",
+            "greater_than",
+            "less_than",
+            "greater_than_or_equal",
+            "less_than_or_equal"
+          ]
+        },
+        "column": {
+          "type": "string"
+        },
+        "value": {
+          "type": ["number", "string"]
+        }
+      },
+      "required": ["op", "column", "value"]
+    },
+    "havingGroup": {
+      "type": "object",
+      "properties": {
+        "op": {
+          "type": "string",
+          "enum": ["and", "or"]
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/havingCondition"
+              },
+              {
+                "$ref": "#/definitions/havingGroup"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["op", "conditions"]
     }
+  }
 }

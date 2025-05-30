@@ -25,6 +25,20 @@ trait HasAliases
         return $this->aliases;
     }
 
+    public function getAliasesArray(): array
+    {
+        if (! isset($this->aliases)) {
+            return [];
+        }
+
+        $array = [];
+        foreach ($this->aliases as $key => $value) {
+            $array[$key] = (array) $value;
+        }
+
+        return $array;
+    }
+
     protected function addAliases(object $data): void
     {
         if (! isset($this->aliases)) {

@@ -32,8 +32,18 @@ class SpecValidator
     {
         // Register common components schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH.'/common.json',
-            __DIR__.'/Specs/common.json'
+            self::SCHEMA_BASE_PATH.'/filters.json',
+            __DIR__.'/Specs/filters.json'
+        );
+
+        $this->validator->resolver()->registerFile(
+            self::SCHEMA_BASE_PATH.'/attributes.json',
+            __DIR__.'/Specs/attributes.json'
+        );
+
+        $this->validator->resolver()->registerFile(
+            self::SCHEMA_BASE_PATH.'/relationships.json',
+            __DIR__.'/Specs/relationships.json'
         );
 
         // Register common components schema for operations
