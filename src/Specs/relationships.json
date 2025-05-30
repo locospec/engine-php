@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://locospec.com/schemas/relationships.json",
+  "definitions": {
+    "relationships": {
+      "type": "object",
+      "description": "Model relationships definitions",
+      "properties": {
+        "belongs_to": {
+          "type": "object",
+          "description": "Database belongs to relationship",
+          "additionalProperties": {
+            "type": "object",
+            "description": "Relationship configuration",
+            "properties": {
+              "model": {
+                "type": "string",
+                "description": "The related model name (can be different from the key name)"
+              },
+              "foreignKey": {
+                "type": "string",
+                "description": "The foreign key field name"
+              },
+              "ownerKey": {
+                "type": "string",
+                "description": "The key in the related model that this relationship references"
+              }
+            }
+          }
+        },
+        "has_many": {
+          "type": "object",
+          "description": "Database has many relationships",
+          "additionalProperties": {
+            "type": "object",
+            "description": "Relationship configuration",
+            "properties": {
+              "model": {
+                "type": "string",
+                "description": "The related model name (can be different from the key name)"
+              },
+              "foreignKey": {
+                "type": "string",
+                "description": "The foreign key field name"
+              },
+              "localKey": {
+                "type": "string",
+                "description": "The key in the current model that this relationship references"
+              }
+            }
+          }
+        },
+        "has_one": {
+          "type": "object",
+          "description": "Database has one relationships",
+          "additionalProperties": {
+            "type": "object",
+            "description": "Relationship configuration",
+            "properties": {
+              "model": {
+                "type": "string",
+                "description": "The related model name (can be different from the key name)"
+              },
+              "foreignKey": {
+                "type": "string",
+                "description": "The foreign key field name"
+              },
+              "localKey": {
+                "type": "string",
+                "description": "The key in the current model that this relationship references"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

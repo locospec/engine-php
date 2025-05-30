@@ -1,197 +1,123 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://locospec.com/schemas/mutator.json",
-    "title": "Mutator Spec",
-    "description": "Spec for defining a mutator",
-    "type": "object",
-    "properties": {
-        "name": {
-            "type": "string",
-            "description": "The unique identifier for the mutator, following a specific naming convention.",
-            "minLength": 1,
-            "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
-        },
-        "label": {
-            "type": "string",
-            "description": "A human-readable label for the mutator."
-        },
-        "type": {
-            "type": "string",
-            "enum": ["mutator"],
-            "description": "Type identifier for the spec."
-        },
-        "dbOp": {
-            "type": "string",
-            "enum": ["create", "insert", "update", "delete"],
-            "description": "Type of database operation for the spec."
-        },
-        "model": {
-            "type": "string",
-            "description": "The name of the associated model, which must be defined.",
-            "minLength": 1,
-            "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
-        },
-        "attributes": {
-            "type": "object",
-            "description": "Model field definitions",
-            "additionalProperties": {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "description": "Field data type",
-                        "enum": [
-                            "id",
-                            "uuid",
-                            "ulid",
-                            "string",
-                            "text",
-                            "timestamp",
-                            "boolean",
-                            "integer",
-                            "date",
-                            "decimal",
-                            "json",
-                            "jsonb",
-                            "object"
-                        ]
-                    },
-                    "label": {
-                        "type": "string",
-                        "description": "Label for the attribute"
-                    },
-                    "generations": {
-                        "type": "array",
-                        "description": "List of generation rules for the attribute",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "description": "Type of generation"
-                                },
-                                "source": {
-                                    "type": "string",
-                                    "description": "Source field for generation",
-                                    "optional": true
-                                },
-                                "value": {
-                                    "type": "string",
-                                    "description": "Value for generation",
-                                    "optional": true
-                                }
-                            },
-                            "required": ["type"]
-                        }
-                    },
-                    "validations": {
-                        "type": "array",
-                        "description": "List of validation rules for the attribute",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "type": {
-                                    "type": "string",
-                                    "description": "Type of validation"
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "Validation error message"
-                                }
-                            },
-                            "required": ["type", "message"]
-                        }
-                    }
-                },
-                "required": ["type", "label"]
-            }
-        },
-        "schema": {
-            "type": "object",
-            "description": "JSON form schema definition for the mutator",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["object"],
-                    "default": "object"
-                },
-                "properties": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "description": "Type of the property"
-                            },
-                            "description": {
-                                "type": "string",
-                                "description": "Description of the property"
-                            }
-                        },
-                        "required": ["type"]
-                    }
-                },
-                "required": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of required properties"
-                }
-            },
-            "required": ["type", "properties", "required"]
-        },
-        "uiSchema": {
-            "type": "object",
-            "description": "JSON form UI Schema definition for mutator form layout",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": ["VerticalLayout", "HorizontalLayout", "Group"],
-                    "description": "Layout type for the form"
-                },
-                "elements": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "type": {
-                                "type": "string",
-                                "enum": [
-                                    "Control",
-                                    "Group",
-                                    "VerticalLayout",
-                                    "HorizontalLayout",
-                                    "ENUM",
-                                    "lens-enum",
-                                    "lens-switch",
-                                    "lens-text-input",
-                                    "lens-dropdown",
-                                    "lens-calendar"
-                                ],
-                                "description": "Type of the UI element"
-                            },
-                            "scope": {
-                                "type": "string",
-                                "description": "JSON Schema path to the property"
-                            },
-                            "label": {
-                                "type": "string",
-                                "description": "Optional label for the element"
-                            }
-                        },
-                        "required": ["type"]
-                    }
-                },
-                "options": {
-                    "type": "object",
-                    "description": "Additional options for the UI elements"
-                }
-            },
-            "required": ["type", "elements"]
-        }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://locospec.com/schemas/mutator.json",
+  "title": "Mutator Spec",
+  "description": "Spec for defining a mutator",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique identifier for the mutator, following a specific naming convention.",
+      "minLength": 1,
+      "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
     },
-    "required": ["name", "type", "label", "dbOp", "model", "attributes"],
-    "additionalProperties": false
+    "label": {
+      "type": "string",
+      "description": "A human-readable label for the mutator."
+    },
+    "type": {
+      "type": "string",
+      "enum": ["mutator"],
+      "description": "Type identifier for the spec."
+    },
+    "dbOp": {
+      "type": "string",
+      "enum": ["create", "insert", "update", "delete"],
+      "description": "Type of database operation for the spec."
+    },
+    "model": {
+      "type": "string",
+      "description": "The name of the associated model, which must be defined.",
+      "minLength": 1,
+      "pattern": "^[a-z]+(?:[-_][a-z]+)*$"
+    },
+    "attributes": { "$ref": "attributes.json#/definitions/attributes" },
+    "schema": {
+      "type": "object",
+      "description": "JSON form schema definition for the mutator",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["object"],
+          "default": "object"
+        },
+        "properties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Type of the property"
+              },
+              "description": {
+                "type": "string",
+                "description": "Description of the property"
+              }
+            },
+            "required": ["type"]
+          }
+        },
+        "required": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of required properties"
+        }
+      },
+      "required": ["type", "properties", "required"]
+    },
+    "uiSchema": {
+      "type": "object",
+      "description": "JSON form UI Schema definition for mutator form layout",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["VerticalLayout", "HorizontalLayout", "Group"],
+          "description": "Layout type for the form"
+        },
+        "elements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "Control",
+                  "Group",
+                  "VerticalLayout",
+                  "HorizontalLayout",
+                  "ENUM",
+                  "lens-enum",
+                  "lens-switch",
+                  "lens-text-input",
+                  "lens-dropdown",
+                  "lens-calendar"
+                ],
+                "description": "Type of the UI element"
+              },
+              "scope": {
+                "type": "string",
+                "description": "JSON Schema path to the property"
+              },
+              "label": {
+                "type": "string",
+                "description": "Optional label for the element"
+              }
+            },
+            "required": ["type"]
+          }
+        },
+        "options": {
+          "type": "object",
+          "description": "Additional options for the UI elements"
+        }
+      },
+      "required": ["type", "elements"]
+    }
+  },
+  "required": ["name", "type", "label", "dbOp", "model", "attributes"],
+  "additionalProperties": false
 }
