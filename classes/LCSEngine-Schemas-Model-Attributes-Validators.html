@@ -97,6 +97,10 @@
                 
             </li>
                     <li>
+                <a href="namespaces/lcsengine-schemas.html" class="">Schemas</a>
+                
+            </li>
+                    <li>
                 <a href="namespaces/lcsengine-specifications.html" class="">Specifications</a>
                 
             </li>
@@ -144,14 +148,18 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine.html">LCSEngine</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-database.html">Database</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-database-filters.html">Filters</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas.html">Schemas</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-model.html">Model</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-model-attributes.html">Attributes</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    FilterGroup
+    Validators
 
+        <span class="phpdocumentor-element__extends">
+        extends <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AbstractCollection">AbstractCollection</abbr></a>
+    </span>
     
             <div class="phpdocumentor-element__package">
             in package
@@ -169,9 +177,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Filters/FilterGroup.php"><a href="files/src-database-filters-filtergroup.html"><abbr title="src/Database/Filters/FilterGroup.php">FilterGroup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Validators.php"><a href="files/src-schemas-model-attributes-validators.html"><abbr title="src/Schemas/Model/Attributes/Validators.php">Validators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">5</span>
 
     </aside>
 
@@ -186,7 +194,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -198,23 +206,60 @@
 
 
 
+<h4 id="toc-properties">
+    Properties
+    <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+</h4>
+<dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#property_items">$items</a>
+    <span>
+                        &nbsp;: array&lt;string|int, mixed&gt;            </span>
+</dt>
+
+    </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_normalize">normalize()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_add">add()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_count">count()</a>
+    <span>
+                                &nbsp;: int    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_getAll">getAll()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_validate">validate()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_isEmpty">isEmpty()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_remove">remove()</a>
     <span>
                                 &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_toArray">toArray()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
     </dl>
@@ -224,35 +269,78 @@
         
 
         
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_items">
+        $items
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#property_items" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/AbstractCollection.php"><a href="files/src-schemas-model-attributes-abstractcollection.html"><abbr title="src/Schemas/Model/Attributes/AbstractCollection.php">AbstractCollection.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">7</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">array&lt;string|int, mixed&gt;</span>
+    <span class="phpdocumentor-signature__name">$items</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+            </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_normalize">
-        normalize()
-        <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_normalize" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_add">
+        add()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_add" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Filters/FilterGroup.php"><a href="files/src-database-filters-filtergroup.html"><abbr title="src/Database/Filters/FilterGroup.php">FilterGroup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Validators.php"><a href="files/src-schemas-model-attributes-validators.html"><abbr title="src/Schemas/Model/Attributes/Validators.php">Validators.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">normalize</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operation</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">add</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Validator.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validator">Validator</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$validator</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -261,21 +349,86 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$operation</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$model</span>
-                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                <span class="phpdocumentor-signature__argument__name">$validator</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Validator.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validator">Validator</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
             </dl>
 
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_count">
+        count()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_count" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/AbstractCollection.php"><a href="files/src-schemas-model-attributes-abstractcollection.html"><abbr title="src/Schemas/Model/Attributes/AbstractCollection.php">AbstractCollection.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">34</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">count</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">int</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">int</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getAll">
+        getAll()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_getAll" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/AbstractCollection.php"><a href="files/src-schemas-model-attributes-abstractcollection.html"><abbr title="src/Schemas/Model/Attributes/AbstractCollection.php">AbstractCollection.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getAll</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
     
 
     
@@ -290,24 +443,62 @@
         class="phpdocumentor-element
             -method
             -public
-                                    -static                    "
+                                                        "
 >
-    <h4 class="phpdocumentor-element__name" id="method_validate">
-        validate()
-        <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_validate" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_isEmpty">
+        isEmpty()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_isEmpty" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Filters/FilterGroup.php"><a href="files/src-database-filters-filtergroup.html"><abbr title="src/Database/Filters/FilterGroup.php">FilterGroup.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/AbstractCollection.php"><a href="files/src-schemas-model-attributes-abstractcollection.html"><abbr title="src/Schemas/Model/Attributes/AbstractCollection.php">AbstractCollection.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">85</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">validate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$filters</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">isEmpty</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_remove">
+        remove()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_remove" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/AbstractCollection.php"><a href="files/src-schemas-model-attributes-abstractcollection.html"><abbr title="src/Schemas/Model/Attributes/AbstractCollection.php">AbstractCollection.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">14</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">remove</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -316,8 +507,8 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$filters</span>
-                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -330,13 +521,51 @@
 
     
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_toArray">
+        toArray()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Validators.php"><a href="files/src-schemas-model-attributes-validators.html"><abbr title="src/Schemas/Model/Attributes/Validators.php">Validators.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">12</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">toArray</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/Filters/FilterGroup.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schemas/Model/Attributes/Validators.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -435,16 +664,27 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                <li><a href="classes/LCSEngine-Database-Filters-FilterGroup.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
+                            <li class="phpdocumentor-on-this-page-section__title">Properties</li>
+                <li>
+                    <ul class="phpdocumentor-list -clean">
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#property_items">$items</a></li>
+                                            </ul>
+                </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_normalize">normalize()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Database-Filters-FilterGroup.html#method_validate">validate()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_add">add()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_count">count()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_getAll">getAll()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_isEmpty">isEmpty()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_remove">remove()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -464,7 +704,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/LCSEngine-Database-Filters-FilterGroup.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
