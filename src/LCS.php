@@ -111,9 +111,7 @@ class LCS
             $specProcessor->processAllEntitySpec();
             self::$logger->info('Entities registration finished');
 
-            if (file_exists(self::$cacheFile)) {
-                self::saveToCache();
-            }
+            self::saveToCache();
         } catch (\Exception $e) {
             throw $e;
         }

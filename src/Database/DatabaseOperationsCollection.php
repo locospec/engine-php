@@ -2,17 +2,14 @@
 
 namespace LCSEngine\Database;
 
+use LCSEngine\Database\Filters\FilterGroup;
 use LCSEngine\Database\Relationships\RelationshipExpander;
+use LCSEngine\Database\Relationships\RelationshipResolver;
 use LCSEngine\Database\Scopes\ScopeResolver;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Filters\AliasResolver;
-use LCSEngine\Schemas\Model\Filters\ContextResolver;
-use LCSEngine\Schemas\Model\Filters\Filters;
-use LCSEngine\Schemas\Model\Filters\LogicalOperator;
-use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
 
@@ -54,6 +51,67 @@ class DatabaseOperationsCollection
         $this->logger->info('RegistryManager set', ['type' => 'dbOps']);
 
         return $this;
+    }
+
+    private function mergeFilters(array $scopeFilters, array $existingFilters): array
+    {
+        $this->logger->info('Merging filters', [
+            'type' => 'dbOps',
+            'scopeFilters' => $scopeFilters,
+            'existingFilters' => $existingFilters,
+        ]);
+        // If either filter is empty, return the other
+        if (empty($scopeFilters)) {
+            $this->logger->info('Scope filters empty, returning existing filters', [
+                'type' => 'dbOps',
+                'existingFilters' => $existingFilters,
+            ]);
+
+            return $existingFilters;
+        }
+        if (empty($existingFilters)) {
+            $this->logger->info('Existing filters empty, returning scope filters', [
+                'type' => 'dbOps',
+                'scopeFilters' => $scopeFilters,
+            ]);
+
+            return $scopeFilters;
+        }
+
+        // If both filters have 'and' operator, merge their conditions
+        if (($scopeFilters['op'] ?? 'and') === 'and' &&
+            ($existingFilters['op'] ?? 'and') === 'and'
+        ) {
+            $merged = [
+                'op' => 'and',
+                'conditions' => array_merge(
+                    $scopeFilters['conditions'] ?? [],
+                    $existingFilters['conditions'] ?? []
+                ),
+            ];
+            $this->logger->info('Both filters use AND operator, merged conditions', [
+                'type' => 'dbOps',
+                'merged' => $merged,
+            ]);
+
+            return $merged;
+        }
+
+        // Otherwise wrap them in an AND
+        $merged = [
+            'op' => 'and',
+            'conditions' => [
+                $scopeFilters,
+                $existingFilters,
+            ],
+        ];
+
+        $this->logger->info('Filters have different operators, wrapping them in AND', [
+            'type' => 'dbOps',
+            'merged' => $merged,
+        ]);
+
+        return $merged;
     }
 
     /**
@@ -108,16 +166,13 @@ class DatabaseOperationsCollection
 
             // Merge filters more efficiently
             if (isset($operation['filters'])) {
-                $filterGroup = Filters::group(LogicalOperator::AND);
-                $filterGroup->add(Filters::fromArray($operation['filters'])->getRoot())->add(Filters::fromArray($scopeFilters)->getRoot());
-                $filters = new Filters($filterGroup);
-                $operation['filters'] = $filters->toArray();
+                $operation['filters'] = $this->mergeFilters($scopeFilters, $operation['filters']);
                 $this->logger->info('Merged scope filters with existing filters', [
                     'type' => 'dbOps',
                     'mergedFilters' => $operation['filters'],
                 ]);
             } else {
-                $operation['filters'] = Filters::fromArray($scopeFilters)->toArray();
+                $operation['filters'] = $scopeFilters;
                 $this->logger->info('No existing filters, using scope filters', [
                     'type' => 'dbOps',
                     'filters' => $operation['filters'],
@@ -128,24 +183,19 @@ class DatabaseOperationsCollection
         }
 
         if (isset($operation['filters'])) {
-            $this->logger->info('Resolve Aliases in filters', [
+            $this->logger->info('Normalizing filters', [
                 'type' => 'dbOps',
                 'operation' => $operation,
             ]);
 
-            $aliasResolver = new AliasResolver($model->getAliasesArray());
-            $aliasResolved = $aliasResolver->resolve(Filters::fromArray($operation['filters']));
-            $operation['filters'] = $aliasResolved->toArray();
-
-            $this->logger->info('Filters aliases resolved', [
+            $operation = FilterGroup::normalize($operation, $model);
+            $this->logger->info('Filters normalized', [
                 'type' => 'dbOps',
                 'operation' => $operation,
             ]);
 
-            $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
-            $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
-
-            $operation['filters'] = $resolvedRelationshipFilters->toArray();
+            $resolver = new RelationshipResolver($model, $this, $this->registryManager);
+            $operation = $resolver->resolveFilters($operation);
             $this->logger->info('Relationship filters resolved', [
                 'type' => 'dbOps',
                 'operation' => $operation,
@@ -158,11 +208,10 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'filters' => $operation['filters'],
             ]);
-
-            $contextResolver = new ContextResolver($this->context->all());
-            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $operation['filters'] = $contextResolved->toArray();
-
+            $operation['filters'] = $this->valueResolver->resolveFilters(
+                $operation['filters'],
+                $this->context
+            );
             $this->logger->info('Context resolved in filters', [
                 'type' => 'dbOps',
                 'filters' => $operation['filters'],
