@@ -10,6 +10,7 @@ use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ContextResolver;
+use LCSEngine\Schemas\Model\Filters\FilterCleaner;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
@@ -161,12 +162,19 @@ class DatabaseOperationsCollection
 
             $contextResolver = new ContextResolver($this->context->all());
             $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $operation['filters'] = $contextResolved->toArray();
+            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
+            // $operation['filters'] = $contextResolved->toArray();
+            $operation['filters'] = $cleanedFilters->toArray();
 
             $this->logger->info('Context resolved in filters', [
                 'type' => 'dbOps',
-                'filters' => $operation['filters'],
+                'filters' => $contextResolved->toArray(),
+                'cleanedFilters' => $cleanedFilters->toArray(),
             ]);
+        }
+
+        if (empty($operation['filters']['conditions'])) {
+            unset($operation['filters']);
         }
 
         // Resolve any context variables in Data for insert
