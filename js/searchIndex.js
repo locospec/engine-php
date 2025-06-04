@@ -3861,6 +3861,36 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-ContextResolver.html#property_context"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner",
+            "name": "FilterCleaner",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner\u003A\u003Aclean\u0028\u0029",
+            "name": "clean",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html#method_clean"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner\u003A\u003AcleanCondition\u0028\u0029",
+            "name": "cleanCondition",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html#method_cleanCondition"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner\u003A\u003AcleanGroup\u0028\u0029",
+            "name": "cleanGroup",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html#method_cleanGroup"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner\u003A\u003AcleanPrimitiveSet\u0028\u0029",
+            "name": "cleanPrimitiveSet",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html#method_cleanPrimitiveSet"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterCleaner\u003A\u003AisEmptyValue\u0028\u0029",
+            "name": "isEmptyValue",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-FilterCleaner.html#method_isEmptyValue"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\FilterGroup",
             "name": "FilterGroup",
             "summary": "",
