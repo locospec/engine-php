@@ -4081,6 +4081,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_registryManager"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003A\u0024logger",
+            "name": "logger",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger"
+        },                {
             "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor",
             "name": "RelationshipProcessor",
             "summary": "",
