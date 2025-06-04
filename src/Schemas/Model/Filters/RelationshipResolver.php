@@ -3,14 +3,14 @@
 namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\LCS;
+use LCSEngine\Logger;
 use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Models\Relationships\BelongsTo;
 use LCSEngine\Models\Relationships\HasMany;
 use LCSEngine\Models\Relationships\HasOne;
 use LCSEngine\Models\Relationships\Relationship;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\LCS;
-use LCSEngine\Logger;
 
 class RelationshipResolver
 {

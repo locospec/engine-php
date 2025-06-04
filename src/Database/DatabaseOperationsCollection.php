@@ -92,7 +92,6 @@ class DatabaseOperationsCollection
             throw new InvalidArgumentException("Model not found: {$operation['modelName']}");
         }
 
-
         if (isset($operation['scopes'])) {
             $this->logger->info('Resolving scopes', [
                 'type' => 'dbOps',
@@ -225,7 +224,7 @@ class DatabaseOperationsCollection
                 'errors' => $validation['errors'],
             ]);
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 
