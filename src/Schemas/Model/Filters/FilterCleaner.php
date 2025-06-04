@@ -38,13 +38,13 @@ class FilterCleaner
 
         foreach ($group->getConditions() as $condition) {
             if ($condition instanceof Condition) {
-                if (!$this->isEmptyValue($condition->getValue())) {
+                if (! $this->isEmptyValue($condition->getValue())) {
                     $cleanGroup->add($condition);
                 }
             } elseif ($condition instanceof FilterGroup) {
                 $cleanedSubGroup = $this->cleanGroup($condition);
                 $subRoot = $cleanedSubGroup->getRoot();
-                if ($subRoot instanceof FilterGroup && !empty($subRoot->getConditions())) {
+                if ($subRoot instanceof FilterGroup && ! empty($subRoot->getConditions())) {
                     $cleanGroup->add($subRoot);
                 }
             }
@@ -60,6 +60,6 @@ class FilterCleaner
 
     private function isEmptyValue(mixed $value): bool
     {
-        return $value === null || (is_array($value) && empty($value)) || $value === "~delete~";
+        return $value === null || (is_array($value) && empty($value)) || $value === '~delete~';
     }
 }
