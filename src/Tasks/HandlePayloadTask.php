@@ -38,6 +38,9 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
             if (! empty($context)) {
                 $createdContext = QueryContext::create($context);
                 $dbOps->setContext($createdContext);
+            } else {
+                $createdContext = QueryContext::create([]);
+                $dbOps->setContext($createdContext);
             }
 
             // Set registry manager
