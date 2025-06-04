@@ -128,6 +128,32 @@ class DatabaseOperationsCollection
             unset($operation['scopes']);
         }
 
+        // 4. Resolve any context variables in filter values
+        if (isset($operation['filters']) && $this->context) {
+            $this->logger->info('Resolving context in filters', [
+                'type' => 'dbOps',
+                'filters' => $operation['filters'],
+            ]);
+
+            $contextResolver = new ContextResolver($this->context->all());
+            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
+            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
+            $operation['filters'] = $contextResolved->toArray();
+            $operation['filters'] = $cleanedFilters->toArray();
+
+            // dump($operation['filters']);
+
+            $this->logger->info('Context resolved in filters', [
+                'type' => 'dbOps',
+                'filters' => $contextResolved->toArray(),
+                'cleanedFilters' => $cleanedFilters->toArray(),
+            ]);
+        }
+
+        if (empty($operation['filters']['conditions'])) {
+            unset($operation['filters']);
+        }
+
         if (isset($operation['filters'])) {
             $this->logger->info('Resolve Aliases in filters', [
                 'type' => 'dbOps',
@@ -145,36 +171,12 @@ class DatabaseOperationsCollection
 
             $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
             $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
-
             $operation['filters'] = $resolvedRelationshipFilters->toArray();
+
             $this->logger->info('Relationship filters resolved', [
                 'type' => 'dbOps',
                 'operation' => $operation,
             ]);
-        }
-
-        // 4. Resolve any context variables in filter values
-        if (isset($operation['filters']) && $this->context) {
-            $this->logger->info('Resolving context in filters', [
-                'type' => 'dbOps',
-                'filters' => $operation['filters'],
-            ]);
-
-            $contextResolver = new ContextResolver($this->context->all());
-            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
-            // $operation['filters'] = $contextResolved->toArray();
-            $operation['filters'] = $cleanedFilters->toArray();
-
-            $this->logger->info('Context resolved in filters', [
-                'type' => 'dbOps',
-                'filters' => $contextResolved->toArray(),
-                'cleanedFilters' => $cleanedFilters->toArray(),
-            ]);
-        }
-
-        if (empty($operation['filters']['conditions'])) {
-            unset($operation['filters']);
         }
 
         // Resolve any context variables in Data for insert

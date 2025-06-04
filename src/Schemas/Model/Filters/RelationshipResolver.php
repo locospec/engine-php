@@ -3,6 +3,8 @@
 namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\LCS;
+use LCSEngine\Logger;
 use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Models\Relationships\BelongsTo;
 use LCSEngine\Models\Relationships\HasMany;
@@ -18,6 +20,8 @@ class RelationshipResolver
 
     private RegistryManager $registryManager;
 
+    private ?Logger $logger = null;
+
     public function __construct(
         ModelDefinition $model,
         DatabaseOperationsCollection $dbOps,
@@ -26,6 +30,7 @@ class RelationshipResolver
         $this->model = $model;
         $this->dbOps = $dbOps;
         $this->registryManager = $registryManager;
+        $this->logger = LCS::getLogger();
     }
 
     public function resolve(Filters $filters): Filters
@@ -55,6 +60,12 @@ class RelationshipResolver
         if (count($path) === 1) {
             return $condition;
         }
+
+        $this->logger->info('resolve relationship condition', [
+            'type' => 'dbOps',
+            'subType' => 'relationship_resolver',
+            'condition' => $condition->toArray(),
+        ]);
 
         // This is a relationship path
         $relations = [];
@@ -120,13 +131,20 @@ class RelationshipResolver
             $targetAttribute = $relation['target_attribute'];
             $targetOperator = $relation['operator'];
         }
-
         // Create a new condition with resolved values
-        return new Condition(
+        $newCondition = new Condition(
             $targetAttribute,
             $targetOperator,
             $currentValue
         );
+
+        $this->logger->info('resolved relationship condition', [
+            'type' => 'dbOps',
+            'subType' => 'relationship_resolver',
+            'newCondition' => $newCondition->toArray(),
+        ]);
+
+        return $newCondition;
     }
 
     private function resolveGroup(FilterGroup $group): FilterGroup
