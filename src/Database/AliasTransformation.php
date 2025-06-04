@@ -73,8 +73,8 @@ class AliasTransformation
 
             return $output;
         } catch (\Exception $e) {
-            throw $e;
+            return null;
+            // throw $e;
         }
-
     }
 }

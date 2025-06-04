@@ -98,7 +98,7 @@ class ContextResolver
         if (is_string($value) && str_starts_with($value, '$.') && strlen($value) > 2) {
             $key = substr($value, 2);
 
-            return $this->context[$key] ?? $value;
+            return $this->context[$key] ?? null;
         }
 
         if (is_array($value)) {

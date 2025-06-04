@@ -99,15 +99,17 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
-            $scopes = [];
-            foreach ($payload['scopes'] as $scope) {
-                if (isset($payload['globalContext'][$scope])) {
-                    $scopes[] = $scope;
-                }
-            }
-            $preparedPayload['scopes'] = $scopes;
-        }
+        // if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
+        //     $scopes = [];
+        //     foreach ($payload['scopes'] as $scope) {
+        //         if (isset($payload['globalContext'][$scope])) {
+        //             $scopes[] = $scope;
+        //         }
+        //     }
+        //     $preparedPayload['scopes'] = $scopes;
+        // }
+
+        $preparedPayload['scopes'] = $this->context->get('view')->getAllowedScopes();
 
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $preparedPayload['expand'] = $payload['expand'];
