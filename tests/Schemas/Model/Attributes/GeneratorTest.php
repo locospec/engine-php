@@ -1,51 +1,69 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Model;
-
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
+use Illuminate\Support\Collection;
 
-test('generator basic creation', function () {
-    $generator = new Generator;
-    $generator->setType(GeneratorType::UUID_GENERATOR)
-        ->setOperations([OperationType::INSERT->value]);
+uses()->group('attributes');
 
-    expect($generator->getType())->toBe(GeneratorType::UUID_GENERATOR)
-        ->and($generator->getOperations())->toBe([OperationType::INSERT->value])
-        ->and($generator->getSource())->toBeNull()
-        ->and($generator->getValue())->toBeNull();
+test('can create and get/set all fields', function () {
+    $generator = new Generator(GeneratorType::UUID);
+    $generator->setId('gen1');
+    $generator->setSource('user.id');
+    $generator->setValue('some-value');
+    $generator->addOperation(OperationType::INSERT);
+    expect($generator->getId())->toBe('gen1')
+        ->and($generator->getType())->toBe(GeneratorType::UUID)
+        ->and($generator->getSource())->toBe('user.id')
+        ->and($generator->getValue())->toBe('some-value')
+        ->and($generator->getOperations())->toBeInstanceOf(Collection::class)
+        ->and($generator->getOperations()->first())->toBe(OperationType::INSERT);
 });
 
-test('generator with source and value', function () {
-    $generator = new Generator;
-    $generator->setType(GeneratorType::SLUG_GENERATOR)
-        ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->setSource('title')
-        ->setValue('default-slug');
-
-    expect($generator->getType())->toBe(GeneratorType::SLUG_GENERATOR)
-        ->and($generator->getOperations())->toBe([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->and($generator->getSource())->toBe('title')
-        ->and($generator->getValue())->toBe('default-slug');
+test('can add and remove operations', function () {
+    $generator = new Generator(GeneratorType::UUID);
+    $generator->addOperation(OperationType::INSERT);
+    $generator->addOperation(OperationType::UPDATE);
+    expect($generator->getOperations()->count())->toBe(2)
+        ->and($generator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
+        ->and($generator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
+    
+    $generator->removeOperation(OperationType::INSERT);
+    expect($generator->getOperations()->count())->toBe(1)
+        ->and($generator->getOperations()->contains(OperationType::INSERT))->toBeFalse()
+        ->and($generator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
 });
 
-test('generator to array', function () {
-    $generator = new Generator;
-    $generator->setType(GeneratorType::TIMESTAMP_GENERATOR)
-        ->setOperations([OperationType::INSERT->value])
-        ->setSource('created_at');
-
-    $array = $generator->toArray();
-    expect($array)->toHaveKeys(['type', 'operations', 'source'])
-        ->and($array['type'])->toBe(GeneratorType::TIMESTAMP_GENERATOR->value)
-        ->and($array['operations'])->toBe([OperationType::INSERT->value])
-        ->and($array['source'])->toBe('created_at');
+test('toArray serializes all fields', function () {
+    $generator = new Generator(GeneratorType::SLUG_GENERATOR);
+    $generator->setId('gen2');
+    $generator->setSource('user.slug');
+    $generator->setValue('slug-value');
+    $generator->addOperation(OperationType::UPDATE);
+    $arr = $generator->toArray();
+    expect($arr['id'])->toBe('gen2')
+        ->and($arr['type'])->toBe('slug_generator')
+        ->and($arr['source'])->toBe('user.slug')
+        ->and($arr['value'])->toBe('slug-value')
+        ->and($arr['operations'])->toBe(['update']);
 });
 
-test('generator with invalid operation throws exception', function () {
-    $generator = new Generator;
-
-    expect(fn () => $generator->setOperations(['invalid_operation']))
-        ->toThrow(\InvalidArgumentException::class, 'Invalid operation type: invalid_operation');
+test('fromArray creates generator from array', function () {
+    $data = [
+        'id' => 'gen3',
+        'type' => 'timestamp_generator',
+        'source' => 'created_at',
+        'value' => 'now',
+        'operations' => ['insert', 'update'],
+    ];
+    $generator = Generator::fromArray($data);
+    expect($generator)->toBeInstanceOf(Generator::class)
+        ->and($generator->getType())->toBe(GeneratorType::TIMESTAMP_GENERATOR)
+        ->and($generator->getSource())->toBe('created_at')
+        ->and($generator->getValue())->toBe('now')
+        ->and($generator->getOperations())->toBeInstanceOf(Collection::class)
+        ->and($generator->getOperations()->count())->toBe(2)
+        ->and($generator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
+        ->and($generator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
 });

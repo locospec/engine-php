@@ -5,11 +5,11 @@ namespace LCSEngine\Registry;
 use LCSEngine\Edge;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Graph;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Models\Relationships\HasMany;
-use LCSEngine\Models\Relationships\HasOne;
-use LCSEngine\Models\Relationships\Relationship;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
+use LCSEngine\Schemas\Model\Relationships\HasOne;
+use LCSEngine\Schemas\Model\Relationships\Relationship;
 use LCSEngine\Vertex;
 
 /**
@@ -81,7 +81,7 @@ class ModelRegistry extends AbstractRegistry
      */
     private function addModelsAsVertices(): void
     {
-        /** @var ModelDefinition $model */
+        /** @var Model $model */
         foreach ($this->items as $modelName => $model) {
             $vertex = new Vertex($modelName, $model);
             $this->relationshipGraph->addVertex($vertex);
@@ -95,7 +95,7 @@ class ModelRegistry extends AbstractRegistry
      */
     private function addRelationshipsAsEdges(): void
     {
-        /** @var ModelDefinition $model */
+        /** @var Model $model */
         foreach ($this->items as $sourceModelName => $model) {
             $sourceVertex = $this->relationshipGraph->getVertex($sourceModelName);
             if (! $sourceVertex) {

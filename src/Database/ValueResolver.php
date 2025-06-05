@@ -2,7 +2,7 @@
 
 namespace LCSEngine\Database;
 
-use LCSEngine\Models\ModelDefinition;
+use LCSEngine\Schemas\Model\Model;
 
 class ValueResolver
 {
@@ -75,10 +75,10 @@ class ValueResolver
      * JSON-encode any columns defined as 'json' or 'object' in the model spec.
      *
      * @param  array  $data  Array of rows to process.
-     * @param  ModelDefinition|null  $model  ModelDefinition holding attribute types.
+     * @param  Model|null  $model  Model holding attribute types.
      * @return array The data with JSON columns encoded.
      */
-    public function resolveJsonColumnData(array $data, ?ModelDefinition $model): array
+    public function resolveJsonColumnData(array $data, ?Model $model): array
     {
         if (! $model) {
             return $data;
@@ -86,8 +86,8 @@ class ValueResolver
 
         // Find all attribute names whose type is 'json' or 'object'
         $jsonCols = [];
-        foreach ($model->getAttributes()->getAttributes() as $name => $attribute) {
-            $type = $attribute->getType();
+        foreach ($model->getAttributes()->all() as $name => $attribute) {
+            $type = $attribute->getType()->value;
             if (in_array($type, ['json', 'jsonb', 'object'], true)) {
                 $jsonCols[] = $name;
             }

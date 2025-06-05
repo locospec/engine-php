@@ -2,78 +2,57 @@
 
 namespace LCSEngine\Schemas\Model\Attributes;
 
+use Illuminate\Support\Collection;
+
 class Validator
 {
-    private string $id;
-
+    private ?string $id = null;
     private ValidatorType $type;
+    private ?string $message = null;
+    private Collection $operations;
 
-    private string $message;
-
-    private array $operations = [];
-
-    public function __construct()
-    {
-        $this->id = uniqid('val_');
-    }
-
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    public function setType(ValidatorType $type): self
+    public function __construct(ValidatorType $type)
     {
         $this->type = $type;
-
-        return $this;
+        $this->operations = collect();
     }
 
-    public function getType(): ValidatorType
-    {
-        return $this->type;
+    public function setId(string $id): void { $this->id = $id; }
+    public function setType(ValidatorType $type): void { $this->type = $type; }
+    public function setMessage(?string $message): void { $this->message = $message; }
+    public function setOperations(Collection $operations): void { $this->operations = $operations; }
+    public function addOperation(OperationType $operation): void { $this->operations->push($operation); }
+    public function removeOperation(OperationType $operation): void { 
+        $this->operations = $this->operations->reject(fn($op) => $op === $operation)->values(); 
     }
-
-    public function setMessage(string $message): self
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
-
-    public function setOperations(array $operations): self
-    {
-        $this->validateOperations($operations);
-        $this->operations = $operations;
-
-        return $this;
-    }
-
-    public function getOperations(): array
-    {
-        return $this->operations;
-    }
-
-    private function validateOperations(array $operations): void
-    {
-        foreach ($operations as $operation) {
-            if (! in_array($operation, array_column(OperationType::cases(), 'value'))) {
-                throw new \InvalidArgumentException("Invalid operation type: {$operation}");
-            }
-        }
-    }
-
+    public function getId(): ?string { return $this->id; }
+    public function getType(): ValidatorType { return $this->type; }
+    public function getMessage(): ?string { return $this->message; }
+    public function getOperations(): Collection { return $this->operations; }
     public function toArray(): array
     {
         return [
+            'id' => $this->id,
             'type' => $this->type->value,
             'message' => $this->message,
-            'operations' => $this->operations,
+            'operations' => $this->operations->map(fn($op) => $op->value)->all(),
         ];
     }
-}
+
+    public static function fromArray(array $data): self
+    {
+        $type = ValidatorType::from($data['type'] ?? 'required');
+        $validator = new self($type);
+        if (isset($data['id'])) {
+            $validator->setId($data['id']);
+        }
+        if (isset($data['message'])) {
+            $validator->setMessage($data['message']);
+        }
+        if (isset($data['operations']) && is_array($data['operations'])) {
+            $operations = collect($data['operations'])->map(fn($op) => OperationType::from($op));
+            $validator->setOperations($operations);
+        }
+        return $validator;
+    }
+} 

@@ -3,34 +3,29 @@
 namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\LCS;
-use LCSEngine\Logger;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Models\Relationships\HasMany;
-use LCSEngine\Models\Relationships\HasOne;
-use LCSEngine\Models\Relationships\Relationship;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
+use LCSEngine\Schemas\Model\Relationships\HasOne;
+use LCSEngine\Schemas\Model\Relationships\Relationship;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 
 class RelationshipResolver
 {
-    private ModelDefinition $model;
+    private Model $model;
 
     private DatabaseOperationsCollection $dbOps;
 
     private RegistryManager $registryManager;
 
-    private ?Logger $logger = null;
-
     public function __construct(
-        ModelDefinition $model,
+        Model $model,
         DatabaseOperationsCollection $dbOps,
         RegistryManager $registryManager
     ) {
         $this->model = $model;
         $this->dbOps = $dbOps;
         $this->registryManager = $registryManager;
-        $this->logger = LCS::getLogger();
     }
 
     public function resolve(Filters $filters): Filters
@@ -60,12 +55,6 @@ class RelationshipResolver
         if (count($path) === 1) {
             return $condition;
         }
-
-        $this->logger->info('resolve relationship condition', [
-            'type' => 'dbOps',
-            'subType' => 'relationship_resolver',
-            'condition' => $condition->toArray(),
-        ]);
 
         // This is a relationship path
         $relations = [];
@@ -131,20 +120,13 @@ class RelationshipResolver
             $targetAttribute = $relation['target_attribute'];
             $targetOperator = $relation['operator'];
         }
+
         // Create a new condition with resolved values
-        $newCondition = new Condition(
+        return new Condition(
             $targetAttribute,
             $targetOperator,
             $currentValue
         );
-
-        $this->logger->info('resolved relationship condition', [
-            'type' => 'dbOps',
-            'subType' => 'relationship_resolver',
-            'newCondition' => $newCondition->toArray(),
-        ]);
-
-        return $newCondition;
     }
 
     private function resolveGroup(FilterGroup $group): FilterGroup

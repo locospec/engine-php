@@ -15,6 +15,10 @@
             "properties": {
               "model": {
                 "type": "string",
+                "description": "The related model name (can be different from the key name)(RajeshTODO: this key will be removed)"
+              },
+              "relatedModelName": {
+                "type": "string",
                 "description": "The related model name (can be different from the key name)"
               },
               "foreignKey": {
@@ -39,6 +43,10 @@
                 "type": "string",
                 "description": "The related model name (can be different from the key name)"
               },
+              "relatedModelName": {
+                "type": "string",
+                "description": "The related model name (can be different from the key name)"
+              },
               "foreignKey": {
                 "type": "string",
                 "description": "The foreign key field name"
@@ -58,6 +66,10 @@
             "description": "Relationship configuration",
             "properties": {
               "model": {
+                "type": "string",
+                "description": "The related model name (can be different from the key name)"
+              },
+              "relatedModelName": {
                 "type": "string",
                 "description": "The related model name (can be different from the key name)"
               },

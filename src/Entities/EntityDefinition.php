@@ -3,8 +3,8 @@
 namespace LCSEngine\Entities;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 
 class EntityDefinition
 {
@@ -55,7 +55,7 @@ class EntityDefinition
         return $this->layout;
     }
 
-    public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
+    public static function fromObject(object $data, RegistryManager $registryManager, Model $model): self
     {
         $attributes = [];
         $expand = [];
@@ -101,9 +101,9 @@ class EntityDefinition
      *
      * @param  object  $attributes
      */
-    public static function generateFullLayout(ModelDefinition $model, array $shorthandLayout): array
+    public static function generateFullLayout(Model $model, array $shorthandLayout): array
     {
-        $attributes = $model->getAttributes()->getAttributes();
+        $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
         $transformed = self::transformLayout($shorthandLayout, $attributes);
 
         return $transformed;

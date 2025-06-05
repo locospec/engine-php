@@ -6,4 +6,7 @@ enum ValidatorType: string
 {
     case REQUIRED = 'required';
     case UNIQUE = 'unique';
-}
+    case EXISTS = 'exists';
+    case EMAIL = 'email';
+    // regex pattern
+} 

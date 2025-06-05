@@ -3,19 +3,19 @@
 namespace LCSEngine\Tests\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Models\Relationships\HasMany;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Filters\ComparisonOperator;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
+use LCSEngine\Schemas\Model\Model;
 
 uses()->group('filters');
 
 beforeEach(function () {
-    $this->model = mock(ModelDefinition::class);
+    $this->model = mock(Model::class);
     $this->dbOps = mock(DatabaseOperationsCollection::class);
     $this->registryManager = mock(RegistryManager::class);
 
@@ -42,7 +42,7 @@ test('resolve belongs to relationship condition', function () {
     // Mock the model and its relationships
     $this->model->shouldReceive('getName')->andReturn('posts');
 
-    $userModel = mock(ModelDefinition::class);
+    $userModel = mock(Model::class);
     $userModel->shouldReceive('getName')->andReturn('users');
 
     $belongsTo = mock(BelongsTo::class);
@@ -88,7 +88,7 @@ test('resolve has many relationship condition', function () {
     // Mock the model and its relationships
     $this->model->shouldReceive('getName')->andReturn('users');
 
-    $postModel = mock(ModelDefinition::class);
+    $postModel = mock(Model::class);
     $postModel->shouldReceive('getName')->andReturn('posts');
 
     $hasMany = mock(HasMany::class);
@@ -134,10 +134,10 @@ test('resolve nested relationship condition', function () {
     // Mock the model and its relationships
     $this->model->shouldReceive('getName')->andReturn('comments');
 
-    $postModel = mock(ModelDefinition::class);
+    $postModel = mock(Model::class);
     $postModel->shouldReceive('getName')->andReturn('posts');
 
-    $userModel = mock(ModelDefinition::class);
+    $userModel = mock(Model::class);
     $userModel->shouldReceive('getName')->andReturn('users');
 
     $belongsToPost = mock(BelongsTo::class);
@@ -202,7 +202,7 @@ test('resolve relationship in filter group', function () {
     // Mock the model and its relationships
     $this->model->shouldReceive('getName')->andReturn('posts');
 
-    $userModel = mock(ModelDefinition::class);
+    $userModel = mock(Model::class);
     $userModel->shouldReceive('getName')->andReturn('users');
 
     $belongsTo = mock(BelongsTo::class);

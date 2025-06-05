@@ -6,11 +6,12 @@ use LCSEngine\Entities\EntityDefinition;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Logger;
-use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\SpecValidator;
 use LCSEngine\Views\ViewDefinition;
+use LCSEngine\Schemas\Model\Model;
+
 
 class SpecificationProcessor
 {
@@ -78,23 +79,24 @@ class SpecificationProcessor
             $this->logger?->info('Processing JSON spec');
 
             $specs = $this->parseJson($json);
-
+            
+            
             foreach ($specs as $spec) {
-                switch ($spec->type) {
+                switch ($spec['type']) {
                     case 'model':
-                        $this->processModelSpec($spec);
+                        $this->processModel($spec);
                         break;
 
                     case 'view':
-                        $this->pendingViews[] = $spec;
+                        $this->pendingViews[] = json_decode($json, false);
                         break;
 
                     case 'mutator':
-                        $this->pendingMutators[] = $spec;
+                        $this->pendingMutators[] = json_decode($json, false);
                         break;
 
                     case 'entity':
-                        $this->pendingEntities[] = $spec;
+                        $this->pendingEntities[] = json_decode($json, false);
                         break;
 
                     default:
@@ -119,7 +121,7 @@ class SpecificationProcessor
     private function parseJson(string $json): array
     {
         $this->logger?->info('Parsing JSON data');
-        $data = json_decode($json, false);
+        $data = json_decode($json, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $this->logger?->error('Invalid JSON provided', ['error' => json_last_error_msg()]);
@@ -128,65 +130,10 @@ class SpecificationProcessor
 
         $this->logger?->info('Successfully parsed JSON data');
 
-        return is_array($data) ? $data : [$data];
+        return array_is_list($data) ? $data : [$data];
     }
 
-    /**
-     * Process a single model definition without relationships
-     */
-    private function processModelSpec(object $spec): void
-    {
-        try {
-            $this->logger?->info('Processing model spec', ['modelName' => $spec->name]);
-            // Store relationships for later processing
-            if (isset($spec->relationships)) {
-                $relationshipP = new \stdClass;
-                $relationshipP->modelName = $spec->name;
-                $relationshipP->relationships = $spec->relationships;
-
-                $this->pendingRelationships[] = $relationshipP;
-                $this->logger?->info('Stored pending relationships', ['modelName' => $spec->name]);
-            }
-            // Validate the model spec
-            $this->validateSpec($spec);
-
-            // Convert object to ModelDefinition
-            $model = ModelDefinition::fromObject($spec);
-
-            $this->logger?->info('Normalized model spec', ['modelName' => $model->getName()]);
-
-            // Revalidate after conversion
-            $this->validateSpec($model->toObject());
-
-            $this->registryManager->register($spec->type, $model);
-            $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
-
-            if (isset($spec->defaultView)) {
-                if (isset($spec->defaultView->model)) {
-                    $this->pendingViews[] = $spec->defaultView;
-                } else {
-                    $spec->defaultView->model = $model->getName();
-                    $this->pendingViews[] = $spec->defaultView;
-                }
-            } else {
-                // Create the defatul view
-                $view = ViewDefinition::fromModel($model, $spec, $this->registryManager);
-
-                $this->logger?->info('Normalized default view for model', ['viewName' => $view->getName()]);
-
-                // register the view
-                $this->registryManager->register('view', $view);
-                $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
-            }
-        } catch (\Exception $e) {
-            $this->logger?->error('Error processing model spec', [
-                'modelName' => $spec->name ?? 'Unknown',
-                'error' => $e->getMessage(),
-            ]);
-            throw $e;
-        }
-    }
-
+    // this can be removed
     public function validateSpec(object $spec): void
     {
         $this->logger?->info('Validating '.$spec->type.' spec', [$spec->type.'Name' => $spec->name]);
@@ -211,56 +158,6 @@ class SpecificationProcessor
     }
 
     /**
-     * Process all the relationships after all models are registered
-     */
-    public function processRelationships(): void
-    {
-        try {
-            $this->logger?->info('Processing relationships for models');
-
-            foreach ($this->pendingRelationships as $pending) {
-                $this->logger?->info('Processing relationships for model', ['modelName' => $pending->modelName]);
-                $model = $this->registryManager->get('model', $pending->modelName);
-
-                if (! $model) {
-                    $this->logger?->error('Model not found for relationship processing', [
-                        'modelName' => $pending->modelName,
-                    ]);
-                    throw new InvalidArgumentException(
-                        "Cannot process relationships: Model {$pending->modelName} not found"
-                    );
-                }
-
-                // Use RelationshipProcessor to handle relationship creation
-                $relationshipProcessor = new RelationshipProcessor($this->registryManager);
-
-                // Normalize and validate relationships
-                $relationshipProcessor->normalizeModelRelationships($model, $pending->relationships);
-                $this->validateSpec($model->toObject());
-
-                // Register relationships
-                $relationshipProcessor->processModelRelationships($model, $pending->relationships);
-
-                $this->logger?->info('Successfully processed relationships for model', ['modelName' => $pending->modelName]);
-            }
-
-            // Clear pending relationships after processing
-            $this->pendingRelationships = [];
-            $this->logger?->info('Successfully processed relationships for all the models');
-        } catch (InvalidArgumentException $e) {
-            $this->logger?->error('InvalidArgumentException during relationship processing', [
-                'error' => $e->getMessage(),
-            ]);
-            throw $e; // Rethrow to be caught in LCS.php
-        } catch (\Exception $e) {
-            $this->logger?->error('Unexpected error processing relationships', [
-                'error' => $e->getMessage(),
-            ]);
-            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
-        }
-    }
-
-    /**
      * Process a all view definition
      */
     public function processAllViewSpec(): void
@@ -268,6 +165,7 @@ class SpecificationProcessor
         try {
             $this->logger?->info('Processing all the views');
             foreach ($this->pendingViews as $pending) {
+
                 $this->logger?->info('Processing view', ['viewName' => $pending->name]);
                 $model = $this->registryManager->get('model', $pending->model);
 
@@ -301,7 +199,7 @@ class SpecificationProcessor
     /**
      * Process a single view definition
      */
-    private function processViewSpec(object $spec, ModelDefinition $model): void
+    private function processViewSpec(object $spec, Model $model): void
     {
         try {
             $this->logger?->info('Processing view spec', ['viewName' => $spec->name]);
@@ -367,7 +265,7 @@ class SpecificationProcessor
     /**
      * Process a single mutator definition
      */
-    private function processMutatorSpec(object $spec, ModelDefinition $model): void
+    private function processMutatorSpec(object $spec, Model $model): void
     {
         try {
             $this->logger?->info('Processing mutator spec', ['mutatorSpecName' => $spec->name]);
@@ -432,11 +330,10 @@ class SpecificationProcessor
     /**
      * Process a single entity definition
      */
-    private function processEntitySpec(object $spec, ModelDefinition $model): void
+    private function processEntitySpec(object $spec, Model $model): void
     {
         try {
             $this->logger?->info('Processing entity spec', ['entitySpecName' => $spec->name]);
-
             // Validate the entity spec
             $this->validateSpec($spec);
             // Convert object to EntityDefinition
@@ -456,4 +353,86 @@ class SpecificationProcessor
             throw $e;
         }
     }
+
+    private function processModel(array $spec): void
+    {
+        try {
+            $this->logger?->info('Processing model', ['modelName' => $spec['name']]);
+            // Store relationships for later processing
+            if (isset($spec['relationships'])) {
+                $relationshipP = [
+                    'modelName' => $spec['name'],
+                    'relationships' => $spec['relationships']
+                ];
+
+                $this->pendingRelationships[] = $relationshipP;
+                unset($spec['relationships']);
+                $this->logger?->info('Stored pending relationships', ['modelName' => $spec['name']]);
+            }
+            
+            $model = Model::fromArray($spec);
+            $this->logger?->info('Model spec processed', ['modelName' => $model->getName()]);
+
+            //Register model to the registery
+            $this->registryManager->register('model', $model);
+            $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
+
+            // Create the defatul view for the model
+            $view = ViewDefinition::fromModel($model, $this->registryManager);
+
+            $this->logger?->info('Created default view for model', ['viewName' => $view->getName()]);
+
+            // // register the view
+            $this->registryManager->register('view', $view);
+            $this->logger?->info('Default view registered in registry', [
+                'modelName' => $model->getName(),
+                'viewName' => $view->getName()
+            ]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing model', [
+                'modelName' => $spec['name'] ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
+        }
+    }
+
+    public function processPendingRelationships(): void
+    {
+        try {
+            $this->logger?->info('Processing pending relationships for models');
+            foreach ($this->pendingRelationships as $pending) {
+                $this->logger?->info('Processing relationships for model', ['modelName' => $pending['modelName']]);
+                $model = $this->registryManager->get('model', $pending['modelName']);
+
+                if (! $model) {
+                    $this->logger?->error('Model not found for relationship processing', [
+                        'modelName' => $pending['modelName'],
+                    ]);
+                    throw new InvalidArgumentException(
+                        "Cannot process relationships: Model {$pending['modelName']} not found"
+                    );
+                }
+                // Use RelationshipProcessor to handle relationship creation
+                $model->addRelationshipsFromArray($model->getName(), $pending['relationships'], $this->registryManager);
+
+                $this->logger?->info('Successfully processed relationships for model', ['modelName' => $pending['modelName']]);
+            }
+
+            // Clear pending relationships after processing
+            $this->pendingRelationships = [];
+            $this->logger?->info('Successfully processed relationships for all the models');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during relationship processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing relationships', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
+        }
+    }
+
 }

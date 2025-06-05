@@ -65,7 +65,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForRead(array $payload): array
     {
-        $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
+        // dd($this->context->get('model')->getDeleteKey()->getName());
+        $deleteColumn = $this->context->get('model')->getDeleteKey()->getName();
 
         $preparedPayload = [
             'type' => 'select',
@@ -99,24 +100,14 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        // if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
-        //     $scopes = [];
-        //     foreach ($payload['scopes'] as $scope) {
-        //         if (isset($payload['globalContext'][$scope])) {
-        //             $scopes[] = $scope;
-        //         }
-        //     }
-        //     $preparedPayload['scopes'] = $scopes;
-        // }
-
         $preparedPayload['scopes'] = $this->context->get('view')->getAllowedScopes();
 
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $preparedPayload['expand'] = $payload['expand'];
         } else {
-            $relationshipKeys = (array) $this->context->get('model')->getRelationships();
+            $relationshipKeys = $this->context->get('model')->getRelationships()->keys()->all();
             if (! empty($relationshipKeys)) {
-                $preparedPayload['expand'] = array_keys($relationshipKeys);
+                $preparedPayload['expand'] = $relationshipKeys;
             }
         }
 
@@ -127,7 +118,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     {
         $registryManager = $this->context->get('lcs')->getRegistryManager();
         $optionsModel = $registryManager->get('model', $payload['relation']);
-        $deleteColumn = $optionsModel->getConfig()->getDeleteColumn();
+        $deleteColumn = $optionsModel->getDeleteKey()->getName();
 
         $preparedPayload = [
             'type' => 'select',
@@ -184,7 +175,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 if (isset($payload['filters'])) {
                     $preparedPayload['filters'] = $payload['filters'];
                 } else {
-                    $primaryKey = $this->context->get('model')->getConfig()->getPrimaryKey();
+                    $primaryKey = $this->context->get('model')->getPrimaryKey()->getName();
                     $preparedPayload['filters'] = [
                         'op' => 'and',
                         'conditions' => [
@@ -199,8 +190,9 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 }
             }
 
-            $generator = $this->context->get('generator');
-            $attributes = $this->context->get('model')->getAttributes()->getAttributes();
+            $defaultGenerator = $this->context->get('generator');
+            // $attributes = $this->context->get('model')->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $this->context->get('model')->getAttributes()->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -219,18 +211,18 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 }
 
                 // Check if the attribute has a generation rule
-                if (! empty($attribute->getGenerations())) {
-                    foreach ($attribute->getGenerations() as $generation) {
-                        $generation->payload = $payload;
+                if (! empty($attribute->getGenerators())) {
+                    foreach ($attribute->getGenerators()->all() as $generator) {
+                        $generation =[];
+                        $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
-                        if (isset($generation->operations) && is_array($generation->operations)) {
-                            if (! in_array($dbOp, $generation->operations)) {
-                                continue;
-                            }
+
+                        if (! in_array($dbOp,$generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                            continue;
                         }
 
-                        if (isset($generation->source)) {
-                            $sourceKey = $generation->source;
+                        if ($generator->getSource() !== null) {
+                            $sourceKey = $generator->getSource();
                             $sourceValue = null;
                             if ($dbOp === 'update') {
                                 $sourceValue = $payload['data'][$sourceKey] ?? null;
@@ -239,18 +231,18 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                             }
 
                             if ($sourceValue) {
-                                $generation->sourceValue = $sourceValue;
+                                $generation['sourceValue'] = $sourceValue;
                             }
                         }
 
-                        $generation->dbOps = $dbOps;
-                        $generation->dbOperator = $this->operator;
-                        $generation->modelName = $this->context->get('model')->getName();
-                        $generation->attributeName = $attributeName;
-
-                        $generatedValue = $generator->generate(
-                            $generation->type,
-                            (array) $generation // Convert any extra options to array
+                        $generation['dbOps'] = $dbOps;
+                        $generation['dbOperator'] = $this->operator;
+                        $generation['modelName'] = $this->context->get('model')->getName();
+                        $generation['attributeName'] = $attributeName;
+                        $generation['value'] = $generator->getValue();
+                        $generatedValue = $defaultGenerator->generate(
+                            $generator->getType()->value,
+                            $generation
                         );
 
                         if ($generatedValue !== null) {
@@ -263,7 +255,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
-
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);
@@ -283,9 +274,9 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             if (isset($payload['expand']) && ! empty($payload['expand'])) {
                 $preparedPayload['expand'] = $payload['expand'];
             } else {
-                $relationshipKeys = (array) $this->context->get('model')->getRelationships();
+                $relationshipKeys = $this->context->get('model')->getRelationships()->keys()->all();
                 if (! empty($relationshipKeys)) {
-                    $preparedPayload['expand'] = array_keys($relationshipKeys);
+                    $preparedPayload['expand'] = $relationshipKeys;
                 }
             }
 
@@ -293,7 +284,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 'op' => 'and',
                 'conditions' => [
                     [
-                        'attribute' => $this->context->get('model')->getConfig()->getPrimaryKey(),
+                        'attribute' => $this->context->get('model')->getPrimaryKey()->getName(),
                         'op' => 'is',
                         'value' => $payload['primaryKey'],
                     ],

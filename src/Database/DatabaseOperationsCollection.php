@@ -16,6 +16,7 @@ use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 
 class DatabaseOperationsCollection
 {
@@ -128,39 +129,13 @@ class DatabaseOperationsCollection
             unset($operation['scopes']);
         }
 
-        // 4. Resolve any context variables in filter values
-        if (isset($operation['filters']) && $this->context) {
-            $this->logger->info('Resolving context in filters', [
-                'type' => 'dbOps',
-                'filters' => $operation['filters'],
-            ]);
-
-            $contextResolver = new ContextResolver($this->context->all());
-            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
-            $operation['filters'] = $contextResolved->toArray();
-            $operation['filters'] = $cleanedFilters->toArray();
-
-            // dump($operation['filters']);
-
-            $this->logger->info('Context resolved in filters', [
-                'type' => 'dbOps',
-                'filters' => $contextResolved->toArray(),
-                'cleanedFilters' => $cleanedFilters->toArray(),
-            ]);
-        }
-
-        if (empty($operation['filters']['conditions'])) {
-            unset($operation['filters']);
-        }
-
         if (isset($operation['filters'])) {
             $this->logger->info('Resolve Aliases in filters', [
                 'type' => 'dbOps',
                 'operation' => $operation,
             ]);
 
-            $aliasResolver = new AliasResolver($model->getAliasesArray());
+            $aliasResolver = new AliasResolver($model->getAliases());
             $aliasResolved = $aliasResolver->resolve(Filters::fromArray($operation['filters']));
             $operation['filters'] = $aliasResolved->toArray();
 
@@ -171,12 +146,36 @@ class DatabaseOperationsCollection
 
             $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
             $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
-            $operation['filters'] = $resolvedRelationshipFilters->toArray();
 
+            $operation['filters'] = $resolvedRelationshipFilters->toArray();
             $this->logger->info('Relationship filters resolved', [
                 'type' => 'dbOps',
                 'operation' => $operation,
             ]);
+        }
+
+        // 4. Resolve any context variables in filter values
+        if (isset($operation['filters']) && $this->context) {
+            $this->logger->info('Resolving context in filters', [
+                'type' => 'dbOps',
+                'filters' => $operation['filters'],
+            ]);
+
+            $contextResolver = new ContextResolver($this->context->all());
+            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
+            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
+            // $operation['filters'] = $contextResolved->toArray();
+            $operation['filters'] = $cleanedFilters->toArray();
+
+            $this->logger->info('Context resolved in filters', [
+                'type' => 'dbOps',
+                'filters' => $contextResolved->toArray(),
+                'cleanedFilters' => $cleanedFilters->toArray(),
+            ]);
+        }
+
+        if (empty($operation['filters']['conditions'])) {
+            unset($operation['filters']);
         }
 
         // Resolve any context variables in Data for insert
@@ -447,9 +446,9 @@ class DatabaseOperationsCollection
             $objectKeys = [];
             $attributes = $model->getAttributes();
             if ($attributes) {
-                foreach ($attributes->getAttributes() as $name => $attribute) {
+                foreach ($attributes as $name => $attribute) {
                     $type = $attribute->getType();
-                    if ($type === 'json' || $type === 'object') {
+                    if (in_array($type, [AttributeType::JSON, AttributeType::JSONB, AttributeType::OBJECT])) {
                         $objectKeys[] = $name;
                         $this->logger->info('Found JSON/object property', [
                             'type' => 'dbOps',

@@ -2,12 +2,13 @@
 
 namespace LCSEngine\Schemas\Model\Attributes;
 
-enum AttributeType: string
+enum Type: string
 {
     case UUID = 'uuid';
     case ULID = 'ulid';
     case ALIAS = 'alias';
     case STRING = 'string';
+    case TEXT = 'text';
     case TIMESTAMP = 'timestamp';
     case INTEGER = 'integer';
     case BOOLEAN = 'boolean';
@@ -16,4 +17,5 @@ enum AttributeType: string
     case JSON = 'json';
     case JSONB = 'jsonb';
     case OBJECT = 'object';
+    case ID = 'id';
 }

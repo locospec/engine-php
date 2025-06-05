@@ -3,8 +3,8 @@
 namespace LCSEngine\Mutators;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 
 class MutatorDefinition
 {
@@ -76,13 +76,14 @@ class MutatorDefinition
         return $this->uiSchema;
     }
 
-    public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
+    public static function fromObject(object $data, RegistryManager $registryManager, Model $model): self
     {
         $attributes = [];
 
         MutatorValidator::validate($data);
 
-        $validAttributeKeys = array_keys($model->getAttributes()->getAttributes());
+        // $validAttributeKeys = array_keys($model->getAttributes()->getAttributes());
+        $validAttributeKeys = $model->getAttributes()->keys()->all();
         foreach ($data->attributes as $key => $attribute) {
             if (! in_array($key, $validAttributeKeys)) {
                 throw new InvalidArgumentException(

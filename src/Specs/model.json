@@ -23,11 +23,6 @@
     "config": {
       "type": "object",
       "properties": {
-        "primaryKey": {
-          "type": "string",
-          "default": "id",
-          "description": "Primary key field name"
-        },
         "connection": {
           "type": "string",
           "default": "default",
@@ -49,26 +44,13 @@
           "type": ["string", "null"],
           "description": "Database table identifier (If not provided, plural of name will be taken)"
         },
-        "labelKey": {
-          "type": "string",
-          "description": "Label key field name"
-        },
-        "flagKey": {
-          "type": "string",
-          "description": "Flag key field name"
-        },
         "softDelete": {
           "type": "boolean",
           "default": true,
           "description": "Enable soft delete functionality"
-        },
-        "deleteColumn": {
-          "type": ["string", "null"],
-          "default": "deleted_at",
-          "description": "Column name for soft delete timestamp"
         }
       },
-      "required": ["primaryKey", "labelKey", "connection"],
+      "required": ["connection"],
       "additionalProperties": false
     },
     "attributes": { "$ref": "attributes.json#/definitions/attributes" },
@@ -80,64 +62,6 @@
       "description": "Model scopes definitions",
       "additionalProperties": {
         "$ref": "filters.json#/definitions/filters"
-      }
-    },
-    "aliases": {
-      "type": "object",
-      "description": "Model aliases definitions",
-      "additionalProperties": {
-        "type": "object",
-        "description": "Relationship/JQ-style path expression to find/transform data",
-        "properties": {
-          "source": {
-            "type": "string",
-            "description": "Relationship/JSON path to find the value"
-          },
-          "transform": {
-            "type": "string",
-            "description": "JQ-style path expression to transform data"
-          }
-        },
-        "anyOf": [{ "required": ["source"] }, { "required": ["transform"] }]
-      }
-    },
-    "defaultView": {
-      "type": "object",
-      "description": "Default View definitions",
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the default view"
-        },
-        "type": {
-          "type": "string",
-          "enum": ["view"],
-          "description": "Type of the default view"
-        },
-        "label": {
-          "type": "string",
-          "description": "Label for the default view"
-        },
-        "attributes": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Array of attribute names included in the default view"
-        },
-        "lensSimpleFilters": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "description": "Array of filters for the default view"
-        },
-        "selectionType": {
-          "type": "string",
-          "enum": ["none", "single", "multiple"],
-          "default": "none",
-          "description": "Selection type for the table."
-        }
       }
     }
   },
