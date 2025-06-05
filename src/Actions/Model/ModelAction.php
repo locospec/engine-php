@@ -5,17 +5,17 @@ namespace LCSEngine\Actions\Model;
 use LCSEngine\Actions\StateMachineFactory;
 use LCSEngine\Entities\EntityDefinition;
 use LCSEngine\LCS;
-use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\StateMachine\Context;
 use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Views\ViewDefinition;
 
 abstract class ModelAction
 {
-    protected ModelDefinition $model;
+    protected Model $model;
 
     protected ViewDefinition $view;
 
@@ -34,7 +34,7 @@ abstract class ModelAction
     public function __construct(
         ValidatorInterface $curdValidator,
         GeneratorInterface $generator,
-        ModelDefinition $model,
+        Model $model,
         ViewDefinition $view,
         ?MutatorDefinition $mutator,
         ?EntityDefinition $entity,
@@ -126,7 +126,7 @@ abstract class ModelAction
     /**
      * Get the model definition this action operates on
      */
-    public function getModel(): ModelDefinition
+    public function getModel(): Model
     {
         return $this->model;
     }

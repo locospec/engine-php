@@ -63,7 +63,7 @@ class ScopeResolver
         }
         $model = $this->registryManager->get('model', $this->currentModel);
 
-        if (! $model->hasScope($scopeName)) {
+        if (! $model->getScopes()->has($scopeName)) {
             if (isset($this->currentView)) {
                 $view = $this->registryManager->get('view', $this->currentView);
                 if (! $view->hasScope($scopeName)) {
@@ -76,7 +76,7 @@ class ScopeResolver
             }
         }
 
-        return $model->getScope($scopeName);
+        return $model->getScope($scopeName)->toArray();
     }
 
     private function resolveRelationshipScope(string $scopeName): array

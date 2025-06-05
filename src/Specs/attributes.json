@@ -24,14 +24,19 @@
               "decimal",
               "json",
               "jsonb",
-              "object"
+              "object",
+              "alias"
             ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Name for the attribute"
           },
           "label": {
             "type": "string",
             "description": "Label for the attribute"
           },
-          "generations": {
+          "generators": {
             "type": "array",
             "description": "List of generation rules for the attribute",
             "items": {
@@ -63,7 +68,7 @@
               "required": ["type", "operations"]
             }
           },
-          "validations": {
+          "validators": {
             "type": "array",
             "description": "List of validation rules for the attribute",
             "items": {
@@ -106,6 +111,29 @@
               },
               "required": ["title", "const"]
             }
+          },
+          "primaryKey": {
+            "type": "boolean",
+            "default": false,
+            "description": "Is attribute primary key column in database table."
+          },
+          "labelKey": {
+            "type": "boolean",
+            "default": false,
+            "description": "Is attribute label key column for the options."
+          },
+          "deleteKey": {
+            "type": "boolean",
+            "default": false,
+            "description": "Is attribute delete column in database table."
+          },
+          "source": {
+            "type": "string",
+            "description": "Source for the alias attribute."
+          },
+          "transform": {
+            "type": "string",
+            "description": "Transformation for the alias attribute."
           }
         },
         "required": ["type", "label"]

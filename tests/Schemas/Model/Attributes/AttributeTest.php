@@ -1,175 +1,113 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Model\Attributes;
-
 use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Model\Attributes\AttributeType;
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
-use LCSEngine\Schemas\Model\Attributes\OperationType;
 use LCSEngine\Schemas\Model\Attributes\Option;
+use LCSEngine\Schemas\Model\Attributes\Type;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
 
 uses()->group('attributes');
 
-test('basic attribute creation', function () {
-    $attribute = new Attribute;
-    $attribute->setName('name')
-        ->setType(AttributeType::UUID)
-        ->setLabel('Name');
-
-    expect($attribute->getName())->toBe('name')
-        ->and($attribute->getType())->toBe(AttributeType::UUID)
-        ->and($attribute->getLabel())->toBe('Name')
-        ->and($attribute->getGenerators())->toBeNull()
-        ->and($attribute->getValidators())->toBeNull()
-        ->and($attribute->getOptions())->toBeNull()
-        ->and($attribute->isPrimaryKey())->toBeFalse()
-        ->and($attribute->isLabelKey())->toBeFalse()
-        ->and($attribute->isDeleteKey())->toBeFalse()
-        ->and($attribute->getAliasSource())->toBeNull()
-        ->and($attribute->getAliasTransformation())->toBeNull();
+test('can create and get/set all fields', function () {
+    $attribute = new Attribute('username', 'Username', Type::STRING);
+    $attribute->setPrimaryKey(true);
+    $attribute->setLabelKey(true);
+    $attribute->setDeleteKey(true);
+    expect($attribute->getName())->toBe('username')
+        ->and($attribute->getLabel())->toBe('Username')
+        ->and($attribute->getType())->toBe(Type::STRING);
+    expect($attribute->getGenerators())->toBeEmpty();
+    expect($attribute->getValidators())->toBeEmpty();
+    expect($attribute->getOptions())->toBeEmpty();
 });
 
-test('attribute with primary key flag', function () {
-    $attribute = new Attribute;
-    $attribute->setName('id')
-        ->setType(AttributeType::UUID)
-        ->setLabel('ID')
-        ->setPrimaryKey(true);
-
-    expect($attribute->isPrimaryKey())->toBeTrue()
-        ->and($attribute->toArray())->toHaveKey('primaryKey', true);
+test('setAliasSource and setAliasTransformation throw if not alias', function () {
+    $attribute = new Attribute('username', 'Username', Type::STRING);
+    expect(fn () => $attribute->setAliasSource('user.name'))->toThrow(LogicException::class);
+    expect(fn () => $attribute->setAliasTransformation('upper(user.name)'))->toThrow(LogicException::class);
 });
 
-test('attribute with label key flag', function () {
-    $attribute = new Attribute;
-    $attribute->setName('title')
-        ->setType(AttributeType::STRING)
-        ->setLabel('Title')
-        ->setLabelKey(true);
-
-    expect($attribute->isLabelKey())->toBeTrue()
-        ->and($attribute->toArray())->toHaveKey('labelKey', true);
+test('setAliasSource and setAliasTransformation work for alias', function () {
+    $attribute = new Attribute('alias', 'Alias', Type::ALIAS);
+    $attribute->setAliasSource('user.name');
+    $attribute->setAliasTransformation('upper(user.name)');
+    expect($attribute->getAliasSource())->toBe('user.name')
+        ->and($attribute->getAliasTransformation())->toBe('upper(user.name)');
 });
 
-test('attribute with delete key flag', function () {
-    $attribute = new Attribute;
-    $attribute->setName('deleted_at')
-        ->setType(AttributeType::TIMESTAMP)
-        ->setLabel('Deleted At')
-        ->setDeleteKey(true);
-
-    expect($attribute->isDeleteKey())->toBeTrue()
-        ->and($attribute->toArray())->toHaveKey('deleteKey', true);
-});
-
-test('attribute with alias source and transformation', function () {
-    $attribute = new Attribute;
-    $attribute->setName('full_name')
-        ->setType(AttributeType::ALIAS)
-        ->setLabel('Full Name')
-        ->setAliasSource('user')
-        ->setAliasTransformation('firstName + " " + lastName');
-
-    expect($attribute->getAliasSource())->toBe('user')
-        ->and($attribute->getAliasTransformation())->toBe('firstName + " " + lastName')
-        ->and($attribute->toArray())->toHaveKey('source', 'user')
-        ->and($attribute->toArray())->toHaveKey('transform', 'firstName + " " + lastName');
-});
-
-test('attribute with generator', function () {
-    $attribute = new Attribute;
-    $attribute->setName('created_at')
-        ->setType(AttributeType::TIMESTAMP)
-        ->setLabel('Created At');
-
-    $generator = new Generator;
-    $generator->setType(GeneratorType::TIMESTAMP_GENERATOR)
-        ->setOperations([OperationType::INSERT->value]);
-
+test('can add generators, validators, and options', function () {
+    $attribute = new Attribute('username', 'Username', Type::STRING);
+    $generator = new Generator(GeneratorType::UUID);
+    $validator = new Validator(ValidatorType::REQUIRED);
+    $option = new Option;
+    $option->setConst('admin');
+    $option->setTitle('Admin');
     $attribute->addGenerator($generator);
-
-    expect($attribute->getGenerators())->not->toBeNull()
-        ->and($attribute->getGenerators()->count())->toBe(1)
-        ->and($attribute->toArray())->toHaveKey('generations')
-        ->and($attribute->toArray()['generations'][0]['type'])->toBe(GeneratorType::TIMESTAMP_GENERATOR->value)
-        ->and($attribute->toArray()['generations'][0]['operations'])->toBe([OperationType::INSERT->value]);
-});
-
-test('attribute with validator', function () {
-    $attribute = new Attribute;
-    $attribute->setName('email')
-        ->setType(AttributeType::STRING)
-        ->setLabel('Email');
-
-    $validator = new Validator;
-    $validator->setType(ValidatorType::REQUIRED)
-        ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->setMessage('Email is required');
-
     $attribute->addValidator($validator);
-
-    expect($attribute->getValidators())->not->toBeNull()
-        ->and($attribute->getValidators()->count())->toBe(1)
-        ->and($attribute->toArray())->toHaveKey('validations')
-        ->and($attribute->toArray()['validations'][0]['type'])->toBe(ValidatorType::REQUIRED->value)
-        ->and($attribute->toArray()['validations'][0]['message'])->toBe('Email is required')
-        ->and($attribute->toArray()['validations'][0]['operations'])->toBe([OperationType::INSERT->value, OperationType::UPDATE->value]);
+    $attribute->addOption($option);
+    expect($attribute->getGenerators())->toHaveCount(1)
+        ->and($attribute->getValidators())->toHaveCount(1)
+        ->and($attribute->getOptions())->toHaveCount(1);
 });
 
-test('attribute with options', function () {
-    $attribute = new Attribute;
-    $attribute->setName('status')
-        ->setType(AttributeType::STRING)
-        ->setLabel('Status');
+test('toArray serializes all fields and collections', function () {
+    $attribute = new Attribute('alias', 'Alias', Type::ALIAS);
+    $attribute->setPrimaryKey(true);
+    $attribute->setLabelKey(true);
+    $attribute->setDeleteKey(true);
+    $attribute->setAliasSource('user.name');
+    $attribute->setAliasTransformation('upper(user.name)');
+    $generator = new Generator(GeneratorType::UUID);
+    $validator = new Validator(ValidatorType::REQUIRED);
+    $option = new Option;
+    $option->setConst('admin');
+    $option->setTitle('Admin');
+    $attribute->addGenerator($generator);
+    $attribute->addValidator($validator);
+    $attribute->addOption($option);
+    $arr = $attribute->toArray();
+    // dd($arr);
+    expect($arr['name'])->toBe('alias')
+        ->and($arr['label'])->toBe('Alias')
+        ->and($arr['type'])->toBe('alias')
+        ->and($arr['primaryKey'])->toBeTrue()
+        ->and($arr['labelKey'])->toBeTrue()
+        ->and($arr['deleteKey'])->toBeTrue()
+        ->and($arr['source'])->toBe('user.name')
+        ->and($arr['transform'])->toBe('upper(user.name)')
+        ->and($arr['generators'])->toBeArray()
+        ->and($arr['validators'])->toBeArray()
+        ->and($arr['options'])->toBeArray();
+});
 
+test('can remove generator, validator, and option by id', function () {
+    $attribute = new Attribute('username', 'Username', Type::STRING);
+    $generator1 = new Generator(GeneratorType::UUID);
+    $generator2 = new Generator(GeneratorType::SLUG_GENERATOR);
+    $validator1 = new Validator(ValidatorType::REQUIRED);
+    $validator2 = new Validator(ValidatorType::UNIQUE);
     $option1 = new Option;
-    $option1->setTitle('Active')
-        ->setConst('active');
-
+    $option1->setConst('admin');
+    $option1->setTitle('Admin');
     $option2 = new Option;
-    $option2->setTitle('Inactive')
-        ->setConst('inactive');
-
-    $attribute->addOption($option1)
-        ->addOption($option2);
-
-    expect($attribute->getOptions())->not->toBeNull()
-        ->and($attribute->getOptions()->count())->toBe(2)
-        ->and($attribute->toArray())->toHaveKey('options')
-        ->and($attribute->toArray()['options'][0]['title'])->toBe('Active')
-        ->and($attribute->toArray()['options'][0]['const'])->toBe('active')
-        ->and($attribute->toArray()['options'][1]['title'])->toBe('Inactive')
-        ->and($attribute->toArray()['options'][1]['const'])->toBe('inactive');
-});
-
-test('complete attribute example', function () {
-    $attribute = new Attribute;
-    $attribute->setName('user_id')
-        ->setType(AttributeType::UUID)
-        ->setLabel('User ID')
-        ->setPrimaryKey(true);
-
-    // Add generator
-    $generator = new Generator;
-    $generator->setType(GeneratorType::UUID_GENERATOR)
-        ->setOperations([OperationType::INSERT->value]);
-    $attribute->addGenerator($generator);
-
-    // Add validator
-    $validator = new Validator;
-    $validator->setType(ValidatorType::REQUIRED)
-        ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->setMessage('User ID is required');
-    $attribute->addValidator($validator);
-
-    $array = $attribute->toArray();
-    expect($array)->toHaveKeys(['type', 'label', 'primaryKey', 'generations', 'validations'])
-        ->and($array['type'])->toBe(AttributeType::UUID->value)
-        ->and($array['label'])->toBe('User ID')
-        ->and($array['primaryKey'])->toBeTrue()
-        ->and($array['generations'][0]['type'])->toBe(GeneratorType::UUID_GENERATOR->value)
-        ->and($array['validations'][0]['type'])->toBe(ValidatorType::REQUIRED->value);
+    $option2->setConst('user');
+    $option2->setTitle('User');
+    $attribute->addGenerator($generator1);
+    $attribute->addGenerator($generator2);
+    $attribute->addValidator($validator1);
+    $attribute->addValidator($validator2);
+    $attribute->addOption($option1);
+    $attribute->addOption($option2);
+    // dd($attribute->toArray());
+    $attribute->removeGeneratorById($generator1->getId());
+    $attribute->removeValidatorById($validator2->getId());
+    $attribute->removeOptionById($option1->getId());
+    expect($attribute->getGenerators())->toHaveCount(1)
+        ->and($attribute->getGenerators()->first()->getId())->toBe($generator2->getId())
+        ->and($attribute->getValidators())->toHaveCount(1)
+        ->and($attribute->getValidators()->first()->getId())->toBe($validator1->getId())
+        ->and($attribute->getOptions())->toHaveCount(1)
+        ->and($attribute->getOptions()->first()->getId())->toBe($option2->getId());
 });

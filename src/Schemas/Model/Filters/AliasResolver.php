@@ -2,11 +2,13 @@
 
 namespace LCSEngine\Schemas\Model\Filters;
 
+use Illuminate\Support\Collection;
+
 class AliasResolver
 {
-    private array $aliases;
+    private Collection $aliases;
 
-    public function __construct(array $aliases)
+    public function __construct(Collection $aliases)
     {
         $this->aliases = $aliases;
     }
@@ -42,12 +44,11 @@ class AliasResolver
     private function resolveCondition(Condition $condition): Condition
     {
         $attribute = $condition->getAttribute();
-
-        if (isset($this->aliases[$attribute])) {
-            $alias = $this->aliases[$attribute];
-            if (isset($alias['source'])) {
+        if ($this->aliases->has($attribute)) {
+            $alias = $this->aliases->get($attribute);
+            if ($alias->hasAliasSource()) {
                 return new Condition(
-                    $alias['source'],
+                    $alias->getAliasSource(),
                     $condition->getOperator(),
                     $condition->getValue()
                 );
@@ -85,10 +86,10 @@ class AliasResolver
         $resolvedSet = new PrimitiveFilterSet;
 
         foreach ($set->getFilters() as $key => $value) {
-            if (isset($this->aliases[$key])) {
-                $alias = $this->aliases[$key];
-                if (isset($alias['source'])) {
-                    $resolvedSet->add($alias['source'], $value);
+            if ($this->aliases->has($key)) {
+                $alias = $this->aliases->get($key);
+                if ($alias->hasAliasSource()) {
+                    $resolvedSet->add($alias->getAliasSource(), $value);
 
                     continue;
                 }

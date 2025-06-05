@@ -4,8 +4,8 @@ namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Database\QueryContext;
-use LCSEngine\Models\Relationships\HasMany;
-use LCSEngine\Models\Relationships\HasOne;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
+use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\StateMachine\ContextInterface;
 
 class CreateEntityTask extends AbstractTask implements TaskInterface

@@ -90,10 +90,15 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
 
     public function handleReadOptionsResponse(array $input): array
     {
-        $modifiedResult = array_map(function ($item) {
+        $registryManager = $this->context->get('lcs')->getRegistryManager();
+        $optionsModel = $registryManager->get('model', $input['payload']['relation']);
+        $labelKey = $optionsModel->getLabelKey()->getName();
+        $primaryKey = $optionsModel->getPrimaryKey()->getName();
+
+        $modifiedResult = array_map(function ($item) use ($primaryKey, $labelKey) {
             return [
-                'const' => $item['const'],
-                'title' => $item['title'],
+                'const' => $item[$primaryKey],
+                'title' => $item[$labelKey],
             ];
         }, $input['response'][0]['result']);
 

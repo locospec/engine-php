@@ -2,15 +2,15 @@
 
 namespace LCSEngine\Database;
 
-use LCSEngine\Models\ModelDefinition;
+use LCSEngine\Schemas\Model\Model;
 
 class AliasTransformation
 {
-    private ModelDefinition $model;
+    private Model $model;
 
     public function __construct() {}
 
-    public function setModel(ModelDefinition $model)
+    public function setModel(Model $model)
     {
         $this->model = $model;
     }
@@ -18,7 +18,7 @@ class AliasTransformation
     public function transform(array $data): array
     {
         $aliases = $this->model->getAliases();
-        if (empty($aliases)) {
+        if ($aliases->isEmpty()) {
             return $data;
         }
 
@@ -38,25 +38,26 @@ class AliasTransformation
     {
         $processed = $record;
 
-        foreach ($aliases as $aliasKey => $expression) {
+        $aliases->each(function ($attribute, $aliasKey) use (&$processed, $record) {
             $extracted = null;
-            if (isset($expression->source)) {
-                $source = $expression->source;
+            if ($attribute->hasAliasSource()) {
+                $source = $attribute->getAliasSource();
 
-                if (strpos($expression->source, '->') !== false) {
-                    $source = preg_replace(['/^/', '/->?/'], ['', '.'], $expression->source);
+                if (strpos($source, '->') !== false) {
+                    $source = preg_replace(['/^/', '/->?/'], ['', '.'], $source);
                 }
 
                 $extracted = $this->executeJMESPathExpression($record, $source);
                 $processed[$aliasKey] = $extracted;
             }
 
-            if (isset($expression->transform)) {
+            if ($attribute->hasAliasTransformation()) {
+                $transormation = $attribute->getAliasTransformation();
                 $valueToTransform = (! empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
                 $inputData = isset($extracted) && ! empty($extracted) ? ['value' => $valueToTransform] : $record;
-                $processed[$aliasKey] = $this->executeJMESPathExpression($inputData, $expression->transform);
+                $processed[$aliasKey] = $this->executeJMESPathExpression($inputData, $transormation);
             }
-        }
+        });
 
         return $processed;
     }

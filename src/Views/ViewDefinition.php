@@ -3,9 +3,9 @@
 namespace LCSEngine\Views;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 
 class ViewDefinition
 {
@@ -112,7 +112,7 @@ class ViewDefinition
         return json_decode(json_encode($obj), true);
     }
 
-    public static function fromObject(object $data, RegistryManager $registryManager, ModelDefinition $model): self
+    public static function fromObject(object $data, RegistryManager $registryManager, Model $model): self
     {
         try {
             $selectionType = 'none';
@@ -127,18 +127,19 @@ class ViewDefinition
                 throw new InvalidArgumentException("Model not found: {$data->model}");
             }
 
-            $attributes = $model->getAttributes()->getAttributesByNames($data->attributes);
-            $aliases = array_keys((array) $model->getAliases());
-            if (! empty($aliases)) {
-                foreach ($aliases as $alias) {
-                    if (in_array($alias, $data->attributes)) {
-                        $attributes[$alias] = [
-                            'type' => 'string',
-                            'label' => ucwords(str_replace('_', ' ', $alias)),
-                        ];
-                    }
-                }
-            }
+            $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
+            // ->getAttributesByNames($data->attributes);
+            // $aliases = array_keys((array) $model->getAliases());
+            // if (! empty($aliases)) {
+            //     foreach ($aliases as $alias) {
+            //         if (in_array($alias, $data->attributes)) {
+            //             $attributes[$alias] = [
+            //                 'type' => 'string',
+            //                 'label' => ucwords(str_replace('_', ' ', $alias)),
+            //             ];
+            //         }
+            //     }
+            // }
             $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
 
             if (isset($data->selectionType)) {
@@ -161,7 +162,7 @@ class ViewDefinition
                 $serialize = $data->serialize;
             }
 
-            $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getConfig()->getPrimaryKey();
+            $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getPrimaryKey()->getName();
 
             return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize);
         } catch (InvalidArgumentException $e) {
@@ -178,23 +179,23 @@ class ViewDefinition
         return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions'], $data['serialize']);
     }
 
-    public static function fromModel(ModelDefinition $model, object $spec, RegistryManager $registryManager): self
+    public static function fromModel(Model $model, RegistryManager $registryManager): self
     {
         try {
             $defaultView = [];
 
             // create default view from model
-            $attributes = $model->getAttributes()->toArray();
-            $aliases = array_keys((array) $model->getAliases());
+            $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
+            // $aliases = array_keys((array) $model->getAliases());
 
-            if (! empty($aliases)) {
-                foreach ($aliases as $alias) {
-                    $attributes[$alias] = [
-                        'type' => 'string',
-                        'label' => ucwords(str_replace('_', ' ', $alias)),
-                    ];
-                }
-            }
+            // if (! empty($aliases)) {
+            //     foreach ($aliases as $alias) {
+            //         $attributes[$alias] = [
+            //             'type' => 'string',
+            //             'label' => ucwords(str_replace('_', ' ', $alias)),
+            //         ];
+            //     }
+            // }
 
             $defaultView = [
                 'name' => $model->getName().'_default_view',
@@ -204,8 +205,8 @@ class ViewDefinition
                 'lensSimpleFilters' => [],
                 'selectionType' => 'none',
                 'expand' => [],
-                'selectionKey' => $model->getConfig()->getPrimaryKey(),
-                'scopes' => $model->getScopes() ?? new \stdClass,
+                'selectionKey' => $model->getPrimaryKey()->getName(),
+                'scopes' => new \stdClass,
                 'allowedScopes' => [],
                 'actions' => new \stdClass,
                 'serialize' => false,
@@ -219,7 +220,7 @@ class ViewDefinition
         }
     }
 
-    public static function generateLensFilter($data, ModelDefinition $model, RegistryManager $registryManager): array
+    public static function generateLensFilter($data, Model $model, RegistryManager $registryManager): array
     {
         $lensSimpleFilters = [];
 
@@ -240,7 +241,7 @@ class ViewDefinition
                     foreach ($model->getRelationships() as $key => $relationship) {
                         if ($relationship instanceof BelongsTo) {
                             $relationshipModel = $registryManager->get('model', $relationship->getRelatedModelName());
-                            $dependsOn[] = $key.'.'.$relationshipModel->getConfig()->getPrimaryKey();
+                            $dependsOn[] = $key.'.'.$relationshipModel->getPrimaryKey()->getName();
                         }
                     }
                 }
@@ -251,17 +252,16 @@ class ViewDefinition
                     'model' => $model->getName(),
                 ];
 
-                if (! empty($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'])) {
-                    $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
+                if (! $model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
+                    // $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
+                    $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->all();
                 }
 
-                if ($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['type'] === 'timestamp') {
+                if ($model->getAttribute($lensSimpleFilter)->getType()->value === 'timestamp') {
                     $lensSimpleFilters[$lensSimpleFilter]['type'] = 'date';
                 }
 
-                if (isset($model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'])) {
-                    $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['label'];
-                }
+                $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getAttribute($lensSimpleFilter)->getLabel();
 
                 if (! empty($dependsOn)) {
                     $lensSimpleFilters[$lensSimpleFilter]['dependsOn'] = $dependsOn;

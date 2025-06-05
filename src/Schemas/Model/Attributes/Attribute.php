@@ -2,19 +2,21 @@
 
 namespace LCSEngine\Schemas\Model\Attributes;
 
+use Illuminate\Support\Collection;
+
 class Attribute
 {
     private string $name;
 
     private string $label;
 
-    private AttributeType $type;
+    private Type $type;
 
-    private ?Generators $generators = null;
+    private Collection $generators;
 
-    private ?Validators $validators = null;
+    private Collection $validators;
 
-    private ?Options $options = null;
+    private Collection $options;
 
     private bool $primaryKey = false;
 
@@ -26,14 +28,19 @@ class Attribute
 
     private ?string $transform = null;
 
-    public function setName(string $name): void
+    public function __construct(string $name, string $label, Type $type)
     {
         $this->name = $name;
+        $this->label = $label;
+        $this->type = $type;
+        $this->generators = collect();
+        $this->validators = collect();
+        $this->options = collect();
     }
 
-    public function getName(): string
+    public function setType(Type $type): void
     {
-        return $this->name;
+        $this->type = $type;
     }
 
     public function setLabel(string $label): void
@@ -41,19 +48,9 @@ class Attribute
         $this->label = $label;
     }
 
-    public function getLabel(): string
+    public function setName(string $name): void
     {
-        return $this->label;
-    }
-
-    public function setType(AttributeType $type): void
-    {
-        $this->type = $type;
-    }
-
-    public function getType(): AttributeType
-    {
-        return $this->type;
+        $this->name = $name;
     }
 
     public function setPrimaryKey(bool $flag): void
@@ -61,19 +58,9 @@ class Attribute
         $this->primaryKey = $flag;
     }
 
-    public function isPrimaryKey(): bool
-    {
-        return $this->primaryKey;
-    }
-
     public function setLabelKey(bool $flag): void
     {
         $this->labelKey = $flag;
-    }
-
-    public function isLabelKey(): bool
-    {
-        return $this->labelKey;
     }
 
     public function setDeleteKey(bool $flag): void
@@ -81,14 +68,85 @@ class Attribute
         $this->deleteKey = $flag;
     }
 
+    public function setAliasSource(string $source): void
+    {
+        if ($this->type !== Type::ALIAS) {
+            throw new \LogicException('Cannot set alias source: attribute type is not ALIAS.');
+        }
+
+        $this->source = $source;
+    }
+
+    public function setAliasTransformation(string $transform): void
+    {
+        if ($this->type !== Type::ALIAS) {
+            throw new \LogicException('Cannot set alias transformation: attribute type is not ALIAS.');
+        }
+
+        $this->transform = $transform;
+    }
+
+    public function isPrimaryKey(): bool
+    {
+        return $this->primaryKey;
+    }
+
+    public function isLabelKey(): bool
+    {
+        return $this->labelKey;
+    }
+
     public function isDeleteKey(): bool
     {
         return $this->deleteKey;
     }
 
-    public function setAliasSource(?string $source): void
+    public function addGenerator(Generator $generator): void
     {
-        $this->source = $source;
+        $generator->setId((string) ($this->generators->count() + 1));
+        $this->generators->push($generator);
+    }
+
+    public function addValidator(Validator $validator): void
+    {
+        $validator->setId((string) ($this->validators->count() + 1));
+        $this->validators->push($validator);
+    }
+
+    public function addOption(Option $option): void
+    {
+        $option->setId((string) ($this->options->count() + 1));
+        $this->options->push($option);
+    }
+
+    public function getType(): Type
+    {
+        return $this->type;
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getGenerators(): Collection
+    {
+        return $this->generators;
+    }
+
+    public function getValidators(): Collection
+    {
+        return $this->validators;
+    }
+
+    public function getOptions(): Collection
+    {
+        return $this->options;
     }
 
     public function getAliasSource(): ?string
@@ -96,9 +154,14 @@ class Attribute
         return $this->source;
     }
 
-    public function setAliasTransformation(?string $transform): void
+    public function hasAliasSource(): bool
     {
-        $this->transform = $transform;
+        return $this->source !== null;
+    }
+
+    public function hasAliasTransformation(): bool
+    {
+        return $this->transform !== null;
     }
 
     public function getAliasTransformation(): ?string
@@ -106,84 +169,107 @@ class Attribute
         return $this->transform;
     }
 
-    public function addGenerator(Generator $generator): void
+    public function removeGeneratorById(string $id): void
     {
-        if ($this->generators === null) {
-            $this->generators = new Generators;
+        $this->generators = $this->generators->reject(fn ($g) => $g->getId() === $id)->values();
+    }
+
+    public function removeValidatorById(string $id): void
+    {
+        $this->validators = $this->validators->reject(fn ($v) => $v->getId() === $id)->values();
+    }
+
+    public function removeOptionById(string $id): void
+    {
+        $this->options = $this->options->reject(fn ($o) => $o->getId() === $id)->values();
+    }
+
+    public static function fromArray(string $name, array $data): self
+    {
+        $name = $data['name'] ?? $name;
+        $label = $data['label'] ?? '';
+        $type = Type::from($data['type'] ?? 'string');
+        $attribute = new self($name, $label, $type);
+
+        // Boolean flags
+        if (isset($data['primaryKey'])) {
+            $attribute->setPrimaryKey((bool) $data['primaryKey']);
         }
-        $this->generators->add($generator);
-    }
-
-    public function addValidator(Validator $validator): void
-    {
-        if ($this->validators === null) {
-            $this->validators = new Validators;
+        if (isset($data['labelKey'])) {
+            $attribute->setLabelKey((bool) $data['labelKey']);
         }
-        $this->validators->add($validator);
-    }
-
-    public function addOption(Option $option): void
-    {
-        if ($this->options === null) {
-            $this->options = new Options;
+        if (isset($data['deleteKey'])) {
+            $attribute->setDeleteKey((bool) $data['deleteKey']);
         }
-        $this->options->add($option);
-    }
 
-    public function getGenerators(): ?Generators
-    {
-        return $this->generators;
-    }
+        // Alias fields
+        if ($type === Type::ALIAS) {
+            if (isset($data['source'])) {
+                $attribute->setAliasSource($data['source']);
+            }
+            if (isset($data['transform'])) {
+                $attribute->setAliasTransformation($data['transform']);
+            }
+        }
 
-    public function getValidators(): ?Validators
-    {
-        return $this->validators;
-    }
+        // Generators
+        if (! empty($data['generators']) && is_array($data['generators'])) {
+            foreach ($data['generators'] as $generatorData) {
+                $attribute->addGenerator(
+                    is_object($generatorData) ? $generatorData : Generator::fromArray($generatorData)
+                );
+            }
+        }
 
-    public function getOptions(): ?Options
-    {
-        return $this->options;
+        // Validators
+        if (! empty($data['validators']) && is_array($data['validators'])) {
+            foreach ($data['validators'] as $validatorData) {
+                $attribute->addValidator(
+                    is_object($validatorData) ? $validatorData : Validator::fromArray($validatorData)
+                );
+            }
+        }
+
+        // Options
+        if (! empty($data['options']) && is_array($data['options'])) {
+            foreach ($data['options'] as $optionData) {
+                $attribute->addOption(
+                    is_object($optionData) ? $optionData : Option::fromArray($optionData)
+                );
+            }
+        }
+
+        return $attribute;
     }
 
     public function toArray(): array
     {
-        $data = [
-            'type' => $this->type->value,
+        $arr = [
+            'name' => $this->name,
             'label' => $this->label,
+            'type' => $this->type->value,
+            'primaryKey' => $this->primaryKey,
+            'labelKey' => $this->labelKey,
+            'deleteKey' => $this->deleteKey,
         ];
 
-        if ($this->primaryKey) {
-            $data['primaryKey'] = true;
+        if (! $this->options->isEmpty()) {
+            $arr['options'] = $this->options->map(fn ($o) => $o->toArray())->all();
         }
 
-        if ($this->deleteKey) {
-            $data['deleteKey'] = true;
+        if (! $this->generators->isEmpty()) {
+            $arr['generators'] = $this->generators->map(fn ($g) => $g->toArray())->all();
         }
 
-        if ($this->labelKey) {
-            $data['labelKey'] = true;
+        if (! $this->validators->isEmpty()) {
+            $arr['validators'] = $this->validators->map(fn ($v) => $v->toArray())->all();
         }
 
-        if ($this->generators !== null) {
-            $data['generations'] = $this->generators->toArray();
+        if ($this->type === Type::ALIAS) {
+            $arr['source'] = $this->source;
+            $arr['transform'] = $this->transform;
         }
 
-        if ($this->validators !== null) {
-            $data['validations'] = $this->validators->toArray();
-        }
-
-        if ($this->options !== null) {
-            $data['options'] = $this->options->toArray();
-        }
-
-        if ($this->source !== null) {
-            $data['source'] = $this->source;
-        }
-
-        if ($this->transform !== null) {
-            $data['transform'] = $this->transform;
-        }
-
-        return $data;
+        return $arr;
     }
 }

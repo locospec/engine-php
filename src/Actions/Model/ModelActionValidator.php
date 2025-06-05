@@ -3,8 +3,8 @@
 namespace LCSEngine\Actions\Model;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Models\ModelDefinition;
 use LCSEngine\Query\FilterGroup;
+use LCSEngine\Schemas\Model\Model;
 
 /**
  * Validates inputs for model actions
@@ -14,7 +14,7 @@ class ModelActionValidator
     /**
      * Validate create action input
      */
-    public function validate_Config(array $input, ModelDefinition $model): void
+    public function validate_Config(array $input, Model $model): void
     {
         // Validation for the config
         // Additional model-specific validation can be added here
@@ -23,7 +23,7 @@ class ModelActionValidator
     /**
      * Validate create action input
      */
-    public function validateCreate(array $input, ModelDefinition $model): void
+    public function validateCreate(array $input, Model $model): void
     {
         if (empty($input)) {
             throw new InvalidArgumentException('Create action requires input data');
@@ -35,7 +35,7 @@ class ModelActionValidator
     /**
      * Validate update action input
      */
-    public function validateUpdate(array $input, ModelDefinition $model): void
+    public function validateUpdate(array $input, Model $model): void
     {
         if (! isset($input['conditions'])) {
             throw new InvalidArgumentException('Update action requires conditions');
@@ -49,7 +49,7 @@ class ModelActionValidator
     /**
      * Validate delete action input
      */
-    public function validateDelete(array $input, ModelDefinition $model): void
+    public function validateDelete(array $input, Model $model): void
     {
         if (! isset($input['conditions'])) {
             throw new InvalidArgumentException('Delete action requires conditions');
@@ -59,7 +59,7 @@ class ModelActionValidator
     /**
      * Validate read one action input
      */
-    public function validateReadOne(array $input, ModelDefinition $model): void
+    public function validateReadOne(array $input, Model $model): void
     {
         if (! isset($input['filters'])) {
             throw new InvalidArgumentException('ReadOne action requires filters');
@@ -69,7 +69,7 @@ class ModelActionValidator
     /**
      * Validate read list action input
      */
-    public function validateReadList(array $input, ModelDefinition $model): void
+    public function validateReadList(array $input, Model $model): void
     {
         // Pagination validation
         if (isset($input['pagination'])) {

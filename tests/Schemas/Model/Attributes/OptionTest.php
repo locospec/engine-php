@@ -1,37 +1,38 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Model;
-
 use LCSEngine\Schemas\Model\Attributes\Option;
 
-test('option basic creation', function () {
-    $option = new Option;
-    $option->setTitle('Active')
-        ->setConst('active');
+uses()->group('attributes');
 
-    expect($option->getTitle())->toBe('Active')
-        ->and($option->getConst())->toBe('active');
+test('can create and get/set all fields', function () {
+    $option = new Option;
+    $option->setId('opt1');
+    $option->setConst('admin');
+    $option->setTitle('Admin');
+    expect($option->getId())->toBe('opt1')
+        ->and($option->getConst())->toBe('admin')
+        ->and($option->getTitle())->toBe('Admin');
 });
 
-test('option to array', function () {
+test('toArray serializes all fields', function () {
     $option = new Option;
-    $option->setTitle('Inactive')
-        ->setConst('inactive');
-
-    $array = $option->toArray();
-    expect($array)->toHaveKeys(['title', 'const'])
-        ->and($array['title'])->toBe('Inactive')
-        ->and($array['const'])->toBe('inactive');
+    $option->setId('opt2');
+    $option->setConst('user');
+    $option->setTitle('User');
+    $arr = $option->toArray();
+    expect($arr['id'])->toBe('opt2')
+        ->and($arr['const'])->toBe('user')
+        ->and($arr['title'])->toBe('User');
 });
 
-test('option with special characters', function () {
-    $option = new Option;
-    $option->setTitle('Not Started')
-        ->setConst('not_started');
-
-    expect($option->getTitle())->toBe('Not Started')
-        ->and($option->getConst())->toBe('not_started')
-        ->and($option->toArray())->toHaveKeys(['title', 'const'])
-        ->and($option->toArray()['title'])->toBe('Not Started')
-        ->and($option->toArray()['const'])->toBe('not_started');
+test('fromArray creates option from array', function () {
+    $data = [
+        'id' => 'opt3',
+        'const' => 'guest',
+        'title' => 'Guest',
+    ];
+    $option = Option::fromArray($data);
+    expect($option)->toBeInstanceOf(Option::class)
+        ->and($option->getConst())->toBe('guest')
+        ->and($option->getTitle())->toBe('Guest');
 });

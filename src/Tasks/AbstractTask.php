@@ -2,7 +2,7 @@
 
 namespace LCSEngine\Tasks;
 
-use LCSEngine\Attributes\Attributes;
+use Illuminate\Support\Collection;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\StateMachine\ContextInterface;
@@ -11,7 +11,7 @@ abstract class AbstractTask implements TaskInterface
 {
     protected ContextInterface $context;
 
-    protected Attributes $attributes;
+    protected Collection $attributes;
 
     protected string $action;
 

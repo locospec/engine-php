@@ -3,23 +3,23 @@
 namespace LCSEngine\Database\Relationships;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\Models\ModelDefinition;
-use LCSEngine\Models\Relationships\BelongsTo;
-use LCSEngine\Models\Relationships\HasMany;
-use LCSEngine\Models\Relationships\HasOne;
-use LCSEngine\Models\Relationships\Relationship;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
+use LCSEngine\Schemas\Model\Relationships\HasOne;
+use LCSEngine\Schemas\Model\Relationships\Relationship;
 
 class RelationshipResolver
 {
-    private ModelDefinition $model;
+    private Model $model;
 
     private DatabaseOperationsCollection $dbOps;
 
     private RegistryManager $registryManager;
 
     public function __construct(
-        ModelDefinition $model,
+        Model $model,
         DatabaseOperationsCollection $dbOps,
         RegistryManager $registryManager
     ) {

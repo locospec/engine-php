@@ -1,49 +1,63 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Model;
-
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
 
-test('validator basic creation', function () {
-    $validator = new Validator;
-    $validator->setType(ValidatorType::REQUIRED)
-        ->setOperations([OperationType::INSERT->value])
-        ->setMessage('Field is required');
+uses()->group('attributes');
 
-    expect($validator->getType())->toBe(ValidatorType::REQUIRED)
-        ->and($validator->getOperations())->toBe([OperationType::INSERT->value])
-        ->and($validator->getMessage())->toBe('Field is required');
+test('can create and get/set all fields', function () {
+    $validator = new Validator(ValidatorType::REQUIRED);
+    $validator->setId('val1');
+    $validator->setMessage('Required!');
+    $validator->addOperation(OperationType::INSERT);
+    expect($validator->getId())->toBe('val1')
+        ->and($validator->getType())->toBe(ValidatorType::REQUIRED)
+        ->and($validator->getMessage())->toBe('Required!')
+        ->and($validator->getOperations())->toBeInstanceOf(Collection::class)
+        ->and($validator->getOperations()->first())->toBe(OperationType::INSERT);
 });
 
-test('validator with multiple operations', function () {
-    $validator = new Validator;
-    $validator->setType(ValidatorType::UNIQUE)
-        ->setOperations([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->setMessage('Value must be unique');
+test('can add and remove operations', function () {
+    $validator = new Validator(ValidatorType::REQUIRED);
+    $validator->addOperation(OperationType::INSERT);
+    $validator->addOperation(OperationType::UPDATE);
+    expect($validator->getOperations()->count())->toBe(2)
+        ->and($validator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
+        ->and($validator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
 
-    expect($validator->getType())->toBe(ValidatorType::UNIQUE)
-        ->and($validator->getOperations())->toBe([OperationType::INSERT->value, OperationType::UPDATE->value])
-        ->and($validator->getMessage())->toBe('Value must be unique');
+    $validator->removeOperation(OperationType::INSERT);
+    expect($validator->getOperations()->count())->toBe(1)
+        ->and($validator->getOperations()->contains(OperationType::INSERT))->toBeFalse()
+        ->and($validator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
 });
 
-test('validator to array', function () {
-    $validator = new Validator;
-    $validator->setType(ValidatorType::REQUIRED)
-        ->setOperations([OperationType::INSERT->value])
-        ->setMessage('Field is required');
-
-    $array = $validator->toArray();
-    expect($array)->toHaveKeys(['type', 'operations', 'message'])
-        ->and($array['type'])->toBe(ValidatorType::REQUIRED->value)
-        ->and($array['operations'])->toBe([OperationType::INSERT->value])
-        ->and($array['message'])->toBe('Field is required');
+test('toArray serializes all fields', function () {
+    $validator = new Validator(ValidatorType::UNIQUE);
+    $validator->setId('val2');
+    $validator->setMessage('Must be unique!');
+    $validator->addOperation(OperationType::UPDATE);
+    $arr = $validator->toArray();
+    expect($arr['id'])->toBe('val2')
+        ->and($arr['type'])->toBe('unique')
+        ->and($arr['message'])->toBe('Must be unique!')
+        ->and($arr['operations'])->toBe(['update']);
 });
 
-test('validator with invalid operation throws exception', function () {
-    $validator = new Validator;
-
-    expect(fn () => $validator->setOperations(['invalid_operation']))
-        ->toThrow(\InvalidArgumentException::class, 'Invalid operation type: invalid_operation');
+test('fromArray creates validator from array', function () {
+    $data = [
+        'id' => 'val3',
+        'type' => 'required',
+        'message' => 'Required!',
+        'operations' => ['insert', 'delete'],
+    ];
+    $validator = Validator::fromArray($data);
+    expect($validator)->toBeInstanceOf(Validator::class)
+        ->and($validator->getType())->toBe(ValidatorType::REQUIRED)
+        ->and($validator->getMessage())->toBe('Required!')
+        ->and($validator->getOperations())->toBeInstanceOf(Collection::class)
+        ->and($validator->getOperations()->count())->toBe(2)
+        ->and($validator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
+        ->and($validator->getOperations()->contains(OperationType::DELETE))->toBeTrue();
 });
