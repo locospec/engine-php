@@ -3,9 +3,9 @@
 namespace LCSEngine\Views;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 
 class ViewDefinition
 {
@@ -127,7 +127,7 @@ class ViewDefinition
                 throw new InvalidArgumentException("Model not found: {$data->model}");
             }
 
-            $attributes = $model->getAttributes()->only($data->attributes)->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
             // ->getAttributesByNames($data->attributes);
             // $aliases = array_keys((array) $model->getAliases());
             // if (! empty($aliases)) {
@@ -185,7 +185,7 @@ class ViewDefinition
             $defaultView = [];
 
             // create default view from model
-            $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
             // $aliases = array_keys((array) $model->getAliases());
 
             // if (! empty($aliases)) {
@@ -252,8 +252,7 @@ class ViewDefinition
                     'model' => $model->getName(),
                 ];
 
-
-                if (!$model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
+                if (! $model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
                     // $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttributes()->getAttributesByNames([$lensSimpleFilter])[$lensSimpleFilter]['options'];
                     $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->all();
                 }

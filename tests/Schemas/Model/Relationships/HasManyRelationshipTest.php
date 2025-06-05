@@ -6,7 +6,7 @@ use LCSEngine\Schemas\Model\Relationships\Type;
 uses()->group('relationships');
 
 test('can set and get properties for HasManyRelationship', function () {
-    $relationship = new HasMany();
+    $relationship = new HasMany;
 
     $relationship->setType(Type::HAS_MANY);
     $relationship->setForeignKey('post_id');
@@ -24,7 +24,7 @@ test('can set and get properties for HasManyRelationship', function () {
 });
 
 test('toArray returns correct array structure for HasManyRelationship', function () {
-    $relationship = new HasMany();
+    $relationship = new HasMany;
 
     $relationship->setType(Type::HAS_MANY);
     $relationship->setForeignKey('post_id');
@@ -64,4 +64,4 @@ test('fromArray creates instance correctly for HasManyRelationship', function ()
     expect($relationship->getCurrentModelName())->toBe('Order');
     expect($relationship->getRelationshipName())->toBe('items');
     expect($relationship->getLocalKey())->toBe('uuid');
-}); 
+});

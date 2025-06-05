@@ -5,9 +5,13 @@ namespace LCSEngine\Schemas\Model\Relationships;
 abstract class Relationship
 {
     protected string $foreignKey;
+
     protected string $relatedModelName;
+
     protected string $currentModelName;
+
     protected string $relationshipName;
+
     protected Type $type;
 
     public function setType(Type $type): void
@@ -63,7 +67,7 @@ abstract class Relationship
     abstract public function toArray(): array;
 
     // Abstract static method for fromArray, to be implemented by concrete classes
-    // The signature might need adjustment based on how fromArray will work, 
+    // The signature might need adjustment based on how fromArray will work,
     // but this indicates the intent.
     // A factory method might be more appropriate for fromArray on the abstract class,
     // but based on the diagram it's expected on concrete classes.
@@ -75,4 +79,4 @@ abstract class Relationship
     // It might be better implemented as a factory pattern outside the classes or
     // rely on fromArray in each concrete class.
     // Based on the diagram, I'll omit the abstract fromArray in the base class for now.
-} 
+}

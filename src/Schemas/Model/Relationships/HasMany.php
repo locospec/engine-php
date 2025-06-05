@@ -2,9 +2,9 @@
 
 namespace LCSEngine\Schemas\Model\Relationships;
 
+use InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Support\StringInflector;
-use InvalidArgumentException;
 
 class HasMany extends Relationship
 {
@@ -34,14 +34,14 @@ class HasMany extends Relationship
 
     public static function fromArray(array $data, RegistryManager $registryManager): self
     {
-        $relationship = new self();
+        $relationship = new self;
         $inflector = StringInflector::getInstance();
-       
+
         $relatedModelName = $data['model'] ?? $inflector->singular($data['relationshipName']);
         $relatedModel = $registryManager->get('model', $relatedModelName);
         $currentModel = $registryManager->get('model', $data['currentModelName']);
 
-        if(!$relatedModel){
+        if (! $relatedModel) {
             throw new InvalidArgumentException("Related model '{$relatedModelName}' not found for relationship '{$data['relationshipName']}'");
         }
 
@@ -55,7 +55,7 @@ class HasMany extends Relationship
         $relationship->setRelationshipName($data['relationshipName'] ?? '');
         $relationship->setCurrentModelName($data['currentModelName'] ?? '');
         $relationship->setLocalKey($localKey ?? '');
-        
+
         return $relationship;
     }
-} 
+}

@@ -3,37 +3,43 @@
 namespace LCSEngine\Schemas\Model;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Schemas\Type;
+use InvalidArgumentException;
+use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
-use LCSEngine\Schemas\Model\Relationships\Relationship;
-use LCSEngine\Schemas\Model\Relationships\Type as RelationshipType;
+use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
-use LCSEngine\Registry\RegistryManager;
-use InvalidArgumentException;
+use LCSEngine\Schemas\Model\Relationships\Relationship;
+use LCSEngine\Schemas\Model\Relationships\Type as RelationshipType;
+use LCSEngine\Schemas\Type;
 
 class Model
 {
     protected string $name;
+
     protected string $label;
-    protected Type   $type;
+
+    protected Type $type;
+
     protected Collection $attributes;
+
     protected Collection $relationships;
+
     protected Collection $scopes;
+
     protected Configuration $config;
 
     public function __construct(string $name, string $label)
     {
-        $this->name          = $name;
-        $this->label         = $label;
-        $this->type          = Type::MODEL;
-        $this->attributes    = collect();
+        $this->name = $name;
+        $this->label = $label;
+        $this->type = Type::MODEL;
+        $this->attributes = collect();
         $this->relationships = collect();
-        $this->scopes        = collect();
-        $this->config        = new Configuration($name);
+        $this->scopes = collect();
+        $this->config = new Configuration($name);
     }
 
     public function addAttribute(Attribute $attribute): void
@@ -95,7 +101,7 @@ class Model
     {
         return $this->attributes->get($name);
     }
-   
+
     public function getAttributes(): Collection
     {
         return $this->attributes;
@@ -118,48 +124,48 @@ class Model
 
     public function getPrimaryKey(): ?Attribute
     {
-        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isPrimaryKey());
+        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isPrimaryKey());
     }
 
     public function getDeleteKey(): ?Attribute
     {
-        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isDeleteKey());
+        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isDeleteKey());
     }
 
     public function getLabelKey(): ?Attribute
     {
-        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isLabelKey());
+        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isLabelKey());
     }
 
     public function getAliases(): Collection
     {
-        return $this->attributes->filter(fn(Attribute $attribute) => $attribute->getType() === AttributeType::ALIAS);
+        return $this->attributes->filter(fn (Attribute $attribute) => $attribute->getType() === AttributeType::ALIAS);
     }
 
     public static function fromArray(array $data): self
     {
-        $name  = $data['name'] ?? '';
+        $name = $data['name'] ?? '';
         $label = $data['label'] ?? '';
         $model = new self($name, $label);
 
-        if (isset($data['type']) && in_array($data['type'], array_map(fn($t) => $t->value, Type::cases()))) {
+        if (isset($data['type']) && in_array($data['type'], array_map(fn ($t) => $t->value, Type::cases()))) {
             $model->type = Type::from($data['type']);
         }
 
         // Attributes
-        if (!empty($data['attributes']) && is_array($data['attributes'])) {
+        if (! empty($data['attributes']) && is_array($data['attributes'])) {
             foreach ($data['attributes'] as $key => $attributeData) {
                 $model->addAttribute(Attribute::fromArray($key, $attributeData));
             }
         }
 
         // Relationships
-        if (!empty($data['relationships']) && is_array($data['relationships'])) {
+        if (! empty($data['relationships']) && is_array($data['relationships'])) {
             $model->addRelationshipsFromArray($data['name'], $data['relationships']);
         }
 
         // Scopes (Filters)
-        if (!empty($data['scopes']) && is_array($data['scopes'])) {
+        if (! empty($data['scopes']) && is_array($data['scopes'])) {
             foreach ($data['scopes'] as $name => $filtersData) {
                 if (is_array($filtersData)) {
                     $model->addScope($name, Filters::fromArray($filtersData));
@@ -168,7 +174,7 @@ class Model
         }
 
         // Configuration
-        if (!empty($data['config']) && is_array($data['config'])) {
+        if (! empty($data['config']) && is_array($data['config'])) {
             $model->config = Configuration::fromArray($data['name'], $data['config']);
         }
 
@@ -181,9 +187,9 @@ class Model
             'name' => $this->name,
             'label' => $this->label,
             'type' => $this->type->value,
-            'attributes' => $this->attributes->map(fn(Attribute $attribute) => $attribute->toArray())->all(),
-            'relationships' => $this->relationships->map(fn(Relationship $relationship) => $relationship->toArray())->all(),
-            'scopes' => $this->scopes->map(fn(Filters $filters) => $filters->toArray())->all(),
+            'attributes' => $this->attributes->map(fn (Attribute $attribute) => $attribute->toArray())->all(),
+            'relationships' => $this->relationships->map(fn (Relationship $relationship) => $relationship->toArray())->all(),
+            'scopes' => $this->scopes->map(fn (Filters $filters) => $filters->toArray())->all(),
             'config' => $this->config->toArray(),
         ];
     }
@@ -195,7 +201,7 @@ class Model
         }
 
         foreach ($relationshipsData as $typeString => $relationshipsData) {
-            if (!is_array($relationshipsData)) {
+            if (! is_array($relationshipsData)) {
                 // Skip or handle unexpected structure
                 continue;
             }
@@ -207,7 +213,7 @@ class Model
             }
 
             foreach ($relationshipsData as $relationshipName => $relationshipData) {
-                if (!is_array($relationshipData)) {
+                if (! is_array($relationshipData)) {
                     // Skip or handle unexpected individual relationship data
                     continue;
                 }

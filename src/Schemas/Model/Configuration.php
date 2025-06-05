@@ -7,10 +7,14 @@ use LCSEngine\Support\StringInflector;
 class Configuration
 {
     protected string $connection = 'default';
+
     protected string $table;
+
     protected string $singular;
+
     protected string $plural;
-    protected bool   $softDelete = true;
+
+    protected bool $softDelete = true;
 
     public function __construct(string $modelName)
     {
@@ -79,11 +83,11 @@ class Configuration
     public function toArray(): array
     {
         return [
-            'connection'    => $this->connection,
-            'table'     => $this->table,
-            'singular'  => $this->singular,
-            'plural'    => $this->plural,
-            'softDelete'    => $this->softDelete,
+            'connection' => $this->connection,
+            'table' => $this->table,
+            'singular' => $this->singular,
+            'plural' => $this->plural,
+            'softDelete' => $this->softDelete,
         ];
     }
 
@@ -102,7 +106,7 @@ class Configuration
         }
         if (isset($data['table'])) {
             $config->table = $data['table'];
-        } elseif (!empty($config->plural)) {
+        } elseif (! empty($config->plural)) {
             $config->table = $config->plural;
         }
         if (isset($data['softDelete'])) {

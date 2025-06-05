@@ -6,7 +6,7 @@ use LCSEngine\Schemas\Model\Relationships\Type;
 uses()->group('relationships');
 
 test('can set and get properties', function () {
-    $relationship = new BelongsTo();
+    $relationship = new BelongsTo;
 
     $relationship->setType(Type::BELONGS_TO);
     $relationship->setForeignKey('user_id');
@@ -24,7 +24,7 @@ test('can set and get properties', function () {
 });
 
 test('toArray returns correct array structure', function () {
-    $relationship = new BelongsTo();
+    $relationship = new BelongsTo;
 
     $relationship->setType(Type::BELONGS_TO);
     $relationship->setForeignKey('user_id');
@@ -64,4 +64,4 @@ test('fromArray creates instance correctly', function () {
     expect($relationship->getCurrentModelName())->toBe('OrderItem');
     expect($relationship->getRelationshipName())->toBe('product');
     expect($relationship->getOwnerKey())->toBe('uuid');
-}); 
+});

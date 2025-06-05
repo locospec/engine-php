@@ -213,11 +213,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 // Check if the attribute has a generation rule
                 if (! empty($attribute->getGenerators())) {
                     foreach ($attribute->getGenerators()->all() as $generator) {
-                        $generation =[];
+                        $generation = [];
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp,$generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -255,6 +255,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
+
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);

@@ -2,10 +2,10 @@
 
 namespace LCSEngine\Tests\Schemas\Model;
 
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Configuration;
-use LCSEngine\Schemas\Type;
 use Illuminate\Support\Collection;
+use LCSEngine\Schemas\Model\Configuration;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 
 uses()->group('model');
 
@@ -86,10 +86,10 @@ test('can create Model from array with minimal required properties and missing o
     expect($config)->toBeInstanceOf(Configuration::class);
     expect($config->getConnection())->toBe('sales_db');
     expect($config->getTable())->toBe('orders');
-   
+
     expect($config->getSingular())->toBe('order');
-    expect($config->getPlural())->toBe('orders'); 
-    expect($config->getSoftDelete())->toBe(true); 
+    expect($config->getPlural())->toBe('orders');
+    expect($config->getSoftDelete())->toBe(true);
 
     expect($model->getAttributes())->toBeInstanceOf(Collection::class)->toHaveCount(0);
     expect($model->getRelationships())->toBeInstanceOf(Collection::class)->toHaveCount(0);
@@ -107,57 +107,57 @@ test('can create Model from array with populated attributes, relationships, and 
             'softDelete' => false,
         ],
         'attributes' => [
-            "uuid" => [
-                "type" => "uuid",
-                "label" => "ID",
-                "primaryKey" => true,
-                "generators" => [
+            'uuid' => [
+                'type' => 'uuid',
+                'label' => 'ID',
+                'primaryKey' => true,
+                'generators' => [
                     [
-                        "type" => "uuid",
-                        "operations" => ["insert"]
-                    ]
+                        'type' => 'uuid',
+                        'operations' => ['insert'],
+                    ],
                 ],
-                "validators" => [
+                'validators' => [
                     [
-                        "type" => "required",
-                        "message" => "UUID is required.",
-                         "operations" => ["insert", "update"]
-                    ]
-                ]
+                        'type' => 'required',
+                        'message' => 'UUID is required.',
+                        'operations' => ['insert', 'update'],
+                    ],
+                ],
             ],
-            "name" => [
-                "type" => "string",
-                "label" => "Name",
-                "labelKey" => true,
-            ]
+            'name' => [
+                'type' => 'string',
+                'label' => 'Name',
+                'labelKey' => true,
+            ],
         ],
         'relationships' => [
-            "has_one" => [
-                "email" => [
-                    "relatedModelName" => "attribute",
-                    "foreignKey" => "user_uuid",
-                    "localKey" => "uuid"
-                ]
+            'has_one' => [
+                'email' => [
+                    'relatedModelName' => 'attribute',
+                    'foreignKey' => 'user_uuid',
+                    'localKey' => 'uuid',
+                ],
             ],
-            "has_many" => [
-                "posts" => [
-                    "relatedModelName" => "post",
-                    "foreignKey" => "user_uuid",
-                    "localKey" => "uuid"
-                ]
-            ]
+            'has_many' => [
+                'posts' => [
+                    'relatedModelName' => 'post',
+                    'foreignKey' => 'user_uuid',
+                    'localKey' => 'uuid',
+                ],
+            ],
         ],
         'scopes' => [
-            "search" => [
-                "op" => "and",
-                "conditions" => [
+            'search' => [
+                'op' => 'and',
+                'conditions' => [
                     [
-                        "attribute" => "name",
-                        "op" => "contains",
-                        "value" => "rajesh"
-                    ]
-                ]
-            ]
+                        'attribute' => 'name',
+                        'op' => 'contains',
+                        'value' => 'rajesh',
+                    ],
+                ],
+            ],
         ],
     ];
 
@@ -173,9 +173,9 @@ test('can create Model from array with populated attributes, relationships, and 
     expect($config)->toBeInstanceOf(Configuration::class);
     expect($config->getConnection())->toBe('reporting_db');
     expect($config->getSoftDelete())->toBe(false);
-    
+
     expect($config->getTable())->toBe('users');
-    
+
     expect($config->getSingular())->toBe('user');
     expect($config->getPlural())->toBe('users');
 

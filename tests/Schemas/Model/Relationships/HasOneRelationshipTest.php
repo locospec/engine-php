@@ -6,7 +6,7 @@ use LCSEngine\Schemas\Model\Relationships\Type;
 uses()->group('relationships');
 
 test('can set and get properties for HasOneRelationship', function () {
-    $relationship = new HasOne();
+    $relationship = new HasOne;
 
     $relationship->setType(Type::HAS_ONE);
     $relationship->setForeignKey('user_id');
@@ -24,7 +24,7 @@ test('can set and get properties for HasOneRelationship', function () {
 });
 
 test('toArray returns correct array structure for HasOneRelationship', function () {
-    $relationship = new HasOne();
+    $relationship = new HasOne;
 
     $relationship->setType(Type::HAS_ONE);
     $relationship->setForeignKey('user_id');
@@ -64,4 +64,4 @@ test('fromArray creates instance correctly for HasOneRelationship', function () 
     expect($relationship->getCurrentModelName())->toBe('Order');
     expect($relationship->getRelationshipName())->toBe('shippingAddress');
     expect($relationship->getLocalKey())->toBe('uuid');
-}); 
+});

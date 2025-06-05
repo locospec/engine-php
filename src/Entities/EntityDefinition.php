@@ -103,7 +103,7 @@ class EntityDefinition
      */
     public static function generateFullLayout(Model $model, array $shorthandLayout): array
     {
-        $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
+        $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
         $transformed = self::transformLayout($shorthandLayout, $attributes);
 
         return $transformed;

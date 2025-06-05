@@ -2,9 +2,9 @@
 
 namespace LCSEngine\Schemas\Model\Relationships;
 
+use InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Support\StringInflector;
-use InvalidArgumentException;
 
 class BelongsTo extends Relationship
 {
@@ -32,16 +32,16 @@ class BelongsTo extends Relationship
         ];
     }
 
-     public static function fromArray(array $data, RegistryManager $registryManager): self
+    public static function fromArray(array $data, RegistryManager $registryManager): self
     {
-        $relationship = new self();
+        $relationship = new self;
         $inflector = StringInflector::getInstance();
 
         $relatedModelName = $data['model'] ?? $inflector->singular($data['relationshipName']);
         $relatedModel = $registryManager->get('model', $relatedModelName);
         $currentModel = $registryManager->get('model', $data['currentModelName']);
 
-        if(!$relatedModel){
+        if (! $relatedModel) {
             throw new InvalidArgumentException("Related model '{$relatedModelName}' not found for relationship '{$data['relationshipName']}'");
         }
 
@@ -55,6 +55,7 @@ class BelongsTo extends Relationship
         $relationship->setCurrentModelName($data['currentModelName'] ?? '');
         $relationship->setRelationshipName($data['relationshipName'] ?? '');
         $relationship->setOwnerKey($ownerKey ?? '');
+
         return $relationship;
     }
-} 
+}

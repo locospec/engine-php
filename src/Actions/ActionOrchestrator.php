@@ -16,9 +16,9 @@ use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Views\ViewDefinition;
-use LCSEngine\Schemas\Model\Model;
 
 class ActionOrchestrator
 {
@@ -40,20 +40,20 @@ class ActionOrchestrator
         }
         $mutatorSpecName = $data->getType() === 'mutator' ? $data->getName() : '';
         $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorSpecName);
-        
+
         if ($data->getType() === 'mutator' && ! $mutator) {
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
-        
+
         $entitySpecName = $data->getType() === 'entity' ? $data->getName() : '';
         $entity = $this->lcs->getRegistryManager()->get('entity', $entitySpecName);
-        
+
         if ($data->getType() === 'entity' && ! $entity) {
             throw new InvalidArgumentException("Entity Spec not found: {$entitySpecName}");
         }
         $modelName = in_array($data->getType(), ['view', 'mutator', 'entity']) ? $data->getModelName() : $specName;
         $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator', 'entity']) ? $data->getModelName().'_default_view' : $specName);
-        
+
         // dd($data->getName(),$data->getType()->value, $viewName);
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);

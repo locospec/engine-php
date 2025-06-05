@@ -63,7 +63,6 @@ class ScopeResolver
         }
         $model = $this->registryManager->get('model', $this->currentModel);
 
-
         if (! $model->getScopes()->has($scopeName)) {
             if (isset($this->currentView)) {
                 $view = $this->registryManager->get('view', $this->currentView);
