@@ -65,10 +65,6 @@
                 
             </li>
                     <li>
-                <a href="namespaces/lcsengine-attributes.html" class="">Attributes</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/lcsengine-database.html" class="">Database</a>
                 
             </li>
@@ -78,10 +74,6 @@
             </li>
                     <li>
                 <a href="namespaces/lcsengine-exceptions.html" class="">Exceptions</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/lcsengine-models.html" class="">Models</a>
                 
             </li>
                     <li>
@@ -176,7 +168,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">5</span>
+    <span class="phpdocumentor-element-found-in__line">7</span>
 
     </aside>
 
@@ -218,7 +210,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_generators">$generators</a>
     <span>
-                        &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Generators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Generators">Generators</abbr></a>|null            </span>
+                        &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
@@ -242,7 +234,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_options">$options</a>
     <span>
-                        &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Options.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Options">Options</abbr></a>|null            </span>
+                        &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
@@ -266,13 +258,13 @@
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_type">$type</a>
     <span>
-                        &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a>            </span>
+                        &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_validators">$validators</a>
     <span>
-                        &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validators">Validators</abbr></a>|null            </span>
+                        &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>            </span>
 </dt>
 
     </dl>
@@ -283,6 +275,12 @@
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method___construct">__construct()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addGenerator">addGenerator()</a>
     <span>
@@ -302,6 +300,12 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_fromArray">fromArray()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasSource">getAliasSource()</a>
     <span>
                                 &nbsp;: string|null    </span>
@@ -316,7 +320,7 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getGenerators">getGenerators()</a>
     <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Generators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Generators">Generators</abbr></a>|null    </span>
+                                &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -334,19 +338,31 @@
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getOptions">getOptions()</a>
     <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Options.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Options">Options</abbr></a>|null    </span>
+                                &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getType">getType()</a>
     <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a>    </span>
+                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getValidators">getValidators()</a>
     <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validators">Validators</abbr></a>|null    </span>
+                                &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasSource">hasAliasSource()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasTransformation">hasAliasTransformation()</a>
+    <span>
+                                &nbsp;: bool    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -365,6 +381,24 @@
     <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isPrimaryKey">isPrimaryKey()</a>
     <span>
                                 &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeGeneratorById">removeGeneratorById()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeOptionById">removeOptionById()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeValidatorById">removeValidatorById()</a>
+    <span>
+                                &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
@@ -451,7 +485,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
@@ -487,7 +521,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -495,9 +529,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Generators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Generators">Generators</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
     <span class="phpdocumentor-signature__name">$generators</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -523,7 +557,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">9</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -559,7 +593,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">23</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -595,7 +629,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">7</span>
+    <span class="phpdocumentor-element-found-in__line">9</span>
 
     </aside>
 
@@ -631,7 +665,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -639,9 +673,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Options.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Options">Options</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
     <span class="phpdocumentor-signature__name">$options</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -667,7 +701,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -703,7 +737,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">25</span>
+    <span class="phpdocumentor-element-found-in__line">27</span>
 
     </aside>
 
@@ -739,7 +773,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
@@ -775,7 +809,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">11</span>
+    <span class="phpdocumentor-element-found-in__line">13</span>
 
     </aside>
 
@@ -783,7 +817,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a></span>
+        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a></span>
     <span class="phpdocumentor-signature__name">$type</span>
     </code>
 
@@ -811,7 +845,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -819,9 +853,9 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validators">Validators</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
     <span class="phpdocumentor-signature__name">$validators</span>
-     = <span class="phpdocumentor-signature__default-value">null</span></code>
+    </code>
 
     
     
@@ -844,6 +878,64 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method___construct">
+        __construct()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">31</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$label</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$label</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$type</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_addGenerator">
         addGenerator()
         <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addGenerator" class="headerlink"><i class="fas fa-link"></i></a>
@@ -852,7 +944,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">109</span>
+    <span class="phpdocumentor-element-found-in__line">104</span>
 
     </aside>
 
@@ -896,7 +988,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">125</span>
+    <span class="phpdocumentor-element-found-in__line">116</span>
 
     </aside>
 
@@ -940,7 +1032,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">117</span>
+    <span class="phpdocumentor-element-found-in__line">110</span>
 
     </aside>
 
@@ -974,6 +1066,61 @@
         class="phpdocumentor-element
             -method
             -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fromArray">
+        fromArray()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_fromArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">187</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$name</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_getAliasSource">
@@ -984,7 +1131,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">94</span>
+    <span class="phpdocumentor-element-found-in__line">152</span>
 
     </aside>
 
@@ -1022,7 +1169,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">104</span>
+    <span class="phpdocumentor-element-found-in__line">167</span>
 
     </aside>
 
@@ -1060,14 +1207,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">133</span>
+    <span class="phpdocumentor-element-found-in__line">137</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getGenerators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Generators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Generators">Generators</abbr></a>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getGenerators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1080,7 +1227,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Generators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Generators">Generators</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
             </section>
 
 </article>
@@ -1098,7 +1245,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">44</span>
+    <span class="phpdocumentor-element-found-in__line">127</span>
 
     </aside>
 
@@ -1136,7 +1283,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">132</span>
 
     </aside>
 
@@ -1174,14 +1321,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">143</span>
+    <span class="phpdocumentor-element-found-in__line">147</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Options.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Options">Options</abbr></a>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getOptions</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1194,7 +1341,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Options.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Options">Options</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
             </section>
 
 </article>
@@ -1212,14 +1359,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">54</span>
+    <span class="phpdocumentor-element-found-in__line">122</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1232,7 +1379,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a></span>
             </section>
 
 </article>
@@ -1250,14 +1397,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">138</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getValidators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validators">Validators</abbr></a>|null</span></code>
+                    <span class="phpdocumentor-signature__name">getValidators</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1270,7 +1417,83 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Validators.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Validators">Validators</abbr></a>|null</span>
+        <span class="phpdocumentor-signature__response_type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_hasAliasSource">
+        hasAliasSource()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasSource" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">157</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">hasAliasSource</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_hasAliasTransformation">
+        hasAliasTransformation()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasTransformation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">162</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">hasAliasTransformation</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
             </section>
 
 </article>
@@ -1288,7 +1511,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">84</span>
+    <span class="phpdocumentor-element-found-in__line">99</span>
 
     </aside>
 
@@ -1326,7 +1549,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">74</span>
+    <span class="phpdocumentor-element-found-in__line">94</span>
 
     </aside>
 
@@ -1364,7 +1587,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">64</span>
+    <span class="phpdocumentor-element-found-in__line">89</span>
 
     </aside>
 
@@ -1394,6 +1617,138 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_removeGeneratorById">
+        removeGeneratorById()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeGeneratorById" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">172</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">removeGeneratorById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_removeOptionById">
+        removeOptionById()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeOptionById" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">182</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">removeOptionById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_removeValidatorById">
+        removeValidatorById()
+        <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeValidatorById" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">177</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">removeValidatorById</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$id</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$id</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_setAliasSource">
         setAliasSource()
         <a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasSource" class="headerlink"><i class="fas fa-link"></i></a>
@@ -1402,14 +1757,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">89</span>
+    <span class="phpdocumentor-element-found-in__line">71</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setAliasSource</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setAliasSource</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1419,7 +1774,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$source</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1446,14 +1801,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">99</span>
+    <span class="phpdocumentor-element-found-in__line">80</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setAliasTransformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$transform</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setAliasTransformation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$transform</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1463,7 +1818,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$transform</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1490,7 +1845,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">79</span>
+    <span class="phpdocumentor-element-found-in__line">66</span>
 
     </aside>
 
@@ -1534,7 +1889,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">39</span>
+    <span class="phpdocumentor-element-found-in__line">46</span>
 
     </aside>
 
@@ -1578,7 +1933,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
 
     </aside>
 
@@ -1622,7 +1977,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">51</span>
 
     </aside>
 
@@ -1666,7 +2021,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">59</span>
+    <span class="phpdocumentor-element-found-in__line">56</span>
 
     </aside>
 
@@ -1710,14 +2065,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">49</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setType</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$type</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1727,7 +2082,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$type</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\AttributeType">AttributeType</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Attributes-Type.html"><abbr title="\LCSEngine\Schemas\Model\Attributes\Type">Type</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1754,7 +2109,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Attributes/Attribute.php"><a href="files/src-schemas-model-attributes-attribute.html"><abbr title="src/Schemas/Model/Attributes/Attribute.php">Attribute.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">148</span>
+    <span class="phpdocumentor-element-found-in__line">245</span>
 
     </aside>
 
@@ -1908,9 +2263,11 @@
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addGenerator">addGenerator()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addOption">addOption()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addValidator">addValidator()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_fromArray">fromArray()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasSource">getAliasSource()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasTransformation">getAliasTransformation()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getGenerators">getGenerators()</a></li>
@@ -1919,9 +2276,14 @@
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getOptions">getOptions()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getType">getType()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getValidators">getValidators()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasSource">hasAliasSource()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasTransformation">hasAliasTransformation()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isDeleteKey">isDeleteKey()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isLabelKey">isLabelKey()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isPrimaryKey">isPrimaryKey()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeGeneratorById">removeGeneratorById()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeOptionById">removeOptionById()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeValidatorById">removeValidatorById()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasSource">setAliasSource()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasTransformation">setAliasTransformation()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDeleteKey">setDeleteKey()</a></li>

@@ -336,196 +336,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Actions-StateMachineFactory.html#property_lcs"
         },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute",
-            "name": "Attribute",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "Create\u0020an\u0020Attribute\u0020instance\u0020from\u0020an\u0020object.",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getOptions"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetGenerations\u0028\u0029",
-            "name": "getGenerations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getGenerations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetValidations\u0028\u0029",
-            "name": "getValidations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getValidations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_name"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024type",
-            "name": "type",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_type"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024label",
-            "name": "label",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_label"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024options",
-            "name": "options",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_options"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024generations",
-            "name": "generations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_generations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attribute\u003A\u003A\u0024validations",
-            "name": "validations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attribute.html#property_validations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface",
-            "name": "AttributeInterface",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getOptions"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetGenerations\u0028\u0029",
-            "name": "getGenerations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getGenerations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AgetValidations\u0028\u0029",
-            "name": "getValidations",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_getValidations"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\AttributeInterface\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-AttributeInterface.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes",
-            "name": "Attributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attributes.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AaddAttribute\u0028\u0029",
-            "name": "addAttribute",
-            "summary": "Adds\u0020an\u0020attribute\u0020instance\u0020to\u0020the\u0020collection.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_addAttribute"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "Creates\u0020an\u0020Attributes\u0020instance\u0020from\u0020an\u0020object.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AgetAttribute\u0028\u0029",
-            "name": "getAttribute",
-            "summary": "Retrieve\u0020an\u0020attribute\u0020by\u0020name.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_getAttribute"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AgetAttributes\u0028\u0029",
-            "name": "getAttributes",
-            "summary": "Retrieve\u0020attributes.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_getAttributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AgetAttributesByNames\u0028\u0029",
-            "name": "getAttributesByNames",
-            "summary": "Retrieve\u0020attributes\u0020for\u0020the\u0020given\u0020names.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_getAttributesByNames"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AgetAllAttributeNames\u0028\u0029",
-            "name": "getAllAttributeNames",
-            "summary": "Retrieve\u0020all\u0020attribute\u0020names.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_getAllAttributeNames"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003Aall\u0028\u0029",
-            "name": "all",
-            "summary": "Return\u0020all\u0020attributes.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_all"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "Converts\u0020the\u0020attributes\u0020collection\u0020to\u0020an\u0020associative\u0020array.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "Converts\u0020the\u0020attributes\u0020collection\u0020to\u0020an\u0020object.",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Attributes\\Attributes\u003A\u003A\u0024attributes",
-            "name": "attributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Attributes-Attributes.html#property_attributes"
-        },                {
             "fqsen": "\\LCSEngine\\Database\\AliasTransformation",
             "name": "AliasTransformation",
             "summary": "",
@@ -1430,591 +1240,6 @@ Search.appendIndex(
             "name": "config",
             "summary": "Configure\u0020Mermaid\u0020settings",
             "url": "classes/LCSEngine-MermaidRenderer.html#property_config"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration",
-            "name": "ModelConfiguration",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AfromArray\u0028\u0029",
-            "name": "fromArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_fromArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetPrimaryKey\u0028\u0029",
-            "name": "getPrimaryKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getPrimaryKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetLabelKey\u0028\u0029",
-            "name": "getLabelKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getLabelKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetTable\u0028\u0029",
-            "name": "getTable",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getTable"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetConnection\u0028\u0029",
-            "name": "getConnection",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getConnection"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetDbOperator\u0028\u0029",
-            "name": "getDbOperator",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getDbOperator"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetSingular\u0028\u0029",
-            "name": "getSingular",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getSingular"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetPlural\u0028\u0029",
-            "name": "getPlural",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getPlural"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetSoftDelete\u0028\u0029",
-            "name": "getSoftDelete",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getSoftDelete"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AgetDeleteColumn\u0028\u0029",
-            "name": "getDeleteColumn",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_getDeleteColumn"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024primaryKey",
-            "name": "primaryKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_primaryKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024table",
-            "name": "table",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_table"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024connection",
-            "name": "connection",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_connection"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024dbOperator",
-            "name": "dbOperator",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_dbOperator"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024singular",
-            "name": "singular",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_singular"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024plural",
-            "name": "plural",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_plural"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024labelKey",
-            "name": "labelKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_labelKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024softDelete",
-            "name": "softDelete",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_softDelete"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelConfiguration\u003A\u003A\u0024deleteColumn",
-            "name": "deleteColumn",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelConfiguration.html#property_deleteColumn"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition",
-            "name": "ModelDefinition",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetSingularName\u0028\u0029",
-            "name": "getSingularName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getSingularName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetPluralName\u0028\u0029",
-            "name": "getPluralName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getPluralName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetAttributes\u0028\u0029",
-            "name": "getAttributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getAttributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetConfig\u0028\u0029",
-            "name": "getConfig",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getConfig"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AaddRelationship\u0028\u0029",
-            "name": "addRelationship",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_addRelationship"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AaddNormalizedRelationship\u0028\u0029",
-            "name": "addNormalizedRelationship",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_addNormalizedRelationship"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetRelationship\u0028\u0029",
-            "name": "getRelationship",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getRelationship"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetRelationships\u0028\u0029",
-            "name": "getRelationships",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getRelationships"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetRelationshipsByType\u0028\u0029",
-            "name": "getRelationshipsByType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getRelationshipsByType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003ArelationshipsToArray\u0028\u0029",
-            "name": "relationshipsToArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_relationshipsToArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AaddScope\u0028\u0029",
-            "name": "addScope",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_addScope"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetScope\u0028\u0029",
-            "name": "getScope",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getScope"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetScopes\u0028\u0029",
-            "name": "getScopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getScopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AhasScope\u0028\u0029",
-            "name": "hasScope",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_hasScope"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AobjectToArray\u0028\u0029",
-            "name": "objectToArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_objectToArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003AcleanRelationships\u0028\u0029",
-            "name": "cleanRelationships",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#method_cleanRelationships"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024type",
-            "name": "type",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_type"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_name"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024config",
-            "name": "config",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_config"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024relationships",
-            "name": "relationships",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_relationships"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024scopes",
-            "name": "scopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_scopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024label",
-            "name": "label",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_label"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelDefinition\u003A\u003A\u0024attributes",
-            "name": "attributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelDefinition.html#property_attributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator",
-            "name": "ModelValidator",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method_validate"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003AvalidateName\u0028\u0029",
-            "name": "validateName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method_validateName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003AvalidateConfig\u0028\u0029",
-            "name": "validateConfig",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method_validateConfig"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003AvalidateRelationships\u0028\u0029",
-            "name": "validateRelationships",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method_validateRelationships"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003AvalidateRelationshipConfig\u0028\u0029",
-            "name": "validateRelationshipConfig",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#method_validateRelationshipConfig"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\ModelValidator\u003A\u003A\u0024inflector",
-            "name": "inflector",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-ModelValidator.html#property_inflector"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo",
-            "name": "BelongsTo",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003AgetOwnerKey\u0028\u0029",
-            "name": "getOwnerKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method_getOwnerKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003AgetForeignKey\u0028\u0029",
-            "name": "getForeignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method_getForeignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003AgetQueryPattern\u0028\u0029",
-            "name": "getQueryPattern",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method_getQueryPattern"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003A\u0024foreignKey",
-            "name": "foreignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#property_foreignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\BelongsTo\u003A\u003A\u0024ownerKey",
-            "name": "ownerKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-BelongsTo.html#property_ownerKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany",
-            "name": "HasMany",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003AgetLocalKey\u0028\u0029",
-            "name": "getLocalKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method_getLocalKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003AgetForeignKey\u0028\u0029",
-            "name": "getForeignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method_getForeignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003AgetQueryPattern\u0028\u0029",
-            "name": "getQueryPattern",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method_getQueryPattern"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003A\u0024foreignKey",
-            "name": "foreignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#property_foreignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasMany\u003A\u003A\u0024localKey",
-            "name": "localKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasMany.html#property_localKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne",
-            "name": "HasOne",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AgetLocalKey\u0028\u0029",
-            "name": "getLocalKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_getLocalKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AgetForeignKey\u0028\u0029",
-            "name": "getForeignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_getForeignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AsetSortBy\u0028\u0029",
-            "name": "setSortBy",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_setSortBy"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AgetSortBy\u0028\u0029",
-            "name": "getSortBy",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_getSortBy"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AgetQueryPattern\u0028\u0029",
-            "name": "getQueryPattern",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_getQueryPattern"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003A\u0024foreignKey",
-            "name": "foreignKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#property_foreignKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003A\u0024localKey",
-            "name": "localKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#property_localKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\HasOne\u003A\u003A\u0024sortBy",
-            "name": "sortBy",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-HasOne.html#property_sortBy"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship",
-            "name": "Relationship",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetQueryPattern\u0028\u0029",
-            "name": "getQueryPattern",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getQueryPattern"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetRelationshipName\u0028\u0029",
-            "name": "getRelationshipName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelationshipName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetDescription\u0028\u0029",
-            "name": "getDescription",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getDescription"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AsetDescription\u0028\u0029",
-            "name": "setDescription",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_setDescription"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetRelatedModelName\u0028\u0029",
-            "name": "getRelatedModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelatedModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AsetCurrentModelName\u0028\u0029",
-            "name": "setCurrentModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_setCurrentModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AgetCurrentModelName\u0028\u0029",
-            "name": "getCurrentModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_getCurrentModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AsetRelatedModelName\u0028\u0029",
-            "name": "setRelatedModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_setRelatedModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003A\u0024relationshipName",
-            "name": "relationshipName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#property_relationshipName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003A\u0024description",
-            "name": "description",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#property_description"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003A\u0024relatedModelName",
-            "name": "relatedModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#property_relatedModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships\\Relationship\u003A\u003A\u0024currentModelName",
-            "name": "currentModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Relationships-Relationship.html#property_currentModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases",
-            "name": "HasAliases",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AaddAlias\u0028\u0029",
-            "name": "addAlias",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_addAlias"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AgetAlias\u0028\u0029",
-            "name": "getAlias",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_getAlias"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AgetAliases\u0028\u0029",
-            "name": "getAliases",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_getAliases"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AgetAliasesArray\u0028\u0029",
-            "name": "getAliasesArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_getAliasesArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AaddAliases\u0028\u0029",
-            "name": "addAliases",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_addAliases"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003AaliasesToArray\u0028\u0029",
-            "name": "aliasesToArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#method_aliasesToArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits\\HasAliases\u003A\u003A\u0024aliases",
-            "name": "aliases",
-            "summary": "",
-            "url": "classes/LCSEngine-Models-Traits-HasAliases.html#property_aliases"
         },                {
             "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition",
             "name": "MutatorDefinition",
@@ -3081,125 +2306,70 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
             "url": "classes/LCSEngine-Registry-ViewRegistry.html#method_getItemName"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection",
-            "name": "AbstractCollection",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_add"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003Aremove\u0028\u0029",
-            "name": "remove",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_remove"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003AgetAll\u0028\u0029",
-            "name": "getAll",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_getAll"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003AisEmpty\u0028\u0029",
-            "name": "isEmpty",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_isEmpty"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003Acount\u0028\u0029",
-            "name": "count",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#method_count"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AbstractCollection\u003A\u003A\u0024items",
-            "name": "items",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AbstractCollection.html#property_items"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute",
             "name": "Attribute",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetName\u0028\u0029",
-            "name": "setName",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setName"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetLabel\u0028\u0029",
-            "name": "setLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getLabel"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method___construct"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetType\u0028\u0029",
             "name": "setType",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setType"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetLabel\u0028\u0029",
+            "name": "setLabel",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getType"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setName"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetPrimaryKey\u0028\u0029",
             "name": "setPrimaryKey",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setPrimaryKey"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisPrimaryKey\u0028\u0029",
-            "name": "isPrimaryKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isPrimaryKey"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetLabelKey\u0028\u0029",
             "name": "setLabelKey",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setLabelKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisLabelKey\u0028\u0029",
-            "name": "isLabelKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isLabelKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetDeleteKey\u0028\u0029",
             "name": "setDeleteKey",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDeleteKey"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisDeleteKey\u0028\u0029",
-            "name": "isDeleteKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isDeleteKey"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetAliasSource\u0028\u0029",
             "name": "setAliasSource",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasSource"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetAliasSource\u0028\u0029",
-            "name": "getAliasSource",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasSource"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetAliasTransformation\u0028\u0029",
             "name": "setAliasTransformation",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasTransformation"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetAliasTransformation\u0028\u0029",
-            "name": "getAliasTransformation",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisPrimaryKey\u0028\u0029",
+            "name": "isPrimaryKey",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasTransformation"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isPrimaryKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisLabelKey\u0028\u0029",
+            "name": "isLabelKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isLabelKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisDeleteKey\u0028\u0029",
+            "name": "isDeleteKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isDeleteKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AaddGenerator\u0028\u0029",
             "name": "addGenerator",
@@ -3216,6 +2386,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_addOption"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getName"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetGenerators\u0028\u0029",
             "name": "getGenerators",
             "summary": "",
@@ -3230,6 +2415,46 @@ Search.appendIndex(
             "name": "getOptions",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getOptions"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetAliasSource\u0028\u0029",
+            "name": "getAliasSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AhasAliasSource\u0028\u0029",
+            "name": "hasAliasSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AhasAliasTransformation\u0028\u0029",
+            "name": "hasAliasTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasAliasTransformation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetAliasTransformation\u0028\u0029",
+            "name": "getAliasTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasTransformation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AremoveGeneratorById\u0028\u0029",
+            "name": "removeGeneratorById",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeGeneratorById"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AremoveValidatorById\u0028\u0029",
+            "name": "removeValidatorById",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeValidatorById"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AremoveOptionById\u0028\u0029",
+            "name": "removeOptionById",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_removeOptionById"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_fromArray"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
@@ -3291,71 +2516,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_transform"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType",
-            "name": "AttributeType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AUUID",
-            "name": "UUID",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_UUID"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AULID",
-            "name": "ULID",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_ULID"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AALIAS",
-            "name": "ALIAS",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_ALIAS"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003ASTRING",
-            "name": "STRING",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_STRING"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003ATIMESTAMP",
-            "name": "TIMESTAMP",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_TIMESTAMP"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AINTEGER",
-            "name": "INTEGER",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_INTEGER"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003ABOOLEAN",
-            "name": "BOOLEAN",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_BOOLEAN"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003ADATE",
-            "name": "DATE",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_DATE"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003ADECIMAL",
-            "name": "DECIMAL",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_DECIMAL"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AJSON",
-            "name": "JSON",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_JSON"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AJSONB",
-            "name": "JSONB",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_JSONB"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\AttributeType\u003A\u003AOBJECT",
-            "name": "OBJECT",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-AttributeType.html#enumcase_OBJECT"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator",
             "name": "Generator",
             "summary": "",
@@ -3366,60 +2526,75 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetId\u0028\u0029",
+            "name": "setId",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getId"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setId"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetType\u0028\u0029",
             "name": "setType",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setType"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getType"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetSource\u0028\u0029",
             "name": "setSource",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setSource"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetSource\u0028\u0029",
-            "name": "getSource",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getSource"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetValue\u0028\u0029",
             "name": "setValue",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setValue"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetValue\u0028\u0029",
-            "name": "getValue",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getValue"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetOperations\u0028\u0029",
             "name": "setOperations",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setOperations"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AaddOperation\u0028\u0029",
+            "name": "addOperation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_addOperation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AremoveOperation\u0028\u0029",
+            "name": "removeOperation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_removeOperation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getId"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetSource\u0028\u0029",
+            "name": "getSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetValue\u0028\u0029",
+            "name": "getValue",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getValue"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetOperations\u0028\u0029",
             "name": "getOperations",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getOperations"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AvalidateOperations\u0028\u0029",
-            "name": "validateOperations",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_validateOperations"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_fromArray"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003A\u0024id",
             "name": "id",
@@ -3446,35 +2621,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#property_operations"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generators",
-            "name": "Generators",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generators.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generators\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generators.html#method_add"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generators\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generators.html#method_toArray"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType",
             "name": "GeneratorType",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AUUID_GENERATOR",
-            "name": "UUID_GENERATOR",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AUUID",
+            "name": "UUID",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_UUID_GENERATOR"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_UUID"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003ASLUG_GENERATOR",
-            "name": "SLUG_GENERATOR",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AUNIQUE_SLUG",
+            "name": "UNIQUE_SLUG",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_SLUG_GENERATOR"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_UNIQUE_SLUG"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003ADATETIME",
+            "name": "DATETIME",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_DATETIME"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003ASTATE_MACHINE",
+            "name": "STATE_MACHINE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_STATE_MACHINE"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003ATIMESTAMP_GENERATOR",
             "name": "TIMESTAMP_GENERATOR",
@@ -3506,30 +2676,30 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AsetId\u0028\u0029",
+            "name": "setId",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_getId"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_setId"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AsetConst\u0028\u0029",
             "name": "setConst",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_setConst"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AgetConst\u0028\u0029",
-            "name": "getConst",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_getConst"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AsetTitle\u0028\u0029",
             "name": "setTitle",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_setTitle"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_getId"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AgetConst\u0028\u0029",
+            "name": "getConst",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_getConst"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AgetTitle\u0028\u0029",
             "name": "getTitle",
@@ -3540,6 +2710,11 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#method_fromArray"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Option\u003A\u003A\u0024id",
             "name": "id",
@@ -3556,20 +2731,80 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Option.html#property_title"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Options",
-            "name": "Options",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type",
+            "name": "Type",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Options.html"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Options\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AUUID",
+            "name": "UUID",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Options.html#method_add"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_UUID"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Options\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AULID",
+            "name": "ULID",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Options.html#method_toArray"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_ULID"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AALIAS",
+            "name": "ALIAS",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_ALIAS"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ASTRING",
+            "name": "STRING",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_STRING"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ATEXT",
+            "name": "TEXT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_TEXT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ATIMESTAMP",
+            "name": "TIMESTAMP",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_TIMESTAMP"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AINTEGER",
+            "name": "INTEGER",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_INTEGER"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ABOOLEAN",
+            "name": "BOOLEAN",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_BOOLEAN"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ADATE",
+            "name": "DATE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_DATE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ADECIMAL",
+            "name": "DECIMAL",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_DECIMAL"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AJSON",
+            "name": "JSON",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_JSON"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AJSONB",
+            "name": "JSONB",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_JSONB"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AOBJECT",
+            "name": "OBJECT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_OBJECT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AID",
+            "name": "ID",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_ID"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator",
             "name": "Validator",
@@ -3581,50 +2816,65 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetId\u0028\u0029",
-            "name": "getId",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AsetId\u0028\u0029",
+            "name": "setId",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getId"
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_setId"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AsetType\u0028\u0029",
             "name": "setType",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_setType"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getType"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AsetMessage\u0028\u0029",
             "name": "setMessage",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_setMessage"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetMessage\u0028\u0029",
-            "name": "getMessage",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getMessage"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AsetOperations\u0028\u0029",
             "name": "setOperations",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_setOperations"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AaddOperation\u0028\u0029",
+            "name": "addOperation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_addOperation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AremoveOperation\u0028\u0029",
+            "name": "removeOperation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_removeOperation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetId\u0028\u0029",
+            "name": "getId",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getId"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetMessage\u0028\u0029",
+            "name": "getMessage",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getMessage"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetOperations\u0028\u0029",
             "name": "getOperations",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getOperations"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AvalidateOperations\u0028\u0029",
-            "name": "validateOperations",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_validateOperations"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_fromArray"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003A\u0024id",
             "name": "id",
@@ -3646,21 +2896,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#property_operations"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validators",
-            "name": "Validators",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validators.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validators\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_add"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validators\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validators.html#method_toArray"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\ValidatorType",
             "name": "ValidatorType",
             "summary": "",
@@ -3675,6 +2910,111 @@ Search.appendIndex(
             "name": "UNIQUE",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-ValidatorType.html#enumcase_UNIQUE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\ValidatorType\u003A\u003AEXISTS",
+            "name": "EXISTS",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-ValidatorType.html#enumcase_EXISTS"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\ValidatorType\u003A\u003AEMAIL",
+            "name": "EMAIL",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-ValidatorType.html#enumcase_EMAIL"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration",
+            "name": "Configuration",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AsetConnection\u0028\u0029",
+            "name": "setConnection",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_setConnection"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AsetTable\u0028\u0029",
+            "name": "setTable",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_setTable"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AsetSingular\u0028\u0029",
+            "name": "setSingular",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_setSingular"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AsetPlural\u0028\u0029",
+            "name": "setPlural",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_setPlural"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AsetSoftDelete\u0028\u0029",
+            "name": "setSoftDelete",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_setSoftDelete"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AgetConnection\u0028\u0029",
+            "name": "getConnection",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_getConnection"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AgetTable\u0028\u0029",
+            "name": "getTable",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_getTable"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AgetSingular\u0028\u0029",
+            "name": "getSingular",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_getSingular"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AgetPlural\u0028\u0029",
+            "name": "getPlural",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_getPlural"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AgetSoftDelete\u0028\u0029",
+            "name": "getSoftDelete",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_getSoftDelete"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A\u0024connection",
+            "name": "connection",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#property_connection"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A\u0024table",
+            "name": "table",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#property_table"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A\u0024singular",
+            "name": "singular",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#property_singular"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A\u0024plural",
+            "name": "plural",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#property_plural"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration\u003A\u003A\u0024softDelete",
+            "name": "softDelete",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Configuration.html#property_softDelete"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\AliasResolver",
             "name": "AliasResolver",
@@ -4081,70 +3421,380 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_registryManager"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003A\u0024logger",
-            "name": "logger",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model",
+            "name": "Model",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor",
-            "name": "RelationshipProcessor",
-            "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method___construct"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AprocessModelRelationships\u0028\u0029",
-            "name": "processModelRelationships",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddAttribute\u0028\u0029",
+            "name": "addAttribute",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_processModelRelationships"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addAttribute"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeModelRelationships\u0028\u0029",
-            "name": "normalizeModelRelationships",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddRelationship\u0028\u0029",
+            "name": "addRelationship",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_normalizeModelRelationships"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addRelationship"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AcreateAndValidateRelationship\u0028\u0029",
-            "name": "createAndValidateRelationship",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetRelationship\u0028\u0029",
+            "name": "getRelationship",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_createAndValidateRelationship"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getRelationship"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeRelationship\u0028\u0029",
-            "name": "normalizeRelationship",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddScope\u0028\u0029",
+            "name": "addScope",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_normalizeRelationship"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addScope"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeHasOneRelationship\u0028\u0029",
-            "name": "normalizeHasOneRelationship",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetScope\u0028\u0029",
+            "name": "getScope",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_normalizeHasOneRelationship"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getScope"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeBelongsToRelationship\u0028\u0029",
-            "name": "normalizeBelongsToRelationship",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AremoveAttribute\u0028\u0029",
+            "name": "removeAttribute",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_normalizeBelongsToRelationship"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_removeAttribute"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AnormalizeHasManyRelationship\u0028\u0029",
-            "name": "normalizeHasManyRelationship",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AremoveRelationship\u0028\u0029",
+            "name": "removeRelationship",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_normalizeHasManyRelationship"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_removeRelationship"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003AdetermineRelatedModelName\u0028\u0029",
-            "name": "determineRelatedModelName",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AremoveScope\u0028\u0029",
+            "name": "removeScope",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#method_determineRelatedModelName"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_removeScope"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003A\u0024registryManager",
-            "name": "registryManager",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#property_registryManager"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getName"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\RelationshipProcessor\u003A\u003A\u0024inflector",
-            "name": "inflector",
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-RelationshipProcessor.html#property_inflector"
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAttribute\u0028\u0029",
+            "name": "getAttribute",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttribute"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAttributes\u0028\u0029",
+            "name": "getAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetRelationships\u0028\u0029",
+            "name": "getRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getRelationships"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetScopes\u0028\u0029",
+            "name": "getScopes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getScopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetConfig\u0028\u0029",
+            "name": "getConfig",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getConfig"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetPrimaryKey\u0028\u0029",
+            "name": "getPrimaryKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getPrimaryKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetDeleteKey\u0028\u0029",
+            "name": "getDeleteKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getDeleteKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetLabelKey\u0028\u0029",
+            "name": "getLabelKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getLabelKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAliases\u0028\u0029",
+            "name": "getAliases",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAliases"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddRelationshipsFromArray\u0028\u0029",
+            "name": "addRelationshipsFromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addRelationshipsFromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024attributes",
+            "name": "attributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_attributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024relationships",
+            "name": "relationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_relationships"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024scopes",
+            "name": "scopes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_scopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024config",
+            "name": "config",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_config"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo",
+            "name": "BelongsTo",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo\u003A\u003AsetOwnerKey\u0028\u0029",
+            "name": "setOwnerKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html#method_setOwnerKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo\u003A\u003AgetOwnerKey\u0028\u0029",
+            "name": "getOwnerKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html#method_getOwnerKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\BelongsTo\u003A\u003A\u0024ownerKey",
+            "name": "ownerKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-BelongsTo.html#property_ownerKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany",
+            "name": "HasMany",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany\u003A\u003AsetLocalKey\u0028\u0029",
+            "name": "setLocalKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html#method_setLocalKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany\u003A\u003AgetLocalKey\u0028\u0029",
+            "name": "getLocalKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html#method_getLocalKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasMany\u003A\u003A\u0024localKey",
+            "name": "localKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasMany.html#property_localKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne",
+            "name": "HasOne",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne\u003A\u003AsetLocalKey\u0028\u0029",
+            "name": "setLocalKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html#method_setLocalKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne\u003A\u003AgetLocalKey\u0028\u0029",
+            "name": "getLocalKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html#method_getLocalKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\HasOne\u003A\u003A\u0024localKey",
+            "name": "localKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-HasOne.html#property_localKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship",
+            "name": "Relationship",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AsetType\u0028\u0029",
+            "name": "setType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_setType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AsetForeignKey\u0028\u0029",
+            "name": "setForeignKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_setForeignKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AsetCurrentModelName\u0028\u0029",
+            "name": "setCurrentModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_setCurrentModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AsetRelatedModelName\u0028\u0029",
+            "name": "setRelatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_setRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AsetRelationshipName\u0028\u0029",
+            "name": "setRelationshipName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_setRelationshipName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AgetForeignKey\u0028\u0029",
+            "name": "getForeignKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_getForeignKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AgetCurrentModelName\u0028\u0029",
+            "name": "getCurrentModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_getCurrentModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AgetRelatedModelName\u0028\u0029",
+            "name": "getRelatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_getRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AgetRelationshipName\u0028\u0029",
+            "name": "getRelationshipName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_getRelationshipName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003A\u0024foreignKey",
+            "name": "foreignKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#property_foreignKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003A\u0024relatedModelName",
+            "name": "relatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#property_relatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003A\u0024currentModelName",
+            "name": "currentModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#property_currentModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003A\u0024relationshipName",
+            "name": "relationshipName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#property_relationshipName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Relationship\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Relationship.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Type",
+            "name": "Type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Type.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Type\u003A\u003AHAS_ONE",
+            "name": "HAS_ONE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Type.html#enumcase_HAS_ONE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Type\u003A\u003ABELONGS_TO",
+            "name": "BELONGS_TO",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Type.html#enumcase_BELONGS_TO"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships\\Type\u003A\u003AHAS_MANY",
+            "name": "HAS_MANY",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Relationships-Type.html#enumcase_HAS_MANY"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Type",
+            "name": "Type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Type.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Type\u003A\u003AMODEL",
+            "name": "MODEL",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Type.html#enumcase_MODEL"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Type\u003A\u003AQUERY",
+            "name": "QUERY",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Type.html#enumcase_QUERY"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Type\u003A\u003AMUTATOR",
+            "name": "MUTATOR",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Type.html#enumcase_MUTATOR"
         },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor",
             "name": "SpecificationProcessor",
@@ -4171,20 +3821,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_parseJson"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessModelSpec\u0028\u0029",
-            "name": "processModelSpec",
-            "summary": "Process\u0020a\u0020single\u0020model\u0020definition\u0020without\u0020relationships",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModelSpec"
-        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AvalidateSpec\u0028\u0029",
             "name": "validateSpec",
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_validateSpec"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessRelationships\u0028\u0029",
-            "name": "processRelationships",
-            "summary": "Process\u0020all\u0020the\u0020relationships\u0020after\u0020all\u0020models\u0020are\u0020registered",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processRelationships"
         },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllViewSpec\u0028\u0029",
             "name": "processAllViewSpec",
@@ -4215,6 +3855,16 @@ Search.appendIndex(
             "name": "processEntitySpec",
             "summary": "Process\u0020a\u0020single\u0020entity\u0020definition",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processEntitySpec"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessModel\u0028\u0029",
+            "name": "processModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModel"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessPendingRelationships\u0028\u0029",
+            "name": "processPendingRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processPendingRelationships"
         },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
@@ -5391,11 +5041,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-actions-model.html"
         },                {
-            "fqsen": "\\LCSEngine\\Attributes",
-            "name": "Attributes",
-            "summary": "",
-            "url": "namespaces/lcsengine-attributes.html"
-        },                {
             "fqsen": "\\LCSEngine\\Database",
             "name": "Database",
             "summary": "",
@@ -5426,21 +5071,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-exceptions.html"
         },                {
-            "fqsen": "\\LCSEngine\\Models",
-            "name": "Models",
-            "summary": "",
-            "url": "namespaces/lcsengine-models.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Relationships",
-            "name": "Relationships",
-            "summary": "",
-            "url": "namespaces/lcsengine-models-relationships.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Models\\Traits",
-            "name": "Traits",
-            "summary": "",
-            "url": "namespaces/lcsengine-models-traits.html"
-        },                {
             "fqsen": "\\LCSEngine\\Mutators",
             "name": "Mutators",
             "summary": "",
@@ -5466,15 +5096,20 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-schemas-model.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas",
-            "name": "Schemas",
-            "summary": "",
-            "url": "namespaces/lcsengine-schemas.html"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters",
             "name": "Filters",
             "summary": "",
             "url": "namespaces/lcsengine-schemas-model-filters.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Relationships",
+            "name": "Relationships",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-model-relationships.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas",
+            "name": "Schemas",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas.html"
         },                {
             "fqsen": "\\LCSEngine\\Specifications",
             "name": "Specifications",

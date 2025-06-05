@@ -65,10 +65,6 @@
                 
             </li>
                     <li>
-                <a href="namespaces/lcsengine-attributes.html" class="">Attributes</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/lcsengine-database.html" class="">Database</a>
                 
             </li>
@@ -78,10 +74,6 @@
             </li>
                     <li>
                 <a href="namespaces/lcsengine-exceptions.html" class="">Exceptions</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/lcsengine-models.html" class="">Models</a>
                 
             </li>
                     <li>
@@ -148,13 +140,13 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine.html">LCSEngine</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-models.html">Models</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-models-relationships.html">Relationships</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas.html">Schemas</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-model.html">Model</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    Relationship
+    Configuration
 
     
             <div class="phpdocumentor-element__package">
@@ -170,12 +162,10 @@
 <div class="phpdocumentor-label-line">
 
 
-    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Abstract</span><span>Yes</span></div>
-
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">7</span>
 
@@ -192,7 +182,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/LCSEngine-Models-Relationships-Relationship.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Configuration.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -206,30 +196,36 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/LCSEngine-Models-Relationships-Relationship.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Configuration.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#property_currentModelName">$currentModelName</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#property_connection">$connection</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#property_description">$description</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#property_plural">$plural</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relatedModelName">$relatedModelName</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#property_singular">$singular</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -protected">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relationshipName">$relationshipName</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#property_softDelete">$softDelete</a>
+    <span>
+                        &nbsp;: bool            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#property_table">$table</a>
     <span>
                         &nbsp;: string            </span>
 </dt>
@@ -238,74 +234,86 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/LCSEngine-Models-Relationships-Relationship.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Configuration.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method___construct">__construct()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getCurrentModelName">getCurrentModelName()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_fromArray">fromArray()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getConnection">getConnection()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getDescription">getDescription()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getPlural">getPlural()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getQueryPattern">getQueryPattern()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSingular">getSingular()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelatedModelName">getRelatedModelName()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSoftDelete">getSoftDelete()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getTable">getTable()</a>
     <span>
                                 &nbsp;: string    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelationshipName">getRelationshipName()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getType">getType()</a>
-    <span>
-                                &nbsp;: string    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setCurrentModelName">setCurrentModelName()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setConnection">setConnection()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setDescription">setDescription()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setPlural">setPlural()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_toArray">toArray()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSingular">setSingular()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSoftDelete">setSoftDelete()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setTable">setTable()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Configuration.html#method_toArray">toArray()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
-    <a class="" href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setRelatedModelName">setRelatedModelName()</a>
-    <span>
-                                &nbsp;: void    </span>
 </dt>
 
     </dl>
@@ -318,7 +326,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/LCSEngine-Models-Relationships-Relationship.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Model-Configuration.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -328,123 +336,15 @@
             -protected
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_currentModelName">
-        $currentModelName
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_currentModelName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_connection">
+        $connection
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_connection" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">15</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$currentModelName</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_description">
-        $description
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_description" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">11</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$description</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_relatedModelName">
-        $relatedModelName
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relatedModelName" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">13</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$relatedModelName</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_relationshipName">
-        $relationshipName
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relationshipName" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">9</span>
 
@@ -455,7 +355,151 @@
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">protected</span>
         <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">$relationshipName</span>
+    <span class="phpdocumentor-signature__name">$connection</span>
+     = <span class="phpdocumentor-signature__default-value">&#039;default&#039;</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_plural">
+        $plural
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_plural" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$plural</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_singular">
+        $singular
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_singular" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$singular</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_softDelete">
+        $softDelete
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_softDelete" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">bool</span>
+    <span class="phpdocumentor-signature__name">$softDelete</span>
+     = <span class="phpdocumentor-signature__default-value">true</span></code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_table">
+        $table
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_table" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">11</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$table</span>
     </code>
 
     
@@ -470,7 +514,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/LCSEngine-Models-Relationships-Relationship.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Model-Configuration.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -481,20 +525,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedModelName</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$currentModelName</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -503,23 +547,298 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relationshipName</span>
+                <span class="phpdocumentor-signature__argument__name">$modelName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fromArray">
+        fromArray()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_fromArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$modelName</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$relatedModelName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getConnection">
+        getConnection()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getConnection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">58</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getConnection</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getPlural">
+        getPlural()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getPlural" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">73</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getPlural</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSingular">
+        getSingular()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSingular" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">68</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSingular</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getSoftDelete">
+        getSoftDelete()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSoftDelete" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">78</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getSoftDelete</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTable">
+        getTable()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getTable" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">63</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getTable</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setConnection">
+        setConnection()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setConnection" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">26</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setConnection</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$connection</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$currentModelName</span>
+                <span class="phpdocumentor-signature__argument__name">$connection</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">&#039;&#039;</span>            </dt>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -537,250 +856,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getCurrentModelName">
-        getCurrentModelName()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getCurrentModelName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setPlural">
+        setPlural()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setPlural" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">56</span>
+    <span class="phpdocumentor-element-found-in__line">42</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getCurrentModelName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getDescription">
-        getDescription()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getDescription" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">36</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getDescription</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                        -abstract                                "
->
-    <h4 class="phpdocumentor-element__name" id="method_getQueryPattern">
-        getQueryPattern()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getQueryPattern" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">29</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">getQueryPattern</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getRelatedModelName">
-        getRelatedModelName()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelatedModelName" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">46</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getRelatedModelName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_getRelationshipName">
-        getRelationshipName()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelationshipName" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">31</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getRelationshipName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                        -abstract                                "
->
-    <h4 class="phpdocumentor-element__name" id="method_getType">
-        getType()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getType" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">27</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-    <span class="phpdocumentor-signature__abstract">abstract</span>                <span class="phpdocumentor-signature__name">getType</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-    
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -public
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setCurrentModelName">
-        setCurrentModelName()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setCurrentModelName" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">51</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setCurrentModelName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setPlural</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -809,22 +900,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_setDescription">
-        setDescription()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setDescription" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_setSingular">
+        setSingular()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSingular" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">41</span>
+    <span class="phpdocumentor-element-found-in__line">36</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">setDescription</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$description</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">setSingular</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -833,7 +924,95 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$description</span>
+                <span class="phpdocumentor-signature__argument__name">$modelName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setSoftDelete">
+        setSoftDelete()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSoftDelete" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">53</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setSoftDelete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">bool&nbsp;</span><span class="phpdocumentor-signature__argument__name">$flag</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$flag</span>
+                : <span class="phpdocumentor-signature__argument__return-type">bool</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_setTable">
+        setTable()
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setTable" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">31</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">setTable</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$table</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$table</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -855,13 +1034,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Configuration.php"><a href="files/src-schemas-model-configuration.html"><abbr title="src/Schemas/Model/Configuration.php">Configuration.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">70</span>
+    <span class="phpdocumentor-element-found-in__line">83</span>
 
     </aside>
 
@@ -885,57 +1064,13 @@
             </section>
 
 </article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -protected
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_setRelatedModelName">
-        setRelatedModelName()
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setRelatedModelName" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Models/Relationships/Relationship.php"><a href="files/src-models-relationships-relationship.html"><abbr title="src/Models/Relationships/Relationship.php">Relationship.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">61</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">protected</span>
-                    <span class="phpdocumentor-signature__name">setRelatedModelName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$modelName</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string</span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-    
-</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Models/Relationships/Relationship.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schemas/Model/Configuration.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -1034,35 +1169,38 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/LCSEngine-Models-Relationships-Relationship.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/LCSEngine-Models-Relationships-Relationship.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Configuration.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Configuration.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_currentModelName">$currentModelName</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_description">$description</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relatedModelName">$relatedModelName</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#property_relationshipName">$relationshipName</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_connection">$connection</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_plural">$plural</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_singular">$singular</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_softDelete">$softDelete</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#property_table">$table</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getCurrentModelName">getCurrentModelName()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getDescription">getDescription()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getQueryPattern">getQueryPattern()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelatedModelName">getRelatedModelName()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getRelationshipName">getRelationshipName()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_getType">getType()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setCurrentModelName">setCurrentModelName()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setDescription">setDescription()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_toArray">toArray()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Models-Relationships-Relationship.html#method_setRelatedModelName">setRelatedModelName()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_fromArray">fromArray()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getConnection">getConnection()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getPlural">getPlural()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSingular">getSingular()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getSoftDelete">getSoftDelete()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_getTable">getTable()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setConnection">setConnection()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setPlural">setPlural()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSingular">setSingular()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setSoftDelete">setSoftDelete()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_setTable">setTable()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Configuration.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -1082,7 +1220,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/LCSEngine-Models-Relationships-Relationship.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Configuration.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

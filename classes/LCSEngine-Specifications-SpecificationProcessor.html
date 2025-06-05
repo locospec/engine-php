@@ -65,10 +65,6 @@
                 
             </li>
                     <li>
-                <a href="namespaces/lcsengine-attributes.html" class="">Attributes</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/lcsengine-database.html" class="">Database</a>
                 
             </li>
@@ -78,10 +74,6 @@
             </li>
                     <li>
                 <a href="namespaces/lcsengine-exceptions.html" class="">Exceptions</a>
-                
-            </li>
-                    <li>
-                <a href="namespaces/lcsengine-models.html" class="">Models</a>
                 
             </li>
                     <li>
@@ -299,11 +291,10 @@
 <dd>Process specifications from a JSON string</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processRelationships">processRelationships()</a>
+    <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processPendingRelationships">processPendingRelationships()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Process all the relationships after all models are registered</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_validateSpec">validateSpec()</a>
@@ -325,11 +316,10 @@
 <dd>Process a single entity definition</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModelSpec">processModelSpec()</a>
+    <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModel">processModel()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Process a single model definition without relationships</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processMutatorSpec">processMutatorSpec()</a>
@@ -676,7 +666,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">397</span>
+    <span class="phpdocumentor-element-found-in__line">293</span>
 
     </aside>
 
@@ -711,7 +701,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">332</span>
+    <span class="phpdocumentor-element-found-in__line">228</span>
 
     </aside>
 
@@ -746,7 +736,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">266</span>
+    <span class="phpdocumentor-element-found-in__line">161</span>
 
     </aside>
 
@@ -863,23 +853,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processRelationships">
-        processRelationships()
-        <a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processRelationships" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_processPendingRelationships">
+        processPendingRelationships()
+        <a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processPendingRelationships" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">216</span>
+    <span class="phpdocumentor-element-found-in__line">398</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Process all the relationships after all models are registered</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">processRelationships</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processPendingRelationships</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -906,7 +895,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">190</span>
+    <span class="phpdocumentor-element-found-in__line">135</span>
 
     </aside>
 
@@ -998,7 +987,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">435</span>
+    <span class="phpdocumentor-element-found-in__line">331</span>
 
     </aside>
 
@@ -1006,7 +995,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processEntitySpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processEntitySpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1023,7 +1012,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1042,23 +1031,22 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_processModelSpec">
-        processModelSpec()
-        <a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModelSpec" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_processModel">
+        processModel()
+        <a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModel" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">137</span>
+    <span class="phpdocumentor-element-found-in__line">355</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Process a single model definition without relationships</p>
-
+    
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processModelSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processModel</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1068,7 +1056,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$spec</span>
-                : <span class="phpdocumentor-signature__argument__return-type">object</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1095,7 +1083,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">370</span>
+    <span class="phpdocumentor-element-found-in__line">266</span>
 
     </aside>
 
@@ -1103,7 +1091,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processMutatorSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processMutatorSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1120,7 +1108,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1147,7 +1135,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Specifications/SpecificationProcessor.php"><a href="files/src-specifications-specificationprocessor.html"><abbr title="src/Specifications/SpecificationProcessor.php">SpecificationProcessor.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">304</span>
+    <span class="phpdocumentor-element-found-in__line">200</span>
 
     </aside>
 
@@ -1155,7 +1143,7 @@
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">processViewSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">processViewSpec</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">object&nbsp;</span><span class="phpdocumentor-signature__argument__name">$spec</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -1172,7 +1160,7 @@
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$model</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Models-ModelDefinition.html"><abbr title="\LCSEngine\Models\ModelDefinition">ModelDefinition</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -1317,11 +1305,11 @@
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processAllViewSpec">processAllViewSpec()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processFile">processFile()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processJson">processJson()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processRelationships">processRelationships()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processPendingRelationships">processPendingRelationships()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_validateSpec">validateSpec()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_parseJson">parseJson()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processEntitySpec">processEntitySpec()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModelSpec">processModelSpec()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processModel">processModel()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processMutatorSpec">processMutatorSpec()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processViewSpec">processViewSpec()</a></li>
                                     </ul>
