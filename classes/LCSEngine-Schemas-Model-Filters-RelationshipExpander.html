@@ -69,10 +69,6 @@
                 
             </li>
                     <li>
-                <a href="namespaces/lcsengine-entities.html" class="">Entities</a>
-                
-            </li>
-                    <li>
                 <a href="namespaces/lcsengine-exceptions.html" class="">Exceptions</a>
                 
             </li>
@@ -114,6 +110,16 @@
             </li>
             </ul>
 
+                                    <h4 class="phpdocumentor-sidebar__root-namespace">
+    <a href="namespaces/lcs.html" class="">LCS</a>
+</h4>
+    <ul class="phpdocumentor-list">
+                    <li>
+                <a href="namespaces/lcs-engine.html" class="">Engine</a>
+                
+            </li>
+            </ul>
+
                         </section>
                 <section class="phpdocumentor-sidebar__category -packages">
             <h2 class="phpdocumentor-sidebar__category-header">Packages</h2>
@@ -140,13 +146,14 @@
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine.html">LCSEngine</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-database.html">Database</a></li>
-            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-database-relationships.html">Relationships</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas.html">Schemas</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-model.html">Model</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-model-filters.html">Filters</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    RelationshipResolver
+    RelationshipExpander
 
     
             <div class="phpdocumentor-element__package">
@@ -165,9 +172,9 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -182,7 +189,7 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -196,24 +203,30 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_dbOps">$dbOps</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_dbOps">$dbOps</a>
     <span>
                         &nbsp;: <a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_model">$model</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_logger">$logger</a>
+    <span>
+                        &nbsp;: <a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_model">$model</a>
     <span>
                         &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_registryManager">$registryManager</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_registryManager">$registryManager</a>
     <span>
                         &nbsp;: <a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>            </span>
 </dt>
@@ -222,36 +235,42 @@
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method___construct">__construct()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilters">resolveFilters()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expand">expand()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandRelation">expandRelation()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_getExtractAndPointAttributes">getExtractAndPointAttributes()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandSingle">expandSingle()</a>
+    <span>
+                                &nbsp;: mixed    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_getExtractAndPointAttributes">getExtractAndPointAttributes()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveCondition">resolveCondition()</a>
-    <span>
-                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilterGroup">resolveFilterGroup()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_mapRelatedRecords">mapRelatedRecords()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -266,7 +285,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -278,15 +297,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_dbOps">
         $dbOps
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_dbOps" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_dbOps" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
@@ -312,17 +331,53 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_model">
-        $model
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_model" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_logger">
+        $logger
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_logger" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$logger</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_model">
+        $model
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_model" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -350,15 +405,15 @@
 >
     <h4 class="phpdocumentor-element__name" id="property_registryManager">
         $registryManager
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_registryManager" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_registryManager" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -382,7 +437,7 @@
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -393,13 +448,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">25</span>
 
     </aside>
 
@@ -449,22 +504,22 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_resolveFilters">
-        resolveFilters()
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilters" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_expand">
+        expand()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expand" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">resolveFilters</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$operation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">expand</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOpResult</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -473,8 +528,66 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$operation</span>
+                <span class="phpdocumentor-signature__argument__name">$dbOpResult</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_expandRelation">
+        expandRelation()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandRelation" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">94</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">expandRelation</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$results</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relation</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$remainingPath</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$results</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relation</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$remainingPath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -497,15 +610,66 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getExtractAndPointAttributes">
-        getExtractAndPointAttributes()
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_getExtractAndPointAttributes" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_expandSingle">
+        expandSingle()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandSingle" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">154</span>
+    <span class="phpdocumentor-element-found-in__line">61</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">expandSingle</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$expandPath</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$results</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$expandPath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$results</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getExtractAndPointAttributes">
+        getExtractAndPointAttributes()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_getExtractAndPointAttributes" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">174</span>
 
     </aside>
 
@@ -545,22 +709,22 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_resolveCondition">
-        resolveCondition()
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveCondition" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_mapRelatedRecords">
+        mapRelatedRecords()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_mapRelatedRecords" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipExpander.php"><a href="files/src-schemas-model-filters-relationshipexpander.html"><abbr title="src/Schemas/Model/Filters/RelationshipExpander.php">RelationshipExpander.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">62</span>
+    <span class="phpdocumentor-element-found-in__line">142</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">resolveCondition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">mapRelatedRecords</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$results</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relatedRecords</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relation</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -569,55 +733,21 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$condition</span>
+                <span class="phpdocumentor-signature__argument__name">$results</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="method_resolveFilterGroup">
-        resolveFilterGroup()
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilterGroup" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Database/Relationships/RelationshipResolver.php"><a href="files/src-database-relationships-relationshipresolver.html"><abbr title="src/Database/Relationships/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">41</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">resolveFilterGroup</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$group</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$group</span>
+                <span class="phpdocumentor-signature__argument__name">$relatedRecords</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relation</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
@@ -641,7 +771,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Database/Relationships/RelationshipResolver.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schemas/Model/Filters/RelationshipExpander.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -740,28 +870,30 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_dbOps">$dbOps</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_model">$model</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#property_registryManager">$registryManager</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_dbOps">$dbOps</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_logger">$logger</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_model">$model</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_registryManager">$registryManager</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilters">resolveFilters()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_getExtractAndPointAttributes">getExtractAndPointAttributes()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveCondition">resolveCondition()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#method_resolveFilterGroup">resolveFilterGroup()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expand">expand()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandRelation">expandRelation()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_expandSingle">expandSingle()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_getExtractAndPointAttributes">getExtractAndPointAttributes()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#method_mapRelatedRecords">mapRelatedRecords()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -781,7 +913,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/LCSEngine-Database-Relationships-RelationshipResolver.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
