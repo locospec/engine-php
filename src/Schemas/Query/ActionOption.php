@@ -5,7 +5,9 @@ namespace LCS\Engine\Schemas\Query;
 class ActionOption
 {
     public string $key;
+
     public string $label;
+
     public string $url;
 
     public function __construct(string $key, string $label, string $url)
@@ -23,4 +25,4 @@ class ActionOption
             $data['url']
         );
     }
-} 
+}

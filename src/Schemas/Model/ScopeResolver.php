@@ -10,6 +10,7 @@ class ScopeResolver
     private RegistryManager $registryManager;
 
     private string $currentModelName;
+
     private string $currentViewName;
 
     public function __construct(RegistryManager $registryManager, string $currentModelName, ?string $currentViewName)
@@ -30,7 +31,7 @@ class ScopeResolver
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn($scope) => $this->resolveSingleScope($scope),
+                    fn ($scope) => $this->resolveSingleScope($scope),
                     $scopes
                 ),
             ];
@@ -63,7 +64,6 @@ class ScopeResolver
             return $this->resolveRelationshipScope($scopeName);
         }
         $model = $this->registryManager->get('model', $this->currentModelName);
-
 
         if (! $model->getScopes()->has($scopeName)) {
             if (isset($this->currentViewName)) {
@@ -106,7 +106,7 @@ class ScopeResolver
         if (isset($filters['conditions'])) {
             foreach ($filters['conditions'] as &$condition) {
                 if (isset($condition['attribute'])) {
-                    $condition['attribute'] = $relation . '.' . $condition['attribute'];
+                    $condition['attribute'] = $relation.'.'.$condition['attribute'];
                 }
             }
         }

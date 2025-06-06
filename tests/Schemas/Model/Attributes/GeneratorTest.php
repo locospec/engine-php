@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
-use Illuminate\Support\Collection;
 
 uses()->group('attributes');
 
@@ -28,7 +28,7 @@ test('can add and remove operations', function () {
     expect($generator->getOperations()->count())->toBe(2)
         ->and($generator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
         ->and($generator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
-    
+
     $generator->removeOperation(OperationType::INSERT);
     expect($generator->getOperations()->count())->toBe(1)
         ->and($generator->getOperations()->contains(OperationType::INSERT))->toBeFalse()

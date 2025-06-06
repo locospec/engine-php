@@ -237,7 +237,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -275,6 +275,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
+
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);

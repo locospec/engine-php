@@ -7,10 +7,15 @@ use Illuminate\Support\Collection;
 class ActionItem
 {
     public string $key;
+
     public string $label;
+
     public string $url;
+
     public string $icon;
+
     public Collection $options;
+
     public bool $confirmation;
 
     public function __construct(string $key, string $label, string $url, string $icon, bool $confirmation = false)
@@ -20,7 +25,7 @@ class ActionItem
         $this->url = $url;
         $this->icon = $icon;
         $this->confirmation = $confirmation;
-        $this->options = new Collection();
+        $this->options = new Collection;
     }
 
     public function addOption(ActionOption $opt): void
@@ -47,13 +52,13 @@ class ActionItem
             $data['icon'],
             $data['confirmation'] ?? false
         );
-        
+
         if (isset($data['options'])) {
             foreach ($data['options'] as $option) {
                 $item->addOption(ActionOption::fromArray($option));
             }
         }
-        
+
         return $item;
     }
-} 
+}

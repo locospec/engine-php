@@ -7,12 +7,13 @@ use Illuminate\Support\Collection;
 class ActionConfig
 {
     public string $header;
+
     public Collection $items;
 
     public function __construct(string $header)
     {
         $this->header = $header;
-        $this->items = new Collection();
+        $this->items = new Collection;
     }
 
     public function addItem(ActionItem $item): void
@@ -33,13 +34,13 @@ class ActionConfig
     public static function fromArray(array $data): self
     {
         $config = new self($data['header']);
-        
+
         if (isset($data['items'])) {
             foreach ($data['items'] as $item) {
                 $config->addItem(ActionItem::fromArray($item));
             }
         }
-        
+
         return $config;
     }
-} 
+}

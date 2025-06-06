@@ -5,7 +5,7 @@ use LCSEngine\Schemas\Model\Attributes\Option;
 uses()->group('attributes');
 
 test('can create and get/set all fields', function () {
-    $option = new Option();
+    $option = new Option;
     $option->setId('opt1');
     $option->setConst('admin');
     $option->setTitle('Admin');
@@ -15,7 +15,7 @@ test('can create and get/set all fields', function () {
 });
 
 test('toArray serializes all fields', function () {
-    $option = new Option();
+    $option = new Option;
     $option->setId('opt2');
     $option->setConst('user');
     $option->setTitle('User');

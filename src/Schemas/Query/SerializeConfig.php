@@ -5,6 +5,7 @@ namespace LCS\Engine\Schemas\Query;
 class SerializeConfig
 {
     public string $header;
+
     public AlignType $align;
 
     public function __construct(string $header, AlignType $align)
@@ -30,4 +31,4 @@ class SerializeConfig
             AlignType::from($data['align'])
         );
     }
-} 
+}
