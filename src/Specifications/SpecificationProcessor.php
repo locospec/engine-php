@@ -8,9 +8,10 @@ use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\SpecValidator;
 use LCSEngine\Views\ViewDefinition;
+use LCSEngine\Schemas\Model\Model;
+
 
 class SpecificationProcessor
 {
@@ -78,7 +79,8 @@ class SpecificationProcessor
             $this->logger?->info('Processing JSON spec');
 
             $specs = $this->parseJson($json);
-
+            
+            
             foreach ($specs as $spec) {
                 switch ($spec['type']) {
                     case 'model':
@@ -360,18 +362,18 @@ class SpecificationProcessor
             if (isset($spec['relationships'])) {
                 $relationshipP = [
                     'modelName' => $spec['name'],
-                    'relationships' => $spec['relationships'],
+                    'relationships' => $spec['relationships']
                 ];
 
                 $this->pendingRelationships[] = $relationshipP;
                 unset($spec['relationships']);
                 $this->logger?->info('Stored pending relationships', ['modelName' => $spec['name']]);
             }
-
+            
             $model = Model::fromArray($spec);
             $this->logger?->info('Model spec processed', ['modelName' => $model->getName()]);
 
-            // Register model to the registery
+            //Register model to the registery
             $this->registryManager->register('model', $model);
             $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
 
@@ -384,7 +386,7 @@ class SpecificationProcessor
             $this->registryManager->register('view', $view);
             $this->logger?->info('Default view registered in registry', [
                 'modelName' => $model->getName(),
-                'viewName' => $view->getName(),
+                'viewName' => $view->getName()
             ]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model', [
@@ -432,4 +434,5 @@ class SpecificationProcessor
             throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
         }
     }
+
 }

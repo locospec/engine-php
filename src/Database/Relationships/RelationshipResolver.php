@@ -3,12 +3,12 @@
 namespace LCSEngine\Database\Relationships;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Relationship;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 
 class RelationshipResolver
 {

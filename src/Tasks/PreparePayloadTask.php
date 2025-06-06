@@ -147,6 +147,27 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
+            if (isset($payload['filters']['conditions'])) {
+                foreach ($payload['filters']['conditions'] as &$condition) {
+                    if (isset($condition['attribute'])) {
+                        $attributePath = explode('.', $condition['attribute']);
+                        // Get all relationships from the model
+                        $relationships = $optionsModel->getRelationships()->keys()->all();
+                        
+                        // Check if any relationship exists in the path
+                        foreach ($relationships as $relationship) {
+                            $relationshipIndex = array_search($relationship, $attributePath);
+                            if ($relationshipIndex !== false) {
+                                // Get the part of the path after the relationship
+                                $attributePath = array_slice($attributePath, $relationshipIndex);
+                                $condition['attribute'] = implode('.', $attributePath);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
             $preparedPayload['filters'] = $payload['filters'];
         }
 
@@ -213,11 +234,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 // Check if the attribute has a generation rule
                 if (! empty($attribute->getGenerators())) {
                     foreach ($attribute->getGenerators()->all() as $generator) {
-                        $generation = [];
+                        $generation =[];
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp,$generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -255,7 +276,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
-
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);
