@@ -22,7 +22,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     public function execute(array $payload, array $taskArgs = []): array
     {
         $preparedPayload = [];
-        // dd($this->context);
         if (isset($payload['globalContext']['userPermissions'])) {
             $payload['locospecPermissions']['userPermissions'] = $payload['globalContext']['userPermissions'];
             unset($payload['globalContext']['userPermissions']);
@@ -45,12 +44,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 $preparedPayload = $this->preparePayloadForRead($payload);
                 break;
 
-            case '_read_relation_options':
-                $preparedPayload = $this->preparePayloadForReadOptions($payload);
+            case '_read_one':
+                $preparedPayload = $this->preparePayloadForReadOne($payload);
                 break;
 
-            case '_config':
-                $preparedPayload = $this->preparePayloadForConfig($payload);
+            case '_read_relation_options':
+                $preparedPayload = $this->preparePayloadForReadOptions($payload);
                 break;
 
             default:
@@ -238,7 +237,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -276,14 +275,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
-
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);
         }
     }
 
-    public function preparePayloadForConfig(array $payload): array
+    public function preparePayloadForReadOne(array $payload): array
     {
         $preparedPayload = [];
         if (isset($payload['primaryKey']) && ! empty($payload['primaryKey'])) {

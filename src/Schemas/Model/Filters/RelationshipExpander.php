@@ -1,15 +1,16 @@
 <?php
 
-namespace LCSEngine\Database\Relationships;
+namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\LCS;
-use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Relationship;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\LCS;
+use LCSEngine\Logger;
 
 class RelationshipExpander
 {
@@ -18,6 +19,8 @@ class RelationshipExpander
     private DatabaseOperationsCollection $dbOps;
 
     private RegistryManager $registryManager;
+
+    private Logger $logger;
 
     public function __construct(
         Model $model,

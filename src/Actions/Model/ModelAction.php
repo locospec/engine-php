@@ -3,15 +3,14 @@
 namespace LCSEngine\Actions\Model;
 
 use LCSEngine\Actions\StateMachineFactory;
-use LCSEngine\Entities\EntityDefinition;
 use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\StateMachine\Context;
 use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Views\ViewDefinition;
+use LCSEngine\Schemas\Model\Model;
 
 abstract class ModelAction
 {
@@ -20,8 +19,6 @@ abstract class ModelAction
     protected ViewDefinition $view;
 
     protected ?MutatorDefinition $mutator;
-
-    protected ?EntityDefinition $entity;
 
     protected array $config;
 
@@ -37,7 +34,6 @@ abstract class ModelAction
         Model $model,
         ViewDefinition $view,
         ?MutatorDefinition $mutator,
-        ?EntityDefinition $entity,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
@@ -45,7 +41,6 @@ abstract class ModelAction
         $this->model = $model;
         $this->view = $view;
         $this->mutator = $mutator;
-        $this->entity = $entity;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
         $this->config = $config;
@@ -74,7 +69,6 @@ abstract class ModelAction
             'model' => $this->model,
             'view' => $this->view,
             'mutator' => $this->mutator,
-            'entity' => $this->entity,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
             'config' => $this->config,
