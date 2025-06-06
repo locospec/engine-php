@@ -2,10 +2,9 @@
 
 namespace LCSEngine\Database;
 
-use LCSEngine\Database\Relationships\RelationshipExpander;
-use LCSEngine\Database\Scopes\ScopeResolver;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
+use LCSEngine\Logger;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
@@ -14,7 +13,9 @@ use LCSEngine\Schemas\Model\Filters\ContextResolver;
 use LCSEngine\Schemas\Model\Filters\FilterCleaner;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
+use LCSEngine\Schemas\Model\Filters\RelationshipExpander;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
+use LCSEngine\Schemas\Model\ScopeResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
 
@@ -32,6 +33,8 @@ class DatabaseOperationsCollection
     private ?RegistryManager $registryManager = null;
 
     private ?QueryContext $context = null;
+
+    private Logger $logger;
 
     public function __construct()
     {

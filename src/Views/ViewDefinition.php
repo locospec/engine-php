@@ -32,9 +32,11 @@ class ViewDefinition
 
     private ?object $actions;
 
+    private ?array $entityLayout;
+
     private mixed $serialize;
 
-    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions, mixed $serialize)
+    public function __construct(string $name, string $label, string $modelName, array $attributes, array $lensSimpleFilters, string $selectionType, ?object $scopes, string $selectionKey, array $expand, array $allowedScopes, object $actions, mixed $serialize, array $fullEntityLayout)
     {
         $this->type = 'view';
         $this->name = $name;
@@ -49,6 +51,7 @@ class ViewDefinition
         $this->allowedScopes = $allowedScopes;
         $this->actions = $actions;
         $this->serialize = $serialize;
+        $this->entityLayout = $fullEntityLayout;
     }
 
     public function getType(): string
@@ -119,6 +122,9 @@ class ViewDefinition
             $allowedScopes = [];
             $actions = new \stdClass;
             $serialize = false;
+            $fullEntityLayout = [];
+            $attributes = [];
+            $lensSimpleFilters = [];
 
             $viewModel = $registryManager->get('model', $data->model);
 
@@ -126,20 +132,17 @@ class ViewDefinition
                 throw new InvalidArgumentException("Model not found: {$data->model}");
             }
 
-            $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
-            // ->getAttributesByNames($data->attributes);
-            // $aliases = array_keys((array) $model->getAliases());
-            // if (! empty($aliases)) {
-            //     foreach ($aliases as $alias) {
-            //         if (in_array($alias, $data->attributes)) {
-            //             $attributes[$alias] = [
-            //                 'type' => 'string',
-            //                 'label' => ucwords(str_replace('_', ' ', $alias)),
-            //             ];
-            //         }
-            //     }
-            // }
-            $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
+            if (isset($data->attributes)) {
+                $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
+            }
+
+            if (isset($data->lensSimpleFilters)) {
+                $lensSimpleFilters = self::generateLensFilter($data, $model, $registryManager);
+            }
+
+            if (isset($data->entityLayout)) {
+                $fullEntityLayout = self::generateFullEntityLayout($data->entityLayout);
+            }
 
             if (isset($data->selectionType)) {
                 $selectionType = $data->selectionType;
@@ -163,7 +166,7 @@ class ViewDefinition
 
             $selectionKey = isset($data->selectionKey) ? $data->selectionKey : $viewModel->getPrimaryKey()->getName();
 
-            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize);
+            return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize, $fullEntityLayout);
         } catch (InvalidArgumentException $e) {
             throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
@@ -175,7 +178,7 @@ class ViewDefinition
     {
         ViewValidator::validate($data);
 
-        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions'], $data['serialize']);
+        return new self($data['name'], $data['label'], $data['model'], $data['attributes'], $data['lensSimpleFilters'], $data['selectionType'], $data['scopes'], $data['selectionKey'], $data['expand'], $data['allowedScopes'], $data['actions'], $data['serialize'], []);
     }
 
     public static function fromModel(Model $model, RegistryManager $registryManager): self
@@ -185,16 +188,6 @@ class ViewDefinition
 
             // create default view from model
             $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
-            // $aliases = array_keys((array) $model->getAliases());
-
-            // if (! empty($aliases)) {
-            //     foreach ($aliases as $alias) {
-            //         $attributes[$alias] = [
-            //             'type' => 'string',
-            //             'label' => ucwords(str_replace('_', ' ', $alias)),
-            //         ];
-            //     }
-            // }
 
             $defaultView = [
                 'name' => $model->getName().'_default_view',
@@ -209,13 +202,14 @@ class ViewDefinition
                 'allowedScopes' => [],
                 'actions' => new \stdClass,
                 'serialize' => false,
+                'entityLayout' => [],
             ];
 
-            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize']);
+            return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize'], $defaultView['entityLayout']);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$spec->name} view definition from model: ".$e->getMessage());
+            throw new InvalidArgumentException("Error creating {$model->getName()} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$spec->name} view definition from model: ".$e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$model->getName()} view definition from model: ".$e->getMessage());
         }
     }
 
@@ -317,6 +311,10 @@ class ViewDefinition
             $data['serialize'] = $this->serialize;
         }
 
+        if (isset($this->entityLayout) && ! empty($this->entityLayout)) {
+            $data['entityLayout'] = $this->entityLayout;
+        }
+
         return $data;
     }
 
@@ -346,6 +344,103 @@ class ViewDefinition
             $result->serialize = $this->serialize;
         }
 
+        if (isset($this->entityLayout) && ! empty($this->entityLayout)) {
+            $result->entityLayout = $this->entityLayout;
+        }
+
         return $result;
+    }
+
+    public static function generateFullEntityLayout(array $shorthandLayout): array
+    {
+        $layout = $shorthandLayout['layout'] ?? $shorthandLayout;
+
+        // If layout is a flat array, wrap it in a single section
+        if (! array_filter($layout, 'is_array')) {
+            return [[
+                'fields' => self::processLayoutItems($layout),
+            ]];
+        }
+
+        return array_map(function ($section) {
+            if (! is_array($section) || empty($section)) {
+                throw new InvalidArgumentException('Invalid section: Each section must be a non-empty array');
+            }
+
+            $sectionData = ['fields' => []];
+
+            // Handle section header if present
+            if (is_string($section[0]) && str_starts_with($section[0], '$')) {
+                $sectionData['section'] = substr($section[0], 1);
+                $section = array_slice($section, 1);
+            }
+
+            // Process section items
+            $sectionData['fields'] = array_map(function ($item) {
+                if (! is_array($item)) {
+                    return self::createField($item);
+                }
+
+                // Handle nested section
+                if (! empty($item) && is_string($item[0]) && str_starts_with($item[0], '$')) {
+                    return [
+                        'section' => substr($item[0], 1),
+                        'fields' => self::processLayoutItems(array_slice($item, 1)),
+                    ];
+                }
+
+                // Handle column
+                return ['fields' => self::processLayoutItems($item)];
+            }, $section);
+
+            return $sectionData;
+        }, $layout);
+    }
+
+    private static function processLayoutItems(array $items): array
+    {
+        return array_map(function ($item) {
+            if (! is_array($item)) {
+                return self::createField($item);
+            }
+
+            // Handle list fields
+            $baseKey = null;
+            $subFields = [];
+
+            foreach ($item as $key) {
+                if (! preg_match('/^(.+)\[\*\]\.(.+)$/', $key, $matches)) {
+                    throw new InvalidArgumentException("Invalid list field syntax: '$key'. Expected format: 'field[*].subfield'");
+                }
+
+                [$baseKey, $subKey] = [$matches[1], $matches[2]];
+                $subFields[] = self::createField($subKey);
+            }
+
+            if (! $baseKey) {
+                throw new InvalidArgumentException('No valid list fields provided');
+            }
+
+            return [
+                'key' => $baseKey,
+                'label' => self::generateLabel($baseKey),
+                'type' => 'list',
+                'fields' => $subFields,
+            ];
+        }, $items);
+    }
+
+    private static function createField(string $key): array
+    {
+        return [
+            'key' => $key,
+            'label' => self::generateLabel($key),
+            'type' => 'string',
+        ];
+    }
+
+    private static function generateLabel(string $key): string
+    {
+        return str_replace('_', ' ', ucwords($key));
     }
 }

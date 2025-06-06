@@ -10,7 +10,6 @@ use LCSEngine\Actions\Model\ReadListAction;
 use LCSEngine\Actions\Model\ReadOneAction;
 use LCSEngine\Actions\Model\ReadRelationOptionsAction;
 use LCSEngine\Actions\Model\UpdateAction;
-use LCSEngine\Entities\EntityDefinition;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
@@ -35,9 +34,11 @@ class ActionOrchestrator
     public function execute(ValidatorInterface $curdValidator, GeneratorInterface $generator, string $specName, string $actionName, array $input = []): StateFlowPacket
     {
         $data = $this->lcs->getRegistryManager()->getRegisterByName($specName);
+
         if (! $data) {
-            throw new InvalidArgumentException("View/Mutator/Entity not found: {$specName}");
+            throw new InvalidArgumentException("View/Mutator not found: {$specName}");
         }
+
         $mutatorSpecName = $data->getType() === 'mutator' ? $data->getName() : '';
         $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorSpecName);
 
@@ -45,16 +46,9 @@ class ActionOrchestrator
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
 
-        $entitySpecName = $data->getType() === 'entity' ? $data->getName() : '';
-        $entity = $this->lcs->getRegistryManager()->get('entity', $entitySpecName);
+        $modelName = in_array($data->getType(), ['view', 'mutator']) ? $data->getModelName() : $specName;
+        $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator']) ? $data->getModelName().'_default_view' : $specName);
 
-        if ($data->getType() === 'entity' && ! $entity) {
-            throw new InvalidArgumentException("Entity Spec not found: {$entitySpecName}");
-        }
-        $modelName = in_array($data->getType(), ['view', 'mutator', 'entity']) ? $data->getModelName() : $specName;
-        $viewName = $data->getType() === 'model' ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator', 'entity']) ? $data->getModelName().'_default_view' : $specName);
-
-        // dd($data->getName(),$data->getType()->value, $viewName);
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
         $view = $this->lcs->getRegistryManager()->get('view', $viewName);
@@ -67,14 +61,13 @@ class ActionOrchestrator
         }
 
         // Create and execute appropriate action
-        $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator, $entity);
+        $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator);
 
         return $action->execute($input);
     }
 
-    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator, ?EntityDefinition $entity): ModelAction
+    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator): ModelAction
     {
-        // dd($actionName, $model);
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
             '_read' => ReadListAction::class,
@@ -82,7 +75,7 @@ class ActionOrchestrator
             '_create' => CreateAction::class,
             '_update' => UpdateAction::class,
             '_delete' => DeleteAction::class,
-            'readOne' => ReadOneAction::class,
+            '_read_one' => ReadOneAction::class,
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")
         };
 
@@ -92,7 +85,6 @@ class ActionOrchestrator
             $model,
             $view,
             $mutator,
-            $entity,
             $this->stateMachineFactory,
             $this->lcs
         );

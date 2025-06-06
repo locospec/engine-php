@@ -6,44 +6,37 @@ class ReadOneAction extends ModelAction
 {
     public static function getName(): string
     {
-        return 'readOne';
+        return '_read_one';
     }
 
     protected function getStateMachineDefinition(): array
     {
         return [
-            'StartAt' => 'ValidateInput',
+            'StartAt' => 'CheckPermission',
             'States' => [
-                'ValidateInput' => [
+                'CheckPermission' => [
+                    'Type' => 'Task',
+                    'Resource' => 'check_permission',
+                    'Next' => 'PreparePayload',
+                ],
+                'PreparePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'ValidatePayload',
+                ],
+                'ValidatePayload' => [
                     'Type' => 'Task',
                     'Resource' => 'validate',
-                    'Next' => 'DatabaseRead',
+                    'Next' => 'HandlePayload',
                 ],
-                'DatabaseRead' => [
+                'HandlePayload' => [
                     'Type' => 'Task',
-                    'Resource' => 'database.select',
-                    // 'Next' => 'CheckResult',
-                    'End' => true,
+                    'Resource' => 'handle_payload',
+                    'Next' => 'HandleResponse',
                 ],
-                'CheckResult' => [
-                    'Type' => 'Choice',
-                    'Choices' => [
-                        [
-                            'Variable' => '$.result',
-                            'IsNull' => true,
-                            'Next' => 'NotFound',
-                        ],
-                    ],
-                    'Default' => 'Success',
-                ],
-                'NotFound' => [
+                'HandleResponse' => [
                     'Type' => 'Task',
-                    'Resource' => 'handle_not_found',
-                    'End' => true,
-                ],
-                'Success' => [
-                    'Type' => 'Task',
-                    'Resource' => 'transform_result',
+                    'Resource' => 'handle_response',
                     'End' => true,
                 ],
             ],

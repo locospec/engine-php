@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Database\Scopes;
+namespace LCSEngine\Schemas\Model;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
@@ -9,13 +9,15 @@ class ScopeResolver
 {
     private RegistryManager $registryManager;
 
-    private string $currentModel;
+    private string $currentModelName;
 
-    public function __construct(RegistryManager $registryManager, string $currentModel, ?string $currentView)
+    private string $currentViewName;
+
+    public function __construct(RegistryManager $registryManager, string $currentModelName, ?string $currentViewName)
     {
         $this->registryManager = $registryManager;
-        $this->currentModel = $currentModel;
-        $this->currentView = $currentView;
+        $this->currentModelName = $currentModelName;
+        $this->currentViewName = $currentViewName;
     }
 
     public function resolveScopes(array|string $scopes): array
@@ -61,18 +63,18 @@ class ScopeResolver
         if (str_contains($scopeName, '.')) {
             return $this->resolveRelationshipScope($scopeName);
         }
-        $model = $this->registryManager->get('model', $this->currentModel);
+        $model = $this->registryManager->get('model', $this->currentModelName);
 
         if (! $model->getScopes()->has($scopeName)) {
-            if (isset($this->currentView)) {
-                $view = $this->registryManager->get('view', $this->currentView);
+            if (isset($this->currentViewName)) {
+                $view = $this->registryManager->get('view', $this->currentViewName);
                 if (! $view->hasScope($scopeName)) {
-                    throw new InvalidArgumentException("Scope '$scopeName' not found on model or view '{$this->currentModel}', '{$this->currentView}'");
+                    throw new InvalidArgumentException("Scope '$scopeName' not found on model or view '{$this->currentModelName}', '{$this->currentViewName}'");
                 }
 
                 return $view->getScope($scopeName);
             } else {
-                throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModel}'");
+                throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModelName}'");
             }
         }
 
@@ -82,11 +84,11 @@ class ScopeResolver
     private function resolveRelationshipScope(string $scopeName): array
     {
         [$relation, $scope] = explode('.', $scopeName, 2);
-        $model = $this->registryManager->get('model', $this->currentModel);
+        $model = $this->registryManager->get('model', $this->currentModelName);
 
         $relationship = $model->getRelationship($relation);
         if (! $relationship) {
-            throw new InvalidArgumentException("Relationship '$relation' not found on model '{$this->currentModel}'");
+            throw new InvalidArgumentException("Relationship '$relation' not found on model '{$this->currentModelName}'");
         }
 
         $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());

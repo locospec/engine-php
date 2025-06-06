@@ -14,6 +14,7 @@ use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Relationship;
 use LCSEngine\Schemas\Model\Relationships\Type as RelationshipType;
 use LCSEngine\Schemas\Type;
+use ValueError;
 
 class Model
 {
@@ -159,10 +160,10 @@ class Model
             }
         }
 
-        // Relationships
-        if (! empty($data['relationships']) && is_array($data['relationships'])) {
-            $model->addRelationshipsFromArray($data['name'], $data['relationships']);
-        }
+        // // Relationships
+        // if (! empty($data['relationships']) && is_array($data['relationships'])) {
+        //     $model->addRelationshipsFromArray($data['name'], $data['relationships'], $registryManager);
+        // }
 
         // Scopes (Filters)
         if (! empty($data['scopes']) && is_array($data['scopes'])) {

@@ -1,9 +1,10 @@
 <?php
 
-namespace LCSEngine\Database\Relationships;
+namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\LCS;
+use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
@@ -18,6 +19,8 @@ class RelationshipExpander
     private DatabaseOperationsCollection $dbOps;
 
     private RegistryManager $registryManager;
+
+    private Logger $logger;
 
     public function __construct(
         Model $model,
