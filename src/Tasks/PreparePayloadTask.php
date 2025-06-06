@@ -147,6 +147,27 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
+            if (isset($payload['filters']['conditions'])) {
+                foreach ($payload['filters']['conditions'] as &$condition) {
+                    if (isset($condition['attribute'])) {
+                        $attributePath = explode('.', $condition['attribute']);
+                        // Get all relationships from the model
+                        $relationships = $optionsModel->getRelationships()->keys()->all();
+
+                        // Check if any relationship exists in the path
+                        foreach ($relationships as $relationship) {
+                            $relationshipIndex = array_search($relationship, $attributePath);
+                            if ($relationshipIndex !== false) {
+                                // Get the part of the path after the relationship
+                                $attributePath = array_slice($attributePath, $relationshipIndex);
+                                $condition['attribute'] = implode('.', $attributePath);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
             $preparedPayload['filters'] = $payload['filters'];
         }
 

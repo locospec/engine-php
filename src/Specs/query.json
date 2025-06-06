@@ -57,13 +57,6 @@
       "type": "string",
       "description": "Selection key for the table."
     },
-    "scopes": {
-      "type": "object",
-      "description": "Model scopes definitions",
-      "additionalProperties": {
-        "$ref": "filters.json#/definitions/filters"
-      }
-    },
     "allowedScopes": {
       "type": "array",
       "items": {
@@ -133,29 +126,22 @@
       "description": "Configuration for row actions in the view"
     },
     "serialize": {
-      "oneOf": [
-        {
-          "type": "boolean",
-          "description": "Enable serialization with default settings"
+      "type": "object",
+      "properties": {
+        "header": {
+          "type": "string",
+          "default": "#",
+          "description": "Custom header text for the serialization column"
         },
-        {
-          "type": "object",
-          "properties": {
-            "header": {
-              "type": "string",
-              "description": "Custom header text for the serialization column"
-            },
-            "align": {
-              "type": "string",
-              "enum": ["left", "center", "right"],
-              "description": "Text alignment for the serialization column"
-            }
-          },
-          "required": ["header"],
-          "additionalProperties": false,
-          "description": "Serialization configuration object"
+        "align": {
+          "type": "string",
+          "default": "left",
+          "enum": ["left", "center", "right"],
+          "description": "Text alignment for the serialization column"
         }
-      ],
+      },
+      "required": ["header"],
+      "additionalProperties": false,
       "description": "Configuration for row serialization in the view"
     }
   },
