@@ -3,7 +3,6 @@
 namespace LCSEngine\Views;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
 
@@ -127,7 +126,7 @@ class ViewDefinition
                 throw new InvalidArgumentException("Model not found: {$data->model}");
             }
 
-            $attributes = $model->getAttributes()->only($data->attributes)->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
             // ->getAttributesByNames($data->attributes);
             // $aliases = array_keys((array) $model->getAliases());
             // if (! empty($aliases)) {
@@ -185,7 +184,7 @@ class ViewDefinition
             $defaultView = [];
 
             // create default view from model
-            $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
             // $aliases = array_keys((array) $model->getAliases());
 
             // if (! empty($aliases)) {
@@ -237,53 +236,53 @@ class ViewDefinition
                 if (count($path) > 1) {
                     $lastModelName = $path[count($path) - 2];
                     $relatedModel = $registryManager->get('model', $lastModelName);
-                    if($relatedModel){
+                    if ($relatedModel) {
                         $lensSimpleFilters[$lastValue]['model'] = $relatedModel->getName();
                         $lensSimpleFilters[$lastValue]['label'] = $relatedModel->getLabel();
-                    }else{
+                    } else {
                         $lensSimpleFilters[$lastValue]['model'] = $lastModelName;
                         $lensSimpleFilters[$lastValue]['label'] = ucfirst($lastModelName);
                     }
-                }else{
+                } else {
                     $lensSimpleFilters[$lastValue]['model'] = $model->getName();
-                    if($model->getAttribute($lastValue)->getType()->value === "timestamp"){
+                    if ($model->getAttribute($lastValue)->getType()->value === 'timestamp') {
                         $lensSimpleFilters[$lastValue]['type'] = 'date';
-                    }else{
+                    } else {
                         $lensSimpleFilters[$lastValue]['type'] = 'enum';
                     }
                     $lensSimpleFilters[$lastValue]['model'] = $model->getName();
 
-                    if (!$model->getAttribute($lastValue)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn($option) => $option->toArray())->all();
+                    if (! $model->getAttribute($lastValue)->getOptions()->isEmpty()) {
+                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn ($option) => $option->toArray())->all();
                     }
-                    $lensSimpleFilters[$lastValue]['label'] = $model->getLabel() !== null ? $model->getLabel() :ucfirst($path[0]);
+                    $lensSimpleFilters[$lastValue]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
-            }else{
+            } else {
                 $path = explode('.', $lensSimpleFilter);
                 // determine the model
                 if (count($path) > 1) {
                     $lensSimpleFilters[$lensSimpleFilter]['type'] = 'enum';
                     $lastModelName = $path[count($path) - 2];
                     $relatedModel = $registryManager->get('model', $lastModelName);
-                    if($relatedModel){
+                    if ($relatedModel) {
                         $lensSimpleFilters[$lensSimpleFilter]['model'] = $relatedModel->getName();
                         $lensSimpleFilters[$lensSimpleFilter]['label'] = $relatedModel->getLabel();
-                    }else{
+                    } else {
                         $lensSimpleFilters[$lensSimpleFilter]['model'] = $lastModelName;
                         $lensSimpleFilters[$lensSimpleFilter]['label'] = ucfirst($lastModelName);
                     }
-                }else{
-                    if($model->getAttribute($lensSimpleFilter)->getType()->value === "timestamp"){
+                } else {
+                    if ($model->getAttribute($lensSimpleFilter)->getType()->value === 'timestamp') {
                         $lensSimpleFilters[$lensSimpleFilter]['type'] = 'date';
-                    }else{
+                    } else {
                         $lensSimpleFilters[$lensSimpleFilter]['type'] = 'enum';
                     }
                     $lensSimpleFilters[$lensSimpleFilter]['model'] = $model->getName();
 
-                    if (!$model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn($option) => $option->toArray())->all();
+                    if (! $model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
+                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn ($option) => $option->toArray())->all();
                     }
-                    $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getLabel() !== null ? $model->getLabel() :ucfirst($path[0]);
+                    $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
             }
         }

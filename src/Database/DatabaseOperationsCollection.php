@@ -8,6 +8,7 @@ use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ContextResolver;
 use LCSEngine\Schemas\Model\Filters\FilterCleaner;
@@ -16,7 +17,6 @@ use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
-use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 
 class DatabaseOperationsCollection
 {
