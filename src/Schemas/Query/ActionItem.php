@@ -7,15 +7,10 @@ use Illuminate\Support\Collection;
 class ActionItem
 {
     private string $key;
-
     private string $label;
-
     private string $url;
-
     private string $icon;
-
     private bool $confirmation;
-
     private Collection $options;
 
     public function __construct(
@@ -30,7 +25,7 @@ class ActionItem
         $this->url = $url;
         $this->icon = $icon;
         $this->confirmation = $confirmation;
-        $this->options = new Collection;
+        $this->options = new Collection();
     }
 
     public function getKey(): string
@@ -66,7 +61,7 @@ class ActionItem
     public function removeOption(string $key): void
     {
         $this->options = $this->options->filter(
-            fn (ActionOption $option) => $option->getKey() !== $key
+            fn(ActionOption $option) => $option->getKey() !== $key
         );
     }
 
@@ -95,7 +90,7 @@ class ActionItem
         }
 
         if ($this->options->isNotEmpty()) {
-            $data['options'] = $this->options->map(fn (ActionOption $option) => $option->toArray())->toArray();
+            $data['options'] = $this->options->map(fn(ActionOption $option) => $option->toArray())->toArray();
         }
 
         return $data;
