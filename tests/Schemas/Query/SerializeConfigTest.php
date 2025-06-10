@@ -94,9 +94,9 @@ test('can create from array with custom alignment', function () {
 test('can convert to array with default alignment', function () {
     $config = new SerializeConfig('Serial');
     $array = $config->toArray();
-
     expect($array)->toBe([
         'header' => 'Serial',
+        "align" => "left"
     ]);
 });
 

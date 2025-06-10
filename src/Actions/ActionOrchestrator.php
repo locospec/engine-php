@@ -15,10 +15,10 @@ use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Type;
 use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Views\ViewDefinition;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 
 class ActionOrchestrator
 {
@@ -48,7 +48,7 @@ class ActionOrchestrator
         }
 
         $modelName = in_array($data->getType(), ['view', 'mutator']) ? $data->getModelName() : $specName;
-        $viewName = $data->getType() === Type::MODEL ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator']) ? $data->getModelName().'_default_view' : $specName);
+        $viewName = $data->getType() === Type::MODEL ? (isset($input['view']) ? $input['view'] : $data->getName() . '_default_view') : (in_array($data->getType(), ['mutator']) ? $data->getModelName() . '_default_view' : $specName);
 
         // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);

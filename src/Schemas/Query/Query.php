@@ -3,84 +3,91 @@
 namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
+use LCSEngine\Schemas\Type;
+use LCSEngine\Schemas\Query\ActionConfig;
+use LCSEngine\Schemas\Query\ActionItem;
+use LCSEngine\Schemas\Query\ActionOption;
+use LCSEngine\Schemas\Query\AlignType;
+use LCSEngine\Schemas\Query\ColumnItem;
+use LCSEngine\Schemas\Query\EntityLayoutItem;
+use LCSEngine\Schemas\Query\FieldItem;
+use LCSEngine\Schemas\Query\SectionItem;
+use LCSEngine\Schemas\Query\SelectionType;
+use LCSEngine\Schemas\Query\SerializeConfig;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Type;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
 
 class Query
 {
     private string $name;
-
     private string $label;
-
     private Type $type;
-
     private string $model;
-
     private Collection $attributes;
-
     private Collection $lensSimpleFilters;
-
     private Collection $expand;
-
     private Collection $allowedScopes;
-
     private ?string $selectionKey;
-
     private SelectionType $selectionType;
-
     private ?ActionConfig $actions;
-
     private ?SerializeConfig $serialize;
-
     private Collection $entityLayout;
-
     private RegistryManager $registryManager;
 
     public function __construct(
         string $name,
         string $label,
         string $model,
-        Collection $attributes,
+        array $attributeNames,
         ?RegistryManager $registryManager = null
     ) {
         $this->name = $name;
         $this->label = $label;
         $this->type = Type::QUERY;
         $this->model = $model;
-        $this->attributes = $attributes;
-        $this->lensSimpleFilters = new Collection;
-        $this->expand = new Collection;
-        $this->allowedScopes = new Collection;
+        $this->attributes = new Collection();
+        $this->lensSimpleFilters = new Collection();
+        $this->expand = new Collection();
+        $this->allowedScopes = new Collection();
         $this->selectionKey = null;
         $this->selectionType = SelectionType::NONE;
         $this->actions = null;
         $this->serialize = null;
-        $this->entityLayout = new Collection;
-        $this->registryManager = $registryManager ?? new RegistryManager;
+        $this->entityLayout = new Collection();
+        $this->registryManager = $registryManager ?? new RegistryManager();
 
-        // Validate attributes against model
-        $this->validateAttributes();
+        // Validate and set attributes
+        $this->setAndValidateAttributes($attributeNames);
     }
 
-    private function validateAttributes(): void
+    private function setAndValidateAttributes(array $attributeNames): void
     {
         $model = $this->registryManager->get('model', $this->model);
-        if (! $model instanceof Model) {
+        if (!$model instanceof Model) {
             throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
         }
 
         $modelAttributes = $model->getAttributes();
-        $invalidAttributes = $this->attributes->filter(function ($attribute) use ($modelAttributes) {
-            return ! $modelAttributes->has($attribute);
-        });
+        $resolvedAttributes = new Collection();
+        $invalidAttributeNames = new Collection();
 
-        if ($invalidAttributes->isNotEmpty()) {
+        foreach ($attributeNames as $attributeName) {
+            if ($modelAttributes->has($attributeName)) {
+                $resolvedAttributes->put($attributeName, $modelAttributes->get($attributeName));
+            } else {
+                $invalidAttributeNames->push($attributeName);
+            }
+        }
+
+        if ($invalidAttributeNames->isNotEmpty()) {
             throw new \InvalidArgumentException(
-                "Invalid attributes for model '{$this->model}': ".
-                    $invalidAttributes->implode(', ')
+                "Invalid attributes for model '{$this->model}': " .
+                    $invalidAttributeNames->implode(', ')
             );
         }
+
+        $this->attributes = $resolvedAttributes;
     }
 
     public function getName(): string
@@ -103,29 +110,28 @@ class Query
         return $this->type;
     }
 
-    public function addAttribute(string $attribute): void
+    public function addAttribute(string $attributeName): void
     {
         $model = $this->registryManager->get('model', $this->model);
-        if (! $model instanceof Model) {
+        if (!$model instanceof Model) {
             throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
         }
 
-        if (! $model->getAttributes()->has($attribute)) {
+        if (!$model->getAttributes()->has($attributeName)) {
             throw new \InvalidArgumentException(
-                "Attribute '{$attribute}' not found in model '{$this->model}'"
+                "Attribute '{$attributeName}' not found in model '{$this->model}'"
             );
         }
 
-        if (! $this->attributes->contains($attribute)) {
-            $this->attributes->push($attribute);
+        // Check if the attribute (by name) is already in the collection
+        if (!$this->attributes->has($attributeName)) {
+            $this->attributes->put($attributeName, $model->getAttributes()->get($attributeName));
         }
     }
 
-    public function removeAttribute(string $attr): void
+    public function removeAttribute(string $attributeName): void
     {
-        $this->attributes = $this->attributes->filter(
-            fn (string $attribute) => $attribute !== $attr
-        )->values();
+        $this->attributes->forget($attributeName);
     }
 
     public function getAttributes(): Collection
@@ -141,7 +147,7 @@ class Query
     public function removeLensFilter(string $filter): void
     {
         $this->lensSimpleFilters = $this->lensSimpleFilters->filter(
-            fn (string $f) => $f !== $filter
+            fn(string $f) => $f !== $filter
         )->values();
     }
 
@@ -158,7 +164,7 @@ class Query
     public function removeExpand(string $field): void
     {
         $this->expand = $this->expand->filter(
-            fn (string $f) => $f !== $field
+            fn(string $f) => $f !== $field
         )->values();
     }
 
@@ -175,7 +181,7 @@ class Query
     public function removeAllowedScope(string $scope): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn (string $s) => $s !== $scope
+            fn(string $s) => $s !== $scope
         )->values();
     }
 
@@ -218,7 +224,6 @@ class Query
             } elseif ($item instanceof SectionItem && $itemToRemove instanceof SectionItem) {
                 return $item->getHeader() === $itemToRemove->getHeader();
             }
-
             return false;
         })->values();
     }
@@ -248,6 +253,71 @@ class Query
         return $this->serialize;
     }
 
+    private static function parseEntityLayoutItem(array|string $itemData): ?EntityLayoutItem
+    {
+        if (is_string($itemData)) {
+            return new FieldItem($itemData);
+        }
+
+        if (is_array($itemData)) {
+            $firstElement = $itemData[0] ?? null;
+
+            if (is_string($firstElement)) {
+                if (str_starts_with($firstElement, '$')) {
+                    // SectionItem
+                    $header = substr($firstElement, 1);
+                    $section = new SectionItem($header);
+                    for ($i = 1; $i < count($itemData); $i++) {
+                        $subItem = self::parseEntityLayoutItem($itemData[$i]);
+                        if ($subItem instanceof ColumnItem) {
+                            $section->addColumn($subItem);
+                        } elseif ($subItem instanceof FieldItem || $subItem instanceof SectionItem) {
+                            // If a FieldItem or SectionItem is found directly under a SectionItem,
+                            // it implies an unnamed column containing this item.
+                            $unnamedColumn = new ColumnItem();
+                            $unnamedColumn->addItem($subItem);
+                            $section->addColumn($unnamedColumn);
+                        }
+                    }
+                    return $section;
+                } elseif (str_starts_with($firstElement, '@')) {
+                    // Named ColumnItem
+                    $header = substr($firstElement, 1);
+                    $column = new ColumnItem($header);
+                    for ($i = 1; $i < count($itemData); $i++) {
+                        $subItem = self::parseEntityLayoutItem($itemData[$i]);
+                        if ($subItem) {
+                            $column->addItem($subItem);
+                        }
+                    }
+                    return $column;
+                } else {
+                    // Unnamed ColumnItem (array of fields or nested items)
+                    $column = new ColumnItem();
+                    foreach ($itemData as $subItem) {
+                        $parsedSubItem = self::parseEntityLayoutItem($subItem);
+                        if ($parsedSubItem) {
+                            $column->addItem($parsedSubItem);
+                        }
+                    }
+                    return $column;
+                }
+            } else {
+                // If the first element is not a string (e.g., empty array or another array), treat as unnamed column
+                $column = new ColumnItem();
+                foreach ($itemData as $subItem) {
+                    $parsedSubItem = self::parseEntityLayoutItem($subItem);
+                    if ($parsedSubItem) {
+                        $column->addItem($parsedSubItem);
+                    }
+                }
+                return $column;
+            }
+        }
+
+        return null; // Should not happen with valid input
+    }
+
     public function toArray(): array
     {
         $data = [
@@ -255,7 +325,7 @@ class Query
             'label' => $this->label,
             'type' => $this->type->value,
             'model' => $this->model,
-            'attributes' => $this->attributes->toArray(),
+            'attributes' => $this->attributes->map(fn(Attribute $attribute) => $attribute->toArray())->all()
         ];
 
         if ($this->lensSimpleFilters->isNotEmpty()) {
@@ -317,11 +387,8 @@ class Query
         if ($this->serialize !== null) {
             $data['serialize'] = [
                 'header' => $this->serialize->getHeader(),
+                'align' => $this->serialize->getAlign()->value
             ];
-
-            if ($this->serialize->getAlign() !== AlignType::LEFT) {
-                $data['serialize']['align'] = $this->serialize->getAlign()->value;
-            }
         }
 
         if ($this->entityLayout->isNotEmpty()) {
@@ -331,7 +398,6 @@ class Query
                 if ($item instanceof FieldItem) {
                     return $result[0];
                 }
-
                 return $result;
             })->toArray();
         }
@@ -339,15 +405,14 @@ class Query
         return $data;
     }
 
-    public static function fromArray(array $data): self
+    public static function fromArray(array $data, ?RegistryManager $registryManager = null): self
     {
-        $attributes = new Collection($data['attributes'] ?? []);
-        $query = new self(
-            $data['name'],
-            $data['label'],
-            $data['model'],
-            $attributes
-        );
+        $name = $data['name'] ?? '';
+        $label = $data['label'] ?? '';
+        $modelName = $data['model'] ?? '';
+        $attributes = $data['attributes'] ?? [];
+
+        $query = new self($name, $label, $modelName, $attributes, $registryManager);
 
         if (isset($data['lensSimpleFilters'])) {
             $query->lensSimpleFilters = new Collection($data['lensSimpleFilters']);
@@ -378,26 +443,10 @@ class Query
         }
 
         if (isset($data['entityLayout'])) {
-            foreach ($data['entityLayout'] as $item) {
-                if (is_string($item)) {
-                    $query->addEntityLayoutItem(new FieldItem($item));
-                } elseif (is_array($item)) {
-                    $header = $item[0];
-                    if (str_starts_with($header, '$')) {
-                        $section = new SectionItem(substr($header, 1));
-                        for ($i = 1; $i < count($item); $i++) {
-                            $columnData = $item[$i];
-                            if (is_array($columnData)) {
-                                $columnName = substr($columnData[0], 1);
-                                $column = new ColumnItem($columnName);
-                                for ($j = 1; $j < count($columnData); $j++) {
-                                    $column->addItem(new FieldItem($columnData[$j]));
-                                }
-                                $section->addColumn($column);
-                            }
-                        }
-                        $query->addEntityLayoutItem($section);
-                    }
+            foreach ($data['entityLayout'] as $itemData) {
+                $parsedItem = self::parseEntityLayoutItem($itemData);
+                if ($parsedItem) {
+                    $query->addEntityLayoutItem($parsedItem);
                 }
             }
         }
