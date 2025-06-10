@@ -35,9 +35,20 @@ class ColumnItem implements EntityLayoutItem
     {
         $result = [];
         if ($this->name !== null) {
-            $result[] = '@'.$this->name;
+            $result[] = '@' . $this->name;
         }
 
-        return array_merge($result, $this->items->map(fn ($item) => $item->toArray())->toArray());
+        $itemsArray = [];
+        foreach ($this->items as $item) {
+            if ($item instanceof FieldItem) {
+                // As FieldItem->toArray() returns [$this->field], we want just the field string here
+                $itemsArray[] = $item->toArray()[0];
+            } else {
+                // For SectionItem or any other EntityLayoutItem, include its toArray() result directly
+                $itemsArray[] = $item->toArray();
+            }
+        }
+
+        return array_merge($result, $itemsArray);
     }
 }

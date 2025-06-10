@@ -46,34 +46,36 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
         } else {
             $result = $view->toArray();
             $permissions = $input['locospecPermissions'];
-            $permissions['userPermissions'] = $input['globalContext']['userPermissions'];
-            if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
-                $userPermissions = $permissions['userPermissions'];
-                // Filter items based on permissions
-                if (isset($result['actions']->items)) {
-                    $result['actions']->items = array_values(
-                        array_filter(
-                            array_map(function ($item) use ($userPermissions) {
-                                if (isset($item->options)) {
-                                    $filteredOptions = array_values(
-                                        array_filter($item->options, function ($option) use ($userPermissions) {
-                                            return in_array($option->key, $userPermissions);
-                                        })
-                                    );
+            if (isset($input['globalContext']['userPermissions'])) {
+                $permissions['userPermissions'] = $input['globalContext']['userPermissions'];
+                if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
+                    $userPermissions = $permissions['userPermissions'];
+                    // Filter items based on permissions
+                    if (isset($result['actions']->items)) {
+                        $result['actions']->items = array_values(
+                            array_filter(
+                                array_map(function ($item) use ($userPermissions) {
+                                    if (isset($item->options)) {
+                                        $filteredOptions = array_values(
+                                            array_filter($item->options, function ($option) use ($userPermissions) {
+                                                return in_array($option->key, $userPermissions);
+                                            })
+                                        );
 
-                                    if (! empty($filteredOptions)) {
-                                        $item->options = $filteredOptions;
+                                        if (! empty($filteredOptions)) {
+                                            $item->options = $filteredOptions;
 
-                                        return $item;
+                                            return $item;
+                                        }
+
+                                        return null;
                                     }
 
-                                    return null;
-                                }
-
-                                return in_array($item->key, $userPermissions) ? $item : null;
-                            }, $result['actions']->items)
-                        )
-                    );
+                                    return in_array($item->key, $userPermissions) ? $item : null;
+                                }, $result['actions']->items)
+                            )
+                        );
+                    }
                 }
             }
 
