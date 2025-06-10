@@ -7,6 +7,7 @@ use LCSEngine\Schemas\Query\ActionConfig;
 use LCSEngine\Schemas\Query\ActionItem;
 use LCSEngine\Schemas\Query\ActionOption;
 use LCSEngine\Schemas\Query\AlignType;
+use LCSEngine\Schemas\Query\ColumnItem;
 use LCSEngine\Schemas\Query\FieldItem;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Query\SectionItem;
@@ -99,41 +100,19 @@ test('can create Query from array with all properties', function () {
             'align' => 'right',
         ],
         'entityLayout' => [
-            // 'id',
-            // ['$Personal Info', 'name', 'email'],
-            // ['$Address', ['street', 'city', 'country']],
+            'id',
             [
                 '$Personal Info',
-                'listing_id',
-                'property_id',
-                'owner_type',
-                'property_listing_type',
-                'area',
-                'borrower_name',
-                'reserve_price',
-                'emd_amount',
-                'auction_start_date_time',
-                'auction_end_date_time',
-                'emd_last_date',
+                ['@Basic Info', 'name', 'email'],
             ],
             [
                 '$Address',
-                'address',
-                'city_name',
-                'locality.name',
-                'bank_name',
-                'bank_branch_name',
-                'sub_asset_type_name',
-                'contact',
-                'description',
-                'view_count',
-                'interested_count',
+                ['@Location', 'street', 'city', 'country'],
             ],
         ],
     ];
 
     $query = Query::fromArray($queryData);
-    dd($query, $query->toArray());
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');
@@ -198,13 +177,23 @@ test('can create Query from array with all properties', function () {
     $secondItem = $entityLayout->get(1);
     expect($secondItem)->toBeInstanceOf(SectionItem::class);
     expect($secondItem->getHeader())->toBe('Personal Info');
-    expect($secondItem->getItems())->toHaveCount(2);
+    expect($secondItem->getColumns())->toHaveCount(1);
 
-    // Third item should be a SectionItem with nested items
+    $secondColumn = $secondItem->getColumns()->first();
+    expect($secondColumn)->toBeInstanceOf(ColumnItem::class);
+    expect($secondColumn->getName())->toBe('Basic Info');
+    expect($secondColumn->getItems())->toHaveCount(2);
+
+    // Third item should be a SectionItem
     $thirdItem = $entityLayout->get(2);
     expect($thirdItem)->toBeInstanceOf(SectionItem::class);
     expect($thirdItem->getHeader())->toBe('Address');
-    expect($thirdItem->getItems())->toHaveCount(3);
+    expect($thirdItem->getColumns())->toHaveCount(1);
+
+    $thirdColumn = $thirdItem->getColumns()->first();
+    expect($thirdColumn)->toBeInstanceOf(ColumnItem::class);
+    expect($thirdColumn->getName())->toBe('Location');
+    expect($thirdColumn->getItems())->toHaveCount(3);
 });
 
 test('can add and remove attributes', function () {
@@ -213,11 +202,11 @@ test('can add and remove attributes', function () {
 
     $query->addAttribute('email');
     expect($query->getAttributes())->toHaveCount(3);
-    expect($query->getAttributes()->toArray())->toBe(['id', 'name', 'email']);
+    expect($query->getAttributes()->toArray())->toEqual(['id', 'name', 'email']);
 
     $query->removeAttribute('name');
     expect($query->getAttributes())->toHaveCount(2);
-    expect($query->getAttributes()->toArray())->toBe(['id', 'email']);
+    expect($query->getAttributes()->toArray())->toEqual(['id', 'email']);
 });
 
 test('can add and remove lens filters', function () {
@@ -227,11 +216,11 @@ test('can add and remove lens filters', function () {
     $query->addLensFilter('name');
     $query->addLensFilter('email');
     expect($query->getLensFilters())->toHaveCount(2);
-    expect($query->getLensFilters()->toArray())->toBe(['name', 'email']);
+    expect($query->getLensFilters()->toArray())->toEqual(['name', 'email']);
 
     $query->removeLensFilter('name');
     expect($query->getLensFilters())->toHaveCount(1);
-    expect($query->getLensFilters()->toArray())->toBe(['email']);
+    expect($query->getLensFilters()->toArray())->toEqual(['email']);
 });
 
 test('can add and remove expand fields', function () {
@@ -241,11 +230,11 @@ test('can add and remove expand fields', function () {
     $query->addExpand('profile');
     $query->addExpand('roles');
     expect($query->getExpand())->toHaveCount(2);
-    expect($query->getExpand()->toArray())->toBe(['profile', 'roles']);
+    expect($query->getExpand()->toArray())->toEqual(['profile', 'roles']);
 
     $query->removeExpand('profile');
     expect($query->getExpand())->toHaveCount(1);
-    expect($query->getExpand()->toArray())->toBe(['roles']);
+    expect($query->getExpand()->toArray())->toEqual(['roles']);
 });
 
 test('can add and remove allowed scopes', function () {
@@ -255,11 +244,11 @@ test('can add and remove allowed scopes', function () {
     $query->addAllowedScope('active');
     $query->addAllowedScope('verified');
     expect($query->getAllowedScopes())->toHaveCount(2);
-    expect($query->getAllowedScopes()->toArray())->toBe(['active', 'verified']);
+    expect($query->getAllowedScopes()->toArray())->toEqual(['active', 'verified']);
 
     $query->removeAllowedScope('active');
     expect($query->getAllowedScopes())->toHaveCount(1);
-    expect($query->getAllowedScopes()->toArray())->toBe(['verified']);
+    expect($query->getAllowedScopes()->toArray())->toEqual(['verified']);
 });
 
 test('can set and get selection type and key', function () {
@@ -274,19 +263,77 @@ test('can set and get selection type and key', function () {
 });
 
 test('can add entity layout items', function () {
-    $attributes = new Collection(['id', 'name']);
-    $query = new Query('users', 'User List', 'user', $attributes);
+    $query = new Query('test', 'Test Query', 'test_model', new Collection(['field1', 'field2']));
 
-    $fieldItem = new FieldItem('id');
-    $query->addEntityLayoutItem($fieldItem);
+    // Add simple field
+    $query->addEntityLayoutItem(new FieldItem('listing_id'));
 
+    // Add section with columns
     $sectionItem = new SectionItem('Personal Info');
-    $sectionItem->addItem(new FieldItem('name'));
-    $sectionItem->addItem(new FieldItem('email'));
+    $column = new ColumnItem('Basic Info');
+    $column->addItem(new FieldItem('name'));
+    $column->addItem(new FieldItem('email'));
+    $sectionItem->addColumn($column);
     $query->addEntityLayoutItem($sectionItem);
 
-    expect($query->getEntityLayout())->toHaveCount(2);
-    expect($query->getEntityLayout()->first())->toBeInstanceOf(FieldItem::class);
-    expect($query->getEntityLayout()->last())->toBeInstanceOf(SectionItem::class);
-    expect($query->getEntityLayout()->last()->getItems())->toHaveCount(2);
+    $data = $query->toArray();
+    expect($data['entityLayout'])->toEqual([
+        'listing_id',
+        [
+            '$Personal Info',
+            ['@Basic Info', 'name', 'email'],
+        ],
+    ]);
+});
+
+test('can create query from array', function () {
+    $data = [
+        'name' => 'test',
+        'label' => 'Test Query',
+        'type' => 'query',
+        'model' => 'test_model',
+        'attributes' => ['field1', 'field2'],
+        'lensSimpleFilters' => ['filter1'],
+        'expand' => ['expand1'],
+        'allowedScopes' => ['scope1'],
+        'selectionKey' => 'uuid',
+        'selectionType' => 'single',
+        'actions' => [
+            'header' => 'Actions',
+            'items' => [
+                [
+                    'key' => 'action1',
+                    'label' => 'Action 1',
+                    'url' => '/action1',
+                    'icon' => 'icon1',
+                    'confirmation' => true,
+                    'options' => [
+                        [
+                            'key' => 'option1',
+                            'label' => 'Option 1',
+                            'url' => '/option1',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'serialize' => [
+            'header' => 'Serial',
+            'align' => 'center',
+        ],
+        'entityLayout' => [
+            'listing_id',
+            [
+                '$Financials',
+                ['@Prices', 'reserve_price', 'emd_amount'],
+                ['@Deadlines', 'emd_last_date'],
+            ],
+        ],
+    ];
+
+    $query = Query::fromArray($data);
+    $result = $query->toArray();
+    // dd($result);
+
+    expect($result)->toEqual($data);
 });

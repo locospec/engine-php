@@ -13,7 +13,7 @@ class Query
 
     private string $model;
 
-    private string $selectionKey;
+    private ?string $selectionKey;
 
     private Type $type;
 
@@ -51,6 +51,7 @@ class Query
         $this->entityLayout = new Collection;
         $this->actions = null;
         $this->serialize = null;
+        $this->selectionKey = null;
     }
 
     public function getName(): string
@@ -82,7 +83,7 @@ class Query
     {
         $this->attributes = $this->attributes->filter(
             fn (string $attribute) => $attribute !== $attr
-        );
+        )->values();
     }
 
     public function getAttributes(): Collection
@@ -99,7 +100,7 @@ class Query
     {
         $this->lensSimpleFilters = $this->lensSimpleFilters->filter(
             fn (string $f) => $f !== $filter
-        );
+        )->values();
     }
 
     public function getLensFilters(): Collection
@@ -116,7 +117,7 @@ class Query
     {
         $this->expand = $this->expand->filter(
             fn (string $f) => $f !== $field
-        );
+        )->values();
     }
 
     public function getExpand(): Collection
@@ -133,7 +134,7 @@ class Query
     {
         $this->allowedScopes = $this->allowedScopes->filter(
             fn (string $s) => $s !== $scope
-        );
+        )->values();
     }
 
     public function getAllowedScopes(): Collection
@@ -217,7 +218,7 @@ class Query
             $data['selectionType'] = $this->selectionType->value;
         }
 
-        if (isset($this->selectionKey)) {
+        if ($this->selectionKey !== null) {
             $data['selectionKey'] = $this->selectionKey;
         }
 
@@ -269,7 +270,13 @@ class Query
 
         if ($this->entityLayout->isNotEmpty()) {
             $data['entityLayout'] = $this->entityLayout->map(function ($item) {
-                return $item->toArray();
+                $result = $item->toArray();
+                // If it's a FieldItem, return just the field string
+                if ($item instanceof FieldItem) {
+                    return $result[0];
+                }
+
+                return $result;
             })->toArray();
         }
 
@@ -287,21 +294,15 @@ class Query
         );
 
         if (isset($data['lensSimpleFilters'])) {
-            foreach ($data['lensSimpleFilters'] as $filter) {
-                $query->addLensFilter($filter);
-            }
+            $query->lensSimpleFilters = new Collection($data['lensSimpleFilters']);
         }
 
         if (isset($data['expand'])) {
-            foreach ($data['expand'] as $field) {
-                $query->addExpand($field);
-            }
+            $query->expand = new Collection($data['expand']);
         }
 
         if (isset($data['allowedScopes'])) {
-            foreach ($data['allowedScopes'] as $scope) {
-                $query->addAllowedScope($scope);
-            }
+            $query->allowedScopes = new Collection($data['allowedScopes']);
         }
 
         if (isset($data['selectionKey'])) {

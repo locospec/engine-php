@@ -17,9 +17,9 @@ test('can create entity layout with simple fields', function () {
 
     $data = $query->toArray();
     expect($data['entityLayout'])->toBe([
-        ['listing_id'],
-        ['property_id'],
-        ['owner_type'],
+        'listing_id',
+        'property_id',
+        'owner_type',
     ]);
 });
 
@@ -43,7 +43,7 @@ test('can create entity layout with sections and columns', function () {
     $query->addEntityLayoutItem($financialsSection);
 
     $data = $query->toArray();
-    expect($data['entityLayout'])->toBe([
+    expect($data['entityLayout'])->toEqual([
         [
             '$Financials',
             ['@Prices', 'reserve_price', 'emd_amount'],
@@ -75,7 +75,7 @@ test('can create entity layout with mixed named and unnamed columns', function (
     $query->addEntityLayoutItem($locationSection);
 
     $data = $query->toArray();
-    expect($data['entityLayout'])->toBe([
+    expect($data['entityLayout'])->toEqual([
         [
             '$Location & Contact',
             ['@Address', 'address', 'city_name', 'locality.name'],
@@ -109,7 +109,7 @@ test('can create entity layout with nested sections', function () {
     $query->addEntityLayoutItem($metaSection);
 
     $data = $query->toArray();
-    expect($data['entityLayout'])->toBe([
+    expect($data['entityLayout'])->toEqual([
         [
             '$Meta',
             [
@@ -150,5 +150,5 @@ test('can create entity layout from array', function () {
     $query = Query::fromArray($data);
     $result = $query->toArray();
 
-    expect($result['entityLayout'])->toBe($data['entityLayout']);
+    expect($result['entityLayout'])->toEqual($data['entityLayout']);
 });
