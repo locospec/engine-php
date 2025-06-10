@@ -1,20 +1,42 @@
 <?php
 
-namespace LCS\Engine\Schemas\Query;
+namespace LCSEngine\Schemas\Query;
 
 class ActionOption
 {
-    public string $key;
-
-    public string $label;
-
-    public string $url;
+    private string $key;
+    private string $label;
+    private string $url;
 
     public function __construct(string $key, string $label, string $url)
     {
         $this->key = $key;
         $this->label = $label;
         $this->url = $url;
+    }
+
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'key' => $this->key,
+            'label' => $this->label,
+            'url' => $this->url
+        ];
     }
 
     public static function fromArray(array $data): self

@@ -1,6 +1,6 @@
 <?php
 
-namespace LCS\Engine\Schemas\Query;
+namespace LCSEngine\Schemas\Query;
 
 enum AlignType: string
 {

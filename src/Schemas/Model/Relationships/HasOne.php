@@ -4,6 +4,7 @@ namespace LCSEngine\Schemas\Model\Relationships;
 
 use InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Support\StringInflector;
 
 class HasOne extends Relationship
 {

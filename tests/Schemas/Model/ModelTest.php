@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Configuration;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Type;
+use LCSEngine\Registry\RegistryManager;
+use Mockery;
 
 uses()->group('model');
 
@@ -131,22 +133,6 @@ test('can create Model from array with populated attributes, relationships, and 
                 'labelKey' => true,
             ],
         ],
-        'relationships' => [
-            'has_one' => [
-                'email' => [
-                    'relatedModelName' => 'attribute',
-                    'foreignKey' => 'user_uuid',
-                    'localKey' => 'uuid',
-                ],
-            ],
-            'has_many' => [
-                'posts' => [
-                    'relatedModelName' => 'post',
-                    'foreignKey' => 'user_uuid',
-                    'localKey' => 'uuid',
-                ],
-            ],
-        ],
         'scopes' => [
             'search' => [
                 'op' => 'and',
@@ -183,9 +169,42 @@ test('can create Model from array with populated attributes, relationships, and 
     expect($attributes)->toBeInstanceOf(Collection::class)->toHaveCount(2);
 
     $relationships = $model->getRelationships();
-    $totalRelationships = count($modelData['relationships']['has_one']) + count($modelData['relationships']['has_many']);
-    expect($relationships)->toBeInstanceOf(Collection::class)->toHaveCount($totalRelationships);
+    expect($relationships)->toBeInstanceOf(Collection::class)->toHaveCount(0);
 
     $scopes = $model->getScopes();
     expect($scopes)->toBeInstanceOf(Collection::class)->toHaveCount(count($modelData['scopes']));
+});
+
+test('can add relationships from array', function () {
+    $relationshipsData = [
+        'belongs_to' => [
+            'product' => [
+                'type' => 'belongs_to',
+                'model' => 'product',
+                'foreignKey' => 'product_id',
+                'ownerKey' => 'uuid',
+            ],
+        ],
+    ];
+
+    $primaryKey = Mockery::mock();
+    $primaryKey->shouldReceive('getName')->andReturn('id');
+
+    $relatedModel = Mockery::mock();
+    $relatedModel->shouldReceive('getPrimaryKey')->andReturn($primaryKey);
+
+    $registryManager = Mockery::mock(RegistryManager::class);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'product')
+        ->andReturn($relatedModel);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'orderItem')
+        ->andReturn($relatedModel);
+
+    $model = new Model('orderItem', 'Order Item');
+    $model->addRelationshipsFromArray($model->getName(), $relationshipsData, $registryManager);
+
+    $relationship = $model->getRelationship('product');
+    expect($model->getRelationships())->toHaveCount(1)
+        ->and($relationship)->toBeInstanceOf(\LCSEngine\Schemas\Model\Relationships\BelongsTo::class);
 });
