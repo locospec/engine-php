@@ -5,7 +5,6 @@ namespace LCSEngine\Schemas\Query;
 class SerializeConfig
 {
     private string $header;
-
     private AlignType $align;
 
     public function __construct(string $header, AlignType $align = AlignType::LEFT)
@@ -37,7 +36,7 @@ class SerializeConfig
     public function toArray(): array
     {
         $data = [
-            'header' => $this->header,
+            'header' => $this->header
         ];
 
         if ($this->align !== AlignType::LEFT) {
