@@ -19,7 +19,7 @@ test('can create entity layout with simple fields', function () {
     expect($data['entityLayout'])->toBe([
         ['listing_id'],
         ['property_id'],
-        ['owner_type']
+        ['owner_type'],
     ]);
 });
 
@@ -47,8 +47,8 @@ test('can create entity layout with sections and columns', function () {
         [
             '$Financials',
             ['@Prices', 'reserve_price', 'emd_amount'],
-            ['@Deadlines', 'emd_last_date']
-        ]
+            ['@Deadlines', 'emd_last_date'],
+        ],
     ]);
 });
 
@@ -66,7 +66,7 @@ test('can create entity layout with mixed named and unnamed columns', function (
     $locationSection->addColumn($addressColumn);
 
     // Create unnamed column
-    $unnamedColumn = new ColumnItem();
+    $unnamedColumn = new ColumnItem;
     $unnamedColumn->addItem(new FieldItem('bank_name'));
     $unnamedColumn->addItem(new FieldItem('bank_branch_name'));
     $unnamedColumn->addItem(new FieldItem('contact'));
@@ -79,8 +79,8 @@ test('can create entity layout with mixed named and unnamed columns', function (
         [
             '$Location & Contact',
             ['@Address', 'address', 'city_name', 'locality.name'],
-            ['bank_name', 'bank_branch_name', 'contact']
-        ]
+            ['bank_name', 'bank_branch_name', 'contact'],
+        ],
     ]);
 });
 
@@ -116,11 +116,11 @@ test('can create entity layout with nested sections', function () {
                 '@Details',
                 [
                     '$Timestamps',
-                    ['@Times', 'meta.created_at', 'meta.updated_at']
+                    ['@Times', 'meta.created_at', 'meta.updated_at'],
                 ],
-                'meta.someFlag'
-            ]
-        ]
+                'meta.someFlag',
+            ],
+        ],
     ]);
 });
 
@@ -137,14 +137,14 @@ test('can create entity layout from array', function () {
             [
                 '$Financials',
                 ['@Prices', 'reserve_price', 'emd_amount'],
-                ['@Deadlines', 'emd_last_date']
+                ['@Deadlines', 'emd_last_date'],
             ],
             [
                 '$Location & Contact',
                 ['@Address', 'address', 'city_name', 'locality.name'],
-                ['bank_name', 'bank_branch_name', 'contact']
-            ]
-        ]
+                ['bank_name', 'bank_branch_name', 'contact'],
+            ],
+        ],
     ];
 
     $query = Query::fromArray($data);

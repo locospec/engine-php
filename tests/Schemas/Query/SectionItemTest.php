@@ -34,6 +34,6 @@ test('can convert to array', function () {
     expect($array)->toBe([
         '$Personal Info',
         'name',
-        'email'
+        'email',
     ]);
 });

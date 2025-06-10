@@ -7,12 +7,13 @@ use Illuminate\Support\Collection;
 class SectionItem implements EntityLayoutItem
 {
     private string $header;
+
     private Collection $columns;
 
     public function __construct(string $header)
     {
         $this->header = $header;
-        $this->columns = new Collection();
+        $this->columns = new Collection;
     }
 
     public function getHeader(): string
@@ -32,7 +33,8 @@ class SectionItem implements EntityLayoutItem
 
     public function toArray(): array
     {
-        $result = ['$' . $this->header];
-        return array_merge($result, $this->columns->map(fn($column) => $column->toArray())->toArray());
+        $result = ['$'.$this->header];
+
+        return array_merge($result, $this->columns->map(fn ($column) => $column->toArray())->toArray());
     }
 }

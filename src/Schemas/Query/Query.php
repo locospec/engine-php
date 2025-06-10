@@ -8,17 +8,29 @@ use LCSEngine\Schemas\Type;
 class Query
 {
     private string $name;
+
     private string $label;
+
     private string $model;
+
     private string $selectionKey;
+
     private Type $type;
+
     private Collection $attributes;
+
     private Collection $lensSimpleFilters;
+
     private Collection $expand;
+
     private Collection $allowedScopes;
+
     private Collection $entityLayout;
+
     private ?ActionConfig $actions;
+
     private ?SerializeConfig $serialize;
+
     private SelectionType $selectionType;
 
     public function __construct(
@@ -33,10 +45,10 @@ class Query
         $this->attributes = $attributes;
         $this->type = Type::QUERY;
         $this->selectionType = SelectionType::NONE;
-        $this->lensSimpleFilters = new Collection();
-        $this->expand = new Collection();
-        $this->allowedScopes = new Collection();
-        $this->entityLayout = new Collection();
+        $this->lensSimpleFilters = new Collection;
+        $this->expand = new Collection;
+        $this->allowedScopes = new Collection;
+        $this->entityLayout = new Collection;
         $this->actions = null;
         $this->serialize = null;
     }
@@ -69,7 +81,7 @@ class Query
     public function removeAttribute(string $attr): void
     {
         $this->attributes = $this->attributes->filter(
-            fn(string $attribute) => $attribute !== $attr
+            fn (string $attribute) => $attribute !== $attr
         );
     }
 
@@ -86,7 +98,7 @@ class Query
     public function removeLensFilter(string $filter): void
     {
         $this->lensSimpleFilters = $this->lensSimpleFilters->filter(
-            fn(string $f) => $f !== $filter
+            fn (string $f) => $f !== $filter
         );
     }
 
@@ -103,7 +115,7 @@ class Query
     public function removeExpand(string $field): void
     {
         $this->expand = $this->expand->filter(
-            fn(string $f) => $f !== $field
+            fn (string $f) => $f !== $field
         );
     }
 
@@ -120,7 +132,7 @@ class Query
     public function removeAllowedScope(string $scope): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn(string $s) => $s !== $scope
+            fn (string $s) => $s !== $scope
         );
     }
 
@@ -321,7 +333,7 @@ class Query
                         for ($i = 1; $i < count($item); $i++) {
                             $columnData = $item[$i];
                             if (is_array($columnData)) {
-                                $column = new ColumnItem();
+                                $column = new ColumnItem;
 
                                 // Check if first element is a column header
                                 if (isset($columnData[0]) && is_string($columnData[0]) && str_starts_with($columnData[0], '@')) {
@@ -343,7 +355,7 @@ class Query
                                             for ($j = 1; $j < count($columnItem); $j++) {
                                                 $nestedColumnData = $columnItem[$j];
                                                 if (is_array($nestedColumnData)) {
-                                                    $nestedColumn = new ColumnItem();
+                                                    $nestedColumn = new ColumnItem;
 
                                                     // Check if first element is a column header
                                                     if (isset($nestedColumnData[0]) && is_string($nestedColumnData[0]) && str_starts_with($nestedColumnData[0], '@')) {
