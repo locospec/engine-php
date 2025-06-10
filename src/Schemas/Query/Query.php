@@ -8,29 +8,17 @@ use LCSEngine\Schemas\Type;
 class Query
 {
     private string $name;
-
     private string $label;
-
     private string $model;
-
     private string $selectionKey;
-
     private Type $type;
-
     private Collection $attributes;
-
     private Collection $lensSimpleFilters;
-
     private Collection $expand;
-
     private Collection $allowedScopes;
-
     private Collection $entityLayout;
-
     private ?ActionConfig $actions;
-
     private ?SerializeConfig $serialize;
-
     private SelectionType $selectionType;
 
     public function __construct(
@@ -45,10 +33,10 @@ class Query
         $this->attributes = $attributes;
         $this->type = Type::QUERY;
         $this->selectionType = SelectionType::NONE;
-        $this->lensSimpleFilters = new Collection;
-        $this->expand = new Collection;
-        $this->allowedScopes = new Collection;
-        $this->entityLayout = new Collection;
+        $this->lensSimpleFilters = new Collection();
+        $this->expand = new Collection();
+        $this->allowedScopes = new Collection();
+        $this->entityLayout = new Collection();
         $this->actions = null;
         $this->serialize = null;
     }
@@ -81,7 +69,7 @@ class Query
     public function removeAttribute(string $attr): void
     {
         $this->attributes = $this->attributes->filter(
-            fn (string $attribute) => $attribute !== $attr
+            fn(string $attribute) => $attribute !== $attr
         );
     }
 
@@ -98,7 +86,7 @@ class Query
     public function removeLensFilter(string $filter): void
     {
         $this->lensSimpleFilters = $this->lensSimpleFilters->filter(
-            fn (string $f) => $f !== $filter
+            fn(string $f) => $f !== $filter
         );
     }
 
@@ -115,7 +103,7 @@ class Query
     public function removeExpand(string $field): void
     {
         $this->expand = $this->expand->filter(
-            fn (string $f) => $f !== $field
+            fn(string $f) => $f !== $field
         );
     }
 
@@ -132,7 +120,7 @@ class Query
     public function removeAllowedScope(string $scope): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn (string $s) => $s !== $scope
+            fn(string $s) => $s !== $scope
         );
     }
 
@@ -269,27 +257,7 @@ class Query
 
         if ($this->entityLayout->isNotEmpty()) {
             $data['entityLayout'] = $this->entityLayout->map(function ($item) {
-                if ($item instanceof FieldItem) {
-                    return $item->getField();
-                }
-
-                if ($item instanceof SectionItem) {
-                    $sectionData = ['$'.$item->getHeader()];
-                    $sectionData = array_merge(
-                        $sectionData,
-                        $item->getItems()->map(function ($subItem) {
-                            if ($subItem instanceof FieldItem) {
-                                return $subItem->getField();
-                            }
-
-                            return $subItem;
-                        })->toArray()
-                    );
-
-                    return $sectionData;
-                }
-
-                return $item;
+                return $item->toArray();
             })->toArray();
         }
 
@@ -338,6 +306,75 @@ class Query
 
         if (isset($data['serialize'])) {
             $query->setSerialize(SerializeConfig::fromArray($data['serialize']));
+        }
+
+        if (isset($data['entityLayout'])) {
+            foreach ($data['entityLayout'] as $item) {
+                if (is_string($item)) {
+                    $query->addEntityLayoutItem(new FieldItem($item));
+                } elseif (is_array($item)) {
+                    if (isset($item[0]) && is_string($item[0]) && str_starts_with($item[0], '$')) {
+                        $header = substr($item[0], 1);
+                        $section = new SectionItem($header);
+
+                        // Process columns
+                        for ($i = 1; $i < count($item); $i++) {
+                            $columnData = $item[$i];
+                            if (is_array($columnData)) {
+                                $column = new ColumnItem();
+
+                                // Check if first element is a column header
+                                if (isset($columnData[0]) && is_string($columnData[0]) && str_starts_with($columnData[0], '@')) {
+                                    $column = new ColumnItem(substr($columnData[0], 1));
+                                    array_shift($columnData);
+                                }
+
+                                // Process column items
+                                foreach ($columnData as $columnItem) {
+                                    if (is_string($columnItem)) {
+                                        $column->addItem(new FieldItem($columnItem));
+                                    } elseif (is_array($columnItem)) {
+                                        // Handle nested sections
+                                        if (isset($columnItem[0]) && is_string($columnItem[0]) && str_starts_with($columnItem[0], '$')) {
+                                            $nestedHeader = substr($columnItem[0], 1);
+                                            $nestedSection = new SectionItem($nestedHeader);
+
+                                            // Process nested columns
+                                            for ($j = 1; $j < count($columnItem); $j++) {
+                                                $nestedColumnData = $columnItem[$j];
+                                                if (is_array($nestedColumnData)) {
+                                                    $nestedColumn = new ColumnItem();
+
+                                                    // Check if first element is a column header
+                                                    if (isset($nestedColumnData[0]) && is_string($nestedColumnData[0]) && str_starts_with($nestedColumnData[0], '@')) {
+                                                        $nestedColumn = new ColumnItem(substr($nestedColumnData[0], 1));
+                                                        array_shift($nestedColumnData);
+                                                    }
+
+                                                    // Add nested column items
+                                                    foreach ($nestedColumnData as $nestedItem) {
+                                                        if (is_string($nestedItem)) {
+                                                            $nestedColumn->addItem(new FieldItem($nestedItem));
+                                                        }
+                                                    }
+
+                                                    $nestedSection->addColumn($nestedColumn);
+                                                }
+                                            }
+
+                                            $column->addItem($nestedSection);
+                                        }
+                                    }
+                                }
+
+                                $section->addColumn($column);
+                            }
+                        }
+
+                        $query->addEntityLayoutItem($section);
+                    }
+                }
+            }
         }
 
         return $query;

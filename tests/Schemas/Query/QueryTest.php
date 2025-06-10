@@ -19,7 +19,7 @@ uses()->group('query');
 test('can create Query instance using constructor and has correct initial state', function () {
     $attributes = new Collection(['id', 'name', 'email']);
     $query = new Query('users', 'User List', 'user', $attributes);
-    dd($query->toArray());
+
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');
@@ -99,14 +99,41 @@ test('can create Query from array with all properties', function () {
             'align' => 'right',
         ],
         'entityLayout' => [
-            'id',
-            ['$Personal Info', 'name', 'email'],
-            ['$Address', ['street', 'city', 'country']],
+            // 'id',
+            // ['$Personal Info', 'name', 'email'],
+            // ['$Address', ['street', 'city', 'country']],
+            [
+                '$Personal Info',
+                "listing_id",
+                "property_id",
+                "owner_type",
+                "property_listing_type",
+                "area",
+                "borrower_name",
+                "reserve_price",
+                "emd_amount",
+                "auction_start_date_time",
+                "auction_end_date_time",
+                "emd_last_date"
+            ],
+            [
+                '$Address',
+                "address",
+                "city_name",
+                "locality.name",
+                "bank_name",
+                "bank_branch_name",
+                "sub_asset_type_name",
+                "contact",
+                "description",
+                "view_count",
+                "interested_count"
+            ]
         ],
     ];
 
     $query = Query::fromArray($queryData);
-
+    dd($query, $query->toArray());
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');

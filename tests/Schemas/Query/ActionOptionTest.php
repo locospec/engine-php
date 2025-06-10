@@ -42,7 +42,7 @@ test('can create from array', function () {
     $data = [
         'key' => 'delete',
         'label' => 'Delete',
-        'url' => '/delete/{id}',
+        'url' => '/delete/{id}'
     ];
 
     $option = ActionOption::fromArray($data);
@@ -59,6 +59,6 @@ test('can convert to array', function () {
     expect($array)->toBe([
         'key' => 'delete',
         'label' => 'Delete',
-        'url' => '/delete/{id}',
+        'url' => '/delete/{id}'
     ]);
 });

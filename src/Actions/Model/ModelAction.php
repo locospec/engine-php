@@ -7,10 +7,10 @@ use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\StateMachine\Context;
 use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Views\ViewDefinition;
+use LCSEngine\Schemas\Model\Model;
 
 abstract class ModelAction
 {

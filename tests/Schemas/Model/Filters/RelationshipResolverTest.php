@@ -3,14 +3,14 @@
 namespace LCSEngine\Tests\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Schemas\Model\Relationships\BelongsTo;
+use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Filters\ComparisonOperator;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
-use LCSEngine\Schemas\Model\Relationships\HasMany;
 
 uses()->group('filters');
 
