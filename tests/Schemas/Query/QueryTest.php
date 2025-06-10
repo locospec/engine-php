@@ -103,12 +103,12 @@ test('can create Query from array with all properties', function () {
             'id',
             [
                 '$Personal Info',
-                ['@Basic Info', 'name', 'email']
+                ['@Basic Info', 'name', 'email'],
             ],
             [
                 '$Address',
-                ['@Location', 'street', 'city', 'country']
-            ]
+                ['@Location', 'street', 'city', 'country'],
+            ],
         ],
     ];
 
@@ -281,8 +281,8 @@ test('can add entity layout items', function () {
         'listing_id',
         [
             '$Personal Info',
-            ['@Basic Info', 'name', 'email']
-        ]
+            ['@Basic Info', 'name', 'email'],
+        ],
     ]);
 });
 
@@ -311,24 +311,24 @@ test('can create query from array', function () {
                         [
                             'key' => 'option1',
                             'label' => 'Option 1',
-                            'url' => '/option1'
-                        ]
-                    ]
-                ]
-            ]
+                            'url' => '/option1',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'serialize' => [
             'header' => 'Serial',
-            'align' => 'center'
+            'align' => 'center',
         ],
         'entityLayout' => [
             'listing_id',
             [
                 '$Financials',
                 ['@Prices', 'reserve_price', 'emd_amount'],
-                ['@Deadlines', 'emd_last_date']
-            ]
-        ]
+                ['@Deadlines', 'emd_last_date'],
+            ],
+        ],
     ];
 
     $query = Query::fromArray($data);
