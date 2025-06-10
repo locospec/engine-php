@@ -83,7 +83,7 @@ test('can create from array with default alignment', function () {
 test('can create from array with custom alignment', function () {
     $data = [
         'header' => 'Serial',
-        'align' => 'center'
+        'align' => 'center',
     ];
     $config = SerializeConfig::fromArray($data);
 
@@ -96,7 +96,7 @@ test('can convert to array with default alignment', function () {
     $array = $config->toArray();
 
     expect($array)->toBe([
-        'header' => 'Serial'
+        'header' => 'Serial',
     ]);
 });
 
@@ -106,6 +106,6 @@ test('can convert to array with custom alignment', function () {
 
     expect($array)->toBe([
         'header' => 'Serial',
-        'align' => 'center'
+        'align' => 'center',
     ]);
 });

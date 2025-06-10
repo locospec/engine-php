@@ -10,7 +10,7 @@ use LCSEngine\Schemas\Query\ActionOption;
 uses()->group('query');
 
 test('can create ActionConfig instance with items and header', function () {
-    $items = new Collection();
+    $items = new Collection;
     $config = new ActionConfig('Actions', $items);
 
     expect($config)->toBeInstanceOf(ActionConfig::class);
@@ -19,7 +19,7 @@ test('can create ActionConfig instance with items and header', function () {
 });
 
 test('can create ActionConfig instance without header', function () {
-    $items = new Collection();
+    $items = new Collection;
     $config = new ActionConfig('', $items);
 
     expect($config)->toBeInstanceOf(ActionConfig::class);
@@ -28,7 +28,7 @@ test('can create ActionConfig instance without header', function () {
 });
 
 test('can create action config instance', function () {
-    $items = new Collection();
+    $items = new Collection;
     $config = new ActionConfig('Actions', $items);
 
     expect($config->getHeader())->toBe('Actions')
@@ -36,7 +36,7 @@ test('can create action config instance', function () {
 });
 
 test('can add and remove action items', function () {
-    $items = new Collection();
+    $items = new Collection;
     $config = new ActionConfig('Actions', $items);
 
     $item1 = new ActionItem('edit', 'Edit', '/edit', 'pencil');
@@ -89,7 +89,7 @@ test('can create from array', function () {
 });
 
 test('can convert to array', function () {
-    $items = new Collection();
+    $items = new Collection;
     $config = new ActionConfig('Actions', $items);
     $item = new ActionItem('edit', 'Edit', '/edit/{id}', 'pencil', true);
     $item->addOption(new ActionOption('delete', 'Delete', '/delete/{id}'));
@@ -110,10 +110,10 @@ test('can convert to array', function () {
                     [
                         'key' => 'delete',
                         'label' => 'Delete',
-                        'url' => '/delete/{id}'
-                    ]
-                ]
-            ]
-        ]
+                        'url' => '/delete/{id}',
+                    ],
+                ],
+            ],
+        ],
     ]);
 });

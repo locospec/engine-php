@@ -135,9 +135,9 @@ test('can create from array', function () {
             [
                 'key' => 'delete',
                 'label' => 'Delete',
-                'url' => '/delete/{id}'
-            ]
-        ]
+                'url' => '/delete/{id}',
+            ],
+        ],
     ];
 
     $item = ActionItem::fromArray($data);
@@ -156,7 +156,7 @@ test('can convert to array with minimal properties', function () {
 
     expect($array)->toBe([
         'key' => 'edit',
-        'label' => 'Edit'
+        'label' => 'Edit',
     ]);
 });
 
@@ -175,8 +175,8 @@ test('can convert to array with all properties', function () {
             [
                 'key' => 'delete',
                 'label' => 'Delete',
-                'url' => '/delete/{id}'
-            ]
-        ]
+                'url' => '/delete/{id}',
+            ],
+        ],
     ]);
 });
