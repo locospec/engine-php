@@ -3886,10 +3886,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AvalidateAttributes\u0028\u0029",
-            "name": "validateAttributes",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AsetAndValidateAttributes\u0028\u0029",
+            "name": "setAndValidateAttributes",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_validateAttributes"
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_setAndValidateAttributes"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetName\u0028\u0029",
             "name": "getName",
@@ -4025,6 +4025,11 @@ Search.appendIndex(
             "name": "getSerialize",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getSerialize"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AparseEntityLayoutItem\u0028\u0029",
+            "name": "parseEntityLayoutItem",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_parseEntityLayoutItem"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
