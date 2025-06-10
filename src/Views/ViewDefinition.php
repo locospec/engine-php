@@ -133,7 +133,7 @@ class ViewDefinition
             }
 
             if (isset($data->attributes)) {
-                $attributes = $model->getAttributes()->only($data->attributes)->map(fn($attribute) => $attribute->toArray())->all();
+                $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
             }
 
             if (isset($data->lensSimpleFilters)) {
@@ -168,9 +168,9 @@ class ViewDefinition
 
             return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize, $fullEntityLayout);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$data->name} view definition: " . $e->getMessage());
+            throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: " . $e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: ".$e->getMessage());
         }
     }
 
@@ -187,11 +187,11 @@ class ViewDefinition
             $defaultView = [];
 
             // create default view from model
-            $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
 
             $defaultView = [
-                'name' => $model->getName() . '_default_view',
-                'label' => $model->getLabel() . ' Default View',
+                'name' => $model->getName().'_default_view',
+                'label' => $model->getLabel().' Default View',
                 'model' => $model->getName(),
                 'attributes' => $attributes,
                 'lensSimpleFilters' => [],
@@ -207,9 +207,9 @@ class ViewDefinition
 
             return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize'], $defaultView['entityLayout']);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$model->getName()} view definition from model: " . $e->getMessage());
+            throw new InvalidArgumentException("Error creating {$model->getName()} view definition from model: ".$e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$model->getName()} view definition from model: " . $e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$model->getName()} view definition from model: ".$e->getMessage());
         }
     }
 
@@ -247,7 +247,7 @@ class ViewDefinition
                     $lensSimpleFilters[$lastValue]['model'] = $model->getName();
 
                     if (! $model->getAttribute($lastValue)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn($option) => $option->toArray())->all();
+                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn ($option) => $option->toArray())->all();
                     }
                     $lensSimpleFilters[$lastValue]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
@@ -274,7 +274,7 @@ class ViewDefinition
                     $lensSimpleFilters[$lensSimpleFilter]['model'] = $model->getName();
 
                     if (! $model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn($option) => $option->toArray())->all();
+                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn ($option) => $option->toArray())->all();
                     }
                     $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
