@@ -85,7 +85,7 @@ test('toArray serializes all fields and collections', function () {
 test('can remove generator, validator, and option by id', function () {
     $attribute = new Attribute('username', 'Username', Type::STRING);
     $generator1 = new Generator(GeneratorType::UUID);
-    $generator2 = new Generator(GeneratorType::SLUG_GENERATOR);
+    $generator2 = new Generator(GeneratorType::UNIQUE_SLUG);
     $validator1 = new Validator(ValidatorType::REQUIRED);
     $validator2 = new Validator(ValidatorType::UNIQUE);
     $option1 = new Option;

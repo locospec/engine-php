@@ -1,25 +1,30 @@
 <?php
 
-namespace LCS\Engine\Schemas\Query;
+namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
 
 class ActionItem
 {
-    public string $key;
+    private string $key;
 
-    public string $label;
+    private string $label;
 
-    public string $url;
+    private string $url;
 
-    public string $icon;
+    private string $icon;
 
-    public Collection $options;
+    private bool $confirmation;
 
-    public bool $confirmation;
+    private Collection $options;
 
-    public function __construct(string $key, string $label, string $url, string $icon, bool $confirmation = false)
-    {
+    public function __construct(
+        string $key,
+        string $label,
+        string $url = '',
+        string $icon = '',
+        bool $confirmation = false
+    ) {
         $this->key = $key;
         $this->label = $label;
         $this->url = $url;
@@ -28,14 +33,41 @@ class ActionItem
         $this->options = new Collection;
     }
 
-    public function addOption(ActionOption $opt): void
+    public function getKey(): string
     {
-        $this->options->put($opt->key, $opt);
+        return $this->key;
+    }
+
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function getConfirmation(): bool
+    {
+        return $this->confirmation;
+    }
+
+    public function addOption(ActionOption $option): void
+    {
+        $this->options->push($option);
     }
 
     public function removeOption(string $key): void
     {
-        $this->options->forget($key);
+        $this->options = $this->options->filter(
+            fn (ActionOption $option) => $option->getKey() !== $key
+        );
     }
 
     public function getOptions(): Collection
@@ -43,19 +75,45 @@ class ActionItem
         return $this->options;
     }
 
+    public function toArray(): array
+    {
+        $data = [
+            'key' => $this->key,
+            'label' => $this->label,
+        ];
+
+        if ($this->url !== '') {
+            $data['url'] = $this->url;
+        }
+
+        if ($this->icon !== '') {
+            $data['icon'] = $this->icon;
+        }
+
+        if ($this->confirmation) {
+            $data['confirmation'] = true;
+        }
+
+        if ($this->options->isNotEmpty()) {
+            $data['options'] = $this->options->map(fn (ActionOption $option) => $option->toArray())->toArray();
+        }
+
+        return $data;
+    }
+
     public static function fromArray(array $data): self
     {
         $item = new self(
             $data['key'],
             $data['label'],
-            $data['url'],
-            $data['icon'],
+            $data['url'] ?? '',
+            $data['icon'] ?? '',
             $data['confirmation'] ?? false
         );
 
         if (isset($data['options'])) {
-            foreach ($data['options'] as $option) {
-                $item->addOption(ActionOption::fromArray($option));
+            foreach ($data['options'] as $optionData) {
+                $item->addOption(ActionOption::fromArray($optionData));
             }
         }
 

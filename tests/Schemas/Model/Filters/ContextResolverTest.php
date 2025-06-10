@@ -127,7 +127,7 @@ test('handle missing context values', function () {
     $resolved = $resolver->resolve($filters);
     $array = $resolved->toArray();
 
-    expect($array['value'])->toBe('$.missing');
+    expect($array['value'])->toBeNull();
 });
 
 test('resolve context in array values', function () {

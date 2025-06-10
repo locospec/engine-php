@@ -1,29 +1,24 @@
 <?php
 
-namespace LCS\Engine\Schemas\Query;
+namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
 
 class ActionConfig
 {
-    public string $header;
+    private string $header;
 
-    public Collection $items;
+    private Collection $items;
 
-    public function __construct(string $header)
+    public function __construct(string $header, Collection $items)
     {
         $this->header = $header;
-        $this->items = new Collection;
+        $this->items = $items;
     }
 
-    public function addItem(ActionItem $item): void
+    public function getHeader(): string
     {
-        $this->items->put($item->key, $item);
-    }
-
-    public function removeItem(string $key): void
-    {
-        $this->items->forget($key);
+        return $this->header;
     }
 
     public function getItems(): Collection
@@ -31,16 +26,33 @@ class ActionConfig
         return $this->items;
     }
 
+    public function addItem(ActionItem $item): void
+    {
+        $this->items->push($item);
+    }
+
+    public function removeItem(string $key): void
+    {
+        $this->items = $this->items->filter(
+            fn (ActionItem $item) => $item->getKey() !== $key
+        );
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'header' => $this->header,
+            'items' => $this->items->map(fn (ActionItem $item) => $item->toArray())->toArray(),
+        ];
+    }
+
     public static function fromArray(array $data): self
     {
-        $config = new self($data['header']);
-
-        if (isset($data['items'])) {
-            foreach ($data['items'] as $item) {
-                $config->addItem(ActionItem::fromArray($item));
-            }
+        $items = new Collection;
+        foreach ($data['items'] as $itemData) {
+            $items->push(ActionItem::fromArray($itemData));
         }
 
-        return $config;
+        return new self($data['header'], $items);
     }
 }

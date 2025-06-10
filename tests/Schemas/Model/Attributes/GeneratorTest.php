@@ -36,14 +36,14 @@ test('can add and remove operations', function () {
 });
 
 test('toArray serializes all fields', function () {
-    $generator = new Generator(GeneratorType::SLUG_GENERATOR);
+    $generator = new Generator(GeneratorType::UNIQUE_SLUG);
     $generator->setId('gen2');
     $generator->setSource('user.slug');
     $generator->setValue('slug-value');
     $generator->addOperation(OperationType::UPDATE);
     $arr = $generator->toArray();
     expect($arr['id'])->toBe('gen2')
-        ->and($arr['type'])->toBe('slug_generator')
+        ->and($arr['type'])->toBe('unique_slug')
         ->and($arr['source'])->toBe('user.slug')
         ->and($arr['value'])->toBe('slug-value')
         ->and($arr['operations'])->toBe(['update']);

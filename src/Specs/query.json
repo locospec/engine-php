@@ -143,6 +143,50 @@
       "required": ["header"],
       "additionalProperties": false,
       "description": "Configuration for row serialization in the view"
+    },
+    "entityLayout": {
+      "type": "array",
+      "description": "Defines the layout structure for displaying entity fields",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Field name or path"
+          },
+          {
+            "type": "array",
+            "description": "Section with header and fields",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string",
+                  "description": "Section header (starting with $) or field name"
+                },
+                {
+                  "type": "array",
+                  "description": "Nested section or field group",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "type": "string",
+                        "description": "Section header (starting with $) or field name"
+                      },
+                      {
+                        "type": "array",
+                        "description": "Field group",
+                        "items": {
+                          "type": "string",
+                          "description": "Field name or path"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
   },
   "required": ["name", "type", "label", "model", "attributes"],

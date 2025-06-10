@@ -1,7 +1,9 @@
 <?php
 
+use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Type;
+use Mockery;
 
 uses()->group('relationships');
 
@@ -49,19 +51,33 @@ test('fromArray creates instance correctly for HasOneRelationship', function () 
     $data = [
         'type' => 'has_one',
         'foreignKey' => 'address_id',
-        'relatedModelName' => 'Address',
-        'currentModelName' => 'Order',
+        'model' => 'address',
+        'currentModelName' => 'order',
         'relationshipName' => 'shippingAddress',
         'localKey' => 'uuid',
     ];
 
-    $relationship = HasOne::fromArray($data);
+    $primaryKey = Mockery::mock();
+    $primaryKey->shouldReceive('getName')->andReturn('id');
+
+    $model = Mockery::mock();
+    $model->shouldReceive('getPrimaryKey')->andReturn($primaryKey);
+
+    $registryManager = Mockery::mock(RegistryManager::class);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'order')
+        ->andReturn($model);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'address')
+        ->andReturn($model);
+
+    $relationship = HasOne::fromArray($data, $registryManager);
 
     expect($relationship)->toBeInstanceOf(HasOne::class);
     expect($relationship->getType())->toBe(Type::HAS_ONE);
     expect($relationship->getForeignKey())->toBe('address_id');
-    expect($relationship->getRelatedModelName())->toBe('Address');
-    expect($relationship->getCurrentModelName())->toBe('Order');
+    expect($relationship->getRelatedModelName())->toBe('address');
+    expect($relationship->getCurrentModelName())->toBe('order');
     expect($relationship->getRelationshipName())->toBe('shippingAddress');
     expect($relationship->getLocalKey())->toBe('uuid');
 });

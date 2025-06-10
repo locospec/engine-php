@@ -1,7 +1,9 @@
 <?php
 
+use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\Type;
+use Mockery;
 
 uses()->group('relationships');
 
@@ -49,19 +51,33 @@ test('fromArray creates instance correctly for HasManyRelationship', function ()
     $data = [
         'type' => 'has_many',
         'foreignKey' => 'order_id',
-        'relatedModelName' => 'OrderItem',
-        'currentModelName' => 'Order',
+        'model' => 'orderItem',
+        'currentModelName' => 'order',
         'relationshipName' => 'items',
         'localKey' => 'uuid',
     ];
 
-    $relationship = HasMany::fromArray($data);
+    $primaryKey = Mockery::mock();
+    $primaryKey->shouldReceive('getName')->andReturn('id');
+
+    $model = Mockery::mock();
+    $model->shouldReceive('getPrimaryKey')->andReturn($primaryKey);
+
+    $registryManager = Mockery::mock(RegistryManager::class);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'order')
+        ->andReturn($model);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'orderItem')
+        ->andReturn($model);
+
+    $relationship = HasMany::fromArray($data, $registryManager);
 
     expect($relationship)->toBeInstanceOf(HasMany::class);
     expect($relationship->getType())->toBe(Type::HAS_MANY);
     expect($relationship->getForeignKey())->toBe('order_id');
-    expect($relationship->getRelatedModelName())->toBe('OrderItem');
-    expect($relationship->getCurrentModelName())->toBe('Order');
+    expect($relationship->getRelatedModelName())->toBe('orderItem');
+    expect($relationship->getCurrentModelName())->toBe('order');
     expect($relationship->getRelationshipName())->toBe('items');
     expect($relationship->getLocalKey())->toBe('uuid');
 });

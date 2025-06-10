@@ -1,7 +1,9 @@
 <?php
 
+use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\Type;
+use Mockery;
 
 uses()->group('relationships');
 
@@ -49,19 +51,33 @@ test('fromArray creates instance correctly', function () {
     $data = [
         'type' => 'belongs_to',
         'foreignKey' => 'product_id',
-        'relatedModelName' => 'Product',
-        'currentModelName' => 'OrderItem',
+        'model' => 'product',
+        'currentModelName' => 'orderItem',
         'relationshipName' => 'product',
         'ownerKey' => 'uuid',
     ];
 
-    $relationship = BelongsTo::fromArray($data);
+    $primaryKey = Mockery::mock();
+    $primaryKey->shouldReceive('getName')->andReturn('id');
+
+    $model = Mockery::mock();
+    $model->shouldReceive('getPrimaryKey')->andReturn($primaryKey);
+
+    $registryManager = Mockery::mock(RegistryManager::class);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'product')
+        ->andReturn($model);
+    $registryManager->shouldReceive('get')
+        ->with('model', 'orderItem')
+        ->andReturn($model);
+
+    $relationship = BelongsTo::fromArray($data, $registryManager);
 
     expect($relationship)->toBeInstanceOf(BelongsTo::class);
     expect($relationship->getType())->toBe(Type::BELONGS_TO);
     expect($relationship->getForeignKey())->toBe('product_id');
-    expect($relationship->getRelatedModelName())->toBe('Product');
-    expect($relationship->getCurrentModelName())->toBe('OrderItem');
+    expect($relationship->getRelatedModelName())->toBe('product');
+    expect($relationship->getCurrentModelName())->toBe('orderItem');
     expect($relationship->getRelationshipName())->toBe('product');
     expect($relationship->getOwnerKey())->toBe('uuid');
 });

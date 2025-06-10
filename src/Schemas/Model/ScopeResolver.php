@@ -11,7 +11,7 @@ class ScopeResolver
 
     private string $currentModelName;
 
-    private string $currentViewName;
+    private ?string $currentViewName;
 
     public function __construct(RegistryManager $registryManager, string $currentModelName, ?string $currentViewName)
     {
