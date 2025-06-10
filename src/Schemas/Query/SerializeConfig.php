@@ -36,15 +36,10 @@ class SerializeConfig
 
     public function toArray(): array
     {
-        $data = [
+        return [
             'header' => $this->header,
+            'align' => $this->align->value,
         ];
-
-        if ($this->align !== AlignType::LEFT) {
-            $data['align'] = $this->align->value;
-        }
-
-        return $data;
     }
 
     public static function fromArray(array $data): self

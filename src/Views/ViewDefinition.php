@@ -199,7 +199,7 @@ class ViewDefinition
                 'expand' => [],
                 'selectionKey' => $model->getPrimaryKey()->getName(),
                 'scopes' => new \stdClass,
-                'allowedScopes' => $model->getScopes()->keys()->toArray(),
+                'allowedScopes' => [],
                 'actions' => new \stdClass,
                 'serialize' => false,
                 'entityLayout' => [],

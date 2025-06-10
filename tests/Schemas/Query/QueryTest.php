@@ -36,6 +36,7 @@ beforeEach(function () {
         'comments',
         'active',
         'verified',
+        'uuid',
         // Add any other attributes that might be used across these tests
     ]);
 
@@ -43,6 +44,7 @@ beforeEach(function () {
     foreach ($this->mockAllPossibleUserAttributes as $attributeName) {
         $mockAttribute = Mockery::mock(Attribute::class);
         $mockAttribute->shouldReceive('getName')->andReturn($attributeName);
+        $mockAttribute->shouldReceive('toArray')->andReturn(['name' => $attributeName]);
         $mockAttributesCollection->put($attributeName, $mockAttribute);
     }
 
@@ -53,10 +55,15 @@ beforeEach(function () {
     $this->mockRegistryManager->shouldReceive('get')
         ->with('model', 'user')
         ->andReturn($this->mockModel);
+    // ->andReturnUsing(function ($type, $modelName) use ($mockAttributesCollection) {
+    //     $mockModel = Mockery::mock(Model::class);
+    //     $mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
+    //     return $mockModel;
+    // });
 });
 
 test('can create Query instance using constructor and has correct initial state', function () {
-    $attributes = new Collection(['id', 'name', 'email']);
+    $attributes = ['id', 'name', 'email'];
     $query = new Query('users', 'User List', 'user', $attributes, $this->mockRegistryManager);
 
     expect($query)->toBeInstanceOf(Query::class);
@@ -84,7 +91,6 @@ test('can create Query from array with basic properties', function () {
         'attributes' => ['id', 'name', 'email'],
     ];
 
-    $attributes = new Collection($queryData['attributes']);
     $query = Query::fromArray($queryData, $this->mockRegistryManager);
 
     expect($query)->toBeInstanceOf(Query::class);
@@ -123,7 +129,6 @@ test('can create Query from array with all properties', function () {
                     'label' => 'Edit',
                     'url' => '/users/{id}/edit',
                     'icon' => 'pencil',
-                    'confirmation' => false,
                     'options' => [
                         [
                             'key' => 'quick',
@@ -151,29 +156,80 @@ test('can create Query from array with all properties', function () {
         ],
     ];
 
-    $attributes = new Collection($queryData['attributes']);
     $query = Query::fromArray($queryData, $this->mockRegistryManager);
     $result = $query->toArray();
-    // dd($result);
 
-    expect($result)->toEqual($queryData);
+    expect($result)->toEqual([
+        'name' => 'users',
+        'label' => 'User List',
+        'type' => 'query',
+        'model' => 'user',
+        'attributes' => [
+            'id' => ['name' => 'id'],
+            'name' => ['name' => 'name'],
+            'email' => ['name' => 'email'],
+            'profile' => ['name' => 'profile'],
+            'roles' => ['name' => 'roles'],
+            'street' => ['name' => 'street'],
+            'city' => ['name' => 'city'],
+            'country' => ['name' => 'country'],
+        ],
+        'lensSimpleFilters' => ['name', 'email'],
+        'expand' => ['profile', 'roles'],
+        'allowedScopes' => ['active', 'verified'],
+        'selectionType' => 'multiple',
+        'selectionKey' => 'id',
+        'actions' => [
+            'header' => 'Actions',
+            'items' => [
+                [
+                    'key' => 'edit',
+                    'label' => 'Edit',
+                    'url' => '/users/{id}/edit',
+                    'icon' => 'pencil',
+                    'options' => [
+                        [
+                            'key' => 'quick',
+                            'label' => 'Quick Edit',
+                            'url' => '/users/{id}/quick-edit',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'serialize' => [
+            'header' => '#',
+            'align' => 'right',
+        ],
+        'entityLayout' => [
+            'id',
+            [
+                '$Personal Info',
+                ['@Basic Info', 'name', 'email'],
+            ],
+            [
+                '$Address',
+                ['@Location', 'street', 'city', 'country'],
+            ],
+        ],
+    ]);
 });
 
 test('can add and remove attributes', function () {
-    $initialAttributes = new Collection(['id', 'name']);
+    $initialAttributes = ['id', 'name'];
     $query = new Query('users', 'User List', 'user', $initialAttributes, $this->mockRegistryManager);
 
     $query->addAttribute('email');
     expect($query->getAttributes())->toHaveCount(3);
-    expect($query->getAttributes()->toArray())->toEqual(['id', 'name', 'email']);
+    expect($query->getAttributes()->keys()->toArray())->toEqual(['id', 'name', 'email']);
 
     $query->removeAttribute('name');
     expect($query->getAttributes())->toHaveCount(2);
-    expect($query->getAttributes()->toArray())->toEqual(['id', 'email']);
+    expect($query->getAttributes()->keys()->toArray())->toEqual(['id', 'email']);
 });
 
 test('can add and remove lens filters', function () {
-    $initialAttributes = new Collection(['id', 'name', 'status', 'category']);
+    $initialAttributes = ['id', 'name', 'status', 'category'];
     $query = new Query('users', 'User List', 'user', $initialAttributes, $this->mockRegistryManager);
 
     $query->addLensFilter('name');
@@ -187,7 +243,7 @@ test('can add and remove lens filters', function () {
 });
 
 test('can add and remove expand fields', function () {
-    $initialAttributes = new Collection(['id', 'name', 'profile', 'roles', 'author', 'comments']);
+    $initialAttributes = ['id', 'name', 'profile', 'roles', 'author', 'comments'];
     $query = new Query('users', 'User List', 'user', $initialAttributes, $this->mockRegistryManager);
 
     $query->addExpand('profile');
@@ -201,7 +257,7 @@ test('can add and remove expand fields', function () {
 });
 
 test('can add and remove allowed scopes', function () {
-    $initialAttributes = new Collection(['id', 'name', 'active', 'verified']);
+    $initialAttributes = ['id', 'name', 'active', 'verified'];
     $query = new Query('users', 'User List', 'user', $initialAttributes, $this->mockRegistryManager);
 
     $query->addAllowedScope('active');
@@ -215,7 +271,7 @@ test('can add and remove allowed scopes', function () {
 });
 
 test('can set and get selection type and key', function () {
-    $attributes = new Collection(['id', 'name', 'uuid']);
+    $attributes = ['id', 'name', 'uuid'];
     $query = new Query('users', 'User List', 'user', $attributes, $this->mockRegistryManager);
 
     $query->setSelectionType(SelectionType::MULTIPLE);
@@ -226,7 +282,7 @@ test('can set and get selection type and key', function () {
 });
 
 test('can add entity layout items', function () {
-    $initialAttributes = new Collection(['id', 'name', 'email', 'street', 'city', 'country']);
+    $initialAttributes = ['id', 'name', 'email', 'street', 'city', 'country'];
     $query = new Query('users', 'User List', 'user', $initialAttributes, $this->mockRegistryManager);
 
     $query->addEntityLayoutItem(new FieldItem('id'));
@@ -262,9 +318,8 @@ test('can create query from array', function () {
             'items' => [
                 [
                     'key' => 'view',
-                    'label' => 'View',
+                    'label' => 'View Item',
                     'url' => '/view/{id}',
-                    'icon' => 'eye',
                 ],
             ],
         ],
@@ -282,16 +337,53 @@ test('can create query from array', function () {
         ],
     ];
 
-    $attributes = new Collection($data['attributes']);
     $query = Query::fromArray($data, $this->mockRegistryManager);
     $result = $query->toArray();
-    // dd($result);
-
-    expect($result)->toEqual($data);
+    expect($result)->toEqual([
+        'name' => 'test_query',
+        'label' => 'Test Query',
+        'type' => 'query',
+        'model' => 'user',
+        'attributes' => [
+            'id' => ['name' => 'id'],
+            'name' => ['name' => 'name'],
+            'email' => ['name' => 'email'],
+            'street' => ['name' => 'street'],
+            'city' => ['name' => 'city'],
+            'country' => ['name' => 'country'],
+        ],
+        'lensSimpleFilters' => ['status', 'category'],
+        'expand' => ['author', 'comments'],
+        'allowedScopes' => ['published', 'featured'],
+        'selectionType' => 'multiple',
+        'selectionKey' => 'uuid',
+        'actions' => [
+            'header' => 'Actions',
+            'items' => [
+                [
+                    'key' => 'view',
+                    'label' => 'View Item',
+                    'url' => '/view/{id}',
+                ],
+            ],
+        ],
+        'serialize' => [
+            'header' => 'Count',
+            'align' => 'left',
+        ],
+        'entityLayout' => [
+            'name',
+            [
+                '$Details',
+                ['@User', 'email'],
+                ['@Address', 'street', 'city'],
+            ],
+        ],
+    ]);
 });
 
 test('query toArray method returns correct array structure', function () {
-    $attributes = new Collection(['id', 'name', 'email']);
+    $attributes = ['id', 'name', 'email'];
     $query = new Query('users', 'User List', 'user', $attributes, $this->mockRegistryManager);
     $query->addLensFilter('status');
     $query->addExpand('profile');
@@ -321,22 +413,23 @@ test('query toArray method returns correct array structure', function () {
         'label' => 'User List',
         'type' => 'query',
         'model' => 'user',
-        'attributes' => ['id', 'name', 'email'],
+        'attributes' => [
+            'id' => ['name' => 'id'],
+            'name' => ['name' => 'name'],
+            'email' => ['name' => 'email'],
+        ],
         'lensSimpleFilters' => ['status'],
         'expand' => ['profile'],
         'allowedScopes' => ['admin'],
         'selectionType' => 'single',
         'selectionKey' => 'id',
         'actions' => [
-            'header' => null,
+            'header' => '',
             'items' => [
                 [
                     'key' => 'view',
                     'label' => 'View Item',
                     'url' => '/items/{id}',
-                    'icon' => null,
-                    'options' => [],
-                    'confirmation' => false,
                 ],
             ],
         ],
