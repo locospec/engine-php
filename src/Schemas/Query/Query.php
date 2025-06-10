@@ -3,35 +3,38 @@
 namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Schemas\Type;
-use LCSEngine\Schemas\Query\ActionConfig;
-use LCSEngine\Schemas\Query\ActionItem;
-use LCSEngine\Schemas\Query\ActionOption;
-use LCSEngine\Schemas\Query\AlignType;
-use LCSEngine\Schemas\Query\ColumnItem;
-use LCSEngine\Schemas\Query\EntityLayoutItem;
-use LCSEngine\Schemas\Query\FieldItem;
-use LCSEngine\Schemas\Query\SectionItem;
-use LCSEngine\Schemas\Query\SelectionType;
-use LCSEngine\Schemas\Query\SerializeConfig;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 
 class Query
 {
     private string $name;
+
     private string $label;
+
     private Type $type;
+
     private string $model;
+
     private Collection $attributes;
+
     private Collection $lensSimpleFilters;
+
     private Collection $expand;
+
     private Collection $allowedScopes;
+
     private ?string $selectionKey;
+
     private SelectionType $selectionType;
+
     private ?ActionConfig $actions;
+
     private ?SerializeConfig $serialize;
+
     private Collection $entityLayout;
+
     private RegistryManager $registryManager;
 
     public function __construct(
@@ -46,15 +49,15 @@ class Query
         $this->type = Type::QUERY;
         $this->model = $model;
         $this->attributes = $attributes;
-        $this->lensSimpleFilters = new Collection();
-        $this->expand = new Collection();
-        $this->allowedScopes = new Collection();
+        $this->lensSimpleFilters = new Collection;
+        $this->expand = new Collection;
+        $this->allowedScopes = new Collection;
         $this->selectionKey = null;
         $this->selectionType = SelectionType::NONE;
         $this->actions = null;
         $this->serialize = null;
-        $this->entityLayout = new Collection();
-        $this->registryManager = $registryManager ?? new RegistryManager();
+        $this->entityLayout = new Collection;
+        $this->registryManager = $registryManager ?? new RegistryManager;
 
         // Validate attributes against model
         $this->validateAttributes();
@@ -63,18 +66,18 @@ class Query
     private function validateAttributes(): void
     {
         $model = $this->registryManager->get('model', $this->model);
-        if (!$model instanceof Model) {
+        if (! $model instanceof Model) {
             throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
         }
 
         $modelAttributes = $model->getAttributes();
         $invalidAttributes = $this->attributes->filter(function ($attribute) use ($modelAttributes) {
-            return !$modelAttributes->has($attribute);
+            return ! $modelAttributes->has($attribute);
         });
 
         if ($invalidAttributes->isNotEmpty()) {
             throw new \InvalidArgumentException(
-                "Invalid attributes for model '{$this->model}': " .
+                "Invalid attributes for model '{$this->model}': ".
                     $invalidAttributes->implode(', ')
             );
         }
@@ -103,17 +106,17 @@ class Query
     public function addAttribute(string $attribute): void
     {
         $model = $this->registryManager->get('model', $this->model);
-        if (!$model instanceof Model) {
+        if (! $model instanceof Model) {
             throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
         }
 
-        if (!$model->getAttributes()->has($attribute)) {
+        if (! $model->getAttributes()->has($attribute)) {
             throw new \InvalidArgumentException(
                 "Attribute '{$attribute}' not found in model '{$this->model}'"
             );
         }
 
-        if (!$this->attributes->contains($attribute)) {
+        if (! $this->attributes->contains($attribute)) {
             $this->attributes->push($attribute);
         }
     }
@@ -121,7 +124,7 @@ class Query
     public function removeAttribute(string $attr): void
     {
         $this->attributes = $this->attributes->filter(
-            fn(string $attribute) => $attribute !== $attr
+            fn (string $attribute) => $attribute !== $attr
         )->values();
     }
 
@@ -138,7 +141,7 @@ class Query
     public function removeLensFilter(string $filter): void
     {
         $this->lensSimpleFilters = $this->lensSimpleFilters->filter(
-            fn(string $f) => $f !== $filter
+            fn (string $f) => $f !== $filter
         )->values();
     }
 
@@ -155,7 +158,7 @@ class Query
     public function removeExpand(string $field): void
     {
         $this->expand = $this->expand->filter(
-            fn(string $f) => $f !== $field
+            fn (string $f) => $f !== $field
         )->values();
     }
 
@@ -172,7 +175,7 @@ class Query
     public function removeAllowedScope(string $scope): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn(string $s) => $s !== $scope
+            fn (string $s) => $s !== $scope
         )->values();
     }
 
@@ -215,6 +218,7 @@ class Query
             } elseif ($item instanceof SectionItem && $itemToRemove instanceof SectionItem) {
                 return $item->getHeader() === $itemToRemove->getHeader();
             }
+
             return false;
         })->values();
     }
@@ -327,6 +331,7 @@ class Query
                 if ($item instanceof FieldItem) {
                     return $result[0];
                 }
+
                 return $result;
             })->toArray();
         }
