@@ -3286,6 +3286,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getDeleteKey"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AhasDeleteKey\u0028\u0029",
+            "name": "hasDeleteKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_hasDeleteKey"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetLabelKey\u0028\u0029",
             "name": "getLabelKey",
             "summary": "",
@@ -3881,6 +3886,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method___construct"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AvalidateAttributes\u0028\u0029",
+            "name": "validateAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_validateAttributes"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetName\u0028\u0029",
             "name": "getName",
             "summary": "",
@@ -3986,6 +3996,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_addEntityLayoutItem"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AremoveEntityLayoutItem\u0028\u0029",
+            "name": "removeEntityLayoutItem",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_removeEntityLayoutItem"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetEntityLayout\u0028\u0029",
             "name": "getEntityLayout",
             "summary": "",
@@ -4031,20 +4046,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_label"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024model",
-            "name": "model",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_model"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024selectionKey",
-            "name": "selectionKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_selectionKey"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024type",
             "name": "type",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_model"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024attributes",
             "name": "attributes",
@@ -4066,10 +4076,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_allowedScopes"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024entityLayout",
-            "name": "entityLayout",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024selectionKey",
+            "name": "selectionKey",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_entityLayout"
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_selectionKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024selectionType",
+            "name": "selectionType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_selectionType"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024actions",
             "name": "actions",
@@ -4081,10 +4096,15 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_serialize"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024selectionType",
-            "name": "selectionType",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024entityLayout",
+            "name": "entityLayout",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_selectionType"
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_entityLayout"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_registryManager"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem",
             "name": "SectionItem",
