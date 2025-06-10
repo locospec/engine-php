@@ -133,6 +133,11 @@ class Model
         return $this->attributes->first(fn (Attribute $attribute) => $attribute->isDeleteKey());
     }
 
+    public function hasDeleteKey(): bool
+    {
+        return $this->getDeleteKey() !== null;
+    }
+
     public function getLabelKey(): ?Attribute
     {
         return $this->attributes->first(fn (Attribute $attribute) => $attribute->isLabelKey());

@@ -3,6 +3,8 @@
 namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Type;
 
 class Query
@@ -11,11 +13,9 @@ class Query
 
     private string $label;
 
-    private string $model;
-
-    private ?string $selectionKey;
-
     private Type $type;
+
+    private string $model;
 
     private Collection $attributes;
 
@@ -25,33 +25,62 @@ class Query
 
     private Collection $allowedScopes;
 
-    private Collection $entityLayout;
+    private ?string $selectionKey;
+
+    private SelectionType $selectionType;
 
     private ?ActionConfig $actions;
 
     private ?SerializeConfig $serialize;
 
-    private SelectionType $selectionType;
+    private Collection $entityLayout;
+
+    private RegistryManager $registryManager;
 
     public function __construct(
         string $name,
         string $label,
         string $model,
-        Collection $attributes
+        Collection $attributes,
+        ?RegistryManager $registryManager = null
     ) {
         $this->name = $name;
         $this->label = $label;
+        $this->type = Type::QUERY;
         $this->model = $model;
         $this->attributes = $attributes;
-        $this->type = Type::QUERY;
-        $this->selectionType = SelectionType::NONE;
         $this->lensSimpleFilters = new Collection;
         $this->expand = new Collection;
         $this->allowedScopes = new Collection;
-        $this->entityLayout = new Collection;
+        $this->selectionKey = null;
+        $this->selectionType = SelectionType::NONE;
         $this->actions = null;
         $this->serialize = null;
-        $this->selectionKey = null;
+        $this->entityLayout = new Collection;
+        $this->registryManager = $registryManager ?? new RegistryManager;
+
+        // Validate attributes against model
+        $this->validateAttributes();
+    }
+
+    private function validateAttributes(): void
+    {
+        $model = $this->registryManager->get('model', $this->model);
+        if (! $model instanceof Model) {
+            throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
+        }
+
+        $modelAttributes = $model->getAttributes();
+        $invalidAttributes = $this->attributes->filter(function ($attribute) use ($modelAttributes) {
+            return ! $modelAttributes->has($attribute);
+        });
+
+        if ($invalidAttributes->isNotEmpty()) {
+            throw new \InvalidArgumentException(
+                "Invalid attributes for model '{$this->model}': ".
+                    $invalidAttributes->implode(', ')
+            );
+        }
     }
 
     public function getName(): string
@@ -74,9 +103,22 @@ class Query
         return $this->type;
     }
 
-    public function addAttribute(string $attr): void
+    public function addAttribute(string $attribute): void
     {
-        $this->attributes->push($attr);
+        $model = $this->registryManager->get('model', $this->model);
+        if (! $model instanceof Model) {
+            throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
+        }
+
+        if (! $model->getAttributes()->has($attribute)) {
+            throw new \InvalidArgumentException(
+                "Attribute '{$attribute}' not found in model '{$this->model}'"
+            );
+        }
+
+        if (! $this->attributes->contains($attribute)) {
+            $this->attributes->push($attribute);
+        }
     }
 
     public function removeAttribute(string $attr): void
@@ -165,6 +207,20 @@ class Query
     public function addEntityLayoutItem(EntityLayoutItem $item): void
     {
         $this->entityLayout->push($item);
+    }
+
+    public function removeEntityLayoutItem(EntityLayoutItem $itemToRemove): void
+    {
+        $this->entityLayout = $this->entityLayout->reject(function ($item) use ($itemToRemove) {
+            // Compare based on class and relevant properties (e.g., field for FieldItem, header for SectionItem)
+            if ($item instanceof FieldItem && $itemToRemove instanceof FieldItem) {
+                return $item->getField() === $itemToRemove->getField();
+            } elseif ($item instanceof SectionItem && $itemToRemove instanceof SectionItem) {
+                return $item->getHeader() === $itemToRemove->getHeader();
+            }
+
+            return false;
+        })->values();
     }
 
     public function getEntityLayout(): Collection
@@ -285,7 +341,7 @@ class Query
 
     public static function fromArray(array $data): self
     {
-        $attributes = new Collection($data['attributes']);
+        $attributes = new Collection($data['attributes'] ?? []);
         $query = new self(
             $data['name'],
             $data['label'],
@@ -326,64 +382,20 @@ class Query
                 if (is_string($item)) {
                     $query->addEntityLayoutItem(new FieldItem($item));
                 } elseif (is_array($item)) {
-                    if (isset($item[0]) && is_string($item[0]) && str_starts_with($item[0], '$')) {
-                        $header = substr($item[0], 1);
-                        $section = new SectionItem($header);
-
-                        // Process columns
+                    $header = $item[0];
+                    if (str_starts_with($header, '$')) {
+                        $section = new SectionItem(substr($header, 1));
                         for ($i = 1; $i < count($item); $i++) {
                             $columnData = $item[$i];
                             if (is_array($columnData)) {
-                                $column = new ColumnItem;
-
-                                // Check if first element is a column header
-                                if (isset($columnData[0]) && is_string($columnData[0]) && str_starts_with($columnData[0], '@')) {
-                                    $column = new ColumnItem(substr($columnData[0], 1));
-                                    array_shift($columnData);
+                                $columnName = substr($columnData[0], 1);
+                                $column = new ColumnItem($columnName);
+                                for ($j = 1; $j < count($columnData); $j++) {
+                                    $column->addItem(new FieldItem($columnData[$j]));
                                 }
-
-                                // Process column items
-                                foreach ($columnData as $columnItem) {
-                                    if (is_string($columnItem)) {
-                                        $column->addItem(new FieldItem($columnItem));
-                                    } elseif (is_array($columnItem)) {
-                                        // Handle nested sections
-                                        if (isset($columnItem[0]) && is_string($columnItem[0]) && str_starts_with($columnItem[0], '$')) {
-                                            $nestedHeader = substr($columnItem[0], 1);
-                                            $nestedSection = new SectionItem($nestedHeader);
-
-                                            // Process nested columns
-                                            for ($j = 1; $j < count($columnItem); $j++) {
-                                                $nestedColumnData = $columnItem[$j];
-                                                if (is_array($nestedColumnData)) {
-                                                    $nestedColumn = new ColumnItem;
-
-                                                    // Check if first element is a column header
-                                                    if (isset($nestedColumnData[0]) && is_string($nestedColumnData[0]) && str_starts_with($nestedColumnData[0], '@')) {
-                                                        $nestedColumn = new ColumnItem(substr($nestedColumnData[0], 1));
-                                                        array_shift($nestedColumnData);
-                                                    }
-
-                                                    // Add nested column items
-                                                    foreach ($nestedColumnData as $nestedItem) {
-                                                        if (is_string($nestedItem)) {
-                                                            $nestedColumn->addItem(new FieldItem($nestedItem));
-                                                        }
-                                                    }
-
-                                                    $nestedSection->addColumn($nestedColumn);
-                                                }
-                                            }
-
-                                            $column->addItem($nestedSection);
-                                        }
-                                    }
-                                }
-
                                 $section->addColumn($column);
                             }
                         }
-
                         $query->addEntityLayoutItem($section);
                     }
                 }

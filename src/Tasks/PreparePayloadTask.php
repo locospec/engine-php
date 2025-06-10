@@ -64,18 +64,16 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForRead(array $payload): array
     {
-        // dd($this->context->get('model')->getDeleteKey()->getName());
-        $deleteColumn = $this->context->get('model')->getDeleteKey()->getName();
-
         $preparedPayload = [
             'type' => 'select',
-            // 'deleteColumn' => $deleteColumn,
             'modelName' => $this->context->get('model')->getName(),
             'viewName' => $this->context->get('view')->getName(),
         ];
 
-        if ($deleteColumn) {
-            $preparedPayload['deleteColumn'] = $deleteColumn;
+        $hasDeleteKey = $this->context->get('model')->hasDeleteKey();
+
+        if ($hasDeleteKey) {
+            $preparedPayload['deleteColumn'] = $this->context->get('model')->getDeleteKey()->getName();
         }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -117,15 +115,16 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     {
         $registryManager = $this->context->get('lcs')->getRegistryManager();
         $optionsModel = $registryManager->get('model', $payload['relation']);
-        $deleteColumn = $optionsModel->getDeleteKey()->getName();
 
         $preparedPayload = [
             'type' => 'select',
             'modelName' => $optionsModel->getName(),
         ];
 
-        if ($deleteColumn) {
-            $preparedPayload['deleteColumn'] = $deleteColumn;
+        $hasDeleteKey = $optionsModel->hasDeleteKey();
+
+        if ($hasDeleteKey) {
+            $preparedPayload['deleteColumn'] = $optionsModel->getDeleteKey()->getName();
         }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -319,7 +318,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     public function preparePayloadForDelete(array $payload, string $dbOp): array
     {
         $softDelete = $this->context->get('model')->getConfig()->getSoftDelete();
-        $deleteColumn = $this->context->get('model')->getConfig()->getDeleteColumn();
         $sourceModel = $this->context->get('model');
         $primaryKey = $this->context->get('model')->getConfig()->getPrimaryKey();
         $dbOps = new DatabaseOperationsCollection($this->operator);
@@ -329,7 +327,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'type' => $dbOp,
             'modelName' => $this->context->get('model')->getName(),
             'softDelete' => $softDelete,
-            'deleteColumn' => $deleteColumn,
             'filters' => [
                 'op' => 'and',
                 'conditions' => [
@@ -341,6 +338,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 ],
             ],
         ];
+
+        $hasDeleteKey = $this->context->get('model')->hasDeleteKey();
+
+        if ($hasDeleteKey) {
+            $mainPayload['deleteColumn'] = $this->context->get('model')->getDeleteKey()->getName();
+        }
 
         $cascadePayloads = $this->prepareCascadeDeletePayloads($sourceModel->getName(), [$payload['primary_key']], $dbOps);
 
@@ -368,7 +371,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 'type' => 'delete',
                 'modelName' => $targetModelName,
                 'softDelete' => $targetModel->getConfig()->getSoftDelete(),
-                'deleteColumn' => $targetModel->getConfig()->getDeleteColumn(),
                 'filters' => [
                     'op' => 'and',
                     'conditions' => [
@@ -380,6 +382,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     ],
                 ],
             ];
+
+            $hasDeleteKey = $targetModel->hasDeleteKey();
+
+            if ($hasDeleteKey) {
+                $payload['deleteColumn'] = $targetModel->getDeleteKey()->getName();
+            }
 
             $cascadePayloads[] = $payload;
 
