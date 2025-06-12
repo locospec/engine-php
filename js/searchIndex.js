@@ -3971,6 +3971,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getAllowedScopes"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AsetAndValidateScopes\u0028\u0029",
+            "name": "setAndValidateScopes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_setAndValidateScopes"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AsetSelectionKey\u0028\u0029",
             "name": "setSelectionKey",
             "summary": "",
