@@ -3,6 +3,9 @@
 namespace LCSEngine\Tests\Schemas\Query;
 
 use Illuminate\Support\Collection;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Query\ActionConfig;
 use LCSEngine\Schemas\Query\ActionItem;
 use LCSEngine\Schemas\Query\AlignType;
@@ -14,9 +17,6 @@ use LCSEngine\Schemas\Query\SelectionType;
 use LCSEngine\Schemas\Query\SerializeConfig;
 use LCSEngine\Schemas\Type;
 use Mockery;
-use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Attributes\Attribute;
 
 uses()->group('query');
 
@@ -40,7 +40,7 @@ beforeEach(function () {
         // Add any other attributes that might be used across these tests
     ]);
 
-    $mockAttributesCollection = new Collection();
+    $mockAttributesCollection = new Collection;
     foreach ($this->mockAllPossibleUserAttributes as $attributeName) {
         $mockAttribute = Mockery::mock(Attribute::class);
         $mockAttribute->shouldReceive('getName')->andReturn($attributeName);
@@ -52,7 +52,7 @@ beforeEach(function () {
     $this->mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
 
     // Mock the Collection that getScopes() returns
-    $mockScopesCollection = new Collection();
+    $mockScopesCollection = new Collection;
     $mockScopesCollection->put('search', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
     $mockScopesCollection->put('active', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
     $mockScopesCollection->put('verified', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
@@ -156,12 +156,12 @@ test('can create Query from array with all properties', function () {
             'id',
             [
                 '$Personal Info',
-                ['@Basic Info', 'name', 'email']
+                ['@Basic Info', 'name', 'email'],
             ],
             [
                 '$Address',
-                ['@Location', 'street', 'city', 'country']
-            ]
+                ['@Location', 'street', 'city', 'country'],
+            ],
         ],
     ];
 
@@ -181,7 +181,7 @@ test('can create Query from array with all properties', function () {
             'roles' => ['name' => 'roles'],
             'street' => ['name' => 'street'],
             'city' => ['name' => 'city'],
-            'country' => ['name' => 'country']
+            'country' => ['name' => 'country'],
         ],
         'lensSimpleFilters' => ['name', 'email'],
         'expand' => ['profile', 'roles'],
@@ -214,13 +214,13 @@ test('can create Query from array with all properties', function () {
             'id',
             [
                 '$Personal Info',
-                ['@Basic Info', 'name', 'email']
+                ['@Basic Info', 'name', 'email'],
             ],
             [
                 '$Address',
-                ['@Location', 'street', 'city', 'country']
-            ]
-        ]
+                ['@Location', 'street', 'city', 'country'],
+            ],
+        ],
     ]);
 });
 
@@ -340,13 +340,13 @@ test('can create query from array', function () {
             [
                 '$Details',
                 ['@User', 'email'],
-                ['@Address', 'street', 'city']
-            ]
+                ['@Address', 'street', 'city'],
+            ],
         ],
     ];
 
     $this->mockModel->shouldReceive('getScopes')->andReturn(collect([
-        'search' => Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')
+        'search' => Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters'),
     ]));
 
     $query = Query::fromArray($data, $this->mockRegistryManager);
@@ -363,7 +363,7 @@ test('can create query from array', function () {
             'email' => ['name' => 'email'],
             'street' => ['name' => 'street'],
             'city' => ['name' => 'city'],
-            'country' => ['name' => 'country']
+            'country' => ['name' => 'country'],
         ],
         'lensSimpleFilters' => ['status', 'category'],
         'expand' => ['author', 'comments'],
@@ -389,9 +389,9 @@ test('can create query from array', function () {
             [
                 '$Details',
                 ['@User', 'email'],
-                ['@Address', 'street', 'city']
-            ]
-        ]
+                ['@Address', 'street', 'city'],
+            ],
+        ],
     ]);
 });
 
@@ -404,7 +404,7 @@ test('query toArray method returns correct array structure', function () {
     $query->setSelectionType(SelectionType::SINGLE);
     $query->setSelectionKey('id');
 
-    $actionConfig = new ActionConfig('', new Collection());
+    $actionConfig = new ActionConfig('', new Collection);
     $actionItem = new ActionItem('view', 'View Item', '/items/{id}');
     $actionConfig->addItem($actionItem);
     $query->setActions($actionConfig);
@@ -429,7 +429,7 @@ test('query toArray method returns correct array structure', function () {
         'attributes' => [
             'id' => ['name' => 'id'],
             'name' => ['name' => 'name'],
-            'email' => ['name' => 'email']
+            'email' => ['name' => 'email'],
         ],
         'lensSimpleFilters' => ['status'],
         'expand' => ['profile'],
@@ -454,9 +454,9 @@ test('query toArray method returns correct array structure', function () {
             'name',
             [
                 '$Contact',
-                ['@Details', 'email']
-            ]
-        ]
+                ['@Details', 'email'],
+            ],
+        ],
     ];
 
     expect($query->toArray())->toEqual($expectedArray);

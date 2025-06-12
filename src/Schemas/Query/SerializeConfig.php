@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\Query;
 class SerializeConfig
 {
     private string $header;
+
     private AlignType $align;
 
     public function __construct(string $header, AlignType $align = AlignType::LEFT)
@@ -37,7 +38,7 @@ class SerializeConfig
     {
         return [
             'header' => $this->header,
-            'align' => $this->align->value
+            'align' => $this->align->value,
         ];
     }
 
