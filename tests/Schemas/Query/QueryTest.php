@@ -51,6 +51,15 @@ beforeEach(function () {
     $this->mockModel = Mockery::mock(Model::class);
     $this->mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
 
+    // Mock the Collection that getScopes() returns
+    $mockScopesCollection = new Collection;
+    $mockScopesCollection->put('search', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
+    $mockScopesCollection->put('active', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
+    $mockScopesCollection->put('verified', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
+
+    $this->mockModel->shouldReceive('getScopes')
+        ->andReturn($mockScopesCollection);
+
     $this->mockRegistryManager = Mockery::mock(RegistryManager::class);
     $this->mockRegistryManager->shouldReceive('get')
         ->with('model', 'user')
@@ -264,7 +273,6 @@ test('can add and remove allowed scopes', function () {
     $query->addAllowedScope('verified');
     expect($query->getAllowedScopes())->toHaveCount(2);
     expect($query->getAllowedScopes()->toArray())->toEqual(['active', 'verified']);
-
     $query->removeAllowedScope('active');
     expect($query->getAllowedScopes())->toHaveCount(1);
     expect($query->getAllowedScopes()->toArray())->toEqual(['verified']);
@@ -310,7 +318,7 @@ test('can create query from array', function () {
         'attributes' => ['id', 'name', 'email', 'street', 'city', 'country'],
         'lensSimpleFilters' => ['status', 'category'],
         'expand' => ['author', 'comments'],
-        'allowedScopes' => ['published', 'featured'],
+        'allowedScopes' => ['search'],
         'selectionType' => 'multiple',
         'selectionKey' => 'uuid',
         'actions' => [
@@ -337,8 +345,13 @@ test('can create query from array', function () {
         ],
     ];
 
+    $this->mockModel->shouldReceive('getScopes')->andReturn(collect([
+        'search' => Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters'),
+    ]));
+
     $query = Query::fromArray($data, $this->mockRegistryManager);
     $result = $query->toArray();
+
     expect($result)->toEqual([
         'name' => 'test_query',
         'label' => 'Test Query',
@@ -354,7 +367,7 @@ test('can create query from array', function () {
         ],
         'lensSimpleFilters' => ['status', 'category'],
         'expand' => ['author', 'comments'],
-        'allowedScopes' => ['published', 'featured'],
+        'allowedScopes' => ['search'],
         'selectionType' => 'multiple',
         'selectionKey' => 'uuid',
         'actions' => [
@@ -387,7 +400,7 @@ test('query toArray method returns correct array structure', function () {
     $query = new Query('users', 'User List', 'user', $attributes, $this->mockRegistryManager);
     $query->addLensFilter('status');
     $query->addExpand('profile');
-    $query->addAllowedScope('admin');
+    $query->addAllowedScope('search');
     $query->setSelectionType(SelectionType::SINGLE);
     $query->setSelectionKey('id');
 
@@ -420,7 +433,7 @@ test('query toArray method returns correct array structure', function () {
         ],
         'lensSimpleFilters' => ['status'],
         'expand' => ['profile'],
-        'allowedScopes' => ['admin'],
+        'allowedScopes' => ['search'],
         'selectionType' => 'single',
         'selectionKey' => 'id',
         'actions' => [

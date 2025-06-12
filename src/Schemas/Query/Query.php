@@ -176,21 +176,60 @@ class Query
         return $this->expand;
     }
 
-    public function addAllowedScope(string $scope): void
+    public function addAllowedScope(string $scopeName): void
     {
-        $this->allowedScopes->push($scope);
+        $model = $this->registryManager->get('model', $this->model);
+        if (! $model instanceof Model) {
+            throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
+        }
+
+        if (! $model->getScopes()->has($scopeName)) {
+            throw new \InvalidArgumentException(
+                "Scope '{$scopeName}' not found in model '{$this->model}'"
+            );
+        }
+
+        if (! $this->allowedScopes->contains($scopeName)) {
+            $this->allowedScopes->push($scopeName);
+        }
     }
 
-    public function removeAllowedScope(string $scope): void
+    public function removeAllowedScope(string $scopeName): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn (string $s) => $s !== $scope
+            fn (string $f) => $f !== $scopeName
         )->values();
     }
 
     public function getAllowedScopes(): Collection
     {
         return $this->allowedScopes;
+    }
+
+    private function setAndValidateScopes(array $scopeNames): void
+    {
+        $model = $this->registryManager->get('model', $this->model);
+        if (! $model instanceof Model) {
+            throw new \InvalidArgumentException("Model '{$this->model}' not found in registry");
+        }
+
+        $modelScopes = $model->getScopes();
+        $invalidScopes = new Collection;
+
+        foreach ($scopeNames as $scopeName) {
+            if (! $modelScopes->has($scopeName)) {
+                $invalidScopes->push($scopeName);
+            }
+        }
+
+        if ($invalidScopes->isNotEmpty()) {
+            throw new \InvalidArgumentException(
+                "Invalid scopes for model '{$this->model}': ".
+                    $invalidScopes->implode(', ')
+            );
+        }
+
+        $this->allowedScopes = new Collection($scopeNames);
     }
 
     public function setSelectionKey(string $key): void
@@ -432,7 +471,7 @@ class Query
         }
 
         if (isset($data['allowedScopes'])) {
-            $query->allowedScopes = new Collection($data['allowedScopes']);
+            $query->setAndValidateScopes($data['allowedScopes']);
         }
 
         if (isset($data['selectionKey'])) {
