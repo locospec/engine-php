@@ -3591,195 +3591,195 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-ScopeResolver.html#property_currentViewName"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig",
             "name": "ActionConfig",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method___construct"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AgetHeader\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AgetHeader\u0028\u0029",
             "name": "getHeader",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_getHeader"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getHeader"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AgetItems\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AgetItems\u0028\u0029",
             "name": "getItems",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_getItems"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getItems"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AaddItem\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AaddItem\u0028\u0029",
             "name": "addItem",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_addItem"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_addItem"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AremoveItem\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AremoveItem\u0028\u0029",
             "name": "removeItem",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_removeItem"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_removeItem"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AtoArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_toArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_toArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003AfromArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003AfromArray\u0028\u0029",
             "name": "fromArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#method_fromArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_fromArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003A\u0024header",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003A\u0024header",
             "name": "header",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#property_header"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_header"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\u003A\u003A\u0024items",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig\u003A\u003A\u0024items",
             "name": "items",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionConfig.html#property_items"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_items"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem",
             "name": "ActionItem",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method___construct"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetKey\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetKey\u0028\u0029",
             "name": "getKey",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getKey"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getKey"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetLabel\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetLabel\u0028\u0029",
             "name": "getLabel",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getLabel"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getLabel"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetUrl\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetUrl\u0028\u0029",
             "name": "getUrl",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getUrl"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getUrl"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetIcon\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetIcon\u0028\u0029",
             "name": "getIcon",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getIcon"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getIcon"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetConfirmation\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetConfirmation\u0028\u0029",
             "name": "getConfirmation",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getConfirmation"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getConfirmation"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AaddOption\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AaddOption\u0028\u0029",
             "name": "addOption",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_addOption"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_addOption"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AremoveOption\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AremoveOption\u0028\u0029",
             "name": "removeOption",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_removeOption"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_removeOption"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AgetOptions\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetOptions\u0028\u0029",
             "name": "getOptions",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_getOptions"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getOptions"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AtoArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_toArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_toArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003AfromArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AfromArray\u0028\u0029",
             "name": "fromArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#method_fromArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_fromArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024key",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024key",
             "name": "key",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_key"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_key"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024label",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024label",
             "name": "label",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_label"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_label"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024url",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024url",
             "name": "url",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_url"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_url"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024icon",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024icon",
             "name": "icon",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_icon"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_icon"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024confirmation",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024confirmation",
             "name": "confirmation",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_confirmation"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_confirmation"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionItem\u003A\u003A\u0024options",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024options",
             "name": "options",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionItem.html#property_options"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_options"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption",
             "name": "ActionOption",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method___construct"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003AgetKey\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003AgetKey\u0028\u0029",
             "name": "getKey",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method_getKey"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method_getKey"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003AgetLabel\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003AgetLabel\u0028\u0029",
             "name": "getLabel",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method_getLabel"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method_getLabel"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003AgetUrl\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003AgetUrl\u0028\u0029",
             "name": "getUrl",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method_getUrl"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method_getUrl"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003AtoArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method_toArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method_toArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003AfromArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003AfromArray\u0028\u0029",
             "name": "fromArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#method_fromArray"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#method_fromArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003A\u0024key",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003A\u0024key",
             "name": "key",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#property_key"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#property_key"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003A\u0024label",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003A\u0024label",
             "name": "label",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#property_label"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#property_label"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionOption\u003A\u003A\u0024url",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionOption\u003A\u003A\u0024url",
             "name": "url",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ActionOption.html#property_url"
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionOption.html#property_url"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\AlignType",
             "name": "AlignType",
@@ -3801,205 +3801,260 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-AlignType.html#enumcase_RIGHT"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem",
-            "name": "ColumnItem",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder",
+            "name": "EntityLayoutBuilder",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003A__construct\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003A__construct\u0028\u0029",
             "name": "__construct",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#method___construct"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method___construct"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003AaddSection\u0028\u0029",
+            "name": "addSection",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getName"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_addSection"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003AaddItem\u0028\u0029",
-            "name": "addItem",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003AgetSections\u0028\u0029",
+            "name": "getSections",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#method_addItem"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_getSections"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003AgetItems\u0028\u0029",
-            "name": "getItems",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getItems"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003AtoArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#method_toArray"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_toArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#property_name"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\ColumnItem\u003A\u003A\u0024items",
-            "name": "items",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-ColumnItem.html#property_items"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayoutItem",
-            "name": "EntityLayoutItem",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-EntityLayoutItem.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayoutItem\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-EntityLayoutItem.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\FieldItem",
-            "name": "FieldItem",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-FieldItem.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\FieldItem\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-FieldItem.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\FieldItem\u003A\u003AgetField\u0028\u0029",
-            "name": "getField",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-FieldItem.html#method_getField"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\FieldItem\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-FieldItem.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\FieldItem\u003A\u003A\u0024field",
-            "name": "field",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-FieldItem.html#property_field"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType",
-            "name": "LensFilterType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType\u003A\u003AENUM",
-            "name": "ENUM",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html#enumcase_ENUM"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType\u003A\u003ADATE",
-            "name": "DATE",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html#enumcase_DATE"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter",
-            "name": "LensSimpleFilter",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AsetType\u0028\u0029",
-            "name": "setType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_setType"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetModel\u0028\u0029",
-            "name": "getModel",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getModel"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AsetLabel\u0028\u0029",
-            "name": "setLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_setLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetOptions\u0028\u0029",
-            "name": "getOptions",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getOptions"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AaddOption\u0028\u0029",
-            "name": "addOption",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_addOption"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AremoveOption\u0028\u0029",
-            "name": "removeOption",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_removeOption"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetDependsOn\u0028\u0029",
-            "name": "getDependsOn",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getDependsOn"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AaddDependsOn\u0028\u0029",
-            "name": "addDependsOn",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_addDependsOn"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AremoveDependsOn\u0028\u0029",
-            "name": "removeDependsOn",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_removeDependsOn"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AfromArray\u0028\u0029",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003AfromArray\u0028\u0029",
             "name": "fromArray",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_fromArray"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_fromArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024type",
-            "name": "type",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003AfromShorthand\u0028\u0029",
+            "name": "fromShorthand",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_type"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_fromShorthand"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024model",
-            "name": "model",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003Alabelize\u0028\u0029",
+            "name": "labelize",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_model"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#method_labelize"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024name",
-            "name": "name",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\EntityLayoutBuilder\u003A\u003A\u0024sections",
+            "name": "sections",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_name"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-EntityLayoutBuilder.html#property_sections"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024label",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field",
+            "name": "Field",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003A\u0024key",
+            "name": "key",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#property_key"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003A\u0024label",
             "name": "label",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_label"
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#property_label"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024options",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Field\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Field.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section",
+            "name": "Section",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AaddField\u0028\u0029",
+            "name": "addField",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_addField"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AaddSection\u0028\u0029",
+            "name": "addSection",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_addSection"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AgetFields\u0028\u0029",
+            "name": "getFields",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_getFields"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout\\Section\u003A\u003A\u0024fields",
+            "name": "fields",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-EntityLayout-Section.html#property_fields"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensFilterType",
+            "name": "LensFilterType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensFilterType.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensFilterType\u003A\u003AENUM",
+            "name": "ENUM",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensFilterType.html#enumcase_ENUM"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensFilterType\u003A\u003ADATE",
+            "name": "DATE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensFilterType.html#enumcase_DATE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter",
+            "name": "LensSimpleFilter",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AsetType\u0028\u0029",
+            "name": "setType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_setType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetModel\u0028\u0029",
+            "name": "getModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getModel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AsetLabel\u0028\u0029",
+            "name": "setLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_setLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getOptions"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AaddOption\u0028\u0029",
+            "name": "addOption",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_addOption"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AremoveOption\u0028\u0029",
+            "name": "removeOption",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_removeOption"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AgetDependsOn\u0028\u0029",
+            "name": "getDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_getDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AaddDependsOn\u0028\u0029",
+            "name": "addDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_addDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AremoveDependsOn\u0028\u0029",
+            "name": "removeDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_removeDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_model"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024options",
             "name": "options",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_options"
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_options"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024dependsOn",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\\LensSimpleFilter\u003A\u003A\u0024dependsOn",
             "name": "dependsOn",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_dependsOn"
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter-LensSimpleFilter.html#property_dependsOn"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query",
             "name": "Query",
@@ -4121,15 +4176,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getSelectionType"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AaddEntityLayoutItem\u0028\u0029",
-            "name": "addEntityLayoutItem",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AsetEntityLayout\u0028\u0029",
+            "name": "setEntityLayout",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_addEntityLayoutItem"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AremoveEntityLayoutItem\u0028\u0029",
-            "name": "removeEntityLayoutItem",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_removeEntityLayoutItem"
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_setEntityLayout"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetEntityLayout\u0028\u0029",
             "name": "getEntityLayout",
@@ -4155,11 +4205,6 @@ Search.appendIndex(
             "name": "getSerialize",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getSerialize"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AparseEntityLayoutItem\u0028\u0029",
-            "name": "parseEntityLayoutItem",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_parseEntityLayoutItem"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgenerateLensFilter\u0028\u0029",
             "name": "generateLensFilter",
@@ -4240,46 +4285,6 @@ Search.appendIndex(
             "name": "entityLayout",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_entityLayout"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem",
-            "name": "SectionItem",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003AgetHeader\u0028\u0029",
-            "name": "getHeader",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#method_getHeader"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003AaddColumn\u0028\u0029",
-            "name": "addColumn",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#method_addColumn"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003AgetColumns\u0028\u0029",
-            "name": "getColumns",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#method_getColumns"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003A\u0024header",
-            "name": "header",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#property_header"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem\u003A\u003A\u0024columns",
-            "name": "columns",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-SectionItem.html#property_columns"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\SelectionType",
             "name": "SelectionType",
@@ -5686,10 +5691,25 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-schemas-model-relationships.html"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig",
+            "name": "ActionConfig",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-query-actionconfig.html"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query",
             "name": "Query",
             "summary": "",
             "url": "namespaces/lcsengine-schemas-query.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\EntityLayout",
+            "name": "EntityLayout",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-query-entitylayout.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter",
+            "name": "LensSimpleFilter",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-query-lenssimplefilter.html"
         },                {
             "fqsen": "\\LCSEngine\\Schemas",
             "name": "Schemas",

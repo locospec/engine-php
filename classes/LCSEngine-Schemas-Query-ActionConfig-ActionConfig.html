@@ -138,11 +138,12 @@
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine.html">LCSEngine</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas.html">Schemas</a></li>
             <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-query.html">Query</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/lcsengine-schemas-query-actionconfig.html">ActionConfig</a></li>
     </ul>
 
     <article class="phpdocumentor-element -class">
         <h2 class="phpdocumentor-content__title">
-    ColumnItem
+    ActionConfig
 
     
             <div class="phpdocumentor-element__package">
@@ -152,9 +153,6 @@
                             </ul>
         </div>
     
-            <span class="phpdocumentor-element__implements">
-            implements
-                            <a href="classes/LCSEngine-Schemas-Query-EntityLayoutItem.html"><abbr title="\LCSEngine\Schemas\Query\EntityLayoutItem">EntityLayoutItem</abbr></a>                    </span>
     
     </h2>
 
@@ -164,7 +162,7 @@
 </div>
 
         <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">7</span>
 
@@ -181,19 +179,12 @@
 
 <h3 id="toc">
     Table of Contents
-    <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
 
 
-    <h4 id="toc-interfaces">
-        Interfaces
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc-interfaces" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -interface"><a href="classes/LCSEngine-Schemas-Query-EntityLayoutItem.html"><abbr title="\LCSEngine\Schemas\Query\EntityLayoutItem">EntityLayoutItem</abbr></a></dt>    </dl>
 
 
 
@@ -202,56 +193,68 @@
 
 <h4 id="toc-properties">
     Properties
-    <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#toc-properties" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_items">$items</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_header">$header</a>
     <span>
-                        &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>            </span>
+                        &nbsp;: string            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_name">$name</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_items">$items</a>
     <span>
-                        &nbsp;: string|null            </span>
+                        &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>            </span>
 </dt>
 
     </dl>
 
 <h4 id="toc-methods">
     Methods
-    <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method___construct">__construct()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method___construct">__construct()</a>
     <span>
                                 &nbsp;: mixed    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_addItem">addItem()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_addItem">addItem()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getItems">getItems()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_fromArray">fromArray()</a>
+    <span>
+                                &nbsp;: self    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getHeader">getHeader()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getItems">getItems()</a>
     <span>
                                 &nbsp;: <abbr title="\Illuminate\Support\Collection">Collection</abbr>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getName">getName()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_removeItem">removeItem()</a>
     <span>
-                                &nbsp;: string|null    </span>
+                                &nbsp;: void    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_toArray">toArray()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_toArray">toArray()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
@@ -266,7 +269,7 @@
     <section class="phpdocumentor-properties">
         <h3 class="phpdocumentor-elements__header" id="properties">
             Properties
-            <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -276,15 +279,51 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="property_items">
-        $items
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_items" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="property_header">
+        $header
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_header" class="headerlink"><i class="fas fa-link"></i></a>
 
         <span class="phpdocumentor-element__modifiers">
                                 </span>
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">9</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+        <span class="phpdocumentor-signature__type">string</span>
+    <span class="phpdocumentor-signature__name">$header</span>
+    </code>
+
+    
+    
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_items">
+        $items
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_items" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">11</span>
 
@@ -305,48 +344,12 @@
     
 
 </article>
-                    <article
-        class="
-            phpdocumentor-element
-            -property
-            -private
-                                                        "
->
-    <h4 class="phpdocumentor-element__name" id="property_name">
-        $name
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_name" class="headerlink"><i class="fas fa-link"></i></a>
-
-        <span class="phpdocumentor-element__modifiers">
-                                </span>
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">9</span>
-
-    </aside>
-
-    
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-        <span class="phpdocumentor-signature__type">string|null</span>
-    <span class="phpdocumentor-signature__name">$name</span>
-    </code>
-
-    
-    
-    
-
-    
-
-</article>
             </section>
 
             <section class="phpdocumentor-methods">
         <h3 class="phpdocumentor-elements__header" id="methods">
             Methods
-            <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+            <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
                     <article
@@ -357,11 +360,11 @@
 >
     <h4 class="phpdocumentor-element__name" id="method___construct">
         __construct()
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method___construct" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
     <span class="phpdocumentor-element-found-in__line">13</span>
 
@@ -370,7 +373,7 @@
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span>[</span><span class="phpdocumentor-signature__argument__return-type">string|null&nbsp;</span><span class="phpdocumentor-signature__argument__name">$name</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">null</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$header</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><abbr title="\Illuminate\Support\Collection">Collection</abbr>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$items</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -379,9 +382,16 @@
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$name</span>
-                : <span class="phpdocumentor-signature__argument__return-type">string|null</span>
-                 = <span class="phpdocumentor-signature__argument__default-value">null</span>            </dt>
+                <span class="phpdocumentor-signature__argument__name">$header</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$items</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><abbr title="\Illuminate\Support\Collection">Collection</abbr></span>
+                            </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
@@ -401,20 +411,20 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_addItem">
         addItem()
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_addItem" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_addItem" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">24</span>
+    <span class="phpdocumentor-element-found-in__line">29</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">addItem</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Query-EntityLayoutItem.html"><abbr title="\LCSEngine\Schemas\Query\EntityLayoutItem">EntityLayoutItem</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+                    <span class="phpdocumentor-signature__name">addItem</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html"><abbr title="\LCSEngine\Schemas\Query\ActionConfig\ActionItem">ActionItem</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$item</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -424,7 +434,7 @@
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$item</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Query-EntityLayoutItem.html"><abbr title="\LCSEngine\Schemas\Query\EntityLayoutItem">EntityLayoutItem</abbr></a></span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html"><abbr title="\LCSEngine\Schemas\Query\ActionConfig\ActionItem">ActionItem</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
                 
@@ -441,17 +451,103 @@
         class="phpdocumentor-element
             -method
             -public
+                                    -static                    "
+>
+    <h4 class="phpdocumentor-element__name" id="method_fromArray">
+        fromArray()
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_fromArray" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">49</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+            <span class="phpdocumentor-signature__static">static</span>        <span class="phpdocumentor-signature__name">fromArray</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$data</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">self</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$data</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">self</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getHeader">
+        getHeader()
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getHeader" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">19</span>
+
+    </aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getHeader</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+    
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
                                                         "
 >
     <h4 class="phpdocumentor-element__name" id="method_getItems">
         getItems()
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getItems" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getItems" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">29</span>
+    <span class="phpdocumentor-element-found-in__line">24</span>
 
     </aside>
 
@@ -481,37 +577,43 @@
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_getName">
-        getName()
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getName" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_removeItem">
+        removeItem()
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_removeItem" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">34</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">getName</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string|null</span></code>
+                    <span class="phpdocumentor-signature__name">removeItem</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$key</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
     
-    
-    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$key</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
 
     
 
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type">string|null</span>
-            </section>
+    
 
+    
 </article>
                     <article
         class="phpdocumentor-element
@@ -521,13 +623,13 @@
 >
     <h4 class="phpdocumentor-element__name" id="method_toArray">
         toArray()
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_toArray" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ColumnItem.php"><a href="files/src-schemas-query-columnitem.html"><abbr title="src/Schemas/Query/ColumnItem.php">ColumnItem.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Query/ActionConfig/ActionConfig.php"><a href="files/src-schemas-query-actionconfig-actionconfig.html"><abbr title="src/Schemas/Query/ActionConfig/ActionConfig.php">ActionConfig.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
@@ -557,7 +659,7 @@
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schemas/Query/ColumnItem.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/Schemas/Query/ActionConfig/ActionConfig.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -656,27 +758,29 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                            <li><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc-properties">Properties</a></li>
-                                                            <li><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#toc-methods">Methods</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#toc-properties">Properties</a></li>
+                                                            <li><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#toc-methods">Methods</a></li>
                                     </ul>
             </li>
             
                             <li class="phpdocumentor-on-this-page-section__title">Properties</li>
                 <li>
                     <ul class="phpdocumentor-list -clean">
-                                                    <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_items">$items</a></li>
-                                                    <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#property_name">$name</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_header">$header</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#property_items">$items</a></li>
                                             </ul>
                 </li>
             
                         <li class="phpdocumentor-on-this-page-section__title">Methods</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method___construct">__construct()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_addItem">addItem()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getItems">getItems()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_getName">getName()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method___construct">__construct()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_addItem">addItem()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_fromArray">fromArray()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getHeader">getHeader()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_getItems">getItems()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_removeItem">removeItem()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#method_toArray">toArray()</a></li>
                                     </ul>
             </li>
                     </ul>
@@ -696,7 +800,7 @@
     </section>
 </section>
         </div>
-        <a href="classes/LCSEngine-Schemas-Query-ColumnItem.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/LCSEngine-Schemas-Query-ActionConfig-ActionConfig.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 
