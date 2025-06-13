@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 class Section
 {
     protected string $label;
+
     protected Collection $fields; // of Field|Section
 
     public function __construct(string $label)
@@ -23,12 +24,14 @@ class Section
     public function addField(Field $field): self
     {
         $this->fields->push($field);
+
         return $this;
     }
 
     public function addSection(Section $section): self
     {
         $this->fields->push($section);
+
         return $this;
     }
 
@@ -45,7 +48,7 @@ class Section
                 return $item instanceof Section
                     ? $item->toArray()
                     : $item->toArray();
-            })->all()
+            })->all(),
         ];
     }
 
@@ -59,6 +62,7 @@ class Section
                 $section->addSection(self::fromArray($item));
             }
         }
+
         return $section;
     }
 }

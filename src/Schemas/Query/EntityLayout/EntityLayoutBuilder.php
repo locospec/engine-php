@@ -16,6 +16,7 @@ class EntityLayoutBuilder
     public function addSection(Section $section): self
     {
         $this->sections->push($section);
+
         return $this;
     }
 
@@ -26,25 +27,26 @@ class EntityLayoutBuilder
 
     public function toArray(): array
     {
-        return $this->sections->map(fn($section) => $section->toArray())->all();
+        return $this->sections->map(fn ($section) => $section->toArray())->all();
     }
 
     public static function fromArray(array $data): self
     {
-        $builder = new self();
+        $builder = new self;
         foreach ($data as $sectionData) {
             $builder->addSection(Section::fromArray($sectionData));
         }
+
         return $builder;
     }
 
     public static function fromShorthand(array $shorthand): self
     {
-        $builder = new self();
+        $builder = new self;
 
         foreach ($shorthand as $sectionData) {
             // If it's not an array, skip (invalid)
-            if (!is_array($sectionData) || count($sectionData) === 0) {
+            if (! is_array($sectionData) || count($sectionData) === 0) {
                 continue;
             }
 

@@ -21,12 +21,12 @@ class AliasTransformation
         if ($aliases->isEmpty()) {
             return $data;
         }
-        
+
         $isCollection = is_array($data) && ! empty($data) && ! isset($data['id']);
         $records = $isCollection ? $data : [$data];
-        
+
         $transformedRecords = [];
-        
+
         foreach ($records as $record) {
             $transformedRecords[] = $this->processRecord($record, $aliases);
         }
@@ -37,7 +37,7 @@ class AliasTransformation
     private function processRecord(array $record, object $aliases): array
     {
         $processed = $record;
-        
+
         $aliases->each(function ($attribute, $aliasKey) use (&$processed, $record) {
             $extracted = null;
             if ($attribute->hasAliasSource()) {

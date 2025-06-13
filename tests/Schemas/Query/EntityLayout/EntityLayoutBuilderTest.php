@@ -3,13 +3,13 @@
 namespace LCSEngine\Tests\Schemas\Query\EntityLayout;
 
 use LCSEngine\Schemas\Query\EntityLayout\EntityLayoutBuilder;
-use LCSEngine\Schemas\Query\EntityLayout\Section;
 use LCSEngine\Schemas\Query\EntityLayout\Field;
+use LCSEngine\Schemas\Query\EntityLayout\Section;
 
 uses()->group('query');
 
 test('can add sections and export layout as array', function () {
-    $builder = new EntityLayoutBuilder();
+    $builder = new EntityLayoutBuilder;
 
     $builder->addSection(
         (new Section('Main'))
@@ -25,9 +25,9 @@ test('can add sections and export layout as array', function () {
 });
 
 test('can add complex sections and export layout as array', function () {
-    $builder = new EntityLayoutBuilder();
+    $builder = new EntityLayoutBuilder;
 
-    $builder = new EntityLayoutBuilder();
+    $builder = new EntityLayoutBuilder;
 
     $basicInfo = (new Section('Basic Info'))
         ->addField(new Field('listing_id', 'Listing id'))
@@ -98,11 +98,11 @@ test('can rebuild layout from array', function () {
                 [
                     'section' => 'Inner',
                     'fields' => [
-                        ['key' => 'y', 'label' => 'Y', 'type' => 'string']
-                    ]
-                ]
-            ]
-        ]
+                        ['key' => 'y', 'label' => 'Y', 'type' => 'string'],
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $builder = EntityLayoutBuilder::fromArray($data);
@@ -113,36 +113,36 @@ test('can rebuild layout from array', function () {
 test('can convert from shorthand to full layout', function () {
     $shorthand = [
         [
-            "$ Basic and Financial Info",
+            '$ Basic and Financial Info',
             [
-                "$ Basic Info",
-                "listing_id",
-                "property_id",
-                "owner_type",
-                "property_listing_type",
-                "area",
-                "borrower_name"
+                '$ Basic Info',
+                'listing_id',
+                'property_id',
+                'owner_type',
+                'property_listing_type',
+                'area',
+                'borrower_name',
             ],
             [
-                "$ Financial",
-                "reserve_price",
-                "emd_amount"
-            ]
+                '$ Financial',
+                'reserve_price',
+                'emd_amount',
+            ],
         ],
         [
-            "$ Auction Info",
-            ["auction_start_date_time", "auction_end_date_time"],
-            ["emd_last_date"]
+            '$ Auction Info',
+            ['auction_start_date_time', 'auction_end_date_time'],
+            ['emd_last_date'],
         ],
-        ["$ Location", "address", "city_name", "locality.name"],
-        ["$ Institution", "bank_name", "bank_branch_name", "sub_asset_type_name"],
+        ['$ Location', 'address', 'city_name', 'locality.name'],
+        ['$ Institution', 'bank_name', 'bank_branch_name', 'sub_asset_type_name'],
         [
-            "$ Other Details",
-            "contact",
-            "description",
-            "view_count",
-            "interested_count"
-        ]
+            '$ Other Details',
+            'contact',
+            'description',
+            'view_count',
+            'interested_count',
+        ],
     ];
 
     $layout = EntityLayoutBuilder::fromShorthand($shorthand);

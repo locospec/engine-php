@@ -5,7 +5,9 @@ namespace LCSEngine\Schemas\Query\ActionConfig;
 class ActionOption
 {
     private string $key;
+
     private string $label;
+
     private string $url;
 
     public function __construct(string $key, string $label, string $url)
@@ -35,7 +37,7 @@ class ActionOption
         return [
             'key' => $this->key,
             'label' => $this->label,
-            'url' => $this->url
+            'url' => $this->url,
         ];
     }
 

@@ -1,12 +1,12 @@
 <?php
 
 use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Model\Attributes\Type;
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
+use LCSEngine\Schemas\Model\Attributes\Option;
+use LCSEngine\Schemas\Model\Attributes\Type;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
-use LCSEngine\Schemas\Model\Attributes\Option;
 
 uses()->group('attributes');
 
@@ -25,8 +25,8 @@ test('can create and get/set all fields', function () {
 
 test('setAliasSource and setAliasTransformation throw if not alias', function () {
     $attribute = new Attribute('username', 'Username', Type::STRING);
-    expect(fn() => $attribute->setAliasSource('user.name'))->toThrow(LogicException::class);
-    expect(fn() => $attribute->setAliasTransformation('upper(user.name)'))->toThrow(LogicException::class);
+    expect(fn () => $attribute->setAliasSource('user.name'))->toThrow(LogicException::class);
+    expect(fn () => $attribute->setAliasTransformation('upper(user.name)'))->toThrow(LogicException::class);
 });
 
 test('setAliasSource and setAliasTransformation work for alias', function () {
@@ -41,7 +41,7 @@ test('can add generators, validators, and options', function () {
     $attribute = new Attribute('username', 'Username', Type::STRING);
     $generator = new Generator(GeneratorType::UUID);
     $validator = new Validator(ValidatorType::REQUIRED);
-    $option = new Option();
+    $option = new Option;
     $option->setConst('admin');
     $option->setTitle('Admin');
     $attribute->addGenerator($generator);
@@ -61,7 +61,7 @@ test('toArray serializes all fields and collections', function () {
     $attribute->setAliasTransformation('upper(user.name)');
     $generator = new Generator(GeneratorType::UUID);
     $validator = new Validator(ValidatorType::REQUIRED);
-    $option = new Option();
+    $option = new Option;
     $option->setConst('admin');
     $option->setTitle('Admin');
     $attribute->addGenerator($generator);
@@ -88,10 +88,10 @@ test('can remove generator, validator, and option by id', function () {
     $generator2 = new Generator(GeneratorType::UNIQUE_SLUG);
     $validator1 = new Validator(ValidatorType::REQUIRED);
     $validator2 = new Validator(ValidatorType::UNIQUE);
-    $option1 = new Option();
+    $option1 = new Option;
     $option1->setConst('admin');
     $option1->setTitle('Admin');
-    $option2 = new Option();
+    $option2 = new Option;
     $option2->setConst('user');
     $option2->setTitle('User');
     $attribute->addGenerator($generator1);

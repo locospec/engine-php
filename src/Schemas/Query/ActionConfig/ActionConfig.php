@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 class ActionConfig
 {
     private string $header;
+
     private Collection $items;
 
     public function __construct(string $header, Collection $items)
@@ -33,7 +34,7 @@ class ActionConfig
     public function removeItem(string $key): void
     {
         $this->items = $this->items->filter(
-            fn(ActionItem $item) => $item->getKey() !== $key
+            fn (ActionItem $item) => $item->getKey() !== $key
         );
     }
 
@@ -41,13 +42,13 @@ class ActionConfig
     {
         return [
             'header' => $this->header,
-            'items' => $this->items->map(fn(ActionItem $item) => $item->toArray())->toArray()
+            'items' => $this->items->map(fn (ActionItem $item) => $item->toArray())->toArray(),
         ];
     }
 
     public static function fromArray(array $data): self
     {
-        $items = new Collection();
+        $items = new Collection;
         foreach ($data['items'] as $itemData) {
             $items->push(ActionItem::fromArray($itemData));
         }

@@ -2,8 +2,8 @@
 
 namespace LCSEngine\Tests\Schemas\Query\EntityLayout;
 
-use LCSEngine\Schemas\Query\EntityLayout\Section;
 use LCSEngine\Schemas\Query\EntityLayout\Field;
+use LCSEngine\Schemas\Query\EntityLayout\Section;
 
 uses()->group('query');
 
@@ -32,11 +32,11 @@ test('can nest sections in a section', function () {
             [
                 'section' => 'Inner',
                 'fields' => [
-                    ['key' => 'key1', 'label' => 'Key 1', 'type' => 'string']
-                ]
+                    ['key' => 'key1', 'label' => 'Key 1', 'type' => 'string'],
+                ],
             ],
-            ['key' => 'key2', 'label' => 'Key 2', 'type' => 'string']
-        ]
+            ['key' => 'key2', 'label' => 'Key 2', 'type' => 'string'],
+        ],
     ]);
 });
 
@@ -48,10 +48,10 @@ test('can convert section to and from array', function () {
             [
                 'section' => 'Inner',
                 'fields' => [
-                    ['key' => 'k2', 'label' => 'K2', 'type' => 'string']
-                ]
-            ]
-        ]
+                    ['key' => 'k2', 'label' => 'K2', 'type' => 'string'],
+                ],
+            ],
+        ],
     ];
 
     $section = Section::fromArray($data);

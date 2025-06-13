@@ -13,9 +13,9 @@ class Field
     public function toArray(): array
     {
         return [
-            'key'   => $this->key,
+            'key' => $this->key,
             'label' => $this->label,
-            'type'  => $this->type,
+            'type' => $this->type,
         ];
     }
 
