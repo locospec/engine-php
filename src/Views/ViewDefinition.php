@@ -217,6 +217,58 @@ class ViewDefinition
     {
         $lensSimpleFilters = [];
 
+        foreach ($data->lensSimpleFilters as $filter) {
+            // 1) split on “-” to detect dependencies
+            $parts = explode('-', $filter);
+            $hasDeps = count($parts) > 1;
+            $depends = $hasDeps ? array_slice($parts, 0, -1) : [];
+            $key = $hasDeps ? end($parts) : $filter;
+
+            // 2) split on “.” to see if this lives on a related model
+            $path = explode('.', $key);
+            if (count($path) > 1) {
+                // related-model case
+                $relatedName = $path[count($path) - 2];
+                $related = $registryManager->get('model', $relatedName);
+
+                $type = 'enum';
+                $modelId = $related ? $related->getName() : $relatedName;
+                $label = $related ? $related->getLabel() : ucfirst($relatedName);
+
+                $options = null;
+            } else {
+                // same-model case
+                $attr = $model->getAttribute($key);
+                $type = $attr->getType()->value === 'timestamp' ? 'date' : 'enum';
+                $modelId = $model->getName();
+
+                $opts = $attr->getOptions();
+                $options = ! $opts->isEmpty()
+                    ? $opts->map(fn ($o) => $o->toArray())->all()
+                    : null;
+
+                $label = $model->getLabel() !== null
+                    ? $model->getLabel()
+                    : ucfirst($path[0]);
+            }
+
+            // 3) assemble and drop nulls
+            $lensSimpleFilters[$key] = array_filter([
+                'type' => $type,
+                'model' => $modelId,
+                'label' => $label,
+                'options' => $options,
+                'dependsOn' => $depends ?: null,
+            ], fn ($v) => $v !== null);
+        }
+
+        return $lensSimpleFilters;
+    }
+
+    public static function generateLensFilter2($data, Model $model, RegistryManager $registryManager): array
+    {
+        $lensSimpleFilters = [];
+
         foreach ($data->lensSimpleFilters as $lensSimpleFilter) {
             $depPath = explode('-', $lensSimpleFilter);
 

@@ -41,6 +41,7 @@ beforeEach(function () {
 
     $this->mockModel = Mockery::mock(Model::class);
     $this->mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
+    $this->mockModel->shouldReceive('getName')->andReturn('test_model');
 
     $this->mockRegistryManager = Mockery::mock(RegistryManager::class);
     $this->mockRegistryManager->shouldReceive('get')
@@ -50,7 +51,7 @@ beforeEach(function () {
 
 test('can create entity layout with simple fields', function () {
     $initialAttributes = ['listing_id', 'property_id', 'owner_type'];
-    $query = new Query('test', 'Test Query', 'test_model', $initialAttributes, $this->mockRegistryManager);
+    $query = new Query('test', 'Test Query', $initialAttributes, $this->mockModel);
 
     $query->addEntityLayoutItem(new FieldItem('listing_id'));
     $query->addEntityLayoutItem(new FieldItem('property_id'));
@@ -79,7 +80,7 @@ test('can create entity layout with simple fields', function () {
 
 test('can create entity layout with sections and columns', function () {
     $initialAttributes = ['reserve_price', 'emd_amount', 'emd_last_date'];
-    $query = new Query('test', 'Test Query', 'test_model', $initialAttributes, $this->mockRegistryManager);
+    $query = new Query('test', 'Test Query', $initialAttributes, $this->mockModel);
 
     // Create Financials section
     $financialsSection = new SectionItem('Financials');
@@ -110,7 +111,7 @@ test('can create entity layout with sections and columns', function () {
 
 test('can create entity layout with mixed named and unnamed columns', function () {
     $initialAttributes = ['address', 'city_name', 'locality', 'bank_name', 'bank_branch_name', 'contact'];
-    $query = new Query('test', 'Test Query', 'test_model', $initialAttributes, $this->mockRegistryManager);
+    $query = new Query('test', 'Test Query', $initialAttributes, $this->mockModel);
 
     // Create Location & Contact section
     $locationSection = new SectionItem('Location & Contact');
@@ -152,7 +153,7 @@ test('can create entity layout with mixed named and unnamed columns', function (
 
 test('can create entity layout with nested sections', function () {
     $initialAttributes = ['created_at', 'updated_at', 'meta'];
-    $query = new Query('test', 'Test Query', 'test_model', $initialAttributes, $this->mockRegistryManager);
+    $query = new Query('test', 'Test Query', $initialAttributes, $this->mockModel);
 
     // Create Meta section
     $metaSection = new SectionItem('Meta');
@@ -232,24 +233,7 @@ test('can create entity layout from array', function () {
         ],
     ];
 
-    // This part now needs to mock attributes based on $data['attributes'] specifically for this test
-    $mockAttributesForFromArray = new Collection;
-    foreach ($data['attributes'] as $attributeName) {
-        $mockAttribute = Mockery::mock(Attribute::class);
-        $mockAttribute->shouldReceive('getName')->andReturn($attributeName);
-        $mockAttribute->shouldReceive('toArray')->andReturn(['name' => $attributeName]);
-        $mockAttributesForFromArray->put($attributeName, $mockAttribute);
-    }
-
-    $mockModelForFromArray = Mockery::mock(Model::class);
-    $mockModelForFromArray->shouldReceive('getAttributes')->andReturn($mockAttributesForFromArray);
-
-    $mockRegistryManagerForFromArray = Mockery::mock(RegistryManager::class);
-    $mockRegistryManagerForFromArray->shouldReceive('get')
-        ->with('model', 'test_model')
-        ->andReturn($mockModelForFromArray);
-
-    $query = Query::fromArray($data, $mockRegistryManagerForFromArray);
+    $query = Query::fromArray($data, $this->mockRegistryManager);
     $result = $query->toArray();
 
     expect($result['attributes'])->toEqual([
