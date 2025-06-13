@@ -156,10 +156,10 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020model\u0020definition\u0020this\u0020action\u0020operates\u0020on",
             "url": "classes/LCSEngine-Actions-Model-ModelAction.html#method_getModel"
         },                {
-            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003AgetView\u0028\u0029",
-            "name": "getView",
-            "summary": "Get\u0020the\u0020view\u0020definition\u0020this\u0020action\u0020operates\u0020on",
-            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#method_getView"
+            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003AgetQuery\u0028\u0029",
+            "name": "getQuery",
+            "summary": "Get\u0020the\u0020query\u0020this\u0020action\u0020operates\u0020on",
+            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#method_getQuery"
         },                {
             "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003AgetConfig\u0028\u0029",
             "name": "getConfig",
@@ -171,10 +171,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_model"
         },                {
-            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003A\u0024view",
-            "name": "view",
+            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003A\u0024query",
+            "name": "query",
             "summary": "",
-            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_view"
+            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_query"
         },                {
             "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003A\u0024mutator",
             "name": "mutator",
@@ -200,6 +200,16 @@ Search.appendIndex(
             "name": "lcs",
             "summary": "",
             "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_lcs"
+        },                {
+            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003A\u0024generator",
+            "name": "generator",
+            "summary": "",
+            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_generator"
+        },                {
+            "fqsen": "\\LCSEngine\\Actions\\Model\\ModelAction\u003A\u003A\u0024crudValidator",
+            "name": "crudValidator",
+            "summary": "",
+            "url": "classes/LCSEngine-Actions-Model-ModelAction.html#property_crudValidator"
         },                {
             "fqsen": "\\LCSEngine\\Actions\\Model\\ModelActionValidator",
             "name": "ModelActionValidator",
@@ -1856,6 +1866,21 @@ Search.appendIndex(
             "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
             "url": "classes/LCSEngine-Registry-MutatorRegistry.html#method_getItemName"
         },                {
+            "fqsen": "\\LCSEngine\\Registry\\QueryRegistry",
+            "name": "QueryRegistry",
+            "summary": "ModelRegistry\u0020manages\u0020the\u0020registration\u0020and\u0020relationship\u0020graphs\u0020of\u0020models.",
+            "url": "classes/LCSEngine-Registry-QueryRegistry.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Registry\\QueryRegistry\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "Get\u0020the\u0020registry\u0020type\u0020identifier.",
+            "url": "classes/LCSEngine-Registry-QueryRegistry.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Registry\\QueryRegistry\u003A\u003AgetItemName\u0028\u0029",
+            "name": "getItemName",
+            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
+            "url": "classes/LCSEngine-Registry-QueryRegistry.html#method_getItemName"
+        },                {
             "fqsen": "\\LCSEngine\\Registry\\RegistryInterface",
             "name": "RegistryInterface",
             "summary": "",
@@ -2000,21 +2025,6 @@ Search.appendIndex(
             "name": "validateCustomRule",
             "summary": "Validate\u0020input\u0020data\u0020against\u0020the\u0020provided\u0020custom\u0020rules.",
             "url": "classes/LCSEngine-Registry-ValidatorInterface.html#method_validateCustomRule"
-        },                {
-            "fqsen": "\\LCSEngine\\Registry\\ViewRegistry",
-            "name": "ViewRegistry",
-            "summary": "ModelRegistry\u0020manages\u0020the\u0020registration\u0020and\u0020relationship\u0020graphs\u0020of\u0020models.",
-            "url": "classes/LCSEngine-Registry-ViewRegistry.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Registry\\ViewRegistry\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "Get\u0020the\u0020registry\u0020type\u0020identifier.",
-            "url": "classes/LCSEngine-Registry-ViewRegistry.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Registry\\ViewRegistry\u003A\u003AgetItemName\u0028\u0029",
-            "name": "getItemName",
-            "summary": "Get\u0020the\u0020name\u0020identifier\u0020for\u0020a\u0020registry\u0020item.",
-            "url": "classes/LCSEngine-Registry-ViewRegistry.html#method_getItemName"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute",
             "name": "Attribute",
@@ -3586,11 +3596,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-ScopeResolver.html#property_currentModelName"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\ScopeResolver\u003A\u003A\u0024currentViewName",
-            "name": "currentViewName",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-ScopeResolver.html#property_currentViewName"
-        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig",
             "name": "ActionConfig",
             "summary": "",
@@ -4081,10 +4086,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getLabel"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetModel\u0028\u0029",
-            "name": "getModel",
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetModelName\u0028\u0029",
+            "name": "getModelName",
             "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getModel"
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_getModelName"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgetType\u0028\u0029",
             "name": "getType",
@@ -4220,6 +4225,11 @@ Search.appendIndex(
             "name": "fromArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AfromModel\u0028\u0029",
+            "name": "fromModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_fromModel"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024name",
             "name": "name",
@@ -4406,16 +4416,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_validateSpec"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllViewSpec\u0028\u0029",
-            "name": "processAllViewSpec",
-            "summary": "Process\u0020a\u0020all\u0020view\u0020definition",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processAllViewSpec"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessViewSpec\u0028\u0029",
-            "name": "processViewSpec",
-            "summary": "Process\u0020a\u0020single\u0020view\u0020definition",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processViewSpec"
-        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllMutatorsSpec\u0028\u0029",
             "name": "processAllMutatorsSpec",
             "summary": "Process\u0020a\u0020all\u0020mutators\u0020definition",
@@ -4436,35 +4436,45 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processPendingRelationships"
         },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllQuerySpec\u0028\u0029",
+            "name": "processAllQuerySpec",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processAllQuerySpec"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessQuerySpec\u0028\u0029",
+            "name": "processQuerySpec",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processQuerySpec"
+        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_registryManager"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingRelationships",
-            "name": "pendingRelationships",
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024specValidator",
+            "name": "specValidator",
             "summary": "",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_pendingRelationships"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingViews",
-            "name": "pendingViews",
-            "summary": "",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_pendingViews"
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_specValidator"
         },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024logger",
             "name": "logger",
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_logger"
         },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingRelationships",
+            "name": "pendingRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_pendingRelationships"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingQueries",
+            "name": "pendingQueries",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_pendingQueries"
+        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024pendingMutators",
             "name": "pendingMutators",
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_pendingMutators"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024specValidator",
-            "name": "specValidator",
-            "summary": "",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#property_specValidator"
         },                {
             "fqsen": "\\LCSEngine\\SpecValidator",
             "name": "SpecValidator",
@@ -4966,6 +4976,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-AbstractTask.html#property_attributes"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\AbstractTask\u003A\u003A\u0024operator",
+            "name": "operator",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-AbstractTask.html#property_operator"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\AbstractTask\u003A\u003A\u0024action",
             "name": "action",
             "summary": "",
@@ -5401,231 +5416,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Vertex.html#property_data"
         },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition",
-            "name": "ViewDefinition",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetModelName\u0028\u0029",
-            "name": "getModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetSelectionKey\u0028\u0029",
-            "name": "getSelectionKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getSelectionKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetAttributes\u0028\u0029",
-            "name": "getAttributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getAttributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetAllowedScopes\u0028\u0029",
-            "name": "getAllowedScopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getAllowedScopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AhasScope\u0028\u0029",
-            "name": "hasScope",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_hasScope"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetScope\u0028\u0029",
-            "name": "getScope",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getScope"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetScopes\u0028\u0029",
-            "name": "getScopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getScopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgetActions\u0028\u0029",
-            "name": "getActions",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_getActions"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AobjectToArray\u0028\u0029",
-            "name": "objectToArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_objectToArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AfromArray\u0028\u0029",
-            "name": "fromArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_fromArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AfromModel\u0028\u0029",
-            "name": "fromModel",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_fromModel"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgenerateLensFilter\u0028\u0029",
-            "name": "generateLensFilter",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateLensFilter"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgenerateLensFilter2\u0028\u0029",
-            "name": "generateLensFilter2",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateLensFilter2"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgenerateFullEntityLayout\u0028\u0029",
-            "name": "generateFullEntityLayout",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateFullEntityLayout"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AprocessLayoutItems\u0028\u0029",
-            "name": "processLayoutItems",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_processLayoutItems"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AcreateField\u0028\u0029",
-            "name": "createField",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_createField"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgenerateLabel\u0028\u0029",
-            "name": "generateLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024type",
-            "name": "type",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_type"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_name"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024label",
-            "name": "label",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_label"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024model",
-            "name": "model",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_model"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024selectionKey",
-            "name": "selectionKey",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_selectionKey"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024attributes",
-            "name": "attributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_attributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024lensSimpleFilters",
-            "name": "lensSimpleFilters",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_lensSimpleFilters"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024selectionType",
-            "name": "selectionType",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_selectionType"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024scopes",
-            "name": "scopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_scopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024expand",
-            "name": "expand",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_expand"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024allowedScopes",
-            "name": "allowedScopes",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_allowedScopes"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024actions",
-            "name": "actions",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_actions"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024entityLayout",
-            "name": "entityLayout",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_entityLayout"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003A\u0024serialize",
-            "name": "serialize",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewDefinition.html#property_serialize"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator",
-            "name": "ViewValidator",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html#method_validate"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator\u003A\u003AvalidateStructure\u0028\u0029",
-            "name": "validateStructure",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html#method_validateStructure"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator\u003A\u003AvalidateName\u0028\u0029",
-            "name": "validateName",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html#method_validateName"
-        },                {
-            "fqsen": "\\LCSEngine\\Views\\ViewValidator\u003A\u003A\u0024inflector",
-            "name": "inflector",
-            "summary": "",
-            "url": "classes/LCSEngine-Views-ViewValidator.html#property_inflector"
-        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
@@ -5735,10 +5525,5 @@ Search.appendIndex(
             "name": "Tasks",
             "summary": "",
             "url": "namespaces/lcsengine-tasks.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Views",
-            "name": "Views",
-            "summary": "",
-            "url": "namespaces/lcsengine-views.html"
         }            ]
 );
