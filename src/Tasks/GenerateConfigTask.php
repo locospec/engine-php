@@ -20,8 +20,7 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
     public function execute(array $input, array $taskArgs = []): array
     {
-        // Get view
-        $view = $this->context->get('view');
+        $query = $this->context->get('query');
         $model = $this->context->get('model');
         $mutator = $this->context->get('mutator');
 
@@ -44,7 +43,7 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
             return ['data' => $result];
         } else {
-            $result = $view->toArray();
+            $result = $query->toArray();
             $permissions = $input['locospecPermissions'];
             if (isset($input['globalContext']['userPermissions'])) {
                 $permissions['userPermissions'] = $input['globalContext']['userPermissions'];

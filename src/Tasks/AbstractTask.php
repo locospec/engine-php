@@ -13,6 +13,8 @@ abstract class AbstractTask implements TaskInterface
 
     protected Collection $attributes;
 
+    protected DatabaseDriverInterface $operator;
+
     protected string $action;
 
     /**

@@ -3,6 +3,7 @@
 namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
+use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Model;
@@ -99,7 +100,7 @@ class Query
         return $this->label;
     }
 
-    public function getModel(): string
+    public function getModelName(): string
     {
         return $this->model;
     }
@@ -444,5 +445,26 @@ class Query
         }
 
         return $query;
+    }
+
+    public static function fromModel(Model $model): self
+    {
+        try {
+            $name = $model->getName().'_default_query';
+            $label = $model->getLabel().' Default Query';
+            $attributes = $model->getAttributes()->keys()->toArray();
+
+            $query = new self($name, $label, $attributes, $model);
+
+            $query->setSelectionKey($model->getPrimaryKey()->getName());
+            $query->allowedScopes = new Collection($model->getScopes()->keys()->toArray());
+            $query->setSerialize(new SerializeConfig);
+
+            return $query;
+        } catch (InvalidArgumentException $e) {
+            throw new InvalidArgumentException("Error creating {$model->getName()} query definition from model: ".$e->getMessage());
+        } catch (\Exception $e) {
+            throw new \RuntimeException("Unexpected error while creating {$model->getName()} query definition from model: ".$e->getMessage());
+        }
     }
 }

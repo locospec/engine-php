@@ -8,15 +8,15 @@ use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Query\Query;
 use LCSEngine\StateMachine\Context;
 use LCSEngine\StateMachine\StateFlowPacket;
-use LCSEngine\Views\ViewDefinition;
 
 abstract class ModelAction
 {
     protected Model $model;
 
-    protected ViewDefinition $view;
+    protected Query $query;
 
     protected ?MutatorDefinition $mutator;
 
@@ -28,18 +28,22 @@ abstract class ModelAction
 
     protected LCS $lcs;
 
+    protected GeneratorInterface $generator;
+
+    protected ValidatorInterface $crudValidator;
+
     public function __construct(
         ValidatorInterface $curdValidator,
         GeneratorInterface $generator,
         Model $model,
-        ViewDefinition $view,
+        Query $query,
         ?MutatorDefinition $mutator,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []
     ) {
         $this->model = $model;
-        $this->view = $view;
+        $this->query = $query;
         $this->mutator = $mutator;
         $this->stateMachineFactory = $stateMachineFactory;
         $this->lcs = $lcs;
@@ -67,7 +71,7 @@ abstract class ModelAction
         // Create context with required values
         $context = new Context([
             'model' => $this->model,
-            'view' => $this->view,
+            'query' => $this->query,
             'mutator' => $this->mutator,
             'attributes' => $this->model->getAttributes(),
             'action' => $this->name,
@@ -126,11 +130,11 @@ abstract class ModelAction
     }
 
     /**
-     * Get the view definition this action operates on
+     * Get the query this action operates on
      */
-    public function getView(): ViewDefinition
+    public function getQuery(): Query
     {
-        return $this->view;
+        return $this->query;
     }
 
     /**

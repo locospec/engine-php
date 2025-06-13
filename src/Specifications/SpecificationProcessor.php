@@ -8,22 +8,22 @@ use LCSEngine\Logger;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Query\Query;
 use LCSEngine\SpecValidator;
-use LCSEngine\Views\ViewDefinition;
 
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
 
-    private array $pendingRelationships = [];
-
-    private array $pendingViews = [];
+    private SpecValidator $specValidator;
 
     private ?Logger $logger = null;
 
-    private array $pendingMutators = [];
+    private array $pendingRelationships = [];
 
-    private SpecValidator $specValidator;
+    private array $pendingQueries = [];
+
+    private array $pendingMutators = [];
 
     public function __construct(RegistryManager $registryManager)
     {
@@ -82,8 +82,8 @@ class SpecificationProcessor
                         $this->processModel($spec);
                         break;
 
-                    case 'view':
-                        $this->pendingViews[] = json_decode($json, false);
+                    case 'query':
+                        $this->pendingQueries[] = $spec;
                         break;
 
                     case 'mutator':
@@ -146,73 +146,6 @@ class SpecificationProcessor
             );
         }
         $this->logger?->info($spec->type.' spec validated successfully', [$spec->type.'Name' => $spec->name]);
-    }
-
-    /**
-     * Process a all view definition
-     */
-    public function processAllViewSpec(): void
-    {
-        try {
-            $this->logger?->info('Processing all the views');
-            foreach ($this->pendingViews as $pending) {
-
-                $this->logger?->info('Processing view', ['viewName' => $pending->name]);
-                $model = $this->registryManager->get('model', $pending->model);
-
-                if (! $model) {
-                    $this->logger?->error('Model not found for view processing', [
-                        'modelName' => $pending->model,
-                    ]);
-                    throw new InvalidArgumentException(
-                        "Cannot process view: Model {$pending->model} not found"
-                    );
-                }
-
-                $this->processViewSpec($pending, $model);
-            }
-            // Clear pending views after processing
-            $this->pendingViews = [];
-            $this->logger?->info('Successfully processed all the views');
-        } catch (InvalidArgumentException $e) {
-            $this->logger?->error('InvalidArgumentException during view processing', [
-                'error' => $e->getMessage(),
-            ]);
-            throw $e; // Rethrow to be caught in LCS.php
-        } catch (\Exception $e) {
-            $this->logger?->error('Unexpected error processing view', [
-                'error' => $e->getMessage(),
-            ]);
-            throw new InvalidArgumentException('Error processing view: '.$e->getMessage());
-        }
-    }
-
-    /**
-     * Process a single view definition
-     */
-    private function processViewSpec(object $spec, Model $model): void
-    {
-        try {
-            $this->logger?->info('Processing view spec', ['viewName' => $spec->name]);
-
-            // Validate the model spec
-            $this->validateSpec($spec);
-
-            // Convert object to ViewDefinition
-            $view = ViewDefinition::fromObject($spec, $this->registryManager, $model);
-
-            $this->logger?->info('Normalized view spec', ['viewName' => $view->getName()]);
-
-            // register the view
-            $this->registryManager->register('view', $view);
-            $this->logger?->info('View registered in registry', ['modelName' => $view->getName()]);
-        } catch (\Exception $e) {
-            $this->logger?->error('Error processing view spec', [
-                'viewName' => $spec->name ?? 'Unknown',
-                'error' => $e->getMessage(),
-            ]);
-            throw $e;
-        }
     }
 
     /**
@@ -303,16 +236,16 @@ class SpecificationProcessor
             $this->registryManager->register('model', $model);
             $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
 
-            // Create the defatul view for the model
-            $view = ViewDefinition::fromModel($model, $this->registryManager);
+            // Create the defatul query for the model
+            $query = Query::fromModel($model, $this->registryManager);
 
-            $this->logger?->info('Created default view for model', ['viewName' => $view->getName()]);
+            $this->logger?->info('Created default query for model', ['queryName' => $query->getName()]);
 
-            // // register the view
-            $this->registryManager->register('view', $view);
-            $this->logger?->info('Default view registered in registry', [
+            // // register the query
+            $this->registryManager->register('query', $query);
+            $this->logger?->info('Default query registered in registry', [
                 'modelName' => $model->getName(),
-                'viewName' => $view->getName(),
+                'queryName' => $query->getName(),
             ]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model', [
@@ -358,6 +291,53 @@ class SpecificationProcessor
                 'error' => $e->getMessage(),
             ]);
             throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
+        }
+    }
+
+    public function processAllQuerySpec(): void
+    {
+        try {
+            $this->logger?->info('Processing all the query specs');
+            foreach ($this->pendingQueries as $pending) {
+
+                $this->logger?->info('Processing query', ['queryName' => $pending['name']]);
+
+                $this->processQuerySpec($pending);
+            }
+            // Clear pending queries after processing
+            $this->pendingQueries = [];
+            $this->logger?->info('Successfully processed all the queries');
+        } catch (InvalidArgumentException $e) {
+            $this->logger?->error('InvalidArgumentException during query processing', [
+                'error' => $e->getMessage(),
+            ]);
+            throw $e; // Rethrow to be caught in LCS.php
+        } catch (\Exception $e) {
+            $this->logger?->error('Unexpected error processing query', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error processing query: '.$e->getMessage());
+        }
+    }
+
+    private function processQuerySpec(array $spec): void
+    {
+        try {
+            $this->logger?->info('Processing query spec', ['queryName' => $spec['name']]);
+
+            $query = Query::fromArray($spec, $this->registryManager);
+
+            $this->logger?->info('Query spec processed', ['queryName' => $query->getName()]);
+
+            // register the query
+            $this->registryManager->register('query', $query);
+            $this->logger?->info('Query registered in registry', ['modelName' => $query->getName()]);
+        } catch (\Exception $e) {
+            $this->logger?->error('Error processing query spec', [
+                'queryName' => $spec->name ?? 'Unknown',
+                'error' => $e->getMessage(),
+            ]);
+            throw $e;
         }
     }
 }

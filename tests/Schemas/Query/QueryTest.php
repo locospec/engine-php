@@ -108,7 +108,7 @@ test('can create Query instance using constructor and has correct initial state'
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');
-    expect($query->getModel())->toBe('user');
+    expect($query->getModelName())->toBe('user');
     expect($query->getType())->toBe(Type::QUERY);
     expect($query->getSelectionType())->toBe(SelectionType::NONE);
 
@@ -135,7 +135,7 @@ test('can create Query from array with basic properties', function () {
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');
-    expect($query->getModel())->toBe('user');
+    expect($query->getModelName())->toBe('user');
     expect($query->getType())->toBe(Type::QUERY);
     expect($query->getSelectionType())->toBe(SelectionType::NONE);
 
@@ -217,7 +217,7 @@ test('can create Query from array with all properties', function () {
     expect($query)->toBeInstanceOf(Query::class);
     expect($query->getName())->toBe('users');
     expect($query->getLabel())->toBe('User List');
-    expect($query->getModel())->toBe('user');
+    expect($query->getModelName())->toBe('user');
     expect($query->getType())->toBe(Type::QUERY);
     expect($query->getSelectionType())->toBe(SelectionType::MULTIPLE);
     expect($query->getSelectionKey())->toBe('id');
@@ -254,7 +254,7 @@ test('can create Query from array with shorthand lensSimpleFilters', function ()
     expect($statusFilter)->toBeInstanceOf(LensSimpleFilter::class);
     expect($statusFilter->getName())->toBe('status');
     expect($statusFilter->getType())->toBe(LensFilterType::ENUM);
-    expect($statusFilter->getModel())->toBe('user');
+    expect($statusFilter->getModelName())->toBe('user');
     expect($statusFilter->getOptions())->toBeInstanceOf(Collection::class)->toHaveCount(2);
 
     // Verify category filter
@@ -262,7 +262,7 @@ test('can create Query from array with shorthand lensSimpleFilters', function ()
     expect($categoryFilter)->toBeInstanceOf(LensSimpleFilter::class);
     expect($categoryFilter->getName())->toBe('category');
     expect($categoryFilter->getType())->toBe(LensFilterType::ENUM);
-    expect($categoryFilter->getModel())->toBe('user');
+    expect($categoryFilter->getModelName())->toBe('user');
     expect($categoryFilter->getOptions())->toBeInstanceOf(Collection::class)->toHaveCount(2);
 });
 

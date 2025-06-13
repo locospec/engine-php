@@ -16,9 +16,9 @@ use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Type;
 use LCSEngine\StateMachine\StateFlowPacket;
-use LCSEngine\Views\ViewDefinition;
 
 class ActionOrchestrator
 {
@@ -37,7 +37,7 @@ class ActionOrchestrator
         $data = $this->lcs->getRegistryManager()->getRegisterByName($specName);
 
         if (! $data) {
-            throw new InvalidArgumentException("View/Mutator not found: {$specName}");
+            throw new InvalidArgumentException("Query/Mutator not found: {$specName}");
         }
 
         $mutatorSpecName = $data->getType() === 'mutator' ? $data->getName() : '';
@@ -47,27 +47,26 @@ class ActionOrchestrator
             throw new InvalidArgumentException("Mutator Spec not found: {$mutatorSpecName}");
         }
 
-        $modelName = in_array($data->getType(), ['view', 'mutator']) ? $data->getModelName() : $specName;
-        $viewName = $data->getType() === Type::MODEL ? (isset($input['view']) ? $input['view'] : $data->getName().'_default_view') : (in_array($data->getType(), ['mutator']) ? $data->getModelName().'_default_view' : $specName);
+        $modelName = in_array($data->getType(), ['mutator']) || $data->getType() === Type::QUERY ? $data->getModelName() : $specName;
+        $queryName = $data->getType() === Type::MODEL ? (isset($input['query']) ? $input['query'] : $data->getName().'_default_query') : (in_array($data->getType(), ['mutator']) ? $data->getModelName().'_default_query' : $specName);
 
-        // Get model and view definition
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
-        $view = $this->lcs->getRegistryManager()->get('view', $viewName);
+        $query = $this->lcs->getRegistryManager()->get('query', $queryName);
         if (! $model) {
             throw new InvalidArgumentException("Model not found: {$modelName}");
         }
 
-        if (! $view) {
-            throw new InvalidArgumentException("View not found: {$viewName}");
+        if (! $query) {
+            throw new InvalidArgumentException("Query not found: {$queryName}");
         }
 
         // Create and execute appropriate action
-        $action = $this->createAction($curdValidator, $generator, $model, $view, $actionName, $mutator);
+        $action = $this->createAction($curdValidator, $generator, $model, $query, $actionName, $mutator);
 
         return $action->execute($input);
     }
 
-    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, ViewDefinition $view, string $actionName, ?MutatorDefinition $mutator): ModelAction
+    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, Query $query, string $actionName, ?MutatorDefinition $mutator): ModelAction
     {
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
@@ -84,7 +83,7 @@ class ActionOrchestrator
             $curdValidator,
             $generator,
             $model,
-            $view,
+            $query,
             $mutator,
             $this->stateMachineFactory,
             $this->lcs

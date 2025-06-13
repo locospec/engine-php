@@ -8,7 +8,7 @@ class SerializeConfig
 
     private AlignType $align;
 
-    public function __construct(string $header, AlignType $align = AlignType::LEFT)
+    public function __construct(string $header = '#', AlignType $align = AlignType::LEFT)
     {
         $this->header = $header;
         $this->align = $align;

@@ -101,9 +101,8 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'scopes' => $operation['scopes'],
             ]);
-            $viewName = isset($operation['viewName']) ? $operation['viewName'] : null;
 
-            $resolver = new ScopeResolver($this->registryManager, $operation['modelName'], $viewName);
+            $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
 
             $this->logger->info('Scopes resolved to filters', [

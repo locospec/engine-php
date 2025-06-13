@@ -11,13 +11,10 @@ class ScopeResolver
 
     private string $currentModelName;
 
-    private ?string $currentViewName;
-
-    public function __construct(RegistryManager $registryManager, string $currentModelName, ?string $currentViewName)
+    public function __construct(RegistryManager $registryManager, string $currentModelName)
     {
         $this->registryManager = $registryManager;
         $this->currentModelName = $currentModelName;
-        $this->currentViewName = $currentViewName;
     }
 
     public function resolveScopes(array|string $scopes): array
@@ -66,16 +63,7 @@ class ScopeResolver
         $model = $this->registryManager->get('model', $this->currentModelName);
 
         if (! $model->getScopes()->has($scopeName)) {
-            if (isset($this->currentViewName)) {
-                $view = $this->registryManager->get('view', $this->currentViewName);
-                if (! $view->hasScope($scopeName)) {
-                    throw new InvalidArgumentException("Scope '$scopeName' not found on model or view '{$this->currentModelName}', '{$this->currentViewName}'");
-                }
-
-                return $view->getScope($scopeName);
-            } else {
-                throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModelName}'");
-            }
+            throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModelName}'");
         }
 
         return $model->getScope($scopeName)->toArray();

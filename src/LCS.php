@@ -100,11 +100,11 @@ class LCS
             $specProcessor->processPendingRelationships();
             self::$logger->info('Specification registration finished');
 
-            // Process all views after all models and relationships are registered
-            $specProcessor->processAllViewSpec();
-            self::$logger->info('Views registration finished');
+            // Process all queries after all models and relationships are registered
+            $specProcessor->processAllQuerySpec();
+            self::$logger->info('Query registration finished');
 
-            // // Process all mutator after all views models and relationships are registered
+            // Process all mutator after all queries models and relationships are registered
             $specProcessor->processAllMutatorsSpec();
             self::$logger->info('Mutators registration finished');
 

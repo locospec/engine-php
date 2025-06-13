@@ -9,16 +9,16 @@ namespace LCSEngine\Registry;
  * model definitions and their relationships. It maintains a graph representation
  * of model relationships that can be used for analysis and traversal.
  */
-class ViewRegistry extends AbstractRegistry
+class QueryRegistry extends AbstractRegistry
 {
     /**
      * Get the registry type identifier.
      *
-     * @return string Returns 'model' as the registry type
+     * @return string Returns 'query' as the registry type
      */
     public function getType(): string
     {
-        return 'view';
+        return 'query';
     }
 
     /**
