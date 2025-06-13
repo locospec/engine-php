@@ -1,8 +1,8 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Query;
+namespace LCSEngine\Tests\Schemas\Query\ActionConfig;
 
-use LCSEngine\Schemas\Query\ActionOption;
+use LCSEngine\Schemas\Query\ActionConfig\ActionOption;
 
 uses()->group('query');
 

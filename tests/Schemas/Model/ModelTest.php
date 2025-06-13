@@ -3,10 +3,10 @@
 namespace LCSEngine\Tests\Schemas\Model;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Configuration;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Type;
+use LCSEngine\Registry\RegistryManager;
 use Mockery;
 
 uses()->group('model');

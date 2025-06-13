@@ -133,7 +133,7 @@ class ViewDefinition
             }
 
             if (isset($data->attributes)) {
-                $attributes = $model->getAttributes()->only($data->attributes)->map(fn ($attribute) => $attribute->toArray())->all();
+                $attributes = $model->getAttributes()->only($data->attributes)->map(fn($attribute) => $attribute->toArray())->all();
             }
 
             if (isset($data->lensSimpleFilters)) {
@@ -168,9 +168,9 @@ class ViewDefinition
 
             return new self($data->name, $data->label, $data->model, $attributes, $lensSimpleFilters, $selectionType, $data->scopes ?? null, $selectionKey, $expand, $allowedScopes, $actions, $serialize, $fullEntityLayout);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$data->name} view definition: ".$e->getMessage());
+            throw new InvalidArgumentException("Error creating {$data->name} view definition: " . $e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: ".$e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$data->name} view definition: " . $e->getMessage());
         }
     }
 
@@ -187,11 +187,11 @@ class ViewDefinition
             $defaultView = [];
 
             // create default view from model
-            $attributes = $model->getAttributes()->map(fn ($attribute) => $attribute->toArray())->all();
+            $attributes = $model->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
 
             $defaultView = [
-                'name' => $model->getName().'_default_view',
-                'label' => $model->getLabel().' Default View',
+                'name' => $model->getName() . '_default_view',
+                'label' => $model->getLabel() . ' Default View',
                 'model' => $model->getName(),
                 'attributes' => $attributes,
                 'lensSimpleFilters' => [],
@@ -202,14 +202,14 @@ class ViewDefinition
                 'allowedScopes' => $model->getScopes()->keys()->toArray(),
                 'actions' => new \stdClass,
                 'serialize' => false,
-                'entityLayout' => [],
+                'entityLayout' => []
             ];
 
             return new self($defaultView['name'], $defaultView['label'], $defaultView['model'], $defaultView['attributes'], $defaultView['lensSimpleFilters'], $defaultView['selectionType'], $defaultView['scopes'], $defaultView['selectionKey'], $defaultView['expand'], $defaultView['allowedScopes'], $defaultView['actions'], $defaultView['serialize'], $defaultView['entityLayout']);
         } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException("Error creating {$model->getName()} view definition from model: ".$e->getMessage());
+            throw new InvalidArgumentException("Error creating {$model->getName()} view definition from model: " . $e->getMessage());
         } catch (\Exception $e) {
-            throw new \RuntimeException("Unexpected error while creating {$model->getName()} view definition from model: ".$e->getMessage());
+            throw new \RuntimeException("Unexpected error while creating {$model->getName()} view definition from model: " . $e->getMessage());
         }
     }
 
@@ -219,32 +219,32 @@ class ViewDefinition
 
         foreach ($data->lensSimpleFilters as $filter) {
             // 1) split on “-” to detect dependencies
-            $parts = explode('-', $filter);
-            $hasDeps = count($parts) > 1;
-            $depends = $hasDeps ? array_slice($parts, 0, -1) : [];
-            $key = $hasDeps ? end($parts) : $filter;
+            $parts    = explode('-', $filter);
+            $hasDeps  = count($parts) > 1;
+            $depends  = $hasDeps ? array_slice($parts, 0, -1) : [];
+            $key      = $hasDeps ? end($parts) : $filter;
 
             // 2) split on “.” to see if this lives on a related model
-            $path = explode('.', $key);
+            $path     = explode('.', $key);
             if (count($path) > 1) {
                 // related-model case
                 $relatedName = $path[count($path) - 2];
-                $related = $registryManager->get('model', $relatedName);
+                $related     = $registryManager->get('model', $relatedName);
 
-                $type = 'enum';
+                $type    = 'enum';
                 $modelId = $related ? $related->getName() : $relatedName;
-                $label = $related ? $related->getLabel() : ucfirst($relatedName);
+                $label   = $related ? $related->getLabel() : ucfirst($relatedName);
 
                 $options = null;
             } else {
                 // same-model case
-                $attr = $model->getAttribute($key);
-                $type = $attr->getType()->value === 'timestamp' ? 'date' : 'enum';
+                $attr    = $model->getAttribute($key);
+                $type    = $attr->getType()->value === 'timestamp' ? 'date' : 'enum';
                 $modelId = $model->getName();
 
                 $opts = $attr->getOptions();
-                $options = ! $opts->isEmpty()
-                    ? $opts->map(fn ($o) => $o->toArray())->all()
+                $options = !$opts->isEmpty()
+                    ? $opts->map(fn($o) => $o->toArray())->all()
                     : null;
 
                 $label = $model->getLabel() !== null
@@ -254,16 +254,17 @@ class ViewDefinition
 
             // 3) assemble and drop nulls
             $lensSimpleFilters[$key] = array_filter([
-                'type' => $type,
-                'model' => $modelId,
-                'label' => $label,
-                'options' => $options,
+                'type'      => $type,
+                'model'     => $modelId,
+                'label'     => $label,
+                'options'   => $options,
                 'dependsOn' => $depends ?: null,
-            ], fn ($v) => $v !== null);
+            ], fn($v) => $v !== null);
         }
 
         return $lensSimpleFilters;
     }
+
 
     public static function generateLensFilter2($data, Model $model, RegistryManager $registryManager): array
     {
@@ -291,15 +292,15 @@ class ViewDefinition
                     }
                 } else {
                     $lensSimpleFilters[$lastValue]['model'] = $model->getName();
-                    if ($model->getAttribute($lastValue)->getType()->value === 'timestamp') {
+                    if ($model->getAttribute($lastValue)->getType()->value === "timestamp") {
                         $lensSimpleFilters[$lastValue]['type'] = 'date';
                     } else {
                         $lensSimpleFilters[$lastValue]['type'] = 'enum';
                     }
                     $lensSimpleFilters[$lastValue]['model'] = $model->getName();
 
-                    if (! $model->getAttribute($lastValue)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn ($option) => $option->toArray())->all();
+                    if (!$model->getAttribute($lastValue)->getOptions()->isEmpty()) {
+                        $lensSimpleFilters[$lastValue]['options'] = $model->getAttribute($lastValue)->getOptions()->map(fn($option) => $option->toArray())->all();
                     }
                     $lensSimpleFilters[$lastValue]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
@@ -318,15 +319,15 @@ class ViewDefinition
                         $lensSimpleFilters[$lensSimpleFilter]['label'] = ucfirst($lastModelName);
                     }
                 } else {
-                    if ($model->getAttribute($lensSimpleFilter)->getType()->value === 'timestamp') {
+                    if ($model->getAttribute($lensSimpleFilter)->getType()->value === "timestamp") {
                         $lensSimpleFilters[$lensSimpleFilter]['type'] = 'date';
                     } else {
                         $lensSimpleFilters[$lensSimpleFilter]['type'] = 'enum';
                     }
                     $lensSimpleFilters[$lensSimpleFilter]['model'] = $model->getName();
 
-                    if (! $model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
-                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn ($option) => $option->toArray())->all();
+                    if (!$model->getAttribute($lensSimpleFilter)->getOptions()->isEmpty()) {
+                        $lensSimpleFilters[$lensSimpleFilter]['options'] = $model->getAttribute($lensSimpleFilter)->getOptions()->map(fn($option) => $option->toArray())->all();
                     }
                     $lensSimpleFilters[$lensSimpleFilter]['label'] = $model->getLabel() !== null ? $model->getLabel() : ucfirst($path[0]);
                 }
@@ -408,14 +409,14 @@ class ViewDefinition
         $layout = $shorthandLayout['layout'] ?? $shorthandLayout;
 
         // If layout is a flat array, wrap it in a single section
-        if (! array_filter($layout, 'is_array')) {
+        if (!array_filter($layout, 'is_array')) {
             return [[
-                'fields' => self::processLayoutItems($layout),
+                'fields' => self::processLayoutItems($layout)
             ]];
         }
 
         return array_map(function ($section) {
-            if (! is_array($section) || empty($section)) {
+            if (!is_array($section) || empty($section)) {
                 throw new InvalidArgumentException('Invalid section: Each section must be a non-empty array');
             }
 
@@ -429,15 +430,15 @@ class ViewDefinition
 
             // Process section items
             $sectionData['fields'] = array_map(function ($item) {
-                if (! is_array($item)) {
+                if (!is_array($item)) {
                     return self::createField($item);
                 }
 
                 // Handle nested section
-                if (! empty($item) && is_string($item[0]) && str_starts_with($item[0], '$')) {
+                if (!empty($item) && is_string($item[0]) && str_starts_with($item[0], '$')) {
                     return [
                         'section' => substr($item[0], 1),
-                        'fields' => self::processLayoutItems(array_slice($item, 1)),
+                        'fields' => self::processLayoutItems(array_slice($item, 1))
                     ];
                 }
 
@@ -452,7 +453,7 @@ class ViewDefinition
     private static function processLayoutItems(array $items): array
     {
         return array_map(function ($item) {
-            if (! is_array($item)) {
+            if (!is_array($item)) {
                 return self::createField($item);
             }
 
@@ -461,7 +462,7 @@ class ViewDefinition
             $subFields = [];
 
             foreach ($item as $key) {
-                if (! preg_match('/^(.+)\[\*\]\.(.+)$/', $key, $matches)) {
+                if (!preg_match('/^(.+)\[\*\]\.(.+)$/', $key, $matches)) {
                     throw new InvalidArgumentException("Invalid list field syntax: '$key'. Expected format: 'field[*].subfield'");
                 }
 
@@ -469,7 +470,7 @@ class ViewDefinition
                 $subFields[] = self::createField($subKey);
             }
 
-            if (! $baseKey) {
+            if (!$baseKey) {
                 throw new InvalidArgumentException('No valid list fields provided');
             }
 
@@ -477,7 +478,7 @@ class ViewDefinition
                 'key' => $baseKey,
                 'label' => self::generateLabel($baseKey),
                 'type' => 'list',
-                'fields' => $subFields,
+                'fields' => $subFields
             ];
         }, $items);
     }
@@ -487,7 +488,7 @@ class ViewDefinition
         return [
             'key' => $key,
             'label' => self::generateLabel($key),
-            'type' => 'string',
+            'type' => 'string'
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Schemas\Query;
+namespace LCSEngine\Schemas\Query\LensSimpleFilter;
 
 use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Option;
@@ -72,7 +72,7 @@ class LensSimpleFilter
     public function removeOption(string $optionId): void
     {
         $this->options = $this->options->filter(
-            fn (Option $option) => $option->getId() !== $optionId
+            fn(Option $option) => $option->getId() !== $optionId
         )->values();
     }
 
@@ -91,7 +91,7 @@ class LensSimpleFilter
     public function removeDependsOn(string $dependency): void
     {
         $this->dependsOn = $this->dependsOn->filter(
-            fn (string $d) => $d !== $dependency
+            fn(string $d) => $d !== $dependency
         )->values();
     }
 
@@ -105,7 +105,7 @@ class LensSimpleFilter
         ];
 
         if ($this->options->isNotEmpty()) {
-            $data['options'] = $this->options->map(fn (Option $option) => $option->toArray())->toArray();
+            $data['options'] = $this->options->map(fn(Option $option) => $option->toArray())->toArray();
         }
 
         if ($this->dependsOn->isNotEmpty()) {
