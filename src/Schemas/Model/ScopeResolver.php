@@ -11,13 +11,10 @@ class ScopeResolver
 
     private string $currentModelName;
 
-    private ?string $currentViewName;
-
-    public function __construct(RegistryManager $registryManager, string $currentModelName, ?string $currentViewName)
+    public function __construct(RegistryManager $registryManager, string $currentModelName)
     {
         $this->registryManager = $registryManager;
         $this->currentModelName = $currentModelName;
-        $this->currentViewName = $currentViewName;
     }
 
     public function resolveScopes(array|string $scopes): array
@@ -31,7 +28,7 @@ class ScopeResolver
             return [
                 'op' => 'and',
                 'conditions' => array_map(
-                    fn ($scope) => $this->resolveSingleScope($scope),
+                    fn($scope) => $this->resolveSingleScope($scope),
                     $scopes
                 ),
             ];
@@ -66,16 +63,7 @@ class ScopeResolver
         $model = $this->registryManager->get('model', $this->currentModelName);
 
         if (! $model->getScopes()->has($scopeName)) {
-            if (isset($this->currentViewName)) {
-                $view = $this->registryManager->get('view', $this->currentViewName);
-                if (! $view->hasScope($scopeName)) {
-                    throw new InvalidArgumentException("Scope '$scopeName' not found on model or view '{$this->currentModelName}', '{$this->currentViewName}'");
-                }
-
-                return $view->getScope($scopeName);
-            } else {
-                throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModelName}'");
-            }
+            throw new InvalidArgumentException("Scope '$scopeName' not found on model '{$this->currentModelName}'");
         }
 
         return $model->getScope($scopeName)->toArray();
@@ -106,7 +94,7 @@ class ScopeResolver
         if (isset($filters['conditions'])) {
             foreach ($filters['conditions'] as &$condition) {
                 if (isset($condition['attribute'])) {
-                    $condition['attribute'] = $relation.'.'.$condition['attribute'];
+                    $condition['attribute'] = $relation . '.' . $condition['attribute'];
                 }
             }
         }

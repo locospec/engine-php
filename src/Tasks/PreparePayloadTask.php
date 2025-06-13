@@ -67,7 +67,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $preparedPayload = [
             'type' => 'select',
             'modelName' => $this->context->get('model')->getName(),
-            'viewName' => $this->context->get('view')->getName(),
         ];
 
         $hasDeleteKey = $this->context->get('model')->hasDeleteKey();
@@ -97,7 +96,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
-        $preparedPayload['scopes'] = $this->context->get('view')->getAllowedScopes();
+        $preparedPayload['scopes'] = $this->context->get('query')->getAllowedScopes()->toArray();
 
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $preparedPayload['expand'] = $payload['expand'];
@@ -210,7 +209,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            // $attributes = $this->context->get('model')->getAttributes()->map(fn($attribute) => $attribute->toArray())->all();
             $attributes = $this->context->get('model')->getAttributes()->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
@@ -236,7 +234,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -274,7 +272,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
-
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);
@@ -288,7 +285,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload = [
                 'type' => 'select',
                 'modelName' => $this->context->get('model')->getName(),
-                'viewName' => $this->context->get('view')->getName(),
             ];
 
             if (isset($payload['expand']) && ! empty($payload['expand'])) {

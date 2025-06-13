@@ -4,20 +4,20 @@ namespace LCSEngine\Database;
 
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
-use LCSEngine\Logger;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ContextResolver;
 use LCSEngine\Schemas\Model\Filters\FilterCleaner;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Filters\LogicalOperator;
-use LCSEngine\Schemas\Model\Filters\RelationshipExpander;
 use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
+use LCSEngine\Schemas\Model\Filters\RelationshipExpander;
 use LCSEngine\Schemas\Model\ScopeResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
+use LCSEngine\Logger;
 
 class DatabaseOperationsCollection
 {
@@ -101,9 +101,8 @@ class DatabaseOperationsCollection
                 'type' => 'dbOps',
                 'scopes' => $operation['scopes'],
             ]);
-            $viewName = isset($operation['viewName']) ? $operation['viewName'] : null;
 
-            $resolver = new ScopeResolver($this->registryManager, $operation['modelName'], $viewName);
+            $resolver = new ScopeResolver($this->registryManager, $operation['modelName']);
             $scopeFilters = $resolver->resolveScopes($operation['scopes']);
 
             $this->logger->info('Scopes resolved to filters', [
@@ -226,7 +225,7 @@ class DatabaseOperationsCollection
                 'errors' => $validation['errors'],
             ]);
             throw new RuntimeException(
-                'Invalid operation: '.json_encode($validation['errors'])
+                'Invalid operation: ' . json_encode($validation['errors'])
             );
         }
 

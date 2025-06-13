@@ -27,7 +27,8 @@ class RegistryManager
     private function registerDefaults(): void
     {
         $this->addRegistry(new ModelRegistry);
-        $this->addRegistry(new ViewRegistry);
+        $this->addRegistry(new QueryRegistry);
+
         $this->addRegistry(new MutatorRegistry);
         $this->addRegistry(new TaskRegistry);
         $this->addRegistry(new DatabaseDriverRegistry);

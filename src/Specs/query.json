@@ -62,7 +62,7 @@
       "items": {
         "type": "string"
       },
-      "description": "An array of scope names that should be applied on the view."
+      "description": "An array of scope names that should be applied on the query."
     },
     "actions": {
       "type": "object",
@@ -123,7 +123,7 @@
         }
       },
       "required": ["items"],
-      "description": "Configuration for row actions in the view"
+      "description": "Configuration for row actions in the query"
     },
     "serialize": {
       "type": "object",
@@ -142,7 +142,7 @@
       },
       "required": ["header"],
       "additionalProperties": false,
-      "description": "Configuration for row serialization in the view"
+      "description": "Configuration for row serialization in the query"
     },
     "entityLayout": {
       "type": "array",
