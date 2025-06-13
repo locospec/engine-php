@@ -96,7 +96,7 @@ test('can convert to array with default alignment', function () {
     $array = $config->toArray();
     expect($array)->toBe([
         'header' => 'Serial',
-        'align' => 'left',
+        "align" => "left"
     ]);
 });
 

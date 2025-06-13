@@ -35,7 +35,7 @@ class ColumnItem implements EntityLayoutItem
     {
         $result = [];
         if ($this->name !== null) {
-            $result[] = '@'.$this->name;
+            $result[] = '@' . $this->name;
         }
 
         $itemsArray = [];

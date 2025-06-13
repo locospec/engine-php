@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Generator;
 use LCSEngine\Schemas\Model\Attributes\GeneratorType;
 use LCSEngine\Schemas\Model\Attributes\OperationType;
+use Illuminate\Support\Collection;
 
 uses()->group('attributes');
 
