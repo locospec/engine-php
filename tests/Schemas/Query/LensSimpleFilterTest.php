@@ -4,8 +4,8 @@ namespace LCSEngine\Tests\Schemas\Query;
 
 use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Option;
-use LCSEngine\Schemas\Query\LensFilterType;
-use LCSEngine\Schemas\Query\LensSimpleFilter;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensFilterType;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensSimpleFilter;
 
 uses()->group('query');
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace LCSEngine\Tests\Schemas\Query;
+namespace LCSEngine\Tests\Schemas\Query\ActionConfig;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Schemas\Query\ActionConfig;
-use LCSEngine\Schemas\Query\ActionItem;
-use LCSEngine\Schemas\Query\ActionOption;
+use LCSEngine\Schemas\Query\ActionConfig\ActionConfig;
+use LCSEngine\Schemas\Query\ActionConfig\ActionItem;
+use LCSEngine\Schemas\Query\ActionConfig\ActionOption;
 
 uses()->group('query');
 

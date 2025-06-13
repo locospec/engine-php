@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Schemas\Query;
+namespace LCSEngine\Schemas\Query\ActionConfig;
 
 use Illuminate\Support\Collection;
 

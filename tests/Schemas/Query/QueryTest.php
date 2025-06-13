@@ -8,15 +8,15 @@ use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Attributes\Option;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Query\ActionConfig;
-use LCSEngine\Schemas\Query\ActionItem;
+use LCSEngine\Schemas\Query\ActionConfig\ActionConfig;
+use LCSEngine\Schemas\Query\ActionConfig\ActionItem;
 use LCSEngine\Schemas\Query\AlignType;
-use LCSEngine\Schemas\Query\ColumnItem;
-use LCSEngine\Schemas\Query\FieldItem;
-use LCSEngine\Schemas\Query\LensFilterType;
-use LCSEngine\Schemas\Query\LensSimpleFilter;
+use LCSEngine\Schemas\Query\EntityLayout\EntityLayoutBuilder;
+use LCSEngine\Schemas\Query\EntityLayout\Field;
+use LCSEngine\Schemas\Query\EntityLayout\Section;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensFilterType;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensSimpleFilter;
 use LCSEngine\Schemas\Query\Query;
-use LCSEngine\Schemas\Query\SectionItem;
 use LCSEngine\Schemas\Query\SelectionType;
 use LCSEngine\Schemas\Query\SerializeConfig;
 use LCSEngine\Schemas\Type;
@@ -201,14 +201,13 @@ test('can create Query from array with all properties', function () {
             'align' => 'right',
         ],
         'entityLayout' => [
-            'id',
             [
                 '$Personal Info',
-                ['@Basic Info', 'name', 'email'],
+                ['$Basic Info', 'name', 'email'],
             ],
             [
                 '$Address',
-                ['@Location', 'street', 'city', 'country'],
+                ['$Location', 'street', 'city', 'country'],
             ],
         ],
     ];
@@ -228,7 +227,7 @@ test('can create Query from array with all properties', function () {
 
     expect($query->getExpand())->toBeInstanceOf(Collection::class)->toHaveCount(2);
     expect($query->getAllowedScopes())->toBeInstanceOf(Collection::class)->toHaveCount(2);
-    expect($query->getEntityLayout())->toBeInstanceOf(Collection::class)->toHaveCount(3);
+    expect($query->getEntityLayout())->toBeInstanceOf(Collection::class)->toHaveCount(2);
     expect($query->getSerialize()->getHeader())->toBe('#');
     expect($query->getSerialize()->getAlign())->toBe(AlignType::RIGHT);
     expect($query->getActions()->getHeader())->toBe('Actions');
@@ -343,21 +342,31 @@ test('can set and get selection type and key', function () {
 test('can add entity layout items', function () {
     $initialAttributes = ['id', 'name', 'email', 'street', 'city', 'country'];
     $query = new Query('users', 'User List', $initialAttributes, $this->mockModel);
+    $builder = new EntityLayoutBuilder;
 
-    $query->addEntityLayoutItem(new FieldItem('id'));
+    $builder->addSection(
+        (new Section('Personal Info'))
+            ->addField(new Field('id', 'ID'))
+            ->addField(new Field('name', 'Name'))
+    );
+
+    $query->setEntityLayout($builder->getSections());
+
     expect($query->getEntityLayout())->toHaveCount(1);
 
-    $section = new SectionItem('Personal Info');
-    $column = new ColumnItem('Basic Info');
-    $column->addItem(new FieldItem('name'));
-    $column->addItem(new FieldItem('email'));
-    $section->addColumn($column);
-    $query->addEntityLayoutItem($section);
+    $builder->addSection(
+        (new Section('Location Info'))
+            ->addField(new Field('city', 'City'))
+            ->addField(new Field('country', 'Country'))
+    );
+
+    $query->setEntityLayout($builder->getSections());
+
     expect($query->getEntityLayout())->toHaveCount(2);
 
-    $query->removeEntityLayoutItem(new FieldItem('id'));
-    expect($query->getEntityLayout())->toHaveCount(1);
-    expect($query->getEntityLayout()->first())->toBeInstanceOf(SectionItem::class);
+    $firstSection = $query->getEntityLayout()->first();
+    expect($firstSection->getLabel())->toBe('Personal Info')
+        ->and($firstSection->getFields())->toHaveCount(2);
 });
 
 test('query toArray method returns correct array structure', function () {
@@ -384,12 +393,15 @@ test('query toArray method returns correct array structure', function () {
     $serializeConfig->setAlign(AlignType::CENTER);
     $query->setSerialize($serializeConfig);
 
-    $query->addEntityLayoutItem(new FieldItem('name'));
-    $section = new SectionItem('Contact');
-    $column = new ColumnItem('Details');
-    $column->addItem(new FieldItem('email'));
-    $section->addColumn($column);
-    $query->addEntityLayoutItem($section);
+    $builder = new EntityLayoutBuilder;
+
+    $builder->addSection(
+        (new Section('Contact'))
+            ->addField(new Field('email', 'Email'))
+            ->addField(new Field('name', 'Name'))
+    );
+
+    $query->setEntityLayout($builder->getSections());
 
     $expectedArray = [
         'name' => 'users',
@@ -431,10 +443,20 @@ test('query toArray method returns correct array structure', function () {
             'align' => 'center',
         ],
         'entityLayout' => [
-            'name',
             [
-                '$Contact',
-                ['@Details', 'email'],
+                'section' => 'Contact',
+                'fields' => [
+                    [
+                        'key' => 'email',
+                        'label' => 'Email',
+                        'type' => 'string',
+                    ],
+                    [
+                        'key' => 'name',
+                        'label' => 'Name',
+                        'type' => 'string',
+                    ],
+                ],
             ],
         ],
     ];

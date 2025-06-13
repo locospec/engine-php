@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Schemas\Query;
+namespace LCSEngine\Schemas\Query\LensSimpleFilter;
 
 use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Option;

@@ -6,6 +6,11 @@ use Illuminate\Support\Collection;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Query\ActionConfig\ActionConfig;
+use LCSEngine\Schemas\Query\ActionConfig\ActionItem;
+use LCSEngine\Schemas\Query\ActionConfig\ActionOption;
+use LCSEngine\Schemas\Query\EntityLayout\EntityLayoutBuilder;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensSimpleFilter;
 use LCSEngine\Schemas\Type;
 
 class Query
@@ -226,23 +231,9 @@ class Query
         return $this->selectionType;
     }
 
-    public function addEntityLayoutItem(EntityLayoutItem $item): void
+    public function setEntityLayout(Collection $layout): void
     {
-        $this->entityLayout->push($item);
-    }
-
-    public function removeEntityLayoutItem(EntityLayoutItem $itemToRemove): void
-    {
-        $this->entityLayout = $this->entityLayout->reject(function ($item) use ($itemToRemove) {
-            // Compare based on class and relevant properties (e.g., field for FieldItem, header for SectionItem)
-            if ($item instanceof FieldItem && $itemToRemove instanceof FieldItem) {
-                return $item->getField() === $itemToRemove->getField();
-            } elseif ($item instanceof SectionItem && $itemToRemove instanceof SectionItem) {
-                return $item->getHeader() === $itemToRemove->getHeader();
-            }
-
-            return false;
-        })->values();
+        $this->entityLayout = $layout;
     }
 
     public function getEntityLayout(): Collection
@@ -268,75 +259,6 @@ class Query
     public function getSerialize(): ?SerializeConfig
     {
         return $this->serialize;
-    }
-
-    private static function parseEntityLayoutItem(array|string $itemData): ?EntityLayoutItem
-    {
-        if (is_string($itemData)) {
-            return new FieldItem($itemData);
-        }
-
-        if (is_array($itemData)) {
-            $firstElement = $itemData[0] ?? null;
-
-            if (is_string($firstElement)) {
-                if (str_starts_with($firstElement, '$')) {
-                    // SectionItem
-                    $header = substr($firstElement, 1);
-                    $section = new SectionItem($header);
-                    for ($i = 1; $i < count($itemData); $i++) {
-                        $subItem = self::parseEntityLayoutItem($itemData[$i]);
-                        if ($subItem instanceof ColumnItem) {
-                            $section->addColumn($subItem);
-                        } elseif ($subItem instanceof FieldItem || $subItem instanceof SectionItem) {
-                            // If a FieldItem or SectionItem is found directly under a SectionItem,
-                            // it implies an unnamed column containing this item.
-                            $unnamedColumn = new ColumnItem;
-                            $unnamedColumn->addItem($subItem);
-                            $section->addColumn($unnamedColumn);
-                        }
-                    }
-
-                    return $section;
-                } elseif (str_starts_with($firstElement, '@')) {
-                    // Named ColumnItem
-                    $header = substr($firstElement, 1);
-                    $column = new ColumnItem($header);
-                    for ($i = 1; $i < count($itemData); $i++) {
-                        $subItem = self::parseEntityLayoutItem($itemData[$i]);
-                        if ($subItem) {
-                            $column->addItem($subItem);
-                        }
-                    }
-
-                    return $column;
-                } else {
-                    // Unnamed ColumnItem (array of fields or nested items)
-                    $column = new ColumnItem;
-                    foreach ($itemData as $subItem) {
-                        $parsedSubItem = self::parseEntityLayoutItem($subItem);
-                        if ($parsedSubItem) {
-                            $column->addItem($parsedSubItem);
-                        }
-                    }
-
-                    return $column;
-                }
-            } else {
-                // If the first element is not a string (e.g., empty array or another array), treat as unnamed column
-                $column = new ColumnItem;
-                foreach ($itemData as $subItem) {
-                    $parsedSubItem = self::parseEntityLayoutItem($subItem);
-                    if ($parsedSubItem) {
-                        $column->addItem($parsedSubItem);
-                    }
-                }
-
-                return $column;
-            }
-        }
-
-        return null; // Should not happen with valid input
     }
 
     public static function generateLensFilter(array $data, Model $model, RegistryManager $registryManager): array
@@ -450,15 +372,9 @@ class Query
         }
 
         if ($this->entityLayout->isNotEmpty()) {
-            $data['entityLayout'] = $this->entityLayout->map(function ($item) {
-                $result = $item->toArray();
-                // If it's a FieldItem, return just the field string
-                if ($item instanceof FieldItem) {
-                    return $result[0];
-                }
-
-                return $result;
-            })->toArray();
+            $data['entityLayout'] = $this->entityLayout->map(
+                fn ($section) => $section->toArray()
+            )->all();
         }
 
         return $data;
@@ -523,12 +439,8 @@ class Query
         }
 
         if (isset($data['entityLayout'])) {
-            foreach ($data['entityLayout'] as $itemData) {
-                $parsedItem = self::parseEntityLayoutItem($itemData);
-                if ($parsedItem) {
-                    $query->addEntityLayoutItem($parsedItem);
-                }
-            }
+            $layoutBuilder = EntityLayoutBuilder::fromShorthand($data['entityLayout']);
+            $query->entityLayout = $layoutBuilder->getSections();
         }
 
         return $query;
