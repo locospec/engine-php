@@ -8,10 +8,15 @@ use LCSEngine\Schemas\Model\Attributes\Option;
 class LensSimpleFilter
 {
     private LensFilterType $type;
+
     private string $model;
+
     private string $name;
+
     private string $label;
+
     private Collection $options;
+
     private Collection $dependsOn;
 
     public function __construct(string $name, string $type, string $modelName)
@@ -20,8 +25,8 @@ class LensSimpleFilter
         $this->type = LensFilterType::from($type);
         $this->model = $modelName;
         $this->label = $name;
-        $this->options = new Collection();
-        $this->dependsOn = new Collection();
+        $this->options = new Collection;
+        $this->dependsOn = new Collection;
     }
 
     public function setType(LensFilterType $type): void
@@ -67,7 +72,7 @@ class LensSimpleFilter
     public function removeOption(string $optionId): void
     {
         $this->options = $this->options->filter(
-            fn(Option $option) => $option->getId() !== $optionId
+            fn (Option $option) => $option->getId() !== $optionId
         )->values();
     }
 
@@ -78,7 +83,7 @@ class LensSimpleFilter
 
     public function addDependsOn(string $dependency): void
     {
-        if (!$this->dependsOn->contains($dependency)) {
+        if (! $this->dependsOn->contains($dependency)) {
             $this->dependsOn->push($dependency);
         }
     }
@@ -86,7 +91,7 @@ class LensSimpleFilter
     public function removeDependsOn(string $dependency): void
     {
         $this->dependsOn = $this->dependsOn->filter(
-            fn(string $d) => $d !== $dependency
+            fn (string $d) => $d !== $dependency
         )->values();
     }
 
@@ -100,7 +105,7 @@ class LensSimpleFilter
         ];
 
         if ($this->options->isNotEmpty()) {
-            $data['options'] = $this->options->map(fn(Option $option) => $option->toArray())->toArray();
+            $data['options'] = $this->options->map(fn (Option $option) => $option->toArray())->toArray();
         }
 
         if ($this->dependsOn->isNotEmpty()) {

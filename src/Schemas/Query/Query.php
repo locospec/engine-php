@@ -3,35 +3,37 @@
 namespace LCSEngine\Schemas\Query;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Schemas\Type;
-use LCSEngine\Schemas\Query\ActionConfig;
-use LCSEngine\Schemas\Query\ActionItem;
-use LCSEngine\Schemas\Query\ActionOption;
-use LCSEngine\Schemas\Query\ColumnItem;
-use LCSEngine\Schemas\Query\EntityLayoutItem;
-use LCSEngine\Schemas\Query\FieldItem;
-use LCSEngine\Schemas\Query\SectionItem;
-use LCSEngine\Schemas\Query\SelectionType;
-use LCSEngine\Schemas\Query\SerializeConfig;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Query\LensSimpleFilter;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 
 class Query
 {
     private string $name;
+
     private string $label;
+
     private Type $type;
+
     private string $model;
+
     private Collection $attributes;
+
     private Collection $lensSimpleFilters;
+
     private Collection $expand;
+
     private Collection $allowedScopes;
+
     private ?string $selectionKey;
+
     private SelectionType $selectionType;
+
     private ?ActionConfig $actions;
+
     private ?SerializeConfig $serialize;
+
     private Collection $entityLayout;
 
     public function __construct(
@@ -44,15 +46,15 @@ class Query
         $this->label = $label;
         $this->type = Type::QUERY;
         $this->model = $model->getName();
-        $this->attributes = new Collection();
-        $this->lensSimpleFilters = new Collection();
-        $this->expand = new Collection();
-        $this->allowedScopes = new Collection();
+        $this->attributes = new Collection;
+        $this->lensSimpleFilters = new Collection;
+        $this->expand = new Collection;
+        $this->allowedScopes = new Collection;
         $this->selectionKey = null;
         $this->selectionType = SelectionType::NONE;
         $this->actions = null;
         $this->serialize = null;
-        $this->entityLayout = new Collection();
+        $this->entityLayout = new Collection;
 
         // Validate and set attributes
         $this->setAndValidateAttributes($attributeNames, $model);
@@ -61,8 +63,8 @@ class Query
     private function setAndValidateAttributes(array $attributeNames, Model $model): void
     {
         $modelAttributes = $model->getAttributes();
-        $resolvedAttributes = new Collection();
-        $invalidAttributeNames = new Collection();
+        $resolvedAttributes = new Collection;
+        $invalidAttributeNames = new Collection;
 
         foreach ($attributeNames as $attributeName) {
             if ($modelAttributes->has($attributeName)) {
@@ -74,7 +76,7 @@ class Query
 
         if ($invalidAttributeNames->isNotEmpty()) {
             throw new \InvalidArgumentException(
-                "Invalid attributes for model '{$this->model}': " .
+                "Invalid attributes for model '{$this->model}': ".
                     $invalidAttributeNames->implode(', ')
             );
         }
@@ -104,14 +106,14 @@ class Query
 
     public function addAttribute(string $attributeName, Model $model): void
     {
-        if (!$model->getAttributes()->has($attributeName)) {
+        if (! $model->getAttributes()->has($attributeName)) {
             throw new \InvalidArgumentException(
                 "Attribute '{$attributeName}' not found in model '{$this->model}'"
             );
         }
 
         // Check if the attribute (by name) is already in the collection
-        if (!$this->attributes->has($attributeName)) {
+        if (! $this->attributes->has($attributeName)) {
             $this->attributes->put($attributeName, $model->getAttributes()->get($attributeName));
         }
     }
@@ -149,7 +151,7 @@ class Query
     public function removeExpand(string $field): void
     {
         $this->expand = $this->expand->filter(
-            fn(string $f) => $f !== $field
+            fn (string $f) => $f !== $field
         )->values();
     }
 
@@ -160,13 +162,13 @@ class Query
 
     public function addAllowedScope(string $scopeName, Model $model): void
     {
-        if (!$model->getScopes()->has($scopeName)) {
+        if (! $model->getScopes()->has($scopeName)) {
             throw new \InvalidArgumentException(
                 "Scope '{$scopeName}' not found in model '{$model->getName()}'"
             );
         }
 
-        if (!$this->allowedScopes->contains($scopeName)) {
+        if (! $this->allowedScopes->contains($scopeName)) {
             $this->allowedScopes->push($scopeName);
         }
     }
@@ -174,7 +176,7 @@ class Query
     public function removeAllowedScope(string $scopeName): void
     {
         $this->allowedScopes = $this->allowedScopes->filter(
-            fn(string $f) => $f !== $scopeName
+            fn (string $f) => $f !== $scopeName
         )->values();
     }
 
@@ -186,17 +188,17 @@ class Query
     private function setAndValidateScopes(array $scopeNames, Model $model): void
     {
         $modelScopes = $model->getScopes();
-        $invalidScopes = new Collection();
+        $invalidScopes = new Collection;
 
         foreach ($scopeNames as $scopeName) {
-            if (!$modelScopes->has($scopeName)) {
+            if (! $modelScopes->has($scopeName)) {
                 $invalidScopes->push($scopeName);
             }
         }
 
         if ($invalidScopes->isNotEmpty()) {
             throw new \InvalidArgumentException(
-                "Invalid scopes for model '{$model->getName()}': " .
+                "Invalid scopes for model '{$model->getName()}': ".
                     $invalidScopes->implode(', ')
             );
         }
@@ -238,6 +240,7 @@ class Query
             } elseif ($item instanceof SectionItem && $itemToRemove instanceof SectionItem) {
                 return $item->getHeader() === $itemToRemove->getHeader();
             }
+
             return false;
         })->values();
     }
@@ -288,11 +291,12 @@ class Query
                         } elseif ($subItem instanceof FieldItem || $subItem instanceof SectionItem) {
                             // If a FieldItem or SectionItem is found directly under a SectionItem,
                             // it implies an unnamed column containing this item.
-                            $unnamedColumn = new ColumnItem();
+                            $unnamedColumn = new ColumnItem;
                             $unnamedColumn->addItem($subItem);
                             $section->addColumn($unnamedColumn);
                         }
                     }
+
                     return $section;
                 } elseif (str_starts_with($firstElement, '@')) {
                     // Named ColumnItem
@@ -304,27 +308,30 @@ class Query
                             $column->addItem($subItem);
                         }
                     }
+
                     return $column;
                 } else {
                     // Unnamed ColumnItem (array of fields or nested items)
-                    $column = new ColumnItem();
+                    $column = new ColumnItem;
                     foreach ($itemData as $subItem) {
                         $parsedSubItem = self::parseEntityLayoutItem($subItem);
                         if ($parsedSubItem) {
                             $column->addItem($parsedSubItem);
                         }
                     }
+
                     return $column;
                 }
             } else {
                 // If the first element is not a string (e.g., empty array or another array), treat as unnamed column
-                $column = new ColumnItem();
+                $column = new ColumnItem;
                 foreach ($itemData as $subItem) {
                     $parsedSubItem = self::parseEntityLayoutItem($subItem);
                     if ($parsedSubItem) {
                         $column->addItem($parsedSubItem);
                     }
                 }
+
                 return $column;
             }
         }
@@ -338,32 +345,32 @@ class Query
 
         foreach ($data as $filter) {
             // 1) split on "-" to detect dependencies
-            $parts    = explode('-', $filter);
-            $hasDeps  = count($parts) > 1;
-            $depends  = $hasDeps ? array_slice($parts, 0, -1) : [];
-            $key      = $hasDeps ? end($parts) : $filter;
+            $parts = explode('-', $filter);
+            $hasDeps = count($parts) > 1;
+            $depends = $hasDeps ? array_slice($parts, 0, -1) : [];
+            $key = $hasDeps ? end($parts) : $filter;
 
             // 2) split on "." to see if this lives on a related model
-            $path     = explode('.', $key);
+            $path = explode('.', $key);
             if (count($path) > 1) {
                 // related-model case
                 $relatedName = $path[count($path) - 2];
-                $related     = $registryManager->get('model', $relatedName);
+                $related = $registryManager->get('model', $relatedName);
 
-                $type    = 'enum';
+                $type = 'enum';
                 $modelId = $related ? $related->getName() : $relatedName;
-                $label   = $related ? $related->getLabel() : ucfirst($relatedName);
+                $label = $related ? $related->getLabel() : ucfirst($relatedName);
 
                 $options = null;
             } else {
                 // same-model case
-                $attr    = $model->getAttribute($key);
-                $type    = $attr->getType()->value === 'timestamp' ? 'date' : 'enum';
+                $attr = $model->getAttribute($key);
+                $type = $attr->getType()->value === 'timestamp' ? 'date' : 'enum';
                 $modelId = $model->getName();
 
                 $opts = $attr->getOptions();
-                $options = !$opts->isEmpty()
-                    ? $opts->map(fn($o) => $o->toArray())->all()
+                $options = ! $opts->isEmpty()
+                    ? $opts->map(fn ($o) => $o->toArray())->all()
                     : null;
 
                 $label = $model->getLabel() !== null
@@ -373,12 +380,12 @@ class Query
 
             // 3) assemble and drop nulls
             $lensSimpleFilters[$key] = array_filter([
-                'type'      => $type,
-                'model'     => $modelId,
-                'label'     => $label,
-                'options'   => $options,
+                'type' => $type,
+                'model' => $modelId,
+                'label' => $label,
+                'options' => $options,
                 'dependsOn' => $depends ?: null,
-            ], fn($v) => $v !== null);
+            ], fn ($v) => $v !== null);
         }
 
         return $lensSimpleFilters;
@@ -391,12 +398,12 @@ class Query
             'label' => $this->label,
             'type' => $this->type->value,
             'model' => $this->model,
-            'attributes' => $this->attributes->map(fn(Attribute $attribute) => $attribute->toArray())->all(),
-            'lensSimpleFilters' => $this->lensSimpleFilters->map(fn(LensSimpleFilter $lensFilter) => $lensFilter->toArray())->all(),
+            'attributes' => $this->attributes->map(fn (Attribute $attribute) => $attribute->toArray())->all(),
+            'lensSimpleFilters' => $this->lensSimpleFilters->map(fn (LensSimpleFilter $lensFilter) => $lensFilter->toArray())->all(),
             'expand' => $this->expand->toArray(),
             'allowedScopes' => $this->allowedScopes->toArray(),
             'selectionType' => $this->selectionType->value,
-            'selectionKey' => $this->selectionKey
+            'selectionKey' => $this->selectionKey,
         ];
 
         if ($this->actions !== null) {
@@ -438,7 +445,7 @@ class Query
         if ($this->serialize !== null) {
             $data['serialize'] = [
                 'header' => $this->serialize->getHeader(),
-                'align' => $this->serialize->getAlign()->value
+                'align' => $this->serialize->getAlign()->value,
             ];
         }
 
@@ -449,6 +456,7 @@ class Query
                 if ($item instanceof FieldItem) {
                     return $result[0];
                 }
+
                 return $result;
             })->toArray();
         }
@@ -464,14 +472,14 @@ class Query
         $attributes = $data['attributes'] ?? [];
 
         $model = $registryManager->get('model', $modelName);
-        if (!$model instanceof Model) {
+        if (! $model instanceof Model) {
             throw new \InvalidArgumentException("Model '{$modelName}' not found in registry");
         }
 
         $query = new self($name, $label, $attributes, $model);
 
         if (isset($data['lensSimpleFilters'])) {
-            $query->lensSimpleFilters = new Collection();
+            $query->lensSimpleFilters = new Collection;
             // Check if it's a shorthand array format
             if (is_array($data['lensSimpleFilters']) && array_is_list($data['lensSimpleFilters'])) {
                 $generatedFilters = self::generateLensFilter($data['lensSimpleFilters'], $model, $registryManager);

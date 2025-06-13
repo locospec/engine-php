@@ -36,12 +36,12 @@ test('can set and get type', function () {
 test('can add and remove options', function () {
     $filter = new LensSimpleFilter('status', LensFilterType::ENUM->value, 'user');
 
-    $option1 = new Option();
+    $option1 = new Option;
     $option1->setId('active');
     $option1->setConst('ACTIVE');
     $option1->setTitle('Active');
 
-    $option2 = new Option();
+    $option2 = new Option;
     $option2->setId('pending');
     $option2->setConst('PENDING');
     $option2->setTitle('Pending');
@@ -51,11 +51,11 @@ test('can add and remove options', function () {
 
     expect($filter->getOptions())->toHaveCount(2);
     expect($filter->getOptions()->first())->toBeInstanceOf(Option::class);
-    expect($filter->getOptions()->map(fn($o) => $o->getId())->toArray())->toEqual(['active', 'pending']);
+    expect($filter->getOptions()->map(fn ($o) => $o->getId())->toArray())->toEqual(['active', 'pending']);
 
     $filter->removeOption('active');
     expect($filter->getOptions())->toHaveCount(1);
-    expect($filter->getOptions()->map(fn($o) => $o->getId())->toArray())->toEqual(['pending']);
+    expect($filter->getOptions()->map(fn ($o) => $o->getId())->toArray())->toEqual(['pending']);
 });
 
 test('can add and remove dependencies', function () {
@@ -77,7 +77,7 @@ test('toArray method returns correct array structure', function () {
     $filter = new LensSimpleFilter('status', LensFilterType::ENUM->value, 'user');
     $filter->setLabel('User Status');
 
-    $option1 = new Option();
+    $option1 = new Option;
     $option1->setId('active');
     $option1->setConst('ACTIVE');
     $option1->setTitle('Active');

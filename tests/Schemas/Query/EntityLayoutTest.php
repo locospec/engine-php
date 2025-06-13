@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Collection;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Query\ColumnItem;
 use LCSEngine\Schemas\Query\FieldItem;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Query\SectionItem;
-use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Attributes\Attribute;
 use Mockery;
 
 uses()->group('query');
@@ -28,10 +28,10 @@ beforeEach(function () {
         'contact',
         'created_at',
         'updated_at',
-        'meta'
+        'meta',
     ]);
 
-    $mockAttributesCollection = new Collection();
+    $mockAttributesCollection = new Collection;
     foreach ($this->mockAllPossibleAttributes as $attributeName) {
         $mockAttribute = Mockery::mock(Attribute::class);
         $mockAttribute->shouldReceive('getName')->andReturn($attributeName);
@@ -41,7 +41,7 @@ beforeEach(function () {
 
     $this->mockModel = Mockery::mock(Model::class);
     $this->mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
-    $this->mockModel->shouldReceive('getName')->andReturn("test_model");
+    $this->mockModel->shouldReceive('getName')->andReturn('test_model');
 
     $this->mockRegistryManager = Mockery::mock(RegistryManager::class);
     $this->mockRegistryManager->shouldReceive('get')
@@ -61,20 +61,20 @@ test('can create entity layout with simple fields', function () {
 
     expect($data['attributes'])->toEqual([
         'listing_id' => [
-            'name' => 'listing_id'
+            'name' => 'listing_id',
         ],
         'property_id' => [
-            'name' => 'property_id'
+            'name' => 'property_id',
         ],
         'owner_type' => [
-            'name' => 'owner_type'
-        ]
+            'name' => 'owner_type',
+        ],
     ]);
 
     expect($data['entityLayout'])->toBe([
         'listing_id',
         'property_id',
-        'owner_type'
+        'owner_type',
     ]);
 });
 
@@ -104,8 +104,8 @@ test('can create entity layout with sections and columns', function () {
         [
             '$Financials',
             ['@Prices', 'reserve_price', 'emd_amount'],
-            ['@Deadlines', 'emd_last_date']
-        ]
+            ['@Deadlines', 'emd_last_date'],
+        ],
     ]);
 });
 
@@ -124,7 +124,7 @@ test('can create entity layout with mixed named and unnamed columns', function (
     $locationSection->addColumn($addressColumn);
 
     // Create unnamed column
-    $unnamedColumn = new ColumnItem();
+    $unnamedColumn = new ColumnItem;
     $unnamedColumn->addItem(new FieldItem('bank_name'));
     $unnamedColumn->addItem(new FieldItem('bank_branch_name'));
     $unnamedColumn->addItem(new FieldItem('contact'));
@@ -140,14 +140,14 @@ test('can create entity layout with mixed named and unnamed columns', function (
         'locality' => ['name' => 'locality'],
         'bank_name' => ['name' => 'bank_name'],
         'bank_branch_name' => ['name' => 'bank_branch_name'],
-        'contact' => ['name' => 'contact']
+        'contact' => ['name' => 'contact'],
     ]);
     expect($data['entityLayout'])->toEqual([
         [
             '$Location & Contact',
             ['@Address', 'address', 'city_name', 'locality.name'],
-            ['bank_name', 'bank_branch_name', 'contact']
-        ]
+            ['bank_name', 'bank_branch_name', 'contact'],
+        ],
     ]);
 });
 
@@ -180,7 +180,7 @@ test('can create entity layout with nested sections', function () {
     expect($data['attributes'])->toEqual([
         'created_at' => ['name' => 'created_at'],
         'updated_at' => ['name' => 'updated_at'],
-        'meta' => ['name' => 'meta']
+        'meta' => ['name' => 'meta'],
     ]);
     expect($data['entityLayout'])->toEqual([
         [
@@ -189,11 +189,11 @@ test('can create entity layout with nested sections', function () {
                 '@Details',
                 [
                     '$Timestamps',
-                    ['@Times', 'created_at', 'updated_at']
+                    ['@Times', 'created_at', 'updated_at'],
                 ],
-                'meta.someFlag'
-            ]
-        ]
+                'meta.someFlag',
+            ],
+        ],
     ]);
 });
 
@@ -215,7 +215,7 @@ test('can create entity layout from array', function () {
             'locality',
             'bank_name',
             'bank_branch_name',
-            'contact'
+            'contact',
         ],
         'entityLayout' => [
             'listing_id',
@@ -223,14 +223,14 @@ test('can create entity layout from array', function () {
             [
                 '$Financials',
                 ['@Prices', 'reserve_price', 'emd_amount'],
-                ['@Deadlines', 'emd_last_date']
+                ['@Deadlines', 'emd_last_date'],
             ],
             [
                 '$Location & Contact',
                 ['@Address', 'address', 'city_name', 'locality.name'],
-                ['bank_name', 'bank_branch_name', 'contact']
-            ]
-        ]
+                ['bank_name', 'bank_branch_name', 'contact'],
+            ],
+        ],
     ];
 
     $query = Query::fromArray($data, $this->mockRegistryManager);
@@ -248,7 +248,7 @@ test('can create entity layout from array', function () {
         'locality' => ['name' => 'locality'],
         'bank_name' => ['name' => 'bank_name'],
         'bank_branch_name' => ['name' => 'bank_branch_name'],
-        'contact' => ['name' => 'contact']
+        'contact' => ['name' => 'contact'],
     ]);
     expect($result['entityLayout'])->toEqual($data['entityLayout']);
 });
