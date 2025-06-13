@@ -9,4 +9,4 @@ enum ValidatorType: string
     case EXISTS = 'exists';
     case EMAIL = 'email';
     // regex pattern
-} 
+}

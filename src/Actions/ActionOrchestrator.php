@@ -15,10 +15,10 @@ use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Type;
+use LCSEngine\StateMachine\StateFlowPacket;
 
 class ActionOrchestrator
 {
@@ -48,7 +48,7 @@ class ActionOrchestrator
         }
 
         $modelName = in_array($data->getType(), ['mutator']) || $data->getType() === Type::QUERY ? $data->getModelName() : $specName;
-        $queryName = $data->getType() === Type::MODEL ? (isset($input['query']) ? $input['query'] : $data->getName() . '_default_query') : (in_array($data->getType(), ['mutator']) ? $data->getModelName() . '_default_query' : $specName);
+        $queryName = $data->getType() === Type::MODEL ? (isset($input['query']) ? $input['query'] : $data->getName().'_default_query') : (in_array($data->getType(), ['mutator']) ? $data->getModelName().'_default_query' : $specName);
 
         $model = $this->lcs->getRegistryManager()->get('model', $modelName);
         $query = $this->lcs->getRegistryManager()->get('query', $queryName);

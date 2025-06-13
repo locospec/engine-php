@@ -2,10 +2,10 @@
 
 namespace LCSEngine\Tasks;
 
+use Illuminate\Support\Collection;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\StateMachine\ContextInterface;
-use Illuminate\Support\Collection;
 
 abstract class AbstractTask implements TaskInterface
 {

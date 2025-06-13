@@ -7,10 +7,10 @@ use LCSEngine\LCS;
 use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\StateMachine\Context;
-use LCSEngine\StateMachine\StateFlowPacket;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Query\Query;
+use LCSEngine\StateMachine\Context;
+use LCSEngine\StateMachine\StateFlowPacket;
 
 abstract class ModelAction
 {
@@ -27,7 +27,9 @@ abstract class ModelAction
     protected StateMachineFactory $stateMachineFactory;
 
     protected LCS $lcs;
+
     protected GeneratorInterface $generator;
+
     protected ValidatorInterface $crudValidator;
 
     public function __construct(
