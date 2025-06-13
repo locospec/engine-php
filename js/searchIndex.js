@@ -3876,6 +3876,131 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-FieldItem.html#property_field"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType",
+            "name": "LensFilterType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType\u003A\u003AENUM",
+            "name": "ENUM",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html#enumcase_ENUM"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensFilterType\u003A\u003ADATE",
+            "name": "DATE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensFilterType.html#enumcase_DATE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter",
+            "name": "LensSimpleFilter",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AsetType\u0028\u0029",
+            "name": "setType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_setType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetModel\u0028\u0029",
+            "name": "getModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getModel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AsetLabel\u0028\u0029",
+            "name": "setLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_setLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getOptions"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AaddOption\u0028\u0029",
+            "name": "addOption",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_addOption"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AremoveOption\u0028\u0029",
+            "name": "removeOption",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_removeOption"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AgetDependsOn\u0028\u0029",
+            "name": "getDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_getDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AaddDependsOn\u0028\u0029",
+            "name": "addDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_addDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AremoveDependsOn\u0028\u0029",
+            "name": "removeDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_removeDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_model"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024options",
+            "name": "options",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_options"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\LensSimpleFilter\u003A\u003A\u0024dependsOn",
+            "name": "dependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-LensSimpleFilter.html#property_dependsOn"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query",
             "name": "Query",
             "summary": "",
@@ -4036,6 +4161,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#method_parseEntityLayoutItem"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AgenerateLensFilter\u0028\u0029",
+            "name": "generateLensFilter",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-Query.html#method_generateLensFilter"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
@@ -4110,11 +4240,6 @@ Search.appendIndex(
             "name": "entityLayout",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-Query.html#property_entityLayout"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Query\\Query\u003A\u003A\u0024registryManager",
-            "name": "registryManager",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Query-Query.html#property_registryManager"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\SectionItem",
             "name": "SectionItem",
@@ -5360,6 +5485,11 @@ Search.appendIndex(
             "name": "generateLensFilter",
             "summary": "",
             "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateLensFilter"
+        },                {
+            "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AgenerateLensFilter2\u0028\u0029",
+            "name": "generateLensFilter2",
+            "summary": "",
+            "url": "classes/LCSEngine-Views-ViewDefinition.html#method_generateLensFilter2"
         },                {
             "fqsen": "\\LCSEngine\\Views\\ViewDefinition\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
