@@ -2,7 +2,9 @@
 
 namespace LCSEngine\Tests\Schemas\Model\Filters;
 
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Attributes\Type;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ComparisonOperator;
 use LCSEngine\Schemas\Model\Filters\Filters;
@@ -14,11 +16,11 @@ test('resolve aliases in condition', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'source' => 'users.name',
+            'source' => 'users.name'
         ]),
         'user_email' => Attribute::fromArray('user_email', [
             'type' => 'alias',
-            'source' => 'users.email',
+            'source' => 'users.email'
         ]),
     ]);
 
@@ -39,11 +41,11 @@ test('resolve aliases in filter group', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'source' => 'users.name',
+            'source' => 'users.name'
         ]),
         'user_email' => Attribute::fromArray('user_email', [
             'type' => 'alias',
-            'source' => 'users.email',
+            'source' => 'users.email'
         ]),
     ]);
 
@@ -69,15 +71,15 @@ test('resolve aliases in nested groups', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'source' => 'users.name',
+            'source' => 'users.name'
         ]),
         'user_email' => Attribute::fromArray('user_email', [
             'type' => 'alias',
-            'source' => 'users.email',
+            'source' => 'users.email'
         ]),
         'user_role' => Attribute::fromArray('user_role', [
             'type' => 'alias',
-            'source' => 'users.role',
+            'source' => 'users.role'
         ]),
     ]);
 
@@ -108,11 +110,11 @@ test('resolve aliases in primitive filter set', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'source' => 'users.name',
+            'source' => 'users.name'
         ]),
         'user_email' => Attribute::fromArray('user_email', [
             'type' => 'alias',
-            'source' => 'users.email',
+            'source' => 'users.email'
         ]),
     ]);
 
@@ -138,7 +140,7 @@ test('keep non-aliased attributes unchanged', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'source' => 'users.name',
+            'source' => 'users.name'
         ]),
     ]);
 
@@ -159,7 +161,7 @@ test('handle aliases without source', function () {
     $aliases = collect([
         'user_name' => Attribute::fromArray('user_name', [
             'type' => 'alias',
-            'transform' => 'uppercase',
+            'transform' => 'uppercase'
         ]),
     ]);
 

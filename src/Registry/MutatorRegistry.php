@@ -6,7 +6,7 @@ namespace LCSEngine\Registry;
  * MutatorRegistry manages the registration of mutators.
  *
  * This class extends AbstractRegistry to provide specific functionality for managing
- * mutator definitions. It maintains a graph representation
+ * mutator It maintains a graph representation
  * of model relationships that can be used for analysis and traversal.
  */
 class MutatorRegistry extends AbstractRegistry

@@ -3,24 +3,24 @@
 namespace LCSEngine\Tests\Schemas\Query;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Model\Attributes\Option;
-use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
-use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 use LCSEngine\Schemas\Query\ActionConfig\ActionConfig;
 use LCSEngine\Schemas\Query\ActionConfig\ActionItem;
 use LCSEngine\Schemas\Query\AlignType;
-use LCSEngine\Schemas\Query\EntityLayout\EntityLayoutBuilder;
-use LCSEngine\Schemas\Query\EntityLayout\Field;
-use LCSEngine\Schemas\Query\EntityLayout\Section;
-use LCSEngine\Schemas\Query\LensSimpleFilter\LensFilterType;
-use LCSEngine\Schemas\Query\LensSimpleFilter\LensSimpleFilter;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Query\SelectionType;
 use LCSEngine\Schemas\Query\SerializeConfig;
-use LCSEngine\Schemas\Type;
 use Mockery;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensSimpleFilter;
+use LCSEngine\Schemas\Query\LensSimpleFilter\LensFilterType;
+use LCSEngine\Schemas\Model\Attributes\Option;
+use LCSEngine\Schemas\Query\EntityLayout\EntityLayoutBuilder;
+use LCSEngine\Schemas\Query\EntityLayout\Section;
+use LCSEngine\Schemas\Query\EntityLayout\Field;
 
 uses()->group('query');
 
@@ -50,7 +50,7 @@ beforeEach(function () {
     $this->statusAttribute->shouldReceive('getType')->andReturn(AttributeType::STRING);
     $this->statusAttribute->shouldReceive('getOptions')->andReturn(new Collection([
         Option::fromArray(['id' => 'active', 'const' => 'ACTIVE', 'title' => 'Active']),
-        Option::fromArray(['id' => 'inactive', 'const' => 'INACTIVE', 'title' => 'Inactive']),
+        Option::fromArray(['id' => 'inactive', 'const' => 'INACTIVE', 'title' => 'Inactive'])
     ]));
     $this->statusAttribute->shouldReceive('toArray')->andReturn(['name' => 'status']);
 
@@ -60,11 +60,11 @@ beforeEach(function () {
     $this->categoryAttribute->shouldReceive('getType')->andReturn(AttributeType::STRING);
     $this->categoryAttribute->shouldReceive('getOptions')->andReturn(new Collection([
         Option::fromArray(['id' => 'premium', 'const' => 'PREMIUM', 'title' => 'Premium']),
-        Option::fromArray(['id' => 'basic', 'const' => 'BASIC', 'title' => 'Basic']),
+        Option::fromArray(['id' => 'basic', 'const' => 'BASIC', 'title' => 'Basic'])
     ]));
     $this->categoryAttribute->shouldReceive('toArray')->andReturn(['name' => 'category']);
 
-    $mockAttributesCollection = new Collection;
+    $mockAttributesCollection = new Collection();
     foreach ($this->mockAllPossibleUserAttributes as $attributeName) {
         if ($attributeName === 'status') {
             $mockAttributesCollection->put($attributeName, $this->statusAttribute);
@@ -81,13 +81,13 @@ beforeEach(function () {
 
     $this->mockModel = Mockery::mock(Model::class);
     $this->mockModel->shouldReceive('getAttributes')->andReturn($mockAttributesCollection);
-    $this->mockModel->shouldReceive('getName')->andReturn('user');
-    $this->mockModel->shouldReceive('getLabel')->andReturn('User');
+    $this->mockModel->shouldReceive('getName')->andReturn("user");
+    $this->mockModel->shouldReceive('getLabel')->andReturn("User");
     $this->mockModel->shouldReceive('getAttribute')->with('status')->andReturn($this->statusAttribute);
     $this->mockModel->shouldReceive('getAttribute')->with('category')->andReturn($this->categoryAttribute);
 
     // Mock the Collection that getScopes() returns
-    $mockScopesCollection = new Collection;
+    $mockScopesCollection = new Collection();
     $mockScopesCollection->put('search', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
     $mockScopesCollection->put('active', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
     $mockScopesCollection->put('verified', Mockery::mock('LCSEngine\Schemas\Model\Filters\Filters')); // Ensure 'search' scope is available for validation
@@ -203,12 +203,12 @@ test('can create Query from array with all properties', function () {
         'entityLayout' => [
             [
                 '$Personal Info',
-                ['$Basic Info', 'name', 'email'],
+                ['$Basic Info', 'name', 'email']
             ],
             [
                 '$Address',
-                ['$Location', 'street', 'city', 'country'],
-            ],
+                ['$Location', 'street', 'city', 'country']
+            ]
         ],
     ];
 
@@ -241,7 +241,7 @@ test('can create Query from array with shorthand lensSimpleFilters', function ()
         'type' => 'query',
         'model' => 'user',
         'attributes' => ['status', 'category'],
-        'lensSimpleFilters' => ['status', 'category'],
+        'lensSimpleFilters' => ['status', 'category']
     ];
 
     $query = Query::fromArray($queryData, $this->mockRegistryManager);
@@ -342,7 +342,7 @@ test('can set and get selection type and key', function () {
 test('can add entity layout items', function () {
     $initialAttributes = ['id', 'name', 'email', 'street', 'city', 'country'];
     $query = new Query('users', 'User List', $initialAttributes, $this->mockModel);
-    $builder = new EntityLayoutBuilder;
+    $builder = new EntityLayoutBuilder();
 
     $builder->addSection(
         (new Section('Personal Info'))
@@ -383,7 +383,7 @@ test('query toArray method returns correct array structure', function () {
     $query->setSelectionType(SelectionType::SINGLE);
     $query->setSelectionKey('id');
 
-    $actionConfig = new ActionConfig('', new Collection);
+    $actionConfig = new ActionConfig('', new Collection());
     $actionItem = new ActionItem('view', 'View Item', '/items/{id}');
     $actionConfig->addItem($actionItem);
     $query->setActions($actionConfig);
@@ -393,7 +393,7 @@ test('query toArray method returns correct array structure', function () {
     $serializeConfig->setAlign(AlignType::CENTER);
     $query->setSerialize($serializeConfig);
 
-    $builder = new EntityLayoutBuilder;
+    $builder = new EntityLayoutBuilder();
 
     $builder->addSection(
         (new Section('Contact'))
@@ -411,7 +411,7 @@ test('query toArray method returns correct array structure', function () {
         'attributes' => [
             'id' => ['name' => 'id'],
             'name' => ['name' => 'name'],
-            'email' => ['name' => 'email'],
+            'email' => ['name' => 'email']
         ],
         'lensSimpleFilters' => [
             'status' => [
@@ -444,21 +444,21 @@ test('query toArray method returns correct array structure', function () {
         ],
         'entityLayout' => [
             [
-                'section' => 'Contact',
-                'fields' => [
+                "section" => "Contact",
+                "fields" => [
                     [
-                        'key' => 'email',
-                        'label' => 'Email',
-                        'type' => 'string',
+                        "key" => "email",
+                        "label" => "Email",
+                        "type" => "string",
                     ],
                     [
-                        'key' => 'name',
-                        'label' => 'Name',
-                        'type' => 'string',
-                    ],
-                ],
-            ],
-        ],
+                        "key" => "name",
+                        "label" => "Name",
+                        "type" => "string",
+                    ]
+                ]
+            ]
+        ]
     ];
 
     expect($query->toArray())->toEqual($expectedArray);

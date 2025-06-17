@@ -4,6 +4,7 @@ namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\StateMachine\ContextInterface;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 
 class PreparePayloadTask extends AbstractTask implements TaskInterface
 {
@@ -45,6 +46,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 break;
 
             case '_read_one':
+                $preparedPayload = $this->preparePayloadForReadOne($payload);
+                break;
+
+            case '_config':
                 $preparedPayload = $this->preparePayloadForReadOne($payload);
                 break;
 
@@ -209,7 +214,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('model')->getAttributes()->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => $attribute->getType() !== AttributeType::ALIAS)->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -230,11 +235,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 // Check if the attribute has a generation rule
                 if (! empty($attribute->getGenerators())) {
                     foreach ($attribute->getGenerators()->all() as $generator) {
-                        $generation = [];
+                        $generation = $generator->toArray();
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
@@ -272,7 +277,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     }
                 }
             }
-
             return $preparedPayload;
         } catch (\Exception $e) {
             dd($e);
