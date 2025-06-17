@@ -2,18 +2,18 @@
 
 namespace LCSEngine\Tests\Schemas\Mutator;
 
-use LCSEngine\Schemas\Mutator\Schema;
-use LCSEngine\Schemas\Mutator\SchemaType;
-use LCSEngine\Schemas\Mutator\SchemaProperty;
 use Illuminate\Support\Collection;
+use LCSEngine\Schemas\Mutator\Schema;
+use LCSEngine\Schemas\Mutator\SchemaProperty;
+use LCSEngine\Schemas\Mutator\SchemaType;
 
 uses()->group('mutator');
 
 test('can create schema with required parameters', function () {
     $schema = new Schema(
         SchemaType::OBJECT,
-        new Collection(),
-        new Collection()
+        new Collection,
+        new Collection
     );
 
     expect($schema)
@@ -28,8 +28,8 @@ test('can create schema with required parameters', function () {
 test('can add and get properties', function () {
     $schema = new Schema(
         SchemaType::OBJECT,
-        new Collection(),
-        new Collection()
+        new Collection,
+        new Collection
     );
 
     $property = new SchemaProperty('string', 'Test property');
@@ -43,8 +43,8 @@ test('can add and get properties', function () {
 test('can add and get required fields', function () {
     $schema = new Schema(
         SchemaType::OBJECT,
-        new Collection(),
-        new Collection()
+        new Collection,
+        new Collection
     );
 
     $schema->addRequired('test');
@@ -60,14 +60,14 @@ test('can create schema from array', function () {
         'properties' => [
             'title' => [
                 'type' => 'string',
-                'description' => 'Title property'
+                'description' => 'Title property',
             ],
             'description' => [
                 'type' => 'text',
-                'description' => 'Description property'
-            ]
+                'description' => 'Description property',
+            ],
         ],
-        'required' => ['title']
+        'required' => ['title'],
     ];
 
     $schema = Schema::fromArray($data);
@@ -84,7 +84,7 @@ test('can create schema from array', function () {
 
 test('can convert schema to array', function () {
     $properties = collect([
-        'test' => new SchemaProperty('string', 'Test property')
+        'test' => new SchemaProperty('string', 'Test property'),
     ]);
     $required = collect(['test']);
 
@@ -110,7 +110,7 @@ test('can create schema from array without optional fields', function () {
     $data = [
         'type' => 'object',
         'properties' => [],
-        'required' => []
+        'required' => [],
     ];
 
     $schema = Schema::fromArray($data);

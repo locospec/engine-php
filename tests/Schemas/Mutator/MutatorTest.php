@@ -2,14 +2,14 @@
 
 namespace LCSEngine\Tests\Schemas\Mutator;
 
-use LCSEngine\Schemas\Mutator\Mutator;
-use LCSEngine\Schemas\Mutator\DbOpType;
-use LCSEngine\Schemas\Mutator\UISchema;
-use LCSEngine\Schemas\Mutator\LayoutType;
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Model;
-use Illuminate\Support\Collection;
+use LCSEngine\Schemas\Mutator\DbOpType;
+use LCSEngine\Schemas\Mutator\LayoutType;
+use LCSEngine\Schemas\Mutator\Mutator;
+use LCSEngine\Schemas\Mutator\UISchema;
 use Mockery;
 
 uses()->group('mutator');
@@ -19,7 +19,7 @@ beforeEach(function () {
     $this->model->shouldReceive('getName')->andReturn('test-model');
     $this->model->shouldReceive('getAttributes')->andReturn(collect([
         'title' => new Attribute('title', 'Title', AttributeType::STRING),
-        'description' => new Attribute('description', 'Description', AttributeType::TEXT)
+        'description' => new Attribute('description', 'Description', AttributeType::TEXT),
     ]));
 });
 
@@ -77,7 +77,7 @@ test('can set and get ui schema', function () {
 
     $uiSchema = new UISchema(
         LayoutType::VERTICAL_LAYOUT,
-        new Collection()
+        new Collection
     );
 
     $mutator->setUISchema($uiSchema);
@@ -98,18 +98,18 @@ test('can create mutator from array', function () {
                 'label' => 'Title',
                 'type' => 'string',
                 'relatedModelName' => 'User',
-                'dependsOn' => ['user_id', 'role_id']
+                'dependsOn' => ['user_id', 'role_id'],
             ],
             'description' => [
                 'name' => 'description',
                 'label' => 'Description',
-                'type' => 'text'
-            ]
+                'type' => 'text',
+            ],
         ],
         'uiSchema' => [
             'type' => 'VerticalLayout',
-            'elements' => []
-        ]
+            'elements' => [],
+        ],
     ];
 
     $mutator = Mutator::fromArray($data, $this->model);
@@ -148,7 +148,7 @@ test('can convert mutator to array', function () {
 
     $uiSchema = new UISchema(
         LayoutType::VERTICAL_LAYOUT,
-        new Collection()
+        new Collection
     );
     $mutator->setUISchema($uiSchema);
 
@@ -177,7 +177,7 @@ test('can create mutator from array without optional fields', function () {
         'label' => 'Test Mutator',
         'type' => 'mutator',
         'dbOp' => 'create',
-        'model' => 'test-model'
+        'model' => 'test-model',
     ];
 
     $mutator = Mutator::fromArray($data, $this->model);
@@ -196,7 +196,7 @@ test('can create mutator with complex ui schema', function () {
     $uiSchema = [
         'type' => 'VerticalLayout',
         'options' => [
-            'rowSpacing' => 3
+            'rowSpacing' => 3,
         ],
         'elements' => [
             [
@@ -205,14 +205,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/property_id',
-                        'label' => 'Property ID'
+                        'label' => 'Property ID',
                     ],
                     [
                         'type' => 'lens-enum',
                         'scope' => '#/properties/sub_asset_type_uuid',
-                        'label' => 'Sub Asset Type ID'
-                    ]
-                ]
+                        'label' => 'Sub Asset Type ID',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -220,14 +220,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-enum',
                         'scope' => '#/properties/bank_uuid',
-                        'label' => 'Bank ID'
+                        'label' => 'Bank ID',
                     ],
                     [
                         'type' => 'lens-enum',
                         'scope' => '#/properties/city_uuid',
-                        'label' => 'City ID'
-                    ]
-                ]
+                        'label' => 'City ID',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -235,14 +235,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-enum',
                         'scope' => '#/properties/branch_uuid',
-                        'label' => 'Branch ID'
+                        'label' => 'Branch ID',
                     ],
                     [
                         'type' => 'lens-enum',
                         'scope' => '#/properties/locality_uuid',
-                        'label' => 'Locality ID'
-                    ]
-                ]
+                        'label' => 'Locality ID',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -250,14 +250,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/reserve_price',
-                        'label' => 'Reserve Price'
+                        'label' => 'Reserve Price',
                     ],
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/emd_amount',
-                        'label' => 'EMD Amount'
-                    ]
-                ]
+                        'label' => 'EMD Amount',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -265,14 +265,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/ab_verified',
-                        'label' => 'AB Verified'
+                        'label' => 'AB Verified',
                     ],
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/auction_by_ab',
-                        'label' => 'Auction By AB'
-                    ]
-                ]
+                        'label' => 'Auction By AB',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -280,14 +280,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/featured',
-                        'label' => 'Featured Property'
+                        'label' => 'Featured Property',
                     ],
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/financing_facility',
-                        'label' => 'Financing Facility'
-                    ]
-                ]
+                        'label' => 'Financing Facility',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -295,14 +295,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/consulting',
-                        'label' => 'Consulting'
+                        'label' => 'Consulting',
                     ],
                     [
                         'type' => 'lens-switch',
                         'scope' => '#/properties/relationship_management',
-                        'label' => 'Relationship Management'
-                    ]
-                ]
+                        'label' => 'Relationship Management',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -310,14 +310,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/address',
-                        'label' => 'Address'
+                        'label' => 'Address',
                     ],
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/contact',
-                        'label' => 'Contact'
-                    ]
-                ]
+                        'label' => 'Contact',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -325,14 +325,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-calendar',
                         'scope' => '#/properties/emd_last_date',
-                        'label' => 'EMD Last Date'
+                        'label' => 'EMD Last Date',
                     ],
                     [
                         'type' => 'lens-calendar-date-time',
                         'scope' => '#/properties/auction_start_date_time',
-                        'label' => 'Auction Start Date Time'
-                    ]
-                ]
+                        'label' => 'Auction Start Date Time',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -340,14 +340,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-calendar-date-time',
                         'scope' => '#/properties/auction_end_date_time',
-                        'label' => 'Auction End Date Time'
+                        'label' => 'Auction End Date Time',
                     ],
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/description',
-                        'label' => 'Description'
-                    ]
-                ]
+                        'label' => 'Description',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -355,14 +355,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/physical_inspection_timeline',
-                        'label' => 'Physical Inspection Timeline'
+                        'label' => 'Physical Inspection Timeline',
                     ],
                     [
                         'type' => 'lens-dropdown',
                         'scope' => '#/properties/property_date_type',
-                        'label' => 'Property Date Type'
-                    ]
-                ]
+                        'label' => 'Property Date Type',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -370,14 +370,14 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-dropdown',
                         'scope' => '#/properties/possession_type',
-                        'label' => 'Possession Type'
+                        'label' => 'Possession Type',
                     ],
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/area',
-                        'label' => 'Area'
-                    ]
-                ]
+                        'label' => 'Area',
+                    ],
+                ],
             ],
             [
                 'type' => 'HorizontalLayout',
@@ -385,11 +385,11 @@ test('can create mutator with complex ui schema', function () {
                     [
                         'type' => 'lens-text-input',
                         'scope' => '#/properties/borrower_name',
-                        'label' => 'Borrower Name'
-                    ]
-                ]
-            ]
-        ]
+                        'label' => 'Borrower Name',
+                    ],
+                ],
+            ],
+        ],
     ];
 
     $mutator = new Mutator(

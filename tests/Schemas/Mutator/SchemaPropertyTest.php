@@ -27,7 +27,7 @@ test('can create schema property with optional description', function () {
 test('can create schema property from array', function () {
     $data = [
         'type' => 'string',
-        'description' => 'Test property'
+        'description' => 'Test property',
     ];
 
     $property = SchemaProperty::fromArray($data);
@@ -40,7 +40,7 @@ test('can create schema property from array', function () {
 
 test('can create schema property from array without description', function () {
     $data = [
-        'type' => 'string'
+        'type' => 'string',
     ];
 
     $property = SchemaProperty::fromArray($data);

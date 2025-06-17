@@ -32,45 +32,44 @@ class SpecValidator
     {
         // Register common components schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/filters.json',
-            __DIR__ . '/Specs/filters.json'
+            self::SCHEMA_BASE_PATH.'/filters.json',
+            __DIR__.'/Specs/filters.json'
         );
 
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/attributes.json',
-            __DIR__ . '/Specs/attributes.json'
+            self::SCHEMA_BASE_PATH.'/attributes.json',
+            __DIR__.'/Specs/attributes.json'
         );
 
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/relationships.json',
-            __DIR__ . '/Specs/relationships.json'
+            self::SCHEMA_BASE_PATH.'/relationships.json',
+            __DIR__.'/Specs/relationships.json'
         );
 
         // Register common components schema for operations
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/database-operations/common.json',
-            __DIR__ . '/Specs/database-operations/common.json'
+            self::SCHEMA_BASE_PATH.'/database-operations/common.json',
+            __DIR__.'/Specs/database-operations/common.json'
         );
 
         // Register individual operation schemas
         foreach (self::OPERATION_TYPES as $type) {
             $this->validator->resolver()->registerFile(
-                self::SCHEMA_BASE_PATH . "/database-operations/{$type}.json",
-                __DIR__ . '/Specs/database-operations/' . $type . '.json'
+                self::SCHEMA_BASE_PATH."/database-operations/{$type}.json",
+                __DIR__.'/Specs/database-operations/'.$type.'.json'
             );
         }
 
         // Register model schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/model.json',
-            __DIR__ . '/Specs/model.json'
+            self::SCHEMA_BASE_PATH.'/model.json',
+            __DIR__.'/Specs/model.json'
         );
-
 
         // Register mutator schema
         $this->validator->resolver()->registerFile(
-            self::SCHEMA_BASE_PATH . '/mutator.json',
-            __DIR__ . '/Specs/mutator.json'
+            self::SCHEMA_BASE_PATH.'/mutator.json',
+            __DIR__.'/Specs/mutator.json'
         );
     }
 
@@ -87,7 +86,7 @@ class SpecValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $data,
-            self::SCHEMA_BASE_PATH . '/' . $spec->type . '.json'
+            self::SCHEMA_BASE_PATH.'/'.$spec->type.'.json'
         );
 
         if ($result->isValid()) {
@@ -135,7 +134,7 @@ class SpecValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $data,
-            self::SCHEMA_BASE_PATH . "/database-operations/{$type}.json"
+            self::SCHEMA_BASE_PATH."/database-operations/{$type}.json"
         );
 
         if ($result->isValid()) {
@@ -182,7 +181,7 @@ class SpecValidator
         /** @var ValidationResult $result */
         $result = $this->validator->validate(
             $jsonData,
-            self::SCHEMA_BASE_PATH . "/database-operations/common.json#/definitions/{$component}"
+            self::SCHEMA_BASE_PATH."/database-operations/common.json#/definitions/{$component}"
         );
 
         if ($result->isValid()) {

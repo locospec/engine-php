@@ -5,7 +5,9 @@ namespace LCSEngine\Schemas\Mutator;
 class UIElement
 {
     private UIElementType $type;
+
     private ?string $scope;
+
     private ?string $label;
 
     public function __construct(

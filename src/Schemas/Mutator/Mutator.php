@@ -2,23 +2,28 @@
 
 namespace LCSEngine\Schemas\Mutator;
 
-use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Type;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Mutator\UISchema;
-use LCSEngine\Schemas\Mutator\Schema;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Type;
 
 class Mutator
 {
     private string $name;
+
     private string $label;
+
     private Type $type;
+
     private DbOpType $dbOp;
+
     private string $model;
+
     private Collection $attributes;
+
     private ?UISchema $uiSchema = null;
+
     private ?Schema $schema = null;
 
     public function __construct(string $name, string $label, DbOpType $dbOp, string $model)
@@ -110,7 +115,7 @@ class Mutator
             $data['model']
         );
 
-        if (!empty($data['attributes']) && is_array($data['attributes'])) {
+        if (! empty($data['attributes']) && is_array($data['attributes'])) {
             $validAttributeKeys = $model->getAttributes()->keys()->all();
             foreach ($data['attributes'] as $key => $attributeData) {
                 if (! in_array($key, $validAttributeKeys)) {
@@ -131,7 +136,7 @@ class Mutator
         // Add primary key attribute if not already present
         $primaryKeyAttribute = $model->getPrimaryKey();
 
-        if ($primaryKeyAttribute && !$mutator->hasAttribute($primaryKeyAttribute->getName())) {
+        if ($primaryKeyAttribute && ! $mutator->hasAttribute($primaryKeyAttribute->getName())) {
             $mutator->addAttribute($primaryKeyAttribute);
         }
 
@@ -139,7 +144,7 @@ class Mutator
         $mutator->setSchema(Schema::fromAttributes($mutator->getAttributes()));
 
         // Set UI schema if present
-        if (!empty($data['uiSchema'])) {
+        if (! empty($data['uiSchema'])) {
             $mutator->setUISchema(UISchema::fromArray($data['uiSchema']));
         }
 
@@ -156,8 +161,8 @@ class Mutator
             'model' => $this->model,
         ];
 
-        if (!$this->attributes->isEmpty()) {
-            $arr['attributes'] = $this->attributes->map(fn($a) => $a->toArray())->all();
+        if (! $this->attributes->isEmpty()) {
+            $arr['attributes'] = $this->attributes->map(fn ($a) => $a->toArray())->all();
         }
 
         if ($this->schema) {

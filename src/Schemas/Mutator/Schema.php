@@ -2,13 +2,14 @@
 
 namespace LCSEngine\Schemas\Mutator;
 
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
-use Illuminate\Support\Collection;
 
 class Schema
 {
     private Collection $properties;
+
     private array $required;
 
     public function __construct()
@@ -33,24 +34,24 @@ class Schema
         // }
 
         if (in_array($attribute->getType(), [AttributeType::DATE, AttributeType::TIMESTAMP])) {
-            $property["format"] = "date-time";
+            $property['format'] = 'date-time';
         }
 
         if ($attribute->getRelatedModelName()) {
             $property['relatedModelName'] = $attribute->getRelatedModelName();
         }
 
-        if (!$attribute->getDependsOn()->isEmpty()) {
+        if (! $attribute->getDependsOn()->isEmpty()) {
             $property['dependsOn'] = $attribute->getDependsOn()->all();
         }
 
-        if (!$attribute->getOptions()->isEmpty()) {
-            $property['options'] = $attribute->getOptions()->map(fn($option) => $option->toArray())->all();
+        if (! $attribute->getOptions()->isEmpty()) {
+            $property['options'] = $attribute->getOptions()->map(fn ($option) => $option->toArray())->all();
         }
 
         $this->properties->put($attribute->getName(), $property);
 
-        if ($attribute->getValidators()->contains(fn($validator) => $validator->getType()->value === 'required')) {
+        if ($attribute->getValidators()->contains(fn ($validator) => $validator->getType()->value === 'required')) {
             $this->required[] = $attribute->getName();
         }
     }
@@ -74,7 +75,7 @@ class Schema
             'properties' => $this->properties->all(),
         ];
 
-        if (!empty($this->required)) {
+        if (! empty($this->required)) {
             $schema['required'] = $this->required;
         }
 
@@ -83,8 +84,9 @@ class Schema
 
     public static function fromAttributes(Collection $attributes): self
     {
-        $schema = new self();
-        $attributes->each(fn($attribute) => $schema->addProperty($attribute));
+        $schema = new self;
+        $attributes->each(fn ($attribute) => $schema->addProperty($attribute));
+
         return $schema;
     }
 }

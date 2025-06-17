@@ -7,13 +7,15 @@ use Illuminate\Support\Collection;
 class UISchema
 {
     private LayoutType $type;
+
     private Collection $elements;
+
     private Collection $options;
 
     public function __construct(
         LayoutType $type,
         Collection $elements,
-        Collection $options = new Collection()
+        Collection $options = new Collection
     ) {
         $this->type = $type;
         $this->elements = $elements;
@@ -42,6 +44,7 @@ class UISchema
                 // If the element has nested elements, create a new UISchema for it
                 return self::fromArray($element);
             }
+
             return UIElement::fromArray($element);
         });
 
@@ -58,10 +61,10 @@ class UISchema
     {
         $array = [
             'type' => $this->type->value,
-            'elements' => $this->elements->map(fn($element) => $element->toArray())->all(),
+            'elements' => $this->elements->map(fn ($element) => $element->toArray())->all(),
         ];
 
-        if (!$this->options->isEmpty()) {
+        if (! $this->options->isEmpty()) {
             $array['options'] = $this->options->all();
         }
 
