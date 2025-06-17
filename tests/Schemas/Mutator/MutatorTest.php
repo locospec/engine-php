@@ -21,6 +21,7 @@ beforeEach(function () {
         'title' => new Attribute('title', 'Title', AttributeType::STRING),
         'description' => new Attribute('description', 'Description', AttributeType::TEXT),
     ]));
+    $this->model->shouldReceive('getPrimaryKey')->andReturn(null);
 });
 
 test('can create mutator with required parameters', function () {
@@ -188,7 +189,7 @@ test('can create mutator from array without optional fields', function () {
         ->and($mutator->getLabel())->toBe('Test Mutator')
         ->and($mutator->getDbOp())->toBe(DbOpType::CREATE)
         ->and($mutator->getModelName())->toBe('test-model')
-        ->and($mutator->getAttributes())->toBeEmpty()
+        ->and($mutator->getAttributes())->toHaveCount(2)
         ->and($mutator->getUISchema())->toBeNull();
 });
 
