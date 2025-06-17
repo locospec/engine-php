@@ -27,7 +27,7 @@ class EntityLayoutBuilder
 
     public function toArray(): array
     {
-        return $this->sections->map(fn ($section) => $section->toArray())->all();
+        return $this->sections->map(fn($section) => $section->toArray())->all();
     }
 
     public static function fromArray(array $data): self

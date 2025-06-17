@@ -51,11 +51,11 @@ test('can add and remove options', function () {
 
     expect($filter->getOptions())->toHaveCount(2);
     expect($filter->getOptions()->first())->toBeInstanceOf(Option::class);
-    expect($filter->getOptions()->map(fn ($o) => $o->getId())->toArray())->toEqual(['active', 'pending']);
+    expect($filter->getOptions()->map(fn($o) => $o->getId())->toArray())->toEqual(['active', 'pending']);
 
     $filter->removeOption('active');
     expect($filter->getOptions())->toHaveCount(1);
-    expect($filter->getOptions()->map(fn ($o) => $o->getId())->toArray())->toEqual(['pending']);
+    expect($filter->getOptions()->map(fn($o) => $o->getId())->toArray())->toEqual(['pending']);
 });
 
 test('can add and remove dependencies', function () {

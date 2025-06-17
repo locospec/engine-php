@@ -75,7 +75,6 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
         }
 
         $parentRecord['relatedResults'] = $relatedResults;
-
         return ['result' => $parentRecord];
     }
 
@@ -107,7 +106,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                     $generation['payload'] = $payload;
 
                     // Only process the generation if the current operation is included in the operations list
-                    if (! in_array('insert', $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                    if (! in_array('insert', $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                         continue;
                     }
 

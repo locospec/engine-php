@@ -2,11 +2,12 @@
 
 namespace LCSEngine\Tests\Schemas\Mutator;
 
+use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
-use LCSEngine\Schemas\Model\Attributes\Option;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
+use LCSEngine\Schemas\Model\Attributes\Option;
 use LCSEngine\Schemas\Mutator\Schema;
 
 uses()->group('mutator');
@@ -38,7 +39,7 @@ test('can create schema from attributes', function () {
 });
 
 test('can add property with required validator', function () {
-    $schema = new Schema;
+    $schema = new Schema();
     $attribute = new Attribute('title', 'Title', AttributeType::STRING);
     $attribute->addValidator(new Validator(ValidatorType::REQUIRED));
 
@@ -52,7 +53,7 @@ test('can add property with required validator', function () {
 });
 
 test('can add property with related model', function () {
-    $schema = new Schema;
+    $schema = new Schema();
     $attribute = new Attribute('user_id', 'User', AttributeType::ID);
     $attribute->setRelatedModelName('User');
 
@@ -64,7 +65,7 @@ test('can add property with related model', function () {
 });
 
 test('can add property with dependencies', function () {
-    $schema = new Schema;
+    $schema = new Schema();
     $attribute = new Attribute('role_id', 'Role', AttributeType::ID);
     $attribute->setDependsOn('user_id');
     $attribute->setDependsOn('department_id');
@@ -79,12 +80,12 @@ test('can add property with dependencies', function () {
 });
 
 test('can add property with options', function () {
-    $schema = new Schema;
+    $schema = new Schema();
     $attribute = new Attribute('status', 'Status', AttributeType::STRING);
-    $option1 = new Option;
+    $option1 = new Option();
     $option1->setConst('active');
     $option1->setTitle('Active');
-    $option2 = new Option;
+    $option2 = new Option();
     $option2->setConst('inactive');
     $option2->setTitle('Inactive');
     $attribute->addOption($option1);

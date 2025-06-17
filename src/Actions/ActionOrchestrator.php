@@ -14,11 +14,11 @@ use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Mutator\Mutator;
-use LCSEngine\Schemas\Query\Query;
-use LCSEngine\Schemas\Type;
 use LCSEngine\StateMachine\StateFlowPacket;
+use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Query\Query;
+use LCSEngine\Schemas\Mutator\Mutator;
+use LCSEngine\Schemas\Type;
 
 class ActionOrchestrator
 {
@@ -51,8 +51,8 @@ class ActionOrchestrator
         $modelName = $isQueryOrMutator ? $data->getModelName() : $specName;
 
         $queryName = match ($type) {
-            Type::MODEL => $input['query'] ?? $data->getName().'_default_query',
-            Type::MUTATOR => $data->getModelName().'_default_query',
+            Type::MODEL => $input['query'] ?? $data->getName() . '_default_query',
+            Type::MUTATOR => $data->getModelName() . '_default_query',
             default => $specName
         };
 

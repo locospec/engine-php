@@ -4,8 +4,8 @@ namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Exceptions\ValidationException;
-use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\SpecValidator;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 
 class ValidateTask extends AbstractTask implements TaskInterface
 {
@@ -40,7 +40,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
                     if (! $validation['isValid']) {
                         throw new ValidationException(
-                            'Invalid operation: '.json_encode($validation['errors'])
+                            'Invalid operation: ' . json_encode($validation['errors'])
                         );
                     }
                 }
@@ -49,7 +49,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
                 if (! $validation['isValid']) {
                     throw new ValidationException(
-                        'Invalid operation: '.json_encode($validation['errors'])
+                        'Invalid operation: ' . json_encode($validation['errors'])
                     );
                 }
             }
@@ -73,7 +73,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
             ];
             $validator = $this->context->get('crudValidator');
             $model = $this->context->get('model');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => $attribute->getType() !== AttributeType::ALIAS)->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => $attribute->getType() !== AttributeType::ALIAS)->all();
             $errors = [];
 
             // Ensure "data" is an array of records

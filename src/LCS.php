@@ -39,10 +39,10 @@ class LCS
             if (isset($config['cache_path'])) {
                 // Ensure the cache path doesn't end with a directory separator.
                 self::$cacheFile = rtrim($config['cache_path'], DIRECTORY_SEPARATOR)
-                    .DIRECTORY_SEPARATOR.'locospec_registry_cache.php';
+                    . DIRECTORY_SEPARATOR . 'locospec_registry_cache.php';
             } else {
                 // Fallback to a default path within the package directory.
-                self::$cacheFile = __DIR__.'/locospec_registry_cache.php';
+                self::$cacheFile = __DIR__ . '/locospec_registry_cache.php';
             }
 
             // self::$globalRegistryManager = new RegistryManager;
@@ -87,7 +87,7 @@ class LCS
             self::$logger->info('Looping all the JSON Spec for registration');
             foreach ($paths as $path) {
                 if (is_dir($path)) {
-                    foreach (glob($path.'/*.json') as $file) {
+                    foreach (glob($path . '/*.json') as $file) {
                         $specProcessor->processFile($file);
                     }
                 } elseif (is_file($path)) {
@@ -200,7 +200,7 @@ class LCS
                 'timestamp' => time(),
             ];
 
-            $cacheContent = '<?php return '.var_export($cacheData, true).';';
+            $cacheContent = '<?php return ' . var_export($cacheData, true) . ';';
             file_put_contents(self::$cacheFile, $cacheContent);
             self::$logger->info('Registry saved to cache successfully');
         } catch (\Exception $e) {
@@ -224,7 +224,7 @@ class LCS
 
         foreach ($paths as $path) {
             if (is_dir($path)) {
-                foreach (glob($path.'/*.json') as $file) {
+                foreach (glob($path . '/*.json') as $file) {
                     if (filemtime($file) > $cacheTime) {
                         self::$logger->info('Spec file modified, reprocessing required', ['file' => $file]);
 
