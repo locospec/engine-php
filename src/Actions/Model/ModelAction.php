@@ -4,10 +4,10 @@ namespace LCSEngine\Actions\Model;
 
 use LCSEngine\Actions\StateMachineFactory;
 use LCSEngine\LCS;
-use LCSEngine\Mutators\MutatorDefinition;
 use LCSEngine\Registry\GeneratorInterface;
 use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Mutator\Mutator;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\StateMachine\Context;
 use LCSEngine\StateMachine\StateFlowPacket;
@@ -18,7 +18,7 @@ abstract class ModelAction
 
     protected Query $query;
 
-    protected ?MutatorDefinition $mutator;
+    protected ?Mutator $mutator;
 
     protected array $config;
 
@@ -37,7 +37,7 @@ abstract class ModelAction
         GeneratorInterface $generator,
         Model $model,
         Query $query,
-        ?MutatorDefinition $mutator,
+        ?Mutator $mutator,
         StateMachineFactory $stateMachineFactory,
         LCS $lcs,
         array $config = []

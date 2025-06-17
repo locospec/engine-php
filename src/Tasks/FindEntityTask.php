@@ -24,13 +24,13 @@ class FindEntityTask extends AbstractTask implements TaskInterface
     {
         $queryPayload = $taskArgs;
         $queryPayload['type'] = 'select';
-        $context = $input['payload'];
+        $queryContext = $input['payload'];
 
         // Initialize DB Operator Collection
         $dbOps = new DatabaseOperationsCollection($this->operator);
 
-        if (! empty($context)) {
-            $createdContext = QueryContext::create($context);
+        if (! empty($queryContext)) {
+            $createdContext = QueryContext::create($queryContext);
             $dbOps->setContext($createdContext);
         }
 

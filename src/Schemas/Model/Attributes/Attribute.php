@@ -18,6 +18,8 @@ class Attribute
 
     private Collection $options;
 
+    private Collection $dependsOn;
+
     private bool $primaryKey = false;
 
     private bool $deleteKey = false;
@@ -28,6 +30,8 @@ class Attribute
 
     private ?string $transform = null;
 
+    private ?string $relatedModelName = null;
+
     public function __construct(string $name, string $label, Type $type)
     {
         $this->name = $name;
@@ -36,6 +40,7 @@ class Attribute
         $this->generators = collect();
         $this->validators = collect();
         $this->options = collect();
+        $this->dependsOn = collect();
     }
 
     public function setType(Type $type): void
@@ -84,6 +89,16 @@ class Attribute
         }
 
         $this->transform = $transform;
+    }
+
+    public function setRelatedModelName(?string $relatedModelName): void
+    {
+        $this->relatedModelName = $relatedModelName;
+    }
+
+    public function setDependsOn(string $dependsOn): void
+    {
+        $this->dependsOn->push($dependsOn);
     }
 
     public function isPrimaryKey(): bool
@@ -169,6 +184,16 @@ class Attribute
         return $this->transform;
     }
 
+    public function getRelatedModelName(): ?string
+    {
+        return $this->relatedModelName;
+    }
+
+    public function getDependsOn(): Collection
+    {
+        return $this->dependsOn;
+    }
+
     public function removeGeneratorById(string $id): void
     {
         $this->generators = $this->generators->reject(fn ($g) => $g->getId() === $id)->values();
@@ -239,6 +264,16 @@ class Attribute
             }
         }
 
+        if (isset($data['relatedModelName'])) {
+            $attribute->setRelatedModelName($data['relatedModelName']);
+        }
+
+        if (! empty($data['dependsOn']) && is_array($data['dependsOn'])) {
+            foreach ($data['dependsOn'] as $dependsOnData) {
+                $attribute->setDependsOn($dependsOnData);
+            }
+        }
+
         return $attribute;
     }
 
@@ -252,6 +287,14 @@ class Attribute
             'labelKey' => $this->labelKey,
             'deleteKey' => $this->deleteKey,
         ];
+
+        if ($this->relatedModelName !== null) {
+            $arr['relatedModelName'] = $this->relatedModelName;
+        }
+
+        if (! $this->dependsOn->isEmpty()) {
+            $arr['dependsOn'] = $this->dependsOn->all();
+        }
 
         if (! $this->options->isEmpty()) {
             $arr['options'] = $this->options->map(fn ($o) => $o->toArray())->all();

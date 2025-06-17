@@ -15,9 +15,14 @@ test('can create and get/set all fields', function () {
     $attribute->setPrimaryKey(true);
     $attribute->setLabelKey(true);
     $attribute->setDeleteKey(true);
+    $attribute->setRelatedModelName('User');
+    $attribute->setDependsOn('user_id');
     expect($attribute->getName())->toBe('username')
         ->and($attribute->getLabel())->toBe('Username')
-        ->and($attribute->getType())->toBe(Type::STRING);
+        ->and($attribute->getType())->toBe(Type::STRING)
+        ->and($attribute->getRelatedModelName())->toBe('User')
+        ->and($attribute->getDependsOn())->toHaveCount(1)
+        ->and($attribute->getDependsOn()->first())->toBe('user_id');
     expect($attribute->getGenerators())->toBeEmpty();
     expect($attribute->getValidators())->toBeEmpty();
     expect($attribute->getOptions())->toBeEmpty();
@@ -59,6 +64,9 @@ test('toArray serializes all fields and collections', function () {
     $attribute->setDeleteKey(true);
     $attribute->setAliasSource('user.name');
     $attribute->setAliasTransformation('upper(user.name)');
+    $attribute->setRelatedModelName('User');
+    $attribute->setDependsOn('user_id');
+    $attribute->setDependsOn('role_id');
     $generator = new Generator(GeneratorType::UUID);
     $validator = new Validator(ValidatorType::REQUIRED);
     $option = new Option;
@@ -68,7 +76,6 @@ test('toArray serializes all fields and collections', function () {
     $attribute->addValidator($validator);
     $attribute->addOption($option);
     $arr = $attribute->toArray();
-    // dd($arr);
     expect($arr['name'])->toBe('alias')
         ->and($arr['label'])->toBe('Alias')
         ->and($arr['type'])->toBe('alias')
@@ -77,6 +84,10 @@ test('toArray serializes all fields and collections', function () {
         ->and($arr['deleteKey'])->toBeTrue()
         ->and($arr['source'])->toBe('user.name')
         ->and($arr['transform'])->toBe('upper(user.name)')
+        ->and($arr['relatedModelName'])->toBe('User')
+        ->and($arr['dependsOn'])->toBeArray()
+        ->and($arr['dependsOn'])->toHaveCount(2)
+        ->and($arr['dependsOn'])->toContain('user_id', 'role_id')
         ->and($arr['generators'])->toBeArray()
         ->and($arr['validators'])->toBeArray()
         ->and($arr['options'])->toBeArray();
@@ -110,4 +121,23 @@ test('can remove generator, validator, and option by id', function () {
         ->and($attribute->getValidators()->first()->getId())->toBe($validator1->getId())
         ->and($attribute->getOptions())->toHaveCount(1)
         ->and($attribute->getOptions()->first()->getId())->toBe($option2->getId());
+});
+
+test('can create attribute from array with new properties', function () {
+    $data = [
+        'name' => 'username',
+        'label' => 'Username',
+        'type' => 'string',
+        'relatedModelName' => 'User',
+        'dependsOn' => ['user_id', 'role_id'],
+    ];
+
+    $attribute = Attribute::fromArray('username', $data);
+
+    expect($attribute->getName())->toBe('username')
+        ->and($attribute->getLabel())->toBe('Username')
+        ->and($attribute->getType())->toBe(Type::STRING)
+        ->and($attribute->getRelatedModelName())->toBe('User')
+        ->and($attribute->getDependsOn())->toHaveCount(2)
+        ->and($attribute->getDependsOn()->toArray())->toContain('user_id', 'role_id');
 });

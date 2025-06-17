@@ -20,6 +20,16 @@ class ConfigAction extends ModelAction
                 'CheckPermission' => [
                     'Type' => 'Task',
                     'Resource' => 'check_permission',
+                    'Next' => 'PreparePayload',
+                ],
+                'PreparePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'prepare_payload',
+                    'Next' => 'HandlePayload',
+                ],
+                'HandlePayload' => [
+                    'Type' => 'Task',
+                    'Resource' => 'handle_payload',
                     'Next' => 'GenerateConfig',
                 ],
                 'GenerateConfig' => [

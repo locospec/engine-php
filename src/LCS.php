@@ -105,7 +105,7 @@ class LCS
             self::$logger->info('Query registration finished');
 
             // Process all mutator after all queries models and relationships are registered
-            $specProcessor->processAllMutatorsSpec();
+            $specProcessor->processAllMutatorSpec();
             self::$logger->info('Mutators registration finished');
 
             if (file_exists(self::$cacheFile)) {

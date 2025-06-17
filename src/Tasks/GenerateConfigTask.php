@@ -26,8 +26,7 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
         if (isset($mutator)) {
             $result = $mutator->toArray();
-            $schema = $mutator->getSchema();
-            $keys = array_keys((array) $schema['properties']);
+            $keys = $mutator->getAttributes()->keys()->toArray();
 
             if (isset($input['response']) && ! empty($input['response']) && ! empty($input['response'][0]['result'])) {
                 $data = $input['response'][0]['result'][0];
@@ -37,44 +36,40 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
                         $result['initialData'][$key] = $data[$key];
                     }
                 }
-
-                $result['initialData'][$model->getConfig()->getPrimaryKey()] = $data[$model->getConfig()->getPrimaryKey()];
             }
 
             return ['data' => $result];
         } else {
             $result = $query->toArray();
-            $permissions = $input['locospecPermissions'];
-            if (isset($input['globalContext']['userPermissions'])) {
-                $permissions['userPermissions'] = $input['globalContext']['userPermissions'];
-                if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
-                    $userPermissions = $permissions['userPermissions'];
-                    // Filter items based on permissions
-                    if (isset($result['actions']->items)) {
-                        $result['actions']->items = array_values(
-                            array_filter(
-                                array_map(function ($item) use ($userPermissions) {
-                                    if (isset($item->options)) {
-                                        $filteredOptions = array_values(
-                                            array_filter($item->options, function ($option) use ($userPermissions) {
-                                                return in_array($option->key, $userPermissions);
-                                            })
-                                        );
 
-                                        if (! empty($filteredOptions)) {
-                                            $item->options = $filteredOptions;
+            $permissions = $input['payload']['locospecPermissions'];
+            if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
+                $userPermissions = $permissions['userPermissions'];
+                // Filter items based on permissions
+                if (isset($result['actions']->items)) {
+                    $result['actions']->items = array_values(
+                        array_filter(
+                            array_map(function ($item) use ($userPermissions) {
+                                if (isset($item->options)) {
+                                    $filteredOptions = array_values(
+                                        array_filter($item->options, function ($option) use ($userPermissions) {
+                                            return in_array($option->key, $userPermissions);
+                                        })
+                                    );
 
-                                            return $item;
-                                        }
+                                    if (! empty($filteredOptions)) {
+                                        $item->options = $filteredOptions;
 
-                                        return null;
+                                        return $item;
                                     }
 
-                                    return in_array($item->key, $userPermissions) ? $item : null;
-                                }, $result['actions']->items)
-                            )
-                        );
-                    }
+                                    return null;
+                                }
+
+                                return in_array($item->key, $userPermissions) ? $item : null;
+                            }, $result['actions']->items)
+                        )
+                    );
                 }
             }
 

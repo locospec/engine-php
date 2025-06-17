@@ -25,6 +25,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
     public function execute(array $input, array $taskArgs = []): array
     {
         $model = $this->context->get('lcs')->getRegistryManager()->get('model', $taskArgs['modelName']);
+        // dd("queryPayload::>", $model->getName());
         $queryPayload = $this->preparePayloadForCreate($taskArgs, $model);
         $contextData = $input['payload'];
 
@@ -41,6 +42,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
 
         $response = $dbOps->execute($this->operator);
         $parentRecord = $response[0]['result'][0];
+
         $relatedResults = [];
         $relationships = $model->getRelationships();
 
@@ -57,7 +59,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
 
                 // Inject the parent’s key into the child
                 $childData[$relationship->getForeignKey()]
-                = $parentRecord[$relationship->getLocalKey()];
+                    = $parentRecord[$relationship->getLocalKey()];
 
                 // Prepare & execute the child insert
                 $childModel = $this->context->get('lcs')->getRegistryManager()->get('model', $relationship->getRelatedModelName());
@@ -85,8 +87,8 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
             'modelName' => $model->getName(),
         ];
 
-        $generator = $this->context->get('generator');
-        $attributes = $model->getAttributes()->getAttributes();
+        $defaultGenerator = $this->context->get('generator');
+        $attributes = $model->getAttributes()->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -99,33 +101,35 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
             }
 
             // Check if the attribute has a generation rule
-            if (! empty($attribute->getGenerations())) {
-                foreach ($attribute->getGenerations() as $generation) {
-                    $generation->payload = $payload;
+            if (! empty($attribute->getGenerators())) {
+                foreach ($attribute->getGenerators()->all() as $generator) {
+                    $generation = $generator->toArray();
+                    $generation['payload'] = $payload;
+
                     // Only process the generation if the current operation is included in the operations list
-                    if (isset($generation->operations) && is_array($generation->operations)) {
-                        if (! in_array('insert', $generation->operations)) {
-                            continue;
-                        }
+                    if (! in_array('insert', $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        continue;
                     }
 
-                    if (isset($generation->source)) {
-                        $sourceKey = $generation->source;
+                    // if (isset($generation->source)) {
+                    if ($generator->getSource() !== null) {
+                        $sourceKey = $generator->getSource();
+                        // $sourceValue = null;
                         $sourceValue = $payload[$sourceKey] ?? null;
 
                         if ($sourceValue) {
-                            $generation->sourceValue = $sourceValue;
+                            $generation['sourceValue'] = $sourceValue;
                         }
                     }
 
-                    $generation->dbOps = $dbOps;
-                    $generation->dbOperator = $this->operator;
-                    $generation->modelName = $model->getName();
-                    $generation->attributeName = $attributeName;
+                    $generation['dbOps'] = $dbOps;
+                    $generation['dbOperator'] = $this->operator;
+                    $generation['modelName'] = $model->getName();
+                    $generation['attributeName'] = $attributeName;
 
-                    $generatedValue = $generator->generate(
-                        $generation->type,
-                        (array) $generation // Convert any extra options to array
+                    $generatedValue = $defaultGenerator->generate(
+                        $generator->getType()->value,
+                        $generation // Convert any extra options to array
                     );
 
                     if ($generatedValue !== null) {
@@ -135,7 +139,6 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
             }
         }
 
-        // dd("preparedPayload", $preparedPayload);
         return $preparedPayload;
     }
 }
