@@ -9,4 +9,4 @@ enum GeneratorType: string
     case DATETIME = 'datetime';
     case STATE_MACHINE = 'state_machine';
     case TIMESTAMP_GENERATOR = 'timestamp_generator';
-} 
+}

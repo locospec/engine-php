@@ -6,18 +6,23 @@ use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\SpecValidator;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Query\Query;
 use LCSEngine\Schemas\Mutator\Mutator;
+use LCSEngine\Schemas\Query\Query;
+use LCSEngine\SpecValidator;
 
 class SpecificationProcessor
 {
     private RegistryManager $registryManager;
+
     private SpecValidator $specValidator;
+
     private ?Logger $logger = null;
+
     private array $pendingRelationships = [];
+
     private array $pendingQueries = [];
+
     private array $pendingMutators = [];
 
     public function __construct(RegistryManager $registryManager)
@@ -57,7 +62,7 @@ class SpecificationProcessor
                 'filePath' => $filePath,
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException("Error processing file {$filePath}: " . $e->getMessage());
+            throw new InvalidArgumentException("Error processing file {$filePath}: ".$e->getMessage());
         }
     }
 
@@ -70,7 +75,6 @@ class SpecificationProcessor
             $this->logger?->info('Processing JSON spec');
 
             $specs = $this->parseJson($json);
-
 
             foreach ($specs as $spec) {
                 switch ($spec['type']) {
@@ -101,7 +105,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing JSON', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing JSON: ' . $e->getMessage());
+            throw new InvalidArgumentException('Error processing JSON: '.$e->getMessage());
         }
     }
 
@@ -112,7 +116,7 @@ class SpecificationProcessor
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             $this->logger?->error('Invalid JSON provided', ['error' => json_last_error_msg()]);
-            throw new InvalidArgumentException('Invalid JSON provided: ' . json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON provided: '.json_last_error_msg());
         }
 
         $this->logger?->info('Successfully parsed JSON data');
@@ -123,25 +127,25 @@ class SpecificationProcessor
     // this can be removed
     public function validateSpec(object $spec): void
     {
-        $this->logger?->info('Validating ' . $spec->type . ' spec', [$spec->type . 'Name' => $spec->name]);
+        $this->logger?->info('Validating '.$spec->type.' spec', [$spec->type.'Name' => $spec->name]);
         $validation = $this->specValidator->validateSpec($spec);
 
         // throw exceptions when validation fails
         if (! $validation['isValid']) {
             foreach ($validation['errors'] as $path => $errors) {
-                $errorMessages[] = "$path: " . implode(', ', $errors);
+                $errorMessages[] = "$path: ".implode(', ', $errors);
             }
 
-            $this->logger?->error($spec->type . ' validation failed', [
-                $spec->type . 'Name' => $spec->name,
+            $this->logger?->error($spec->type.' validation failed', [
+                $spec->type.'Name' => $spec->name,
                 'errors' => $errorMessages,
             ]);
 
             throw new InvalidArgumentException(
-                $spec->type . ' validation failed: ' . implode(', ', $errorMessages)
+                $spec->type.' validation failed: '.implode(', ', $errorMessages)
             );
         }
-        $this->logger?->info($spec->type . ' spec validated successfully', [$spec->type . 'Name' => $spec->name]);
+        $this->logger?->info($spec->type.' spec validated successfully', [$spec->type.'Name' => $spec->name]);
     }
 
     private function processModel(array $spec): void
@@ -152,7 +156,7 @@ class SpecificationProcessor
             if (isset($spec['relationships'])) {
                 $relationshipP = [
                     'modelName' => $spec['name'],
-                    'relationships' => $spec['relationships']
+                    'relationships' => $spec['relationships'],
                 ];
 
                 $this->pendingRelationships[] = $relationshipP;
@@ -163,7 +167,7 @@ class SpecificationProcessor
             $model = Model::fromArray($spec);
             $this->logger?->info('Model spec processed', ['modelName' => $model->getName()]);
 
-            //Register model to the registery
+            // Register model to the registery
             $this->registryManager->register('model', $model);
             $this->logger?->info('Model registered in registry', ['modelName' => $model->getName()]);
 
@@ -176,7 +180,7 @@ class SpecificationProcessor
             $this->registryManager->register('query', $query);
             $this->logger?->info('Default query registered in registry', [
                 'modelName' => $model->getName(),
-                'queryName' => $query->getName()
+                'queryName' => $query->getName(),
             ]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model', [
@@ -221,7 +225,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing relationships', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing relationships: ' . $e->getMessage());
+            throw new InvalidArgumentException('Error processing relationships: '.$e->getMessage());
         }
     }
 
@@ -247,7 +251,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing query', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing query: ' . $e->getMessage());
+            throw new InvalidArgumentException('Error processing query: '.$e->getMessage());
         }
     }
 
@@ -271,7 +275,6 @@ class SpecificationProcessor
             throw $e;
         }
     }
-
 
     public function processAllMutatorSpec(): void
     {
@@ -304,7 +307,7 @@ class SpecificationProcessor
             $this->logger?->error('Unexpected error processing mutator', [
                 'error' => $e->getMessage(),
             ]);
-            throw new InvalidArgumentException('Error processing mutator: ' . $e->getMessage());
+            throw new InvalidArgumentException('Error processing mutator: '.$e->getMessage());
         }
     }
 
