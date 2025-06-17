@@ -976,146 +976,6 @@ Search.appendIndex(
             "summary": "Configure\u0020Mermaid\u0020settings",
             "url": "classes/LCSEngine-MermaidRenderer.html#property_config"
         },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition",
-            "name": "MutatorDefinition",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetType\u0028\u0029",
-            "name": "getType",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getType"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetName\u0028\u0029",
-            "name": "getName",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getName"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetLabel\u0028\u0029",
-            "name": "getLabel",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getLabel"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetDbOp\u0028\u0029",
-            "name": "getDbOp",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getDbOp"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetModelName\u0028\u0029",
-            "name": "getModelName",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getModelName"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetAttributes\u0028\u0029",
-            "name": "getAttributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getAttributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetSchema\u0028\u0029",
-            "name": "getSchema",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getSchema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgetUiSchema\u0028\u0029",
-            "name": "getUiSchema",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_getUiSchema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AfromObject\u0028\u0029",
-            "name": "fromObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_fromObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AtoArray\u0028\u0029",
-            "name": "toArray",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_toArray"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AtoObject\u0028\u0029",
-            "name": "toObject",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_toObject"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgenerateSchema\u0028\u0029",
-            "name": "generateSchema",
-            "summary": "Generates\u0020JSON\u0020schema\u0020from\u0020attributes",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_generateSchema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003AgenerateUiSchema\u0028\u0029",
-            "name": "generateUiSchema",
-            "summary": "Generates\u0020UI\u0020schema\u0020from\u0020attributes",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#method_generateUiSchema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024type",
-            "name": "type",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_type"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024name",
-            "name": "name",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_name"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024label",
-            "name": "label",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_label"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024dbOp",
-            "name": "dbOp",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_dbOp"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024model",
-            "name": "model",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_model"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024schema",
-            "name": "schema",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_schema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024uiSchema",
-            "name": "uiSchema",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_uiSchema"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorDefinition\u003A\u003A\u0024attributes",
-            "name": "attributes",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorDefinition.html#property_attributes"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorValidator",
-            "name": "MutatorValidator",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorValidator.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorValidator\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorValidator.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorValidator\u003A\u003Avalidate\u0028\u0029",
-            "name": "validate",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorValidator.html#method_validate"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorValidator\u003A\u003AvalidateName\u0028\u0029",
-            "name": "validateName",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorValidator.html#method_validateName"
-        },                {
-            "fqsen": "\\LCSEngine\\Mutators\\MutatorValidator\u003A\u003A\u0024inflector",
-            "name": "inflector",
-            "summary": "",
-            "url": "classes/LCSEngine-Mutators-MutatorValidator.html#property_inflector"
-        },                {
             "fqsen": "\\LCSEngine\\Query\\AttributePath",
             "name": "AttributePath",
             "summary": "",
@@ -2076,6 +1936,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasTransformation"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetRelatedModelName\u0028\u0029",
+            "name": "setRelatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetDependsOn\u0028\u0029",
+            "name": "setDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDependsOn"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisPrimaryKey\u0028\u0029",
             "name": "isPrimaryKey",
             "summary": "",
@@ -2156,6 +2026,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasTransformation"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetRelatedModelName\u0028\u0029",
+            "name": "getRelatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetDependsOn\u0028\u0029",
+            "name": "getDependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getDependsOn"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AremoveGeneratorById\u0028\u0029",
             "name": "removeGeneratorById",
             "summary": "",
@@ -2211,6 +2091,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_options"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024dependsOn",
+            "name": "dependsOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_dependsOn"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024primaryKey",
             "name": "primaryKey",
             "summary": "",
@@ -2235,6 +2120,11 @@ Search.appendIndex(
             "name": "transform",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_transform"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024relatedModelName",
+            "name": "relatedModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_relatedModelName"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator",
             "name": "Generator",
@@ -2306,6 +2196,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getOperations"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AsetDef\u0028\u0029",
+            "name": "setDef",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_setDef"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AgetDef\u0028\u0029",
+            "name": "getDef",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#method_getDef"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
@@ -2325,6 +2225,11 @@ Search.appendIndex(
             "name": "type",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003A\u0024def",
+            "name": "def",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Generator.html#property_def"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator\u003A\u003A\u0024source",
             "name": "source",
@@ -3596,6 +3501,376 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-ScopeResolver.html#property_currentModelName"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\DbOpType",
+            "name": "DbOpType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-DbOpType.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\DbOpType\u003A\u003ACREATE",
+            "name": "CREATE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-DbOpType.html#enumcase_CREATE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\DbOpType\u003A\u003AUPDATE",
+            "name": "UPDATE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-DbOpType.html#enumcase_UPDATE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\DbOpType\u003A\u003ADELETE",
+            "name": "DELETE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-DbOpType.html#enumcase_DELETE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\LayoutType",
+            "name": "LayoutType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-LayoutType.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\LayoutType\u003A\u003AVERTICAL_LAYOUT",
+            "name": "VERTICAL_LAYOUT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-LayoutType.html#enumcase_VERTICAL_LAYOUT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\LayoutType\u003A\u003AHORIZONTAL_LAYOUT",
+            "name": "HORIZONTAL_LAYOUT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-LayoutType.html#enumcase_HORIZONTAL_LAYOUT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\LayoutType\u003A\u003AGROUP",
+            "name": "GROUP",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-LayoutType.html#enumcase_GROUP"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator",
+            "name": "Mutator",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetDbOp\u0028\u0029",
+            "name": "getDbOp",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getDbOp"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetModelName\u0028\u0029",
+            "name": "getModelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetAttributes\u0028\u0029",
+            "name": "getAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AhasAttribute\u0028\u0029",
+            "name": "hasAttribute",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_hasAttribute"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetAttribute\u0028\u0029",
+            "name": "getAttribute",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getAttribute"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AaddAttribute\u0028\u0029",
+            "name": "addAttribute",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_addAttribute"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AremoveAttribute\u0028\u0029",
+            "name": "removeAttribute",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_removeAttribute"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AsetSchema\u0028\u0029",
+            "name": "setSchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_setSchema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetSchema\u0028\u0029",
+            "name": "getSchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getSchema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AsetUISchema\u0028\u0029",
+            "name": "setUISchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_setUISchema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AgetUISchema\u0028\u0029",
+            "name": "getUISchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_getUISchema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024dbOp",
+            "name": "dbOp",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_dbOp"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_model"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024attributes",
+            "name": "attributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_attributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024uiSchema",
+            "name": "uiSchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_uiSchema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024schema",
+            "name": "schema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#property_schema"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema",
+            "name": "Schema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003AaddProperty\u0028\u0029",
+            "name": "addProperty",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#method_addProperty"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003AgetJsonSchemaType\u0028\u0029",
+            "name": "getJsonSchemaType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#method_getJsonSchemaType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003AfromAttributes\u0028\u0029",
+            "name": "fromAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#method_fromAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003A\u0024properties",
+            "name": "properties",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#property_properties"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Schema\u003A\u003A\u0024required",
+            "name": "required",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Schema.html#property_required"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement",
+            "name": "UIElement",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003AgetScope\u0028\u0029",
+            "name": "getScope",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method_getScope"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003AgetLabel\u0028\u0029",
+            "name": "getLabel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method_getLabel"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003A\u0024scope",
+            "name": "scope",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#property_scope"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElement\u003A\u003A\u0024label",
+            "name": "label",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElement.html#property_label"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType",
+            "name": "UIElementType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ACONTROL",
+            "name": "CONTROL",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_CONTROL"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003AGROUP",
+            "name": "GROUP",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_GROUP"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003AVERTICAL_LAYOUT",
+            "name": "VERTICAL_LAYOUT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_VERTICAL_LAYOUT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003AHORIZONTAL_LAYOUT",
+            "name": "HORIZONTAL_LAYOUT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_HORIZONTAL_LAYOUT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003AENUM",
+            "name": "ENUM",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_ENUM"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_ENUM",
+            "name": "LENS_ENUM",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_ENUM"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_SWITCH",
+            "name": "LENS_SWITCH",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_SWITCH"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_TEXT_INPUT",
+            "name": "LENS_TEXT_INPUT",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_TEXT_INPUT"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_DROPDOWN",
+            "name": "LENS_DROPDOWN",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_DROPDOWN"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_CALENDAR",
+            "name": "LENS_CALENDAR",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_CALENDAR"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UIElementType\u003A\u003ALENS_CALENDAR_DATE_TIME",
+            "name": "LENS_CALENDAR_DATE_TIME",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UIElementType.html#enumcase_LENS_CALENDAR_DATE_TIME"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema",
+            "name": "UISchema",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003AgetType\u0028\u0029",
+            "name": "getType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method_getType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003AgetElements\u0028\u0029",
+            "name": "getElements",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method_getElements"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003AgetOptions\u0028\u0029",
+            "name": "getOptions",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method_getOptions"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003A\u0024elements",
+            "name": "elements",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#property_elements"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\UISchema\u003A\u003A\u0024options",
+            "name": "options",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-UISchema.html#property_options"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionConfig",
             "name": "ActionConfig",
             "summary": "",
@@ -4416,16 +4691,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_validateSpec"
         },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllMutatorsSpec\u0028\u0029",
-            "name": "processAllMutatorsSpec",
-            "summary": "Process\u0020a\u0020all\u0020mutators\u0020definition",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processAllMutatorsSpec"
-        },                {
-            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessMutatorSpec\u0028\u0029",
-            "name": "processMutatorSpec",
-            "summary": "Process\u0020a\u0020single\u0020mutator\u0020definition",
-            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processMutatorSpec"
-        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessModel\u0028\u0029",
             "name": "processModel",
             "summary": "",
@@ -4445,6 +4710,16 @@ Search.appendIndex(
             "name": "processQuerySpec",
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processQuerySpec"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessAllMutatorSpec\u0028\u0029",
+            "name": "processAllMutatorSpec",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processAllMutatorSpec"
+        },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AprocessMutatorSpec\u0028\u0029",
+            "name": "processMutatorSpec",
+            "summary": "",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processMutatorSpec"
         },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
@@ -5446,11 +5721,6 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-exceptions.html"
         },                {
-            "fqsen": "\\LCSEngine\\Mutators",
-            "name": "Mutators",
-            "summary": "",
-            "url": "namespaces/lcsengine-mutators.html"
-        },                {
             "fqsen": "\\LCSEngine\\Query",
             "name": "Query",
             "summary": "",
@@ -5480,6 +5750,11 @@ Search.appendIndex(
             "name": "Relationships",
             "summary": "",
             "url": "namespaces/lcsengine-schemas-model-relationships.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator",
+            "name": "Mutator",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-mutator.html"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig",
             "name": "ActionConfig",
