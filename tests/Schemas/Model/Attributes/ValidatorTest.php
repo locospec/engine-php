@@ -1,9 +1,9 @@
 <?php
 
+use Illuminate\Support\Collection;
+use LCSEngine\Schemas\Model\Attributes\OperationType;
 use LCSEngine\Schemas\Model\Attributes\Validator;
 use LCSEngine\Schemas\Model\Attributes\ValidatorType;
-use LCSEngine\Schemas\Model\Attributes\OperationType;
-use Illuminate\Support\Collection;
 
 uses()->group('attributes');
 
@@ -26,7 +26,7 @@ test('can add and remove operations', function () {
     expect($validator->getOperations()->count())->toBe(2)
         ->and($validator->getOperations()->contains(OperationType::INSERT))->toBeTrue()
         ->and($validator->getOperations()->contains(OperationType::UPDATE))->toBeTrue();
-    
+
     $validator->removeOperation(OperationType::INSERT);
     expect($validator->getOperations()->count())->toBe(1)
         ->and($validator->getOperations()->contains(OperationType::INSERT))->toBeFalse()

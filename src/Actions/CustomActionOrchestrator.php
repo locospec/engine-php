@@ -24,7 +24,7 @@ class CustomActionOrchestrator
     public function execute(ValidatorInterface $curdValidator, GeneratorInterface $generator, string $specName, array $input = []): StateFlowPacket
     {
         $model = $this->lcs->getRegistryManager()->get('model', $specName);
-        $query = $this->lcs->getRegistryManager()->get('query', $specName . '_default_query');
+        $query = $this->lcs->getRegistryManager()->get('query', $specName.'_default_query');
 
         if (! $model) {
             throw new InvalidArgumentException("Model not found: {$specName}");

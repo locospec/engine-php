@@ -7,17 +7,29 @@ use Illuminate\Support\Collection;
 class Attribute
 {
     private string $name;
+
     private string $label;
+
     private Type $type;
+
     private Collection $generators;
+
     private Collection $validators;
+
     private Collection $options;
+
     private Collection $dependsOn;
+
     private bool $primaryKey = false;
+
     private bool $deleteKey = false;
+
     private bool $labelKey = false;
+
     private ?string $source = null;
+
     private ?string $transform = null;
+
     private ?string $relatedModelName = null;
 
     public function __construct(string $name, string $label, Type $type)
@@ -64,7 +76,7 @@ class Attribute
     public function setAliasSource(string $source): void
     {
         if ($this->type !== Type::ALIAS) {
-            throw new \LogicException("Cannot set alias source: attribute type is not ALIAS.");
+            throw new \LogicException('Cannot set alias source: attribute type is not ALIAS.');
         }
 
         $this->source = $source;
@@ -73,7 +85,7 @@ class Attribute
     public function setAliasTransformation(string $transform): void
     {
         if ($this->type !== Type::ALIAS) {
-            throw new \LogicException("Cannot set alias transformation: attribute type is not ALIAS.");
+            throw new \LogicException('Cannot set alias transformation: attribute type is not ALIAS.');
         }
 
         $this->transform = $transform;
@@ -106,19 +118,19 @@ class Attribute
 
     public function addGenerator(Generator $generator): void
     {
-        $generator->setId((string)($this->generators->count() + 1));
+        $generator->setId((string) ($this->generators->count() + 1));
         $this->generators->push($generator);
     }
 
     public function addValidator(Validator $validator): void
     {
-        $validator->setId((string)($this->validators->count() + 1));
+        $validator->setId((string) ($this->validators->count() + 1));
         $this->validators->push($validator);
     }
 
     public function addOption(Option $option): void
     {
-        $option->setId((string)($this->options->count() + 1));
+        $option->setId((string) ($this->options->count() + 1));
         $this->options->push($option);
     }
 
@@ -184,17 +196,17 @@ class Attribute
 
     public function removeGeneratorById(string $id): void
     {
-        $this->generators = $this->generators->reject(fn($g) => $g->getId() === $id)->values();
+        $this->generators = $this->generators->reject(fn ($g) => $g->getId() === $id)->values();
     }
 
     public function removeValidatorById(string $id): void
     {
-        $this->validators = $this->validators->reject(fn($v) => $v->getId() === $id)->values();
+        $this->validators = $this->validators->reject(fn ($v) => $v->getId() === $id)->values();
     }
 
     public function removeOptionById(string $id): void
     {
-        $this->options = $this->options->reject(fn($o) => $o->getId() === $id)->values();
+        $this->options = $this->options->reject(fn ($o) => $o->getId() === $id)->values();
     }
 
     public static function fromArray(string $name, array $data): self
@@ -206,13 +218,13 @@ class Attribute
 
         // Boolean flags
         if (isset($data['primaryKey'])) {
-            $attribute->setPrimaryKey((bool)$data['primaryKey']);
+            $attribute->setPrimaryKey((bool) $data['primaryKey']);
         }
         if (isset($data['labelKey'])) {
-            $attribute->setLabelKey((bool)$data['labelKey']);
+            $attribute->setLabelKey((bool) $data['labelKey']);
         }
         if (isset($data['deleteKey'])) {
-            $attribute->setDeleteKey((bool)$data['deleteKey']);
+            $attribute->setDeleteKey((bool) $data['deleteKey']);
         }
 
         // Alias fields
@@ -226,7 +238,7 @@ class Attribute
         }
 
         // Generators
-        if (!empty($data['generators']) && is_array($data['generators'])) {
+        if (! empty($data['generators']) && is_array($data['generators'])) {
             foreach ($data['generators'] as $generatorData) {
                 $attribute->addGenerator(
                     is_object($generatorData) ? $generatorData : Generator::fromArray($generatorData)
@@ -235,7 +247,7 @@ class Attribute
         }
 
         // Validators
-        if (!empty($data['validators']) && is_array($data['validators'])) {
+        if (! empty($data['validators']) && is_array($data['validators'])) {
             foreach ($data['validators'] as $validatorData) {
                 $attribute->addValidator(
                     is_object($validatorData) ? $validatorData : Validator::fromArray($validatorData)
@@ -244,7 +256,7 @@ class Attribute
         }
 
         // Options
-        if (!empty($data['options']) && is_array($data['options'])) {
+        if (! empty($data['options']) && is_array($data['options'])) {
             foreach ($data['options'] as $optionData) {
                 $attribute->addOption(
                     is_object($optionData) ? $optionData : Option::fromArray($optionData)
@@ -256,7 +268,7 @@ class Attribute
             $attribute->setRelatedModelName($data['relatedModelName']);
         }
 
-        if (!empty($data['dependsOn']) && is_array($data['dependsOn'])) {
+        if (! empty($data['dependsOn']) && is_array($data['dependsOn'])) {
             foreach ($data['dependsOn'] as $dependsOnData) {
                 $attribute->setDependsOn($dependsOnData);
             }
@@ -280,20 +292,20 @@ class Attribute
             $arr['relatedModelName'] = $this->relatedModelName;
         }
 
-        if (!$this->dependsOn->isEmpty()) {
+        if (! $this->dependsOn->isEmpty()) {
             $arr['dependsOn'] = $this->dependsOn->all();
         }
 
-        if (!$this->options->isEmpty()) {
-            $arr['options'] = $this->options->map(fn($o) => $o->toArray())->all();
+        if (! $this->options->isEmpty()) {
+            $arr['options'] = $this->options->map(fn ($o) => $o->toArray())->all();
         }
 
-        if (!$this->generators->isEmpty()) {
-            $arr['generators'] = $this->generators->map(fn($g) => $g->toArray())->all();
+        if (! $this->generators->isEmpty()) {
+            $arr['generators'] = $this->generators->map(fn ($g) => $g->toArray())->all();
         }
 
-        if (!$this->validators->isEmpty()) {
-            $arr['validators'] = $this->validators->map(fn($v) => $v->toArray())->all();
+        if (! $this->validators->isEmpty()) {
+            $arr['validators'] = $this->validators->map(fn ($v) => $v->toArray())->all();
         }
 
         if ($this->type === Type::ALIAS) {
