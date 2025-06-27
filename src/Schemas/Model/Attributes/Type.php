@@ -6,7 +6,7 @@ enum Type: string
 {
     case UUID = 'uuid';
     case ULID = 'ulid';
-    case ALIAS = 'alias';
+    // case ALIAS = 'alias';
     case STRING = 'string';
     case TEXT = 'text';
     case TIMESTAMP = 'timestamp';
