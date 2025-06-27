@@ -254,7 +254,7 @@ test('can create Query from array with shorthand lensSimpleFilters', function ()
     expect($statusFilter)->toBeInstanceOf(LensSimpleFilter::class);
     expect($statusFilter->getName())->toBe('status');
     expect($statusFilter->getType())->toBe(LensFilterType::ENUM);
-    expect($statusFilter->getModelName())->toBe('user');
+    expect($statusFilter->getModel())->toBe('user');
     expect($statusFilter->getOptions())->toBeInstanceOf(Collection::class)->toHaveCount(2);
 
     // Verify category filter
@@ -262,7 +262,7 @@ test('can create Query from array with shorthand lensSimpleFilters', function ()
     expect($categoryFilter)->toBeInstanceOf(LensSimpleFilter::class);
     expect($categoryFilter->getName())->toBe('category');
     expect($categoryFilter->getType())->toBe(LensFilterType::ENUM);
-    expect($categoryFilter->getModelName())->toBe('user');
+    expect($categoryFilter->getModel())->toBe('user');
     expect($categoryFilter->getOptions())->toBeInstanceOf(Collection::class)->toHaveCount(2);
 });
 
