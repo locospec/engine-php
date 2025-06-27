@@ -3,7 +3,6 @@
 namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
-use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\StateMachine\ContextInterface;
 
 class PreparePayloadTask extends AbstractTask implements TaskInterface
@@ -214,7 +213,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => !$attribute->getIsAlias())->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->getIsAlias())->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
