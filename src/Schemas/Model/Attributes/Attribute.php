@@ -34,12 +34,11 @@ class Attribute
 
     private ?string $relatedModelName = null;
 
-    public function __construct(string $name, string $label, Type $type, bool $aliasKey = false)
+    public function __construct(string $name, string $label, Type $type)
     {
         $this->name = $name;
         $this->label = $label;
         $this->type = $type;
-        $this->aliasKey = $aliasKey;
         $this->generators = collect();
         $this->validators = collect();
         $this->options = collect();
@@ -83,7 +82,7 @@ class Attribute
 
     public function setAliasSource(string $source): void
     {
-        if (! $this->aliasKey) {
+        if (!$this->aliasKey) {
             throw new \LogicException('Cannot set alias source: attribute type is not ALIAS.');
         }
 
@@ -92,7 +91,7 @@ class Attribute
 
     public function setAliasTransformation(string $transform): void
     {
-        if (! $this->aliasKey) {
+        if (!$this->aliasKey) {
             throw new \LogicException('Cannot set alias transformation: attribute type is not ALIAS.');
         }
 
@@ -111,7 +110,7 @@ class Attribute
 
     public function isAliasKey(): bool
     {
-        return $this->aliasKey;
+        return $this->aliasKey;   
     }
 
     public function isPrimaryKey(): bool
@@ -239,7 +238,7 @@ class Attribute
         if (isset($data['primaryKey'])) {
             $attribute->setPrimaryKey((bool) $data['primaryKey']);
         }
-        if (isset($data['aliasKey'])) {
+        if(isset($data['aliasKey'])){
             $attribute->setAliasKey((bool) $data['aliasKey']);
         }
         if (isset($data['labelKey'])) {

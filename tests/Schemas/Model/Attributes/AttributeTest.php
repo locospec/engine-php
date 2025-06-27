@@ -35,7 +35,8 @@ test('setAliasSource and setAliasTransformation throw if not alias', function ()
 });
 
 test('setAliasSource and setAliasTransformation work for alias', function () {
-    $attribute = new Attribute('alias', 'Alias', Type::STRING, true);
+    $attribute = new Attribute('alias', 'Alias', Type::STRING);
+    $attribute->setAliasKey(true);
     $attribute->setAliasSource('user.name');
     $attribute->setAliasTransformation('upper(user.name)');
     expect($attribute->isAliasKey())->toBeTrue()
@@ -59,7 +60,8 @@ test('can add generators, validators, and options', function () {
 });
 
 test('toArray serializes all fields and collections', function () {
-    $attribute = new Attribute('alias', 'Alias', Type::STRING, true);
+    $attribute = new Attribute('alias', 'Alias', Type::STRING);
+    $attribute->setAliasKey(true);
     $attribute->setPrimaryKey(true);
     $attribute->setLabelKey(true);
     $attribute->setDeleteKey(true);

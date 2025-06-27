@@ -6,6 +6,7 @@ use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
+use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
