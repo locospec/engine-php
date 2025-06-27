@@ -20,6 +20,8 @@ class Attribute
 
     private Collection $dependsOn;
 
+    private bool $aliasKey = false;
+
     private bool $primaryKey = false;
 
     private bool $deleteKey = false;
@@ -32,11 +34,12 @@ class Attribute
 
     private ?string $relatedModelName = null;
 
-    public function __construct(string $name, string $label, Type $type)
+    public function __construct(string $name, string $label, Type $type, bool $aliasKey = false)
     {
         $this->name = $name;
         $this->label = $label;
         $this->type = $type;
+        $this->aliasKey = $aliasKey;
         $this->generators = collect();
         $this->validators = collect();
         $this->options = collect();
@@ -58,6 +61,11 @@ class Attribute
         $this->name = $name;
     }
 
+    public function setAliasKey(bool $flag): void
+    {
+        $this->aliasKey = $flag;
+    }
+
     public function setPrimaryKey(bool $flag): void
     {
         $this->primaryKey = $flag;
@@ -75,7 +83,7 @@ class Attribute
 
     public function setAliasSource(string $source): void
     {
-        if ($this->type !== Type::ALIAS) {
+        if (!$this->aliasKey) {
             throw new \LogicException('Cannot set alias source: attribute type is not ALIAS.');
         }
 
@@ -84,7 +92,7 @@ class Attribute
 
     public function setAliasTransformation(string $transform): void
     {
-        if ($this->type !== Type::ALIAS) {
+        if (!$this->aliasKey) {
             throw new \LogicException('Cannot set alias transformation: attribute type is not ALIAS.');
         }
 
@@ -99,6 +107,11 @@ class Attribute
     public function setDependsOn(string $dependsOn): void
     {
         $this->dependsOn->push($dependsOn);
+    }
+
+    public function isAliasKey(): bool
+    {
+        return $this->aliasKey;   
     }
 
     public function isPrimaryKey(): bool
@@ -164,6 +177,11 @@ class Attribute
         return $this->options;
     }
 
+    public function getIsAlias(): bool
+    {
+        return $this->aliasKey;
+    }
+
     public function getAliasSource(): ?string
     {
         return $this->source;
@@ -214,11 +232,15 @@ class Attribute
         $name = $data['name'] ?? $name;
         $label = $data['label'] ?? '';
         $type = Type::from($data['type'] ?? 'string');
-        $attribute = new self($name, $label, $type);
+        $aliasKey = $data['aliasKey'] ?? false;
+        $attribute = new self($name, $label, $type, $aliasKey);
 
         // Boolean flags
         if (isset($data['primaryKey'])) {
             $attribute->setPrimaryKey((bool) $data['primaryKey']);
+        }
+        if(isset($data['aliasKey'])){
+            $attribute->setAliasKey((bool) $data['aliasKey']);
         }
         if (isset($data['labelKey'])) {
             $attribute->setLabelKey((bool) $data['labelKey']);
@@ -228,7 +250,10 @@ class Attribute
         }
 
         // Alias fields
-        if ($type === Type::ALIAS) {
+        // if($aliasKey){
+        //     dd($aliasKey, $name, $data['transform']);
+        // }
+        if ($aliasKey) {
             if (isset($data['source'])) {
                 $attribute->setAliasSource($data['source']);
             }
@@ -283,6 +308,7 @@ class Attribute
             'name' => $this->name,
             'label' => $this->label,
             'type' => $this->type->value,
+            'aliasKey' => $this->aliasKey,
             'primaryKey' => $this->primaryKey,
             'labelKey' => $this->labelKey,
             'deleteKey' => $this->deleteKey,
@@ -308,7 +334,7 @@ class Attribute
             $arr['validators'] = $this->validators->map(fn ($v) => $v->toArray())->all();
         }
 
-        if ($this->type === Type::ALIAS) {
+        if ($this->aliasKey) {
             $arr['source'] = $this->source;
             $arr['transform'] = $this->transform;
         }

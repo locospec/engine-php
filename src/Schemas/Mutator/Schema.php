@@ -24,7 +24,7 @@ class Schema
             'type' => $this->getJsonSchemaType($attribute->getType()),
         ];
 
-        // if ($attribute->getType() === AttributeType::ALIAS) {
+        // if ($attribute->getIsAlias()) {
         //     if ($attribute->hasAliasSource()) {
         //         $property['source'] = $attribute->getAliasSource();
         //     }
@@ -59,7 +59,7 @@ class Schema
     private function getJsonSchemaType(AttributeType $type): string
     {
         return match ($type) {
-            AttributeType::STRING, AttributeType::TEXT, AttributeType::UUID, AttributeType::ULID, AttributeType::ALIAS => 'string',
+            AttributeType::STRING, AttributeType::TEXT, AttributeType::UUID, AttributeType::ULID => 'string',
             AttributeType::INTEGER, AttributeType::ID, AttributeType::DECIMAL => 'number',
             AttributeType::BOOLEAN => 'boolean',
             AttributeType::DATE, AttributeType::TIMESTAMP => 'string',

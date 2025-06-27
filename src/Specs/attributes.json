@@ -24,8 +24,7 @@
               "decimal",
               "json",
               "jsonb",
-              "object",
-              "alias"
+              "object"
             ]
           },
           "name": {
@@ -111,6 +110,11 @@
               },
               "required": ["title", "const"]
             }
+          },
+          "aliasKey": {
+            "type": "boolean",
+            "default": false,
+            "description": "Is attribute primary key column in database table."
           },
           "primaryKey": {
             "type": "boolean",

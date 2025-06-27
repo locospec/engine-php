@@ -73,7 +73,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
             ];
             $validator = $this->context->get('crudValidator');
             $model = $this->context->get('model');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => $attribute->getType() !== AttributeType::ALIAS)->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => !$attribute->getIsAlias())->all();
             $errors = [];
 
             // Ensure "data" is an array of records

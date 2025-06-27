@@ -35,10 +35,11 @@ test('setAliasSource and setAliasTransformation throw if not alias', function ()
 });
 
 test('setAliasSource and setAliasTransformation work for alias', function () {
-    $attribute = new Attribute('alias', 'Alias', Type::ALIAS);
+    $attribute = new Attribute('alias', 'Alias', Type::STRING, true);
     $attribute->setAliasSource('user.name');
     $attribute->setAliasTransformation('upper(user.name)');
-    expect($attribute->getAliasSource())->toBe('user.name')
+    expect($attribute->isAliasKey())->toBeTrue()
+        ->and($attribute->getAliasSource())->toBe('user.name')
         ->and($attribute->getAliasTransformation())->toBe('upper(user.name)');
 });
 
@@ -58,7 +59,7 @@ test('can add generators, validators, and options', function () {
 });
 
 test('toArray serializes all fields and collections', function () {
-    $attribute = new Attribute('alias', 'Alias', Type::ALIAS);
+    $attribute = new Attribute('alias', 'Alias', Type::STRING, true);
     $attribute->setPrimaryKey(true);
     $attribute->setLabelKey(true);
     $attribute->setDeleteKey(true);
@@ -78,7 +79,8 @@ test('toArray serializes all fields and collections', function () {
     $arr = $attribute->toArray();
     expect($arr['name'])->toBe('alias')
         ->and($arr['label'])->toBe('Alias')
-        ->and($arr['type'])->toBe('alias')
+        ->and($arr['type'])->toBe('string')
+        ->and($arr['aliasKey'])->toBeTrue()
         ->and($arr['primaryKey'])->toBeTrue()
         ->and($arr['labelKey'])->toBeTrue()
         ->and($arr['deleteKey'])->toBeTrue()
