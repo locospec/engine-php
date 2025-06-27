@@ -1911,6 +1911,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setName"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetAliasKey\u0028\u0029",
+            "name": "setAliasKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasKey"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetPrimaryKey\u0028\u0029",
             "name": "setPrimaryKey",
             "summary": "",
@@ -1945,6 +1950,11 @@ Search.appendIndex(
             "name": "setDependsOn",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisAliasKey\u0028\u0029",
+            "name": "isAliasKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isAliasKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisPrimaryKey\u0028\u0029",
             "name": "isPrimaryKey",
@@ -2095,6 +2105,11 @@ Search.appendIndex(
             "name": "dependsOn",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_dependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024aliasKey",
+            "name": "aliasKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_aliasKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024primaryKey",
             "name": "primaryKey",
@@ -2370,11 +2385,6 @@ Search.appendIndex(
             "name": "ULID",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_ULID"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003AALIAS",
-            "name": "ALIAS",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Attributes-Type.html#enumcase_ALIAS"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Type\u003A\u003ASTRING",
             "name": "STRING",
