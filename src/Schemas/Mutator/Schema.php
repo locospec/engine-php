@@ -24,7 +24,7 @@ class Schema
             'type' => $this->getJsonSchemaType($attribute->getType()),
         ];
 
-        // if ($attribute->getIsAlias()) {
+        // if ($attribute->isAliasKey()) {
         //     if ($attribute->hasAliasSource()) {
         //         $property['source'] = $attribute->getAliasSource();
         //     }

@@ -176,11 +176,6 @@ class Attribute
         return $this->options;
     }
 
-    public function getIsAlias(): bool
-    {
-        return $this->aliasKey;
-    }
-
     public function getAliasSource(): ?string
     {
         return $this->source;
@@ -232,7 +227,7 @@ class Attribute
         $label = $data['label'] ?? '';
         $type = Type::from($data['type'] ?? 'string');
         $aliasKey = $data['aliasKey'] ?? false;
-        $attribute = new self($name, $label, $type, $aliasKey);
+        $attribute = new self($name, $label, $type);
 
         // Boolean flags
         if (isset($data['primaryKey'])) {
@@ -249,9 +244,6 @@ class Attribute
         }
 
         // Alias fields
-        // if($aliasKey){
-        //     dd($aliasKey, $name, $data['transform']);
-        // }
         if ($aliasKey) {
             if (isset($data['source'])) {
                 $attribute->setAliasSource($data['source']);

@@ -144,7 +144,7 @@ class Model
 
     public function getAliases(): Collection
     {
-        return $this->attributes->filter(fn (Attribute $attribute) => $attribute->getIsAlias());
+        return $this->attributes->filter(fn (Attribute $attribute) => $attribute->isAliasKey());
     }
 
     public static function fromArray(array $data): self
