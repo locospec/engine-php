@@ -46,6 +46,7 @@ test('resolve aliases in filter group', function () {
         ]),
         'user_email' => Attribute::fromArray('user_email', [
             'type' => 'string',
+            'aliasKey' => true,
             'source' => 'users.email',
         ]),
     ]);
