@@ -48,6 +48,19 @@ class ActionOrchestrator
         $type = $data->getType();
         $isQueryOrMutator = in_array($type, [Type::QUERY, Type::MUTATOR]);
 
+        if ($actionName === '_create' && $type === Type::MODEL) {
+            $mutatorName = match ($type) {
+                Type::MODEL => $data->getName().'_default_create_mutator',
+                default => $specName
+            };
+
+            try {
+                $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorName);
+            } catch (\Throwable $th) {
+                $mutator = null;
+            }
+        }
+
         $modelName = $isQueryOrMutator ? $data->getModelName() : $specName;
 
         $queryName = match ($type) {
@@ -74,6 +87,10 @@ class ActionOrchestrator
 
     protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, Query $query, string $actionName, ?Mutator $mutator): ModelAction
     {
+        if ($actionName === '_create') {
+            // dd($mutator);
+        }
+
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
             '_read' => ReadListAction::class,
