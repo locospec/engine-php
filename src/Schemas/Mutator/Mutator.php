@@ -162,7 +162,7 @@ class Mutator
         ];
 
         if (! $this->attributes->isEmpty()) {
-            $arr['attributes'] = $this->attributes->map(fn($a) => $a->toArray())->all();
+            $arr['attributes'] = $this->attributes->map(fn ($a) => $a->toArray())->all();
         }
 
         if ($this->schema) {
@@ -180,8 +180,8 @@ class Mutator
     {
         $actionValue = $dbOp->value;
 
-        $name = $model->getName() . "_default_{$actionValue}_mutator";
-        $label = $model->getLabel() . ' Default Create Mutator';
+        $name = $model->getName()."_default_{$actionValue}_mutator";
+        $label = $model->getLabel().' Default Create Mutator';
 
         $spec = [
             'name' => $name,

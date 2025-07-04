@@ -50,7 +50,7 @@ class ActionOrchestrator
 
         if ($actionName === '_create' && $type === Type::MODEL) {
             $mutatorName = match ($type) {
-                Type::MODEL => $data->getName() . '_default_create_mutator',
+                Type::MODEL => $data->getName().'_default_create_mutator',
                 default => $specName
             };
 
@@ -64,8 +64,8 @@ class ActionOrchestrator
         $modelName = $isQueryOrMutator ? $data->getModelName() : $specName;
 
         $queryName = match ($type) {
-            Type::MODEL => $input['query'] ?? $data->getName() . '_default_query',
-            Type::MUTATOR => $data->getModelName() . '_default_query',
+            Type::MODEL => $input['query'] ?? $data->getName().'_default_query',
+            Type::MUTATOR => $data->getModelName().'_default_query',
             default => $specName
         };
 
