@@ -193,6 +193,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 'modelName' => $this->context->get('model')->getName(),
             ];
 
+
             if ($dbOp === 'update') {
                 if (isset($payload['filters'])) {
                     $preparedPayload['filters'] = $payload['filters'];
@@ -213,7 +214,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -238,7 +239,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
