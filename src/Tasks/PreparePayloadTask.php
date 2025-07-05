@@ -68,6 +68,9 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForRead(array $payload): array
     {
+
+        $model = $this->context->get('model');
+
         $preparedPayload = [
             'type' => 'select',
             'modelName' => $this->context->get('model')->getName(),
@@ -87,12 +90,31 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['pagination'] = $payload['pagination'];
         }
 
+        $primaryKeyAttributeKey = $model->getPrimaryKey()->getName();
+
         if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
+            
+            // Check if primary key exists in sorts
+            $primaryKeyExists = false;
+            foreach ($payload['sorts'] as $sort) {
+                if (isset($sort['attribute']) && $sort['attribute'] === $primaryKeyAttributeKey) {
+                    $primaryKeyExists = true;
+                    break;
+                }
+            }
+            
+            // Add primary key to end of sorts if it doesn't exist
+            if (!$primaryKeyExists) {
+                $preparedPayload['sorts'][] = [
+                    'attribute' => $primaryKeyAttributeKey,
+                    'direction' => 'ASC',
+                ];
+            }
         } else {
             $preparedPayload['sorts'] = [[
-                'attribute' => 'created_at',
-                'direction' => 'DESC',
+                'attribute' => $primaryKeyAttributeKey,
+                'direction' => 'ASC',
             ]];
         }
 
@@ -213,7 +235,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -238,7 +260,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                             continue;
                         }
 
