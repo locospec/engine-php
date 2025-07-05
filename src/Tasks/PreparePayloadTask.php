@@ -94,7 +94,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
-            
+
             // Check if primary key exists in sorts
             $primaryKeyExists = false;
             foreach ($payload['sorts'] as $sort) {
@@ -103,9 +103,9 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     break;
                 }
             }
-            
+
             // Add primary key to end of sorts if it doesn't exist
-            if (!$primaryKeyExists) {
+            if (! $primaryKeyExists) {
                 $preparedPayload['sorts'][] = [
                     'attribute' => $primaryKeyAttributeKey,
                     'direction' => 'ASC',
@@ -235,7 +235,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             }
 
             $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
             $dbOps = new DatabaseOperationsCollection($this->operator);
             $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -260,7 +260,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                         $generation['payload'] = $payload;
                         // Only process the generation if the current operation is included in the operations list
 
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
                             continue;
                         }
 
