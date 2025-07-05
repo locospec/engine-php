@@ -7,6 +7,7 @@ use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
+use LCSEngine\Schemas\Mutator\DbOpType;
 use LCSEngine\Schemas\Mutator\Mutator;
 use LCSEngine\Schemas\Query\Query;
 use LCSEngine\SpecValidator;
@@ -181,6 +182,45 @@ class SpecificationProcessor
             $this->logger?->info('Default query registered in registry', [
                 'modelName' => $model->getName(),
                 'queryName' => $query->getName(),
+            ]);
+
+            // Create the default create mutator for the model
+            // TODO: check condition
+            $createMutator = Mutator::fromModel($model, DbOpType::CREATE);
+
+            $this->logger?->info('Created default create mutator for model', ['mutatorName' => $createMutator->getName()]);
+
+            // // register the query
+            $this->registryManager->register('mutator', $createMutator);
+            $this->logger?->info('Default create mutator registered in registry', [
+                'modelName' => $model->getName(),
+                'mutatorName' => $createMutator->getName(),
+            ]);
+
+            // Create the default update mutator for the model
+            // TODO: check condition
+            $updateMutator = Mutator::fromModel($model, DbOpType::UPDATE);
+
+            $this->logger?->info('Created default update mutator for model', ['mutatorName' => $updateMutator->getName()]);
+
+            // // register the query
+            $this->registryManager->register('mutator', $updateMutator);
+            $this->logger?->info('Default update mutator registered in registry', [
+                'modelName' => $model->getName(),
+                'mutatorName' => $updateMutator->getName(),
+            ]);
+
+            // Create the default delete mutator for the model
+            // TODO: check condition
+            $deleteMutator = Mutator::fromModel($model, DbOpType::DELETE);
+
+            $this->logger?->info('Created default delete mutator for model', ['mutatorName' => $deleteMutator->getName()]);
+
+            // // register the query
+            $this->registryManager->register('mutator', $deleteMutator);
+            $this->logger?->info('Default delete mutator registered in registry', [
+                'modelName' => $model->getName(),
+                'mutatorName' => $deleteMutator->getName(),
             ]);
         } catch (\Exception $e) {
             $this->logger?->error('Error processing model', [

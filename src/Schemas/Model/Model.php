@@ -112,6 +112,11 @@ class Model
         return $this->relationships;
     }
 
+    public function getRelationshipsByType(string $type): Collection
+    {
+        return $this->relationships->filter(fn (Relationship $relationship) => $relationship->getType() === RelationshipType::from($type));
+    }
+
     public function getScopes(): Collection
     {
         return $this->scopes;
