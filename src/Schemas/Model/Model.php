@@ -112,6 +112,11 @@ class Model
         return $this->relationships;
     }
 
+    public function getRelationshipsByType(string $type): Collection
+    {
+        return $this->relationships->filter(fn(Relationship $relationship) => $relationship->getType() === RelationshipType::from($type));
+    }
+
     public function getScopes(): Collection
     {
         return $this->scopes;
@@ -124,12 +129,12 @@ class Model
 
     public function getPrimaryKey(): ?Attribute
     {
-        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isPrimaryKey());
+        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isPrimaryKey());
     }
 
     public function getDeleteKey(): ?Attribute
     {
-        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isDeleteKey());
+        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isDeleteKey());
     }
 
     public function hasDeleteKey(): bool
@@ -139,12 +144,12 @@ class Model
 
     public function getLabelKey(): ?Attribute
     {
-        return $this->attributes->first(fn (Attribute $attribute) => $attribute->isLabelKey());
+        return $this->attributes->first(fn(Attribute $attribute) => $attribute->isLabelKey());
     }
 
     public function getAliases(): Collection
     {
-        return $this->attributes->filter(fn (Attribute $attribute) => $attribute->isAliasKey());
+        return $this->attributes->filter(fn(Attribute $attribute) => $attribute->isAliasKey());
     }
 
     public static function fromArray(array $data): self
@@ -153,7 +158,7 @@ class Model
         $label = $data['label'] ?? '';
         $model = new self($name, $label);
 
-        if (isset($data['type']) && in_array($data['type'], array_map(fn ($t) => $t->value, Type::cases()))) {
+        if (isset($data['type']) && in_array($data['type'], array_map(fn($t) => $t->value, Type::cases()))) {
             $model->type = Type::from($data['type']);
         }
 
@@ -192,9 +197,9 @@ class Model
             'name' => $this->name,
             'label' => $this->label,
             'type' => $this->type->value,
-            'attributes' => $this->attributes->map(fn (Attribute $attribute) => $attribute->toArray())->all(),
-            'relationships' => $this->relationships->map(fn (Relationship $relationship) => $relationship->toArray())->all(),
-            'scopes' => $this->scopes->map(fn (Filters $filters) => $filters->toArray())->all(),
+            'attributes' => $this->attributes->map(fn(Attribute $attribute) => $attribute->toArray())->all(),
+            'relationships' => $this->relationships->map(fn(Relationship $relationship) => $relationship->toArray())->all(),
+            'scopes' => $this->scopes->map(fn(Filters $filters) => $filters->toArray())->all(),
             'config' => $this->config->toArray(),
         ];
     }
