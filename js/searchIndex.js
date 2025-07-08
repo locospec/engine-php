@@ -2271,6 +2271,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_UUID"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AULID",
+            "name": "ULID",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_ULID"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AUNIQUE_SLUG",
             "name": "UNIQUE_SLUG",
             "summary": "",
@@ -3191,6 +3196,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getRelationships"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetRelationshipsByType\u0028\u0029",
+            "name": "getRelationshipsByType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getRelationshipsByType"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetScopes\u0028\u0029",
             "name": "getScopes",
             "summary": "",
@@ -3640,6 +3650,11 @@ Search.appendIndex(
             "name": "toArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003AfromModel\u0028\u0029",
+            "name": "fromModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Mutator-Mutator.html#method_fromModel"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Mutator\\Mutator\u003A\u003A\u0024name",
             "name": "name",
