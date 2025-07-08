@@ -175,4 +175,23 @@ class Mutator
 
         return $arr;
     }
+
+    public static function fromModel(Model $model, DbOpType $dbOp): self
+    {
+        $actionValue = $dbOp->value;
+
+        $name = $model->getName()."_default_{$actionValue}_mutator";
+        $label = $model->getLabel().' Default Create Mutator';
+
+        $spec = [
+            'name' => $name,
+            'label' => $label,
+            'dbOp' => $dbOp->value,
+            'model' => $model->getName(),
+        ];
+
+        $mutator = self::fromArray($spec, $model);
+
+        return $mutator;
+    }
 }

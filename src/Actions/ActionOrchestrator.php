@@ -48,6 +48,45 @@ class ActionOrchestrator
         $type = $data->getType();
         $isQueryOrMutator = in_array($type, [Type::QUERY, Type::MUTATOR]);
 
+        if ($actionName === '_create' && $type === Type::MODEL) {
+            $mutatorName = match ($type) {
+                Type::MODEL => $data->getName().'_default_create_mutator',
+                default => $specName
+            };
+
+            try {
+                $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorName);
+            } catch (\Throwable $th) {
+                $mutator = null;
+            }
+        }
+
+        if ($actionName === '_update' && $type === Type::MODEL) {
+            $mutatorName = match ($type) {
+                Type::MODEL => $data->getName().'_default_update_mutator',
+                default => $specName
+            };
+
+            try {
+                $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorName);
+            } catch (\Throwable $th) {
+                $mutator = null;
+            }
+        }
+
+        if ($actionName === '_delete' && $type === Type::MODEL) {
+            $mutatorName = match ($type) {
+                Type::MODEL => $data->getName().'_default_delete_mutator',
+                default => $specName
+            };
+
+            try {
+                $mutator = $this->lcs->getRegistryManager()->get('mutator', $mutatorName);
+            } catch (\Throwable $th) {
+                $mutator = null;
+            }
+        }
+
         $modelName = $isQueryOrMutator ? $data->getModelName() : $specName;
 
         $queryName = match ($type) {
