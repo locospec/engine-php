@@ -127,10 +127,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $preparedPayload['expand'] = $payload['expand'];
         } else {
-            $relationshipKeys = $this->context->get('model')->getRelationships()->keys()->all();
-            if (! empty($relationshipKeys)) {
-                $preparedPayload['expand'] = $relationshipKeys;
-            }
+            $preparedPayload['expand'] = $this->context->get('query')->getExpand()->toArray();
+            // $relationshipKeys = $this->context->get('model')->getRelationships()->keys()->all();
+            // if (! empty($relationshipKeys)) {
+            //     $preparedPayload['expand'] = $relationshipKeys;
+            // }
         }
 
         return $preparedPayload;
@@ -160,6 +161,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['pagination'] = $payload['pagination'];
         }
 
+        // TODO: This will break with cursor pagination
         if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
         } else {
