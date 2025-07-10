@@ -9,8 +9,8 @@ trait PayloadPreparationHelpers
     /**
      * Handles pagination logic for read operations.
      *
-     * @param  array  $payload  The incoming payload.
-     * @param  object|array  $preparedPayload  The payload being prepared (DTO or array).
+     * @param array $payload The incoming payload.
+     * @param object|array $preparedPayload The payload being prepared (DTO or array).
      */
     private function preparePagination(array $payload, array &$preparedPayload): void
     {
@@ -26,9 +26,9 @@ trait PayloadPreparationHelpers
     /**
      * Handles sorting logic, ensuring the primary key is always included as a final sort criterion for stable ordering.
      *
-     * @param  array  $payload  The incoming payload.
-     * @param  array  $preparedPayload  The payload being prepared (passed by reference).
-     * @param  string  $primaryKeyAttributeKey  The name of the primary key attribute.
+     * @param array $payload The incoming payload.
+     * @param array $preparedPayload The payload being prepared (passed by reference).
+     * @param string $primaryKeyAttributeKey The name of the primary key attribute.
      */
     private function prepareSorts(array $payload, array &$preparedPayload, string $primaryKeyAttributeKey): void
     {
@@ -62,8 +62,8 @@ trait PayloadPreparationHelpers
     /**
      * Handles pagination logic for read operations using a DTO.
      *
-     * @param  array  $payload  The incoming payload.
-     * @param  ReadPayload  $preparedPayload  The payload being prepared.
+     * @param array $payload The incoming payload.
+     * @param ReadPayload $preparedPayload The payload being prepared.
      */
     private function preparePaginationForDto(array $payload, ReadPayload $preparedPayload): void
     {
@@ -79,9 +79,9 @@ trait PayloadPreparationHelpers
     /**
      * Handles sorting logic for a DTO, ensuring the primary key is always included as a final sort criterion for stable ordering.
      *
-     * @param  array  $payload  The incoming payload.
-     * @param  ReadPayload  $preparedPayload  The payload being prepared.
-     * @param  string  $primaryKeyAttributeKey  The name of the primary key attribute.
+     * @param array $payload The incoming payload.
+     * @param ReadPayload $preparedPayload The payload being prepared.
+     * @param string $primaryKeyAttributeKey The name of the primary key attribute.
      */
     private function prepareSortsForDto(array $payload, ReadPayload $preparedPayload, string $primaryKeyAttributeKey): void
     {
@@ -105,10 +105,12 @@ trait PayloadPreparationHelpers
                 ];
             }
         } else {
-            $preparedPayload->sorts = [[
+            $preparedPayload->sorts = [[ 
                 'attribute' => $primaryKeyAttributeKey,
                 'direction' => 'ASC',
             ]];
         }
     }
+
+
 }
