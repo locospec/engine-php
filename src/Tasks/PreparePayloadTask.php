@@ -4,29 +4,55 @@ namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\StateMachine\ContextInterface;
+use LCSEngine\Tasks\PayloadBuilders\ReadPayloadBuilder;
+use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
 
+/**
+ * Prepares the payload for database operations based on the current action in the state machine.
+ * This task transforms the incoming payload into a structured format that the database operator can execute.
+ */
 class PreparePayloadTask extends AbstractTask implements TaskInterface
 {
+    use PayloadPreparationHelpers;
     protected ContextInterface $context;
 
+    /**
+     * Gets the name of the task.
+     *
+     * @return string
+     */
     public function getName(): string
     {
         return 'prepare_payload';
     }
 
+    /**
+     * Sets the context for the task.
+     *
+     * @param ContextInterface $context The state machine context.
+     */
     public function setContext(ContextInterface $context): void
     {
         $this->context = $context;
     }
 
+    /**
+     * Executes the task, dispatching to the appropriate payload preparation method based on the action.
+     *
+     * @param array $payload The incoming payload.
+     * @param array $taskArgs Additional arguments for the task.
+     * @return array The original payload and the prepared payload.
+     */
     public function execute(array $payload, array $taskArgs = []): array
     {
         $preparedPayload = [];
+        // Move user permissions from global context to a dedicated key for locospec.
         if (isset($payload['globalContext']['userPermissions'])) {
             $payload['locospecPermissions']['userPermissions'] = $payload['globalContext']['userPermissions'];
             unset($payload['globalContext']['userPermissions']);
         }
 
+        // Determine the appropriate payload preparation method based on the action from the context.
         switch ($this->context->get('action')) {
             case '_create':
                 $preparedPayload = $this->preparePayloadForCreateAndUpdate($payload, 'insert');
@@ -41,7 +67,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 break;
 
             case '_read':
-                $preparedPayload = $this->preparePayloadForRead($payload);
+                $readPayloadBuilder = new ReadPayloadBuilder($this->context);
+                $preparedPayload = $readPayloadBuilder->build($payload)->toArray();
+                // Do not remove the following yet
+                // $preparedPayload = $this->preparePayloadForRead($payload);
                 break;
 
             case '_read_one':
@@ -66,6 +95,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         ];
     }
 
+    /**
+     * Prepares the payload for a read (select) operation.
+     *
+     * @param array $payload The incoming payload.
+     * @return array The prepared payload for the read operation.
+     */
     public function preparePayloadForRead(array $payload): array
     {
 
@@ -76,6 +111,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'modelName' => $model->getName(),
         ];
 
+        // Check for a soft delete key and add it to the payload if it exists.
         $hasDeleteKey = $model->hasDeleteKey();
 
         if ($hasDeleteKey) {
@@ -88,12 +124,15 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
+        // Transfer filters from the incoming payload to the prepared payload.
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
             $preparedPayload['filters'] = $payload['filters'];
         }
 
+        // Set the allowed scopes for the query.
         $preparedPayload['scopes'] = $this->context->get('query')->getAllowedScopes()->toArray();
 
+        // Handle relationship expansion, using payload's expand if present, otherwise default from query.
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $preparedPayload['expand'] = $payload['expand'];
         } else {
@@ -107,6 +146,12 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
+    /**
+     * Prepares the payload for reading relationship options, typically for UI elements like dropdowns.
+     *
+     * @param array $payload The incoming payload containing relation information.
+     * @return array The prepared payload for reading options.
+     */
     public function preparePayloadForReadOptions(array $payload): array
     {
         $registryManager = $this->context->get('lcs')->getRegistryManager();
@@ -117,6 +162,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'modelName' => $optionsModel->getName(),
         ];
 
+        // Check for a soft delete key on the options model.
         $hasDeleteKey = $optionsModel->hasDeleteKey();
 
         if ($hasDeleteKey) {
@@ -129,6 +175,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
+            // Process filters, adjusting attribute paths to be relative to the relationship.
+            // Read options is called when we want to filter a model by it's relationships. And generate dropdown options.
             if (isset($payload['filters']['conditions'])) {
                 foreach ($payload['filters']['conditions'] as &$condition) {
                     if (isset($condition['attribute'])) {
@@ -153,6 +201,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['filters'] = $payload['filters'];
         }
 
+        // Process scopes, ensuring they are valid within the global context.
         if (! empty($payload['scopes']) && ! empty($payload['globalContext'])) {
             $scopes = [];
             foreach ($payload['scopes'] as $scope) {
@@ -166,6 +215,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
+    /**
+     * Prepares the payload for create (insert) and update operations.
+     *
+     * @param array $payload The incoming payload.
+     * @param string $dbOp The database operation type ('insert' or 'update').
+     * @return array The prepared payload for the create/update operation.
+     */
     public function preparePayloadForCreateAndUpdate(array $payload, string $dbOp): array
     {
         $model = $this->context->get('model');
@@ -175,6 +231,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             'modelName' => $model->getName(),
         ];
 
+        // For update operations, set up filters to target the correct record.
+        // If filters are not provided, create a filter based on the primary key.
         if ($dbOp === 'update') {
             if (isset($payload['filters'])) {
                 $preparedPayload['filters'] = $payload['filters'];
@@ -195,10 +253,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         $defaultGenerator = $this->context->get('generator');
-        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
+        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
+        // Iterate through model attributes to process data and handle generated values.
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
             if ($dbOp === 'insert' && isset($payload[$attributeName])) {
@@ -220,7 +279,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     $generation['payload'] = $payload;
                     // Only process the generation if the current operation is included in the operations list
 
-                    if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
+                    if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
                         continue;
                     }
 
@@ -262,15 +321,23 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
+    /**
+     * Prepares the payload for reading a single record by its primary key.
+     *
+     * @param array $payload The incoming payload containing the primary key.
+     * @return array The prepared payload for the read_one operation.
+     */
     public function preparePayloadForReadOne(array $payload): array
     {
         $preparedPayload = [];
+        // Ensure a primary key is provided before preparing the payload.
         if (isset($payload['primaryKey']) && ! empty($payload['primaryKey'])) {
             $preparedPayload = [
                 'type' => 'select',
                 'modelName' => $this->context->get('model')->getName(),
             ];
 
+            // Handle relationship expansion, using payload's expand if present, otherwise expand all relationships.
             if (isset($payload['expand']) && ! empty($payload['expand'])) {
                 $preparedPayload['expand'] = $payload['expand'];
             } else {
@@ -295,6 +362,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
+    /**
+     * Prepares the payload for a delete operation, including handling cascade deletes.
+     *
+     * @param array $payload The incoming payload containing the primary key of the record to delete.
+     * @param string $dbOp The database operation type ('delete').
+     * @return array An array of prepared payloads, including the main delete and any cascade deletes.
+     */
     public function preparePayloadForDelete(array $payload, string $dbOp): array
     {
         $softDelete = $this->context->get('model')->getConfig()->getSoftDelete();
@@ -325,6 +399,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $mainPayload['deleteColumn'] = $this->context->get('model')->getDeleteKey()->getName();
         }
 
+        // Prepare payloads for any cascade delete operations.
         $cascadePayloads = $this->prepareCascadeDeletePayloads($sourceModel->getName(), [$payload['primary_key']], $dbOps);
 
         $preparedPayload = array_merge([$mainPayload], $cascadePayloads);
@@ -332,6 +407,15 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $preparedPayload;
     }
 
+    /**
+     * Recursively prepares payloads for cascade deleting related records.
+     *
+     * @param string $sourceModelName The name of the source model.
+     * @param array $sourceIds The IDs of the source records being deleted.
+     * @param mixed $dbOps The database operations collection.
+     * @param array $cascadePayloads An array to accumulate the cascade delete payloads.
+     * @return array The accumulated cascade delete payloads.
+     */
     private function prepareCascadeDeletePayloads(
         string $sourceModelName,
         array $sourceIds,
@@ -339,6 +423,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         array &$cascadePayloads = [],
     ): array {
         $sourceModel = $this->context->get('lcs')->getRegistryManager()->get('model', $sourceModelName);
+        // Get all 'has_many' relationships to identify records for cascade deletion.
         $hasManyRelationships = $sourceModel->getRelationshipsByType('has_many');
 
         foreach ($hasManyRelationships as $relationName => $relationship) {
@@ -372,6 +457,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $cascadePayloads[] = $payload;
 
             // Get the target model and check for nested relationships
+            // Check for nested relationships on the target model to continue the cascade delete recursively.
             $nestedHasManyRelationships = $targetModel->getRelationshipsByType('has_many');
 
             // If target model has its own has_many relationships, recurse
@@ -387,6 +473,16 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         return $cascadePayloads;
     }
 
+    /**
+     * Fetches the IDs of related models to support recursive cascade deletes.
+     *
+     * @param string $modelName The name of the related model.
+     * @param string $foreignKey The foreign key on the related model.
+     * @param array $parentIds The IDs of the parent records.
+     * @param string $localKey The local key on the parent model.
+     * @param mixed $dbOps The database operations collection.
+     * @return array An array of related model IDs.
+     */
     private function getRelatedModelIds(string $modelName, string $foreignKey, array $parentIds, string $localKey, $dbOps): array
     {
         $relatedIds = [];
@@ -414,45 +510,5 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         return $relatedIds;
-    }
-
-    private function preparePagination(array $payload, array &$preparedPayload): void
-    {
-        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
-            if (! isset($payload['pagination']['cursor'])) {
-                unset($payload['pagination']['cursor']);
-            }
-
-            $preparedPayload['pagination'] = $payload['pagination'];
-        }
-    }
-
-    private function prepareSorts(array $payload, array &$preparedPayload, string $primaryKeyAttributeKey): void
-    {
-        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
-            $preparedPayload['sorts'] = $payload['sorts'];
-
-            // Check if primary key exists in sorts
-            $primaryKeyExists = false;
-            foreach ($payload['sorts'] as $sort) {
-                if (isset($sort['attribute']) && $sort['attribute'] === $primaryKeyAttributeKey) {
-                    $primaryKeyExists = true;
-                    break;
-                }
-            }
-
-            // Add primary key to end of sorts if it doesn't exist
-            if (! $primaryKeyExists) {
-                $preparedPayload['sorts'][] = [
-                    'attribute' => $primaryKeyAttributeKey,
-                    'direction' => 'ASC',
-                ];
-            }
-        } else {
-            $preparedPayload['sorts'] = [[
-                'attribute' => $primaryKeyAttributeKey,
-                'direction' => 'ASC',
-            ]];
-        }
     }
 }
