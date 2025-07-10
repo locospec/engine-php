@@ -14,12 +14,11 @@ use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
 class PreparePayloadTask extends AbstractTask implements TaskInterface
 {
     use PayloadPreparationHelpers;
+
     protected ContextInterface $context;
 
     /**
      * Gets the name of the task.
-     *
-     * @return string
      */
     public function getName(): string
     {
@@ -29,7 +28,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Sets the context for the task.
      *
-     * @param ContextInterface $context The state machine context.
+     * @param  ContextInterface  $context  The state machine context.
      */
     public function setContext(ContextInterface $context): void
     {
@@ -39,8 +38,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Executes the task, dispatching to the appropriate payload preparation method based on the action.
      *
-     * @param array $payload The incoming payload.
-     * @param array $taskArgs Additional arguments for the task.
+     * @param  array  $payload  The incoming payload.
+     * @param  array  $taskArgs  Additional arguments for the task.
      * @return array The original payload and the prepared payload.
      */
     public function execute(array $payload, array $taskArgs = []): array
@@ -98,7 +97,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Prepares the payload for a read (select) operation.
      *
-     * @param array $payload The incoming payload.
+     * @param  array  $payload  The incoming payload.
      * @return array The prepared payload for the read operation.
      */
     public function preparePayloadForRead(array $payload): array
@@ -149,7 +148,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Prepares the payload for reading relationship options, typically for UI elements like dropdowns.
      *
-     * @param array $payload The incoming payload containing relation information.
+     * @param  array  $payload  The incoming payload containing relation information.
      * @return array The prepared payload for reading options.
      */
     public function preparePayloadForReadOptions(array $payload): array
@@ -218,8 +217,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Prepares the payload for create (insert) and update operations.
      *
-     * @param array $payload The incoming payload.
-     * @param string $dbOp The database operation type ('insert' or 'update').
+     * @param  array  $payload  The incoming payload.
+     * @param  string  $dbOp  The database operation type ('insert' or 'update').
      * @return array The prepared payload for the create/update operation.
      */
     public function preparePayloadForCreateAndUpdate(array $payload, string $dbOp): array
@@ -253,7 +252,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         $defaultGenerator = $this->context->get('generator');
-        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
+        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
@@ -279,7 +278,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                     $generation['payload'] = $payload;
                     // Only process the generation if the current operation is included in the operations list
 
-                    if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                    if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
                         continue;
                     }
 
@@ -324,7 +323,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Prepares the payload for reading a single record by its primary key.
      *
-     * @param array $payload The incoming payload containing the primary key.
+     * @param  array  $payload  The incoming payload containing the primary key.
      * @return array The prepared payload for the read_one operation.
      */
     public function preparePayloadForReadOne(array $payload): array
@@ -365,8 +364,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Prepares the payload for a delete operation, including handling cascade deletes.
      *
-     * @param array $payload The incoming payload containing the primary key of the record to delete.
-     * @param string $dbOp The database operation type ('delete').
+     * @param  array  $payload  The incoming payload containing the primary key of the record to delete.
+     * @param  string  $dbOp  The database operation type ('delete').
      * @return array An array of prepared payloads, including the main delete and any cascade deletes.
      */
     public function preparePayloadForDelete(array $payload, string $dbOp): array
@@ -410,10 +409,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Recursively prepares payloads for cascade deleting related records.
      *
-     * @param string $sourceModelName The name of the source model.
-     * @param array $sourceIds The IDs of the source records being deleted.
-     * @param mixed $dbOps The database operations collection.
-     * @param array $cascadePayloads An array to accumulate the cascade delete payloads.
+     * @param  string  $sourceModelName  The name of the source model.
+     * @param  array  $sourceIds  The IDs of the source records being deleted.
+     * @param  mixed  $dbOps  The database operations collection.
+     * @param  array  $cascadePayloads  An array to accumulate the cascade delete payloads.
      * @return array The accumulated cascade delete payloads.
      */
     private function prepareCascadeDeletePayloads(
@@ -476,11 +475,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     /**
      * Fetches the IDs of related models to support recursive cascade deletes.
      *
-     * @param string $modelName The name of the related model.
-     * @param string $foreignKey The foreign key on the related model.
-     * @param array $parentIds The IDs of the parent records.
-     * @param string $localKey The local key on the parent model.
-     * @param mixed $dbOps The database operations collection.
+     * @param  string  $modelName  The name of the related model.
+     * @param  string  $foreignKey  The foreign key on the related model.
+     * @param  array  $parentIds  The IDs of the parent records.
+     * @param  string  $localKey  The local key on the parent model.
+     * @param  mixed  $dbOps  The database operations collection.
      * @return array An array of related model IDs.
      */
     private function getRelatedModelIds(string $modelName, string $foreignKey, array $parentIds, string $localKey, $dbOps): array
