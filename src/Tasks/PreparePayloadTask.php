@@ -73,13 +73,13 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $preparedPayload = [
             'type' => 'select',
-            'modelName' => $this->context->get('model')->getName(),
+            'modelName' => $model->getName(),
         ];
 
-        $hasDeleteKey = $this->context->get('model')->hasDeleteKey();
+        $hasDeleteKey = $model->hasDeleteKey();
 
         if ($hasDeleteKey) {
-            $preparedPayload['deleteColumn'] = $this->context->get('model')->getDeleteKey()->getName();
+            $preparedPayload['deleteColumn'] = $model->getDeleteKey()->getName();
         }
 
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
@@ -128,7 +128,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['expand'] = $payload['expand'];
         } else {
             $preparedPayload['expand'] = $this->context->get('query')->getExpand()->toArray();
-            // $relationshipKeys = $this->context->get('model')->getRelationships()->keys()->all();
+            // $relationshipKeys = $model->getRelationships()->keys()->all();
             // if (! empty($relationshipKeys)) {
             //     $preparedPayload['expand'] = $relationshipKeys;
             // }
@@ -161,7 +161,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['pagination'] = $payload['pagination'];
         }
 
-        // TODO: This will break with cursor pagination
         if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload['sorts'] = $payload['sorts'];
         } else {
@@ -211,100 +210,98 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
     public function preparePayloadForCreateAndUpdate(array $payload, string $dbOp): array
     {
-        try {
-            $preparedPayload = [
-                'type' => $dbOp,
-                'modelName' => $this->context->get('model')->getName(),
-            ];
+        $model = $this->context->get('model');
 
-            if ($dbOp === 'update') {
-                if (isset($payload['filters'])) {
-                    $preparedPayload['filters'] = $payload['filters'];
-                } else {
-                    $primaryKey = $this->context->get('model')->getPrimaryKey()->getName();
-                    $preparedPayload['filters'] = [
-                        'op' => 'and',
-                        'conditions' => [
-                            [
-                                'attribute' => $primaryKey,
-                                'op' => 'is',
-                                'value' => $payload[$primaryKey],
-                            ],
+        $preparedPayload = [
+            'type' => $dbOp,
+            'modelName' => $model->getName(),
+        ];
+
+        if ($dbOp === 'update') {
+            if (isset($payload['filters'])) {
+                $preparedPayload['filters'] = $payload['filters'];
+            } else {
+                $primaryKey = $model->getPrimaryKey()->getName();
+                $preparedPayload['filters'] = [
+                    'op' => 'and',
+                    'conditions' => [
+                        [
+                            'attribute' => $primaryKey,
+                            'op' => 'is',
+                            'value' => $payload[$primaryKey],
                         ],
-                    ];
-                    $payload['data'] = $payload;
-                }
+                    ],
+                ];
+                $payload['data'] = $payload;
+            }
+        }
+
+        $defaultGenerator = $this->context->get('generator');
+        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn($attribute) => ! $attribute->isAliasKey())->all();
+        $dbOps = new DatabaseOperationsCollection($this->operator);
+        $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
+
+        foreach ($attributes as $attributeName => $attribute) {
+            // If the attribute already exists in payload, keep it
+            if ($dbOp === 'insert' && isset($payload[$attributeName])) {
+                $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+
+                continue;
             }
 
-            $defaultGenerator = $this->context->get('generator');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
-            $dbOps = new DatabaseOperationsCollection($this->operator);
-            $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
+            if ($dbOp === 'update' && isset($payload['data'][$attributeName])) {
+                $preparedPayload['data'][$attributeName] = $payload['data'][$attributeName];
 
-            foreach ($attributes as $attributeName => $attribute) {
-                // If the attribute already exists in payload, keep it
-                if ($dbOp === 'insert' && isset($payload[$attributeName])) {
-                    $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+                continue;
+            }
 
-                    continue;
-                }
+            // Check if the attribute has a generation rule
+            if (! empty($attribute->getGenerators())) {
+                foreach ($attribute->getGenerators()->all() as $generator) {
+                    $generation = $generator->toArray();
+                    $generation['payload'] = $payload;
+                    // Only process the generation if the current operation is included in the operations list
 
-                if ($dbOp === 'update' && isset($payload['data'][$attributeName])) {
-                    $preparedPayload['data'][$attributeName] = $payload['data'][$attributeName];
+                    if (! in_array($dbOp, $generator->getOperations()->map(fn($operation) => $operation->value)->all())) {
+                        continue;
+                    }
 
-                    continue;
-                }
-
-                // Check if the attribute has a generation rule
-                if (! empty($attribute->getGenerators())) {
-                    foreach ($attribute->getGenerators()->all() as $generator) {
-                        $generation = $generator->toArray();
-                        $generation['payload'] = $payload;
-                        // Only process the generation if the current operation is included in the operations list
-
-                        if (! in_array($dbOp, $generator->getOperations()->map(fn ($operation) => $operation->value)->all())) {
-                            continue;
+                    if ($generator->getSource() !== null) {
+                        $sourceKey = $generator->getSource();
+                        $sourceValue = null;
+                        if ($dbOp === 'update') {
+                            $sourceValue = $payload['data'][$sourceKey] ?? null;
+                        } else {
+                            $sourceValue = $payload[$sourceKey] ?? null;
                         }
 
-                        if ($generator->getSource() !== null) {
-                            $sourceKey = $generator->getSource();
-                            $sourceValue = null;
-                            if ($dbOp === 'update') {
-                                $sourceValue = $payload['data'][$sourceKey] ?? null;
-                            } else {
-                                $sourceValue = $payload[$sourceKey] ?? null;
-                            }
-
-                            if ($sourceValue) {
-                                $generation['sourceValue'] = $sourceValue;
-                            }
+                        if ($sourceValue) {
+                            $generation['sourceValue'] = $sourceValue;
                         }
+                    }
 
-                        $generation['dbOps'] = $dbOps;
-                        $generation['dbOperator'] = $this->operator;
-                        $generation['modelName'] = $this->context->get('model')->getName();
-                        $generation['attributeName'] = $attributeName;
-                        $generation['value'] = $generator->getValue();
-                        $generatedValue = $defaultGenerator->generate(
-                            $generator->getType()->value,
-                            $generation
-                        );
+                    $generation['dbOps'] = $dbOps;
+                    $generation['dbOperator'] = $this->operator;
+                    $generation['modelName'] = $model->getName();
+                    $generation['attributeName'] = $attributeName;
+                    $generation['value'] = $generator->getValue();
+                    $generatedValue = $defaultGenerator->generate(
+                        $generator->getType()->value,
+                        $generation
+                    );
 
-                        if ($generatedValue !== null) {
-                            if ($dbOp === 'update') {
-                                $preparedPayload['data'][$attributeName] = $generatedValue;
-                            } else {
-                                $preparedPayload['data'][0][$attributeName] = $generatedValue;
-                            }
+                    if ($generatedValue !== null) {
+                        if ($dbOp === 'update') {
+                            $preparedPayload['data'][$attributeName] = $generatedValue;
+                        } else {
+                            $preparedPayload['data'][0][$attributeName] = $generatedValue;
                         }
                     }
                 }
             }
-
-            return $preparedPayload;
-        } catch (\Exception $e) {
-            dd($e);
         }
+
+        return $preparedPayload;
     }
 
     public function preparePayloadForReadOne(array $payload): array
