@@ -82,41 +82,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['deleteColumn'] = $model->getDeleteKey()->getName();
         }
 
-        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
-            if (! isset($payload['pagination']['cursor'])) {
-                unset($payload['pagination']['cursor']);
-            }
-
-            $preparedPayload['pagination'] = $payload['pagination'];
-        }
+        $this->preparePagination($payload, $preparedPayload);
 
         $primaryKeyAttributeKey = $model->getPrimaryKey()->getName();
 
-        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
-            $preparedPayload['sorts'] = $payload['sorts'];
-
-            // Check if primary key exists in sorts
-            $primaryKeyExists = false;
-            foreach ($payload['sorts'] as $sort) {
-                if (isset($sort['attribute']) && $sort['attribute'] === $primaryKeyAttributeKey) {
-                    $primaryKeyExists = true;
-                    break;
-                }
-            }
-
-            // Add primary key to end of sorts if it doesn't exist
-            if (! $primaryKeyExists) {
-                $preparedPayload['sorts'][] = [
-                    'attribute' => $primaryKeyAttributeKey,
-                    'direction' => 'ASC',
-                ];
-            }
-        } else {
-            $preparedPayload['sorts'] = [[
-                'attribute' => $primaryKeyAttributeKey,
-                'direction' => 'ASC',
-            ]];
-        }
+        $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
             $preparedPayload['filters'] = $payload['filters'];
@@ -153,22 +123,10 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             $preparedPayload['deleteColumn'] = $optionsModel->getDeleteKey()->getName();
         }
 
-        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
-            if (! isset($payload['pagination']['cursor'])) {
-                unset($payload['pagination']['cursor']);
-            }
+        $this->preparePagination($payload, $preparedPayload);
 
-            $preparedPayload['pagination'] = $payload['pagination'];
-        }
-
-        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
-            $preparedPayload['sorts'] = $payload['sorts'];
-        } else {
-            $preparedPayload['sorts'] = [[
-                'attribute' => 'created_at',
-                'direction' => 'DESC',
-            ]];
-        }
+        $primaryKeyAttributeKey = $optionsModel->getPrimaryKey()->getName();
+        $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {
             if (isset($payload['filters']['conditions'])) {
@@ -456,5 +414,45 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         }
 
         return $relatedIds;
+    }
+
+    private function preparePagination(array $payload, array &$preparedPayload): void
+    {
+        if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
+            if (! isset($payload['pagination']['cursor'])) {
+                unset($payload['pagination']['cursor']);
+            }
+
+            $preparedPayload['pagination'] = $payload['pagination'];
+        }
+    }
+
+    private function prepareSorts(array $payload, array &$preparedPayload, string $primaryKeyAttributeKey): void
+    {
+        if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
+            $preparedPayload['sorts'] = $payload['sorts'];
+
+            // Check if primary key exists in sorts
+            $primaryKeyExists = false;
+            foreach ($payload['sorts'] as $sort) {
+                if (isset($sort['attribute']) && $sort['attribute'] === $primaryKeyAttributeKey) {
+                    $primaryKeyExists = true;
+                    break;
+                }
+            }
+
+            // Add primary key to end of sorts if it doesn't exist
+            if (! $primaryKeyExists) {
+                $preparedPayload['sorts'][] = [
+                    'attribute' => $primaryKeyAttributeKey,
+                    'direction' => 'ASC',
+                ];
+            }
+        } else {
+            $preparedPayload['sorts'] = [[
+                'attribute' => $primaryKeyAttributeKey,
+                'direction' => 'ASC',
+            ]];
+        }
     }
 }
