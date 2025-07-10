@@ -9,6 +9,7 @@ use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
 class ReadPayloadBuilder
 {
     use PayloadPreparationHelpers;
+
     protected ContextInterface $context;
 
     public function __construct(ContextInterface $context)
@@ -32,7 +33,7 @@ class ReadPayloadBuilder
         $this->prepareSortsForDto($payload, $readPayload, $primaryKeyAttributeKey);
 
         // Transfer filters from the incoming payload to the prepared payload.
-        if (isset($payload['filters']) && !empty($payload['filters'])) {
+        if (isset($payload['filters']) && ! empty($payload['filters'])) {
             $readPayload->filters = $payload['filters'];
         }
 
@@ -40,7 +41,7 @@ class ReadPayloadBuilder
         $readPayload->scopes = $this->context->get('query')->getAllowedScopes()->toArray();
 
         // Handle relationship expansion, using payload's expand if present, otherwise default from query.
-        if (isset($payload['expand']) && !empty($payload['expand'])) {
+        if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $readPayload->expand = $payload['expand'];
         } else {
             $readPayload->expand = $this->context->get('query')->getExpand()->toArray();
