@@ -5371,6 +5371,61 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-CreateEntityTask.html#property_context"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload",
+            "name": "ReadPayload",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024modelName",
+            "name": "modelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_modelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024deleteColumn",
+            "name": "deleteColumn",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_deleteColumn"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024pagination",
+            "name": "pagination",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_pagination"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024sorts",
+            "name": "sorts",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_sorts"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024filters",
+            "name": "filters",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_filters"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024scopes",
+            "name": "scopes",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_scopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024expand",
+            "name": "expand",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_expand"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\FindEntityTask",
             "name": "FindEntityTask",
             "summary": "",
@@ -5551,59 +5606,79 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-MapEntityTask.html#property_context"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder",
+            "name": "ReadPayloadBuilder",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html#method_build"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html#property_context"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask",
             "name": "PreparePayloadTask",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020database\u0020operations\u0020based\u0020on\u0020the\u0020current\u0020action\u0020in\u0020the\u0020state\u0020machine.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003AgetName\u0028\u0029",
             "name": "getName",
-            "summary": "Get\u0020task\u0020name",
+            "summary": "Gets\u0020the\u0020name\u0020of\u0020the\u0020task.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_getName"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003AsetContext\u0028\u0029",
             "name": "setContext",
-            "summary": "Set\u0020the\u0020execution\u0020context",
+            "summary": "Sets\u0020the\u0020context\u0020for\u0020the\u0020task.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_setContext"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
-            "summary": "Execute\u0020the\u0020task",
+            "summary": "Executes\u0020the\u0020task,\u0020dispatching\u0020to\u0020the\u0020appropriate\u0020payload\u0020preparation\u0020method\u0020based\u0020on\u0020the\u0020action.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_execute"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForRead\u0028\u0029",
             "name": "preparePayloadForRead",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020a\u0020read\u0020\u0028select\u0029\u0020operation.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForRead"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForReadOptions\u0028\u0029",
             "name": "preparePayloadForReadOptions",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020reading\u0020relationship\u0020options,\u0020typically\u0020for\u0020UI\u0020elements\u0020like\u0020dropdowns.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOptions"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForCreateAndUpdate\u0028\u0029",
             "name": "preparePayloadForCreateAndUpdate",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020create\u0020\u0028insert\u0029\u0020and\u0020update\u0020operations.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForCreateAndUpdate"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForReadOne\u0028\u0029",
             "name": "preparePayloadForReadOne",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020reading\u0020a\u0020single\u0020record\u0020by\u0020its\u0020primary\u0020key.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOne"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForDelete\u0028\u0029",
             "name": "preparePayloadForDelete",
-            "summary": "",
+            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020a\u0020delete\u0020operation,\u0020including\u0020handling\u0020cascade\u0020deletes.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForDelete"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003AprepareCascadeDeletePayloads\u0028\u0029",
             "name": "prepareCascadeDeletePayloads",
-            "summary": "",
+            "summary": "Recursively\u0020prepares\u0020payloads\u0020for\u0020cascade\u0020deleting\u0020related\u0020records.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_prepareCascadeDeletePayloads"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003AgetRelatedModelIds\u0028\u0029",
             "name": "getRelatedModelIds",
-            "summary": "",
+            "summary": "Fetches\u0020the\u0020IDs\u0020of\u0020related\u0020models\u0020to\u0020support\u0020recursive\u0020cascade\u0020deletes.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_getRelatedModelIds"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003A\u0024context",
@@ -5665,6 +5740,31 @@ Search.appendIndex(
             "name": "execute",
             "summary": "Execute\u0020the\u0020task\u0020with\u0020the\u0020given\u0020input",
             "url": "classes/LCSEngine-Tasks-TaskInterface.html#method_execute"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers",
+            "name": "PayloadPreparationHelpers",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003ApreparePagination\u0028\u0029",
+            "name": "preparePagination",
+            "summary": "Handles\u0020pagination\u0020logic\u0020for\u0020read\u0020operations.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AprepareSorts\u0028\u0029",
+            "name": "prepareSorts",
+            "summary": "Handles\u0020sorting\u0020logic,\u0020ensuring\u0020the\u0020primary\u0020key\u0020is\u0020always\u0020included\u0020as\u0020a\u0020final\u0020sort\u0020criterion\u0020for\u0020stable\u0020ordering.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003ApreparePaginationForDto\u0028\u0029",
+            "name": "preparePaginationForDto",
+            "summary": "Handles\u0020pagination\u0020logic\u0020for\u0020read\u0020operations\u0020using\u0020a\u0020DTO.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AprepareSortsForDto\u0028\u0029",
+            "name": "prepareSortsForDto",
+            "summary": "Handles\u0020sorting\u0020logic\u0020for\u0020a\u0020DTO,\u0020ensuring\u0020the\u0020primary\u0020key\u0020is\u0020always\u0020included\u0020as\u0020a\u0020final\u0020sort\u0020criterion\u0020for\u0020stable\u0020ordering.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSortsForDto"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\ValidateTask",
             "name": "ValidateTask",
@@ -5825,5 +5925,20 @@ Search.appendIndex(
             "name": "Tasks",
             "summary": "",
             "url": "namespaces/lcsengine-tasks.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs",
+            "name": "DTOs",
+            "summary": "",
+            "url": "namespaces/lcsengine-tasks-dtos.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders",
+            "name": "PayloadBuilders",
+            "summary": "",
+            "url": "namespaces/lcsengine-tasks-payloadbuilders.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits",
+            "name": "Traits",
+            "summary": "",
+            "url": "namespaces/lcsengine-tasks-traits.html"
         }            ]
 );

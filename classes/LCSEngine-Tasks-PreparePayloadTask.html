@@ -150,6 +150,9 @@
             implements
                             <a href="classes/LCSEngine-Tasks-TaskInterface.html"><abbr title="\LCSEngine\Tasks\TaskInterface">TaskInterface</abbr></a>                    </span>
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html"><abbr title="\LCSEngine\Tasks\Traits\PayloadPreparationHelpers">PayloadPreparationHelpers</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -160,12 +163,15 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">8</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
-        
+            <p class="phpdocumentor-summary">Prepares the payload for database operations based on the current action in the state machine.</p>
 
+
+    <section class="phpdocumentor-description"><p>This task transforms the incoming payload into a structured format that the database operator can execute.</p>
+</section>
 
 
 
@@ -256,7 +262,7 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Execute the task</dd>
+<dd>Executes the task, dispatching to the appropriate payload preparation method based on the action.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-AbstractTask.html#method_getDescription">getDescription()</a>
@@ -270,44 +276,49 @@
     <span>
                                 &nbsp;: string    </span>
 </dt>
-<dd>Get task name</dd>
+<dd>Gets the name of the task.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForCreateAndUpdate">preparePayloadForCreateAndUpdate()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Prepares the payload for create (insert) and update operations.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForDelete">preparePayloadForDelete()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Prepares the payload for a delete operation, including handling cascade deletes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForRead">preparePayloadForRead()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Prepares the payload for a read (select) operation.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOne">preparePayloadForReadOne()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Prepares the payload for reading a single record by its primary key.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOptions">preparePayloadForReadOptions()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Prepares the payload for reading relationship options, typically for UI elements like dropdowns.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_setContext">setContext()</a>
     <span>
                                 &nbsp;: void    </span>
 </dt>
-<dd>Set the execution context</dd>
+<dd>Sets the context for the task.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Tasks-AbstractTask.html#method_setDatabaseOperator">setDatabaseOperator()</a>
@@ -334,12 +345,42 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Fetches the IDs of related models to support recursive cascade deletes.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_prepareCascadeDeletePayloads">prepareCascadeDeletePayloads()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+<dd>Recursively prepares payloads for cascade deleting related records.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Handles pagination logic for read operations.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto">preparePaginationForDto()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Handles pagination logic for read operations using a DTO.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts">prepareSorts()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Handles sorting logic, ensuring the primary key is always included as a final sort criterion for stable ordering.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSortsForDto">prepareSortsForDto()</a>
+    <span>
+                                &nbsp;: void    </span>
+</dt>
+<dd>Handles sorting logic for a DTO, ensuring the primary key is always included as a final sort criterion for stable ordering.</dd>
 
     </dl>
 
@@ -447,7 +488,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -643,11 +684,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">22</span>
+    <span class="phpdocumentor-element-found-in__line">45</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Execute the task</p>
+        <p class="phpdocumentor-summary">Executes the task, dispatching to the appropriate payload preparation method based on the action.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -664,14 +705,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$taskArgs</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>Additional arguments for the task.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -683,7 +728,7 @@
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
                     &mdash;
-                <section class="phpdocumentor-description"><p>The result of the task execution</p>
+                <section class="phpdocumentor-description"><p>The original payload and the prepared payload.</p>
 </section>
 
             </section>
@@ -742,11 +787,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">12</span>
+    <span class="phpdocumentor-element-found-in__line">23</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Get task name</p>
+        <p class="phpdocumentor-summary">Gets the name of the task.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -781,11 +826,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">211</span>
+    <span class="phpdocumentor-element-found-in__line">224</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Prepares the payload for create (insert) and update operations.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">preparePayloadForCreateAndUpdate</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOp</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -801,14 +847,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$dbOp</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database operation type ('insert' or 'update').</p>
+</section>
+
             </dd>
             </dl>
 
@@ -819,6 +869,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The prepared payload for the create/update operation.</p>
+</section>
+
             </section>
 
 </article>
@@ -836,11 +890,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">340</span>
+    <span class="phpdocumentor-element-found-in__line">371</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Prepares the payload for a delete operation, including handling cascade deletes.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">preparePayloadForDelete</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOp</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -856,14 +911,18 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload containing the primary key of the record to delete.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$dbOp</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database operation type ('delete').</p>
+</section>
+
             </dd>
             </dl>
 
@@ -874,6 +933,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>An array of prepared payloads, including the main delete and any cascade deletes.</p>
+</section>
+
             </section>
 
 </article>
@@ -891,11 +954,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">103</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Prepares the payload for a read (select) operation.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">preparePayloadForRead</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -911,7 +975,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -922,6 +988,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The prepared payload for the read operation.</p>
+</section>
+
             </section>
 
 </article>
@@ -939,11 +1009,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">307</span>
+    <span class="phpdocumentor-element-found-in__line">329</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Prepares the payload for reading a single record by its primary key.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">preparePayloadForReadOne</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -959,7 +1030,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload containing the primary key.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -970,6 +1043,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The prepared payload for the read_one operation.</p>
+</section>
+
             </section>
 
 </article>
@@ -987,11 +1064,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">140</span>
+    <span class="phpdocumentor-element-found-in__line">154</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Prepares the payload for reading relationship options, typically for UI elements like dropdowns.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
                     <span class="phpdocumentor-signature__name">preparePayloadForReadOptions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -1007,7 +1085,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The incoming payload containing relation information.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1018,6 +1098,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The prepared payload for reading options.</p>
+</section>
+
             </section>
 
 </article>
@@ -1035,11 +1119,11 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">33</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Set the execution context</p>
+        <p class="phpdocumentor-summary">Sets the context for the task.</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
@@ -1056,7 +1140,9 @@
                 : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-StateMachine-ContextInterface.html"><abbr title="\LCSEngine\StateMachine\ContextInterface">ContextInterface</abbr></a></span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The state machine context.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1236,11 +1322,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">432</span>
+    <span class="phpdocumentor-element-found-in__line">485</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Fetches the IDs of related models to support recursive cascade deletes.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">getRelatedModelIds</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$modelName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$foreignKey</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$parentIds</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$localKey</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOps</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -1256,35 +1343,45 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the related model.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$foreignKey</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The foreign key on the related model.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$parentIds</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The IDs of the parent records.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$localKey</span>
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The local key on the parent model.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$dbOps</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database operations collection.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1295,6 +1392,10 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>An array of related model IDs.</p>
+</section>
+
             </section>
 
 </article>
@@ -1312,11 +1413,12 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PreparePayloadTask.php"><a href="files/src-tasks-preparepayloadtask.html"><abbr title="src/Tasks/PreparePayloadTask.php">PreparePayloadTask.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">377</span>
+    <span class="phpdocumentor-element-found-in__line">418</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Recursively prepares payloads for cascade deleting related records.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
                     <span class="phpdocumentor-signature__name">prepareCascadeDeletePayloads</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sourceModelName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sourceIds</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOps</span></span><span class="phpdocumentor-signature__argument"><span>[</span><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$cascadePayloads</span><span> = </span><span class="phpdocumentor-signature__argument__default-value">[]</span><span> ]</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
@@ -1332,28 +1434,36 @@
                 : <span class="phpdocumentor-signature__argument__return-type">string</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The name of the source model.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$sourceIds</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The IDs of the source records being deleted.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$dbOps</span>
                 : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>The database operations collection.</p>
+</section>
+
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
                 <span class="phpdocumentor-signature__argument__name">$cascadePayloads</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                  = <span class="phpdocumentor-signature__argument__default-value">[]</span>            </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                
+                    <section class="phpdocumentor-description"><p>An array to accumulate the cascade delete payloads.</p>
+</section>
+
             </dd>
             </dl>
 
@@ -1364,8 +1474,254 @@
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The accumulated cascade delete payloads.</p>
+</section>
+
             </section>
 
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_preparePagination">
+        preparePagination()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">15</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Handles pagination logic for read operations.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">preparePagination</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">object|array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$preparedPayload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$payload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$preparedPayload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">object|array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The payload being prepared (DTO or array).</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_preparePaginationForDto">
+        preparePaginationForDto()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">68</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Handles pagination logic for read operations using a DTO.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">preparePaginationForDto</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Tasks-DTOs-ReadPayload.html"><abbr title="\LCSEngine\Tasks\DTOs\ReadPayload">ReadPayload</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$preparedPayload</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$payload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$preparedPayload</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Tasks-DTOs-ReadPayload.html"><abbr title="\LCSEngine\Tasks\DTOs\ReadPayload">ReadPayload</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The payload being prepared.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_prepareSorts">
+        prepareSorts()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">33</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Handles sorting logic, ensuring the primary key is always included as a final sort criterion for stable ordering.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">prepareSorts</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$preparedPayload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$primaryKeyAttributeKey</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$payload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$preparedPayload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The payload being prepared (passed by reference).</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$primaryKeyAttributeKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The name of the primary key attribute.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_prepareSortsForDto">
+        prepareSortsForDto()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSortsForDto" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">86</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Handles sorting logic for a DTO, ensuring the primary key is always included as a final sort criterion for stable ordering.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">prepareSortsForDto</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$payload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Tasks-DTOs-ReadPayload.html"><abbr title="\LCSEngine\Tasks\DTOs\ReadPayload">ReadPayload</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$preparedPayload</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$primaryKeyAttributeKey</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$payload</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The incoming payload.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$preparedPayload</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Tasks-DTOs-ReadPayload.html"><abbr title="\LCSEngine\Tasks\DTOs\ReadPayload">ReadPayload</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The payload being prepared.</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$primaryKeyAttributeKey</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The name of the primary key attribute.</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+    
 </article>
             </section>
 
@@ -1507,6 +1863,10 @@
                                             <li class=""><a href="classes/LCSEngine-Tasks-AbstractTask.html#method_validateContext">validateContext()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_getRelatedModelIds">getRelatedModelIds()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-PreparePayloadTask.html#method_prepareCascadeDeletePayloads">prepareCascadeDeletePayloads()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto">preparePaginationForDto()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts">prepareSorts()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSortsForDto">prepareSortsForDto()</a></li>
                                     </ul>
             </li>
                     </ul>
