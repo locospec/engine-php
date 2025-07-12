@@ -32,10 +32,6 @@
           "type": "string",
           "description": "Database table identifier (If not provided, plural of name will be taken)"
         },
-        "dbOperator": {
-          "type": ["string", "null"],
-          "description": "Database table identifier (If not provided, plural of name will be taken)"
-        },
         "singular": {
           "type": ["string", "null"],
           "description": "Database table identifier (If not provided, plural of name will be taken)"
