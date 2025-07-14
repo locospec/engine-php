@@ -51,7 +51,6 @@ class RelationshipResolver
     {
         $path = explode('.', $condition->getAttribute());
 
-
         // Not a relationship path
         if (count($path) === 1) {
             return $condition;
@@ -182,14 +181,14 @@ class RelationshipResolver
                 'type' => 'inner',
                 'table' => $targetModel->getConfig()->getTable(),
                 'on' => [
-                    $sourceModel->getConfig()->getTable() . '.' . $relation['target_attribute'],
+                    $sourceModel->getConfig()->getTable().'.'.$relation['target_attribute'],
                     '=',
-                    $targetModel->getConfig()->getTable() . '.' . $relation['extract_attribute']
-                ]
+                    $targetModel->getConfig()->getTable().'.'.$relation['extract_attribute'],
+                ],
             ];
         }
 
-        $extractAttributeWithTable = $this->model->getConfig()->getTable() . '.' . $relation['extract_attribute'];
+        $extractAttributeWithTable = $this->model->getConfig()->getTable().'.'.$relation['extract_attribute'];
 
         $selectOp = [
             'type' => 'select',
@@ -198,7 +197,7 @@ class RelationshipResolver
                 'op' => 'and',
                 'conditions' => [
                     [
-                        'attribute' => $targetModel->getConfig()->getTable() . '.' . $targetAttribute,
+                        'attribute' => $targetModel->getConfig()->getTable().'.'.$targetAttribute,
                         'op' => $condition->getOperator()->value,
                         'value' => $condition->getValue(),
                     ],
@@ -207,7 +206,7 @@ class RelationshipResolver
             'attributes' => [$extractAttributeWithTable],
         ];
 
-        if (!empty($joins)) {
+        if (! empty($joins)) {
             $selectOp['joins'] = $joins;
         }
 
@@ -227,7 +226,6 @@ class RelationshipResolver
             ComparisonOperator::IS_ANY_OF,
             $currentValue
         );
-
 
         // if ($condition->getAttribute() === "city.district.state.name") {
         //     dd($newCondition);
@@ -303,6 +301,6 @@ class RelationshipResolver
             ];
         }
 
-        throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
+        throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
     }
 }
