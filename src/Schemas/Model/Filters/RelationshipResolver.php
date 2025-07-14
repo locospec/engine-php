@@ -239,16 +239,21 @@ class RelationshipResolver
     {
         $resolvedGroup = new FilterGroup($group->getOperator());
 
+        // If $group's first condition is a Condition, then it would mean all of them are conditions
+
+        // Check conditions, following same chain, call resolveBatchJoinCondition, add the new condition to $group, remove old conditions
+
         foreach ($group->getConditions() as $condition) {
             if ($condition instanceof Condition) {
                 $resolved = $this->resolveJoinCondition($condition);
-                if ($resolved instanceof FilterGroup) {
-                    foreach ($resolved->getConditions() as $resolvedCondition) {
-                        $resolvedGroup->add($resolvedCondition);
-                    }
-                } else {
-                    $resolvedGroup->add($resolved);
-                }
+                $resolvedGroup->add($resolved);
+                // if ($resolved instanceof FilterGroup) {
+                //     foreach ($resolved->getConditions() as $resolvedCondition) {
+                //         $resolvedGroup->add($resolvedCondition);
+                //     }
+                // } else {
+                //     $resolvedGroup->add($resolved);
+                // }
             } elseif ($condition instanceof FilterGroup) {
                 $resolvedGroup->add($this->resolveGroup($condition));
             } elseif ($condition instanceof PrimitiveFilterSet) {
