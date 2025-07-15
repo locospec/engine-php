@@ -31,7 +31,7 @@ class Logger
 
         if ($this->enabled) {
             // Main handler for writing logs to file
-            $fileHandler = new RotatingFileHandler($config['file_path'], $this->retention_days, Level::Debug);
+            $fileHandler = new RotatingFileHandler($config['file_path'], $this->retention_days, Level::Notice);
             $this->logger->pushHandler($fileHandler);
 
             // BufferHandler stores logs temporarily (without flushing immediately)
@@ -55,6 +55,16 @@ class Logger
     public function info(string $message, array $context = []): void
     {
         $this->logger->info($message, $context);
+    }
+
+    public function debug(string $message, array $context = []): void
+    {
+        $this->logger->debug($message, $context);
+    }
+
+    public function notice(string $message, array $context = []): void
+    {
+        $this->logger->notice($message, $context);
     }
 
     // Method to log a warning message

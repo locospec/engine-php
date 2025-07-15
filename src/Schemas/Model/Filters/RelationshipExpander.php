@@ -114,6 +114,7 @@ class RelationshipExpander
         // Build query to fetch related records
         $operation = [
             'type' => 'select',
+            'purpose' => 'expand',
             'modelName' => $relation['target_model']->getName(),
             'filters' => [
                 'op' => 'and',

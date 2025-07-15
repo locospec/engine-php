@@ -127,6 +127,11 @@ class Model
         return $this->config;
     }
 
+    public function getTableName(): string
+    {
+        return $this->config->getTable();
+    }
+
     public function getPrimaryKey(): ?Attribute
     {
         return $this->attributes->first(fn (Attribute $attribute) => $attribute->isPrimaryKey());
