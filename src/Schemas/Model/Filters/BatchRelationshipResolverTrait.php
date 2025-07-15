@@ -72,7 +72,7 @@ trait BatchRelationshipResolverTrait
     private function groupConditionsByPath(FilterGroup $group): FilterGroup
     {
         // Only process AND/OR groups
-        if (!in_array($group->getOperator(), [LogicalOperator::AND, LogicalOperator::OR])) {
+        if (! in_array($group->getOperator(), [LogicalOperator::AND, LogicalOperator::OR])) {
             return $group;
         }
 
@@ -254,16 +254,16 @@ trait BatchRelationshipResolverTrait
                 $leftColumn = $relationship->getLocalKey();
                 $rightColumn = $relationship->getForeignKey();
             } else {
-                throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
+                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
             }
 
             $joins[] = [
                 'type' => 'inner',
                 'table' => $relatedModel->getTableName(),
                 'on' => [
-                    $currentModel->getTableName() . '.' . $leftColumn,
+                    $currentModel->getTableName().'.'.$leftColumn,
                     '=',
-                    $relatedModel->getTableName() . '.' . $rightColumn,
+                    $relatedModel->getTableName().'.'.$rightColumn,
                 ],
             ];
 
@@ -284,7 +284,7 @@ trait BatchRelationshipResolverTrait
 
             if (count($parts) === 1) {
                 // Main model attribute - add table prefix
-                $newAttribute = $this->model->getTableName() . '.' . $parts[0];
+                $newAttribute = $this->model->getTableName().'.'.$parts[0];
             } else {
                 // Relationship attribute - resolve to get the target model
                 $attribute = array_pop($parts); // Get attribute name
@@ -296,7 +296,7 @@ trait BatchRelationshipResolverTrait
                     $targetModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
                 }
 
-                $newAttribute = $targetModel->getTableName() . '.' . $attribute;
+                $newAttribute = $targetModel->getTableName().'.'.$attribute;
             }
 
             $transformedGroup->add(new Condition(
@@ -313,7 +313,7 @@ trait BatchRelationshipResolverTrait
             'modelName' => $this->model->getName(),
             'joins' => $joins,
             'filters' => $transformedGroup->toArray(),
-            'attributes' => [$this->model->getTableName() . '.' . $primaryKey],
+            'attributes' => [$this->model->getTableName().'.'.$primaryKey],
         ];
 
         $this->logger->debug('Batch resolver - relationship query', [

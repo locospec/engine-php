@@ -154,7 +154,6 @@ class DatabaseOperationsCollection
             unset($operation['filters']);
         }
 
-
         if (isset($operation['filters'])) {
             $this->logger->info('Resolve Aliases in filters', [
                 'type' => 'dbOps',
@@ -253,7 +252,7 @@ class DatabaseOperationsCollection
                 'errors' => $validation['errors'],
             ]);
             throw new RuntimeException(
-                'Invalid operation: ' . json_encode($validation['errors'])
+                'Invalid operation: '.json_encode($validation['errors'])
             );
         }
 

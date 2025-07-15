@@ -16,12 +16,12 @@ class BatchedFilterGroup extends FilterGroup
     public function __construct(string $sharedPath = '', LogicalOperator $operator = LogicalOperator::AND)
     {
         // Convert regular operators to batched versions
-        $batchedOperator = match($operator) {
+        $batchedOperator = match ($operator) {
             LogicalOperator::AND => LogicalOperator::BATCHED_AND,
             LogicalOperator::OR => LogicalOperator::BATCHED_OR,
             default => $operator
         };
-        
+
         parent::__construct($batchedOperator);
         $this->sharedPath = $sharedPath;
     }
