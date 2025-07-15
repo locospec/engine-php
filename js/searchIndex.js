@@ -3086,6 +3086,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveCondition"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003AresolveJoinCondition\u0028\u0029",
+            "name": "resolveJoinCondition",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveJoinCondition"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003AresolveGroup\u0028\u0029",
             "name": "resolveGroup",
             "summary": "",
