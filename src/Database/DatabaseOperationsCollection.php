@@ -146,10 +146,12 @@ class DatabaseOperationsCollection
                 'operation' => $operation,
             ]);
 
-            $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
-            $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
+            if (! isset($operation['joins'])) {
+                $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
+                $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
+                $operation['filters'] = $resolvedRelationshipFilters->toArray();
+            }
 
-            $operation['filters'] = $resolvedRelationshipFilters->toArray();
             $this->logger->info('Relationship filters resolved', [
                 'type' => 'dbOps',
                 'operation' => $operation,
@@ -217,9 +219,11 @@ class DatabaseOperationsCollection
         }
         // ToDoRajesh:validate
         // this should be a task: validate payload
+
         $validation = $this->validator->validateOperation($operation);
 
         if (! $validation['isValid']) {
+
             $this->logger->error('Operation validation failed', [
                 'type' => 'dbOps',
                 'errors' => $validation['errors'],
