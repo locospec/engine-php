@@ -6,6 +6,8 @@ class ReadPayload
 {
     public string $type = 'select';
 
+    public string $purpose = 'read';
+
     public string $modelName;
 
     public ?string $deleteColumn = null;

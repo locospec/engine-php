@@ -131,6 +131,29 @@ class DatabaseOperationsCollection
             unset($operation['scopes']);
         }
 
+        if (isset($operation['filters']) && $this->context) {
+            $this->logger->info('Resolving context in filters', [
+                'type' => 'dbOps',
+                'filters' => $operation['filters'],
+            ]);
+
+            $contextResolver = new ContextResolver($this->context->all());
+            $contextResolvedFilters = $contextResolver->resolve(Filters::fromArray($operation['filters']));
+            $cleanedFilters = (new FilterCleaner)->clean($contextResolvedFilters);
+            // $operation['filters'] = $contextResolvedFilters->toArray();
+            $operation['filters'] = $cleanedFilters->toArray();
+
+            $this->logger->debug('Context resolved in filters', [
+                'type' => 'dbOps',
+                'filters' => $contextResolvedFilters->toArray(),
+                'cleanedFilters' => $cleanedFilters->toArray(),
+            ]);
+        }
+
+        if (empty($operation['filters']['conditions'])) {
+            unset($operation['filters']);
+        }
+
         if (isset($operation['filters'])) {
             $this->logger->info('Resolve Aliases in filters', [
                 'type' => 'dbOps',
@@ -147,7 +170,7 @@ class DatabaseOperationsCollection
             ]);
 
             if (! isset($operation['joins'])) {
-                $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager);
+                $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager, $this->logger);
                 $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
                 $operation['filters'] = $resolvedRelationshipFilters->toArray();
             }
@@ -166,14 +189,14 @@ class DatabaseOperationsCollection
             ]);
 
             $contextResolver = new ContextResolver($this->context->all());
-            $contextResolved = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $cleanedFilters = (new FilterCleaner)->clean($contextResolved);
-            // $operation['filters'] = $contextResolved->toArray();
+            $contextResolvedFilters = $contextResolver->resolve(Filters::fromArray($operation['filters']));
+            $cleanedFilters = (new FilterCleaner)->clean($contextResolvedFilters);
+            // $operation['filters'] = $contextResolvedFilters->toArray();
             $operation['filters'] = $cleanedFilters->toArray();
 
-            $this->logger->info('Context resolved in filters', [
+            $this->logger->debug('Context resolved in filters', [
                 'type' => 'dbOps',
-                'filters' => $contextResolved->toArray(),
+                'filters' => $contextResolvedFilters->toArray(),
                 'cleanedFilters' => $cleanedFilters->toArray(),
             ]);
         }
@@ -323,10 +346,13 @@ class DatabaseOperationsCollection
                 ]);
                 $dbOpResult = $execOperator->run([$operation]);
 
-                $this->logger->info('Operation executed', [
-                    'type' => 'dbOps',
-                    // 'result' => $dbOpResult,
-                ]);
+                $this->logger->notice(
+                    'DB Query',
+                    [
+                        'query' => $dbOpResult[0]['cleaned_sql'],
+                        'purpose' => $operation['purpose'] ?? '',
+                    ],
+                );
 
                 $dbOpResults[] = $dbOpResult[0];
             }
@@ -368,7 +394,7 @@ class DatabaseOperationsCollection
                     $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
 
                     if (isset($dbOpResult['operation']['expand'])) {
-                        $this->logger->info('Expanding relationships for model', [
+                        $this->logger->debug('Expanding relationships for model', [
                             'type' => 'dbOps',
                             'modelName' => $dbOpResult['operation']['modelName'],
                         ]);

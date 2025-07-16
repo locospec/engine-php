@@ -43,7 +43,7 @@
         "op": {
           "type": "string",
           "description": "Logical operator to combine conditions",
-          "enum": ["and", "or"]
+          "enum": ["and", "or", "batched-and"]
         },
         "conditions": {
           "type": "array",
