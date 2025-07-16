@@ -248,14 +248,14 @@ class Model
             }
         }
     }
-    
+
     /**
      * Get attributes that are not alias keys
-     * 
+     *
      * @return Collection Collection of attributes that are not alias keys
      */
     public function getAttributesWithoutAliases(): Collection
     {
-        return $this->attributes->filter(fn (Attribute $attribute) => !$attribute->isAliasKey());
+        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey());
     }
 }

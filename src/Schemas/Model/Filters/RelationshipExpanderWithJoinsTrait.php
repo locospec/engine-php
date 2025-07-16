@@ -39,7 +39,7 @@ trait RelationshipExpanderWithJoinsTrait
         $groups = [];
         $safeRoots = []; // BelongsTo/HasOne that can be joined
         $pathsByRoot = [];
-        
+
         // Reset the path-to-group mapping
         $this->pathToGroupMap = [];
         $this->pathGroups = [];
@@ -49,7 +49,7 @@ trait RelationshipExpanderWithJoinsTrait
             $parts = explode('.', $path);
             $root = $parts[0];
 
-            if (!isset($pathsByRoot[$root])) {
+            if (! isset($pathsByRoot[$root])) {
                 $pathsByRoot[$root] = [];
             }
             $pathsByRoot[$root][] = $path;
@@ -58,7 +58,7 @@ trait RelationshipExpanderWithJoinsTrait
         // Process each root group
         foreach ($pathsByRoot as $root => $rootPaths) {
             // If this root only has simple path (no dots) and it's safe to join
-            if (count($rootPaths) === 1 && !str_contains($rootPaths[0], '.')) {
+            if (count($rootPaths) === 1 && ! str_contains($rootPaths[0], '.')) {
                 $relationship = $this->model->getRelationship($root);
                 if ($relationship instanceof BelongsTo || $relationship instanceof HasOne) {
                     $safeRoots[] = $rootPaths[0];
@@ -73,18 +73,18 @@ trait RelationshipExpanderWithJoinsTrait
         }
 
         // Add safe roots as one group if any
-        if (!empty($safeRoots)) {
+        if (! empty($safeRoots)) {
             $groups[] = $safeRoots;
         }
 
         // Generate unique group IDs and build the mapping
         foreach ($groups as $groupPaths) {
             // Create a unique group ID based on the paths in the group
-            $groupId = 'group_' . md5(implode('|', $groupPaths));
-            
+            $groupId = 'group_'.md5(implode('|', $groupPaths));
+
             // Store the group with its unique ID
             $this->pathGroups[$groupId] = $groupPaths;
-            
+
             // Map each path to its group ID
             foreach ($groupPaths as $path) {
                 $this->pathToGroupMap[$path] = $groupId;
@@ -98,7 +98,7 @@ trait RelationshipExpanderWithJoinsTrait
      * Generate JOINs for a single group of paths
      * For single-path groups, generates a WHERE IN query instead of JOINs
      *
-     * @param array $group Array of paths like ["city", "city.district", "city.district.state"]
+     * @param  array  $group  Array of paths like ["city", "city.district", "city.district.state"]
      * @return array ['joins' => [...], 'attributes' => [...], 'tableNames' => [...], 'isSinglePath' => bool]
      */
     private function generateJoinsForGroup(array $group): array
@@ -110,13 +110,13 @@ trait RelationshipExpanderWithJoinsTrait
             $relationship = $this->model->getRelationship($parts[0]);
             $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
             $relatedTableName = $relatedModel->getTableName();
-            
+
             // Get attributes with aliases (same pattern as JOIN)
             $attributes = [];
             foreach ($relatedModel->getAttributesWithoutAliases() as $attr) {
-                $attributes[] = $relatedTableName . '.' . $attr->getName() . ' AS ' . $relatedTableName . '_' . $attr->getName();
+                $attributes[] = $relatedTableName.'.'.$attr->getName().' AS '.$relatedTableName.'_'.$attr->getName();
             }
-            
+
             return [
                 'joins' => [], // No joins for single path
                 'attributes' => $attributes,
@@ -126,7 +126,7 @@ trait RelationshipExpanderWithJoinsTrait
                 'isSinglePath' => true,
             ];
         }
-        
+
         // Multiple paths - generate JOINs
         $joins = [];
         $attributes = [];
@@ -142,12 +142,13 @@ trait RelationshipExpanderWithJoinsTrait
 
             foreach ($parts as $relationshipName) {
                 // Build path incrementally
-                $pathSoFar = $pathSoFar ? $pathSoFar . '.' . $relationshipName : $relationshipName;
+                $pathSoFar = $pathSoFar ? $pathSoFar.'.'.$relationshipName : $relationshipName;
 
                 // Skip if we already joined this relationship
                 if (isset($relationshipsJoined[$pathSoFar])) {
                     $currentModel = $relationshipsJoined[$pathSoFar]['model'];
                     $currentTableName = $relationshipsJoined[$pathSoFar]['tableName'];
+
                     continue;
                 }
 
@@ -160,13 +161,13 @@ trait RelationshipExpanderWithJoinsTrait
 
                 // Determine join columns based on relationship type
                 if ($relationship instanceof BelongsTo) {
-                    $leftCol = $currentTableName . '.' . $relationship->getForeignKey();
-                    $rightCol = $relatedTableName . '.' . $relationship->getOwnerKey();
+                    $leftCol = $currentTableName.'.'.$relationship->getForeignKey();
+                    $rightCol = $relatedTableName.'.'.$relationship->getOwnerKey();
                 } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                    $leftCol = $currentTableName . '.' . $relationship->getLocalKey();
-                    $rightCol = $relatedTableName . '.' . $relationship->getForeignKey();
+                    $leftCol = $currentTableName.'.'.$relationship->getLocalKey();
+                    $rightCol = $relatedTableName.'.'.$relationship->getForeignKey();
                 } else {
-                    throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
+                    throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
                 }
 
                 // Add JOIN
@@ -178,13 +179,13 @@ trait RelationshipExpanderWithJoinsTrait
 
                 // Add attributes with SQL aliases for this joined table
                 foreach ($relatedModel->getAttributesWithoutAliases() as $attr) {
-                    $attributes[] = $relatedTableName . '.' . $attr->getName() . ' AS ' . $relatedTableName . '_' . $attr->getName();
+                    $attributes[] = $relatedTableName.'.'.$attr->getName().' AS '.$relatedTableName.'_'.$attr->getName();
                 }
 
                 // Track that we've joined this relationship
                 $relationshipsJoined[$pathSoFar] = [
                     'model' => $relatedModel,
-                    'tableName' => $relatedTableName
+                    'tableName' => $relatedTableName,
                 ];
 
                 // Move to next level
@@ -201,13 +202,12 @@ trait RelationshipExpanderWithJoinsTrait
         ];
     }
 
-
     /**
      * Execute operation for JOIN query with WHERE IN clause
      * Also handles single-path queries without JOINs
      *
-     * @param array $results The main results to expand
-     * @param array $queryInfo Query information from generateJoinsForGroup
+     * @param  array  $results  The main results to expand
+     * @param  array  $queryInfo  Query information from generateJoinsForGroup
      * @return array The operation results
      */
     public function executeOperation(array $results, array $queryInfo): array
@@ -216,7 +216,7 @@ trait RelationshipExpanderWithJoinsTrait
             // Single path - query the related model directly
             $relationship = $queryInfo['relationship'];
             $relatedModel = $queryInfo['relatedModel'];
-            
+
             // Determine which IDs to fetch based on relationship type
             if ($relationship instanceof BelongsTo) {
                 $foreignKey = $relationship->getForeignKey();
@@ -228,11 +228,11 @@ trait RelationshipExpanderWithJoinsTrait
                 $sourceIds = array_filter(array_column($results, $primaryKey));
                 $targetAttribute = $relationship->getForeignKey();
             }
-            
+
             if (empty($sourceIds)) {
                 return [];
             }
-            
+
             // Build operation for related model
             $operation = [
                 'type' => 'select',
@@ -261,7 +261,7 @@ trait RelationshipExpanderWithJoinsTrait
             $mainAttributes = [];
             $tableName = $this->model->getTableName();
             foreach ($this->model->getAttributesWithoutAliases() as $attr) {
-                $mainAttributes[] = $tableName . '.' . $attr->getName() . ' AS ' . $tableName . '_' . $attr->getName();
+                $mainAttributes[] = $tableName.'.'.$attr->getName().' AS '.$tableName.'_'.$attr->getName();
             }
 
             // Build operation with JOINs
@@ -272,7 +272,7 @@ trait RelationshipExpanderWithJoinsTrait
                 'filters' => [
                     'op' => 'and',
                     'conditions' => [[
-                        'attribute' => $tableName . '.' . $primaryKey,
+                        'attribute' => $tableName.'.'.$primaryKey,
                         'op' => 'is_any_of',
                         'value' => array_values(array_unique($sourceIds)),
                     ]],
@@ -287,11 +287,10 @@ trait RelationshipExpanderWithJoinsTrait
         return $results;
     }
 
-
     /**
      * Get the group ID for a given path
      *
-     * @param string $path The expansion path to check
+     * @param  string  $path  The expansion path to check
      * @return string|null The group ID if the path belongs to a group, null otherwise
      */
     public function getGroupByPath(string $path): ?string
@@ -302,7 +301,7 @@ trait RelationshipExpanderWithJoinsTrait
     /**
      * Get all paths in a specific group
      *
-     * @param string $groupId The group ID
+     * @param  string  $groupId  The group ID
      * @return array Array of paths in the group
      */
     public function getPathsInGroup(string $groupId): array
@@ -323,24 +322,24 @@ trait RelationshipExpanderWithJoinsTrait
     /**
      * Map joined results back to original results
      *
-     * @param array $originalResults The original results array
-     * @param array $joinedRows The rows from JOIN query with prefixed columns
-     * @param string $path The relationship path being mapped
-     * @param string $tableName The table name for this path
+     * @param  array  $originalResults  The original results array
+     * @param  array  $joinedRows  The rows from JOIN query with prefixed columns
+     * @param  string  $path  The relationship path being mapped
+     * @param  string  $tableName  The table name for this path
      * @return array Updated results with expanded relationships
      */
     public function mapJoinedResults(array $originalResults, array $joinedRows, string $path, string $tableName): array
     {
         $primaryKey = $this->model->getPrimaryKey()->getName();
         $mainTableName = $this->model->getTableName();
-        $mainTablePrefix = $mainTableName . '_';
-        $relatedTablePrefix = $tableName . '_';
-        
+        $mainTablePrefix = $mainTableName.'_';
+        $relatedTablePrefix = $tableName.'_';
+
         // Determine relationship type by traversing the path
         $parts = explode('.', $path);
         $currentModel = $this->model;
         $isHasMany = false;
-        
+
         foreach ($parts as $part) {
             $relationship = $currentModel->getRelationship($part);
             if ($relationship instanceof HasMany) {
@@ -348,12 +347,12 @@ trait RelationshipExpanderWithJoinsTrait
             }
             $currentModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
         }
-        
+
         // Group joined rows by main record primary key and collect unique related records
         $groupedData = [];
         foreach ($joinedRows as $row) {
-            $mainId = $row[$mainTablePrefix . $primaryKey];
-            
+            $mainId = $row[$mainTablePrefix.$primaryKey];
+
             // Extract related record data
             $relatedData = [];
             $hasData = false;
@@ -366,53 +365,53 @@ trait RelationshipExpanderWithJoinsTrait
                     }
                 }
             }
-            
+
             // Only add if we have actual related data
             if ($hasData) {
                 // For uniqueness, create a key based on the primary key of the related model
                 $relatedPrimaryKey = $currentModel->getPrimaryKey()->getName();
                 $uniqueKey = $relatedData[$relatedPrimaryKey] ?? null;
-                
+
                 if ($uniqueKey !== null) {
-                    if (!isset($groupedData[$mainId])) {
+                    if (! isset($groupedData[$mainId])) {
                         $groupedData[$mainId] = [];
                     }
                     $groupedData[$mainId][$uniqueKey] = $relatedData;
                 }
             }
         }
-        
+
         // Map back to original results using the full path
         foreach ($originalResults as &$result) {
             $resultId = $result[$primaryKey];
             $relatedRecords = isset($groupedData[$resultId]) ? array_values($groupedData[$resultId]) : [];
-            
+
             // Set the value at the nested path
             $this->setNestedValue($result, $path, $isHasMany ? $relatedRecords : ($relatedRecords[0] ?? null));
         }
-        
+
         return $originalResults;
     }
 
     /**
      * Set a value at a nested path in an array
      *
-     * @param array &$array The array to modify
-     * @param string $path The dot-separated path
-     * @param mixed $value The value to set
+     * @param  array  &$array  The array to modify
+     * @param  string  $path  The dot-separated path
+     * @param  mixed  $value  The value to set
      */
     private function setNestedValue(array &$array, string $path, $value): void
     {
         $parts = explode('.', $path);
         $current = &$array;
-        
+
         foreach ($parts as $i => $part) {
             if ($i === count($parts) - 1) {
                 // Last part, set the value
                 $current[$part] = $value;
             } else {
                 // Intermediate part, ensure it exists
-                if (!isset($current[$part])) {
+                if (! isset($current[$part])) {
                     $current[$part] = [];
                 }
                 $current = &$current[$part];

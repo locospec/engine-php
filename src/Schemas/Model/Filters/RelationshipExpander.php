@@ -56,7 +56,7 @@ class RelationshipExpander
 
         foreach ($this->pathGroups as $groupId => $group) {
             $paths = $this->getPathsInGroup($groupId);
-            
+
             // Generate query info (handles both single and multiple paths)
             $queryInfo = $this->generateJoinsForGroup($group);
             $tableNames = $queryInfo['tableNames'];
@@ -64,11 +64,11 @@ class RelationshipExpander
             // Execute the operation (handles both JOIN and non-JOIN cases)
             $operationResults = $this->executeOperation($results, $queryInfo);
 
-            if (!empty($operationResults)) {
+            if (! empty($operationResults)) {
                 $rows = $operationResults[0]['result'];
 
                 // Sort paths by length to ensure parent paths are processed first
-                usort($paths, fn($a, $b) => strlen($a) - strlen($b));
+                usort($paths, fn ($a, $b) => strlen($a) - strlen($b));
 
                 // Loop through all paths in the group and map results
                 foreach ($paths as $path) {
@@ -222,6 +222,6 @@ class RelationshipExpander
         }
 
         $this->logger?->error('Unknown relationship type encountered', ['relationship' => $relationship]);
-        throw new \RuntimeException('Unknown relationship type: ' . get_class($relationship));
+        throw new \RuntimeException('Unknown relationship type: '.get_class($relationship));
     }
 }
