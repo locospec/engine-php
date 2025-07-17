@@ -47,6 +47,14 @@ class ReadPayloadBuilder
             $readPayload->expand = $payload['expand'];
         } else {
             $readPayload->expand = $this->context->get('query')->getExpand()->toArray();
+
+            if (empty($readPayload->expand)) {
+
+                $relationshipKeys = $model->getRelationships()->keys()->all();
+                if (! empty($relationshipKeys)) {
+                    $readPayload->expand = $relationshipKeys;
+                }
+            }
         }
 
         return $readPayload;

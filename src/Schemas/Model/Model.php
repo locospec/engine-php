@@ -127,6 +127,11 @@ class Model
         return $this->config;
     }
 
+    public function getTableName(): string
+    {
+        return $this->config->getTable();
+    }
+
     public function getPrimaryKey(): ?Attribute
     {
         return $this->attributes->first(fn (Attribute $attribute) => $attribute->isPrimaryKey());
@@ -242,5 +247,15 @@ class Model
                 $this->addRelationship($relationship);
             }
         }
+    }
+
+    /**
+     * Get attributes that are not alias keys
+     *
+     * @return Collection Collection of attributes that are not alias keys
+     */
+    public function getAttributesWithoutAliases(): Collection
+    {
+        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey());
     }
 }

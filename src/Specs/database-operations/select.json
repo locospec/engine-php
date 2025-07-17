@@ -4,6 +4,7 @@
   "type": "object",
   "properties": {
     "type": { "type": "string", "enum": ["select"] },
+    "purpose": { "type": "string" },
     "modelName": { "type": "string" },
     "deleteColumn": { "type": "string" },
     "scopes": { "$ref": "common.json#/definitions/scopes" },

@@ -3,6 +3,7 @@
 namespace LCSEngine\Schemas\Model\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
@@ -12,28 +13,38 @@ use LCSEngine\Schemas\Model\Relationships\Relationship;
 
 class RelationshipResolver
 {
+    use BatchRelationshipResolverTrait;
+
     private Model $model;
 
     private DatabaseOperationsCollection $dbOps;
 
     private RegistryManager $registryManager;
 
+    private Logger $logger;
+
     public function __construct(
         Model $model,
         DatabaseOperationsCollection $dbOps,
-        RegistryManager $registryManager
+        RegistryManager $registryManager,
+        Logger $logger
     ) {
         $this->model = $model;
         $this->dbOps = $dbOps;
         $this->registryManager = $registryManager;
+        $this->logger = $logger;
     }
 
     public function resolve(Filters $filters): Filters
     {
         $root = $filters->getRoot();
 
+        $this->logger->notice('Resolve Relationships', [
+            'filters' => $filters->toArray(),
+        ]);
+
         if ($root instanceof Condition) {
-            return new Filters($this->resolveJoinCondition($root));
+            return new Filters($this->resolveCondition($root));
         }
 
         if ($root instanceof FilterGroup) {
@@ -47,192 +58,212 @@ class RelationshipResolver
         return $filters;
     }
 
-    private function resolveCondition(Condition $condition): Condition|FilterGroup
+    /**
+     * Converts a condition with relationship paths into a condition on the main model.
+     *
+     * Example: "locality.city.state.name = 'California'"
+     * becomes: "locality_id IN [1,2,3]" (keys from main model records that match)
+     */
+    private function resolveCondition(Condition $condition): Condition
     {
         $path = explode('.', $condition->getAttribute());
 
-        // Not a relationship path
+        // If no relationships (single attribute), return as-is
         if (count($path) === 1) {
             return $condition;
         }
 
-        // This is a relationship path
-        $relations = [];
-        $targetAttribute = array_pop($path);
-        $relatedModelNames = $path;
-        $currentSourceName = $this->model->getName();
+        // Split path: relationships + attribute to filter on
+        // Example: "locality.city.state.name" -> relationships: [locality, city, state], filterAttribute: name
+        $filterAttribute = array_pop($path);
+        $relationshipPath = $path;
 
-        foreach ($relatedModelNames as $relatedModelName) {
-            $sourceModel = $this->registryManager->get('model', $currentSourceName);
-            $relationship = $sourceModel->getRelationship($relatedModelName);
-            $targetModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-
-            $extractAndPointAttributes = $this->getExtractAndPointAttributes($relationship);
-
-            $relations[] = [
-                'source_model_name' => $currentSourceName,
-                'target_model_name' => $targetModel->getName(),
-                'source_model' => $sourceModel,
-                'target_model' => $targetModel,
-                'relationship' => $relationship,
-                'extract_attribute' => $extractAndPointAttributes['extract'],
-                'target_attribute' => $extractAndPointAttributes['point'],
-                'operator' => $extractAndPointAttributes['operator'],
-            ];
-
-            $currentSourceName = $targetModel->getName();
+        // Determine which key from main model connects to the relationship chain
+        $firstRelationship = $this->model->getRelationship($relationshipPath[0]);
+        if ($firstRelationship instanceof BelongsTo) {
+            // Main model has foreign key (e.g., properties.locality_id)
+            $mainModelKey = $firstRelationship->getForeignKey();      // properties.locality_id
+            $relatedModelKey = $firstRelationship->getOwnerKey();     // localities.id
+        } elseif ($firstRelationship instanceof HasMany || $firstRelationship instanceof HasOne) {
+            // Related model has foreign key (e.g., posts.user_id pointing to users.id)
+            $mainModelKey = $firstRelationship->getLocalKey();       // users.id
+            $relatedModelKey = $firstRelationship->getForeignKey();  // posts.user_id
+        } else {
+            throw new \RuntimeException('Unsupported relationship type: '.get_class($firstRelationship));
         }
 
-        // Reverse relations for resolution
-        $relations = array_reverse($relations);
+        // OPTIMIZATION: Single relationship doesn't need JOINs
+        // Example: "locality.name = 'Mumbai'" can be resolved directly
+        if (count($relationshipPath) === 1) {
+            $relatedModel = $this->registryManager->get('model', $firstRelationship->getRelatedModelName());
 
-        $currentValue = $condition->getValue();
-        $targetOperator = $condition->getOperator();
+            // Query the related model directly to get its primary keys
+            //
+            // IMPORTANT: We extract different columns based on relationship type:
+            //
+            // Example 1 - BelongsTo (Properties belongs to Locality):
+            //   - Filter: "locality.name = 'Mumbai'"
+            //   - Query: SELECT id FROM localities WHERE name = 'Mumbai'
+            //   - relatedModelKey = 'id' (locality's primary key)
+            //   - Returns: [1, 2, 3] (locality IDs)
+            //   - Final condition: properties.locality_id IN [1, 2, 3]
+            //   - Why: We need locality IDs because properties.locality_id stores locality's ID
+            //
+            // Example 2 - HasMany (User has many Posts):
+            //   - Filter: "posts.title = 'Hello'"
+            //   - Query: SELECT user_id FROM posts WHERE title = 'Hello'
+            //   - relatedModelKey = 'user_id' (foreign key in posts)
+            //   - Returns: [10, 20, 30] (user IDs from posts table)
+            //   - Final condition: users.id IN [10, 20, 30]
+            //   - Why: We need to extract user_id from posts to match against users.id
+            //
+            // The key insight: relatedModelKey is what connects back to the main model
+            // - BelongsTo: Extract primary key (id) from related model
+            // - HasMany: Extract foreign key (user_id) from related model
 
-        for ($i = 0; $i < count($relations); $i++) {
-            $relation = $relations[$i];
-            $targetModel = $relation['target_model'];
-
-            // Create select operation for the target model
             $selectOp = [
                 'type' => 'select',
-                'modelName' => $targetModel->getName(),
+                'purpose' => 'resolveSingleCondition',
+                'modelName' => $relatedModel->getName(),
                 'filters' => [
                     'op' => 'and',
                     'conditions' => [
                         [
-                            'attribute' => $targetAttribute,
-                            'op' => $targetOperator->value,
-                            'value' => $currentValue,
+                            'attribute' => $filterAttribute,
+                            'op' => $condition->getOperator()->value,
+                            'value' => $condition->getValue(),
                         ],
                     ],
                 ],
-                'attributes' => [$relation['extract_attribute']],
+                'attributes' => [$relatedModelKey],
             ];
 
-            $dbOpsResponse = $this->dbOps->add($selectOp)->execute();
+            $this->logger->info('Relationship resolver', [
+                'type' => 'relationshipResolver',
+                'operation' => 'singleRelationship',
+                'selectOp' => $selectOp,
+            ]);
 
-            $currentValue = array_column(
-                $dbOpsResponse[0]['result'],
-                $relation['extract_attribute']
+            $results = $this->dbOps->add($selectOp)->execute();
+            $matchingIds = array_column($results[0]['result'], $relatedModelKey);
+
+            // Return condition on main model's foreign key
+            return new Condition(
+                $mainModelKey,
+                ComparisonOperator::IS_ANY_OF,
+                $matchingIds
             );
-
-            $targetAttribute = $relation['target_attribute'];
-            $targetOperator = $relation['operator'];
         }
 
-        // Create a new condition with resolved values
-        return new Condition(
-            $targetAttribute,
-            $targetOperator,
-            $currentValue
-        );
-    }
+        // MULTIPLE RELATIONSHIPS: Need JOINs to traverse the chain
+        // Example: "locality.city.state.name = 'California'"
+        $joins = [];
+        $currentModel = $this->model;  // Start with main model
 
-    private function resolveJoinCondition(Condition $condition): Condition|FilterGroup
-    {
-        $path = explode('.', $condition->getAttribute());
+        foreach ($relationshipPath as $relationshipName) {
+            $relationship = $currentModel->getRelationship($relationshipName);
+            $joinModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
 
-        // Not a relationship path
-        if (count($path) === 1) {
-            return $condition;
-        }
+            // Determine JOIN columns based on relationship type
+            //
+            // Example path: "locality.city.state.name = 'California'"
+            // We need to JOIN: properties -> localities -> cities -> states
+            //
+            // Iteration 1: currentModel = properties, joinModel = localities
+            // - Relationship: Properties BelongsTo Locality
+            // - currentModelColumn = 'locality_id' (foreign key in properties)
+            // - joinModelColumn = 'id' (primary key in localities)
+            // - JOIN: properties JOIN localities ON properties.locality_id = localities.id
+            //
+            // Iteration 2: currentModel = localities, joinModel = cities
+            // - Relationship: Locality BelongsTo City
+            // - currentModelColumn = 'city_id' (foreign key in localities)
+            // - joinModelColumn = 'id' (primary key in cities)
+            // - JOIN: localities JOIN cities ON localities.city_id = cities.id
+            //
+            // For HasMany example: "posts.comments.content = 'Great!'"
+            // - Relationship: User HasMany Posts
+            // - currentModelColumn = 'id' (primary key in users)
+            // - joinModelColumn = 'user_id' (foreign key in posts)
+            // - JOIN: users JOIN posts ON users.id = posts.user_id
+            //
+            // The pattern: We always join on the relationship's defined keys
+            // - BelongsTo: current's foreign key = join's primary key
+            // - HasMany: current's primary key = join's foreign key
 
-        // This is a relationship path
-        $relations = [];
-        $targetAttribute = array_pop($path);
-        $relatedModelNames = $path;
-        $currentSourceName = $this->model->getName();
+            if ($relationship instanceof BelongsTo) {
+                $currentModelColumn = $relationship->getForeignKey();   // current.foreign_key
+                $joinModelColumn = $relationship->getOwnerKey();        // join.primary_key
+            } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
+                $currentModelColumn = $relationship->getLocalKey();     // current.primary_key
+                $joinModelColumn = $relationship->getForeignKey();      // join.foreign_key
+            } else {
+                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
+            }
 
-        foreach ($relatedModelNames as $relatedModelName) {
-            $sourceModel = $this->registryManager->get('model', $currentSourceName);
-            $relationship = $sourceModel->getRelationship($relatedModelName);
-
-            $targetModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-
-            $extractAndPointAttributes = $this->getExtractAndPointAttributes($relationship);
-
-            $relations[] = [
-                'source_model_name' => $currentSourceName,
-                'target_model_name' => $targetModel->getName(),
-                'relationship' => $relationship,
-                'extract_attribute' => $extractAndPointAttributes['extract'],
-                'target_attribute' => $extractAndPointAttributes['point'],
-                'operator' => $extractAndPointAttributes['operator'],
-                'source_model' => $sourceModel,
-                'target_model' => $targetModel,
-            ];
-
-            $currentSourceName = $targetModel->getName();
-        }
-
-        // Reverse relations for resolution
-        // $relations = array_reverse($relations);
-
-        $currentValue = $condition->getValue();
-        $targetOperator = $condition->getOperator();
-
-        for ($i = 0; $i < count($relations); $i++) {
-            $relation = $relations[$i];
-            $targetModel = $relation['target_model'];
-            $sourceModel = $relation['source_model'];
-
+            // Build JOIN clause
             $joins[] = [
                 'type' => 'inner',
-                'table' => $targetModel->getConfig()->getTable(),
+                'table' => $joinModel->getTableName(),
                 'on' => [
-                    $sourceModel->getConfig()->getTable().'.'.$relation['target_attribute'],
+                    $currentModel->getTableName().'.'.$currentModelColumn,
                     '=',
-                    $targetModel->getConfig()->getTable().'.'.$relation['extract_attribute'],
+                    $joinModel->getTableName().'.'.$joinModelColumn,
                 ],
             ];
+
+            // Move to next model in chain
+            $currentModel = $joinModel;
         }
 
-        $extractAttributeWithTable = $this->model->getConfig()->getTable().'.'.$relation['extract_attribute'];
-
+        // Execute query with JOINs
+        //
+        // Example: "locality.city.state.name = 'California'"
+        // Generated SQL:
+        //   SELECT properties.locality_id
+        //   FROM properties
+        //   JOIN localities ON properties.locality_id = localities.id
+        //   JOIN cities ON localities.city_id = cities.id
+        //   JOIN states ON cities.state_id = states.id
+        //   WHERE states.name = 'California'
+        //
+        // Result: All locality_id values from properties where the chain matches
+        // Final condition: properties.locality_id IN [extracted values]
+        //
+        // Note: $currentModel is now the last model in the chain (states in this example)
         $selectOp = [
             'type' => 'select',
+            'purpose' => 'resolveJoinCondition',
             'modelName' => $this->model->getName(),
+            'joins' => $joins,
             'filters' => [
                 'op' => 'and',
                 'conditions' => [
                     [
-                        'attribute' => $targetModel->getConfig()->getTable().'.'.$targetAttribute,
+                        'attribute' => $currentModel->getTableName().'.'.$filterAttribute,
                         'op' => $condition->getOperator()->value,
                         'value' => $condition->getValue(),
                     ],
                 ],
             ],
-            'attributes' => [$extractAttributeWithTable],
+            'attributes' => [$this->model->getTableName().'.'.$mainModelKey],
         ];
 
-        if (! empty($joins)) {
-            $selectOp['joins'] = $joins;
-        }
+        $this->logger->info('Relationship resolver', [
+            'type' => 'relationshipResolver',
+            'operation' => 'multipleRelationships',
+            'selectOp' => $selectOp,
+        ]);
 
-        // if ($condition->getAttribute() === "city.district.state.name") {
-        //     dd($selectOp, $targetAttribute, $extractAttributeWithTable);
-        // }
+        $results = $this->dbOps->add($selectOp)->execute();
+        $matchingKeys = array_column($results[0]['result'], $mainModelKey);
 
-        $dbOpsResponse = $this->dbOps->add($selectOp)->execute();
-
-        $currentValue = array_column(
-            $dbOpsResponse[0]['result'],
-            $relation['extract_attribute']
-        );
-
-        $newCondition = new Condition(
-            $relation['extract_attribute'],
+        // Return condition on main model's key
+        return new Condition(
+            $mainModelKey,
             ComparisonOperator::IS_ANY_OF,
-            $currentValue
+            $matchingKeys
         );
-
-        // if ($condition->getAttribute() === "city.district.state.name") {
-        //     dd($newCondition);
-        // }
-
-        // Create a new condition with resolved values
-        return $newCondition;
     }
 
     private function resolveGroup(FilterGroup $group): FilterGroup
@@ -241,25 +272,30 @@ class RelationshipResolver
 
         // If $group's first condition is a Condition, then it would mean all of them are conditions
 
-        // Check conditions, following same chain, call resolveBatchJoinCondition, add the new condition to $group, remove old conditions
+        $afterGrouping = $this->groupConditionsByPath($group);
 
-        foreach ($group->getConditions() as $condition) {
+        // Check conditions, following same chain, including current model also, call resolveBatchJoinCondition, add the new condition to $group, remove old conditions
+
+        foreach ($afterGrouping->getConditions() as $condition) {
             if ($condition instanceof Condition) {
-                $resolved = $this->resolveJoinCondition($condition);
+                $resolved = $this->resolveCondition($condition);
                 $resolvedGroup->add($resolved);
-                // if ($resolved instanceof FilterGroup) {
-                //     foreach ($resolved->getConditions() as $resolvedCondition) {
-                //         $resolvedGroup->add($resolvedCondition);
-                //     }
-                // } else {
-                //     $resolvedGroup->add($resolved);
-                // }
+            } elseif ($condition instanceof BatchedFilterGroup) {
+                // Handle batched groups separately
+                $resolvedGroup->add($this->resolveBatchedGroup($condition));
             } elseif ($condition instanceof FilterGroup) {
                 $resolvedGroup->add($this->resolveGroup($condition));
             } elseif ($condition instanceof PrimitiveFilterSet) {
                 $resolvedGroup->add($this->resolvePrimitiveSet($condition));
             }
         }
+
+        // $this->logger->notice(
+        //     'Final Resolved Group',
+        //     [
+        //         'resolvedGroup' => $resolvedGroup->toArray(),
+        //     ],
+        // );
 
         return $resolvedGroup;
     }
@@ -270,21 +306,12 @@ class RelationshipResolver
 
         foreach ($set->getFilters() as $key => $value) {
             $condition = new Condition($key, ComparisonOperator::IS, $value);
-            $resolved = $this->resolveJoinCondition($condition);
+            $resolved = $this->resolveCondition($condition);
 
-            if ($resolved instanceof FilterGroup) {
-                foreach ($resolved->getConditions() as $resolvedCondition) {
-                    $resolvedSet->add(
-                        $resolvedCondition->getAttribute(),
-                        $resolvedCondition->getValue()
-                    );
-                }
-            } else {
-                $resolvedSet->add(
-                    $resolved->getAttribute(),
-                    $resolved->getValue()
-                );
-            }
+            $resolvedSet->add(
+                $resolved->getAttribute(),
+                $resolved->getValue()
+            );
         }
 
         return $resolvedSet;

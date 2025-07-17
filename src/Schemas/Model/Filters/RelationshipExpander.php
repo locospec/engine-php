@@ -14,6 +14,8 @@ use LCSEngine\Schemas\Model\Relationships\Relationship;
 
 class RelationshipExpander
 {
+    use RelationshipExpanderWithJoinsTrait;
+
     private Model $model;
 
     private DatabaseOperationsCollection $dbOps;
@@ -41,11 +43,38 @@ class RelationshipExpander
             'modelName' => $this->model->getName(),
             'expandPaths' => $dbOpResult['operation']['expand'],
         ]);
+
         $expand = $dbOpResult['operation']['expand'];
+
+        if (empty($expand)) {
+            return $dbOpResult;
+        }
+
         $results = $dbOpResult['result'];
 
-        foreach ($expand as $path) {
-            $results = $this->expandSingle($path, $results);
+        $this->groupExpandPaths($expand);
+
+        foreach ($this->pathGroups as $groupId => $group) {
+            $paths = $this->getPathsInGroup($groupId);
+
+            // Generate query info (handles both single and multiple paths)
+            $queryInfo = $this->generateJoinsForGroup($group);
+            $tableNames = $queryInfo['tableNames'];
+
+            // Execute the operation (handles both JOIN and non-JOIN cases)
+            $operationResults = $this->executeOperation($results, $queryInfo);
+
+            if (! empty($operationResults)) {
+                $rows = $operationResults[0]['result'];
+
+                // Sort paths by length to ensure parent paths are processed first
+                usort($paths, fn ($a, $b) => strlen($a) - strlen($b));
+
+                // Loop through all paths in the group and map results
+                foreach ($paths as $path) {
+                    $results = $this->mapJoinedResults($results, $rows, $path, $tableNames[$path]);
+                }
+            }
         }
 
         $dbOpResult['result'] = $results;
@@ -114,6 +143,7 @@ class RelationshipExpander
         // Build query to fetch related records
         $operation = [
             'type' => 'select',
+            'purpose' => 'expand',
             'modelName' => $relation['target_model']->getName(),
             'filters' => [
                 'op' => 'and',
@@ -190,6 +220,8 @@ class RelationshipExpander
                 'op' => 'is_any_of',
             ];
         }
+
         $this->logger?->error('Unknown relationship type encountered', ['relationship' => $relationship]);
+        throw new \RuntimeException('Unknown relationship type: '.get_class($relationship));
     }
 }

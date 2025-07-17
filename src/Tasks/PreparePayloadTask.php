@@ -107,6 +107,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $preparedPayload = [
             'type' => 'select',
+            'purpose' => 'read',
             'modelName' => $model->getName(),
         ];
 
@@ -158,6 +159,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $preparedPayload = [
             'type' => 'select',
+            'purpose' => 'read_options',
             'modelName' => $optionsModel->getName(),
         ];
 
@@ -333,6 +335,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         if (isset($payload['primaryKey']) && ! empty($payload['primaryKey'])) {
             $preparedPayload = [
                 'type' => 'select',
+                'purpose' => 'read_one',
                 'modelName' => $this->context->get('model')->getName(),
             ];
 
@@ -487,6 +490,7 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
         $relatedIds = [];
         $payload = [
             'type' => 'select',
+            'purpose' => 'getRelatedModelIds',
             'modelName' => $modelName,
             'filters' => [
                 [
