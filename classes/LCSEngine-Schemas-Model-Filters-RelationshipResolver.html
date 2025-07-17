@@ -146,6 +146,9 @@
         </div>
     
     
+            <span class="phpdocumentor-element__extends">
+            uses
+                            <a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html"><abbr title="\LCSEngine\Schemas\Model\Filters\BatchRelationshipResolverTrait">BatchRelationshipResolverTrait</abbr></a>                    </span>
     </h2>
 
 <div class="phpdocumentor-label-line">
@@ -156,7 +159,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">14</span>
 
     </aside>
 
@@ -193,6 +196,12 @@
     <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_dbOps">$dbOps</a>
     <span>
                         &nbsp;: <a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a>            </span>
+</dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger">$logger</a>
+    <span>
+                        &nbsp;: <a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a>            </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -property -private">
@@ -234,21 +243,37 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_groupConditionsByPath">groupConditionsByPath()</a>
+    <span>
+                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a>    </span>
+</dt>
+<dd>Groups conditions by their relationship paths for optimized batch resolution.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchedGroup">resolveBatchedGroup()</a>
+    <span>
+                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>    </span>
+</dt>
+<dd>Resolves a BatchedFilterGroup into a single condition on the main model.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchRelationshipConditions">resolveBatchRelationshipConditions()</a>
+    <span>
+                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>    </span>
+</dt>
+<dd>Resolves batch conditions that involve relationships using JOINs.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveCondition">resolveCondition()</a>
     <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a>    </span>
+                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>    </span>
 </dt>
+<dd>Converts a condition with relationship paths into a condition on the main model.</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveGroup">resolveGroup()</a>
     <span>
                                 &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a>    </span>
-</dt>
-
-            <dt class="phpdocumentor-table-of-contents__entry -method -private">
-    <a class="" href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveJoinCondition">resolveJoinCondition()</a>
-    <span>
-                                &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a>    </span>
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
@@ -287,7 +312,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">17</span>
+    <span class="phpdocumentor-element-found-in__line">20</span>
 
     </aside>
 
@@ -297,6 +322,44 @@
         <span class="phpdocumentor-signature__visibility">private</span>
             <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a></span>
     <span class="phpdocumentor-signature__name">$dbOps</span>
+    </code>
+
+    
+    
+    
+
+    
+
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -private
+                                                                    "
+>
+    <h4 class="phpdocumentor-element__name" id="property_logger">
+        $logger
+        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger" class="headerlink"><i class="fas fa-link"></i></a>
+
+        <span class="phpdocumentor-element__modifiers">
+                                            </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">24</span>
+
+    </aside>
+
+    
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+        <span class="phpdocumentor-signature__visibility">private</span>
+            <span class="phpdocumentor-signature__type"><a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a></span>
+    <span class="phpdocumentor-signature__name">$logger</span>
     </code>
 
     
@@ -325,7 +388,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">15</span>
+    <span class="phpdocumentor-element-found-in__line">18</span>
 
     </aside>
 
@@ -363,7 +426,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">19</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -406,14 +469,14 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">26</span>
 
     </aside>
 
     
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOps</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+                    <span class="phpdocumentor-signature__name">__construct</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$model</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$dbOps</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$logger</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -442,6 +505,13 @@
             <dd class="phpdocumentor-argument-list__definition">
                 
             </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$logger</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Logger.html"><abbr title="\LCSEngine\Logger">Logger</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
             </dl>
 
     
@@ -464,7 +534,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">31</span>
+    <span class="phpdocumentor-element-found-in__line">38</span>
 
     </aside>
 
@@ -512,7 +582,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">293</span>
+    <span class="phpdocumentor-element-found-in__line">320</span>
 
     </aside>
 
@@ -552,6 +622,231 @@
             -private
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_groupConditionsByPath">
+        groupConditionsByPath()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_groupConditionsByPath" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php"><a href="files/src-schemas-model-filters-batchrelationshipresolvertrait.html"><abbr title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php">BatchRelationshipResolverTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">72</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Groups conditions by their relationship paths for optimized batch resolution.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">groupConditionsByPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$group</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method implements an optimization strategy that reduces the number of database
+queries by intelligently grouping conditions that share relationship paths.</p>
+<p>CORE CONCEPT:
+Instead of resolving each relationship condition independently (N queries for N conditions),
+we group conditions by their shared relationship paths and execute fewer, more efficient
+JOIN queries.</p>
+<p>EXAMPLE:
+Given an AND filter group with these conditions:</p>
+<ol>
+<li>name = 'John'                        (main model)</li>
+<li>age &gt; 25                             (main model)</li>
+<li>locality.name = 'Mumbai'             (relationship path: locality)</li>
+<li>locality.city.name = 'Delhi'         (relationship path: locality → city)</li>
+<li>locality.city.state.name = 'MH'      (relationship path: locality → city → state)</li>
+<li>events.bids.amount &gt; 1000            (relationship path: events → bids)</li>
+<li>branches.bank.name = 'HDFC'          (relationship path: branches → bank)</li>
+</ol>
+<p>CURRENT APPROACH (7 queries):</p>
+<ul>
+<li>Query 1: Resolve condition 3 → locality_id IN [...]</li>
+<li>Query 2: Resolve condition 4 → locality_id IN [...]</li>
+<li>Query 3: Resolve condition 5 → locality_id IN [...]</li>
+<li>Query 4: Resolve condition 6 → event_id IN [...]</li>
+<li>Query 5: Resolve condition 7 → branch_id IN [...]</li>
+<li>Query 6: Main query with all resolved conditions</li>
+</ul>
+<p>OPTIMIZED APPROACH (3 queries):</p>
+<ul>
+<li>
+<p>Group 1: Main model + locality path
+JOIN: properties → localities → cities → states
+WHERE: name = 'John' AND age &gt; 25 AND localities.name = 'Mumbai'
+AND cities.name = 'Delhi' AND states.name = 'MH'
+Returns: property IDs matching all conditions</p>
+</li>
+<li>
+<p>Group 2: Main model + events path
+JOIN: properties → events → bids
+WHERE: name = 'John' AND age &gt; 25 AND bids.amount &gt; 1000
+Returns: property IDs matching all conditions</p>
+</li>
+<li>
+<p>Group 3: Main model + branches path
+JOIN: properties → branches → banks
+WHERE: name = 'John' AND age &gt; 25 AND banks.name = 'HDFC'
+Returns: property IDs matching all conditions</p>
+</li>
+</ul>
+<p>KEY INSIGHTS:</p>
+<ol>
+<li>Conditions sharing a relationship path prefix can be evaluated together</li>
+<li>Main model conditions are included in EVERY group (main model is always in the path)</li>
+<li>This reduces result sets early by applying main model filters in subqueries</li>
+<li>The final output is still conditions on the main model (preserves interface)</li>
+</ol>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$group</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The filter group to analyze (must be AND or OR operator)</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A FilterGroup containing mix of Conditions and BatchedFilterGroups</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveBatchedGroup">
+        resolveBatchedGroup()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchedGroup" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php"><a href="files/src-schemas-model-filters-batchrelationshipresolvertrait.html"><abbr title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php">BatchRelationshipResolverTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">177</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolves a BatchedFilterGroup into a single condition on the main model.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveBatchedGroup</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\BatchedFilterGroup">BatchedFilterGroup</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batchedGroup</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>This method takes a group of conditions that share a relationship path and executes
+them together in a single optimized query with JOINs. Works for both AND and OR groups.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$batchedGroup</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\BatchedFilterGroup">BatchedFilterGroup</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The batched group to resolve</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>A single condition on the main model's primary key</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveBatchRelationshipConditions">
+        resolveBatchRelationshipConditions()
+        <a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchRelationshipConditions" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php"><a href="files/src-schemas-model-filters-batchrelationshipresolvertrait.html"><abbr title="src/Schemas/Model/Filters/BatchRelationshipResolverTrait.php">BatchRelationshipResolverTrait.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">224</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolves batch conditions that involve relationships using JOINs.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">resolveBatchRelationshipConditions</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$sharedPath</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\BatchedFilterGroup">BatchedFilterGroup</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$batchedGroup</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$sharedPath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$batchedGroup</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\BatchedFilterGroup">BatchedFilterGroup</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span>
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_resolveCondition">
         resolveCondition()
         <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveCondition" class="headerlink"><i class="fas fa-link"></i></a>
@@ -560,19 +855,23 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">50</span>
+    <span class="phpdocumentor-element-found-in__line">67</span>
 
     </aside>
 
-    
+        <p class="phpdocumentor-summary">Converts a condition with relationship paths into a condition on the main model.</p>
+
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">resolveCondition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span></code>
+                    <span class="phpdocumentor-signature__name">resolveCondition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
     
-    
+        <section class="phpdocumentor-description"><p>Example: &quot;locality.city.state.name = 'California'&quot;
+becomes: &quot;locality_id IN [1,2,3]&quot; (keys from main model records that match)</p>
+</section>
+
         <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
     <dl class="phpdocumentor-argument-list">
                     <dt class="phpdocumentor-argument-list__entry">
@@ -590,7 +889,7 @@
 
             <section>
         <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span>
+        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span>
             </section>
 
 </article>
@@ -608,7 +907,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">238</span>
+    <span class="phpdocumentor-element-found-in__line">269</span>
 
     </aside>
 
@@ -648,54 +947,6 @@
             -private
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_resolveJoinCondition">
-        resolveJoinCondition()
-        <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveJoinCondition" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">132</span>
-
-    </aside>
-
-    
-    <code class="phpdocumentor-code phpdocumentor-signature ">
-    <span class="phpdocumentor-signature__visibility">private</span>
-                    <span class="phpdocumentor-signature__name">resolveJoinCondition</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$condition</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span></code>
-
-    <div class="phpdocumentor-label-line">
-        </div>
-    
-    
-        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
-    <dl class="phpdocumentor-argument-list">
-                    <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$condition</span>
-                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a></span>
-                            </dt>
-            <dd class="phpdocumentor-argument-list__definition">
-                
-            </dd>
-            </dl>
-
-    
-
-    
-
-            <section>
-        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
-        <span class="phpdocumentor-signature__response_type"><a href="classes/LCSEngine-Schemas-Model-Filters-Condition.html"><abbr title="\LCSEngine\Schemas\Model\Filters\Condition">Condition</abbr></a>|<a href="classes/LCSEngine-Schemas-Model-Filters-FilterGroup.html"><abbr title="\LCSEngine\Schemas\Model\Filters\FilterGroup">FilterGroup</abbr></a></span>
-            </section>
-
-</article>
-                    <article
-        class="phpdocumentor-element
-            -method
-            -private
-                                                        "
->
     <h4 class="phpdocumentor-element__name" id="method_resolvePrimitiveSet">
         resolvePrimitiveSet()
         <a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolvePrimitiveSet" class="headerlink"><i class="fas fa-link"></i></a>
@@ -704,7 +955,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Filters/RelationshipResolver.php"><a href="files/src-schemas-model-filters-relationshipresolver.html"><abbr title="src/Schemas/Model/Filters/RelationshipResolver.php">RelationshipResolver.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">267</span>
+    <span class="phpdocumentor-element-found-in__line">303</span>
 
     </aside>
 
@@ -852,6 +1103,7 @@
                 <li>
                     <ul class="phpdocumentor-list -clean">
                                                     <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_dbOps">$dbOps</a></li>
+                                                    <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger">$logger</a></li>
                                                     <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_model">$model</a></li>
                                                     <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_registryManager">$registryManager</a></li>
                                             </ul>
@@ -863,9 +1115,11 @@
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolve">resolve()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_getExtractAndPointAttributes">getExtractAndPointAttributes()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_groupConditionsByPath">groupConditionsByPath()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchedGroup">resolveBatchedGroup()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchRelationshipConditions">resolveBatchRelationshipConditions()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveCondition">resolveCondition()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveGroup">resolveGroup()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveJoinCondition">resolveJoinCondition()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolvePrimitiveSet">resolvePrimitiveSet()</a></li>
                                     </ul>
             </li>

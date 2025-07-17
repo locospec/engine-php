@@ -891,6 +891,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Logger.html#method_info"
         },                {
+            "fqsen": "\\LCSEngine\\Logger\u003A\u003Adebug\u0028\u0029",
+            "name": "debug",
+            "summary": "",
+            "url": "classes/LCSEngine-Logger.html#method_debug"
+        },                {
+            "fqsen": "\\LCSEngine\\Logger\u003A\u003Anotice\u0028\u0029",
+            "name": "notice",
+            "summary": "",
+            "url": "classes/LCSEngine-Logger.html#method_notice"
+        },                {
             "fqsen": "\\LCSEngine\\Logger\u003A\u003Awarning\u0028\u0029",
             "name": "warning",
             "summary": "",
@@ -2691,6 +2701,46 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-AliasResolver.html#property_aliases"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchedFilterGroup",
+            "name": "BatchedFilterGroup",
+            "summary": "BatchedFilterGroup\u0020represents\u0020a\u0020group\u0020of\u0020conditions\u0020that\u0020share\u0020a\u0020relationship\u0020path\nand\u0020can\u0020be\u0020resolved\u0020together\u0020in\u0020a\u0020single\u0020query.",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchedFilterGroup\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchedFilterGroup\u003A\u003AgetSharedPath\u0028\u0029",
+            "name": "getSharedPath",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html#method_getSharedPath"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchedFilterGroup\u003A\u003A\u0024sharedPath",
+            "name": "sharedPath",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchedFilterGroup.html#property_sharedPath"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchRelationshipResolverTrait",
+            "name": "BatchRelationshipResolverTrait",
+            "summary": "BatchRelationshipResolverTrait\u0020provides\u0020optimization\u0020for\u0020filter\u0020resolution\u0020by\u0020grouping\nconditions\u0020that\u0020share\u0020relationship\u0020paths\u0020and\u0020executing\u0020them\u0020in\u0020batch\u0020queries.",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchRelationshipResolverTrait\u003A\u003AgroupConditionsByPath\u0028\u0029",
+            "name": "groupConditionsByPath",
+            "summary": "Groups\u0020conditions\u0020by\u0020their\u0020relationship\u0020paths\u0020for\u0020optimized\u0020batch\u0020resolution.",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_groupConditionsByPath"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchRelationshipResolverTrait\u003A\u003AresolveBatchedGroup\u0028\u0029",
+            "name": "resolveBatchedGroup",
+            "summary": "Resolves\u0020a\u0020BatchedFilterGroup\u0020into\u0020a\u0020single\u0020condition\u0020on\u0020the\u0020main\u0020model.",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchedGroup"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\BatchRelationshipResolverTrait\u003A\u003AresolveBatchRelationshipConditions\u0028\u0029",
+            "name": "resolveBatchRelationshipConditions",
+            "summary": "Resolves\u0020batch\u0020conditions\u0020that\u0020involve\u0020relationships\u0020using\u0020JOINs.",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-BatchRelationshipResolverTrait.html#method_resolveBatchRelationshipConditions"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\ComparisonOperator",
             "name": "ComparisonOperator",
             "summary": "",
@@ -2981,6 +3031,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-LogicalOperator.html#enumcase_OR"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\LogicalOperator\u003A\u003ABATCHED_AND",
+            "name": "BATCHED_AND",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-LogicalOperator.html#enumcase_BATCHED_AND"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\LogicalOperator\u003A\u003ABATCHED_OR",
+            "name": "BATCHED_OR",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-LogicalOperator.html#enumcase_BATCHED_OR"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\PrimitiveFilterSet",
             "name": "PrimitiveFilterSet",
             "summary": "",
@@ -3066,6 +3126,61 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpander.html#property_logger"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait",
+            "name": "RelationshipExpanderWithJoinsTrait",
+            "summary": "RelationshipExpanderWithJoinsTrait\u0020\u002D\u0020Provides\u0020JOIN\u002Dbased\u0020expansion\u0020methods",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AgroupExpandPaths\u0028\u0029",
+            "name": "groupExpandPaths",
+            "summary": "Groups\u0020expansion\u0020paths\u0020to\u0020avoid\u0020cartesian\u0020products\nAlso\u0020builds\u0020the\u0020path\u002Dto\u002Dgroup\u0020mapping\u0020for\u0020later\u0020lookups",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_groupExpandPaths"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AgenerateJoinsForGroup\u0028\u0029",
+            "name": "generateJoinsForGroup",
+            "summary": "Generate\u0020JOINs\u0020for\u0020a\u0020single\u0020group\u0020of\u0020paths\nFor\u0020single\u002Dpath\u0020groups,\u0020generates\u0020a\u0020WHERE\u0020IN\u0020query\u0020instead\u0020of\u0020JOINs",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_generateJoinsForGroup"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AexecuteOperation\u0028\u0029",
+            "name": "executeOperation",
+            "summary": "Execute\u0020operation\u0020for\u0020JOIN\u0020query\u0020with\u0020WHERE\u0020IN\u0020clause\nAlso\u0020handles\u0020single\u002Dpath\u0020queries\u0020without\u0020JOINs",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_executeOperation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AgetGroupByPath\u0028\u0029",
+            "name": "getGroupByPath",
+            "summary": "Get\u0020the\u0020group\u0020ID\u0020for\u0020a\u0020given\u0020path",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_getGroupByPath"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AgetPathsInGroup\u0028\u0029",
+            "name": "getPathsInGroup",
+            "summary": "Get\u0020all\u0020paths\u0020in\u0020a\u0020specific\u0020group",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_getPathsInGroup"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AgetPathGroups\u0028\u0029",
+            "name": "getPathGroups",
+            "summary": "Get\u0020all\u0020path\u0020groups",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_getPathGroups"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AmapJoinedResults\u0028\u0029",
+            "name": "mapJoinedResults",
+            "summary": "Map\u0020joined\u0020results\u0020back\u0020to\u0020original\u0020results",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapJoinedResults"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AsetNestedValue\u0028\u0029",
+            "name": "setNestedValue",
+            "summary": "Set\u0020a\u0020value\u0020at\u0020a\u0020nested\u0020path\u0020in\u0020an\u0020array",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#method_setNestedValue"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003A\u0024pathGroups",
+            "name": "pathGroups",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#property_pathGroups"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003A\u0024pathToGroupMap",
+            "name": "pathToGroupMap",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipExpanderWithJoinsTrait.html#property_pathToGroupMap"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver",
             "name": "RelationshipResolver",
             "summary": "",
@@ -3083,13 +3198,8 @@ Search.appendIndex(
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003AresolveCondition\u0028\u0029",
             "name": "resolveCondition",
-            "summary": "",
+            "summary": "Converts\u0020a\u0020condition\u0020with\u0020relationship\u0020paths\u0020into\u0020a\u0020condition\u0020on\u0020the\u0020main\u0020model.",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveCondition"
-        },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003AresolveJoinCondition\u0028\u0029",
-            "name": "resolveJoinCondition",
-            "summary": "",
-            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#method_resolveJoinCondition"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003AresolveGroup\u0028\u0029",
             "name": "resolveGroup",
@@ -3120,6 +3230,11 @@ Search.appendIndex(
             "name": "registryManager",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_registryManager"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Filters\\RelationshipResolver\u003A\u003A\u0024logger",
+            "name": "logger",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Filters-RelationshipResolver.html#property_logger"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model",
             "name": "Model",
@@ -3216,6 +3331,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getConfig"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetTableName\u0028\u0029",
+            "name": "getTableName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getTableName"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetPrimaryKey\u0028\u0029",
             "name": "getPrimaryKey",
             "summary": "",
@@ -3255,6 +3375,11 @@ Search.appendIndex(
             "name": "addRelationshipsFromArray",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addRelationshipsFromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAttributesWithoutAliases\u0028\u0029",
+            "name": "getAttributesWithoutAliases",
+            "summary": "Get\u0020attributes\u0020that\u0020are\u0020not\u0020alias\u0020keys",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttributesWithoutAliases"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024name",
             "name": "name",
@@ -5395,6 +5520,11 @@ Search.appendIndex(
             "name": "type",
             "summary": "",
             "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024purpose",
+            "name": "purpose",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_purpose"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024modelName",
             "name": "modelName",
