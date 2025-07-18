@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\Model;
 use Illuminate\Support\Collection;
 use InvalidArgumentException;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Aggregates\Aggregate;
 use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\Schemas\Model\Filters\Filters;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
@@ -29,6 +30,8 @@ class Model
 
     protected Collection $scopes;
 
+    protected Collection $aggregates;
+
     protected Configuration $config;
 
     public function __construct(string $name, string $label)
@@ -39,6 +42,7 @@ class Model
         $this->attributes = collect();
         $this->relationships = collect();
         $this->scopes = collect();
+        $this->aggregates = collect();
         $this->config = new Configuration($name);
     }
 
@@ -55,6 +59,16 @@ class Model
     public function getRelationship(string $name): ?Relationship
     {
         return $this->relationships->get($name);
+    }
+
+    public function addAggregate(Aggregate $aggregate): void
+    {
+        $this->aggregates->put($aggregate->getName(), $aggregate);
+    }
+
+    public function getAggregate(string $name): ?Aggregate
+    {
+        return $this->aggregates->get($name);
     }
 
     public function addScope(string $name, Filters $filters): void
@@ -120,6 +134,11 @@ class Model
     public function getScopes(): Collection
     {
         return $this->scopes;
+    }
+
+    public function getAggregates(): Collection
+    {
+        return $this->aggregates;
     }
 
     public function getConfig(): Configuration
@@ -188,6 +207,15 @@ class Model
             }
         }
 
+        // Aggregates
+        if (! empty($data['aggregates']) && is_array($data['aggregates'])) {
+            foreach ($data['aggregates'] as $name => $aggregateData) {
+                if (is_array($aggregateData)) {
+                    $model->addAggregate(Aggregate::fromArray($name, $aggregateData));
+                }
+            }
+        }
+
         // Configuration
         if (! empty($data['config']) && is_array($data['config'])) {
             $model->config = Configuration::fromArray($data['name'], $data['config']);
@@ -205,6 +233,7 @@ class Model
             'attributes' => $this->attributes->map(fn (Attribute $attribute) => $attribute->toArray())->all(),
             'relationships' => $this->relationships->map(fn (Relationship $relationship) => $relationship->toArray())->all(),
             'scopes' => $this->scopes->map(fn (Filters $filters) => $filters->toArray())->all(),
+            'aggregates' => $this->aggregates->map(fn (Aggregate $aggregate) => $aggregate->toArray())->all(),
             'config' => $this->config->toArray(),
         ];
     }

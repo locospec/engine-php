@@ -4,6 +4,7 @@ namespace LCSEngine\Tasks;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\StateMachine\ContextInterface;
+use LCSEngine\Tasks\PayloadBuilders\AggregatePayloadBuilder;
 use LCSEngine\Tasks\PayloadBuilders\ReadPayloadBuilder;
 use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
 
@@ -72,6 +73,11 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 // $preparedPayload = $this->preparePayloadForRead($payload);
                 break;
 
+            case '_aggregate':
+                $aggregatePayloadBuilder = new AggregatePayloadBuilder($this->context);
+                $preparedPayload = $aggregatePayloadBuilder->build($payload)->toArray();
+                break;
+
             case '_read_one':
                 $preparedPayload = $this->preparePayloadForReadOne($payload);
                 break;
@@ -120,7 +126,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $this->preparePagination($payload, $preparedPayload);
 
-        $primaryKeyAttributeKey = $model->getPrimaryKey()->getName();
+        $tableName = $model->getTableName();
+        $primaryKeyAttributeKey = $tableName.'.'.$model->getPrimaryKey()->getName();
 
         $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
@@ -172,7 +179,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
         $this->preparePagination($payload, $preparedPayload);
 
-        $primaryKeyAttributeKey = $optionsModel->getPrimaryKey()->getName();
+        $tableName = $optionsModel->getTableName();
+        $primaryKeyAttributeKey = $tableName.'.'.$optionsModel->getPrimaryKey()->getName();
         $this->prepareSorts($payload, $preparedPayload, $primaryKeyAttributeKey);
 
         if (isset($payload['filters']) && ! empty($payload['filters'])) {

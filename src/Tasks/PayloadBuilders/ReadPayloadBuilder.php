@@ -23,14 +23,15 @@ class ReadPayloadBuilder
         $model = $this->context->get('model');
         $readPayload = new ReadPayload($model->getName());
 
+        $tableName = $model->getTableName();
+
         // Check for a soft delete key and add it to the payload if it exists.
         if ($model->hasDeleteKey()) {
-            $readPayload->deleteColumn = $model->getDeleteKey()->getName();
+            $readPayload->deleteColumn = $tableName.'.'.$model->getDeleteKey()->getName();
         }
 
         $this->preparePaginationForDto($payload, $readPayload);
-
-        $primaryKeyAttributeKey = $model->getPrimaryKey()->getName();
+        $primaryKeyAttributeKey = $tableName.'.'.$model->getPrimaryKey()->getName();
         $this->prepareSortsForDto($payload, $readPayload, $primaryKeyAttributeKey);
 
         // Transfer filters from the incoming payload to the prepared payload.

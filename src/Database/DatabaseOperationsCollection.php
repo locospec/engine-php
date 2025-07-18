@@ -7,6 +7,7 @@ use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Aggregates\AggregateProcessor;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
 use LCSEngine\Schemas\Model\Filters\AliasResolver;
 use LCSEngine\Schemas\Model\Filters\ContextResolver;
@@ -203,6 +204,46 @@ class DatabaseOperationsCollection
 
         if (empty($operation['filters']['conditions'])) {
             unset($operation['filters']);
+        }
+
+        // Process aggregate if it exists
+        if (isset($operation['aggregate']) && is_string($operation['aggregate'])) {
+            $this->logger->info('Processing aggregate', [
+                'type' => 'dbOps',
+                'aggregateName' => $operation['aggregate'],
+                'modelName' => $operation['modelName'],
+            ]);
+
+            $aggregateProcessor = new AggregateProcessor($model, $this->registryManager);
+            $aggregateResult = $aggregateProcessor->process($operation['aggregate']);
+
+            // Add aggregate components to the operation
+            $operation['attributes'] = $aggregateResult['selectColumns'];
+
+            // Use joins directly (don't merge)
+            if (! empty($aggregateResult['joins'])) {
+                $operation['joins'] = $aggregateResult['joins'];
+            }
+
+            // Add groupBy fields
+            if (! empty($aggregateResult['groupBy'])) {
+                $operation['groupBy'] = $aggregateResult['groupBy'];
+            }
+
+            // Replace sorts with aggregate-specific sorts for stable cursor pagination
+            // This overrides any default sorts from the payload builder
+            $operation['sorts'] = $aggregateResult['sorts'] ?? [];
+
+            // Remove the aggregate key as it's been processed
+            unset($operation['aggregate']);
+
+            $this->logger->info('Aggregate processed', [
+                'type' => 'dbOps',
+                'attributes' => $operation['attributes'],
+                'joins' => $operation['joins'] ?? [],
+                'groupBy' => $operation['groupBy'] ?? [],
+                'sorts' => $operation['sorts'] ?? [],
+            ]);
         }
 
         // Resolve any context variables in Data for insert
