@@ -5,11 +5,11 @@ namespace LCSEngine\Tasks\DTOs;
 use LCSEngine\Tasks\DTOs\Interfaces\PaginatablePayloadInterface;
 use LCSEngine\Tasks\DTOs\Interfaces\SortablePayloadInterface;
 
-class ReadPayload implements PaginatablePayloadInterface, SortablePayloadInterface
+class AggregatePayload implements PaginatablePayloadInterface, SortablePayloadInterface
 {
     public string $type = 'select';
 
-    public string $purpose = 'read';
+    public string $purpose = 'aggregate';
 
     public string $modelName;
 
@@ -23,7 +23,7 @@ class ReadPayload implements PaginatablePayloadInterface, SortablePayloadInterfa
 
     public array $scopes = [];
 
-    public array $expand = [];
+    public ?string $aggregate = null;
 
     public function __construct(string $modelName)
     {

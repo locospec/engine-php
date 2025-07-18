@@ -2,7 +2,8 @@
 
 namespace LCSEngine\Tasks\Traits;
 
-use LCSEngine\Tasks\DTOs\ReadPayload;
+use LCSEngine\Tasks\DTOs\Interfaces\PaginatablePayloadInterface;
+use LCSEngine\Tasks\DTOs\Interfaces\SortablePayloadInterface;
 
 trait PayloadPreparationHelpers
 {
@@ -65,7 +66,7 @@ trait PayloadPreparationHelpers
      * @param  array  $payload  The incoming payload.
      * @param  ReadPayload  $preparedPayload  The payload being prepared.
      */
-    private function preparePaginationForDto(array $payload, ReadPayload $preparedPayload): void
+    private function preparePaginationForDto(array $payload, PaginatablePayloadInterface $preparedPayload): void
     {
         if (isset($payload['pagination']) && ! empty($payload['pagination'])) {
             if (! isset($payload['pagination']['cursor'])) {
@@ -83,7 +84,7 @@ trait PayloadPreparationHelpers
      * @param  ReadPayload  $preparedPayload  The payload being prepared.
      * @param  string  $primaryKeyAttributeKey  The name of the primary key attribute.
      */
-    private function prepareSortsForDto(array $payload, ReadPayload $preparedPayload, string $primaryKeyAttributeKey): void
+    private function prepareSortsForDto(array $payload, SortablePayloadInterface $preparedPayload, string $primaryKeyAttributeKey): void
     {
         if (isset($payload['sorts']) && ! empty($payload['sorts'])) {
             $preparedPayload->sorts = $payload['sorts'];

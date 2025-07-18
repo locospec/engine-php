@@ -64,6 +64,17 @@
           "required": ["type", "table", "on"]
         }
       }
+    },
+    "aggregate": {
+      "type": "string",
+      "description": "The name/identifier of the aggregate operation to apply"
+    },
+    "groupBy": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of column names to group by"
     }
   },
   "required": ["type", "modelName"],

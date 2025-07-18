@@ -34,6 +34,8 @@ class Attribute
 
     private ?string $relatedModelName = null;
 
+    private ?string $optionsAggregator = null;
+
     public function __construct(string $name, string $label, Type $type)
     {
         $this->name = $name;
@@ -101,6 +103,11 @@ class Attribute
     public function setRelatedModelName(?string $relatedModelName): void
     {
         $this->relatedModelName = $relatedModelName;
+    }
+
+    public function setOptionsAggregator(?string $optionsAggregator): void
+    {
+        $this->optionsAggregator = $optionsAggregator;
     }
 
     public function setDependsOn(string $dependsOn): void
@@ -201,6 +208,11 @@ class Attribute
         return $this->relatedModelName;
     }
 
+    public function getOptionsAggregator(): ?string
+    {
+        return $this->optionsAggregator;
+    }
+
     public function getDependsOn(): Collection
     {
         return $this->dependsOn;
@@ -284,6 +296,10 @@ class Attribute
             $attribute->setRelatedModelName($data['relatedModelName']);
         }
 
+        if (isset($data['optionsAggregator'])) {
+            $attribute->setOptionsAggregator($data['optionsAggregator']);
+        }
+
         if (! empty($data['dependsOn']) && is_array($data['dependsOn'])) {
             foreach ($data['dependsOn'] as $dependsOnData) {
                 $attribute->setDependsOn($dependsOnData);
@@ -307,6 +323,10 @@ class Attribute
 
         if ($this->relatedModelName !== null) {
             $arr['relatedModelName'] = $this->relatedModelName;
+        }
+
+        if ($this->optionsAggregator !== null) {
+            $arr['optionsAggregator'] = $this->optionsAggregator;
         }
 
         if (! $this->dependsOn->isEmpty()) {

@@ -2,6 +2,7 @@
 
 namespace LCSEngine\Actions;
 
+use LCSEngine\Actions\Model\AggregateAction;
 use LCSEngine\Actions\Model\ConfigAction;
 use LCSEngine\Actions\Model\CreateAction;
 use LCSEngine\Actions\Model\DeleteAction;
@@ -121,6 +122,7 @@ class ActionOrchestrator
             '_update' => UpdateAction::class,
             '_delete' => DeleteAction::class,
             '_read_one' => ReadOneAction::class,
+            '_aggregate' => AggregateAction::class,
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")
         };
 

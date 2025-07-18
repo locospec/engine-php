@@ -59,6 +59,72 @@
       "additionalProperties": {
         "$ref": "filters.json#/definitions/filters"
       }
+    },
+    "aggregates": {
+      "type": "object",
+      "description": "Model aggregate definitions",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "groupBy": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "source": {
+                      "type": "string",
+                      "description": "The field path for grouping"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Custom alias for the grouped field"
+                    }
+                  },
+                  "required": ["source"],
+                  "additionalProperties": false
+                }
+              ]
+            }
+          },
+          "columns": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "function": {
+                  "type": "string",
+                  "enum": [
+                    "sum",
+                    "avg",
+                    "count",
+                    "min",
+                    "max"
+                  ]
+                },
+                "source": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "function",
+                "name"
+              ]
+            }
+          }
+        },
+        "required": [
+          "columns"
+        ]
+      }
     }
   },
   "required": ["name", "type", "label", "config", "attributes"],
