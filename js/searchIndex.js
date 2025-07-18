@@ -56,6 +56,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Actions-CustomActionOrchestrator.html#property_stateMachineFactory"
         },                {
+            "fqsen": "\\LCSEngine\\Actions\\Model\\AggregateAction",
+            "name": "AggregateAction",
+            "summary": "",
+            "url": "classes/LCSEngine-Actions-Model-AggregateAction.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Actions\\Model\\AggregateAction\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "Get\u0020the\u0020identifier\u0020name\u0020for\u0020this\u0020action",
+            "url": "classes/LCSEngine-Actions-Model-AggregateAction.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Actions\\Model\\AggregateAction\u003A\u003AgetStateMachineDefinition\u0028\u0029",
+            "name": "getStateMachineDefinition",
+            "summary": "Define\u0020the\u0020state\u0020machine\u0020flow\u0020for\u0020this\u0020action",
+            "url": "classes/LCSEngine-Actions-Model-AggregateAction.html#method_getStateMachineDefinition"
+        },                {
             "fqsen": "\\LCSEngine\\Actions\\Model\\ConfigAction",
             "name": "ConfigAction",
             "summary": "Standard\u0020Create\u0020action\u0020for\u0020models",
@@ -1896,6 +1911,231 @@ Search.appendIndex(
             "summary": "Validate\u0020input\u0020data\u0020against\u0020the\u0020provided\u0020custom\u0020rules.",
             "url": "classes/LCSEngine-Registry-ValidatorInterface.html#method_validateCustomRule"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate",
+            "name": "Aggregate",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AaddColumn\u0028\u0029",
+            "name": "addColumn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_addColumn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AaddGroupBy\u0028\u0029",
+            "name": "addGroupBy",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_addGroupBy"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AgetGroupBy\u0028\u0029",
+            "name": "getGroupBy",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_getGroupBy"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AgetColumns\u0028\u0029",
+            "name": "getColumns",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_getColumns"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003A\u0024groupBy",
+            "name": "groupBy",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#property_groupBy"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Aggregate\u003A\u003A\u0024columns",
+            "name": "columns",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Aggregate.html#property_columns"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor",
+            "name": "AggregateProcessor",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003Aprocess\u0028\u0029",
+            "name": "process",
+            "summary": "Process\u0020an\u0020aggregate\u0020by\u0020name\u0020and\u0020return\u0020necessary\u0020components",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_process"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AfindAggregateByName\u0028\u0029",
+            "name": "findAggregateByName",
+            "summary": "Find\u0020aggregate\u0020by\u0020name\u0020on\u0020the\u0020model",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_findAggregateByName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AcollectAllPaths\u0028\u0029",
+            "name": "collectAllPaths",
+            "summary": "Collect\u0020all\u0020paths\u0020from\u0020groupBy\u0020and\u0020column\u0020sources",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_collectAllPaths"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003ApreparePathInfo\u0028\u0029",
+            "name": "preparePathInfo",
+            "summary": "Prepare\u0020path\u0020information\u0020including\u0020table\u0020names\u0020and\u0020aliases",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_preparePathInfo"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AprepareSelectColumns\u0028\u0029",
+            "name": "prepareSelectColumns",
+            "summary": "Prepare\u0020select\u0020columns\u0020with\u0020proper\u0020aliases",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_prepareSelectColumns"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AprepareJoins\u0028\u0029",
+            "name": "prepareJoins",
+            "summary": "Prepare\u0020joins\u0020following\u0020the\u0020existing\u0020pattern",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_prepareJoins"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AprepareGroupBy\u0028\u0029",
+            "name": "prepareGroupBy",
+            "summary": "Prepare\u0020groupBy\u0020fields\u0020with\u0020proper\u0020table\u0020prefixes",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_prepareGroupBy"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AprepareSorts\u0028\u0029",
+            "name": "prepareSorts",
+            "summary": "Prepare\u0020sorts\u0020based\u0020on\u0020groupBy\u0020fields\u0020for\u0020stable\u0020cursor\u0020pagination\nUses\u0020aliases\u0020that\u0020match\u0020the\u0020select\u0020columns\u0020for\u0020proper\u0020cursor\u0020pagination",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_prepareSorts"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#property_model"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003A\u0024registryManager",
+            "name": "registryManager",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#property_registryManager"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003A\u0024logger",
+            "name": "logger",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#property_logger"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column",
+            "name": "Column",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003AgetFunction\u0028\u0029",
+            "name": "getFunction",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method_getFunction"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003AgetSource\u0028\u0029",
+            "name": "getSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method_getSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003A\u0024function",
+            "name": "function",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#property_function"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003A\u0024source",
+            "name": "source",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#property_source"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\Column\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-Column.html#property_name"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField",
+            "name": "GroupByField",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003AgetSource\u0028\u0029",
+            "name": "getSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method_getSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003AgetName\u0028\u0029",
+            "name": "getName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method_getName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003AsetName\u0028\u0029",
+            "name": "setName",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method_setName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003A\u0024isAutoGenerated",
+            "name": "isAutoGenerated",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#property_isAutoGenerated"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003AfromArray\u0028\u0029",
+            "name": "fromArray",
+            "summary": "Create\u0020from\u0020array\u0020or\u0020string",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method_fromArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003A\u0024source",
+            "name": "source",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#property_source"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\GroupByField\u003A\u003A\u0024name",
+            "name": "name",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-GroupByField.html#property_name"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute",
             "name": "Attribute",
             "summary": "",
@@ -1955,6 +2195,11 @@ Search.appendIndex(
             "name": "setRelatedModelName",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetOptionsAggregator\u0028\u0029",
+            "name": "setOptionsAggregator",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setOptionsAggregator"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetDependsOn\u0028\u0029",
             "name": "setDependsOn",
@@ -2050,6 +2295,11 @@ Search.appendIndex(
             "name": "getRelatedModelName",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getRelatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetOptionsAggregator\u0028\u0029",
+            "name": "getOptionsAggregator",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getOptionsAggregator"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetDependsOn\u0028\u0029",
             "name": "getDependsOn",
@@ -2150,6 +2400,11 @@ Search.appendIndex(
             "name": "relatedModelName",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_relatedModelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024optionsAggregator",
+            "name": "optionsAggregator",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_optionsAggregator"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Generator",
             "name": "Generator",
@@ -3261,6 +3516,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getRelationship"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddAggregate\u0028\u0029",
+            "name": "addAggregate",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addAggregate"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAggregate\u0028\u0029",
+            "name": "getAggregate",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAggregate"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AaddScope\u0028\u0029",
             "name": "addScope",
             "summary": "",
@@ -3325,6 +3590,11 @@ Search.appendIndex(
             "name": "getScopes",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getScopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAggregates\u0028\u0029",
+            "name": "getAggregates",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAggregates"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetConfig\u0028\u0029",
             "name": "getConfig",
@@ -3410,6 +3680,11 @@ Search.appendIndex(
             "name": "scopes",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#property_scopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024aggregates",
+            "name": "aggregates",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#property_aggregates"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024config",
             "name": "config",
@@ -5501,6 +5776,76 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-CreateEntityTask.html#property_context"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload",
+            "name": "AggregatePayload",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#method_toArray"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024type",
+            "name": "type",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_type"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024purpose",
+            "name": "purpose",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_purpose"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024modelName",
+            "name": "modelName",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_modelName"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024deleteColumn",
+            "name": "deleteColumn",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_deleteColumn"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024pagination",
+            "name": "pagination",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_pagination"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024sorts",
+            "name": "sorts",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_sorts"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024filters",
+            "name": "filters",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_filters"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024scopes",
+            "name": "scopes",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_scopes"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\AggregatePayload\u003A\u003A\u0024aggregate",
+            "name": "aggregate",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-AggregatePayload.html#property_aggregate"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\Interfaces\\PaginatablePayloadInterface",
+            "name": "PaginatablePayloadInterface",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-Interfaces-PaginatablePayloadInterface.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\Interfaces\\SortablePayloadInterface",
+            "name": "SortablePayloadInterface",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-Interfaces-SortablePayloadInterface.html"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload",
             "name": "ReadPayload",
             "summary": "",
@@ -5706,6 +6051,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-HandleResponseTask.html#method_handleReadResponse"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\HandleResponseTask\u003A\u003AhandleAggregateResponse\u0028\u0029",
+            "name": "handleAggregateResponse",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-HandleResponseTask.html#method_handleAggregateResponse"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\HandleResponseTask\u003A\u003AhandleReadOptionsResponse\u0028\u0029",
             "name": "handleReadOptionsResponse",
             "summary": "",
@@ -5740,6 +6090,26 @@ Search.appendIndex(
             "name": "context",
             "summary": "",
             "url": "classes/LCSEngine-Tasks-MapEntityTask.html#property_context"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\AggregatePayloadBuilder",
+            "name": "AggregatePayloadBuilder",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\AggregatePayloadBuilder\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\AggregatePayloadBuilder\u003A\u003Abuild\u0028\u0029",
+            "name": "build",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html#method_build"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\AggregatePayloadBuilder\u003A\u003A\u0024context",
+            "name": "context",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html#property_context"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder",
             "name": "ReadPayloadBuilder",
@@ -5991,6 +6361,11 @@ Search.appendIndex(
             "summary": "",
             "url": "namespaces/lcsengine-registry.html"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates",
+            "name": "Aggregates",
+            "summary": "",
+            "url": "namespaces/lcsengine-schemas-model-aggregates.html"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes",
             "name": "Attributes",
             "summary": "",
@@ -6065,6 +6440,11 @@ Search.appendIndex(
             "name": "DTOs",
             "summary": "",
             "url": "namespaces/lcsengine-tasks-dtos.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\Interfaces",
+            "name": "Interfaces",
+            "summary": "",
+            "url": "namespaces/lcsengine-tasks-dtos-interfaces.html"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders",
             "name": "PayloadBuilders",
