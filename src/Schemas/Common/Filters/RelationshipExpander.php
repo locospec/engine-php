@@ -72,7 +72,7 @@ class RelationshipExpander
 
                 // Loop through all paths in the group and map results
                 foreach ($paths as $path) {
-                    $results = $this->mapJoinedResults($results, $rows, $path, $tableNames[$path]);
+                    $results = $this->mapAliasedResults($results, $rows, $path, $tableNames[$path]);
                 }
             }
         }
