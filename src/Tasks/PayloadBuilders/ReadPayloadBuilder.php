@@ -2,7 +2,7 @@
 
 namespace LCSEngine\Tasks\PayloadBuilders;
 
-use LCSEngine\Schemas\Model\Filters\Filters;
+use LCSEngine\Schemas\Common\Filters\Filters;
 use LCSEngine\StateMachine\ContextInterface;
 use LCSEngine\Tasks\DTOs\ReadPayload;
 use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
