@@ -3,10 +3,6 @@
 namespace LCSEngine\Schemas\Common\Filters;
 
 use Illuminate\Support\Collection;
-use LCSEngine\Schemas\Common\Filters\Condition;
-use LCSEngine\Schemas\Common\Filters\FilterGroup;
-use LCSEngine\Schemas\Common\Filters\Filters;
-use LCSEngine\Schemas\Common\Filters\PrimitiveFilterSet;
 
 class AliasResolver
 {

@@ -5,7 +5,9 @@ namespace LCSEngine\Schemas\DatabaseOperations;
 class Join
 {
     private string $table;
+
     private string $type;
+
     private array $conditions;
 
     public function __construct(
@@ -38,7 +40,7 @@ class Join
         return [
             'table' => $this->table,
             'type' => $this->type,
-            'conditions' => $this->conditions
+            'conditions' => $this->conditions,
         ];
     }
 

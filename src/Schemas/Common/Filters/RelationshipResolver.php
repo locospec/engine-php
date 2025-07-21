@@ -10,12 +10,6 @@ use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Relationship;
-use LCSEngine\Schemas\Common\Filters\BatchedFilterGroup;
-use LCSEngine\Schemas\Common\Filters\Condition;
-use LCSEngine\Schemas\Common\Filters\FilterGroup;
-use LCSEngine\Schemas\Common\Filters\Filters;
-use LCSEngine\Schemas\Common\Filters\PrimitiveFilterSet;
-use LCSEngine\Schemas\Common\Filters\ComparisonOperator;
 
 class RelationshipResolver
 {

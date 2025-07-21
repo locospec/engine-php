@@ -2,9 +2,6 @@
 
 namespace LCSEngine\Schemas\Common\Filters;
 
-use LCSEngine\Schemas\Common\Filters\FilterGroup;
-use LCSEngine\Schemas\Common\Filters\LogicalOperator;
-
 /**
  * BatchedFilterGroup represents a group of conditions that share a relationship path
  * and can be resolved together in a single query.

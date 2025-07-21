@@ -4,26 +4,29 @@ namespace LCSEngine\Schemas\DatabaseOperations;
 
 use Illuminate\Support\Collection;
 use LCSEngine\Schemas\Common\Filters\Filters;
-use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Registry\RegistryManager;
-
-use LCSEngine\Schemas\DatabaseOperations\Scope;
-use LCSEngine\Schemas\DatabaseOperations\Sort;
-use LCSEngine\Schemas\DatabaseOperations\Join;
-use LCSEngine\Schemas\DatabaseOperations\Pagination;
 
 class Select
 {
     private string $type = 'select';
+
     private ?string $purpose;
+
     private string $modelName;
+
     private ?string $deleteColumn;
+
     private Collection $scopes;
+
     private Filters $filters;
+
     private Collection $sorts;
+
     private Collection $attributes;
+
     private ?Pagination $pagination;
+
     private Collection $expand;
+
     private Collection $joins;
 
     public function __construct(
@@ -65,7 +68,7 @@ class Select
 
     public function addScope(Scope $scope): void
     {
-        if (!$this->scopes->has($scope->getName())) {
+        if (! $this->scopes->has($scope->getName())) {
             $this->scopes->put($scope->getName(), $scope);
         }
     }
@@ -83,6 +86,7 @@ class Select
     public function setFilters(Filters $filters): self
     {
         $this->filters = $filters;
+
         return $this;
     }
 
@@ -111,7 +115,7 @@ class Select
 
     public function addAttribute(string $attribute): void
     {
-        if (!$this->attributes->contains($attribute)) {
+        if (! $this->attributes->contains($attribute)) {
             $this->attributes->push($attribute);
         }
     }
@@ -139,14 +143,14 @@ class Select
     public function addExpand(string $expand): void
     {
         $expandObj = new Expand($expand);
-        if (!$this->expand->contains(fn(Expand $e) => $e->getPath() === $expand)) {
+        if (! $this->expand->contains(fn (Expand $e) => $e->getPath() === $expand)) {
             $this->expand->push($expandObj);
         }
     }
 
     public function removeExpand(string $expand): void
     {
-        $this->expand = $this->expand->filter(fn(Expand $item) => $item->getPath() !== $expand);
+        $this->expand = $this->expand->filter(fn (Expand $item) => $item->getPath() !== $expand);
     }
 
     public function getExpand(): Collection
@@ -192,7 +196,7 @@ class Select
         }
 
         $filters = $this->filters->toArray();
-        if (!empty($filters)) {
+        if (! empty($filters)) {
             $data['filters'] = $filters;
         }
 
@@ -209,7 +213,7 @@ class Select
         }
 
         if ($this->expand->isNotEmpty()) {
-            $data['expand'] = $this->expand->map(fn(Expand $expand) => $expand->getPath())->values()->all();
+            $data['expand'] = $this->expand->map(fn (Expand $expand) => $expand->getPath())->values()->all();
         }
 
         if ($this->joins->isNotEmpty()) {

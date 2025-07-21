@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\DatabaseOperations;
 class Scope
 {
     private string $name;
+
     private array $parameters;
 
     public function __construct(string $name, array $parameters = [])
@@ -27,7 +28,7 @@ class Scope
     {
         return [
             'name' => $this->name,
-            'parameters' => $this->parameters
+            'parameters' => $this->parameters,
         ];
     }
 

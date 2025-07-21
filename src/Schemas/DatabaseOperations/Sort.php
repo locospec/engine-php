@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\DatabaseOperations;
 class Sort
 {
     private string $field;
+
     private string $direction;
 
     public function __construct(string $field, string $direction = 'asc')
@@ -27,7 +28,7 @@ class Sort
     {
         return [
             'field' => $this->field,
-            'direction' => $this->direction
+            'direction' => $this->direction,
         ];
     }
 

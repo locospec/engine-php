@@ -2,12 +2,6 @@
 
 namespace LCSEngine\Schemas\Common\Filters;
 
-use LCSEngine\Schemas\Common\Filters\Condition;
-use LCSEngine\Schemas\Common\Filters\FilterGroup;
-use LCSEngine\Schemas\Common\Filters\Filters;
-use LCSEngine\Schemas\Common\Filters\LogicalOperator;
-use LCSEngine\Schemas\Common\Filters\PrimitiveFilterSet;
-
 class FilterCleaner
 {
     public function clean(Filters $filters): Filters

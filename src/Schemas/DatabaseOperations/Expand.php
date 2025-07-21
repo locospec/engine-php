@@ -19,7 +19,7 @@ class Expand
     public function toArray(): array
     {
         return [
-            'path' => $this->path
+            'path' => $this->path,
         ];
     }
 

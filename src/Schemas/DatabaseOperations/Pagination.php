@@ -5,8 +5,11 @@ namespace LCSEngine\Schemas\DatabaseOperations;
 class Pagination
 {
     private PaginationType $type;
+
     private ?int $page = null;
+
     private int $perPage;
+
     private ?string $cursor = null;
 
     private function __construct(
@@ -72,7 +75,7 @@ class Pagination
     {
         $data = [
             'type' => $this->type->value,
-            'per_page' => $this->perPage
+            'per_page' => $this->perPage,
         ];
 
         if ($this->type === PaginationType::OFFSET) {
@@ -90,9 +93,10 @@ class Pagination
         $perPage = $data['per_page'];
 
         if ($type === PaginationType::OFFSET) {
-            if (!isset($data['page'])) {
+            if (! isset($data['page'])) {
                 throw new \InvalidArgumentException('Page is required for offset pagination');
             }
+
             return self::offset($data['page'], $perPage);
         } else {
             return self::cursor($perPage, $data['cursor'] ?? null);
