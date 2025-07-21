@@ -233,11 +233,11 @@ Also handles single-path queries without JOINs</dd>
 <dd>Get all paths in a specific group</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
-    <a class="" href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapJoinedResults">mapJoinedResults()</a>
+    <a class="" href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapAliasedResults">mapAliasedResults()</a>
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
-<dd>Map joined results back to original results</dd>
+<dd>Map aliased results back to original results</dd>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_generateJoinsForGroup">generateJoinsForGroup()</a>
@@ -588,9 +588,9 @@ Also handles single-path queries without JOINs</p>
             -public
                                                         "
 >
-    <h4 class="phpdocumentor-element__name" id="method_mapJoinedResults">
-        mapJoinedResults()
-        <a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapJoinedResults" class="headerlink"><i class="fas fa-link"></i></a>
+    <h4 class="phpdocumentor-element__name" id="method_mapAliasedResults">
+        mapAliasedResults()
+        <a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapAliasedResults" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
     <aside class="phpdocumentor-element-found-in">
@@ -600,11 +600,11 @@ Also handles single-path queries without JOINs</p>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Map joined results back to original results</p>
+        <p class="phpdocumentor-summary">Map aliased results back to original results</p>
 
     <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-                    <span class="phpdocumentor-signature__name">mapJoinedResults</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$originalResults</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$joinedRows</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+                    <span class="phpdocumentor-signature__name">mapAliasedResults</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$originalResults</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$aliasedRows</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$path</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$tableName</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
 
     <div class="phpdocumentor-label-line">
         </div>
@@ -622,11 +622,11 @@ Also handles single-path queries without JOINs</p>
 
             </dd>
                     <dt class="phpdocumentor-argument-list__entry">
-                <span class="phpdocumentor-signature__argument__name">$joinedRows</span>
+                <span class="phpdocumentor-signature__argument__name">$aliasedRows</span>
                 : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
                             </dt>
             <dd class="phpdocumentor-argument-list__definition">
-                    <section class="phpdocumentor-description"><p>The rows from JOIN query with prefixed columns</p>
+                    <section class="phpdocumentor-description"><p>The rows from query with prefixed columns</p>
 </section>
 
             </dd>
@@ -784,7 +784,7 @@ Also builds the path-to-group mapping for later lookups</p>
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Common/Filters/RelationshipExpanderWithJoinsTrait.php"><a href="files/src-schemas-common-filters-relationshipexpanderwithjoinstrait.html"><abbr title="src/Schemas/Common/Filters/RelationshipExpanderWithJoinsTrait.php">RelationshipExpanderWithJoinsTrait.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">407</span>
+    <span class="phpdocumentor-element-found-in__line">433</span>
 
     </aside>
 
@@ -958,7 +958,7 @@ Also builds the path-to-group mapping for later lookups</p>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_getGroupByPath">getGroupByPath()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_getPathGroups">getPathGroups()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_getPathsInGroup">getPathsInGroup()</a></li>
-                                            <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapJoinedResults">mapJoinedResults()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapAliasedResults">mapAliasedResults()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_generateJoinsForGroup">generateJoinsForGroup()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_groupExpandPaths">groupExpandPaths()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_setNestedValue">setNestedValue()</a></li>

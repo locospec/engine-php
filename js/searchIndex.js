@@ -2406,10 +2406,10 @@ Search.appendIndex(
             "summary": "Get\u0020all\u0020path\u0020groups",
             "url": "classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_getPathGroups"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Common\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AmapJoinedResults\u0028\u0029",
-            "name": "mapJoinedResults",
-            "summary": "Map\u0020joined\u0020results\u0020back\u0020to\u0020original\u0020results",
-            "url": "classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapJoinedResults"
+            "fqsen": "\\LCSEngine\\Schemas\\Common\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AmapAliasedResults\u0028\u0029",
+            "name": "mapAliasedResults",
+            "summary": "Map\u0020aliased\u0020results\u0020back\u0020to\u0020original\u0020results",
+            "url": "classes/LCSEngine-Schemas-Common-Filters-RelationshipExpanderWithJoinsTrait.html#method_mapAliasedResults"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Common\\Filters\\RelationshipExpanderWithJoinsTrait\u003A\u003AsetNestedValue\u0028\u0029",
             "name": "setNestedValue",
