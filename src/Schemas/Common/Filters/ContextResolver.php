@@ -1,23 +1,21 @@
 <?php
 
-namespace LCSEngine\Schemas\Model\Filters;
+namespace LCSEngine\Schemas\Common\Filters;
 
-use Illuminate\Support\Collection;
-
-class AliasResolver
+class ContextResolver
 {
-    private Collection $aliases;
+    private array $context;
 
-    public function __construct(Collection $aliases)
+    public function __construct(array $context)
     {
-        $this->aliases = $aliases;
+        $this->context = $context;
     }
 
     /**
-     * Resolve aliases in a filter structure
+     * Resolve context variables in a filter structure
      *
-     * @param  Filters  $filters  The filters to resolve aliases in
-     * @return Filters A new Filters instance with resolved aliases
+     * @param  Filters  $filters  The filters to resolve context in
+     * @return Filters A new Filters instance with resolved context values
      */
     public function resolve(Filters $filters): Filters
     {
@@ -39,27 +37,26 @@ class AliasResolver
     }
 
     /**
-     * Resolve aliases in a condition
+     * Resolve context variables in a condition value
      */
     private function resolveCondition(Condition $condition): Condition
     {
-        $attribute = $condition->getAttribute();
-        if ($this->aliases->has($attribute)) {
-            $alias = $this->aliases->get($attribute);
-            if ($alias->hasAliasSource()) {
-                return new Condition(
-                    $alias->getAliasSource(),
-                    $condition->getOperator(),
-                    $condition->getValue()
-                );
-            }
+        $value = $condition->getValue();
+        $resolvedValue = $this->resolveValue($value);
+
+        if ($resolvedValue !== $value) {
+            return new Condition(
+                $condition->getAttribute(),
+                $condition->getOperator(),
+                $resolvedValue
+            );
         }
 
         return $condition;
     }
 
     /**
-     * Resolve aliases in a filter group
+     * Resolve context variables in a filter group
      */
     private function resolveGroup(FilterGroup $group): FilterGroup
     {
@@ -79,24 +76,40 @@ class AliasResolver
     }
 
     /**
-     * Resolve aliases in a primitive filter set
+     * Resolve context variables in a primitive filter set
      */
     private function resolvePrimitiveSet(PrimitiveFilterSet $set): PrimitiveFilterSet
     {
         $resolvedSet = new PrimitiveFilterSet;
 
         foreach ($set->getFilters() as $key => $value) {
-            if ($this->aliases->has($key)) {
-                $alias = $this->aliases->get($key);
-                if ($alias->hasAliasSource()) {
-                    $resolvedSet->add($alias->getAliasSource(), $value);
-
-                    continue;
-                }
-            }
-            $resolvedSet->add($key, $value);
+            $resolvedValue = $this->resolveValue($value);
+            $resolvedSet->add($key, $resolvedValue);
         }
 
         return $resolvedSet;
+    }
+
+    /**
+     * Resolve a value that may contain context variables
+     */
+    private function resolveValue(mixed $value): mixed
+    {
+        if (is_string($value) && str_starts_with($value, '$.') && strlen($value) > 2) {
+            $key = substr($value, 2);
+
+            return $this->context[$key] ?? null;
+        }
+
+        if (is_array($value)) {
+            $resolved = [];
+            foreach ($value as $k => $v) {
+                $resolved[$k] = $this->resolveValue($v);
+            }
+
+            return $resolved;
+        }
+
+        return $value;
     }
 }

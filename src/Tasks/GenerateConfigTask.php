@@ -42,6 +42,15 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
         } else {
             $result = $query->toArray();
 
+            // Add model aggregates to the config response
+            $aggregates = $model->getAggregates()->mapWithKeys(function ($aggregate, $key) {
+                return [$key => $aggregate->toArray()];
+            })->all();
+
+            if (! empty($aggregates)) {
+                $result['aggregates'] = $aggregates;
+            }
+
             $permissions = $input['payload']['locospecPermissions'];
             if ($permissions['isPermissionsEnabled'] && ! empty($permissions['userPermissions'])) {
                 $userPermissions = $permissions['userPermissions'];
