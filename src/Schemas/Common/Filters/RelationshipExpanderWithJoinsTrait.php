@@ -1,7 +1,11 @@
 <?php
 
-namespace LCSEngine\Schemas\Model\Filters;
+namespace LCSEngine\Schemas\Common\Filters;
 
+use LCSEngine\Database\DatabaseOperationsCollection;
+use LCSEngine\Logger;
+use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;

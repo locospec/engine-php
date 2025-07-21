@@ -9,13 +9,13 @@ use LCSEngine\Registry\DatabaseDriverInterface;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Model\Aggregates\AggregateProcessor;
 use LCSEngine\Schemas\Model\Attributes\Type as AttributeType;
-use LCSEngine\Schemas\Model\Filters\AliasResolver;
-use LCSEngine\Schemas\Model\Filters\ContextResolver;
-use LCSEngine\Schemas\Model\Filters\FilterCleaner;
-use LCSEngine\Schemas\Model\Filters\Filters;
-use LCSEngine\Schemas\Model\Filters\LogicalOperator;
-use LCSEngine\Schemas\Model\Filters\RelationshipExpander;
-use LCSEngine\Schemas\Model\Filters\RelationshipResolver;
+use LCSEngine\Schemas\Common\Filters\AliasResolver;
+use LCSEngine\Schemas\Common\Filters\ContextResolver;
+use LCSEngine\Schemas\Common\Filters\FilterCleaner;
+use LCSEngine\Schemas\Common\Filters\Filters;
+use LCSEngine\Schemas\Common\Filters\LogicalOperator;
+use LCSEngine\Schemas\Common\Filters\RelationshipExpander;
+use LCSEngine\Schemas\Common\Filters\RelationshipResolver;
 use LCSEngine\Schemas\Model\ScopeResolver;
 use LCSEngine\SpecValidator;
 use RuntimeException;
@@ -183,28 +183,28 @@ class DatabaseOperationsCollection
         }
 
         // 4. Resolve any context variables in filter values
-        if (isset($operation['filters']) && $this->context) {
-            $this->logger->info('Resolving context in filters', [
-                'type' => 'dbOps',
-                'filters' => $operation['filters'],
-            ]);
+        // if (isset($operation['filters']) && $this->context) {
+        //     $this->logger->info('Resolving context in filters', [
+        //         'type' => 'dbOps',
+        //         'filters' => $operation['filters'],
+        //     ]);
 
-            $contextResolver = new ContextResolver($this->context->all());
-            $contextResolvedFilters = $contextResolver->resolve(Filters::fromArray($operation['filters']));
-            $cleanedFilters = (new FilterCleaner)->clean($contextResolvedFilters);
-            // $operation['filters'] = $contextResolvedFilters->toArray();
-            $operation['filters'] = $cleanedFilters->toArray();
+        //     $contextResolver = new ContextResolver($this->context->all());
+        //     $contextResolvedFilters = $contextResolver->resolve(Filters::fromArray($operation['filters']));
+        //     $cleanedFilters = (new FilterCleaner)->clean($contextResolvedFilters);
+        //     // $operation['filters'] = $contextResolvedFilters->toArray();
+        //     $operation['filters'] = $cleanedFilters->toArray();
 
-            $this->logger->debug('Context resolved in filters', [
-                'type' => 'dbOps',
-                'filters' => $contextResolvedFilters->toArray(),
-                'cleanedFilters' => $cleanedFilters->toArray(),
-            ]);
-        }
+        //     $this->logger->debug('Context resolved in filters', [
+        //         'type' => 'dbOps',
+        //         'filters' => $contextResolvedFilters->toArray(),
+        //         'cleanedFilters' => $cleanedFilters->toArray(),
+        //     ]);
+        // }
 
-        if (empty($operation['filters']['conditions'])) {
-            unset($operation['filters']);
-        }
+        // if (empty($operation['filters']['conditions'])) {
+        //     unset($operation['filters']);
+        // }
 
         // Process aggregate if it exists
         if (isset($operation['aggregate']) && is_string($operation['aggregate'])) {
@@ -387,13 +387,15 @@ class DatabaseOperationsCollection
                 ]);
                 $dbOpResult = $execOperator->run([$operation]);
 
-                $this->logger->notice(
-                    'DB Query',
-                    [
-                        'query' => $dbOpResult[0]['cleaned_sql'],
-                        'purpose' => $operation['purpose'] ?? '',
-                    ],
-                );
+                if (isset($operation['purpose']) && $operation['purpose'] != 'expandWithJoins') {
+                    $this->logger->notice(
+                        'DB Query',
+                        [
+                            'query' => $dbOpResult[0]['raw_sql'],
+                            'purpose' => $operation['purpose'] ?? '',
+                        ],
+                    );
+                }
 
                 $dbOpResults[] = $dbOpResult[0];
             }

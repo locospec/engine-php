@@ -1,6 +1,6 @@
 <?php
 
-namespace LCSEngine\Schemas\Model\Filters;
+namespace LCSEngine\Schemas\Common\Filters;
 
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\LCS;

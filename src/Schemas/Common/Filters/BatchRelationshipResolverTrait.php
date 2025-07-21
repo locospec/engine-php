@@ -1,10 +1,15 @@
 <?php
 
-namespace LCSEngine\Schemas\Model\Filters;
+namespace LCSEngine\Schemas\Common\Filters;
 
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
+use LCSEngine\Schemas\Common\Filters\BatchedFilterGroup;
+use LCSEngine\Schemas\Common\Filters\Condition;
+use LCSEngine\Schemas\Common\Filters\FilterGroup;
+use LCSEngine\Schemas\Common\Filters\LogicalOperator;
+use LCSEngine\Schemas\Common\Filters\ComparisonOperator;
 
 /**
  * BatchRelationshipResolverTrait provides optimization for filter resolution by grouping

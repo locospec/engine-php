@@ -1,6 +1,11 @@
 <?php
 
-namespace LCSEngine\Schemas\Model\Filters;
+namespace LCSEngine\Schemas\Common\Filters;
+
+use LCSEngine\Schemas\Common\Filters\Condition;
+use LCSEngine\Schemas\Common\Filters\FilterGroup;
+use LCSEngine\Schemas\Common\Filters\Filters;
+use LCSEngine\Schemas\Common\Filters\PrimitiveFilterSet;
 
 class ContextResolver
 {
