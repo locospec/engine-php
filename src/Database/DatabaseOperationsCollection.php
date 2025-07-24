@@ -29,7 +29,7 @@ class DatabaseOperationsCollection
 
     private ValueResolver $valueResolver;
 
-    private AliasTransformation $aliasTransformer;
+    private ResultTransformation $resultTransformer;
 
     private ?RegistryManager $registryManager = null;
 
@@ -41,7 +41,7 @@ class DatabaseOperationsCollection
     {
         $this->validator = new SpecValidator;
         $this->valueResolver = new ValueResolver;
-        $this->aliasTransformer = new AliasTransformation;
+        $this->resultTransformer = new ResultTransformation;
         $this->logger = LCS::getLogger();
         $this->logger->info('DatabaseOperationsCollection initialized', ['type' => 'dbOps']);
     }
@@ -208,7 +208,7 @@ class DatabaseOperationsCollection
 
         // Process aggregate if it exists
         if (isset($operation['aggregate']) && is_string($operation['aggregate'])) {
-            $this->logger->info('Processing aggregate', [
+            $this->logger->notice('Processing aggregate', [
                 'type' => 'dbOps',
                 'aggregateName' => $operation['aggregate'],
                 'modelName' => $operation['modelName'],
@@ -237,7 +237,7 @@ class DatabaseOperationsCollection
             // Remove the aggregate key as it's been processed
             unset($operation['aggregate']);
 
-            $this->logger->info('Aggregate processed', [
+            $this->logger->notice('Aggregate processed', [
                 'type' => 'dbOps',
                 'attributes' => $operation['attributes'],
                 'joins' => $operation['joins'] ?? [],
@@ -387,12 +387,13 @@ class DatabaseOperationsCollection
                 ]);
                 $dbOpResult = $execOperator->run([$operation]);
 
-                if (isset($operation['purpose']) && $operation['purpose'] != 'expandWithJoins') {
+                if (isset($operation['purpose']) && ($operation['purpose'] == 'read')) {
                     $this->logger->notice(
                         'DB Query',
                         [
                             'query' => $dbOpResult[0]['raw_sql'],
                             'purpose' => $operation['purpose'] ?? '',
+                            // 'result' => $dbOpResult
                         ],
                     );
                 }
@@ -459,16 +460,17 @@ class DatabaseOperationsCollection
 
                         $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
 
-                        if ($model && $model->getAliases()) {
-                            $this->logger->info('Applying alias transformation for model', [
+                        if ($model && $model->getTransformAttributes()->isNotEmpty()) {
+                            $this->logger->debug('Applying result transformation for model', [
                                 'type' => 'dbOps',
-                                'modelName' => $dbOpResult['operation']['modelName'],
+                                'modelName' => $dbOpResult['operation'],
+                                'result' => $dbOpResult['result'],
                             ]);
 
-                            $this->aliasTransformer->setModel($model);
-                            $dbOpResults[$index]['result'] = $this->aliasTransformer->transform($dbOpResult['result']);
+                            $this->resultTransformer->setModel($model);
+                            $dbOpResults[$index]['result'] = $this->resultTransformer->transform($dbOpResult['result']);
 
-                            $this->logger->info('Alias transformation applied for model', [
+                            $this->logger->info('Result transformation applied for model', [
                                 'type' => 'dbOps',
                                 'modelName' => $dbOpResult['operation']['modelName'],
                             ]);

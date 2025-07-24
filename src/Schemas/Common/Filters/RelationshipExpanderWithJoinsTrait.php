@@ -117,7 +117,7 @@ trait RelationshipExpanderWithJoinsTrait
 
             // Get attributes with aliases (same pattern as JOIN)
             $attributes = [];
-            foreach ($relatedModel->getAttributesWithoutAliases() as $attr) {
+            foreach ($relatedModel->getAttributesOnly() as $attr) {
                 $attributes[] = $relatedTableName.'.'.$attr->getName().' AS '.$relatedTableName.'_'.$attr->getName();
             }
 
@@ -182,7 +182,7 @@ trait RelationshipExpanderWithJoinsTrait
                 ];
 
                 // Add attributes with SQL aliases for this joined table
-                foreach ($relatedModel->getAttributesWithoutAliases() as $attr) {
+                foreach ($relatedModel->getAttributesOnly() as $attr) {
                     $attributes[] = $relatedTableName.'.'.$attr->getName().' AS '.$relatedTableName.'_'.$attr->getName();
                 }
 
@@ -264,7 +264,7 @@ trait RelationshipExpanderWithJoinsTrait
             // Get main model attributes with aliases
             $mainAttributes = [];
             $tableName = $this->model->getTableName();
-            foreach ($this->model->getAttributesWithoutAliases() as $attr) {
+            foreach ($this->model->getAttributesOnly() as $attr) {
                 $mainAttributes[] = $tableName.'.'.$attr->getName().' AS '.$tableName.'_'.$attr->getName();
             }
 

@@ -3,6 +3,7 @@
 namespace LCSEngine\Tasks\PayloadBuilders;
 
 use LCSEngine\Schemas\Common\Filters\Filters;
+use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\StateMachine\ContextInterface;
 use LCSEngine\Tasks\DTOs\ReadPayload;
 use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
@@ -42,6 +43,36 @@ class ReadPayloadBuilder
 
         // Set the allowed scopes for the query.
         $readPayload->scopes = $this->context->get('query')->getAllowedScopes()->toArray();
+
+        // Prepare attributes for the SELECT clause
+        $attributes = [];
+
+        // Get all attributes from the query
+        $queryAttributes = $this->context->get('query')->getAttributes();
+
+        // Add each attribute to the attributes array
+        foreach ($queryAttributes as $attribute) {
+            // Skip transformKey attributes as they are post-query transformations
+            if ($attribute->isTransformKey()) {
+                continue;
+            }
+
+            $attributeName = $attribute->getName();
+
+            // For alias attributes with source, use the source
+            if ($attribute->isAliasKey() && $attribute->hasAliasSource()) {
+                $attributes[] = $attribute->getAliasSource().' AS '.$attributeName;
+            }
+            // For normal attributes, just use the table-qualified name
+            else {
+                $attributes[] = $tableName.'.'.$attributeName;
+            }
+        }
+
+        // Only set attributes if we have any
+        if (! empty($attributes)) {
+            $readPayload->attributes = $attributes;
+        }
 
         // Handle relationship expansion, using payload's expand if present, otherwise default from query.
         if (isset($payload['expand']) && ! empty($payload['expand'])) {

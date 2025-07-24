@@ -176,6 +176,11 @@ class Model
         return $this->attributes->filter(fn (Attribute $attribute) => $attribute->isAliasKey());
     }
 
+    public function getTransformAttributes(): Collection
+    {
+        return $this->attributes->filter(fn (Attribute $attribute) => $attribute->isTransformKey());
+    }
+
     public static function fromArray(array $data): self
     {
         $name = $data['name'] ?? '';
@@ -279,12 +284,12 @@ class Model
     }
 
     /**
-     * Get attributes that are not alias keys
+     * Get attributes that are not alias keys or transform keys
      *
-     * @return Collection Collection of attributes that are not alias keys
+     * @return Collection Collection of attributes that are not alias keys or transform keys
      */
-    public function getAttributesWithoutAliases(): Collection
+    public function getAttributesOnly(): Collection
     {
-        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey());
+        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey() && ! $attribute->isTransformKey());
     }
 }

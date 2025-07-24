@@ -28,6 +28,8 @@ class Attribute
 
     private bool $labelKey = false;
 
+    private bool $transformKey = false;
+
     private ?string $source = null;
 
     private ?string $transform = null;
@@ -82,6 +84,11 @@ class Attribute
         $this->deleteKey = $flag;
     }
 
+    public function setTransformKey(bool $flag): void
+    {
+        $this->transformKey = $flag;
+    }
+
     public function setAliasSource(string $source): void
     {
         if (! $this->aliasKey) {
@@ -95,6 +102,24 @@ class Attribute
     {
         if (! $this->aliasKey) {
             throw new \LogicException('Cannot set alias transformation: attribute type is not ALIAS.');
+        }
+
+        $this->transform = $transform;
+    }
+
+    public function setTransformSource(string $source): void
+    {
+        if (! $this->transformKey) {
+            throw new \LogicException('Cannot set transform source: attribute type is not TRANSFORM.');
+        }
+
+        $this->source = $source;
+    }
+
+    public function setTransformTransformation(string $transform): void
+    {
+        if (! $this->transformKey) {
+            throw new \LogicException('Cannot set transform transformation: attribute type is not TRANSFORM.');
         }
 
         $this->transform = $transform;
@@ -133,6 +158,11 @@ class Attribute
     public function isDeleteKey(): bool
     {
         return $this->deleteKey;
+    }
+
+    public function isTransformKey(): bool
+    {
+        return $this->transformKey;
     }
 
     public function addGenerator(Generator $generator): void
@@ -185,22 +215,42 @@ class Attribute
 
     public function getAliasSource(): ?string
     {
-        return $this->source;
+        return $this->aliasKey ? $this->source : null;
     }
 
     public function hasAliasSource(): bool
     {
-        return $this->source !== null;
+        return $this->aliasKey && $this->source !== null;
     }
 
     public function hasAliasTransformation(): bool
     {
-        return $this->transform !== null;
+        return $this->aliasKey && $this->transform !== null;
     }
 
     public function getAliasTransformation(): ?string
     {
-        return $this->transform;
+        return $this->aliasKey ? $this->transform : null;
+    }
+
+    public function getTransformSource(): ?string
+    {
+        return $this->transformKey ? $this->source : null;
+    }
+
+    public function hasTransformSource(): bool
+    {
+        return $this->transformKey && $this->source !== null;
+    }
+
+    public function hasTransformTransformation(): bool
+    {
+        return $this->transformKey && $this->transform !== null;
+    }
+
+    public function getTransformTransformation(): ?string
+    {
+        return $this->transformKey ? $this->transform : null;
     }
 
     public function getRelatedModelName(): ?string
@@ -254,6 +304,9 @@ class Attribute
         if (isset($data['deleteKey'])) {
             $attribute->setDeleteKey((bool) $data['deleteKey']);
         }
+        if (isset($data['transformKey'])) {
+            $attribute->setTransformKey((bool) $data['transformKey']);
+        }
 
         // Alias fields
         if ($aliasKey) {
@@ -262,6 +315,16 @@ class Attribute
             }
             if (isset($data['transform'])) {
                 $attribute->setAliasTransformation($data['transform']);
+            }
+        }
+
+        // Transform fields
+        if (isset($data['transformKey']) && $data['transformKey']) {
+            if (isset($data['source'])) {
+                $attribute->setTransformSource($data['source']);
+            }
+            if (isset($data['transform'])) {
+                $attribute->setTransformTransformation($data['transform']);
             }
         }
 
@@ -319,6 +382,7 @@ class Attribute
             'primaryKey' => $this->primaryKey,
             'labelKey' => $this->labelKey,
             'deleteKey' => $this->deleteKey,
+            'transformKey' => $this->transformKey,
         ];
 
         if ($this->relatedModelName !== null) {
@@ -345,8 +409,19 @@ class Attribute
             $arr['validators'] = $this->validators->map(fn ($v) => $v->toArray())->all();
         }
 
-        if ($this->aliasKey) {
+        if ($this->aliasKey && $this->source !== null) {
             $arr['source'] = $this->source;
+        }
+
+        if ($this->aliasKey && $this->transform !== null) {
+            $arr['transform'] = $this->transform;
+        }
+
+        if ($this->transformKey && $this->source !== null) {
+            $arr['source'] = $this->source;
+        }
+
+        if ($this->transformKey && $this->transform !== null) {
             $arr['transform'] = $this->transform;
         }
 

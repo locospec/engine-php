@@ -4,7 +4,7 @@ namespace LCSEngine\Database;
 
 use LCSEngine\Schemas\Model\Model;
 
-class AliasTransformation
+class ResultTransformation
 {
     private Model $model;
 
@@ -17,8 +17,8 @@ class AliasTransformation
 
     public function transform(array $data): array
     {
-        $aliases = $this->model->getAliases();
-        if ($aliases->isEmpty()) {
+        $transformAttributes = $this->model->getTransformAttributes();
+        if ($transformAttributes->isEmpty()) {
             return $data;
         }
 
@@ -28,34 +28,34 @@ class AliasTransformation
         $transformedRecords = [];
 
         foreach ($records as $record) {
-            $transformedRecords[] = $this->processRecord($record, $aliases);
+            $transformedRecords[] = $this->processRecord($record, $transformAttributes);
         }
 
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
-    private function processRecord(array $record, object $aliases): array
+    private function processRecord(array $record, object $transformAttributes): array
     {
         $processed = $record;
 
-        $aliases->each(function ($attribute, $aliasKey) use (&$processed, $record) {
+        $transformAttributes->each(function ($attribute, $transformKey) use (&$processed, $record) {
             $extracted = null;
-            if ($attribute->hasAliasSource()) {
-                $source = $attribute->getAliasSource();
+            if ($attribute->hasTransformSource()) {
+                $source = $attribute->getTransformSource();
 
                 if (strpos($source, '->') !== false) {
                     $source = preg_replace(['/^/', '/->?/'], ['', '.'], $source);
                 }
 
                 $extracted = $this->executeJMESPathExpression($record, $source);
-                $processed[$aliasKey] = $extracted;
+                $processed[$transformKey] = $extracted;
             }
 
-            if ($attribute->hasAliasTransformation()) {
-                $transormation = $attribute->getAliasTransformation();
+            if ($attribute->hasTransformTransformation()) {
+                $transformation = $attribute->getTransformTransformation();
                 $valueToTransform = (! empty($extracted) && json_decode($extracted, true) !== null) ? json_decode($extracted, true) : $extracted;
                 $inputData = isset($extracted) && ! empty($extracted) ? ['value' => $valueToTransform] : $record;
-                $processed[$aliasKey] = $this->executeJMESPathExpression($inputData, $transormation);
+                $processed[$transformKey] = $this->executeJMESPathExpression($inputData, $transformation);
             }
         });
 

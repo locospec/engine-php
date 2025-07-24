@@ -39,7 +39,7 @@ class RelationshipResolver
     {
         $root = $filters->getRoot();
 
-        $this->logger->notice('Resolve Relationships', [
+        $this->logger->debug('Resolve Relationships', [
             'filters' => $filters->toArray(),
         ]);
 

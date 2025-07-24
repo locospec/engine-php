@@ -232,8 +232,18 @@ class AggregateProcessor
                 }
             } else {
                 // Direct attribute on main model
-                // For direct attributes, keep the simple alias
-                $selectColumns[] = "{$mainTableName}.{$source} AS {$alias}";
+                // Check if this is an alias attribute
+                $attribute = $this->model->getAttributes()->get($source);
+                if ($attribute && $attribute->isAliasKey() && $attribute->hasAliasSource()) {
+                    // Use the alias SQL expression as source
+                    $selectColumns[] = "{$attribute->getAliasSource()} AS {$alias}";
+                } elseif ($this->isSqlExpression($source)) {
+                    // SQL expression - use as-is without table prefix
+                    $selectColumns[] = "{$source} AS {$alias}";
+                } else {
+                    // Regular column - prefix with table name
+                    $selectColumns[] = "{$mainTableName}.{$source} AS {$alias}";
+                }
             }
         }
 
@@ -320,7 +330,16 @@ class AggregateProcessor
                 }
             } else {
                 // Direct attribute on main model
-                $groupBy[] = "{$mainTableName}.{$source}";
+                // For alias attributes and SQL expressions, use the alias name in GROUP BY
+                // For regular columns, use table prefix
+                $attribute = $this->model->getAttributes()->get($source);
+                if (($attribute && $attribute->isAliasKey()) || $this->isSqlExpression($source)) {
+                    // Use the alias name in GROUP BY
+                    $groupBy[] = $groupByField->getName();
+                } else {
+                    // Regular column - use with table prefix
+                    $groupBy[] = "{$mainTableName}.{$source}";
+                }
             }
         }
 
@@ -344,5 +363,27 @@ class AggregateProcessor
         }
 
         return $sorts;
+    }
+
+    /**
+     * Check if a source string contains SQL expressions
+     */
+    private function isSqlExpression(string $source): bool
+    {
+        // Check for common SQL keywords that indicate an expression
+        $sqlKeywords = ['CASE', 'WHEN', 'CAST', 'COALESCE', 'CONCAT', 'NULLIF', 'IFNULL', 'IF'];
+
+        foreach ($sqlKeywords as $keyword) {
+            if (stripos($source, $keyword) !== false) {
+                return true;
+            }
+        }
+
+        // Also check for operators that might indicate expressions
+        if (preg_match('/[\+\-\*\/\|\|]/', $source)) {
+            return true;
+        }
+
+        return false;
     }
 }
