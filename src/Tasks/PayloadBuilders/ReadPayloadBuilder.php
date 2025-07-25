@@ -56,16 +56,16 @@ class ReadPayloadBuilder
         foreach ($queryAttributes as $attribute) {
 
             // if the attribute dependsOn some other attribute
-            if ($attribute->getDependsOnAttributes()->isNotEmpty()) {
-                $dependOnAttributes = $attribute->getDependsOnAttributes()->all();
+            if ($attribute->getDepAttributes()->isNotEmpty()) {
+                $dependOnAttributes = $attribute->getDepAttributes()->all();
                 if (! in_array($dependOnAttributes, $attributes)) {
                     $attributes = array_merge($attributes, $dependOnAttributes);
                 }
             }
 
             // if the attribute dependsOn some other relationship
-            if ($attribute->getDependsOnRelationships()->isNotEmpty()) {
-                $dependOnRelationships = $attribute->getDependsOnRelationships()->all();
+            if ($attribute->getDepRelationships()->isNotEmpty()) {
+                $dependOnRelationships = $attribute->getDepRelationships()->all();
                 if (! in_array($dependOnRelationships, $attributes)) {
                     $expand = array_merge($expand, $dependOnRelationships);
                 }
