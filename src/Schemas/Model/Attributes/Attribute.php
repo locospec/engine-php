@@ -20,6 +20,10 @@ class Attribute
 
     private Collection $dependsOn;
 
+    private Collection $dependsOnAttributes;
+
+    private Collection $dependsOnRelationships;
+
     private bool $aliasKey = false;
 
     private bool $primaryKey = false;
@@ -47,6 +51,8 @@ class Attribute
         $this->validators = collect();
         $this->options = collect();
         $this->dependsOn = collect();
+        $this->dependsOnAttributes = collect();
+        $this->dependsOnRelationships = collect();
     }
 
     public function setType(Type $type): void
@@ -138,6 +144,16 @@ class Attribute
     public function setDependsOn(string $dependsOn): void
     {
         $this->dependsOn->push($dependsOn);
+    }
+
+    public function setDependsOnAttributes(string $dependsOnAttribute): void
+    {
+        $this->dependsOnAttributes->push($dependsOnAttribute);
+    }
+
+    public function setDependsOnRelationships(string $dependsOnRelationship): void
+    {
+        $this->dependsOnRelationships->push($dependsOnRelationship);
     }
 
     public function isAliasKey(): bool
@@ -268,6 +284,16 @@ class Attribute
         return $this->dependsOn;
     }
 
+    public function getDependsOnAttributes(): Collection
+    {
+        return $this->dependsOnAttributes;
+    }
+
+    public function getDependsOnRelationships(): Collection
+    {
+        return $this->dependsOnRelationships;
+    }
+
     public function removeGeneratorById(string $id): void
     {
         $this->generators = $this->generators->reject(fn ($g) => $g->getId() === $id)->values();
@@ -369,6 +395,18 @@ class Attribute
             }
         }
 
+        if (! empty($data['dependsOnAttributes']) && is_array($data['dependsOnAttributes'])) {
+            foreach ($data['dependsOnAttributes'] as $dependsOnAttribute) {
+                $attribute->setDependsOnAttributes($dependsOnAttribute);
+            }
+        }
+
+        if (! empty($data['dependsOnRelationships']) && is_array($data['dependsOnRelationships'])) {
+            foreach ($data['dependsOnRelationships'] as $dependsOnRelationship) {
+                $attribute->setDependsOnRelationships($dependsOnRelationship);
+            }
+        }
+
         return $attribute;
     }
 
@@ -423,6 +461,14 @@ class Attribute
 
         if ($this->transformKey && $this->transform !== null) {
             $arr['transform'] = $this->transform;
+        }
+
+        if (! $this->dependsOnAttributes->isEmpty()) {
+            $arr['dependsOnAttributes'] = $this->dependsOnAttributes->all();
+        }
+
+        if (! $this->dependsOnRelationships->isEmpty()) {
+            $arr['dependsOnRelationships'] = $this->dependsOnRelationships->all();
         }
 
         return $arr;
