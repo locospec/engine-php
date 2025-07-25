@@ -356,41 +356,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Actions-StateMachineFactory.html#property_lcs"
         },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation",
-            "name": "AliasTransformation",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#method___construct"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003AsetModel\u0028\u0029",
-            "name": "setModel",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#method_setModel"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003Atransform\u0028\u0029",
-            "name": "transform",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#method_transform"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003AprocessRecord\u0028\u0029",
-            "name": "processRecord",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#method_processRecord"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003AexecuteJMESPathExpression\u0028\u0029",
-            "name": "executeJMESPathExpression",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#method_executeJMESPathExpression"
-        },                {
-            "fqsen": "\\LCSEngine\\Database\\AliasTransformation\u003A\u003A\u0024model",
-            "name": "model",
-            "summary": "",
-            "url": "classes/LCSEngine-Database-AliasTransformation.html#property_model"
-        },                {
             "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection",
             "name": "DatabaseOperationsCollection",
             "summary": "",
@@ -451,10 +416,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Database-DatabaseOperationsCollection.html#property_valueResolver"
         },                {
-            "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024aliasTransformer",
-            "name": "aliasTransformer",
+            "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024resultTransformer",
+            "name": "resultTransformer",
             "summary": "",
-            "url": "classes/LCSEngine-Database-DatabaseOperationsCollection.html#property_aliasTransformer"
+            "url": "classes/LCSEngine-Database-DatabaseOperationsCollection.html#property_resultTransformer"
         },                {
             "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024registryManager",
             "name": "registryManager",
@@ -555,6 +520,41 @@ Search.appendIndex(
             "name": "data",
             "summary": "",
             "url": "classes/LCSEngine-Database-QueryContext.html#property_data"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation",
+            "name": "ResultTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003AsetModel\u0028\u0029",
+            "name": "setModel",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#method_setModel"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003Atransform\u0028\u0029",
+            "name": "transform",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#method_transform"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003AprocessRecord\u0028\u0029",
+            "name": "processRecord",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#method_processRecord"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003AexecuteJMESPathExpression\u0028\u0029",
+            "name": "executeJMESPathExpression",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#method_executeJMESPathExpression"
+        },                {
+            "fqsen": "\\LCSEngine\\Database\\ResultTransformation\u003A\u003A\u0024model",
+            "name": "model",
+            "summary": "",
+            "url": "classes/LCSEngine-Database-ResultTransformation.html#property_model"
         },                {
             "fqsen": "\\LCSEngine\\Database\\ValueResolver",
             "name": "ValueResolver",
@@ -3026,6 +3026,11 @@ Search.appendIndex(
             "summary": "Prepare\u0020sorts\u0020based\u0020on\u0020groupBy\u0020fields\u0020for\u0020stable\u0020cursor\u0020pagination\nUses\u0020aliases\u0020that\u0020match\u0020the\u0020select\u0020columns\u0020for\u0020proper\u0020cursor\u0020pagination",
             "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_prepareSorts"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003AisSqlExpression\u0028\u0029",
+            "name": "isSqlExpression",
+            "summary": "Check\u0020if\u0020a\u0020source\u0020string\u0020contains\u0020SQL\u0020expressions",
+            "url": "classes/LCSEngine-Schemas-Model-Aggregates-AggregateProcessor.html#method_isSqlExpression"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Aggregates\\AggregateProcessor\u003A\u003A\u0024model",
             "name": "model",
             "summary": "",
@@ -3186,6 +3191,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDeleteKey"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetTransformKey\u0028\u0029",
+            "name": "setTransformKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setTransformKey"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetAliasSource\u0028\u0029",
             "name": "setAliasSource",
             "summary": "",
@@ -3195,6 +3205,16 @@ Search.appendIndex(
             "name": "setAliasTransformation",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setAliasTransformation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetTransformSource\u0028\u0029",
+            "name": "setTransformSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setTransformSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetTransformTransformation\u0028\u0029",
+            "name": "setTransformTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setTransformTransformation"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetRelatedModelName\u0028\u0029",
             "name": "setRelatedModelName",
@@ -3230,6 +3250,11 @@ Search.appendIndex(
             "name": "isDeleteKey",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isDeleteKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisTransformKey\u0028\u0029",
+            "name": "isTransformKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_isTransformKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AaddGenerator\u0028\u0029",
             "name": "addGenerator",
@@ -3295,6 +3320,26 @@ Search.appendIndex(
             "name": "getAliasTransformation",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getAliasTransformation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetTransformSource\u0028\u0029",
+            "name": "getTransformSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getTransformSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AhasTransformSource\u0028\u0029",
+            "name": "hasTransformSource",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasTransformSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AhasTransformTransformation\u0028\u0029",
+            "name": "hasTransformTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_hasTransformTransformation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetTransformTransformation\u0028\u0029",
+            "name": "getTransformTransformation",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getTransformTransformation"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetRelatedModelName\u0028\u0029",
             "name": "getRelatedModelName",
@@ -3390,6 +3435,11 @@ Search.appendIndex(
             "name": "labelKey",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_labelKey"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024transformKey",
+            "name": "transformKey",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_transformKey"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024source",
             "name": "source",
@@ -4066,6 +4116,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAliases"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetTransformAttributes\u0028\u0029",
+            "name": "getTransformAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getTransformAttributes"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AfromArray\u0028\u0029",
             "name": "fromArray",
             "summary": "",
@@ -4081,10 +4136,10 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_addRelationshipsFromArray"
         },                {
-            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAttributesWithoutAliases\u0028\u0029",
-            "name": "getAttributesWithoutAliases",
-            "summary": "Get\u0020attributes\u0020that\u0020are\u0020not\u0020alias\u0020keys",
-            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttributesWithoutAliases"
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetAttributesOnly\u0028\u0029",
+            "name": "getAttributesOnly",
+            "summary": "Get\u0020attributes\u0020that\u0020are\u0020not\u0020alias\u0020keys\u0020or\u0020transform\u0020keys",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttributesOnly"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024name",
             "name": "name",
@@ -6340,6 +6395,11 @@ Search.appendIndex(
             "name": "expand",
             "summary": "",
             "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_expand"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024attributes",
+            "name": "attributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_attributes"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\FindEntityTask",
             "name": "FindEntityTask",

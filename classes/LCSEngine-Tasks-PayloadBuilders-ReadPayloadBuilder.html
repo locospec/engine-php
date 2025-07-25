@@ -158,7 +158,7 @@
         <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php"><a href="files/src-tasks-payloadbuilders-readpayloadbuilder.html"><abbr title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php">ReadPayloadBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">10</span>
+    <span class="phpdocumentor-element-found-in__line">11</span>
 
     </aside>
 
@@ -275,7 +275,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php"><a href="files/src-tasks-payloadbuilders-readpayloadbuilder.html"><abbr title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php">ReadPayloadBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">14</span>
+    <span class="phpdocumentor-element-found-in__line">15</span>
 
     </aside>
 
@@ -318,7 +318,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php"><a href="files/src-tasks-payloadbuilders-readpayloadbuilder.html"><abbr title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php">ReadPayloadBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">17</span>
 
     </aside>
 
@@ -362,7 +362,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php"><a href="files/src-tasks-payloadbuilders-readpayloadbuilder.html"><abbr title="src/Tasks/PayloadBuilders/ReadPayloadBuilder.php">ReadPayloadBuilder.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">21</span>
+    <span class="phpdocumentor-element-found-in__line">22</span>
 
     </aside>
 
@@ -676,6 +676,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 

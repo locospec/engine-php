@@ -149,7 +149,7 @@
 
     </h4>
     <dl class="phpdocumentor-table-of-contents">
-                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-AliasTransformation.html"><abbr title="\LCSEngine\Database\AliasTransformation">AliasTransformation</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-JMESPathCustomRuntime.html"><abbr title="\LCSEngine\Database\JMESPathCustomRuntime">JMESPathCustomRuntime</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-QueryContext.html"><abbr title="\LCSEngine\Database\QueryContext">QueryContext</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-ValueResolver.html"><abbr title="\LCSEngine\Database\ValueResolver">ValueResolver</abbr></a></dt>    </dl>
+                    <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-DatabaseOperationsCollection.html"><abbr title="\LCSEngine\Database\DatabaseOperationsCollection">DatabaseOperationsCollection</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-JMESPathCustomRuntime.html"><abbr title="\LCSEngine\Database\JMESPathCustomRuntime">JMESPathCustomRuntime</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-QueryContext.html"><abbr title="\LCSEngine\Database\QueryContext">QueryContext</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-ResultTransformation.html"><abbr title="\LCSEngine\Database\ResultTransformation">ResultTransformation</abbr></a></dt>            <dt class="phpdocumentor-table-of-contents__entry -class"><a href="classes/LCSEngine-Database-ValueResolver.html"><abbr title="\LCSEngine\Database\ValueResolver">ValueResolver</abbr></a></dt>    </dl>
 
 
 
@@ -197,6 +197,8 @@
                         if (xhr.status < 400 && xhr.responseText) {
                             code.textContent = xhr.responseText;
                             Prism.highlightElement(code);
+                            d=document.getElementsByClassName("line-numbers");
+                            d[0].scrollTop = d[0].children[1].offsetTop;
                             return;
                         }
 
