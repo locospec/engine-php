@@ -114,7 +114,12 @@
           "aliasKey": {
             "type": "boolean",
             "default": false,
-            "description": "Is attribute primary key column in database table."
+            "description": "Indicates this is a SQL computed column available in query operations."
+          },
+          "transformKey": {
+            "type": "boolean",
+            "default": false,
+            "description": "Indicates this is a post-query transformation field using JMESPath."
           },
           "primaryKey": {
             "type": "boolean",
