@@ -3231,6 +3231,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDependsOn"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetDepAttributes\u0028\u0029",
+            "name": "setDepAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDepAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AsetDepRelationships\u0028\u0029",
+            "name": "setDepRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_setDepRelationships"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AisAliasKey\u0028\u0029",
             "name": "isAliasKey",
             "summary": "",
@@ -3356,6 +3366,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getDependsOn"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetDepAttributes\u0028\u0029",
+            "name": "getDepAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getDepAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AgetDepRelationships\u0028\u0029",
+            "name": "getDepRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#method_getDepRelationships"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003AremoveGeneratorById\u0028\u0029",
             "name": "removeGeneratorById",
             "summary": "",
@@ -3415,6 +3435,16 @@ Search.appendIndex(
             "name": "dependsOn",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_dependsOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024depAttributes",
+            "name": "depAttributes",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_depAttributes"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024depRelationships",
+            "name": "depRelationships",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Attribute.html#property_depRelationships"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Attribute\u003A\u003A\u0024aliasKey",
             "name": "aliasKey",
