@@ -20,6 +20,10 @@ class Attribute
 
     private Collection $dependsOn;
 
+    private Collection $depAttributes;
+
+    private Collection $depRelationships;
+
     private bool $aliasKey = false;
 
     private bool $primaryKey = false;
@@ -47,6 +51,8 @@ class Attribute
         $this->validators = collect();
         $this->options = collect();
         $this->dependsOn = collect();
+        $this->depAttributes = collect();
+        $this->depRelationships = collect();
     }
 
     public function setType(Type $type): void
@@ -138,6 +144,16 @@ class Attribute
     public function setDependsOn(string $dependsOn): void
     {
         $this->dependsOn->push($dependsOn);
+    }
+
+    public function setDepAttributes(string $dependsOnAttribute): void
+    {
+        $this->depAttributes->push($dependsOnAttribute);
+    }
+
+    public function setDepRelationships(string $dependsOnRelationship): void
+    {
+        $this->depRelationships->push($dependsOnRelationship);
     }
 
     public function isAliasKey(): bool
@@ -268,6 +284,16 @@ class Attribute
         return $this->dependsOn;
     }
 
+    public function getDepAttributes(): Collection
+    {
+        return $this->depAttributes;
+    }
+
+    public function getDepRelationships(): Collection
+    {
+        return $this->depRelationships;
+    }
+
     public function removeGeneratorById(string $id): void
     {
         $this->generators = $this->generators->reject(fn ($g) => $g->getId() === $id)->values();
@@ -369,6 +395,18 @@ class Attribute
             }
         }
 
+        if (! empty($data['depAttributes']) && is_array($data['depAttributes'])) {
+            foreach ($data['depAttributes'] as $dependsOnAttribute) {
+                $attribute->setDepAttributes($dependsOnAttribute);
+            }
+        }
+
+        if (! empty($data['depRelationships']) && is_array($data['depRelationships'])) {
+            foreach ($data['depRelationships'] as $dependsOnRelationship) {
+                $attribute->setDepRelationships($dependsOnRelationship);
+            }
+        }
+
         return $attribute;
     }
 
@@ -423,6 +461,14 @@ class Attribute
 
         if ($this->transformKey && $this->transform !== null) {
             $arr['transform'] = $this->transform;
+        }
+
+        if (! $this->depAttributes->isEmpty()) {
+            $arr['depAttributes'] = $this->depAttributes->all();
+        }
+
+        if (! $this->depRelationships->isEmpty()) {
+            $arr['depRelationships'] = $this->depRelationships->all();
         }
 
         return $arr;
