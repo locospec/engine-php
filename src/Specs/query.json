@@ -88,6 +88,10 @@
                 "type": "string",
                 "description": "URL template for the action"
               },
+              "method": {
+                "type": "string",
+                "description": "method of api call for the action"
+              },
               "icon": {
                 "type": "string",
                 "description": "Icon name to display for the action"
