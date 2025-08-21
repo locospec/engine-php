@@ -4906,6 +4906,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getConfirmation"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AgetMethod\u0028\u0029",
+            "name": "getMethod",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#method_getMethod"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003AaddOption\u0028\u0029",
             "name": "addOption",
             "summary": "",
@@ -4955,6 +4960,11 @@ Search.appendIndex(
             "name": "confirmation",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_confirmation"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024method",
+            "name": "method",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Query-ActionConfig-ActionItem.html#property_method"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Query\\ActionConfig\\ActionItem\u003A\u003A\u0024options",
             "name": "options",
