@@ -350,6 +350,10 @@ class Query
                         $itemData['confirmation'] = true;
                     }
 
+                    if ($item->getMethod() !== '') {
+                        $itemData['method'] = $item->getMethod();
+                    }
+
                     if ($item->getOptions()->isNotEmpty()) {
                         $itemData['options'] = $item->getOptions()->map(function (ActionOption $option) {
                             return [

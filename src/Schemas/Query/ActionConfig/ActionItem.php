@@ -16,6 +16,8 @@ class ActionItem
 
     private bool $confirmation;
 
+    private string $method;
+
     private Collection $options;
 
     public function __construct(
@@ -23,13 +25,15 @@ class ActionItem
         string $label,
         string $url = '',
         string $icon = '',
-        bool $confirmation = false
+        string $method = '',
+        bool $confirmation = false,
     ) {
         $this->key = $key;
         $this->label = $label;
         $this->url = $url;
         $this->icon = $icon;
         $this->confirmation = $confirmation;
+        $this->method = $method;
         $this->options = new Collection;
     }
 
@@ -56,6 +60,11 @@ class ActionItem
     public function getConfirmation(): bool
     {
         return $this->confirmation;
+    }
+
+    public function getMethod(): string
+    {
+        return $this->method;
     }
 
     public function addOption(ActionOption $option): void
@@ -94,6 +103,10 @@ class ActionItem
             $data['confirmation'] = true;
         }
 
+        if ($this->method) {
+            $data['method'] = $this->method;
+        }
+
         if ($this->options->isNotEmpty()) {
             $data['options'] = $this->options->map(fn (ActionOption $option) => $option->toArray())->toArray();
         }
@@ -108,6 +121,7 @@ class ActionItem
             $data['label'],
             $data['url'] ?? '',
             $data['icon'] ?? '',
+            $data['method'] ?? '',
             $data['confirmation'] ?? false
         );
 

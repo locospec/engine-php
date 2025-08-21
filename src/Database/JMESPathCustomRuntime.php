@@ -33,14 +33,24 @@ class JMESPathCustomRuntime
 
     protected function handleFormatDate(array $args)
     {
-        if (count($args) !== 3) {
+        $count = count($args);
+        if ($count < 3) {
             return null;
         }
 
         [$dateStr, $fromFormat, $toFormat] = $args;
-
+        $convertToIST = ($count > 3) ? $args[3] : '';
         $date = DateTime::createFromFormat($fromFormat, $dateStr);
 
-        return $date ? $date->format($toFormat) : null;
+        if (! $date) {
+            return null;
+        }
+
+        // Convert to IST if flag is set
+        if ($convertToIST && (strtolower($convertToIST) === 'ist')) {
+            $date->setTimezone(new \DateTimeZone('Asia/Kolkata'));
+        }
+
+        return $date->format($toFormat);
     }
 }
