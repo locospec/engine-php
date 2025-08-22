@@ -204,7 +204,7 @@ class RelationshipResolver
                 $currentModelColumn = $relationship->getLocalKey();     // current.primary_key
                 $joinModelColumn = $relationship->getForeignKey();      // join.foreign_key
             } else {
-                throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
+                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
             }
 
             // Build JOIN clause
@@ -212,9 +212,9 @@ class RelationshipResolver
                 'type' => 'inner',
                 'table' => $joinModel->getTableName(),
                 'on' => [
-                    $currentModel->getTableName() . '.' . $currentModelColumn,
+                    $currentModel->getTableName().'.'.$currentModelColumn,
                     '=',
-                    $joinModel->getTableName() . '.' . $joinModelColumn,
+                    $joinModel->getTableName().'.'.$joinModelColumn,
                 ],
             ];
 
@@ -246,13 +246,13 @@ class RelationshipResolver
                 'op' => 'and',
                 'conditions' => [
                     [
-                        'attribute' => $currentModel->getTableName() . '.' . $filterAttribute,
+                        'attribute' => $currentModel->getTableName().'.'.$filterAttribute,
                         'op' => $condition->getOperator()->value,
                         'value' => $condition->getValue(),
                     ],
                 ],
             ],
-            'attributes' => [$this->model->getTableName() . '.' . $mainModelKey],
+            'attributes' => [$this->model->getTableName().'.'.$mainModelKey],
         ];
 
         $this->logger->notice('Relationship resolver', [
@@ -339,6 +339,6 @@ class RelationshipResolver
             ];
         }
 
-        throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
+        throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
     }
 }
