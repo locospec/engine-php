@@ -170,11 +170,11 @@ class DatabaseOperationsCollection
                 'operation' => $operation,
             ]);
 
-            if (! isset($operation['joins'])) {
-                $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager, $this->logger);
-                $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
-                $operation['filters'] = $resolvedRelationshipFilters->toArray();
-            }
+            // if (! isset($operation['joins'])) {
+            $relationshipResolver = new RelationshipResolver($model, $this, $this->registryManager, $this->logger);
+            $resolvedRelationshipFilters = $relationshipResolver->resolve(Filters::fromArray($operation['filters']));
+            $operation['filters'] = $resolvedRelationshipFilters->toArray();
+            // }
 
             $this->logger->info('Relationship filters resolved', [
                 'type' => 'dbOps',

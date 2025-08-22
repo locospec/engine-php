@@ -80,6 +80,12 @@ class RelationshipResolver
 
         // Determine which key from main model connects to the relationship chain
         $firstRelationship = $this->model->getRelationship($relationshipPath[0]);
+
+        // This is not a relationship, it's just a regular attribute
+        if (is_null($firstRelationship)) {
+            return $condition;
+        }
+
         if ($firstRelationship instanceof BelongsTo) {
             // Main model has foreign key (e.g., properties.locality_id)
             $mainModelKey = $firstRelationship->getForeignKey();      // properties.locality_id
@@ -89,7 +95,7 @@ class RelationshipResolver
             $mainModelKey = $firstRelationship->getLocalKey();       // users.id
             $relatedModelKey = $firstRelationship->getForeignKey();  // posts.user_id
         } else {
-            throw new \RuntimeException('Unsupported relationship type: '.get_class($firstRelationship));
+            throw new \RuntimeException('Unsupported relationship type');
         }
 
         // OPTIMIZATION: Single relationship doesn't need JOINs
@@ -249,7 +255,7 @@ class RelationshipResolver
             'attributes' => [$this->model->getTableName().'.'.$mainModelKey],
         ];
 
-        $this->logger->info('Relationship resolver', [
+        $this->logger->notice('Relationship resolver', [
             'type' => 'relationshipResolver',
             'operation' => 'multipleRelationships',
             'selectOp' => $selectOp,
