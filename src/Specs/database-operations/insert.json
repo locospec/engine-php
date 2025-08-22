@@ -1,19 +1,17 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "https://locospec.com/schemas/database-operations/insert.json",
-    "type": "object",
-    "properties": {
-        "type": { "type": "string", "enum": ["insert"] },
-        "modelName": { "type": "string" },
-        "data": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "additionalProperties": true
-            },
-            "minItems": 1
-        }
-    },
-    "required": ["type", "modelName", "data"],
-    "additionalProperties": false
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://locospec.com/schemas/database-operations/insert.json",
+  "type": "object",
+  "properties": {
+    "type": { "type": "string", "enum": ["insert"] },
+    "purpose": { "type": "string" },
+    "modelName": { "type": "string" },
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "minProperties": 1
+    }
+  },
+  "required": ["type", "modelName", "data"],
+  "additionalProperties": false
 }

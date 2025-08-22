@@ -10,6 +10,10 @@ abstract class AbstractRegistry implements RegistryInterface
 
     protected ?string $defaultDriver = null;
 
+    protected ?string $defaultGenerator = null;
+
+    protected ?string $defaultValidator = null;
+
     public function register(mixed $item): void
     {
         $name = $this->getItemName($item);
@@ -57,5 +61,41 @@ abstract class AbstractRegistry implements RegistryInterface
         }
 
         $this->defaultDriver = $driverName;
+    }
+
+    public function getDefaultGenerator()
+    {
+        if (! $this->has($this->defaultGenerator)) {
+            throw new InvalidArgumentException('Default generator not found');
+        }
+
+        return $this->get($this->defaultGenerator);
+    }
+
+    public function setDefaultGenerator(string $generatorName): void
+    {
+        if (! $this->has($generatorName)) {
+            throw new InvalidArgumentException("Generator '{$generatorName}' not found");
+        }
+
+        $this->defaultGenerator = $generatorName;
+    }
+
+    public function getDefaultValidator()
+    {
+        if (! $this->has($this->defaultValidator)) {
+            throw new InvalidArgumentException('Default validator not found');
+        }
+
+        return $this->get($this->defaultValidator);
+    }
+
+    public function setDefaultValidator(string $validatorName): void
+    {
+        if (! $this->has($validatorName)) {
+            throw new InvalidArgumentException("Validator '{$validatorName}' not found");
+        }
+
+        $this->defaultValidator = $validatorName;
     }
 }

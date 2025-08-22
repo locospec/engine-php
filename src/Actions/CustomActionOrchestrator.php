@@ -5,8 +5,6 @@ namespace LCSEngine\Actions;
 use LCSEngine\Actions\Model\CustomAction;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
-use LCSEngine\Registry\GeneratorInterface;
-use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\StateMachine\StateFlowPacket;
 
 class CustomActionOrchestrator
@@ -21,7 +19,7 @@ class CustomActionOrchestrator
         $this->stateMachineFactory = $stateMachineFactory;
     }
 
-    public function execute(ValidatorInterface $curdValidator, GeneratorInterface $generator, string $specName, array $input = []): StateFlowPacket
+    public function execute(string $specName, array $input = []): StateFlowPacket
     {
         $model = $this->lcs->getRegistryManager()->get('model', $specName);
         $query = $this->lcs->getRegistryManager()->get('query', $specName.'_default_query');
@@ -30,15 +28,7 @@ class CustomActionOrchestrator
             throw new InvalidArgumentException("Model not found: {$specName}");
         }
 
-        $action = new CustomAction(
-            $curdValidator,
-            $generator,
-            $model,
-            $query,
-            null,
-            $this->stateMachineFactory,
-            $this->lcs,
-        );
+        $action = new CustomAction($model, $query, null, $this->stateMachineFactory, $this->lcs);
 
         return $action->execute($input);
     }

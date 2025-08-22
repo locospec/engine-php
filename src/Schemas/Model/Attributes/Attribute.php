@@ -219,9 +219,19 @@ class Attribute
         return $this->generators;
     }
 
+    public function hasGenerators(): bool
+    {
+        return ! $this->generators->isEmpty();
+    }
+
     public function getValidators(): Collection
     {
         return $this->validators;
+    }
+
+    public function hasValidators(): bool
+    {
+        return ! $this->validators->isEmpty();
     }
 
     public function getOptions(): Collection
