@@ -208,5 +208,4 @@ class ReadPayloadBuilder
             'joins' => $readPayload->joins,
         ]);
     }
-
 }
