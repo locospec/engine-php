@@ -6441,6 +6441,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_attributes"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\ReadPayload\u003A\u003A\u0024joins",
+            "name": "joins",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-ReadPayload.html#property_joins"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\FindEntityTask",
             "name": "FindEntityTask",
             "summary": "",
@@ -6661,6 +6666,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html#method_build"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder\u003A\u003AprepareSortJoins\u0028\u0029",
+            "name": "prepareSortJoins",
+            "summary": "Handles\u0020sort\u0020JOINs\u0020for\u0020alias\u0020attributes\u0020that\u0020reference\u0020relationships.",
+            "url": "classes/LCSEngine-Tasks-PayloadBuilders-ReadPayloadBuilder.html#method_prepareSortJoins"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\PayloadBuilders\\ReadPayloadBuilder\u003A\u003A\u0024context",
             "name": "context",
             "summary": "",
@@ -6805,6 +6815,21 @@ Search.appendIndex(
             "name": "prepareSortsForDto",
             "summary": "Handles\u0020sorting\u0020logic\u0020for\u0020a\u0020DTO,\u0020ensuring\u0020the\u0020primary\u0020key\u0020is\u0020always\u0020included\u0020as\u0020a\u0020final\u0020sort\u0020criterion\u0020for\u0020stable\u0020ordering.",
             "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSortsForDto"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AresolveAliasToRelationshipSource\u0028\u0029",
+            "name": "resolveAliasToRelationshipSource",
+            "summary": "Resolves\u0020an\u0020alias\u0020attribute\u0020to\u0020its\u0020relationship\u0020source\u0020if\u0020it\u0020references\u0020relationships.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_resolveAliasToRelationshipSource"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AgetTargetTableNameFromPath\u0028\u0029",
+            "name": "getTargetTableNameFromPath",
+            "summary": "Gets\u0020the\u0020table\u0020name\u0020of\u0020the\u0020target\u0020model\u0020by\u0020following\u0020a\u0020relationship\u0020path.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_getTargetTableNameFromPath"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AbuildJoinsForRelationshipPath\u0028\u0029",
+            "name": "buildJoinsForRelationshipPath",
+            "summary": "Builds\u0020JOINs\u0020for\u0020a\u0020relationship\u0020path\u0020using\u0020pure\u0020logic.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\ValidateTask",
             "name": "ValidateTask",

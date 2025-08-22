@@ -217,6 +217,27 @@
                                 &nbsp;: <a href="classes/LCSEngine-Tasks-DTOs-AggregatePayload.html"><abbr title="\LCSEngine\Tasks\DTOs\AggregatePayload">AggregatePayload</abbr></a>    </span>
 </dt>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath">buildJoinsForRelationshipPath()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Builds JOINs for a relationship path using pure logic.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_getTargetTableNameFromPath">getTargetTableNameFromPath()</a>
+    <span>
+                                &nbsp;: string    </span>
+</dt>
+<dd>Gets the table name of the target model by following a relationship path.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_resolveAliasToRelationshipSource">resolveAliasToRelationshipSource()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;|null    </span>
+</dt>
+<dd>Resolves an alias attribute to its relationship source if it references relationships.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a>
     <span>
@@ -399,6 +420,229 @@
                     <article
         class="phpdocumentor-element
             -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_buildJoinsForRelationshipPath">
+        buildJoinsForRelationshipPath()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">186</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Builds JOINs for a relationship path using pure logic.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">buildJoinsForRelationshipPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipPath</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$baseModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__reference-operator">&amp;</span><span class="phpdocumentor-signature__argument__name">$relationshipsJoined</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipPath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of relationship names</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$baseModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The starting model</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$registryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Registry manager to resolve models</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipsJoined</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Reference to track joined relationships (modified)</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Array of JOIN structures</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_getTargetTableNameFromPath">
+        getTargetTableNameFromPath()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_getTargetTableNameFromPath" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">164</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Gets the table name of the target model by following a relationship path.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">getTargetTableNameFromPath</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$relationshipPath</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$baseModel</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">string</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Pure function that navigates through relationships.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$relationshipPath</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of relationship names</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$baseModel</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Schemas-Model-Model.html"><abbr title="\LCSEngine\Schemas\Model\Model">Model</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The starting model</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$registryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Registry manager to resolve models</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">string</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>The table name of the target model</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_resolveAliasToRelationshipSource">
+        resolveAliasToRelationshipSource()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_resolveAliasToRelationshipSource" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">129</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Resolves an alias attribute to its relationship source if it references relationships.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">resolveAliasToRelationshipSource</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attributeName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attributes</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Pure function that only depends on the provided attributes.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$attributeName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The attribute name to resolve</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$attributes</span>
+                : <span class="phpdocumentor-signature__argument__return-type">array&lt;string|int, mixed&gt;</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Array of Attribute objects</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Array with relationshipPath and tableQualifiedAttribute, or null if not a relationship alias</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
             -private
                                                         "
 >
@@ -410,7 +654,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">16</span>
+    <span class="phpdocumentor-element-found-in__line">21</span>
 
     </aside>
 
@@ -466,7 +710,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">69</span>
+    <span class="phpdocumentor-element-found-in__line">74</span>
 
     </aside>
 
@@ -522,7 +766,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">39</span>
 
     </aside>
 
@@ -587,7 +831,7 @@
     <aside class="phpdocumentor-element-found-in">
     <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">87</span>
+    <span class="phpdocumentor-element-found-in__line">92</span>
 
     </aside>
 
@@ -762,6 +1006,9 @@
                 <ul class="phpdocumentor-list -clean">
                                             <li class=""><a href="classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html#method___construct">__construct()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-PayloadBuilders-AggregatePayloadBuilder.html#method_build">build()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath">buildJoinsForRelationshipPath()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_getTargetTableNameFromPath">getTargetTableNameFromPath()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_resolveAliasToRelationshipSource">resolveAliasToRelationshipSource()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto">preparePaginationForDto()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts">prepareSorts()</a></li>
