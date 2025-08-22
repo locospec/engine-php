@@ -195,6 +195,13 @@
 </dt>
 <dd>Resolves an alias attribute to its relationship source if it references relationships.</dd>
 
+            <dt class="phpdocumentor-table-of-contents__entry -method -protected">
+    <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_shouldPrefixTableName">shouldPrefixTableName()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Determines if an attribute source should be prefixed with a table name.</dd>
+
             <dt class="phpdocumentor-table-of-contents__entry -method -private">
     <a class="" href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a>
     <span>
@@ -456,6 +463,63 @@
         <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;|null</span>
                     &mdash;
                 <section class="phpdocumentor-description"><p>Array with relationshipPath and tableQualifiedAttribute, or null if not a relationship alias</p>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_shouldPrefixTableName">
+        shouldPrefixTableName()
+        <a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_shouldPrefixTableName" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Tasks/Traits/PayloadPreparationHelpers.php"><a href="files/src-tasks-traits-payloadpreparationhelpers.html"><abbr title="src/Tasks/Traits/PayloadPreparationHelpers.php">PayloadPreparationHelpers.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">243</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determines if an attribute source should be prefixed with a table name.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+                    <span class="phpdocumentor-signature__name">shouldPrefixTableName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Returns false for SQL expressions that shouldn't have table prefixes.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$source</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The attribute source to check</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if should be table-prefixed, false otherwise</p>
 </section>
 
             </section>
@@ -819,6 +883,7 @@
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath">buildJoinsForRelationshipPath()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_getTargetTableNameFromPath">getTargetTableNameFromPath()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_resolveAliasToRelationshipSource">resolveAliasToRelationshipSource()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_shouldPrefixTableName">shouldPrefixTableName()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePagination">preparePagination()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_preparePaginationForDto">preparePaginationForDto()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_prepareSorts">prepareSorts()</a></li>

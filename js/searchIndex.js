@@ -6831,6 +6831,11 @@ Search.appendIndex(
             "summary": "Builds\u0020JOINs\u0020for\u0020a\u0020relationship\u0020path\u0020using\u0020pure\u0020logic.",
             "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_buildJoinsForRelationshipPath"
         },                {
+            "fqsen": "\\LCSEngine\\Tasks\\Traits\\PayloadPreparationHelpers\u003A\u003AshouldPrefixTableName\u0028\u0029",
+            "name": "shouldPrefixTableName",
+            "summary": "Determines\u0020if\u0020an\u0020attribute\u0020source\u0020should\u0020be\u0020prefixed\u0020with\u0020a\u0020table\u0020name.",
+            "url": "classes/LCSEngine-Tasks-Traits-PayloadPreparationHelpers.html#method_shouldPrefixTableName"
+        },                {
             "fqsen": "\\LCSEngine\\Tasks\\ValidateTask",
             "name": "ValidateTask",
             "summary": "",
