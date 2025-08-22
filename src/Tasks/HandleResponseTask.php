@@ -67,7 +67,7 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     public function handleCreateResponse(array $input): array
     {
         return [
-            'data' => $input['response'][0]['result'][0],
+            'data' => $input['response'][0]['result'],
             'meta' => [],
         ];
     }

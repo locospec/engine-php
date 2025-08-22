@@ -93,15 +93,15 @@ class ValueResolver
             }
         }
 
-        // For each row, json_encode those columns if they exist and are arrays/objects
-        return array_map(function (array $row) use ($jsonCols) {
-            foreach ($jsonCols as $col) {
-                if (array_key_exists($col, $row) && is_array($row[$col])) {
-                    $row[$col] = json_encode($row[$col]);
-                }
-            }
+        // dd($data);
 
-            return $row;
-        }, $data);
+        // For each row, json_encode those columns if they exist and are arrays/objects
+        foreach ($jsonCols as $col) {
+            if (array_key_exists($col, $data) && is_array($data[$col])) {
+                $data[$col] = json_encode($data[$col]);
+            }
+        }
+
+        return $data;
     }
 }

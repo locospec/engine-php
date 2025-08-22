@@ -19,4 +19,12 @@ interface RegistryInterface
     public function getDefaultDriver();
 
     public function setDefaultDriver(string $driverName);
+
+    public function getDefaultGenerator();
+
+    public function setDefaultGenerator(string $generatorName);
+
+    public function getDefaultValidator();
+
+    public function setDefaultValidator(string $validatorName);
 }

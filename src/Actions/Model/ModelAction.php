@@ -4,8 +4,6 @@ namespace LCSEngine\Actions\Model;
 
 use LCSEngine\Actions\StateMachineFactory;
 use LCSEngine\LCS;
-use LCSEngine\Registry\GeneratorInterface;
-use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Mutator\Mutator;
 use LCSEngine\Schemas\Query\Query;
@@ -28,13 +26,7 @@ abstract class ModelAction
 
     protected LCS $lcs;
 
-    protected GeneratorInterface $generator;
-
-    protected ValidatorInterface $crudValidator;
-
     public function __construct(
-        ValidatorInterface $curdValidator,
-        GeneratorInterface $generator,
         Model $model,
         Query $query,
         ?Mutator $mutator,
@@ -49,8 +41,6 @@ abstract class ModelAction
         $this->lcs = $lcs;
         $this->config = $config;
         $this->name = static::getName();
-        $this->crudValidator = $curdValidator;
-        $this->generator = $generator;
     }
 
     /**
@@ -77,8 +67,6 @@ abstract class ModelAction
             'action' => $this->name,
             'config' => $this->config,
             'lcs' => $this->lcs,
-            'crudValidator' => $this->crudValidator,
-            'generator' => $this->generator,
         ]);
 
         if (isset($input['def'])) {
@@ -103,22 +91,6 @@ abstract class ModelAction
 
             return $packet;
         }
-    }
-
-    /**
-     * Get the validator
-     */
-    public function getCrudValidator(): ValidatorInterface
-    {
-        return $this->crudValidator;
-    }
-
-    /**
-     * Get the generator
-     */
-    public function getGenerator(): GeneratorInterface
-    {
-        return $this->generator;
     }
 
     /**

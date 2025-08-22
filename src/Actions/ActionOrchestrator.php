@@ -13,8 +13,6 @@ use LCSEngine\Actions\Model\ReadRelationOptionsAction;
 use LCSEngine\Actions\Model\UpdateAction;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\LCS;
-use LCSEngine\Registry\GeneratorInterface;
-use LCSEngine\Registry\ValidatorInterface;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Mutator\Mutator;
 use LCSEngine\Schemas\Query\Query;
@@ -33,7 +31,7 @@ class ActionOrchestrator
         $this->stateMachineFactory = $stateMachineFactory;
     }
 
-    public function execute(ValidatorInterface $curdValidator, GeneratorInterface $generator, string $specName, string $actionName, array $input = []): StateFlowPacket
+    public function execute(string $specName, string $actionName, array $input = []): StateFlowPacket
     {
         $mutator = null;
         $data = $this->lcs->getRegistryManager()->getRegisterByName($specName);
@@ -107,12 +105,12 @@ class ActionOrchestrator
         }
 
         // Create and execute appropriate action
-        $action = $this->createAction($curdValidator, $generator, $model, $query, $actionName, $mutator);
+        $action = $this->createAction($model, $query, $actionName, $mutator);
 
         return $action->execute($input);
     }
 
-    protected function createAction(ValidatorInterface $curdValidator, GeneratorInterface $generator, Model $model, Query $query, string $actionName, ?Mutator $mutator): ModelAction
+    protected function createAction(Model $model, Query $query, string $actionName, ?Mutator $mutator): ModelAction
     {
         $actionClass = match ($actionName) {
             '_config' => ConfigAction::class,
@@ -126,14 +124,6 @@ class ActionOrchestrator
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")
         };
 
-        return new $actionClass(
-            $curdValidator,
-            $generator,
-            $model,
-            $query,
-            $mutator,
-            $this->stateMachineFactory,
-            $this->lcs
-        );
+        return new $actionClass($model, $query, $mutator, $this->stateMachineFactory, $this->lcs);
     }
 }

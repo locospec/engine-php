@@ -82,15 +82,16 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
     public function preparePayloadForCreate(array $payload, $model): array
     {
         // $model = $this->context->get('lcs')->getRegistryManager()->get('model', $payload['modelName']);
+        $registryManager = $this->context->get('lcs')->getRegistryManager();
         $preparedPayload = [
             'type' => 'insert',
             'modelName' => $model->getName(),
         ];
 
-        $defaultGenerator = $this->context->get('generator');
+        $defaultGenerator = $registryManager->get('generator', 'default');
         $attributes = $model->getAttributes()->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
-        $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
+        $dbOps->setRegistryManager($registryManager);
 
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it

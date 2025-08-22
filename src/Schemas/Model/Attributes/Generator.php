@@ -74,6 +74,11 @@ class Generator
         return $this->source;
     }
 
+    public function hasSource(): bool
+    {
+        return $this->source !== null;
+    }
+
     public function getValue(): ?string
     {
         return $this->value;
