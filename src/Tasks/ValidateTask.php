@@ -63,15 +63,15 @@ class ValidateTask extends AbstractTask implements TaskInterface
     {
         try {
             $dbOps = new DatabaseOperationsCollection($this->operator);
-            $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
+            $registryManager = $this->context->get('lcs')->getRegistryManager();
+            $dbOps->setRegistryManager($registryManager);
             $options = [
                 'dbOps' => $dbOps,
                 'action' => $action,
                 'dbOperator' => $this->operator,
                 'modelName' => $this->context->get('model')->getName(),
             ];
-            $validator = $this->context->get('crudValidator');
-            $model = $this->context->get('model');
+            $validator = $registryManager->get('validator', 'default');
             $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
             $errors = [];
 
