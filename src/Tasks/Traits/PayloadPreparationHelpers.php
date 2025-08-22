@@ -232,4 +232,43 @@ trait PayloadPreparationHelpers
 
         return $joins;
     }
+
+    /**
+     * Determines if an attribute source should be prefixed with a table name.
+     * Returns false for SQL expressions that shouldn't have table prefixes.
+     * 
+     * @param string $source The attribute source to check
+     * @return bool True if should be table-prefixed, false otherwise
+     */
+    protected function shouldPrefixTableName(string $source): bool
+    {
+        // If already contains a dot (table.column), don't prefix
+        if (str_contains($source, '.')) {
+            return false;
+        }
+        
+        // Check if this is a CASE expression FIRST
+        if (preg_match('/^CASE\s+/i', $source)) {
+            return false;
+        }
+        
+        // Check if this is an aggregate function (COUNT, SUM, AVG, MIN, MAX)
+        if (preg_match('/^(COUNT|SUM|AVG|MIN|MAX)\s*\(/i', $source)) {
+            return false;
+        }
+        
+        // Check for other SQL expressions (CAST, COALESCE, CONCAT, etc.)
+        if (preg_match('/^(CAST|COALESCE|CONCAT|NULLIF|IFNULL|IF)\s*\(/i', $source)) {
+            return false;
+        }
+        
+        // Check for mathematical expressions or other SQL patterns
+        if (preg_match('/^[A-Z_]+\s*\(/i', $source)) {
+            return false;
+        }
+        
+        // If none of the above patterns match, it's likely a simple column name
+        // that should be table-prefixed
+        return true;
+    }
 }

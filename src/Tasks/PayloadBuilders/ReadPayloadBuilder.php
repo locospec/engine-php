@@ -4,7 +4,6 @@ namespace LCSEngine\Tasks\PayloadBuilders;
 
 use LCSEngine\LCS;
 use LCSEngine\Schemas\Common\Filters\Filters;
-use LCSEngine\Schemas\Model\Attributes\Attribute;
 use LCSEngine\StateMachine\ContextInterface;
 use LCSEngine\Tasks\DTOs\ReadPayload;
 use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
@@ -86,8 +85,8 @@ class ReadPayloadBuilder
             if ($attribute->isAliasKey() && $attribute->hasAliasSource()) {
                 $aliasSource = $attribute->getAliasSource();
 
-                // If alias source doesn't contain a dot, it needs table qualification
-                if (! str_contains($aliasSource, '.')) {
+                // Only add table qualification if it's a simple column name (not a SQL expression)
+                if ($this->shouldPrefixTableName($aliasSource)) {
                     $aliasSource = $tableName.'.'.$aliasSource;
                 }
 
@@ -112,7 +111,7 @@ class ReadPayloadBuilder
 
         // Log attributes after preparation
         $logger = LCS::getLogger();
-        $logger->notice('Attributes prepared for read payload', [
+        $logger->info('Attributes prepared for read payload', [
             'type' => 'readPayloadBuilder',
             'modelName' => $model->getName(),
             'tableName' => $tableName,
@@ -202,11 +201,12 @@ class ReadPayloadBuilder
         }
 
         // Log sorts array and joins after processing
-        $logger->notice('Processing sorts - after alias resolution', [
+        $logger->info('Processing sorts - after alias resolution', [
             'type' => 'sortJoins',
             'modelName' => $model->getName(),
             'sorts' => $readPayload->sorts,
             'joins' => $readPayload->joins,
         ]);
     }
+
 }
