@@ -208,7 +208,7 @@ class DatabaseOperationsCollection
 
         // Process aggregate if it exists
         if (isset($operation['aggregate']) && is_string($operation['aggregate'])) {
-            $this->logger->notice('Processing aggregate', [
+            $this->logger->info('Processing aggregate', [
                 'type' => 'dbOps',
                 'aggregateName' => $operation['aggregate'],
                 'modelName' => $operation['modelName'],
@@ -237,7 +237,7 @@ class DatabaseOperationsCollection
             // Remove the aggregate key as it's been processed
             unset($operation['aggregate']);
 
-            $this->logger->notice('Aggregate processed', [
+            $this->logger->info('Aggregate processed', [
                 'type' => 'dbOps',
                 'attributes' => $operation['attributes'],
                 'joins' => $operation['joins'] ?? [],
@@ -372,10 +372,11 @@ class DatabaseOperationsCollection
             $dbOpResults = [];
 
             foreach ($this->operations as $operation) {
-                $this->logger->info('Executing operation', [
+                $this->logger->notice('Executing operation', [
                     'type' => 'dbOps',
                     'modelName' => $operation['modelName'],
                     'connection' => $operation['connection'],
+                    'purpose' => $operation['purpose'] ?? '',
                 ]);
 
                 $derivedOperator = $databaseDriverRegistry->get($operation['connection']);
@@ -455,7 +456,7 @@ class DatabaseOperationsCollection
             }
 
             foreach ($dbOpResults as $index => $dbOpResult) {
-                if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete'])) {
+                if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete']) && $dbOpResult['operation']['purpose'] !== 'aggregate') {
                     if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
 
                         $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
