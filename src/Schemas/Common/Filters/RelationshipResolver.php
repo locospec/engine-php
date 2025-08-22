@@ -80,6 +80,12 @@ class RelationshipResolver
 
         // Determine which key from main model connects to the relationship chain
         $firstRelationship = $this->model->getRelationship($relationshipPath[0]);
+
+        // This is not a relationship, it's just a regular attribute
+        if (is_null($firstRelationship)) {
+            return $condition;
+        }
+
         if ($firstRelationship instanceof BelongsTo) {
             // Main model has foreign key (e.g., properties.locality_id)
             $mainModelKey = $firstRelationship->getForeignKey();      // properties.locality_id
@@ -89,7 +95,7 @@ class RelationshipResolver
             $mainModelKey = $firstRelationship->getLocalKey();       // users.id
             $relatedModelKey = $firstRelationship->getForeignKey();  // posts.user_id
         } else {
-            throw new \RuntimeException('Unsupported relationship type: '.get_class($firstRelationship));
+            throw new \RuntimeException('Unsupported relationship type');
         }
 
         // OPTIMIZATION: Single relationship doesn't need JOINs
@@ -198,7 +204,7 @@ class RelationshipResolver
                 $currentModelColumn = $relationship->getLocalKey();     // current.primary_key
                 $joinModelColumn = $relationship->getForeignKey();      // join.foreign_key
             } else {
-                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
+                throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
             }
 
             // Build JOIN clause
@@ -206,9 +212,9 @@ class RelationshipResolver
                 'type' => 'inner',
                 'table' => $joinModel->getTableName(),
                 'on' => [
-                    $currentModel->getTableName().'.'.$currentModelColumn,
+                    $currentModel->getTableName() . '.' . $currentModelColumn,
                     '=',
-                    $joinModel->getTableName().'.'.$joinModelColumn,
+                    $joinModel->getTableName() . '.' . $joinModelColumn,
                 ],
             ];
 
@@ -240,16 +246,16 @@ class RelationshipResolver
                 'op' => 'and',
                 'conditions' => [
                     [
-                        'attribute' => $currentModel->getTableName().'.'.$filterAttribute,
+                        'attribute' => $currentModel->getTableName() . '.' . $filterAttribute,
                         'op' => $condition->getOperator()->value,
                         'value' => $condition->getValue(),
                     ],
                 ],
             ],
-            'attributes' => [$this->model->getTableName().'.'.$mainModelKey],
+            'attributes' => [$this->model->getTableName() . '.' . $mainModelKey],
         ];
 
-        $this->logger->info('Relationship resolver', [
+        $this->logger->notice('Relationship resolver', [
             'type' => 'relationshipResolver',
             'operation' => 'multipleRelationships',
             'selectOp' => $selectOp,
@@ -333,6 +339,6 @@ class RelationshipResolver
             ];
         }
 
-        throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
+        throw new \RuntimeException('Unsupported relationship type: ' . get_class($relationship));
     }
 }
