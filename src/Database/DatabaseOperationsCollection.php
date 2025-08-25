@@ -377,6 +377,7 @@ class DatabaseOperationsCollection
                     'modelName' => $operation['modelName'],
                     'connection' => $operation['connection'],
                     'purpose' => $operation['purpose'] ?? '',
+                    'operation' => $operation,
                 ]);
 
                 $derivedOperator = $databaseDriverRegistry->get($operation['connection']);
