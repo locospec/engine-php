@@ -198,7 +198,7 @@ class RelationshipResolver
             // - BelongsTo: current's foreign key = join's primary key
             // - HasMany: current's primary key = join's foreign key
 
-            // Build complete join using utility  
+            // Build complete join using utility
             $joins[] = JoinColumnHelper::buildJoin($relationship, $currentModel, $joinModel, 'inner');
 
             // Move to next model in chain

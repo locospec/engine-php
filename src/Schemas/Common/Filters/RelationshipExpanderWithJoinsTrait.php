@@ -166,8 +166,8 @@ trait RelationshipExpanderWithJoinsTrait
 
                 // Build complete join using utility
                 $joins[] = JoinColumnHelper::buildJoin(
-                    $relationship, 
-                    $currentModel, 
+                    $relationship,
+                    $currentModel,
                     $relatedModel,
                     'left'  // LEFT JOIN for optional expansion
                 );

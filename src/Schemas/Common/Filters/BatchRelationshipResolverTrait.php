@@ -3,9 +3,6 @@
 namespace LCSEngine\Schemas\Common\Filters;
 
 use LCSEngine\Schemas\Common\JoinColumnHelper;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
-use LCSEngine\Schemas\Model\Relationships\HasMany;
-use LCSEngine\Schemas\Model\Relationships\HasOne;
 
 /**
  * BatchRelationshipResolverTrait provides optimization for filter resolution by grouping

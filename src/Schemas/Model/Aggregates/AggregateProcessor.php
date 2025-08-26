@@ -7,9 +7,6 @@ use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
 use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
-use LCSEngine\Schemas\Model\Relationships\HasMany;
-use LCSEngine\Schemas\Model\Relationships\HasOne;
 
 class AggregateProcessor
 {
@@ -292,9 +289,9 @@ class AggregateProcessor
 
             // Build complete join using utility with custom table names from pathInfo
             $joins[] = JoinColumnHelper::buildJoin(
-                $relationship, 
-                $parentModel, 
-                $relatedModel, 
+                $relationship,
+                $parentModel,
+                $relatedModel,
                 'left',
                 $parentTableName,  // Use pre-computed table names
                 $relatedTableName

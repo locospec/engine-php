@@ -79,7 +79,7 @@ class Join
         ];
 
         // Include conditions for backward compatibility
-        if (!empty($this->conditions)) {
+        if (! empty($this->conditions)) {
             $result['conditions'] = $this->conditions;
         }
 
@@ -87,15 +87,15 @@ class Join
         if ($this->on !== null) {
             $result['on'] = $this->on;
         }
-        
+
         if ($this->alias !== null) {
             $result['alias'] = $this->alias;
         }
-        
+
         if ($this->leftColType !== null) {
             $result['left_col_type'] = $this->leftColType;
         }
-        
+
         if ($this->rightColType !== null) {
             $result['right_col_type'] = $this->rightColType;
         }
