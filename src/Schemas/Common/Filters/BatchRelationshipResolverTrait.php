@@ -2,9 +2,7 @@
 
 namespace LCSEngine\Schemas\Common\Filters;
 
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
-use LCSEngine\Schemas\Model\Relationships\HasMany;
-use LCSEngine\Schemas\Model\Relationships\HasOne;
+use LCSEngine\Schemas\Common\JoinColumnHelper;
 
 /**
  * BatchRelationshipResolverTrait provides optimization for filter resolution by grouping
@@ -246,26 +244,8 @@ trait BatchRelationshipResolverTrait
             $relationship = $currentModel->getRelationship($relationshipName);
             $relatedModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
 
-            // Determine join columns based on relationship type
-            if ($relationship instanceof BelongsTo) {
-                $leftColumn = $relationship->getForeignKey();
-                $rightColumn = $relationship->getOwnerKey();
-            } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                $leftColumn = $relationship->getLocalKey();
-                $rightColumn = $relationship->getForeignKey();
-            } else {
-                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
-            }
-
-            $joins[] = [
-                'type' => 'inner',
-                'table' => $relatedModel->getTableName(),
-                'on' => [
-                    $currentModel->getTableName().'.'.$leftColumn,
-                    '=',
-                    $relatedModel->getTableName().'.'.$rightColumn,
-                ],
-            ];
+            // Build complete join using utility
+            $joins[] = JoinColumnHelper::buildJoin($relationship, $currentModel, $relatedModel, 'inner');
 
             $currentModel = $relatedModel;
         }

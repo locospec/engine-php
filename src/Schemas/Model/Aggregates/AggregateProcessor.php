@@ -5,10 +5,8 @@ namespace LCSEngine\Schemas\Model\Aggregates;
 use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
-use LCSEngine\Schemas\Model\Relationships\BelongsTo;
-use LCSEngine\Schemas\Model\Relationships\HasMany;
-use LCSEngine\Schemas\Model\Relationships\HasOne;
 
 class AggregateProcessor
 {
@@ -284,25 +282,20 @@ class AggregateProcessor
 
         foreach ($pathInfo as $path => $info) {
             $relationship = $info['relationship'];
+            $parentModel = $info['parentModel'];
+            $relatedModel = $info['model'];
             $parentTableName = $info['parentTableName'];
             $relatedTableName = $info['tableName'];
 
-            // Determine join columns based on relationship type
-            if ($relationship instanceof BelongsTo) {
-                $leftColumn = $parentTableName.'.'.$relationship->getForeignKey();
-                $rightColumn = $relatedTableName.'.'.$relationship->getOwnerKey();
-            } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                $leftColumn = $parentTableName.'.'.$relationship->getLocalKey();
-                $rightColumn = $relatedTableName.'.'.$relationship->getForeignKey();
-            } else {
-                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
-            }
-
-            $joins[] = [
-                'type' => 'left',
-                'table' => $relatedTableName,
-                'on' => [$leftColumn, '=', $rightColumn],
-            ];
+            // Build complete join using utility with custom table names from pathInfo
+            $joins[] = JoinColumnHelper::buildJoin(
+                $relationship,
+                $parentModel,
+                $relatedModel,
+                'left',
+                $parentTableName,  // Use pre-computed table names
+                $relatedTableName
+            );
         }
 
         return $joins;

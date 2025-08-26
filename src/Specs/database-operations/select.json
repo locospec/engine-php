@@ -47,6 +47,14 @@
             "minItems": 3,
             "maxItems": 3,
             "description": "Join condition as [left_column, operator, right_column]"
+          },
+          "left_col_type": {
+            "type": "string",
+            "description": "Type of the left column for PostgreSQL type casting"
+          },
+          "right_col_type": {
+            "type": "string",
+            "description": "Type of the right column for PostgreSQL type casting"
           }
         },
         "required": ["type", "table"],
