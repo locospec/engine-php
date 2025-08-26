@@ -2551,6 +2551,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Common-Filters-RelationshipResolver.html#property_logger"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Common\\JoinColumnHelper",
+            "name": "JoinColumnHelper",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Common-JoinColumnHelper.html"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Common\\JoinColumnHelper\u003A\u003AgetJoinColumns\u0028\u0029",
+            "name": "getJoinColumns",
+            "summary": "Extract\u0020join\u0020column\u0020names\u0020and\u0020types\u0020from\u0020a\u0020relationship",
+            "url": "classes/LCSEngine-Schemas-Common-JoinColumnHelper.html#method_getJoinColumns"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Common\\JoinColumnHelper\u003A\u003AbuildJoin\u0028\u0029",
+            "name": "buildJoin",
+            "summary": "Build\u0020complete\u0020join\u0020structure\u0020from\u0020a\u0020relationship",
+            "url": "classes/LCSEngine-Schemas-Common-JoinColumnHelper.html#method_buildJoin"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Expand",
             "name": "Expand",
             "summary": "",
@@ -2606,6 +2621,26 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#method_getConditions"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003AgetOn\u0028\u0029",
+            "name": "getOn",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#method_getOn"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003AgetAlias\u0028\u0029",
+            "name": "getAlias",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#method_getAlias"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003AgetLeftColType\u0028\u0029",
+            "name": "getLeftColType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#method_getLeftColType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003AgetRightColType\u0028\u0029",
+            "name": "getRightColType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#method_getRightColType"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
@@ -2630,6 +2665,26 @@ Search.appendIndex(
             "name": "conditions",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#property_conditions"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003A\u0024on",
+            "name": "on",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#property_on"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003A\u0024alias",
+            "name": "alias",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#property_alias"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003A\u0024leftColType",
+            "name": "leftColType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#property_leftColType"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Join\u003A\u003A\u0024rightColType",
+            "name": "rightColType",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-DatabaseOperations-Join.html#property_rightColType"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\DatabaseOperations\\Pagination",
             "name": "Pagination",
