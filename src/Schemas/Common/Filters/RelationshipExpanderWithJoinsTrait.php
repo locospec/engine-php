@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\Common\Filters;
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
@@ -163,23 +164,13 @@ trait RelationshipExpanderWithJoinsTrait
                 $relatedTableName = $relatedModel->getTableName();
                 $tableNames[$pathSoFar] = $relatedTableName;
 
-                // Determine join columns based on relationship type
-                if ($relationship instanceof BelongsTo) {
-                    $leftCol = $currentTableName.'.'.$relationship->getForeignKey();
-                    $rightCol = $relatedTableName.'.'.$relationship->getOwnerKey();
-                } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                    $leftCol = $currentTableName.'.'.$relationship->getLocalKey();
-                    $rightCol = $relatedTableName.'.'.$relationship->getForeignKey();
-                } else {
-                    throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
-                }
-
-                // Add JOIN
-                $joins[] = [
-                    'type' => 'left',
-                    'table' => $relatedTableName,
-                    'on' => [$leftCol, '=', $rightCol],
-                ];
+                // Build complete join using utility
+                $joins[] = JoinColumnHelper::buildJoin(
+                    $relationship, 
+                    $currentModel, 
+                    $relatedModel,
+                    'left'  // LEFT JOIN for optional expansion
+                );
 
                 // Add attributes with SQL aliases for this joined table
                 foreach ($relatedModel->getAttributesOnly() as $attr) {

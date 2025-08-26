@@ -5,6 +5,7 @@ namespace LCSEngine\Schemas\Common\Filters;
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
@@ -197,26 +198,8 @@ class RelationshipResolver
             // - BelongsTo: current's foreign key = join's primary key
             // - HasMany: current's primary key = join's foreign key
 
-            if ($relationship instanceof BelongsTo) {
-                $currentModelColumn = $relationship->getForeignKey();   // current.foreign_key
-                $joinModelColumn = $relationship->getOwnerKey();        // join.primary_key
-            } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                $currentModelColumn = $relationship->getLocalKey();     // current.primary_key
-                $joinModelColumn = $relationship->getForeignKey();      // join.foreign_key
-            } else {
-                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
-            }
-
-            // Build JOIN clause
-            $joins[] = [
-                'type' => 'inner',
-                'table' => $joinModel->getTableName(),
-                'on' => [
-                    $currentModel->getTableName().'.'.$currentModelColumn,
-                    '=',
-                    $joinModel->getTableName().'.'.$joinModelColumn,
-                ],
-            ];
+            // Build complete join using utility  
+            $joins[] = JoinColumnHelper::buildJoin($relationship, $currentModel, $joinModel, 'inner');
 
             // Move to next model in chain
             $currentModel = $joinModel;

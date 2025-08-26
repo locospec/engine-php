@@ -3,6 +3,7 @@
 namespace LCSEngine\Tasks\Traits;
 
 use LCSEngine\Registry\RegistryManager;
+use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
@@ -202,23 +203,8 @@ trait PayloadPreparationHelpers
             $relationship = $currentModel->getRelationship($relationshipName);
             $relatedModel = $registryManager->get('model', $relationship->getRelatedModelName());
 
-            // Determine join columns based on relationship type (same logic as RelationshipResolver)
-            if ($relationship instanceof BelongsTo) {
-                $leftCol = $currentModel->getTableName().'.'.$relationship->getForeignKey();
-                $rightCol = $relatedModel->getTableName().'.'.$relationship->getOwnerKey();
-            } elseif ($relationship instanceof HasMany || $relationship instanceof HasOne) {
-                $leftCol = $currentModel->getTableName().'.'.$relationship->getLocalKey();
-                $rightCol = $relatedModel->getTableName().'.'.$relationship->getForeignKey();
-            } else {
-                throw new \RuntimeException('Unsupported relationship type: '.get_class($relationship));
-            }
-
-            // Build JOIN structure
-            $joins[] = [
-                'type' => 'left', // Use LEFT JOIN for sorting to include records without related data
-                'table' => $relatedModel->getTableName(),
-                'on' => [$leftCol, '=', $rightCol],
-            ];
+            // Build complete join using utility
+            $joins[] = JoinColumnHelper::buildJoin($relationship, $currentModel, $relatedModel, 'left');
 
             // Track joined relationship
             $relationshipsJoined[$pathSoFar] = [
