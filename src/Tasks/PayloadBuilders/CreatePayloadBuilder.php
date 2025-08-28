@@ -27,7 +27,7 @@ class CreatePayloadBuilder
 
         $createPayload = new CreatePayload($model->getName());
 
-        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
+        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! ($attribute->isAliasKey() || $attribute->isTransformKey()))->all();
         $dbOps = new DatabaseOperationsCollection($operator);
         $dbOps->setRegistryManager($registryManager);
 

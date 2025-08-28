@@ -81,14 +81,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 $preparedPayload = $aggregatePayloadBuilder->build($payload)->toArray();
                 break;
 
-            case '_read_one':
-                $preparedPayload = $this->preparePayloadForReadOne($payload);
-                break;
-
-            case '_config':
-                $preparedPayload = $this->preparePayloadForReadOne($payload);
-                break;
-
             case '_read_relation_options':
                 $preparedPayload = $this->preparePayloadForReadOptions($payload);
                 break;
