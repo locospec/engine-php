@@ -45,10 +45,6 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
                 $res = $this->handleAggregateResponse($input);
                 break;
 
-            case '_read_one':
-                $res = $this->handleReadOneResponse($input);
-                break;
-
             case '_read_relation_options':
                 $res = $this->handleReadOptionsResponse($input);
                 break;
@@ -84,14 +80,6 @@ class HandleResponseTask extends AbstractTask implements TaskInterface
     {
         return [
             'data' => $input['response'][0]['result'],
-            'meta' => [],
-        ];
-    }
-
-    public function handleReadOneResponse(array $input): array
-    {
-        return [
-            'data' => $input['response'][0]['result'][0],
             'meta' => [],
         ];
     }

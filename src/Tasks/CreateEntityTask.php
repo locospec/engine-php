@@ -41,7 +41,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
         $dbOps->add($queryPayload);
 
         $response = $dbOps->execute($this->operator);
-        $parentRecord = $response[0]['result'][0];
+        $parentRecord = $response[0]['result'];
 
         $relatedResults = [];
         $relationships = $model->getRelationships();
@@ -63,6 +63,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
 
                 // Prepare & execute the child insert
                 $childModel = $this->context->get('lcs')->getRegistryManager()->get('model', $relationship->getRelatedModelName());
+                // Create payload using payload builder
                 $childQuery = $this->preparePayloadForCreate($childData, $childModel);
                 // dd($childData, $childModel, $childQuery);
                 $dbOps->add($childQuery);
@@ -70,7 +71,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                 $childResponse = $dbOps->execute($this->operator);
 
                 // Store the single created record under the relation’s key
-                $relatedResults[$relationName] = $childResponse[0]['result'][0];
+                $relatedResults[$relationName] = $childResponse[0]['result'];
             }
         }
 
@@ -85,18 +86,20 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
         $registryManager = $this->context->get('lcs')->getRegistryManager();
         $preparedPayload = [
             'type' => 'insert',
+            'purpose' => 'create',
             'modelName' => $model->getName(),
         ];
 
         $defaultGenerator = $registryManager->get('generator', 'default');
-        $attributes = $model->getAttributes()->all();
+        // $attributes = $model->getAttributes()->all();
+        $attributes = $model->getAttributes()->filter(fn ($attribute) => ! ($attribute->isAliasKey() || $attribute->isTransformKey()))->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($registryManager);
 
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
             if (isset($payload[$attributeName])) {
-                $preparedPayload['data'][0][$attributeName] = $payload[$attributeName];
+                $preparedPayload['data'][$attributeName] = $payload[$attributeName];
 
                 continue;
             }
@@ -134,7 +137,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
                     );
 
                     if ($generatedValue !== null) {
-                        $preparedPayload['data'][0][$attributeName] = $generatedValue;
+                        $preparedPayload['data'][$attributeName] = $generatedValue;
                     }
                 }
             }

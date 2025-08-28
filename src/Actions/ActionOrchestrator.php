@@ -8,7 +8,6 @@ use LCSEngine\Actions\Model\CreateAction;
 use LCSEngine\Actions\Model\DeleteAction;
 use LCSEngine\Actions\Model\ModelAction;
 use LCSEngine\Actions\Model\ReadListAction;
-use LCSEngine\Actions\Model\ReadOneAction;
 use LCSEngine\Actions\Model\ReadRelationOptionsAction;
 use LCSEngine\Actions\Model\UpdateAction;
 use LCSEngine\Exceptions\InvalidArgumentException;
@@ -119,7 +118,6 @@ class ActionOrchestrator
             '_create' => CreateAction::class,
             '_update' => UpdateAction::class,
             '_delete' => DeleteAction::class,
-            '_read_one' => ReadOneAction::class,
             '_aggregate' => AggregateAction::class,
             default => throw new InvalidArgumentException("Unsupported action: {$actionName}")
         };

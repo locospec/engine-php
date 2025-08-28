@@ -65,6 +65,11 @@ class Validator
         return $this->message;
     }
 
+    public function hasMessage(): bool
+    {
+        return ! is_null($this->message);
+    }
+
     public function getOperations(): Collection
     {
         return $this->operations;

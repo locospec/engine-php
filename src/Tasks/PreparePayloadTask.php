@@ -68,7 +68,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
             case '_delete':
                 $deletePayloadBuilder = new DeletePayloadBuilder($this->context);
-                $preparedPayload = $deletePayloadBuilder->build($payload, $this->operator)->toArray();
+                $deletePayload = $deletePayloadBuilder->build($payload, $this->operator)->toArray();
+                $preparedPayload = $deletePayload['cascadePayloads'];
                 break;
 
             case '_read':
@@ -79,14 +80,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
             case '_aggregate':
                 $aggregatePayloadBuilder = new AggregatePayloadBuilder($this->context);
                 $preparedPayload = $aggregatePayloadBuilder->build($payload)->toArray();
-                break;
-
-            case '_read_one':
-                $preparedPayload = $this->preparePayloadForReadOne($payload);
-                break;
-
-            case '_config':
-                $preparedPayload = $this->preparePayloadForReadOne($payload);
                 break;
 
             case '_read_relation_options':

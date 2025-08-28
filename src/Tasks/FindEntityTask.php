@@ -24,6 +24,7 @@ class FindEntityTask extends AbstractTask implements TaskInterface
     {
         $queryPayload = $taskArgs;
         $queryPayload['type'] = 'select';
+        $queryPayload['purpose'] = 'read';
         $queryContext = $input['payload'];
 
         // Initialize DB Operator Collection
