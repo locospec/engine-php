@@ -372,7 +372,7 @@ class DatabaseOperationsCollection
             $dbOpResults = [];
 
             foreach ($this->operations as $operation) {
-                $this->logger->notice('Executing operation', [
+                $this->logger->info('Executing operation', [
                     'type' => 'dbOps',
                     'modelName' => $operation['modelName'],
                     'connection' => $operation['connection'],
@@ -390,7 +390,7 @@ class DatabaseOperationsCollection
                 $dbOpResult = $execOperator->run([$operation]);
 
                 if (isset($operation['purpose']) && ($operation['purpose'] == 'read')) {
-                    $this->logger->notice(
+                    $this->logger->info(
                         'DB Query',
                         [
                             'query' => $dbOpResult[0]['raw_sql'],

@@ -145,7 +145,7 @@ class RelationshipResolver
                 'attributes' => [$relatedModelKey],
             ];
 
-            $this->logger->info('Relationship resolver', [
+            $this->logger->notice('Relationship resolver', [
                 'type' => 'relationshipResolver',
                 'operation' => 'singleRelationship',
                 'selectOp' => $selectOp,
@@ -153,6 +153,12 @@ class RelationshipResolver
 
             $results = $this->dbOps->add($selectOp)->execute();
             $matchingIds = array_column($results[0]['result'], $relatedModelKey);
+
+            $this->logger->notice('Relationship resolver', [
+                'type' => 'relationshipResolver',
+                'operation' => 'singleRelationship',
+                'matchingIds' => $matchingIds,
+            ]);
 
             // Return condition on main model's foreign key
             return new Condition(

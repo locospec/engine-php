@@ -48,11 +48,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
     public function execute(array $payload, array $taskArgs = []): array
     {
         $preparedPayload = [];
-        // Move user permissions from global context to a dedicated key for locospec.
-        if (isset($payload['globalContext']['userPermissions'])) {
-            $payload['locospecPermissions']['userPermissions'] = $payload['globalContext']['userPermissions'];
-            unset($payload['globalContext']['userPermissions']);
-        }
 
         // Determine the appropriate payload preparation method based on the action from the context.
         switch ($this->context->get('action')) {
@@ -162,45 +157,6 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
                 }
             }
             $preparedPayload['scopes'] = $scopes;
-        }
-
-        return $preparedPayload;
-    }
-
-    /**
-     * Prepares the payload for reading a single record by its primary key.
-     *
-     * @param  array  $payload  The incoming payload containing the primary key.
-     * @return array The prepared payload for the read_one operation.
-     */
-    public function preparePayloadForReadOne(array $payload): array
-    {
-        $preparedPayload = [];
-        // Ensure a primary key is provided before preparing the payload.
-        if (isset($payload['primaryKey']) && ! empty($payload['primaryKey'])) {
-            $preparedPayload = [
-                'type' => 'select',
-                'purpose' => 'read_one',
-                'modelName' => $this->context->get('model')->getName(),
-            ];
-
-            // Handle relationship expansion, using payload's expand if present, otherwise expand all relationships.
-            if (isset($payload['expand']) && ! empty($payload['expand'])) {
-                $preparedPayload['expand'] = $payload['expand'];
-            } else {
-                $preparedPayload['expand'] = $this->context->get('query')->getExpand()->toArray();
-            }
-
-            $preparedPayload['filters'] = [
-                'op' => 'and',
-                'conditions' => [
-                    [
-                        'attribute' => $this->context->get('model')->getPrimaryKey()->getName(),
-                        'op' => 'is',
-                        'value' => $payload['primaryKey'],
-                    ],
-                ],
-            ];
         }
 
         return $preparedPayload;

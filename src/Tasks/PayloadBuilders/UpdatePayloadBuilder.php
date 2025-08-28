@@ -34,7 +34,8 @@ class UpdatePayloadBuilder
             $updatePayload->filters = Filters::fromArray($payload['filters'])->toArray();
         } else {
             $primaryKey = $model->getPrimaryKey()->getName();
-            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $payload[$primaryKey]));
+            $updatePayload->setData($primaryKey, $payload['primary_key']);
+            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $payload['primary_key']));
             $filters = new Filters($group);
             $updatePayload->filters = $filters->toArray();
         }
