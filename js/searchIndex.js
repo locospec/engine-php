@@ -7046,11 +7046,6 @@ Search.appendIndex(
             "summary": "Prepares\u0020the\u0020payload\u0020for\u0020reading\u0020relationship\u0020options,\u0020typically\u0020for\u0020UI\u0020elements\u0020like\u0020dropdowns.",
             "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOptions"
         },                {
-            "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003ApreparePayloadForReadOne\u0028\u0029",
-            "name": "preparePayloadForReadOne",
-            "summary": "Prepares\u0020the\u0020payload\u0020for\u0020reading\u0020a\u0020single\u0020record\u0020by\u0020its\u0020primary\u0020key.",
-            "url": "classes/LCSEngine-Tasks-PreparePayloadTask.html#method_preparePayloadForReadOne"
-        },                {
             "fqsen": "\\LCSEngine\\Tasks\\PreparePayloadTask\u003A\u003A\u0024context",
             "name": "context",
             "summary": "",
