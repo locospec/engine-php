@@ -26,6 +26,7 @@ class GenerateConfigTask extends AbstractTask implements TaskInterface
 
         if (isset($mutator)) {
             $result = $mutator->toArray();
+            $result['primaryKey'] = $model->getPrimaryKey()->getName();
 
             return ['data' => $result];
         } else {

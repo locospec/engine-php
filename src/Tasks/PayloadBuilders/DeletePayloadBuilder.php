@@ -27,7 +27,6 @@ class DeletePayloadBuilder
         $model = $this->context->get('model');
         $softDelete = $model->getConfig()->getSoftDelete();
         $primaryKey = $model->getPrimaryKey()->getName();
-
         $registryManager = $this->context->get('lcs')->getRegistryManager();
         $dbOps = new DatabaseOperationsCollection($operator);
         $dbOps->setRegistryManager($registryManager);
@@ -39,7 +38,7 @@ class DeletePayloadBuilder
             $deletePayload->filters = Filters::fromArray($payload['filters'])->toArray();
         } else {
             $primaryKey = $model->getPrimaryKey()->getName();
-            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $payload[$primaryKey]));
+            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $payload['primary_key']));
             $filters = new Filters($group);
             $deletePayload->filters = $filters->toArray();
         }
@@ -51,10 +50,8 @@ class DeletePayloadBuilder
         }
 
         // Prepare payloads for any cascade delete operations.
-        $cascadePayloads = $this->prepareCascadeDeletePayloads($registryManager, $model->getName(), [$payload['primary_key']], $dbOps, [], $operator);
-
+        $cascadePayloads = $this->prepareCascadeDeletePayloads($registryManager, $model->getName(), [$payload['primary_key']], $dbOps, $operator);
         $preparedPayload = array_merge([$deletePayload->toArray()], $cascadePayloads);
-
         $deletePayload->setCascadePayloads($preparedPayload);
 
         return $deletePayload;
@@ -65,8 +62,8 @@ class DeletePayloadBuilder
         string $sourceModelName,
         array $sourceIds,
         $dbOps,
-        array &$cascadePayloads,
         $operator,
+        array &$cascadePayloads = [],
     ): array {
         $sourceModel = $registryManager->get('model', $sourceModelName);
         // Get all 'has_many' relationships to identify records for cascade deletion.
@@ -98,11 +95,11 @@ class DeletePayloadBuilder
             $nestedHasManyRelationships = $targetModel->getRelationshipsByType('has_many');
 
             // If target model has its own has_many relationships, recurse
-            if (! empty($nestedHasManyRelationships)) {
+            if ($nestedHasManyRelationships->isNotEmpty()) {
                 $relatedIds = $this->getRelatedModelIds($targetModelName, $targetModelForeignKey, $sourceIds, $targetModelLocalKey, $dbOps, $operator);
 
                 if (! empty($relatedIds)) {
-                    $this->prepareCascadeDeletePayloads($registryManager, $targetModelName, $relatedIds, $dbOps, $cascadePayloads, $operator);
+                    $this->prepareCascadeDeletePayloads($registryManager, $targetModelName, $relatedIds, $dbOps, $operator, $cascadePayloads);
                 }
             }
         }

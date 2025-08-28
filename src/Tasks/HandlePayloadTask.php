@@ -45,7 +45,12 @@ class HandlePayloadTask extends AbstractTask implements TaskInterface
         // Set registry manager
         $dbOps->setRegistryManager($this->context->get('lcs')->getRegistryManager());
 
-        $dbOps->add($input['preparedPayload']);
+        // For cascade delete we might get number of operation
+        if (is_array($input['preparedPayload']) && array_is_list($input['preparedPayload'])) {
+            $dbOps->addMany($input['preparedPayload']);
+        } else {
+            $dbOps->add($input['preparedPayload']);
+        }
 
         $response = $dbOps->execute($this->operator);
 

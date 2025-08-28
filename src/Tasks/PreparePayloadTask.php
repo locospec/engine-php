@@ -68,7 +68,8 @@ class PreparePayloadTask extends AbstractTask implements TaskInterface
 
             case '_delete':
                 $deletePayloadBuilder = new DeletePayloadBuilder($this->context);
-                $preparedPayload = $deletePayloadBuilder->build($payload, $this->operator)->toArray();
+                $deletePayload = $deletePayloadBuilder->build($payload, $this->operator)->toArray();
+                $preparedPayload = $deletePayload['cascadePayloads'];
                 break;
 
             case '_read':
