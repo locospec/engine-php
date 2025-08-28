@@ -77,24 +77,13 @@ class ValidateTask extends AbstractTask implements TaskInterface
 
             // Ensure "data" is an array of records
             $records = $payload['data'] ?? [];
+            $result = $validator->validate($records, $attributes, $options);
 
-            // Validate each record individually using the attributes.
-            if (is_array($records) && isset($records[0])) {
-                foreach ($records as $index => $record) {
-                    $result = $validator->validate($record, $attributes, $options);
-                    // If the validator returns errors (not true), capture them.
-                    if ($result !== true) {
-                        $errors[$index] = $result;
-                    }
-                }
-            } else {
-                $result = $validator->validate($records, $attributes, $options);
-
-                // If the validator returns errors (not true), capture them.
-                if ($result !== true) {
-                    $errors = $result;
-                }
+            // If the validator returns errors (not true), capture them.
+            if ($result !== true) {
+                $errors = $result;
             }
+
             // Return validation errors if any
             if (! empty($errors)) {
                 if (is_array($errors) && isset($errors[0])) {

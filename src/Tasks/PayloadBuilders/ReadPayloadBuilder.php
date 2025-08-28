@@ -90,7 +90,11 @@ class ReadPayloadBuilder
                     $aliasSource = $tableName.'.'.$aliasSource;
                 }
 
-                $attributes[] = $aliasSource.' AS '.$attributeName;
+                // Debugging for aliases
+                if (! str_contains($aliasSource, '.')) {
+                    $attributes[] = $aliasSource.' AS '.$attributeName;
+                }
+
             }
             // For normal attributes, just use the table-qualified name
             else {
@@ -111,7 +115,7 @@ class ReadPayloadBuilder
 
         // Log attributes after preparation
         $logger = LCS::getLogger();
-        $logger->info('Attributes prepared for read payload', [
+        $logger->notice('Attributes prepared for read payload', [
             'type' => 'readPayloadBuilder',
             'modelName' => $model->getName(),
             'tableName' => $tableName,
