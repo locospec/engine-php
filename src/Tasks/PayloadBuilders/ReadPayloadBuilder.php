@@ -59,6 +59,7 @@ class ReadPayloadBuilder
         foreach ($queryAttributes as $attribute) {
 
             // if the attribute dependsOn some other attribute
+            // TODO: Do this only for transformKey
             if ($attribute->getDepAttributes()->isNotEmpty()) {
                 $dependOnAttributes = $attribute->getDepAttributes()->all();
                 if (! in_array($dependOnAttributes, $attributes)) {
@@ -94,7 +95,6 @@ class ReadPayloadBuilder
                 if (! str_contains($aliasSource, '.')) {
                     $attributes[] = $aliasSource.' AS '.$attributeName;
                 }
-
             }
             // For normal attributes, just use the table-qualified name
             else {
@@ -186,12 +186,20 @@ class ReadPayloadBuilder
                 // Get the registry manager
                 $registryManager = $this->context->get('lcs')->getRegistryManager();
 
+                $joinedRelationshipPath = implode('.', $resolvedSource['relationshipPath']);
+                $relationshipJoins = $model->getJoinsTo($joinedRelationshipPath, $registryManager);
+
                 // Get the target table name
-                $targetTableName = $this->getTargetTableNameFromPath($resolvedSource['relationshipPath'], $model, $registryManager);
+                // $targetTableName = $this->getTargetTableNameFromPath($resolvedSource['relationshipPath'], $model, $registryManager);
+
+                $targetTableName = $relationshipJoins[count($relationshipJoins) - 1]['table'];
                 $tableQualifiedAttribute = $targetTableName.'.'.$resolvedSource['finalAttribute'];
 
                 // Extract relationship path and build JOINs
-                $relationshipJoins = $this->buildJoinsForRelationshipPath($resolvedSource['relationshipPath'], $model, $registryManager, $relationshipsJoined);
+                // $relationshipJoins = $this->buildJoinsForRelationshipPath($resolvedSource['relationshipPath'], $model, $registryManager, $relationshipsJoined);
+
+                // dd($resolvedSource, $relationshipJoins, $joinedRelationshipPath, $model->getJoinsTo($joinedRelationshipPath, $registryManager));
+
                 $joins = array_merge($joins, $relationshipJoins);
 
                 // Transform sort attribute to use actual table.column

@@ -371,4 +371,28 @@ class SpecificationProcessor
             throw $e;
         }
     }
+
+    /**
+     * Build a simple join map after all relationships are processed.
+     * This creates a basic lookup table for model-to-model JOINs.
+     */
+    public function buildSimpleJoinMap(): void
+    {
+        try {
+            $this->logger?->info('Building simple join map');
+
+            /** @var \LCSEngine\Registry\ModelRegistry $modelRegistry */
+            $modelRegistry = $this->registryManager->getRegistry('model');
+
+            if ($modelRegistry) {
+                $modelRegistry->buildJoinMap($this->registryManager);
+                $this->logger?->info('Simple join map built successfully');
+            }
+        } catch (\Exception $e) {
+            $this->logger?->error('Error building simple path map', [
+                'error' => $e->getMessage(),
+            ]);
+            throw new InvalidArgumentException('Error building path map: '.$e->getMessage());
+        }
+    }
 }

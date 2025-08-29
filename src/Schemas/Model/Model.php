@@ -113,7 +113,12 @@ class Model
 
     public function getAttribute(string $name): Attribute
     {
-        return $this->attributes->get($name);
+        $attribute = $this->attributes->get($name);
+        if ($attribute === null) {
+            throw new \RuntimeException("Attribute '{$name}' not found in model '{$this->name}'");
+        }
+
+        return $attribute;
     }
 
     public function getAttributes(): Collection
@@ -290,6 +295,19 @@ class Model
      */
     public function getAttributesOnly(): Collection
     {
-        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey() && ! $attribute->isTransformKey());
+        return $this->attributes->filter(fn (Attribute $attribute) => ! $attribute->isAliasKey());
+    }
+
+    /**
+     * Get JOIN structures needed to reach a target via relationship path.
+     * Simple core functionality - just returns the pre-calculated JOINs.
+     *
+     * @param  string  $relationshipPath  e.g., "user", "user.profile", "city.state"
+     */
+    public function getJoinsTo(string $relationshipPath, \LCSEngine\Registry\RegistryManager $registryManager): ?array
+    {
+        $modelRegistry = $registryManager->getRegistry('model');
+
+        return $modelRegistry?->getPathJoins($this->name, $relationshipPath);
     }
 }

@@ -19,6 +19,11 @@ class UpdatePayload
         $this->modelName = $modelName;
     }
 
+    public function getData(string $key): mixed
+    {
+        return $this->data[$key] ?? null;
+    }
+
     public function setData(string $key, mixed $value): void
     {
         $this->data[$key] = $value;

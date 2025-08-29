@@ -92,7 +92,7 @@ class CreateEntityTask extends AbstractTask implements TaskInterface
 
         $defaultGenerator = $registryManager->get('generator', 'default');
         // $attributes = $model->getAttributes()->all();
-        $attributes = $model->getAttributes()->filter(fn ($attribute) => ! ($attribute->isAliasKey() || $attribute->isTransformKey()))->all();
+        $attributes = $model->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
         $dbOps = new DatabaseOperationsCollection($this->operator);
         $dbOps->setRegistryManager($registryManager);
 

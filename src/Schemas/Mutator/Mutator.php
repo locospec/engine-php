@@ -116,7 +116,7 @@ class Mutator
         );
 
         if (! empty($data['attributes']) && is_array($data['attributes'])) {
-            $validAttributeKeys = $model->getAttributes()->keys()->all();
+            $validAttributeKeys = $model->getAttributes()->filter(fn ($a) => ! $a->isAliasKey())->keys()->all();
             foreach ($data['attributes'] as $key => $attributeData) {
                 if (! in_array($key, $validAttributeKeys)) {
                     throw new InvalidArgumentException(
@@ -129,7 +129,9 @@ class Mutator
         } else {
             // Get all attributes from the model
             $model->getAttributes()->each(function ($attribute) use ($mutator) {
-                $mutator->addAttribute($attribute);
+                if (! $attribute->isAliasKey()) {
+                    $mutator->addAttribute($attribute);
+                }
             });
         }
 

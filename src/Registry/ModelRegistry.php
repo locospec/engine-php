@@ -5,11 +5,13 @@ namespace LCSEngine\Registry;
 use LCSEngine\Edge;
 use LCSEngine\Exceptions\InvalidArgumentException;
 use LCSEngine\Graph;
+use LCSEngine\LCS;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
 use LCSEngine\Schemas\Model\Relationships\HasOne;
 use LCSEngine\Schemas\Model\Relationships\Relationship;
+use LCSEngine\Tasks\Traits\PayloadPreparationHelpers;
 use LCSEngine\Vertex;
 
 /**
@@ -21,8 +23,13 @@ use LCSEngine\Vertex;
  */
 class ModelRegistry extends AbstractRegistry
 {
+    use PayloadPreparationHelpers;
+
     /** @var Graph|null The graph representing relationships between models */
     private ?Graph $relationshipGraph = null;
+
+    /** @var array Simple map: [fromModel][toModel] => array of JOIN structures */
+    private array $joinMap = [];
 
     /**
      * Get the registry type identifier.
@@ -130,7 +137,7 @@ class ModelRegistry extends AbstractRegistry
         $edge = new Edge(
             $sourceVertex,
             $targetVertex,
-            $relationship->getType(),
+            $relationship->getType()->value,
             [
                 'relationshipName' => $relationship->getRelationshipName(),
                 'keys' => $this->getRelationshipKeys($relationship),
@@ -180,11 +187,105 @@ class ModelRegistry extends AbstractRegistry
     }
 
     /**
-     * Clear the registry and reset the graph.
+     * Build relationship path discovery map using graph expansion.
+     * For each model, find all reachable relationship paths.
+     */
+    public function buildJoinMap(RegistryManager $registryManager): void
+    {
+        $logger = LCS::getLogger();
+        $this->joinMap = [];
+
+        foreach ($this->items as $fromModelName => $fromModel) {
+            $this->joinMap[$fromModelName] = [];
+
+            // Get expansion graph to find all reachable models through relationships
+            $startVertex = $this->getRelationshipGraph()->getVertex($fromModelName);
+            if (! $startVertex) {
+                continue;
+            }
+
+            $expansionGraph = $this->getExpansionGraph($fromModelName);
+            if (! $expansionGraph) {
+                continue;
+            }
+
+            // Find all paths from this model
+            $paths = $this->extractPathsFromExpansion($expansionGraph, $fromModelName);
+
+            foreach ($paths as $relationshipPath => $_) {
+                $relationshipPathArray = explode('.', $relationshipPath);
+                $relationshipsJoined = [];
+
+                try {
+                    $joins = $this->buildJoinsForRelationshipPath(
+                        $relationshipPathArray,
+                        $fromModel,
+                        $registryManager,
+                        $relationshipsJoined
+                    );
+                    $this->joinMap[$fromModelName][$relationshipPath] = $joins;
+                } catch (\Exception) {
+                    $this->joinMap[$fromModelName][$relationshipPath] = []; // Empty on error
+                }
+            }
+        }
+
+        // dd($this->joinMap);
+
+        // $logger?->notice('joinMap', $this->joinMap);
+    }
+
+    /**
+     * Extract all relationship paths from an expansion graph.
+     * Returns paths in format: ['relationshipPath' => [array of edges]]
+     */
+    private function extractPathsFromExpansion(Graph $expansionGraph, string $startModel): array
+    {
+        $paths = [];
+
+        // Get all vertices in the expansion graph
+        $vertices = $expansionGraph->getVertices();
+
+        foreach ($vertices as $targetVertex) {
+            $targetModelName = $targetVertex->getId();
+            if ($targetModelName === $startModel) {
+                continue;
+            }
+
+            // Find the path from start to this target in the expansion graph
+            $edges = $expansionGraph->findShortestPath($startModel, $targetModelName);
+            if ($edges !== null) {
+                // Build relationship path string
+                $relationshipNames = [];
+                foreach ($edges as $edge) {
+                    $edgeData = $edge->getData();
+                    $relationshipNames[] = $edgeData['relationshipName'] ?? 'unknown';
+                }
+
+                $relationshipPath = implode('.', $relationshipNames);
+                $paths[$relationshipPath] = $edges;
+            }
+        }
+
+        return $paths;
+    }
+
+    /**
+     * Get JOIN structures for a relationship path.
+     * Simple lookup of pre-built JOINs.
+     */
+    public function getPathJoins(string $fromModel, string $relationshipPath): ?array
+    {
+        return $this->joinMap[$fromModel][$relationshipPath] ?? null;
+    }
+
+    /**
+     * Clear the registry and reset the graph and join map.
      */
     public function clear(): void
     {
         parent::clear();
         $this->relationshipGraph = null;
+        $this->joinMap = [];
     }
 }
