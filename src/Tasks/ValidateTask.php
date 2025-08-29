@@ -72,7 +72,7 @@ class ValidateTask extends AbstractTask implements TaskInterface
                 'modelName' => $this->context->get('model')->getName(),
             ];
             $validator = $registryManager->get('validator', 'default');
-            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! ($attribute->isAliasKey() || $attribute->isTransformKey()))->all();
+            $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
             $errors = [];
 
             // Ensure "data" is an array of records

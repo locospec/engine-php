@@ -5,7 +5,6 @@ namespace LCSEngine\Schemas\Model\Aggregates;
 use LCSEngine\LCS;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 
 class AggregateProcessor
@@ -56,7 +55,7 @@ class AggregateProcessor
         $selectColumns = $this->prepareSelectColumns($aggregate, $pathInfo);
 
         // Prepare joins following the existing pattern
-        $joins = $this->prepareJoins($pathInfo);
+        $joins = $this->prepareJoins($allPaths, $pathInfo);
 
         // Prepare groupBy fields with table names
         $groupBy = $this->prepareGroupBy($aggregate, $pathInfo);
@@ -276,10 +275,12 @@ class AggregateProcessor
     /**
      * Prepare joins following the existing pattern
      */
-    private function prepareJoins(array $pathInfo): array
+    private function prepareJoins(array $allPaths, array $pathInfo): array
     {
         $joins = [];
 
+        // Comment out manual join building - use pre-computed joins from joinMap instead
+        /*
         foreach ($pathInfo as $path => $info) {
             $relationship = $info['relationship'];
             $parentModel = $info['parentModel'];
@@ -296,6 +297,18 @@ class AggregateProcessor
                 $parentTableName,  // Use pre-computed table names
                 $relatedTableName
             );
+        }
+        */
+
+        // Use pre-computed joins from the model registry joinMap
+        // allPaths already contains only the maximum paths we need
+        foreach ($allPaths as $path) {
+            // Use pre-computed joins from the model registry
+            $pathJoins = $this->model->getJoinsTo($path, $this->registryManager);
+
+            if ($pathJoins) {
+                $joins = array_merge($joins, $pathJoins);
+            }
         }
 
         return $joins;

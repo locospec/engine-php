@@ -34,13 +34,20 @@ class UpdatePayloadBuilder
             $updatePayload->filters = Filters::fromArray($payload['filters'])->toArray();
         } else {
             $primaryKey = $model->getPrimaryKey()->getName();
-            $updatePayload->setData($primaryKey, $payload['primary_key']);
-            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $payload['primary_key']));
+
+            if (isset($payload[$primaryKey])) {
+                $updatePayload->setData($primaryKey, $payload[$primaryKey]);
+            } else {
+                $updatePayload->setData($primaryKey, $payload['primary_key']);
+            }
+
+            $group = Filters::group(LogicalOperator::AND)->add(Filters::condition($primaryKey, ComparisonOperator::IS, $updatePayload->getData($primaryKey)));
+
             $filters = new Filters($group);
             $updatePayload->filters = $filters->toArray();
         }
 
-        $attributes = $this->context->get('mutator')->getAttributes()->filter(fn ($attribute) => ! $attribute->isAliasKey())->all();
+        $attributes = $this->context->get('mutator')->getAttributes()->all();
         $dbOps = new DatabaseOperationsCollection($operator);
         $dbOps->setRegistryManager($registryManager);
 

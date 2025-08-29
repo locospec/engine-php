@@ -100,6 +100,10 @@ class LCS
             $specProcessor->processPendingRelationships();
             self::$logger->info('Specification registration finished');
 
+            // Build simple join map after relationships are processed
+            $specProcessor->buildSimpleJoinMap();
+            self::$logger->info('Join map built');
+
             // Process all queries after all models and relationships are registered
             $specProcessor->processAllQuerySpec();
             self::$logger->info('Query registration finished');
