@@ -1741,15 +1741,35 @@ Search.appendIndex(
             "summary": "Get\u0020an\u0020expansion\u0020graph\u0020starting\u0020from\u0020a\u0020specific\u0020model.",
             "url": "classes/LCSEngine-Registry-ModelRegistry.html#method_getExpansionGraph"
         },                {
+            "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003AbuildJoinMap\u0028\u0029",
+            "name": "buildJoinMap",
+            "summary": "Build\u0020relationship\u0020path\u0020discovery\u0020map\u0020using\u0020graph\u0020expansion.",
+            "url": "classes/LCSEngine-Registry-ModelRegistry.html#method_buildJoinMap"
+        },                {
+            "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003AextractPathsFromExpansion\u0028\u0029",
+            "name": "extractPathsFromExpansion",
+            "summary": "Extract\u0020all\u0020relationship\u0020paths\u0020from\u0020an\u0020expansion\u0020graph.",
+            "url": "classes/LCSEngine-Registry-ModelRegistry.html#method_extractPathsFromExpansion"
+        },                {
+            "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003AgetPathJoins\u0028\u0029",
+            "name": "getPathJoins",
+            "summary": "Get\u0020JOIN\u0020structures\u0020for\u0020a\u0020relationship\u0020path.",
+            "url": "classes/LCSEngine-Registry-ModelRegistry.html#method_getPathJoins"
+        },                {
             "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003Aclear\u0028\u0029",
             "name": "clear",
-            "summary": "Clear\u0020the\u0020registry\u0020and\u0020reset\u0020the\u0020graph.",
+            "summary": "Clear\u0020the\u0020registry\u0020and\u0020reset\u0020the\u0020graph\u0020and\u0020join\u0020map.",
             "url": "classes/LCSEngine-Registry-ModelRegistry.html#method_clear"
         },                {
             "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003A\u0024relationshipGraph",
             "name": "relationshipGraph",
             "summary": "",
             "url": "classes/LCSEngine-Registry-ModelRegistry.html#property_relationshipGraph"
+        },                {
+            "fqsen": "\\LCSEngine\\Registry\\ModelRegistry\u003A\u003A\u0024joinMap",
+            "name": "joinMap",
+            "summary": "",
+            "url": "classes/LCSEngine-Registry-ModelRegistry.html#property_joinMap"
         },                {
             "fqsen": "\\LCSEngine\\Registry\\MutatorRegistry",
             "name": "MutatorRegistry",
@@ -4301,6 +4321,11 @@ Search.appendIndex(
             "summary": "Get\u0020attributes\u0020that\u0020are\u0020not\u0020alias\u0020keys\u0020or\u0020transform\u0020keys",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getAttributesOnly"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetJoinsTo\u0028\u0029",
+            "name": "getJoinsTo",
+            "summary": "Get\u0020JOIN\u0020structures\u0020needed\u0020to\u0020reach\u0020a\u0020target\u0020via\u0020relationship\u0020path.",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getJoinsTo"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024name",
             "name": "name",
             "summary": "",
@@ -5811,6 +5836,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_processMutatorSpec"
         },                {
+            "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003AbuildSimpleJoinMap\u0028\u0029",
+            "name": "buildSimpleJoinMap",
+            "summary": "Build\u0020a\u0020simple\u0020join\u0020map\u0020after\u0020all\u0020relationships\u0020are\u0020processed.",
+            "url": "classes/LCSEngine-Specifications-SpecificationProcessor.html#method_buildSimpleJoinMap"
+        },                {
             "fqsen": "\\LCSEngine\\Specifications\\SpecificationProcessor\u003A\u003A\u0024registryManager",
             "name": "registryManager",
             "summary": "",
@@ -6690,6 +6720,11 @@ Search.appendIndex(
             "name": "__construct",
             "summary": "",
             "url": "classes/LCSEngine-Tasks-DTOs-UpdatePayload.html#method___construct"
+        },                {
+            "fqsen": "\\LCSEngine\\Tasks\\DTOs\\UpdatePayload\u003A\u003AgetData\u0028\u0029",
+            "name": "getData",
+            "summary": "",
+            "url": "classes/LCSEngine-Tasks-DTOs-UpdatePayload.html#method_getData"
         },                {
             "fqsen": "\\LCSEngine\\Tasks\\DTOs\\UpdatePayload\u003A\u003AsetData\u0028\u0029",
             "name": "setData",
