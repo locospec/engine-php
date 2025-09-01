@@ -115,7 +115,7 @@ class ReadPayloadBuilder
 
         // Log attributes after preparation
         $logger = LCS::getLogger();
-        $logger->notice('Attributes prepared for read payload', [
+        $logger->info('Attributes prepared for read payload', [
             'type' => 'readPayloadBuilder',
             'modelName' => $model->getName(),
             'tableName' => $tableName,

@@ -5,7 +5,6 @@ namespace LCSEngine\Schemas\Common\Filters;
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
@@ -140,10 +139,21 @@ trait RelationshipExpanderWithJoinsTrait
 
         // Generate JOINs for each path in the group
         foreach ($group as $path) {
+            // Get ALL joins for this complete path at once
+            $pathJoins = $this->model->getJoinsTo($path, $this->registryManager);
+            
+            if ($pathJoins) {
+                // Add all joins from this path
+                $joins = array_merge($joins, $pathJoins);
+            }
+            
+            // Still need to traverse the path to collect attributes and track relationships
             $parts = explode('.', $path);
             $currentModel = $this->model;
             $currentTableName = $this->model->getTableName();
             $pathSoFar = '';
+
+            // dd($parts, $path);
 
             foreach ($parts as $relationshipName) {
                 // Build path incrementally
@@ -164,13 +174,7 @@ trait RelationshipExpanderWithJoinsTrait
                 $relatedTableName = $relatedModel->getTableName();
                 $tableNames[$pathSoFar] = $relatedTableName;
 
-                // Build complete join using utility
-                $joins[] = JoinColumnHelper::buildJoin(
-                    $relationship,
-                    $currentModel,
-                    $relatedModel,
-                    'left'  // LEFT JOIN for optional expansion
-                );
+                // NO MORE MANUAL JOIN BUILDING - already got joins using getJoinsTo above
 
                 // Add attributes with SQL aliases for this joined table
                 foreach ($relatedModel->getAttributesOnly() as $attr) {
