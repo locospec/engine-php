@@ -169,13 +169,13 @@ class RelationshipResolver
 
         // MULTIPLE RELATIONSHIPS: Need JOINs to traverse the chain
         // Example: "locality.city.state.name = 'California'"
-        
+
         // Convert relationship path array to dot notation for getJoinsTo
         $relationshipPathString = implode('.', $relationshipPath);
-        
+
         // Get all joins for this path at once using getJoinsTo
         $joins = $this->model->getJoinsTo($relationshipPathString, $this->registryManager) ?? [];
-        
+
         // Get the final model in the chain - we need it for the table name in the WHERE clause
         // We'll traverse the path to get to the final model
         $currentModel = $this->model;

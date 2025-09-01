@@ -373,7 +373,7 @@ class DatabaseOperationsCollection
 
             foreach ($this->operations as $operation) {
                 // Remove duplicate joins if they exist
-                if (!empty($operation['joins'])) {
+                if (! empty($operation['joins'])) {
                     $operation['joins'] = $this->removeDuplicateJoins($operation['joins']);
                 }
 
@@ -573,7 +573,7 @@ class DatabaseOperationsCollection
      * Remove duplicate table joins from an array of joins.
      * Keeps the first occurrence of each table.
      *
-     * @param array $joins Array of join configurations
+     * @param  array  $joins  Array of join configurations
      * @return array Array with duplicate table joins removed
      */
     private function removeDuplicateJoins(array $joins): array
@@ -583,7 +583,7 @@ class DatabaseOperationsCollection
 
         foreach ($joins as $join) {
             // Check if this table has already been joined
-            if (isset($join['table']) && !in_array($join['table'], $seenTables, true)) {
+            if (isset($join['table']) && ! in_array($join['table'], $seenTables, true)) {
                 $seenTables[] = $join['table'];
                 $uniqueJoins[] = $join;
             }
