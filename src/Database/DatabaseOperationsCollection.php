@@ -372,7 +372,12 @@ class DatabaseOperationsCollection
             $dbOpResults = [];
 
             foreach ($this->operations as $operation) {
-                $this->logger->info('Executing operation', [
+                // Remove duplicate joins if they exist
+                if (!empty($operation['joins'])) {
+                    $operation['joins'] = $this->removeDuplicateJoins($operation['joins']);
+                }
+
+                $this->logger->notice('Executing operation', [
                     'type' => 'dbOps',
                     'modelName' => $operation['modelName'],
                     'connection' => $operation['connection'],
@@ -562,5 +567,28 @@ class DatabaseOperationsCollection
             ]);
             throw $e;
         }
+    }
+
+    /**
+     * Remove duplicate table joins from an array of joins.
+     * Keeps the first occurrence of each table.
+     *
+     * @param array $joins Array of join configurations
+     * @return array Array with duplicate table joins removed
+     */
+    private function removeDuplicateJoins(array $joins): array
+    {
+        $seenTables = [];
+        $uniqueJoins = [];
+
+        foreach ($joins as $join) {
+            // Check if this table has already been joined
+            if (isset($join['table']) && !in_array($join['table'], $seenTables, true)) {
+                $seenTables[] = $join['table'];
+                $uniqueJoins[] = $join;
+            }
+        }
+
+        return $uniqueJoins;
     }
 }

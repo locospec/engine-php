@@ -5,7 +5,6 @@ namespace LCSEngine\Schemas\Common\Filters;
 use LCSEngine\Database\DatabaseOperationsCollection;
 use LCSEngine\Logger;
 use LCSEngine\Registry\RegistryManager;
-use LCSEngine\Schemas\Common\JoinColumnHelper;
 use LCSEngine\Schemas\Model\Model;
 use LCSEngine\Schemas\Model\Relationships\BelongsTo;
 use LCSEngine\Schemas\Model\Relationships\HasMany;
@@ -170,45 +169,19 @@ class RelationshipResolver
 
         // MULTIPLE RELATIONSHIPS: Need JOINs to traverse the chain
         // Example: "locality.city.state.name = 'California'"
-        $joins = [];
-        $currentModel = $this->model;  // Start with main model
-
+        
+        // Convert relationship path array to dot notation for getJoinsTo
+        $relationshipPathString = implode('.', $relationshipPath);
+        
+        // Get all joins for this path at once using getJoinsTo
+        $joins = $this->model->getJoinsTo($relationshipPathString, $this->registryManager) ?? [];
+        
+        // Get the final model in the chain - we need it for the table name in the WHERE clause
+        // We'll traverse the path to get to the final model
+        $currentModel = $this->model;
         foreach ($relationshipPath as $relationshipName) {
             $relationship = $currentModel->getRelationship($relationshipName);
-            $joinModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
-
-            // Determine JOIN columns based on relationship type
-            //
-            // Example path: "locality.city.state.name = 'California'"
-            // We need to JOIN: properties -> localities -> cities -> states
-            //
-            // Iteration 1: currentModel = properties, joinModel = localities
-            // - Relationship: Properties BelongsTo Locality
-            // - currentModelColumn = 'locality_id' (foreign key in properties)
-            // - joinModelColumn = 'id' (primary key in localities)
-            // - JOIN: properties JOIN localities ON properties.locality_id = localities.id
-            //
-            // Iteration 2: currentModel = localities, joinModel = cities
-            // - Relationship: Locality BelongsTo City
-            // - currentModelColumn = 'city_id' (foreign key in localities)
-            // - joinModelColumn = 'id' (primary key in cities)
-            // - JOIN: localities JOIN cities ON localities.city_id = cities.id
-            //
-            // For HasMany example: "posts.comments.content = 'Great!'"
-            // - Relationship: User HasMany Posts
-            // - currentModelColumn = 'id' (primary key in users)
-            // - joinModelColumn = 'user_id' (foreign key in posts)
-            // - JOIN: users JOIN posts ON users.id = posts.user_id
-            //
-            // The pattern: We always join on the relationship's defined keys
-            // - BelongsTo: current's foreign key = join's primary key
-            // - HasMany: current's primary key = join's foreign key
-
-            // Build complete join using utility
-            $joins[] = JoinColumnHelper::buildJoin($relationship, $currentModel, $joinModel, 'inner');
-
-            // Move to next model in chain
-            $currentModel = $joinModel;
+            $currentModel = $this->registryManager->get('model', $relationship->getRelatedModelName());
         }
 
         // Execute query with JOINs
