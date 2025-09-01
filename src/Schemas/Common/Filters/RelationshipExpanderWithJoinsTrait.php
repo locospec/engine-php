@@ -141,12 +141,12 @@ trait RelationshipExpanderWithJoinsTrait
         foreach ($group as $path) {
             // Get ALL joins for this complete path at once
             $pathJoins = $this->model->getJoinsTo($path, $this->registryManager);
-            
+
             if ($pathJoins) {
                 // Add all joins from this path
                 $joins = array_merge($joins, $pathJoins);
             }
-            
+
             // Still need to traverse the path to collect attributes and track relationships
             $parts = explode('.', $path);
             $currentModel = $this->model;
