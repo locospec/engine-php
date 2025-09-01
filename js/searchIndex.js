@@ -366,6 +366,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Database-DatabaseOperationsCollection.html#method_processJsonObjectProperties"
         },                {
+            "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection\u003A\u003AremoveDuplicateJoins\u0028\u0029",
+            "name": "removeDuplicateJoins",
+            "summary": "Remove\u0020duplicate\u0020table\u0020joins\u0020from\u0020an\u0020array\u0020of\u0020joins.",
+            "url": "classes/LCSEngine-Database-DatabaseOperationsCollection.html#method_removeDuplicateJoins"
+        },                {
             "fqsen": "\\LCSEngine\\Database\\DatabaseOperationsCollection\u003A\u003A\u0024operations",
             "name": "operations",
             "summary": "",
