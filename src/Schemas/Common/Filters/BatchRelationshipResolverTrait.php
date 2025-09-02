@@ -206,7 +206,7 @@ trait BatchRelationshipResolverTrait
             $matchingIds = array_column($results[0]['result'], $primaryKey);
 
             return new Condition(
-                $primaryKey,
+                $this->model->getTableName().'.'.$primaryKey,
                 ComparisonOperator::IS_ANY_OF,
                 $matchingIds
             );
@@ -307,7 +307,7 @@ trait BatchRelationshipResolverTrait
         $matchingIds = array_column($results[0]['result'], $primaryKey);
 
         return new Condition(
-            $primaryKey,
+            $this->model->getTableName().'.'.$primaryKey,
             ComparisonOperator::IS_ANY_OF,
             $matchingIds
         );

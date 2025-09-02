@@ -144,7 +144,7 @@ class RelationshipResolver
                 'attributes' => [$relatedModelKey],
             ];
 
-            $this->logger->notice('Relationship resolver', [
+            $this->logger->info('Relationship resolver', [
                 'type' => 'relationshipResolver',
                 'operation' => 'singleRelationship',
                 'selectOp' => $selectOp,
@@ -153,7 +153,7 @@ class RelationshipResolver
             $results = $this->dbOps->add($selectOp)->execute();
             $matchingIds = array_column($results[0]['result'], $relatedModelKey);
 
-            $this->logger->notice('Relationship resolver', [
+            $this->logger->info('Relationship resolver', [
                 'type' => 'relationshipResolver',
                 'operation' => 'singleRelationship',
                 'matchingIds' => $matchingIds,
@@ -161,7 +161,7 @@ class RelationshipResolver
 
             // Return condition on main model's foreign key
             return new Condition(
-                $mainModelKey,
+                $this->model->getTableName().'.'.$mainModelKey,
                 ComparisonOperator::IS_ANY_OF,
                 $matchingIds
             );
@@ -217,7 +217,7 @@ class RelationshipResolver
             'attributes' => [$this->model->getTableName().'.'.$mainModelKey],
         ];
 
-        $this->logger->notice('Relationship resolver', [
+        $this->logger->info('Relationship resolver', [
             'type' => 'relationshipResolver',
             'operation' => 'multipleRelationships',
             'selectOp' => $selectOp,
@@ -228,7 +228,7 @@ class RelationshipResolver
 
         // Return condition on main model's key
         return new Condition(
-            $mainModelKey,
+            $this->model->getTableName().'.'.$mainModelKey,
             ComparisonOperator::IS_ANY_OF,
             $matchingKeys
         );

@@ -23,6 +23,7 @@ class ReadPayloadBuilder
     {
         $model = $this->context->get('model');
         $readPayload = new ReadPayload($model->getName());
+        $registryManager = $this->context->get('lcs')->getRegistryManager();
 
         $tableName = $model->getTableName();
 
@@ -61,17 +62,19 @@ class ReadPayloadBuilder
             // if the attribute dependsOn some other attribute
             // TODO: Do this only for transformKey
             if ($attribute->getDepAttributes()->isNotEmpty()) {
-                $dependOnAttributes = $attribute->getDepAttributes()->all();
-                if (! in_array($dependOnAttributes, $attributes)) {
-                    $attributes = array_merge($attributes, $dependOnAttributes);
+                // Loop through each dependent attribute and qualify it
+                foreach ($attribute->getDepAttributes()->all() as $depAttributeName) {
+                    // Get qualified name for the dependent attribute
+                    $depAttributeInfo = $model->getQualifiedAttributeName($depAttributeName, $registryManager);
+                    $attributes[] = $depAttributeInfo['qualified'];
                 }
             }
 
             // if the attribute dependsOn some other relationship
             if ($attribute->getDepRelationships()->isNotEmpty()) {
-                $dependOnRelationships = $attribute->getDepRelationships()->all();
-                if (! in_array($dependOnRelationships, $attributes)) {
-                    $expand = array_merge($expand, $dependOnRelationships);
+                // Loop through each dependent relationship
+                foreach ($attribute->getDepRelationships()->all() as $depRelationship) {
+                    $expand[] = $depRelationship;
                 }
             }
 
@@ -82,23 +85,14 @@ class ReadPayloadBuilder
 
             $attributeName = $attribute->getName();
 
-            // For alias attributes with source, use the source
-            if ($attribute->isAliasKey() && $attribute->hasAliasSource()) {
-                $aliasSource = $attribute->getAliasSource();
+            // Use the centralized qualification logic
+            $attributeInfo = $model->getQualifiedAttributeName($attributeName, $registryManager);
 
-                // Only add table qualification if it's a simple column name (not a SQL expression)
-                if ($this->shouldPrefixTableName($aliasSource)) {
-                    $aliasSource = $tableName.'.'.$aliasSource;
-                }
-
-                // Debugging for aliases
-                if (! str_contains($aliasSource, '.')) {
-                    $attributes[] = $aliasSource.' AS '.$attributeName;
-                }
-            }
-            // For normal attributes, just use the table-qualified name
-            else {
-                $attributes[] = $tableName.'.'.$attributeName;
+            // For alias attributes, add AS clause
+            if ($attributeInfo['isAlias']) {
+                $attributes[] = $attributeInfo['qualified'].' AS '.$attributeName;
+            } else {
+                $attributes[] = $attributeInfo['qualified'];
             }
         }
 
@@ -110,12 +104,13 @@ class ReadPayloadBuilder
 
         // Only set attributes if we have any
         if (! empty($attributes)) {
-            $readPayload->attributes = $attributes;
+            // Remove duplicate attributes
+            $readPayload->attributes = array_values(array_unique($attributes));
         }
 
         // Log attributes after preparation
         $logger = LCS::getLogger();
-        $logger->info('Attributes prepared for read payload', [
+        $logger->notice('Attributes prepared for read payload', [
             'type' => 'readPayloadBuilder',
             'modelName' => $model->getName(),
             'tableName' => $tableName,
@@ -138,7 +133,8 @@ class ReadPayloadBuilder
         }
 
         if (! empty($expand)) {
-            $readPayload->expand = $expand;
+            // Remove duplicate relationships
+            $readPayload->expand = array_values(array_unique($expand));
         }
 
         return $readPayload;
@@ -158,6 +154,7 @@ class ReadPayloadBuilder
         $logger = LCS::getLogger();
         $model = $this->context->get('model');
         $query = $this->context->get('query');
+        $registryManager = $this->context->get('lcs')->getRegistryManager();
 
         // Log sorts array before processing
         $logger->info('Processing sorts - before alias resolution', [
@@ -173,37 +170,29 @@ class ReadPayloadBuilder
         foreach ($readPayload->sorts as &$sort) {
             $attributeName = $sort['attribute'];
 
-            // Skip if already table-qualified (like primary key sorts)
-            if (str_contains($attributeName, '.')) {
+            try {
+                // Use the model's getQualifiedAttributeName to resolve the attribute
+                // This returns comprehensive information about the attribute
+                // It handles all cases: simple attributes, aliases, already qualified, and relationships
+                $attributeInfo = $model->getQualifiedAttributeName($attributeName, $registryManager);
+
+                if (! $attributeInfo['isSqlExpression']) {
+                    // Update sort attribute with qualified name
+                    $sort['attribute'] = $attributeInfo['qualified'];
+                }
+
+                // If this involves a relationship, we need to add joins
+                if ($attributeInfo['isRelationship'] && $attributeInfo['relationshipPath']) {
+                    // Get joins for the relationship path
+                    $relationshipJoins = $model->getJoinsTo($attributeInfo['relationshipPath'], $registryManager);
+                    if ($relationshipJoins) {
+                        $joins = array_merge($joins, $relationshipJoins);
+                    }
+                }
+            } catch (\InvalidArgumentException $e) {
+                // If attribute doesn't exist in model, skip it
+                // This shouldn't happen with valid queries, but we handle it gracefully
                 continue;
-            }
-
-            // Try to resolve alias attribute to relationship source
-            $queryAttributes = $query->getAttributes()->all();
-            $resolvedSource = $this->resolveAliasToRelationshipSource($attributeName, $queryAttributes);
-
-            if ($resolvedSource) {
-                // Get the registry manager
-                $registryManager = $this->context->get('lcs')->getRegistryManager();
-
-                $joinedRelationshipPath = implode('.', $resolvedSource['relationshipPath']);
-                $relationshipJoins = $model->getJoinsTo($joinedRelationshipPath, $registryManager);
-
-                // Get the target table name
-                // $targetTableName = $this->getTargetTableNameFromPath($resolvedSource['relationshipPath'], $model, $registryManager);
-
-                $targetTableName = $relationshipJoins[count($relationshipJoins) - 1]['table'];
-                $tableQualifiedAttribute = $targetTableName.'.'.$resolvedSource['finalAttribute'];
-
-                // Extract relationship path and build JOINs
-                // $relationshipJoins = $this->buildJoinsForRelationshipPath($resolvedSource['relationshipPath'], $model, $registryManager, $relationshipsJoined);
-
-                // dd($resolvedSource, $relationshipJoins, $joinedRelationshipPath, $model->getJoinsTo($joinedRelationshipPath, $registryManager));
-
-                $joins = array_merge($joins, $relationshipJoins);
-
-                // Transform sort attribute to use actual table.column
-                $sort['attribute'] = $tableQualifiedAttribute;
             }
         }
 
