@@ -66,6 +66,15 @@ class ReadPayloadBuilder
                 foreach ($attribute->getDepAttributes()->all() as $depAttributeName) {
                     // Get qualified name for the dependent attribute
                     $depAttributeInfo = $model->getQualifiedAttributeName($depAttributeName, $registryManager);
+
+                    if ($depAttributeInfo['isRelationship'] && $depAttributeInfo['relationshipPath']) {
+                        // Get joins for the relationship path
+                        $relationshipJoins = $model->getJoinsTo($depAttributeInfo['relationshipPath'], $registryManager);
+                        if ($relationshipJoins) {
+                            $readPayload->joins = array_merge($readPayload->joins, $relationshipJoins);
+                        }
+                    }
+
                     $attributes[] = $depAttributeInfo['qualified'];
                 }
             }
@@ -116,15 +125,6 @@ class ReadPayloadBuilder
             $readPayload->attributes = array_values(array_unique($attributes));
         }
 
-        // Log attributes after preparation
-        $logger = LCS::getLogger();
-        $logger->notice('Attributes prepared for read payload', [
-            'type' => 'readPayloadBuilder',
-            'modelName' => $model->getName(),
-            'tableName' => $tableName,
-            'attributes' => $attributes,
-        ]);
-
         // Handle relationship expansion, using payload's expand if present, otherwise default from query.
         if (isset($payload['expand']) && ! empty($payload['expand'])) {
             $expand = array_merge($expand, $payload['expand']);
@@ -144,6 +144,15 @@ class ReadPayloadBuilder
             // Remove duplicate relationships
             $readPayload->expand = array_values(array_unique($expand));
         }
+
+        $logger = LCS::getLogger();
+        $logger->notice('Attributes prepared for read payload', [
+            'type' => 'readPayloadBuilder',
+            'modelName' => $model->getName(),
+            'tableName' => $tableName,
+            'attributes' => $attributes,
+            'readPayload' => $readPayload->toArray(),
+        ]);
 
         return $readPayload;
     }
