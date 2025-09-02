@@ -317,12 +317,13 @@ class Model
      * @param  string  $attributeName  The attribute name to qualify
      * @param  RegistryManager  $registryManager  Registry manager to resolve models
      * @return array Array containing:
-     *   - 'original' => original attribute name
-     *   - 'qualified' => fully qualified attribute name
-     *   - 'isAlias' => whether this is an alias attribute
-     *   - 'isRelationship' => whether this involves a relationship
-     *   - 'relationshipPath' => the relationship path (if isRelationship is true)
-     *   - 'finalAttribute' => the final attribute name (after relationship resolution)
+     *               - 'original' => original attribute name
+     *               - 'qualified' => fully qualified attribute name
+     *               - 'isAlias' => whether this is an alias attribute
+     *               - 'isRelationship' => whether this involves a relationship
+     *               - 'relationshipPath' => the relationship path (if isRelationship is true)
+     *               - 'finalAttribute' => the final attribute name (after relationship resolution)
+     *
      * @throws \InvalidArgumentException If attribute doesn't exist in model
      */
     public function getQualifiedAttributeName(string $attributeName, RegistryManager $registryManager): array
@@ -337,74 +338,79 @@ class Model
             'relationshipPath' => null,
             'finalAttribute' => $attributeName,
         ];
-        
+
         // Step 1: Check if attribute exists and resolve the source
         $sourceToResolve = $attributeName;
-        
-        if (!str_contains($attributeName, '.')) {
+
+        if (! str_contains($attributeName, '.')) {
             // Simple attribute name - must exist in model
             $attribute = $this->attributes->get($attributeName);
-            if (!$attribute) {
+            if (! $attribute) {
                 throw new \InvalidArgumentException("Attribute '{$attributeName}' does not exist in model '{$this->name}'");
             }
-            
+
             // Check if it's an alias and get the source
             $result['isAlias'] = $attribute->isAliasKey();
             if ($attribute->isAliasKey() && $attribute->hasAliasSource()) {
                 $sourceToResolve = $attribute->getAliasSource();
             }
         }
-        
+
         // Step 2: Check if the source is a SQL expression
         if ($this->isSqlExpression($sourceToResolve)) {
             // This is a SQL expression - return as-is without qualification
             $result['qualified'] = $sourceToResolve;
             $result['finalAttribute'] = $sourceToResolve;
             $result['isSqlExpression'] = true;
+
             return $result;
         }
-        
+
         // Step 3: Handle dots (qualified names or relationship paths)
         if (str_contains($sourceToResolve, '.')) {
             $parts = explode('.', $sourceToResolve, 2);
-            
+
             // If first part is current table name, it's already qualified
             if ($parts[0] === $currentTableName) {
                 $result['qualified'] = $sourceToResolve;
                 $result['finalAttribute'] = $parts[1];
+
                 return $result;
             }
-            
+
             // Try to resolve as relationship path
             $allParts = explode('.', $sourceToResolve);
             $finalAttribute = array_pop($allParts);
-            
-            if (!empty($allParts)) {
+
+            if (! empty($allParts)) {
                 $relationshipPath = implode('.', $allParts);
-                
+
                 // Get joins for relationship path
                 $joins = $this->getJoinsTo($relationshipPath, $registryManager);
-                if ($joins && !empty($joins)) {
+                if ($joins && ! empty($joins)) {
                     // Valid relationship - use target table from last join
                     $targetTableName = $joins[count($joins) - 1]['table'];
-                    $result['qualified'] = $targetTableName . '.' . $finalAttribute;
+                    $result['qualified'] = $targetTableName.'.'.$finalAttribute;
                     $result['isRelationship'] = true;
                     $result['relationshipPath'] = $relationshipPath;
                     $result['finalAttribute'] = $finalAttribute;
+
                     return $result;
                 }
             }
-            
+
             // If not a valid relationship, could be a qualified name from another table
             // or invalid - just return as-is
             $result['qualified'] = $sourceToResolve;
             $result['finalAttribute'] = $parts[1] ?? $sourceToResolve;
+
             return $result;
         }
-        
+
         // Step 4: Simple source - just prefix with current table name
-        $result['qualified'] = $currentTableName . '.' . $sourceToResolve;
+        $result['qualified'] = $currentTableName.'.'.$sourceToResolve;
         $result['finalAttribute'] = $sourceToResolve;
+
         return $result;
     }
 

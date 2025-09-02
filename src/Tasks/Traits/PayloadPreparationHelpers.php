@@ -140,12 +140,12 @@ trait PayloadPreparationHelpers
 
                     if (! empty($relationshipPath)) {
                         $joinedRelationshipPath = implode('.', $relationshipPath);
-                        
+
                         // Get the joins to determine the target table
                         $relationshipJoins = $model->getJoinsTo($joinedRelationshipPath, $registryManager);
                         $targetTableName = $relationshipJoins[count($relationshipJoins) - 1]['table'];
                         $tableQualifiedAttribute = $targetTableName.'.'.$finalAttribute;
-                        
+
                         return [
                             'relationshipPath' => $relationshipPath,
                             'joinedRelationshipPath' => $joinedRelationshipPath,
