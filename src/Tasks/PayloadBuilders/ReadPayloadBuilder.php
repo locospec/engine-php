@@ -88,6 +88,14 @@ class ReadPayloadBuilder
             // Use the centralized qualification logic
             $attributeInfo = $model->getQualifiedAttributeName($attributeName, $registryManager);
 
+            if ($attributeInfo['isRelationship'] && $attributeInfo['relationshipPath']) {
+                // Get joins for the relationship path
+                $relationshipJoins = $model->getJoinsTo($attributeInfo['relationshipPath'], $registryManager);
+                if ($relationshipJoins) {
+                    $readPayload->joins = array_merge($readPayload->joins, $relationshipJoins);
+                }
+            }
+
             // For alias attributes, add AS clause
             if ($attributeInfo['isAlias']) {
                 $attributes[] = $attributeInfo['qualified'].' AS '.$attributeName;
