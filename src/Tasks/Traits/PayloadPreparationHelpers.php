@@ -118,13 +118,15 @@ trait PayloadPreparationHelpers
 
     /**
      * Resolves an alias attribute to its relationship source if it references relationships.
-     * Pure function that only depends on the provided attributes.
+     * Computes the table qualified attribute path.
      *
      * @param  string  $attributeName  The attribute name to resolve
      * @param  array  $attributes  Array of Attribute objects
-     * @return array|null Array with relationshipPath and tableQualifiedAttribute, or null if not a relationship alias
+     * @param  Model  $model  The model to resolve relationships from
+     * @param  RegistryManager  $registryManager  Registry manager to resolve models
+     * @return array|null Array with relationshipPath, joinedRelationshipPath, finalAttribute, source, and tableQualifiedAttribute, or null if not a relationship alias
      */
-    protected function resolveAliasToRelationshipSource(string $attributeName, array $attributes): ?array
+    protected function resolveAliasToRelationshipSource(string $attributeName, array $attributes, $model, $registryManager): ?array
     {
         foreach ($attributes as $attribute) {
             if ($attribute->getName() === $attributeName && $attribute->isAliasKey() && $attribute->hasAliasSource()) {
@@ -137,10 +139,19 @@ trait PayloadPreparationHelpers
                     $relationshipPath = $parts; // Remaining parts are the relationship path
 
                     if (! empty($relationshipPath)) {
+                        $joinedRelationshipPath = implode('.', $relationshipPath);
+                        
+                        // Get the joins to determine the target table
+                        $relationshipJoins = $model->getJoinsTo($joinedRelationshipPath, $registryManager);
+                        $targetTableName = $relationshipJoins[count($relationshipJoins) - 1]['table'];
+                        $tableQualifiedAttribute = $targetTableName.'.'.$finalAttribute;
+                        
                         return [
                             'relationshipPath' => $relationshipPath,
+                            'joinedRelationshipPath' => $joinedRelationshipPath,
                             'finalAttribute' => $finalAttribute,
                             'source' => $source,
+                            'tableQualifiedAttribute' => $tableQualifiedAttribute,
                         ];
                     }
                 }
