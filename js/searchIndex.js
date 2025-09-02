@@ -4331,6 +4331,16 @@ Search.appendIndex(
             "summary": "Get\u0020JOIN\u0020structures\u0020needed\u0020to\u0020reach\u0020a\u0020target\u0020via\u0020relationship\u0020path.",
             "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getJoinsTo"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AgetQualifiedAttributeName\u0028\u0029",
+            "name": "getQualifiedAttributeName",
+            "summary": "Get\u0020the\u0020fully\u0020qualified\u0020attribute\u0020name\u0020with\u0020comprehensive\u0020information.",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_getQualifiedAttributeName"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003AisSqlExpression\u0028\u0029",
+            "name": "isSqlExpression",
+            "summary": "Determines\u0020if\u0020a\u0020source\u0020is\u0020a\u0020SQL\u0020expression.",
+            "url": "classes/LCSEngine-Schemas-Model-Model.html#method_isSqlExpression"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Model\u003A\u003A\u0024name",
             "name": "name",
             "summary": "",

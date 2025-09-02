@@ -367,6 +367,13 @@
 </dt>
 
             <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Model.html#method_getQualifiedAttributeName">getQualifiedAttributeName()</a>
+    <span>
+                                &nbsp;: array&lt;string|int, mixed&gt;    </span>
+</dt>
+<dd>Get the fully qualified attribute name with comprehensive information.</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
     <a class="" href="classes/LCSEngine-Schemas-Model-Model.html#method_getRelationship">getRelationship()</a>
     <span>
                                 &nbsp;: <a href="classes/LCSEngine-Schemas-Model-Relationships-Relationship.html"><abbr title="\LCSEngine\Schemas\Model\Relationships\Relationship">Relationship</abbr></a>|null    </span>
@@ -443,6 +450,13 @@
     <span>
                                 &nbsp;: array&lt;string|int, mixed&gt;    </span>
 </dt>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -private">
+    <a class="" href="classes/LCSEngine-Schemas-Model-Model.html#method_isSqlExpression">isSqlExpression()</a>
+    <span>
+                                &nbsp;: bool    </span>
+</dt>
+<dd>Determines if a source is a SQL expression.</dd>
 
     </dl>
 
@@ -1656,6 +1670,95 @@
             -public
                                                         "
 >
+    <h4 class="phpdocumentor-element__name" id="method_getQualifiedAttributeName">
+        getQualifiedAttributeName()
+        <a href="classes/LCSEngine-Schemas-Model-Model.html#method_getQualifiedAttributeName" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Model.php"><a href="files/src-schemas-model-model.html"><abbr title="src/Schemas/Model/Model.php">Model.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">329</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Get the fully qualified attribute name with comprehensive information.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                    <span class="phpdocumentor-signature__name">getQualifiedAttributeName</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$attributeName</span></span><span class="phpdocumentor-signature__argument"><span>, </span><span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a>&nbsp;</span><span class="phpdocumentor-signature__argument__name">$registryManager</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+    
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$attributeName</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The attribute name to qualify</p>
+</section>
+
+            </dd>
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$registryManager</span>
+                : <span class="phpdocumentor-signature__argument__return-type"><a href="classes/LCSEngine-Registry-RegistryManager.html"><abbr title="\LCSEngine\Registry\RegistryManager">RegistryManager</abbr></a></span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>Registry manager to resolve models</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+    <h5 class="phpdocumentor-tag-list__heading" id="tags">
+        Tags
+        <a href="classes/LCSEngine-Schemas-Model-Model.html#method_getQualifiedAttributeName#tags" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h5>
+    <dl class="phpdocumentor-tag-list">
+                                    <dt class="phpdocumentor-tag-list__entry">
+                    <span class="phpdocumentor-tag__name">throws</span>
+                </dt>
+                <dd class="phpdocumentor-tag-list__definition">
+                                                                <span class="phpdocumentor-tag-link"><abbr title="\InvalidArgumentException">InvalidArgumentException</abbr></span>
+                                                            
+                                                 <section class="phpdocumentor-description"><p>If attribute doesn't exist in model</p>
+</section>
+
+                                    </dd>
+                                            </dl>
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">array&lt;string|int, mixed&gt;</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>Array containing:</p>
+<ul>
+<li>'original' =&gt; original attribute name</li>
+<li>'qualified' =&gt; fully qualified attribute name</li>
+<li>'isAlias' =&gt; whether this is an alias attribute</li>
+<li>'isRelationship' =&gt; whether this involves a relationship</li>
+<li>'relationshipPath' =&gt; the relationship path (if isRelationship is true)</li>
+<li>'finalAttribute' =&gt; the final attribute name (after relationship resolution)</li>
+</ul>
+</section>
+
+            </section>
+
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
     <h4 class="phpdocumentor-element__name" id="method_getRelationship">
         getRelationship()
         <a href="classes/LCSEngine-Schemas-Model-Model.html#method_getRelationship" class="headerlink"><i class="fas fa-link"></i></a>
@@ -2192,6 +2295,63 @@
             </section>
 
 </article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -private
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_isSqlExpression">
+        isSqlExpression()
+        <a href="classes/LCSEngine-Schemas-Model-Model.html#method_isSqlExpression" class="headerlink"><i class="fas fa-link"></i></a>
+
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/Schemas/Model/Model.php"><a href="files/src-schemas-model-model.html"><abbr title="src/Schemas/Model/Model.php">Model.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">424</span>
+
+    </aside>
+
+        <p class="phpdocumentor-summary">Determines if a source is a SQL expression.</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">private</span>
+                    <span class="phpdocumentor-signature__name">isSqlExpression</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">string&nbsp;</span><span class="phpdocumentor-signature__argument__name">$source</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">bool</span></code>
+
+    <div class="phpdocumentor-label-line">
+        </div>
+    
+        <section class="phpdocumentor-description"><p>Returns true for SQL expressions like functions, CASE statements, etc.</p>
+</section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$source</span>
+                : <span class="phpdocumentor-signature__argument__return-type">string</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                    <section class="phpdocumentor-description"><p>The source to check</p>
+</section>
+
+            </dd>
+            </dl>
+
+    
+
+    
+
+            <section>
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+        <span class="phpdocumentor-signature__response_type">bool</span>
+                    &mdash;
+                <section class="phpdocumentor-description"><p>True if it's a SQL expression, false otherwise</p>
+</section>
+
+            </section>
+
+</article>
             </section>
 
         <div class="phpdocumentor-modal" id="source-view">
@@ -2341,6 +2501,7 @@
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getLabelKey">getLabelKey()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getName">getName()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getPrimaryKey">getPrimaryKey()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getQualifiedAttributeName">getQualifiedAttributeName()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getRelationship">getRelationship()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getRelationships">getRelationships()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_getRelationshipsByType">getRelationshipsByType()</a></li>
@@ -2354,6 +2515,7 @@
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_removeRelationship">removeRelationship()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_removeScope">removeScope()</a></li>
                                             <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_toArray">toArray()</a></li>
+                                            <li class=""><a href="classes/LCSEngine-Schemas-Model-Model.html#method_isSqlExpression">isSqlExpression()</a></li>
                                     </ul>
             </li>
                     </ul>
