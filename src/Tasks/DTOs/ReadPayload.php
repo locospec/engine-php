@@ -29,6 +29,8 @@ class ReadPayload implements PaginatablePayloadInterface, SortablePayloadInterfa
 
     public array $joins = [];
 
+    public array $disableTransform = [];
+
     public function __construct(string $modelName)
     {
         $this->modelName = $modelName;

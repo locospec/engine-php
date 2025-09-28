@@ -83,6 +83,13 @@
         "type": "string"
       },
       "description": "Array of column names to group by"
+    },
+    "disableTransform": {
+      "type": "array",
+      "description": "Name of attributes to disable transform",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": ["type", "modelName"],

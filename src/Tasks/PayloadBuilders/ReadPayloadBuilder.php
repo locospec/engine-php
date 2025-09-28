@@ -145,6 +145,10 @@ class ReadPayloadBuilder
             $readPayload->expand = array_values(array_unique($expand));
         }
 
+        if (isset($payload['disableTransform']) && ! empty($payload['disableTransform'])) {
+            $readPayload->disableTransform = $payload['disableTransform'];
+        }
+
         $logger = LCS::getLogger();
         $logger->notice('Attributes prepared for read payload', [
             'type' => 'readPayloadBuilder',
