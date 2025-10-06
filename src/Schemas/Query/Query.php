@@ -461,7 +461,8 @@ class Query
             $query = new self($name, $label, $attributes, $model);
 
             $query->setSelectionKey($model->getPrimaryKey()->getName());
-            $query->allowedScopes = new Collection($model->getScopes()->keys()->toArray());
+            // TODORajesh: we have to see whether to do this or not, may be bydefault no scope will be applied.
+            // $query->allowedScopes = new Collection($model->getScopes()->keys()->toArray());
             $query->setSerialize(new SerializeConfig);
 
             return $query;
