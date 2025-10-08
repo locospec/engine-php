@@ -35,7 +35,7 @@ class CreatePayloadBuilder
         // Iterate through model attributes to process data and handle generated values.
         foreach ($attributes as $attributeName => $attribute) {
             // If the attribute already exists in payload, keep it
-            if (isset($payload[$attributeName])) {
+            if (isset($payload[$attributeName]) && ! $attribute->hasGenerators()) {
                 $createPayload->setData($attributeName, $payload[$attributeName]);
 
                 continue;

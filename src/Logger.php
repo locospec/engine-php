@@ -43,7 +43,7 @@ class Logger
             $this->testHandler = new TestHandler;
             $this->logger->pushHandler($this->testHandler);
 
-            $consoleHandler = new StreamHandler('php://stdout', Level::Notice);
+            $consoleHandler = new StreamHandler('php://stdout', Level::Debug);
             $this->logger->pushHandler($consoleHandler);
         } else {
             // NullHandler drops all records

@@ -15,7 +15,7 @@ class ResultTransformation
         $this->model = $model;
     }
 
-    public function transform(array $data): array
+    public function transform(array $data, array $disableTransform): array
     {
         $transformAttributes = $this->model->getTransformAttributes();
         if ($transformAttributes->isEmpty()) {
@@ -28,18 +28,22 @@ class ResultTransformation
         $transformedRecords = [];
 
         foreach ($records as $record) {
-            $transformedRecords[] = $this->processRecord($record, $transformAttributes);
+            $transformedRecords[] = $this->processRecord($record, $transformAttributes, $disableTransform);
         }
 
         return $isCollection ? $transformedRecords : $transformedRecords[0];
     }
 
-    private function processRecord(array $record, object $transformAttributes): array
+    private function processRecord(array $record, object $transformAttributes, array $disableTransform): array
     {
         $processed = $record;
 
-        $transformAttributes->each(function ($attribute, $transformKey) use (&$processed, $record) {
+        $transformAttributes->each(function ($attribute, $transformKey) use (&$processed, $record, $disableTransform) {
             $extracted = null;
+            if (in_array($attribute->getName(), $disableTransform)) {
+                return;
+            }
+
             if ($attribute->hasTransformSource()) {
                 $source = $attribute->getTransformSource();
 

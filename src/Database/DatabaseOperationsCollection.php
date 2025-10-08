@@ -460,9 +460,8 @@ class DatabaseOperationsCollection
                     }
                 }
             }
-
             foreach ($dbOpResults as $index => $dbOpResult) {
-                if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete']) && $dbOpResult['operation']['purpose'] !== 'aggregate') {
+                if (! in_array($dbOpResult['operation']['type'], ['update', 'insert', 'delete']) && $dbOpResult['operation']['purpose'] !== 'aggregate' && (isset($dbOpResult['operation']['disableTransform']) && ! in_array('*', $dbOpResult['operation']['disableTransform']))) {
                     if (isset($dbOpResult['operation']['modelName']) && isset($dbOpResult['result']) && ! empty($dbOpResult['result'])) {
 
                         $model = $this->registryManager->get('model', $dbOpResult['operation']['modelName']);
@@ -475,7 +474,7 @@ class DatabaseOperationsCollection
                             ]);
 
                             $this->resultTransformer->setModel($model);
-                            $dbOpResults[$index]['result'] = $this->resultTransformer->transform($dbOpResult['result']);
+                            $dbOpResults[$index]['result'] = $this->resultTransformer->transform($dbOpResult['result'], $dbOpResult['operation']['disableTransform']);
 
                             $this->logger->info('Result transformation applied for model', [
                                 'type' => 'dbOps',
