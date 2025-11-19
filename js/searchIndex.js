@@ -3796,6 +3796,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_TIMESTAMP_GENERATOR"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003ALOWERCASE",
+            "name": "LOWERCASE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_LOWERCASE"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\GeneratorType\u003A\u003AUPPERCASE",
+            "name": "UPPERCASE",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-GeneratorType.html#enumcase_UPPERCASE"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\OperationType",
             "name": "OperationType",
             "summary": "",
