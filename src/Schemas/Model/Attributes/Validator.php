@@ -12,6 +12,8 @@ class Validator
 
     private ?string $message = null;
 
+    private ?string $pattern = null;
+
     private Collection $operations;
 
     public function __construct(ValidatorType $type)
@@ -65,6 +67,16 @@ class Validator
         return $this->message;
     }
 
+    public function setPattern(?string $pattern): void
+    {
+        $this->pattern = $pattern;
+    }
+
+    public function getPattern(): ?string
+    {
+        return $this->pattern;
+    }
+
     public function hasMessage(): bool
     {
         return ! is_null($this->message);
@@ -77,12 +89,18 @@ class Validator
 
     public function toArray(): array
     {
-        return [
+        $array = [
             'id' => $this->id,
             'type' => $this->type->value,
             'message' => $this->message,
             'operations' => $this->operations->map(fn ($op) => $op->value)->all(),
         ];
+
+        if (isset($this->pattern)) {
+            $array['pattern'] = $this->pattern;
+        }
+
+        return $array;
     }
 
     public static function fromArray(array $data): self
@@ -92,6 +110,15 @@ class Validator
         if (isset($data['id'])) {
             $validator->setId($data['id']);
         }
+
+        if ($validator->getType() === ValidatorType::REGEX) {
+            if (isset($data['pattern'])) {
+                $validator->setPattern($data['pattern']);
+            } else {
+                throw new \InvalidArgumentException('Pattern is required for regex validator');
+            }
+        }
+
         if (isset($data['message'])) {
             $validator->setMessage($data['message']);
         }
