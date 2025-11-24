@@ -4011,6 +4011,16 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getMessage"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AsetPattern\u0028\u0029",
+            "name": "setPattern",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_setPattern"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AgetPattern\u0028\u0029",
+            "name": "getPattern",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#method_getPattern"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003AhasMessage\u0028\u0029",
             "name": "hasMessage",
             "summary": "",
@@ -4046,6 +4056,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#property_message"
         },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003A\u0024pattern",
+            "name": "pattern",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-Validator.html#property_pattern"
+        },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\Validator\u003A\u003A\u0024operations",
             "name": "operations",
             "summary": "",
@@ -4075,6 +4090,11 @@ Search.appendIndex(
             "name": "EMAIL",
             "summary": "",
             "url": "classes/LCSEngine-Schemas-Model-Attributes-ValidatorType.html#enumcase_EMAIL"
+        },                {
+            "fqsen": "\\LCSEngine\\Schemas\\Model\\Attributes\\ValidatorType\u003A\u003AREGEX",
+            "name": "REGEX",
+            "summary": "",
+            "url": "classes/LCSEngine-Schemas-Model-Attributes-ValidatorType.html#enumcase_REGEX"
         },                {
             "fqsen": "\\LCSEngine\\Schemas\\Model\\Configuration",
             "name": "Configuration",
