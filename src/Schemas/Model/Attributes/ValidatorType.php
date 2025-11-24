@@ -8,5 +8,5 @@ enum ValidatorType: string
     case UNIQUE = 'unique';
     case EXISTS = 'exists';
     case EMAIL = 'email';
-    // regex pattern
+    case REGEX = 'regex';
 }
